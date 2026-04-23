@@ -1,0 +1,1479 @@
+{
+  "season": "Clausura 2026",
+  "generated_at": "2026-02-11T01:04:19.336383",
+  "teams": [
+    {
+      "team": "Club América",
+      "players": [
+        {
+          "player_name": "Sebastián Cáceres",
+          "position": "DEF",
+          "status": "OUT",
+          "reason": "Lesión",
+          "source_url": [
+            "https://www.lesionadosysuspendidos.mx"
+          ],
+          "last_updated": null,
+          "minutes_season": null,
+          "appearances_season": null,
+          "starts_season": null,
+          "minutes_last_5": null,
+          "starts_last_5": null
+        },
+        {
+          "player_name": "Rodrigo Aguirre",
+          "position": "FW",
+          "status": "QUESTIONABLE",
+          "reason": "Lesión muscular",
+          "source_url": [
+            "https://www.apuestas-deportivas.es/mexico-liga-mx-jugadores-lesionados-y-suspendidos-sancionados/"
+          ],
+          "last_updated": "2026-01-20",
+          "minutes_season": null,
+          "appearances_season": 16,
+          "starts_season": null,
+          "minutes_last_5": null,
+          "starts_last_5": null
+        },
+        {
+          "player_name": "Dagoberto Espinoza",
+          "position": "MID",
+          "status": "OUT",
+          "reason": "Lesión ligamento cruzado",
+          "source_url": [
+            "https://www.apuestas-deportivas.es/mexico-liga-mx-jugadores-lesionados-y-suspendidos-sancionados/"
+          ],
+          "last_updated": "2025-09-24",
+          "minutes_season": null,
+          "appearances_season": null,
+          "starts_season": null,
+          "minutes_last_5": null,
+          "starts_last_5": null
+        },
+        {
+          "player_name": "Henry Martín",
+          "position": "FW",
+          "status": "QUESTIONABLE",
+          "reason": "Influenza/molestias musculares",
+          "source_url": [
+            "https://www.diariomarca.com.mx/2026/01/seleccionados-iniciaron-el-clausura-2026-con-lesiones/"
+          ],
+          "last_updated": "2026-01-09",
+          "minutes_season": null,
+          "appearances_season": null,
+          "starts_season": null,
+          "minutes_last_5": null,
+          "starts_last_5": null
+        },
+        {
+          "player_name": "Alejandro Zendejas",
+          "position": "FW",
+          "status": "DOUBTFUL",
+          "reason": "Duda para Clásico Nacional",
+          "source_url": [
+            "https://www.lesionadosysuspendidos.mx"
+          ],
+          "last_updated": "2026-02-10",
+          "minutes_season": null,
+          "appearances_season": 14,
+          "starts_season": null,
+          "minutes_last_5": null,
+          "starts_last_5": null
+        },
+        {
+          "player_name": "Ramón Juárez",
+          "position": "DEF",
+          "status": "SUSPENDED",
+          "reason": "Tarjeta roja",
+          "source_url": [
+            "https://as.com/resultados/futbol/mexico_clausura/2026/ranking/jugadores/tarjetas-rojas/"
+          ],
+          "last_updated": null,
+          "minutes_season": null,
+          "appearances_season": null,
+          "starts_season": null,
+          "minutes_last_5": null,
+          "starts_last_5": null
+        }
+      ]
+    },
+    {
+      "team": "Atlas",
+      "players": [
+        {
+          "player_name": "Brian Lozano",
+          "position": "MID",
+          "status": "OUT",
+          "reason": "Lesión",
+          "source_url": [
+            "https://www.lesionadosysuspendidos.mx"
+          ],
+          "last_updated": null,
+          "minutes_season": null,
+          "appearances_season": null,
+          "starts_season": null,
+          "minutes_last_5": null,
+          "starts_last_5": null
+        },
+        {
+          "player_name": "Mauro Manotas",
+          "position": "FW",
+          "status": "OUT",
+          "reason": "Lesión",
+          "source_url": [
+            "https://www.lesionadosysuspendidos.mx"
+          ],
+          "last_updated": null,
+          "minutes_season": null,
+          "appearances_season": null,
+          "starts_season": null,
+          "minutes_last_5": null,
+          "starts_last_5": null
+        },
+        {
+          "player_name": "Juan Zapata",
+          "position": "MID",
+          "status": "OUT",
+          "reason": "Lesión",
+          "source_url": [
+            "https://www.lesionadosysuspendidos.mx"
+          ],
+          "last_updated": null,
+          "minutes_season": null,
+          "appearances_season": null,
+          "starts_season": null,
+          "minutes_last_5": null,
+          "starts_last_5": null
+        },
+        {
+          "player_name": "Paulo Ramírez",
+          "position": null,
+          "status": "SUSPENDED",
+          "reason": "Tarjeta roja",
+          "source_url": [
+            "https://as.com/resultados/futbol/mexico_clausura/2026/ranking/jugadores/tarjetas-rojas/"
+          ],
+          "last_updated": null,
+          "minutes_season": null,
+          "appearances_season": null,
+          "starts_season": null,
+          "minutes_last_5": null,
+          "starts_last_5": null
+        }
+      ]
+    },
+    {
+      "team": "Atlético de San Luis",
+      "players": [
+        {
+          "player_name": "Leonardo Bonatini",
+          "position": "FW",
+          "status": "OUT",
+          "reason": "Lesión",
+          "source_url": [
+            "https://www.lesionadosysuspendidos.mx"
+          ],
+          "last_updated": null,
+          "minutes_season": null,
+          "appearances_season": null,
+          "starts_season": null,
+          "minutes_last_5": null,
+          "starts_last_5": null
+        },
+        {
+          "player_name": "Jürgen Damm",
+          "position": "MID",
+          "status": "OUT",
+          "reason": "Lesión",
+          "source_url": [
+            "https://www.lesionadosysuspendidos.mx"
+          ],
+          "last_updated": null,
+          "minutes_season": null,
+          "appearances_season": null,
+          "starts_season": null,
+          "minutes_last_5": null,
+          "starts_last_5": null
+        },
+        {
+          "player_name": "Jonantán Villal",
+          "position": null,
+          "status": "SUSPENDED",
+          "reason": "Suspensión",
+          "source_url": [
+            "https://www.lesionadosysuspendidos.mx"
+          ],
+          "last_updated": null,
+          "minutes_season": null,
+          "appearances_season": null,
+          "starts_season": null,
+          "minutes_last_5": null,
+          "starts_last_5": null
+        },
+        {
+          "player_name": "Óscar Macías",
+          "position": null,
+          "status": "OUT",
+          "reason": "Lesión en el muslo",
+          "source_url": [
+            "https://www.apuestas-deportivas.es/mexico-liga-mx-jugadores-lesionados-y-suspendidos-sancionados/"
+          ],
+          "last_updated": "2026-01-25",
+          "minutes_season": null,
+          "appearances_season": null,
+          "starts_season": null,
+          "minutes_last_5": null,
+          "starts_last_5": null
+        },
+        {
+          "player_name": "César López",
+          "position": null,
+          "status": "OUT",
+          "reason": "Lesión ligamento cruzado",
+          "source_url": [
+            "https://www.apuestas-deportivas.es/mexico-liga-mx-jugadores-lesionados-y-suspendidos-sancionados/"
+          ],
+          "last_updated": "2025-08-11",
+          "minutes_season": null,
+          "appearances_season": null,
+          "starts_season": null,
+          "minutes_last_5": null,
+          "starts_last_5": null
+        },
+        {
+          "player_name": "Robson Bambú",
+          "position": "DEF",
+          "status": "SUSPENDED",
+          "reason": "Tarjeta roja",
+          "source_url": [
+            "https://as.com/resultados/futbol/mexico_clausura/2026/ranking/jugadores/tarjetas-rojas/"
+          ],
+          "last_updated": null,
+          "minutes_season": null,
+          "appearances_season": null,
+          "starts_season": null,
+          "minutes_last_5": null,
+          "starts_last_5": null
+        }
+      ]
+    },
+    {
+      "team": "Guadalajara",
+      "players": [
+        {
+          "player_name": "José Castillo",
+          "position": null,
+          "status": "DOUBTFUL",
+          "reason": "Lesión",
+          "source_url": [
+            "https://www.facebook.com/groups/897795652031443/posts/1354039819740355/"
+          ],
+          "last_updated": "2026-02-04",
+          "minutes_season": null,
+          "appearances_season": null,
+          "starts_season": null,
+          "minutes_last_5": null,
+          "starts_last_5": null
+        },
+        {
+          "player_name": "Carlos Cisneros",
+          "position": "FW",
+          "status": "OUT",
+          "reason": "Lesión",
+          "source_url": [
+            "https://www.lesionadosysuspendidos.mx"
+          ],
+          "last_updated": null,
+          "minutes_season": null,
+          "appearances_season": null,
+          "starts_season": null,
+          "minutes_last_5": null,
+          "starts_last_5": null
+        },
+        {
+          "player_name": "Pavel Pérez",
+          "position": "MID",
+          "status": "OUT",
+          "reason": "Lesión",
+          "source_url": [
+            "https://www.lesionadosysuspendidos.mx"
+          ],
+          "last_updated": null,
+          "minutes_season": null,
+          "appearances_season": null,
+          "starts_season": null,
+          "minutes_last_5": null,
+          "starts_last_5": null
+        },
+        {
+          "player_name": "Gilberto Sepúlveda",
+          "position": "DEF",
+          "status": "DOUBTFUL",
+          "reason": "Esguince de tobillo",
+          "source_url": [
+            "https://www.si.com/es-us/futbol/lesionados-y-suspendidos-chivas-mazatlan-6-2-2026"
+          ],
+          "last_updated": "2026-02-04",
+          "minutes_season": null,
+          "appearances_season": null,
+          "starts_season": null,
+          "minutes_last_5": null,
+          "starts_last_5": null
+        },
+        {
+          "player_name": "Leonardo Sepúlveda",
+          "position": null,
+          "status": "OUT",
+          "reason": "Lesión de tobillo",
+          "source_url": [
+            "https://www.apuestas-deportivas.es/mexico-liga-mx-jugadores-lesionados-y-suspendidos-sancionados/"
+          ],
+          "last_updated": "2025-07-12",
+          "minutes_season": null,
+          "appearances_season": null,
+          "starts_season": null,
+          "minutes_last_5": null,
+          "starts_last_5": null
+        },
+        {
+          "player_name": "Luis Romo",
+          "position": "MID",
+          "status": "OUT",
+          "reason": "Lesión muscular muslo derecho (confirmado fuera)",
+          "source_url": [
+            "https://www.tribuna.com.mx/deportes/2026/2/10/chivas-luis-romo-causara-baja-del-guadalajara-para-el-clasico-nacional-del-clausur",
+            "https://www.espn.com.mx/futbol/mexico/nota/_/id/16281465/chivas-luis-romo-lesion-clasico-nacional-liga-mx-guadalajara-america"
+          ],
+          "last_updated": "2026-02-09",
+          "minutes_season": null,
+          "appearances_season": null,
+          "starts_season": null,
+          "minutes_last_5": null,
+          "starts_last_5": null
+        },
+        {
+          "player_name": "Érick Gutiérrez",
+          "position": "MID",
+          "status": "OUT",
+          "reason": "Fuera por decisión técnica (no convocado)",
+          "source_url": [
+            "https://chivaspasion.bolavip.com/noticias/regresa-erick-gutierrez-por-la-lesion-de-luis-romo-gabriel-milito-y-chivas-tomaron-una"
+          ],
+          "last_updated": "2026-02-07",
+          "minutes_season": null,
+          "appearances_season": null,
+          "starts_season": null,
+          "minutes_last_5": null,
+          "starts_last_5": null
+        },
+        {
+          "player_name": "Alan Pulido",
+          "position": "FW",
+          "status": "OUT",
+          "reason": "No entra en planes, ausencias pretemporada",
+          "source_url": [
+            "https://chivaspasion.bolavip.com/noticias/alan-pulido-prueba-con-un-nuevo-deporte-mientras-sigue-borrado-por-gabriel-milito-en-c"
+          ],
+          "last_updated": "2025-12-15",
+          "minutes_season": null,
+          "appearances_season": null,
+          "starts_season": null,
+          "minutes_last_5": null,
+          "starts_last_5": null
+        },
+        {
+          "player_name": "Armando González",
+          "position": "FW",
+          "status": "DOUBTFUL",
+          "reason": "Lesión muscular (trabajo diferenciado)",
+          "source_url": [
+            "https://www.nacionfutbol.com.mx/liga-mx/gabriel-milito-dejaria-fuera-a-armando-gonzalez-del-chivas-vs-atlas-por-la-copa-pacifica",
+            "https://www.dalechivas.com/news/35575/hormiga-gonzalez-enciende-las-alarmas-por-una-lesion-previo-al-inicio-del-clausura-2026.ht"
+          ],
+          "last_updated": "2026-01-01",
+          "minutes_season": null,
+          "appearances_season": null,
+          "starts_season": null,
+          "minutes_last_5": null,
+          "starts_last_5": null
+        },
+        {
+          "player_name": "Eduardo García",
+          "position": "GK",
+          "status": "OUT",
+          "reason": "Cedido a Mazatlán 6 meses",
+          "source_url": [
+            "https://www.tvazteca.com/aztecadeportes/chivas-han-decidido-ceder-a-eduardo-garcia-mazatlan-clausura-2026/"
+          ],
+          "last_updated": "2025-12-26",
+          "minutes_season": null,
+          "appearances_season": null,
+          "starts_season": null,
+          "minutes_last_5": null,
+          "starts_last_5": null
+        }
+      ]
+    },
+    {
+      "team": "Cruz Azul",
+      "players": [
+        {
+          "player_name": "Gabriel Fernández",
+          "position": "FW",
+          "status": "SUSPENDED",
+          "reason": "Tarjeta roja",
+          "source_url": [
+            "https://as.com/resultados/futbol/mexico_clausura/2026/ranking/jugadores/tarjetas-rojas/"
+          ],
+          "last_updated": null,
+          "minutes_season": null,
+          "appearances_season": 13,
+          "starts_season": null,
+          "minutes_last_5": null,
+          "starts_last_5": null
+        },
+        {
+          "player_name": "Willer Ditta",
+          "position": "DEF",
+          "status": "SUSPENDED",
+          "reason": "Suspensión",
+          "source_url": [
+            "https://www.lesionadosysuspendidos.mx"
+          ],
+          "last_updated": null,
+          "minutes_season": null,
+          "appearances_season": null,
+          "starts_season": null,
+          "minutes_last_5": null,
+          "starts_last_5": null
+        },
+        {
+          "player_name": "Jesús Orozco",
+          "position": "DEF",
+          "status": "OUT",
+          "reason": "Tobillo roto",
+          "source_url": [
+            "https://www.apuestas-deportivas.es/mexico-liga-mx-jugadores-lesionados-y-suspendidos-sancionados/"
+          ],
+          "last_updated": "2025-12-07",
+          "minutes_season": null,
+          "appearances_season": null,
+          "starts_season": null,
+          "minutes_last_5": null,
+          "starts_last_5": null
+        },
+        {
+          "player_name": "Kevin Mier",
+          "position": "GK",
+          "status": "OUT",
+          "reason": "Lesión de pierna",
+          "source_url": [
+            "https://www.apuestas-deportivas.es/mexico-liga-mx-jugadores-lesionados-y-suspendidos-sancionados/"
+          ],
+          "last_updated": "2025-11-08",
+          "minutes_season": null,
+          "appearances_season": null,
+          "starts_season": null,
+          "minutes_last_5": null,
+          "starts_last_5": null
+        },
+        {
+          "player_name": "Andrés Montaño",
+          "position": "MID",
+          "status": "QUESTIONABLE",
+          "reason": "Recuperándose de LCA rodilla izquierda (8 meses fuera, regresó enero 2026)",
+          "source_url": [
+            "https://www.espn.com.mx/futbol/mexico/nota/_/id/15172332/cruz-azul-andres-montano-lesion-ligamento-liguilla-clausura-2025",
+            "https://espndeportes.espn.com/futbol/mexico/nota/_/id/16178533/andres-montano-cruz-azul-regreso-lesion-ligamento-clausura-2026"
+          ],
+          "last_updated": "2026-01-12",
+          "minutes_season": null,
+          "appearances_season": null,
+          "starts_season": null,
+          "minutes_last_5": null,
+          "starts_last_5": null
+        }
+      ]
+    },
+    {
+      "team": "FC Juárez",
+      "players": [
+        {
+          "player_name": "Avilés Hurtado",
+          "position": "FW",
+          "status": "OUT",
+          "reason": "Lesión",
+          "source_url": [
+            "https://www.lesionadosysuspendidos.mx"
+          ],
+          "last_updated": null,
+          "minutes_season": null,
+          "appearances_season": null,
+          "starts_season": null,
+          "minutes_last_5": null,
+          "starts_last_5": null
+        },
+        {
+          "player_name": "Haret Ortega",
+          "position": "DEF",
+          "status": "OUT",
+          "reason": "Lesión",
+          "source_url": [
+            "https://www.lesionadosysuspendidos.mx"
+          ],
+          "last_updated": null,
+          "minutes_season": null,
+          "appearances_season": null,
+          "starts_season": null,
+          "minutes_last_5": null,
+          "starts_last_5": null
+        },
+        {
+          "player_name": "Alfredo Talavera",
+          "position": "GK",
+          "status": "OUT",
+          "reason": "Lesión",
+          "source_url": [
+            "https://www.lesionadosysuspendidos.mx"
+          ],
+          "last_updated": null,
+          "minutes_season": null,
+          "appearances_season": null,
+          "starts_season": null,
+          "minutes_last_5": null,
+          "starts_last_5": null
+        },
+        {
+          "player_name": "Diego Valoyes",
+          "position": "MID",
+          "status": "OUT",
+          "reason": "Lesión",
+          "source_url": [
+            "https://www.lesionadosysuspendidos.mx"
+          ],
+          "last_updated": null,
+          "minutes_season": null,
+          "appearances_season": null,
+          "starts_season": null,
+          "minutes_last_5": null,
+          "starts_last_5": null
+        },
+        {
+          "player_name": "Madson",
+          "position": null,
+          "status": "OUT",
+          "reason": "Lesión por golpe",
+          "source_url": [
+            "https://www.apuestas-deportivas.es/mexico-liga-mx-jugadores-lesionados-y-suspendidos-sancionados/"
+          ],
+          "last_updated": "2026-01-30",
+          "minutes_season": null,
+          "appearances_season": null,
+          "starts_season": null,
+          "minutes_last_5": null,
+          "starts_last_5": null
+        },
+        {
+          "player_name": "Iván Torres",
+          "position": null,
+          "status": "OUT",
+          "reason": "Lesión por golpe",
+          "source_url": [
+            "https://www.apuestas-deportivas.es/mexico-liga-mx-jugadores-lesionados-y-suspendidos-sancionados/"
+          ],
+          "last_updated": "2026-01-13",
+          "minutes_season": null,
+          "appearances_season": null,
+          "starts_season": null,
+          "minutes_last_5": null,
+          "starts_last_5": null
+        },
+        {
+          "player_name": "Guille Ruiz",
+          "position": null,
+          "status": "OUT",
+          "reason": "Lesión por golpe",
+          "source_url": [
+            "https://www.apuestas-deportivas.es/mexico-liga-mx-jugadores-lesionados-y-suspendidos-sancionados/"
+          ],
+          "last_updated": "2025-11-01",
+          "minutes_season": null,
+          "appearances_season": null,
+          "starts_season": null,
+          "minutes_last_5": null,
+          "starts_last_5": null
+        }
+      ]
+    },
+    {
+      "team": "León",
+      "players": [
+        {
+          "player_name": "Fidel Ambríz",
+          "position": "MID",
+          "status": "OUT",
+          "reason": "Lesión",
+          "source_url": [
+            "https://www.lesionadosysuspendidos.mx"
+          ],
+          "last_updated": null,
+          "minutes_season": null,
+          "appearances_season": null,
+          "starts_season": null,
+          "minutes_last_5": null,
+          "starts_last_5": null
+        },
+        {
+          "player_name": "Alfonso Blanco",
+          "position": "GK",
+          "status": "OUT",
+          "reason": "Lesión",
+          "source_url": [
+            "https://www.lesionadosysuspendidos.mx"
+          ],
+          "last_updated": null,
+          "minutes_season": null,
+          "appearances_season": null,
+          "starts_season": null,
+          "minutes_last_5": null,
+          "starts_last_5": null
+        },
+        {
+          "player_name": "Andrés Guardado",
+          "position": "MID",
+          "status": "OUT",
+          "reason": "Lesión",
+          "source_url": [
+            "https://www.lesionadosysuspendidos.mx"
+          ],
+          "last_updated": null,
+          "minutes_season": null,
+          "appearances_season": null,
+          "starts_season": null,
+          "minutes_last_5": null,
+          "starts_last_5": null
+        },
+        {
+          "player_name": "David Ramírez",
+          "position": null,
+          "status": "DOUBTFUL",
+          "reason": "Duda",
+          "source_url": [
+            "https://www.lesionadosysuspendidos.mx"
+          ],
+          "last_updated": null,
+          "minutes_season": null,
+          "appearances_season": null,
+          "starts_season": null,
+          "minutes_last_5": null,
+          "starts_last_5": null
+        },
+        {
+          "player_name": "Sebastián Vegas",
+          "position": "DEF",
+          "status": "SUSPENDED",
+          "reason": "Tarjeta roja",
+          "source_url": [
+            "https://as.com/resultados/futbol/mexico_clausura/2026/ranking/jugadores/tarjetas-rojas/"
+          ],
+          "last_updated": null,
+          "minutes_season": null,
+          "appearances_season": null,
+          "starts_season": null,
+          "minutes_last_5": null,
+          "starts_last_5": null
+        }
+      ]
+    },
+    {
+      "team": "Mazatlán FC",
+      "players": [
+        {
+          "player_name": "Eduard Bello",
+          "position": "FW",
+          "status": "OUT",
+          "reason": "Lesión",
+          "source_url": [
+            "https://www.lesionadosysuspendidos.mx"
+          ],
+          "last_updated": null,
+          "minutes_season": null,
+          "appearances_season": null,
+          "starts_season": null,
+          "minutes_last_5": null,
+          "starts_last_5": null
+        },
+        {
+          "player_name": "Nicolás Benedetti",
+          "position": "MID",
+          "status": "OUT",
+          "reason": "Lesión",
+          "source_url": [
+            "https://www.lesionadosysuspendidos.mx"
+          ],
+          "last_updated": null,
+          "minutes_season": null,
+          "appearances_season": 15,
+          "starts_season": null,
+          "minutes_last_5": null,
+          "starts_last_5": null
+        },
+        {
+          "player_name": "Jefferson Intriago",
+          "position": "MID",
+          "status": "OUT",
+          "reason": "Lesión",
+          "source_url": [
+            "https://www.lesionadosysuspendidos.mx"
+          ],
+          "last_updated": null,
+          "minutes_season": null,
+          "appearances_season": null,
+          "starts_season": null,
+          "minutes_last_5": null,
+          "starts_last_5": null
+        },
+        {
+          "player_name": "Luis Olivas",
+          "position": "DEF",
+          "status": "OUT",
+          "reason": "Lesión",
+          "source_url": [
+            "https://www.lesionadosysuspendidos.mx"
+          ],
+          "last_updated": null,
+          "minutes_season": null,
+          "appearances_season": null,
+          "starts_season": null,
+          "minutes_last_5": null,
+          "starts_last_5": null
+        },
+        {
+          "player_name": "Brian Rubio",
+          "position": "FW",
+          "status": "DOUBTFUL",
+          "reason": "Duda",
+          "source_url": [
+            "https://www.lesionadosysuspendidos.mx"
+          ],
+          "last_updated": null,
+          "minutes_season": null,
+          "appearances_season": null,
+          "starts_season": null,
+          "minutes_last_5": null,
+          "starts_last_5": null
+        }
+      ]
+    },
+    {
+      "team": "Monterrey",
+      "players": [
+        {
+          "player_name": "Víctor Guzmán",
+          "position": "MID",
+          "status": "OUT",
+          "reason": "Problemas musculares",
+          "source_url": [
+            "https://www.si.com/es-us/futbol/lesionados-y-suspendidos-de-monterrey-para-enfrentar-al-america-7-2-2026"
+          ],
+          "last_updated": "2026-02-05",
+          "minutes_season": null,
+          "appearances_season": 17,
+          "starts_season": null,
+          "minutes_last_5": null,
+          "starts_last_5": null
+        },
+        {
+          "player_name": "Héctor Moreno",
+          "position": "DEF",
+          "status": "OUT",
+          "reason": "Lesión",
+          "source_url": [
+            "https://www.lesionadosysuspendidos.mx"
+          ],
+          "last_updated": null,
+          "minutes_season": null,
+          "appearances_season": null,
+          "starts_season": null,
+          "minutes_last_5": null,
+          "starts_last_5": null
+        },
+        {
+          "player_name": "Carlos Salcedo",
+          "position": "DEF",
+          "status": "DOUBTFUL",
+          "reason": "Molestia en la ingle",
+          "source_url": [
+            "https://www.si.com/es-us/futbol/lesionados-y-suspendidos-de-monterrey-para-enfrentar-al-america-7-2-2026"
+          ],
+          "last_updated": "2026-01-31",
+          "minutes_season": null,
+          "appearances_season": null,
+          "starts_season": null,
+          "minutes_last_5": null,
+          "starts_last_5": null
+        }
+      ]
+    },
+    {
+      "team": "Necaxa",
+      "players": [
+        {
+          "player_name": "Alek Álvarez",
+          "position": "MID",
+          "status": "OUT",
+          "reason": "Lesión",
+          "source_url": [
+            "https://www.lesionadosysuspendidos.mx"
+          ],
+          "last_updated": null,
+          "minutes_season": null,
+          "appearances_season": null,
+          "starts_season": null,
+          "minutes_last_5": null,
+          "starts_last_5": null
+        },
+        {
+          "player_name": "Heriberto Jurado",
+          "position": null,
+          "status": "OUT",
+          "reason": "Lesión",
+          "source_url": [
+            "https://www.lesionadosysuspendidos.mx"
+          ],
+          "last_updated": null,
+          "minutes_season": null,
+          "appearances_season": null,
+          "starts_season": null,
+          "minutes_last_5": null,
+          "starts_last_5": null
+        },
+        {
+          "player_name": "Facundo Gutiérrez",
+          "position": null,
+          "status": "SUSPENDED",
+          "reason": "Tarjeta roja",
+          "source_url": [
+            "https://as.com/resultados/futbol/mexico_clausura/2026/ranking/jugadores/tarjetas-rojas/"
+          ],
+          "last_updated": null,
+          "minutes_season": null,
+          "appearances_season": null,
+          "starts_season": null,
+          "minutes_last_5": null,
+          "starts_last_5": null
+        },
+        {
+          "player_name": "Julián Carranza",
+          "position": "FW",
+          "status": "SUSPENDED",
+          "reason": "Tarjeta roja",
+          "source_url": [
+            "https://as.com/resultados/futbol/mexico_clausura/2026/ranking/jugadores/tarjetas-rojas/"
+          ],
+          "last_updated": null,
+          "minutes_season": null,
+          "appearances_season": null,
+          "starts_season": null,
+          "minutes_last_5": null,
+          "starts_last_5": null
+        }
+      ]
+    },
+    {
+      "team": "Pachuca",
+      "players": [
+        {
+          "player_name": "Andrés Micolta",
+          "position": "DEF",
+          "status": "OUT",
+          "reason": "Fractura de rótula (4-5 meses)",
+          "source_url": [
+            "https://juanfutbol.com/liga-mx/todavia-no-arranca-el-clausura-2026-y-pachuca-ya-tiene-su-primera-baja-por-lesion-para-el-torneo"
+          ],
+          "last_updated": "2026-01-03",
+          "minutes_season": null,
+          "appearances_season": null,
+          "starts_season": null,
+          "minutes_last_5": null,
+          "starts_last_5": null
+        },
+        {
+          "player_name": "Alan Mozo",
+          "position": "DEF",
+          "status": "OUT",
+          "reason": "Fractura peroné + esguince 2° (3-4 meses)",
+          "source_url": [
+            "https://www.estadiodeportes.mx/ligamx/pachuca-recibe-duro-golpe-se-confirma-la-lesion-de-alan-mozo-20260204-0021.html"
+          ],
+          "last_updated": "2026-02-04",
+          "minutes_season": 180,
+          "appearances_season": 2,
+          "starts_season": 2,
+          "minutes_last_5": null,
+          "starts_last_5": null
+        },
+        {
+          "player_name": "Carlos Moreno",
+          "position": null,
+          "status": "SUSPENDED",
+          "reason": "Tarjeta roja",
+          "source_url": [
+            "https://as.com/resultados/futbol/mexico_clausura/2026/ranking/jugadores/tarjetas-rojas/"
+          ],
+          "last_updated": null,
+          "minutes_season": null,
+          "appearances_season": null,
+          "starts_season": null,
+          "minutes_last_5": null,
+          "starts_last_5": null
+        }
+      ]
+    },
+    {
+      "team": "Puebla",
+      "players": [
+        {
+          "player_name": "Lucas Daniel Cavallini",
+          "position": "FW",
+          "status": "OUT",
+          "reason": "Lesión ligamento cruzado",
+          "source_url": [
+            "https://www.apuestas-deportivas.es/mexico-liga-mx-jugadores-lesionados-y-suspendidos-sancionados/"
+          ],
+          "last_updated": "2025-07-22",
+          "minutes_season": null,
+          "appearances_season": null,
+          "starts_season": null,
+          "minutes_last_5": null,
+          "starts_last_5": null
+        },
+        {
+          "player_name": "Facundo Waller",
+          "position": "MID",
+          "status": "OUT",
+          "reason": "Lesión",
+          "source_url": [
+            "https://www.lesionadosysuspendidos.mx"
+          ],
+          "last_updated": null,
+          "minutes_season": null,
+          "appearances_season": null,
+          "starts_season": null,
+          "minutes_last_5": null,
+          "starts_last_5": null
+        },
+        {
+          "player_name": "Fernando Monárrez",
+          "position": null,
+          "status": "SUSPENDED",
+          "reason": "Tarjeta roja",
+          "source_url": [
+            "https://as.com/resultados/futbol/mexico_clausura/2026/ranking/jugadores/tarjetas-rojas/"
+          ],
+          "last_updated": null,
+          "minutes_season": null,
+          "appearances_season": null,
+          "starts_season": null,
+          "minutes_last_5": null,
+          "starts_last_5": null
+        },
+        {
+          "player_name": "Nicolás Díaz",
+          "position": null,
+          "status": "SUSPENDED",
+          "reason": "Tarjeta roja",
+          "source_url": [
+            "https://as.com/resultados/futbol/mexico_clausura/2026/ranking/jugadores/tarjetas-rojas/"
+          ],
+          "last_updated": null,
+          "minutes_season": null,
+          "appearances_season": null,
+          "starts_season": null,
+          "minutes_last_5": null,
+          "starts_last_5": null
+        }
+      ]
+    },
+    {
+      "team": "Pumas UNAM",
+      "players": [
+        {
+          "player_name": "José Macías",
+          "position": "FW",
+          "status": "OUT",
+          "reason": "Lesión de rodilla",
+          "source_url": [
+            "https://www.apuestas-deportivas.es/mexico-liga-mx-jugadores-lesionados-y-suspendidos-sancionados/"
+          ],
+          "last_updated": "2025-11-09",
+          "minutes_season": null,
+          "appearances_season": 11,
+          "starts_season": null,
+          "minutes_last_5": null,
+          "starts_last_5": null
+        },
+        {
+          "player_name": "Pablo Bennevendo",
+          "position": "DEF",
+          "status": "OUT",
+          "reason": "Lesión en el muslo",
+          "source_url": [
+            "https://www.apuestas-deportivas.es/mexico-liga-mx-jugadores-lesionados-y-suspendidos-sancionados/"
+          ],
+          "last_updated": "2026-01-30",
+          "minutes_season": null,
+          "appearances_season": null,
+          "starts_season": null,
+          "minutes_last_5": null,
+          "starts_last_5": null
+        },
+        {
+          "player_name": "Santiago Trigos",
+          "position": "MID",
+          "status": "OUT",
+          "reason": "Lesión de espalda",
+          "source_url": [
+            "https://www.apuestas-deportivas.es/mexico-liga-mx-jugadores-lesionados-y-suspendidos-sancionados/"
+          ],
+          "last_updated": "2026-01-12",
+          "minutes_season": null,
+          "appearances_season": null,
+          "starts_season": null,
+          "minutes_last_5": null,
+          "starts_last_5": null
+        },
+        {
+          "player_name": "José Caicedo",
+          "position": "MID",
+          "status": "DOUBTFUL",
+          "reason": "Duda",
+          "source_url": [
+            "https://www.lesionadosysuspendidos.mx"
+          ],
+          "last_updated": null,
+          "minutes_season": null,
+          "appearances_season": null,
+          "starts_season": null,
+          "minutes_last_5": null,
+          "starts_last_5": null
+        },
+        {
+          "player_name": "Lisandro Magallán",
+          "position": "DEF",
+          "status": "SUSPENDED",
+          "reason": "Suspensión",
+          "source_url": [
+            "https://www.lesionadosysuspendidos.mx"
+          ],
+          "last_updated": null,
+          "minutes_season": null,
+          "appearances_season": null,
+          "starts_season": null,
+          "minutes_last_5": null,
+          "starts_last_5": null
+        },
+        {
+          "player_name": "Álvaro Angulo",
+          "position": "DEF",
+          "status": "SUSPENDED",
+          "reason": "Tarjeta roja",
+          "source_url": [
+            "https://as.com/resultados/futbol/mexico_clausura/2026/ranking/jugadores/tarjetas-rojas/"
+          ],
+          "last_updated": null,
+          "minutes_season": null,
+          "appearances_season": 14,
+          "starts_season": null,
+          "minutes_last_5": null,
+          "starts_last_5": null
+        }
+      ]
+    },
+    {
+      "team": "Querétaro",
+      "players": [
+        {
+          "player_name": "Jonathan Perlaza",
+          "position": null,
+          "status": "OUT",
+          "reason": "Lesión",
+          "source_url": [
+            "https://www.lesionadosysuspendidos.mx"
+          ],
+          "last_updated": null,
+          "minutes_season": null,
+          "appearances_season": null,
+          "starts_season": null,
+          "minutes_last_5": null,
+          "starts_last_5": null
+        },
+        {
+          "player_name": "Francisco Venegas",
+          "position": null,
+          "status": "SUSPENDED",
+          "reason": "Suspensión",
+          "source_url": [
+            "https://www.lesionadosysuspendidos.mx"
+          ],
+          "last_updated": null,
+          "minutes_season": null,
+          "appearances_season": null,
+          "starts_season": null,
+          "minutes_last_5": null,
+          "starts_last_5": null
+        },
+        {
+          "player_name": "Fernando Lértora",
+          "position": "MID",
+          "status": "DOUBTFUL",
+          "reason": "Lesión de gemelo",
+          "source_url": [
+            "https://www.apuestas-deportivas.es/mexico-liga-mx-jugadores-lesionados-y-suspendidos-sancionados/"
+          ],
+          "last_updated": "2025-04-05",
+          "minutes_season": null,
+          "appearances_season": null,
+          "starts_season": null,
+          "minutes_last_5": null,
+          "starts_last_5": null
+        },
+        {
+          "player_name": "Omar Mendoza",
+          "position": null,
+          "status": "DOUBTFUL",
+          "reason": "Lesión de pie",
+          "source_url": [
+            "https://www.apuestas-deportivas.es/mexico-liga-mx-jugadores-lesionados-y-suspendidos-sancionados/"
+          ],
+          "last_updated": "2025-10-31",
+          "minutes_season": null,
+          "appearances_season": null,
+          "starts_season": null,
+          "minutes_last_5": null,
+          "starts_last_5": null
+        },
+        {
+          "player_name": "Diego Reyes",
+          "position": "DEF",
+          "status": "OUT",
+          "reason": "Lesión muscular",
+          "source_url": [
+            "https://www.apuestas-deportivas.es/mexico-liga-mx-jugadores-lesionados-y-suspendidos-sancionados/"
+          ],
+          "last_updated": "2026-01-30",
+          "minutes_season": null,
+          "appearances_season": null,
+          "starts_season": null,
+          "minutes_last_5": null,
+          "starts_last_5": null
+        },
+        {
+          "player_name": "Santiago Homenchenko",
+          "position": "FW",
+          "status": "SUSPENDED",
+          "reason": "Tarjeta roja",
+          "source_url": [
+            "https://as.com/resultados/futbol/mexico_clausura/2026/ranking/jugadores/tarjetas-rojas/"
+          ],
+          "last_updated": null,
+          "minutes_season": null,
+          "appearances_season": 13,
+          "starts_season": null,
+          "minutes_last_5": null,
+          "starts_last_5": null
+        }
+      ]
+    },
+    {
+      "team": "Santos Laguna",
+      "players": [
+        {
+          "player_name": "Pedro Aquino",
+          "position": "MID",
+          "status": "OUT",
+          "reason": "Lesión",
+          "source_url": [
+            "https://www.lesionadosysuspendidos.mx"
+          ],
+          "last_updated": null,
+          "minutes_season": null,
+          "appearances_season": null,
+          "starts_season": null,
+          "minutes_last_5": null,
+          "starts_last_5": null
+        },
+        {
+          "player_name": "Bruno Amione",
+          "position": "DEF",
+          "status": "OUT",
+          "reason": "Lesión",
+          "source_url": [
+            "https://www.lesionadosysuspendidos.mx"
+          ],
+          "last_updated": null,
+          "minutes_season": null,
+          "appearances_season": 17,
+          "starts_season": null,
+          "minutes_last_5": null,
+          "starts_last_5": null
+        },
+        {
+          "player_name": "Matheus Dória",
+          "position": "DEF",
+          "status": "SUSPENDED",
+          "reason": "Suspensión",
+          "source_url": [
+            "https://www.lesionadosysuspendidos.mx"
+          ],
+          "last_updated": null,
+          "minutes_season": null,
+          "appearances_season": null,
+          "starts_season": null,
+          "minutes_last_5": null,
+          "starts_last_5": null
+        },
+        {
+          "player_name": "Franco Fagúndez",
+          "position": "MID",
+          "status": "SUSPENDED",
+          "reason": "Suspensión",
+          "source_url": [
+            "https://www.lesionadosysuspendidos.mx"
+          ],
+          "last_updated": null,
+          "minutes_season": null,
+          "appearances_season": null,
+          "starts_season": null,
+          "minutes_last_5": null,
+          "starts_last_5": null
+        },
+        {
+          "player_name": "Harold Preciado",
+          "position": "FW",
+          "status": "SUSPENDED",
+          "reason": "Suspensión",
+          "source_url": [
+            "https://www.lesionadosysuspendidos.mx"
+          ],
+          "last_updated": null,
+          "minutes_season": null,
+          "appearances_season": null,
+          "starts_season": null,
+          "minutes_last_5": null,
+          "starts_last_5": null
+        },
+        {
+          "player_name": "Anthony Lozano",
+          "position": "FW",
+          "status": "OUT",
+          "reason": "Lesión de rodilla (hasta abril 2026)",
+          "source_url": [
+            "https://www.apuestas-deportivas.es/mexico-liga-mx-jugadores-lesionados-y-suspendidos-sancionados/"
+          ],
+          "last_updated": "2025-10-21",
+          "minutes_season": null,
+          "appearances_season": null,
+          "starts_season": null,
+          "minutes_last_5": null,
+          "starts_last_5": null
+        },
+        {
+          "player_name": "José Abella",
+          "position": "DEF",
+          "status": "SUSPENDED",
+          "reason": "Tarjeta roja",
+          "source_url": [
+            "https://as.com/resultados/futbol/mexico_clausura/2026/ranking/jugadores/tarjetas-rojas/"
+          ],
+          "last_updated": null,
+          "minutes_season": null,
+          "appearances_season": 17,
+          "starts_season": null,
+          "minutes_last_5": null,
+          "starts_last_5": null
+        }
+      ]
+    },
+    {
+      "team": "Tigres UANL",
+      "players": [
+        {
+          "player_name": "Nahuel Guzmán",
+          "position": "GK",
+          "status": "OUT",
+          "reason": "Lesión",
+          "source_url": [
+            "https://www.lesionadosysuspendidos.mx"
+          ],
+          "last_updated": null,
+          "minutes_season": null,
+          "appearances_season": null,
+          "starts_season": null,
+          "minutes_last_5": null,
+          "starts_last_5": null
+        },
+        {
+          "player_name": "Marco Farfán",
+          "position": "DEF",
+          "status": "OUT",
+          "reason": "Fractura escafoides pie derecho (operado)",
+          "source_url": [
+            "https://www.marca.com/mx/futbol/liga-mx/2026/01/15/6968577146163fc51b8b45ab.html"
+          ],
+          "last_updated": "2026-01-14",
+          "minutes_season": null,
+          "appearances_season": null,
+          "starts_season": null,
+          "minutes_last_5": null,
+          "starts_last_5": null
+        },
+        {
+          "player_name": "André-Pierre Gignac",
+          "position": "FW",
+          "status": "SUSPENDED",
+          "reason": "Tarjeta roja - suspendido 1 partido J5",
+          "source_url": [
+            "https://www.milenio.com/futbol/liga-mx/gignac-recibe-sancion-por-su-primera-tarjeta-roja-con-tigres"
+          ],
+          "last_updated": "2026-02-04",
+          "minutes_season": null,
+          "appearances_season": null,
+          "starts_season": null,
+          "minutes_last_5": null,
+          "starts_last_5": null
+        },
+        {
+          "player_name": "Juan Sánchez",
+          "position": null,
+          "status": "SUSPENDED",
+          "reason": "Tarjeta roja",
+          "source_url": [
+            "https://as.com/resultados/futbol/mexico_clausura/2026/ranking/jugadores/tarjetas-rojas/"
+          ],
+          "last_updated": null,
+          "minutes_season": null,
+          "appearances_season": null,
+          "starts_season": null,
+          "minutes_last_5": null,
+          "starts_last_5": null
+        },
+        {
+          "player_name": "Fernando Tapia",
+          "position": "GK",
+          "status": "OUT",
+          "reason": "Lesión por golpe",
+          "source_url": [
+            "https://www.apuestas-deportivas.es/mexico-liga-mx-jugadores-lesionados-y-suspendidos-sancionados/"
+          ],
+          "last_updated": "2025-08-14",
+          "minutes_season": null,
+          "appearances_season": null,
+          "starts_season": null,
+          "minutes_last_5": null,
+          "starts_last_5": null
+        }
+      ]
+    },
+    {
+      "team": "Tijuana",
+      "players": [
+        {
+          "player_name": "Lucas Rodríguez",
+          "position": "MID",
+          "status": "OUT",
+          "reason": "Lesión",
+          "source_url": [
+            "https://www.lesionadosysuspendidos.mx"
+          ],
+          "last_updated": null,
+          "minutes_season": null,
+          "appearances_season": 16,
+          "starts_season": null,
+          "minutes_last_5": null,
+          "starts_last_5": null
+        },
+        {
+          "player_name": "Gilberto Mora",
+          "position": "MID",
+          "status": "OUT",
+          "reason": "Lesión en la ingle",
+          "source_url": [
+            "https://www.apuestas-deportivas.es/mexico-liga-mx-jugadores-lesionados-y-suspendidos-sancionados/"
+          ],
+          "last_updated": "2026-01-21",
+          "minutes_season": null,
+          "appearances_season": null,
+          "starts_season": null,
+          "minutes_last_5": null,
+          "starts_last_5": null
+        }
+      ]
+    },
+    {
+      "team": "Toluca",
+      "players": [
+        {
+          "player_name": "Valber Huerta",
+          "position": "DEF",
+          "status": "OUT",
+          "reason": "Lesión",
+          "source_url": [
+            "https://www.lesionadosysuspendidos.mx"
+          ],
+          "last_updated": null,
+          "minutes_season": null,
+          "appearances_season": null,
+          "starts_season": null,
+          "minutes_last_5": null,
+          "starts_last_5": null
+        },
+        {
+          "player_name": "Robert Morales",
+          "position": "FW",
+          "status": "OUT",
+          "reason": "Lesión",
+          "source_url": [
+            "https://www.lesionadosysuspendidos.mx"
+          ],
+          "last_updated": null,
+          "minutes_season": null,
+          "appearances_season": 15,
+          "starts_season": null,
+          "minutes_last_5": null,
+          "starts_last_5": null
+        },
+        {
+          "player_name": "Helinho",
+          "position": "FW",
+          "status": "OUT",
+          "reason": "Lesión por distensión",
+          "source_url": [
+            "https://www.apuestas-deportivas.es/mexico-liga-mx-jugadores-lesionados-y-suspendidos-sancionados/"
+          ],
+          "last_updated": "2026-01-30",
+          "minutes_season": null,
+          "appearances_season": 6,
+          "starts_season": null,
+          "minutes_last_5": null,
+          "starts_last_5": null
+        },
+        {
+          "player_name": "Alexis Vega",
+          "position": "FW",
+          "status": "OUT",
+          "reason": "Desgarro isquiotibial + rodilla",
+          "source_url": [
+            "https://www.jornada.com.mx/noticia/2026/01/09/deportes/seleccionados-iniciaran-el-clausura-2026-con-lesiones"
+          ],
+          "last_updated": "2026-01-09",
+          "minutes_season": null,
+          "appearances_season": 13,
+          "starts_season": null,
+          "minutes_last_5": null,
+          "starts_last_5": null
+        }
+      ]
+    }
+  ]
+}

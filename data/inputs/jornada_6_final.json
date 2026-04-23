@@ -1,0 +1,1474 @@
+{
+    "jornada": 6,
+    "tournament": "Liga MX Clausura 2026",
+    "meta": {
+        "season": "Clausura 2026",
+        "jornada_detected": "Clausura 2026 - J6",
+        "cutoff_datetime": "2026-02-09T13:45:16.491992",
+        "total_matches_in_jornada": 18
+    },
+    "matches": [
+        {
+            "match": {
+                "home": "Puebla",
+                "away": "Pumas",
+                "jornada": "Clausura 2026 - J6",
+                "kickoff_datetime": "2026-02-14T01:00:00",
+                "cutoff_datetime": "2026-02-09T13:45:16.491835"
+            },
+            "stats": {
+                "home": {
+                    "clausura_2026": {
+                        "GF_home": 13,
+                        "GC_home": 20,
+                        "PJ_home": 10,
+                        "GF_away": 20,
+                        "GC_away": 50,
+                        "PJ_away": 24,
+                        "PJ_total": 34,
+                        "GF_total": 33,
+                        "GC_total": 70,
+                        "DOM_avg_home": 0.0,
+                        "DOM_avg_away": 3.62,
+                        "source": {
+                            "evidence_level": "stats_db_top",
+                            "source_url": "TheSportsDB API (Computed)",
+                            "source_date": "2026-02-09"
+                        },
+                        "derivation": {
+                            "method": "computed_from_events",
+                            "notes": "Calculated by aggregating all season match results with Advanced Stats (DOM)",
+                            "source_urls": [
+                                "https://www.thesportsdb.com/api/v1/json/180725/eventsseason.php?id=4350&s=2025-2026"
+                            ]
+                        }
+                    },
+                    "apertura_2025": {
+                        "PJ": 17,
+                        "GF": 0,
+                        "GC": 0,
+                        "source": {},
+                        "derivation": {}
+                    }
+                },
+                "away": {
+                    "clausura_2026": {
+                        "GF_home": 16,
+                        "GC_home": 11,
+                        "PJ_home": 11,
+                        "GF_away": 36,
+                        "GC_away": 42,
+                        "PJ_away": 24,
+                        "PJ_total": 35,
+                        "GF_total": 52,
+                        "GC_total": 53,
+                        "DOM_avg_home": 4.77,
+                        "DOM_avg_away": 2.83,
+                        "source": {
+                            "evidence_level": "stats_db_top",
+                            "source_url": "TheSportsDB API (Computed)",
+                            "source_date": "2026-02-09"
+                        },
+                        "derivation": {
+                            "method": "computed_from_events",
+                            "notes": "Calculated by aggregating all season match results with Advanced Stats (DOM)",
+                            "source_urls": [
+                                "https://www.thesportsdb.com/api/v1/json/180725/eventsseason.php?id=4350&s=2025-2026"
+                            ]
+                        }
+                    },
+                    "apertura_2025": {
+                        "PJ": 17,
+                        "GF": 0,
+                        "GC": 0,
+                        "source": {},
+                        "derivation": {}
+                    }
+                }
+            },
+            "squad_status": {
+                "home_squad_confirmed": false,
+                "away_squad_confirmed": false,
+                "notes": null
+            },
+            "absences": {
+                "home": [
+                    {
+                        "name": "Lucas Cavallini",
+                        "role": "atacante",
+                        "importance": "media",
+                        "note": "Lesión de ligamento cruzado anterior, regresa finales de marzo 2026"
+                    }
+                ],
+                "away": [
+                    {
+                        "name": "José Juan Macías",
+                        "role": "atacante",
+                        "importance": "alta",
+                        "note": "Lesión de rodilla desde pausa invernal, sin fecha de regreso"
+                    },
+                    {
+                        "name": "Pablo Bennevendo",
+                        "role": "defensor",
+                        "importance": "alta",
+                        "note": "Lesión no especificada, lateral derecho fuera"
+                    },
+                    {
+                        "name": "Santiago Trigos",
+                        "role": "mediocampista",
+                        "importance": "media",
+                        "note": "Lesión no especificada"
+                    }
+                ]
+            },
+            "roster_changes": {
+                "home": [
+                    {
+                        "type": "transfer_in",
+                        "name": "Alonso Ramírez",
+                        "role": "defensor",
+                        "weeks_since": 5,
+                        "note": "Llegó en enero 2026"
+                    },
+                    {
+                        "type": "transfer_in",
+                        "name": "Emilio Orrantia",
+                        "role": "mediocampista",
+                        "weeks_since": 5,
+                        "note": "Llegó en enero 2026"
+                    }
+                ],
+                "away": [
+                    {
+                        "type": "transfer_in",
+                        "name": "Uriel Antuna",
+                        "role": "mediocampista",
+                        "weeks_since": 2,
+                        "note": "Llegó desde Tigres el 29 ene, extremo de Selección Mexicana"
+                    },
+                    {
+                        "type": "transfer_out",
+                        "name": "Jorge Ruvalcaba",
+                        "role": "mediocampista",
+                        "weeks_since": 1,
+                        "note": "Vendido a New York Red Bulls (MLS)"
+                    },
+                    {
+                        "type": "transfer_in",
+                        "name": "Tony Leone",
+                        "role": "defensor",
+                        "weeks_since": 5,
+                        "note": "Llegó en enero 2026"
+                    }
+                ]
+            },
+            "competitive_context": [
+                {
+                    "side": "away",
+                    "factor": "defensive_crisis",
+                    "note": "Pumas con 3 bajas en defensa/medio (2 laterales), usa jugadores de emergencia. JJ Macías fuera, Antuna debe compensar salida de Ruvalcaba"
+                }
+            ],
+            "venue": {
+                "stadium": "Estadio Cuauhtémoc",
+                "city": "",
+                "pitch_type": "no_confirmado",
+                "evidence_level": "stats_db_top",
+                "source_title": "TheSportsDB Schedule",
+                "source_date": "2026-02-09",
+                "source_url": "https://www.thesportsdb.com/api/v1/json/180725/eventsseason.php?id=4350&s=2025-2026"
+            },
+            "uncertainty": {
+                "items": [],
+                "hard_missing_critical": [],
+                "hard_missing_optional": []
+            }
+        },
+        {
+            "match": {
+                "home": "Toluca",
+                "away": "Tijuana",
+                "jornada": "Clausura 2026 - J6",
+                "kickoff_datetime": "2026-02-14T03:00:00",
+                "cutoff_datetime": "2026-02-09T13:45:16.491853"
+            },
+            "stats": {
+                "home": {
+                    "clausura_2026": {
+                        "GF_home": 36,
+                        "GC_home": 17,
+                        "PJ_home": 14,
+                        "GF_away": 38,
+                        "GC_away": 18,
+                        "PJ_away": 28,
+                        "PJ_total": 42,
+                        "GF_total": 74,
+                        "GC_total": 35,
+                        "DOM_avg_home": 9.8,
+                        "DOM_avg_away": 5.01,
+                        "source": {
+                            "evidence_level": "stats_db_top",
+                            "source_url": "TheSportsDB API (Computed)",
+                            "source_date": "2026-02-09"
+                        },
+                        "derivation": {
+                            "method": "computed_from_events",
+                            "notes": "Calculated by aggregating all season match results with Advanced Stats (DOM)",
+                            "source_urls": [
+                                "https://www.thesportsdb.com/api/v1/json/180725/eventsseason.php?id=4350&s=2025-2026"
+                            ]
+                        }
+                    },
+                    "apertura_2025": {
+                        "PJ": 17,
+                        "GF": 0,
+                        "GC": 0,
+                        "source": {},
+                        "derivation": {}
+                    }
+                },
+                "away": {
+                    "clausura_2026": {
+                        "GF_home": 26,
+                        "GC_home": 8,
+                        "PJ_home": 14,
+                        "GF_away": 28,
+                        "GC_away": 50,
+                        "PJ_away": 22,
+                        "PJ_total": 36,
+                        "GF_total": 54,
+                        "GC_total": 58,
+                        "DOM_avg_home": 3.68,
+                        "DOM_avg_away": 5.56,
+                        "source": {
+                            "evidence_level": "stats_db_top",
+                            "source_url": "TheSportsDB API (Computed)",
+                            "source_date": "2026-02-09"
+                        },
+                        "derivation": {
+                            "method": "computed_from_events",
+                            "notes": "Calculated by aggregating all season match results with Advanced Stats (DOM)",
+                            "source_urls": [
+                                "https://www.thesportsdb.com/api/v1/json/180725/eventsseason.php?id=4350&s=2025-2026"
+                            ]
+                        }
+                    },
+                    "apertura_2025": {
+                        "PJ": 17,
+                        "GF": 0,
+                        "GC": 0,
+                        "source": {},
+                        "derivation": {}
+                    }
+                }
+            },
+            "squad_status": {
+                "home_squad_confirmed": false,
+                "away_squad_confirmed": false,
+                "notes": null
+            },
+            "absences": {
+                "home": [
+                    {
+                        "name": "Alexis Vega",
+                        "role": "atacante",
+                        "importance": "alta",
+                        "status": "duda",
+                        "note": "Desgarro muscular y molestias en rodilla, se ausentará primeras jornadas para rehabilitarse"
+                    },
+                    {
+                        "name": "Helinho",
+                        "role": "atacante",
+                        "importance": "media",
+                        "status": "duda",
+                        "note": "Lesión por distensión"
+                    }
+                ],
+                "away": [
+                    {
+                        "name": "Gilberto Mora",
+                        "role": "mediocampista",
+                        "importance": "media",
+                        "status": "duda",
+                        "note": "Lesión en la ingle"
+                    }
+                ]
+            },
+            "roster_changes": {
+                "home": [
+                    {
+                        "type": "transfer_in",
+                        "name": "Sebastián Córdova",
+                        "role": "mediocampista",
+                        "weeks_since": 6,
+                        "note": "Llegó 2 ene como agente libre desde Tigres, refuerzo de jerarquía para compensar ausencia de Vega"
+                    },
+                    {
+                        "type": "transfer_in",
+                        "name": "Pavel Pérez",
+                        "role": "mediocampista",
+                        "weeks_since": 5,
+                        "note": "Llegó en enero 2026"
+                    }
+                ],
+                "away": [
+                    {
+                        "type": "transfer_in",
+                        "name": "Josef Martínez",
+                        "role": "atacante",
+                        "weeks_since": 5,
+                        "note": "Llegó 6 ene desde San José Earthquakes (MLS), experimentado goleador venezolano"
+                    },
+                    {
+                        "type": "transfer_in",
+                        "name": "Ignacio Rivero",
+                        "role": "mediocampista",
+                        "weeks_since": 1,
+                        "note": "Llegó en febrero 2026"
+                    }
+                ]
+            },
+            "competitive_context": [
+                {
+                    "side": "away",
+                    "factor": "momentum",
+                    "note": "Tijuana invicto con 1V-3E en 5 jornadas (7 pts), uno de los mejores arranques en años. Josef Martínez ya adaptado"
+                }
+            ],
+            "venue": {
+                "stadium": "Estadio Nemesio Díez",
+                "city": "",
+                "pitch_type": "no_confirmado",
+                "evidence_level": "stats_db_top",
+                "source_title": "TheSportsDB Schedule",
+                "source_date": "2026-02-09",
+                "source_url": "https://www.thesportsdb.com/api/v1/json/180725/eventsseason.php?id=4350&s=2025-2026"
+            },
+            "uncertainty": {
+                "items": [],
+                "hard_missing_critical": [],
+                "hard_missing_optional": []
+            }
+        },
+        {
+            "match": {
+                "home": "Atletico de San Luis",
+                "away": "Queretaro FC",
+                "jornada": "Clausura 2026 - J6",
+                "kickoff_datetime": "2026-02-14T23:00:00",
+                "cutoff_datetime": "2026-02-09T13:45:16.491873"
+            },
+            "stats": {
+                "home": {
+                    "clausura_2026": {
+                        "GF_home": 12,
+                        "GC_home": 19,
+                        "PJ_home": 10,
+                        "GF_away": 40,
+                        "GC_away": 40,
+                        "PJ_away": 24,
+                        "PJ_total": 34,
+                        "GF_total": 52,
+                        "GC_total": 59,
+                        "DOM_avg_home": 0.0,
+                        "DOM_avg_away": 4.48,
+                        "source": {
+                            "evidence_level": "stats_db_top",
+                            "source_url": "TheSportsDB API (Computed)",
+                            "source_date": "2026-02-09"
+                        },
+                        "derivation": {
+                            "method": "computed_from_events",
+                            "notes": "Calculated by aggregating all season match results with Advanced Stats (DOM)",
+                            "source_urls": [
+                                "https://www.thesportsdb.com/api/v1/json/180725/eventsseason.php?id=4350&s=2025-2026"
+                            ]
+                        }
+                    },
+                    "apertura_2025": {
+                        "PJ": 17,
+                        "GF": 0,
+                        "GC": 0,
+                        "source": {},
+                        "derivation": {}
+                    }
+                },
+                "away": {
+                    "clausura_2026": {
+                        "GF_home": 14,
+                        "GC_home": 13,
+                        "PJ_home": 11,
+                        "GF_away": 20,
+                        "GC_away": 42,
+                        "PJ_away": 22,
+                        "PJ_total": 33,
+                        "GF_total": 34,
+                        "GC_total": 55,
+                        "DOM_avg_home": 3.99,
+                        "DOM_avg_away": 4.74,
+                        "source": {
+                            "evidence_level": "stats_db_top",
+                            "source_url": "TheSportsDB API (Computed)",
+                            "source_date": "2026-02-09"
+                        },
+                        "derivation": {
+                            "method": "computed_from_events",
+                            "notes": "Calculated by aggregating all season match results with Advanced Stats (DOM)",
+                            "source_urls": [
+                                "https://www.thesportsdb.com/api/v1/json/180725/eventsseason.php?id=4350&s=2025-2026"
+                            ]
+                        }
+                    },
+                    "apertura_2025": {
+                        "PJ": 17,
+                        "GF": 0,
+                        "GC": 0,
+                        "source": {},
+                        "derivation": {}
+                    }
+                }
+            },
+            "squad_status": {
+                "home_squad_confirmed": false,
+                "away_squad_confirmed": false,
+                "notes": null
+            },
+            "absences": {
+                "home": [],
+                "away": []
+            },
+            "roster_changes": {
+                "home": [
+                    {
+                        "type": "transfer_in",
+                        "name": "Santiago Muñoz",
+                        "role": "atacante",
+                        "weeks_since": 5,
+                        "note": "Llegó en enero 2026, joven promesa mexicana"
+                    },
+                    {
+                        "type": "transfer_in",
+                        "name": "Fidel Barajas",
+                        "role": "atacante",
+                        "weeks_since": 5,
+                        "note": "Llegó en enero 2026"
+                    }
+                ],
+                "away": []
+            },
+            "competitive_context": [
+                {
+                    "side": "away",
+                    "factor": "momentum",
+                    "note": "Querétaro consiguió su 1ra victoria del torneo en J5 (2-0 vs León), rompiendo racha negativa de 5 meses sin ganar"
+                }
+            ],
+            "venue": {
+                "stadium": "Estadio Alfonso Lastras Ramírez",
+                "city": "",
+                "pitch_type": "no_confirmado",
+                "evidence_level": "stats_db_top",
+                "source_title": "TheSportsDB Schedule",
+                "source_date": "2026-02-09",
+                "source_url": "https://www.thesportsdb.com/api/v1/json/180725/eventsseason.php?id=4350&s=2025-2026"
+            },
+            "uncertainty": {
+                "items": [],
+                "hard_missing_critical": [],
+                "hard_missing_optional": []
+            }
+        },
+        {
+            "match": {
+                "home": "Pachuca",
+                "away": "Atlas",
+                "jornada": "Clausura 2026 - J6",
+                "kickoff_datetime": "2026-02-14T23:00:00",
+                "cutoff_datetime": "2026-02-09T13:45:16.491891"
+            },
+            "stats": {
+                "home": {
+                    "clausura_2026": {
+                        "GF_home": 14,
+                        "GC_home": 11,
+                        "PJ_home": 12,
+                        "GF_away": 30,
+                        "GC_away": 32,
+                        "PJ_away": 24,
+                        "PJ_total": 36,
+                        "GF_total": 44,
+                        "GC_total": 43,
+                        "DOM_avg_home": 5.54,
+                        "DOM_avg_away": 3.38,
+                        "source": {
+                            "evidence_level": "stats_db_top",
+                            "source_url": "TheSportsDB API (Computed)",
+                            "source_date": "2026-02-09"
+                        },
+                        "derivation": {
+                            "method": "computed_from_events",
+                            "notes": "Calculated by aggregating all season match results with Advanced Stats (DOM)",
+                            "source_urls": [
+                                "https://www.thesportsdb.com/api/v1/json/180725/eventsseason.php?id=4350&s=2025-2026"
+                            ]
+                        }
+                    },
+                    "apertura_2025": {
+                        "PJ": 17,
+                        "GF": 0,
+                        "GC": 0,
+                        "source": {},
+                        "derivation": {}
+                    }
+                },
+                "away": {
+                    "clausura_2026": {
+                        "GF_home": 19,
+                        "GC_home": 17,
+                        "PJ_home": 11,
+                        "GF_away": 20,
+                        "GC_away": 44,
+                        "PJ_away": 22,
+                        "PJ_total": 33,
+                        "GF_total": 39,
+                        "GC_total": 61,
+                        "DOM_avg_home": 4.41,
+                        "DOM_avg_away": 0.42,
+                        "source": {
+                            "evidence_level": "stats_db_top",
+                            "source_url": "TheSportsDB API (Computed)",
+                            "source_date": "2026-02-09"
+                        },
+                        "derivation": {
+                            "method": "computed_from_events",
+                            "notes": "Calculated by aggregating all season match results with Advanced Stats (DOM)",
+                            "source_urls": [
+                                "https://www.thesportsdb.com/api/v1/json/180725/eventsseason.php?id=4350&s=2025-2026"
+                            ]
+                        }
+                    },
+                    "apertura_2025": {
+                        "PJ": 17,
+                        "GF": 0,
+                        "GC": 0,
+                        "source": {},
+                        "derivation": {}
+                    }
+                }
+            },
+            "squad_status": {
+                "home_squad_confirmed": false,
+                "away_squad_confirmed": false,
+                "notes": null
+            },
+            "absences": {
+                "home": [
+                    {
+                        "name": "Alan Mozo",
+                        "role": "defensor",
+                        "importance": "alta",
+                        "note": "Fractura helicoidal de peroné + esguince grado 2, FUERA RESTO DEL TORNEO (5 meses)"
+                    },
+                    {
+                        "name": "Enner Valencia",
+                        "role": "atacante",
+                        "importance": "alta",
+                        "status": "duda",
+                        "note": "Recaída isquiotibiales, +2 meses sin jugar, fuera al menos 2+ semanas adicionales"
+                    },
+                    {
+                        "name": "Elías Montiel",
+                        "role": "mediocampista",
+                        "importance": "media",
+                        "status": "duda",
+                        "note": "Desgarro femoral, estimado 3 semanas de baja"
+                    }
+                ],
+                "away": []
+            },
+            "roster_changes": {
+                "home": [
+                    {
+                        "type": "transfer_in",
+                        "name": "René López",
+                        "role": "defensor",
+                        "weeks_since": 0.7,
+                        "note": "FICHAJE DE EMERGENCIA 4 feb - Regresa desde Expansión para cubrir baja de Mozo"
+                    },
+                    {
+                        "type": "transfer_in",
+                        "name": "Salomón Rondón",
+                        "role": "atacante",
+                        "weeks_since": 5,
+                        "note": "Regreso desde Real Oviedo"
+                    }
+                ],
+                "away": [
+                    {
+                        "type": "transfer_in",
+                        "name": "Agustín Rodríguez",
+                        "role": "atacante",
+                        "weeks_since": 0.14,
+                        "note": "Fichado 8 feb desde Uruguay, 18 goles en 2025, reemplaza a Djuka - PUEDE DEBUTAR"
+                    },
+                    {
+                        "type": "transfer_out",
+                        "name": "Uroš Djuka",
+                        "role": "atacante",
+                        "weeks_since": 0.57,
+                        "note": "Vendido a Monterrey, campeón de goleo Clausura 2025"
+                    }
+                ]
+            },
+            "competitive_context": [
+                {
+                    "side": "home",
+                    "factor": "crisis_squad",
+                    "note": "Pachuca severamente golpeado: Mozo fuera resto torneo, Valencia y Montiel dudas. René López fichado de emergencia"
+                },
+                {
+                    "side": "away",
+                    "factor": "momentum",
+                    "note": "Atlas 4to lugar con 9 pts (3V-0E-1D), viene de empatar 2-2 vs Pumas"
+                }
+            ],
+            "venue": {
+                "stadium": "Estadio Hidalgo",
+                "city": "",
+                "pitch_type": "no_confirmado",
+                "evidence_level": "stats_db_top",
+                "source_title": "TheSportsDB Schedule",
+                "source_date": "2026-02-09",
+                "source_url": "https://www.thesportsdb.com/api/v1/json/180725/eventsseason.php?id=4350&s=2025-2026"
+            },
+            "uncertainty": {
+                "items": [],
+                "hard_missing_critical": [],
+                "hard_missing_optional": []
+            }
+        },
+        {
+            "match": {
+                "home": "FC Juarez",
+                "away": "Necaxa",
+                "jornada": "Clausura 2026 - J6",
+                "kickoff_datetime": "2026-02-15T01:00:00",
+                "cutoff_datetime": "2026-02-09T13:45:16.491911"
+            },
+            "stats": {
+                "home": {
+                    "clausura_2026": {
+                        "GF_home": 22,
+                        "GC_home": 21,
+                        "PJ_home": 13,
+                        "GF_away": 32,
+                        "GC_away": 46,
+                        "PJ_away": 26,
+                        "PJ_total": 39,
+                        "GF_total": 54,
+                        "GC_total": 67,
+                        "DOM_avg_home": 0.0,
+                        "DOM_avg_away": 5.84,
+                        "source": {
+                            "evidence_level": "stats_db_top",
+                            "source_url": "TheSportsDB API (Computed)",
+                            "source_date": "2026-02-09"
+                        },
+                        "derivation": {
+                            "method": "computed_from_events",
+                            "notes": "Calculated by aggregating all season match results with Advanced Stats (DOM)",
+                            "source_urls": [
+                                "https://www.thesportsdb.com/api/v1/json/180725/eventsseason.php?id=4350&s=2025-2026"
+                            ]
+                        }
+                    },
+                    "apertura_2025": {
+                        "PJ": 17,
+                        "GF": 0,
+                        "GC": 0,
+                        "source": {},
+                        "derivation": {}
+                    }
+                },
+                "away": {
+                    "clausura_2026": {
+                        "GF_home": 15,
+                        "GC_home": 11,
+                        "PJ_home": 11,
+                        "GF_away": 32,
+                        "GC_away": 56,
+                        "PJ_away": 22,
+                        "PJ_total": 33,
+                        "GF_total": 47,
+                        "GC_total": 67,
+                        "DOM_avg_home": 3.41,
+                        "DOM_avg_away": 3.65,
+                        "source": {
+                            "evidence_level": "stats_db_top",
+                            "source_url": "TheSportsDB API (Computed)",
+                            "source_date": "2026-02-09"
+                        },
+                        "derivation": {
+                            "method": "computed_from_events",
+                            "notes": "Calculated by aggregating all season match results with Advanced Stats (DOM)",
+                            "source_urls": [
+                                "https://www.thesportsdb.com/api/v1/json/180725/eventsseason.php?id=4350&s=2025-2026"
+                            ]
+                        }
+                    },
+                    "apertura_2025": {
+                        "PJ": 17,
+                        "GF": 0,
+                        "GC": 0,
+                        "source": {},
+                        "derivation": {}
+                    }
+                }
+            },
+            "squad_status": {
+                "home_squad_confirmed": false,
+                "away_squad_confirmed": false,
+                "notes": null
+            },
+            "absences": {
+                "home": [
+                    {
+                        "name": "Jonathan González",
+                        "role": "mediocampista",
+                        "importance": "media",
+                        "note": "Lesión"
+                    }
+                ],
+                "away": []
+            },
+            "roster_changes": {
+                "home": [
+                    {
+                        "type": "transfer_in",
+                        "name": "Ramón Rodríguez",
+                        "role": "mediocampista",
+                        "weeks_since": 0.43,
+                        "note": "Confirmado 6 feb, español cedido desde Aris (Grecia), formado en La Masía"
+                    },
+                    {
+                        "type": "transfer_in",
+                        "name": "Javier Aquino",
+                        "role": "mediocampista",
+                        "weeks_since": 5,
+                        "note": "Llegó desde Tigres en enero"
+                    },
+                    {
+                        "type": "transfer_in",
+                        "name": "Luca Martínez Dupuy",
+                        "role": "atacante",
+                        "weeks_since": 5,
+                        "note": "Llegó en enero 2026"
+                    }
+                ],
+                "away": [
+                    {
+                        "type": "transfer_in",
+                        "name": "Javier Ruiz",
+                        "role": "mediocampista",
+                        "weeks_since": 0.57,
+                        "note": "Confirmado 5 feb desde Independiente (Argentina)"
+                    },
+                    {
+                        "type": "transfer_in",
+                        "name": "Julián Carranza",
+                        "role": "atacante",
+                        "weeks_since": 5,
+                        "note": "Llegó desde Feyenoord en enero"
+                    },
+                    {
+                        "type": "transfer_in",
+                        "name": "Lorenzo Faravelli",
+                        "role": "mediocampista",
+                        "weeks_since": 5,
+                        "note": "Llegó desde Cruz Azul"
+                    }
+                ]
+            },
+            "competitive_context": [
+                {
+                    "side": "away",
+                    "factor": "momentum",
+                    "note": "Necaxa goleó 4-1 a San Luis en J5, llega con impulso ofensivo renovado"
+                }
+            ],
+            "venue": {
+                "stadium": "Estadio Olímpico Benito Juárez",
+                "city": "",
+                "pitch_type": "no_confirmado",
+                "evidence_level": "stats_db_top",
+                "source_title": "TheSportsDB Schedule",
+                "source_date": "2026-02-09",
+                "source_url": "https://www.thesportsdb.com/api/v1/json/180725/eventsseason.php?id=4350&s=2025-2026"
+            },
+            "uncertainty": {
+                "items": [],
+                "hard_missing_critical": [],
+                "hard_missing_optional": []
+            }
+        },
+        {
+            "match": {
+                "home": "Monterrey",
+                "away": "León",
+                "jornada": "Clausura 2026 - J6",
+                "kickoff_datetime": "2026-02-15T01:00:00",
+                "cutoff_datetime": "2026-02-09T13:45:16.491927"
+            },
+            "stats": {
+                "home": {
+                    "clausura_2026": {
+                        "GF_home": 23,
+                        "GC_home": 12,
+                        "PJ_home": 12,
+                        "GF_away": 50,
+                        "GC_away": 54,
+                        "PJ_away": 28,
+                        "PJ_total": 40,
+                        "GF_total": 73,
+                        "GC_total": 66,
+                        "DOM_avg_home": 0.0,
+                        "DOM_avg_away": 5.9,
+                        "source": {
+                            "evidence_level": "stats_db_top",
+                            "source_url": "TheSportsDB API (Computed)",
+                            "source_date": "2026-02-09"
+                        },
+                        "derivation": {
+                            "method": "computed_from_events",
+                            "notes": "Calculated by aggregating all season match results with Advanced Stats (DOM)",
+                            "source_urls": [
+                                "https://www.thesportsdb.com/api/v1/json/180725/eventsseason.php?id=4350&s=2025-2026"
+                            ]
+                        }
+                    },
+                    "apertura_2025": {
+                        "PJ": 17,
+                        "GF": 0,
+                        "GC": 0,
+                        "source": {},
+                        "derivation": {}
+                    }
+                },
+                "away": {
+                    "clausura_2026": {
+                        "GF_home": 15,
+                        "GC_home": 17,
+                        "PJ_home": 11,
+                        "GF_away": 8,
+                        "GC_away": 44,
+                        "PJ_away": 22,
+                        "PJ_total": 33,
+                        "GF_total": 23,
+                        "GC_total": 61,
+                        "DOM_avg_home": 0.0,
+                        "DOM_avg_away": 6.13,
+                        "source": {
+                            "evidence_level": "stats_db_top",
+                            "source_url": "TheSportsDB API (Computed)",
+                            "source_date": "2026-02-09"
+                        },
+                        "derivation": {
+                            "method": "computed_from_events",
+                            "notes": "Calculated by aggregating all season match results with Advanced Stats (DOM)",
+                            "source_urls": [
+                                "https://www.thesportsdb.com/api/v1/json/180725/eventsseason.php?id=4350&s=2025-2026"
+                            ]
+                        }
+                    },
+                    "apertura_2025": {
+                        "PJ": 17,
+                        "GF": 0,
+                        "GC": 0,
+                        "source": {},
+                        "derivation": {}
+                    }
+                }
+            },
+            "squad_status": {
+                "home_squad_confirmed": false,
+                "away_squad_confirmed": false,
+                "notes": null
+            },
+            "absences": {
+                "home": [],
+                "away": [
+                    {
+                        "name": "Sebastián Vegas",
+                        "role": "defensor",
+                        "importance": "alta",
+                        "note": "Expulsado J5 vs Querétaro (doble amarilla min 62), cumple suspensión automática 1 partido"
+                    }
+                ]
+            },
+            "roster_changes": {
+                "home": [
+                    {
+                        "type": "transfer_in",
+                        "name": "Uroš Djuka",
+                        "role": "atacante",
+                        "weeks_since": 0.57,
+                        "note": "Fichaje bomba 5 feb desde Atlas, campeón de goleo Clausura 2025 (22 goles en 4 torneos), disponible de inmediato"
+                    },
+                    {
+                        "type": "transfer_in",
+                        "name": "Luca Orellano",
+                        "role": "mediocampista",
+                        "weeks_since": 5,
+                        "note": "Llegó desde FC Cincinnati (MLS) en enero"
+                    },
+                    {
+                        "type": "transfer_out",
+                        "name": "Germán Berterame",
+                        "role": "atacante",
+                        "weeks_since": 2,
+                        "note": "Vendido a Inter Miami (MLS)"
+                    }
+                ],
+                "away": [
+                    {
+                        "type": "transfer_in",
+                        "name": "Díber Cambindo",
+                        "role": "atacante",
+                        "weeks_since": 7,
+                        "note": "Llegó desde Necaxa en diciembre 2025"
+                    }
+                ]
+            },
+            "competitive_context": [
+                {
+                    "side": "home",
+                    "factor": "momentum",
+                    "note": "Monterrey incorporó a Djuka (campeón goleo, 22 goles). Dupla letal con Orellano"
+                },
+                {
+                    "side": "away",
+                    "factor": "pressure",
+                    "note": "León lugar 16 con 4 pts (1V-1E-3D), PEOR INICIO DESDE 2012. Perdió 2-0 vs Querétaro en J5"
+                }
+            ],
+            "venue": {
+                "stadium": "Estadio BBVA",
+                "city": "",
+                "pitch_type": "no_confirmado",
+                "evidence_level": "stats_db_top",
+                "source_title": "TheSportsDB Schedule",
+                "source_date": "2026-02-09",
+                "source_url": "https://www.thesportsdb.com/api/v1/json/180725/eventsseason.php?id=4350&s=2025-2026"
+            },
+            "uncertainty": {
+                "items": [],
+                "hard_missing_critical": [],
+                "hard_missing_optional": []
+            }
+        },
+        {
+            "match": {
+                "home": "CD Guadalajara",
+                "away": "CF America",
+                "jornada": "Clausura 2026 - J6",
+                "kickoff_datetime": "2026-02-15T03:07:00",
+                "cutoff_datetime": "2026-02-09T13:45:16.491947"
+            },
+            "stats": {
+                "home": {
+                    "clausura_2026": {
+                        "GF_home": 23,
+                        "GC_home": 15,
+                        "PJ_home": 12,
+                        "GF_away": 36,
+                        "GC_away": 28,
+                        "PJ_away": 24,
+                        "PJ_total": 36,
+                        "GF_total": 59,
+                        "GC_total": 43,
+                        "DOM_avg_home": 0.0,
+                        "DOM_avg_away": 5.76,
+                        "source": {
+                            "evidence_level": "stats_db_top",
+                            "source_url": "TheSportsDB API (Computed)",
+                            "source_date": "2026-02-09"
+                        },
+                        "derivation": {
+                            "method": "computed_from_events",
+                            "notes": "Calculated by aggregating all season match results with Advanced Stats (DOM)",
+                            "source_urls": [
+                                "https://www.thesportsdb.com/api/v1/json/180725/eventsseason.php?id=4350&s=2025-2026"
+                            ]
+                        }
+                    },
+                    "apertura_2025": {
+                        "PJ": 17,
+                        "GF": 0,
+                        "GC": 0,
+                        "source": {},
+                        "derivation": {}
+                    }
+                },
+                "away": {
+                    "clausura_2026": {
+                        "GF_home": 23,
+                        "GC_home": 8,
+                        "PJ_home": 12,
+                        "GF_away": 30,
+                        "GC_away": 30,
+                        "PJ_away": 24,
+                        "PJ_total": 36,
+                        "GF_total": 53,
+                        "GC_total": 38,
+                        "DOM_avg_home": 5.2,
+                        "DOM_avg_away": 3.1,
+                        "source": {
+                            "evidence_level": "stats_db_top",
+                            "source_url": "TheSportsDB API (Computed)",
+                            "source_date": "2026-02-09"
+                        },
+                        "derivation": {
+                            "method": "computed_from_events",
+                            "notes": "Calculated by aggregating all season match results with Advanced Stats (DOM)",
+                            "source_urls": [
+                                "https://www.thesportsdb.com/api/v1/json/180725/eventsseason.php?id=4350&s=2025-2026"
+                            ]
+                        }
+                    },
+                    "apertura_2025": {
+                        "PJ": 17,
+                        "GF": 0,
+                        "GC": 0,
+                        "source": {},
+                        "derivation": {}
+                    }
+                }
+            },
+            "squad_status": {
+                "home_squad_confirmed": false,
+                "away_squad_confirmed": false,
+                "notes": null
+            },
+            "absences": {
+                "home": [
+                    {
+                        "name": "Luis Romo",
+                        "role": "mediocampista",
+                        "importance": "alta",
+                        "note": "Lesión muscular muslo derecho vs Mazatlán J5, CONFIRMADO FUERA. Capitán y cerebro del mediocampo"
+                    },
+                    {
+                        "name": "Armando González",
+                        "role": "atacante",
+                        "importance": "alta",
+                        "status": "duda",
+                        "note": "Salió tocado vs Mazatlán"
+                    },
+                    {
+                        "name": "José Castillo",
+                        "role": "defensor",
+                        "importance": "media",
+                        "status": "duda",
+                        "note": "Salió tocado vs Mazatlán"
+                    },
+                    {
+                        "name": "Gilberto Sepúlveda",
+                        "role": "defensor",
+                        "importance": "media",
+                        "status": "duda",
+                        "note": "Fase final de recuperación de lesión previa"
+                    },
+                    {
+                        "name": "Érick Gutiérrez",
+                        "role": "mediocampista",
+                        "importance": "media",
+                        "note": "Descartado por cuestiones de disciplina"
+                    },
+                    {
+                        "name": "Alan Pulido",
+                        "role": "atacante",
+                        "importance": "media",
+                        "note": "Descartado por cuestiones de disciplina"
+                    }
+                ],
+                "away": []
+            },
+            "roster_changes": {
+                "home": [
+                    {
+                        "type": "transfer_in",
+                        "name": "Jonathan Pérez",
+                        "role": "mediocampista",
+                        "weeks_since": 0.29,
+                        "note": "Confirmado 7 feb desde Nashville SC (MLS)"
+                    },
+                    {
+                        "type": "transfer_in",
+                        "name": "Ángel Sepúlveda",
+                        "role": "atacante",
+                        "weeks_since": 5,
+                        "note": "Llegó cedido desde Cruz Azul"
+                    }
+                ],
+                "away": [
+                    {
+                        "type": "transfer_in",
+                        "name": "Raphael Veiga",
+                        "role": "mediocampista",
+                        "weeks_since": 0.86,
+                        "note": "Confirmado 3 feb desde Palmeiras (Brasil), disponible de inmediato"
+                    },
+                    {
+                        "type": "transfer_in",
+                        "name": "Rodrigo Dourado",
+                        "role": "mediocampista",
+                        "weeks_since": 5,
+                        "note": "Llegó en enero 2026"
+                    },
+                    {
+                        "type": "transfer_out",
+                        "name": "Rodrigo Aguirre",
+                        "role": "atacante",
+                        "weeks_since": 0.57,
+                        "note": "Transferido a Tigres"
+                    }
+                ]
+            },
+            "competitive_context": [
+                {
+                    "side": "home",
+                    "factor": "momentum",
+                    "note": "Chivas LÍDER INVICTO 15 pts (5V-0E-0D), presión enorme por mantener invicto ante América"
+                },
+                {
+                    "side": "away",
+                    "factor": "pressure",
+                    "note": "Jardine bajo ultimátum de directiva por mal inicio (5 pts en 5 jornadas)"
+                }
+            ],
+            "venue": {
+                "stadium": "Estadio Akron",
+                "city": "",
+                "pitch_type": "no_confirmado",
+                "evidence_level": "stats_db_top",
+                "source_title": "TheSportsDB Schedule",
+                "source_date": "2026-02-09",
+                "source_url": "https://www.thesportsdb.com/api/v1/json/180725/eventsseason.php?id=4350&s=2025-2026"
+            },
+            "uncertainty": {
+                "items": [],
+                "hard_missing_critical": [],
+                "hard_missing_optional": []
+            }
+        },
+        {
+            "match": {
+                "home": "Santos Laguna",
+                "away": "Mazatlán",
+                "jornada": "Clausura 2026 - J6",
+                "kickoff_datetime": "2026-02-15T23:00:00",
+                "cutoff_datetime": "2026-02-09T13:45:16.491966"
+            },
+            "stats": {
+                "home": {
+                    "clausura_2026": {
+                        "GF_home": 17,
+                        "GC_home": 15,
+                        "PJ_home": 11,
+                        "GF_away": 20,
+                        "GC_away": 60,
+                        "PJ_away": 22,
+                        "PJ_total": 33,
+                        "GF_total": 37,
+                        "GC_total": 75,
+                        "DOM_avg_home": 0.0,
+                        "DOM_avg_away": 3.03,
+                        "source": {
+                            "evidence_level": "stats_db_top",
+                            "source_url": "TheSportsDB API (Computed)",
+                            "source_date": "2026-02-09"
+                        },
+                        "derivation": {
+                            "method": "computed_from_events",
+                            "notes": "Calculated by aggregating all season match results with Advanced Stats (DOM)",
+                            "source_urls": [
+                                "https://www.thesportsdb.com/api/v1/json/180725/eventsseason.php?id=4350&s=2025-2026"
+                            ]
+                        }
+                    },
+                    "apertura_2025": {
+                        "PJ": 17,
+                        "GF": 0,
+                        "GC": 0,
+                        "source": {},
+                        "derivation": {}
+                    }
+                },
+                "away": {
+                    "clausura_2026": {
+                        "GF_home": 18,
+                        "GC_home": 25,
+                        "PJ_home": 12,
+                        "GF_away": 12,
+                        "GC_away": 32,
+                        "PJ_away": 20,
+                        "PJ_total": 32,
+                        "GF_total": 30,
+                        "GC_total": 57,
+                        "DOM_avg_home": 2.67,
+                        "DOM_avg_away": 4.37,
+                        "source": {
+                            "evidence_level": "stats_db_top",
+                            "source_url": "TheSportsDB API (Computed)",
+                            "source_date": "2026-02-09"
+                        },
+                        "derivation": {
+                            "method": "computed_from_events",
+                            "notes": "Calculated by aggregating all season match results with Advanced Stats (DOM)",
+                            "source_urls": [
+                                "https://www.thesportsdb.com/api/v1/json/180725/eventsseason.php?id=4350&s=2025-2026"
+                            ]
+                        }
+                    },
+                    "apertura_2025": {
+                        "PJ": 17,
+                        "GF": 0,
+                        "GC": 0,
+                        "source": {},
+                        "derivation": {}
+                    }
+                }
+            },
+            "squad_status": {
+                "home_squad_confirmed": false,
+                "away_squad_confirmed": false,
+                "notes": null
+            },
+            "absences": {
+                "home": [],
+                "away": []
+            },
+            "roster_changes": {
+                "home": [
+                    {
+                        "type": "transfer_in",
+                        "name": "Lucas Di Yorio",
+                        "role": "atacante",
+                        "weeks_since": 5,
+                        "note": "Llegó en enero 2026"
+                    },
+                    {
+                        "type": "transfer_in",
+                        "name": "Ezequiel Bullaude",
+                        "role": "mediocampista",
+                        "weeks_since": 5,
+                        "note": "Llegó en enero 2026"
+                    }
+                ],
+                "away": [
+                    {
+                        "type": "transfer_in",
+                        "name": "Leo Suárez",
+                        "role": "mediocampista",
+                        "weeks_since": 1,
+                        "note": "Llegó en febrero 2026"
+                    }
+                ]
+            },
+            "competitive_context": [
+                {
+                    "side": "home",
+                    "factor": "crisis_squad",
+                    "note": "Santos ÚLTIMO LUGAR con 1 pt en 5 J (0V-1E-4D), dif goles -12"
+                },
+                {
+                    "side": "away",
+                    "factor": "crisis_squad",
+                    "note": "Mazatlán lugar 18 con 0 pts en 5 J (0V-0E-5D), ÚNICO EQUIPO SIN SUMAR"
+                }
+            ],
+            "venue": {
+                "stadium": "Estadio Corona",
+                "city": "",
+                "pitch_type": "no_confirmado",
+                "evidence_level": "stats_db_top",
+                "source_title": "TheSportsDB Schedule",
+                "source_date": "2026-02-09",
+                "source_url": "https://www.thesportsdb.com/api/v1/json/180725/eventsseason.php?id=4350&s=2025-2026"
+            },
+            "uncertainty": {
+                "items": [],
+                "hard_missing_critical": [],
+                "hard_missing_optional": []
+            }
+        },
+        {
+            "match": {
+                "home": "Cruz Azul",
+                "away": "Tigres",
+                "jornada": "Clausura 2026 - J6",
+                "kickoff_datetime": "2026-02-16T01:00:00",
+                "cutoff_datetime": "2026-02-09T13:45:16.491984"
+            },
+            "stats": {
+                "home": {
+                    "clausura_2026": {
+                        "GF_home": 26,
+                        "GC_home": 14,
+                        "PJ_home": 13,
+                        "GF_away": 40,
+                        "GC_away": 32,
+                        "PJ_away": 26,
+                        "PJ_total": 39,
+                        "GF_total": 66,
+                        "GC_total": 46,
+                        "DOM_avg_home": 0.0,
+                        "DOM_avg_away": 6.06,
+                        "source": {
+                            "evidence_level": "stats_db_top",
+                            "source_url": "TheSportsDB API (Computed)",
+                            "source_date": "2026-02-09"
+                        },
+                        "derivation": {
+                            "method": "computed_from_events",
+                            "notes": "Calculated by aggregating all season match results with Advanced Stats (DOM)",
+                            "source_urls": [
+                                "https://www.thesportsdb.com/api/v1/json/180725/eventsseason.php?id=4350&s=2025-2026"
+                            ]
+                        }
+                    },
+                    "apertura_2025": {
+                        "PJ": 17,
+                        "GF": 0,
+                        "GC": 0,
+                        "source": {},
+                        "derivation": {}
+                    }
+                },
+                "away": {
+                    "clausura_2026": {
+                        "GF_home": 34,
+                        "GC_home": 11,
+                        "PJ_home": 15,
+                        "GF_away": 38,
+                        "GC_away": 32,
+                        "PJ_away": 26,
+                        "PJ_total": 41,
+                        "GF_total": 72,
+                        "GC_total": 43,
+                        "DOM_avg_home": 6.42,
+                        "DOM_avg_away": 4.29,
+                        "source": {
+                            "evidence_level": "stats_db_top",
+                            "source_url": "TheSportsDB API (Computed)",
+                            "source_date": "2026-02-09"
+                        },
+                        "derivation": {
+                            "method": "computed_from_events",
+                            "notes": "Calculated by aggregating all season match results with Advanced Stats (DOM)",
+                            "source_urls": [
+                                "https://www.thesportsdb.com/api/v1/json/180725/eventsseason.php?id=4350&s=2025-2026"
+                            ]
+                        }
+                    },
+                    "apertura_2025": {
+                        "PJ": 17,
+                        "GF": 0,
+                        "GC": 0,
+                        "source": {},
+                        "derivation": {}
+                    }
+                }
+            },
+            "squad_status": {
+                "home_squad_confirmed": false,
+                "away_squad_confirmed": false,
+                "notes": null
+            },
+            "absences": {
+                "home": [
+                    {
+                        "name": "Jesús Orozco Chiquete",
+                        "role": "defensor",
+                        "importance": "alta",
+                        "note": "Baja definitiva, no registrado para Concachampions"
+                    },
+                    {
+                        "name": "Kevin Mier",
+                        "role": "portero",
+                        "importance": "alta",
+                        "note": "Fractura de tibia, baja definitiva, no registrado Concachampions"
+                    }
+                ],
+                "away": [
+                    {
+                        "name": "Marco Farfán",
+                        "role": "defensor",
+                        "importance": "media",
+                        "note": "Lesión"
+                    }
+                ]
+            },
+            "roster_changes": {
+                "home": [
+                    {
+                        "type": "transfer_in",
+                        "name": "Nicolás Ibáñez",
+                        "role": "atacante",
+                        "weeks_since": 0,
+                        "note": "CONFIRMADO HOY 9 feb - PROBABLEMENTE NO DISPONIBLE J6"
+                    },
+                    {
+                        "type": "transfer_in",
+                        "name": "Christian Ebere",
+                        "role": "atacante",
+                        "weeks_since": 0.43,
+                        "note": "Confirmado 6 feb desde Nacional (Uruguay)"
+                    }
+                ],
+                "away": [
+                    {
+                        "type": "transfer_in",
+                        "name": "Rodrigo Aguirre",
+                        "role": "atacante",
+                        "weeks_since": 0.43,
+                        "note": "Confirmado 6 feb desde América, DISPONIBLE DE INMEDIATO"
+                    },
+                    {
+                        "type": "transfer_out",
+                        "name": "Nicolás Ibáñez",
+                        "role": "atacante",
+                        "weeks_since": 0,
+                        "note": "Sale a Cruz Azul en préstamo"
+                    }
+                ]
+            },
+            "competitive_context": [
+                {
+                    "side": "home",
+                    "factor": "concacaf_load",
+                    "note": "Cruz Azul jugó Concachampions el 12 feb, partido Liga MX el 15 feb, SOLO 3 DÍAS DESCANSO"
+                },
+                {
+                    "side": "away",
+                    "factor": "concacaf_load",
+                    "note": "Tigres jugó Concachampions el 10 feb, 7 partidos en 29 días"
+                }
+            ],
+            "venue": {
+                "stadium": "Estadio Olímpico Universitario",
+                "city": null,
+                "pitch_type": "no_confirmado",
+                "evidence_level": "stats_db_top",
+                "source_title": "TheSportsDB Schedule",
+                "source_date": "2026-02-09",
+                "source_url": "https://www.thesportsdb.com/api/v1/json/180725/eventsseason.php?id=4350&s=2025-2026"
+            },
+            "uncertainty": {
+                "items": [],
+                "hard_missing_critical": [],
+                "hard_missing_optional": []
+            }
+        }
+    ]
+}

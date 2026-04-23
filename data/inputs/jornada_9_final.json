@@ -1,0 +1,86 @@
+{
+    "jornada": 9,
+    "matches": [
+        {
+            "match": {
+                "home": "Santos Laguna",
+                "away": "Cruz Azul",
+                "jornada": "Clausura 2026 - J9",
+                "kickoff_datetime": "2026-03-03T19:00:00",
+                "rivalry": false
+            }
+        },
+        {
+            "match": {
+                "home": "Pachuca",
+                "away": "Necaxa",
+                "jornada": "Clausura 2026 - J9",
+                "kickoff_datetime": "2026-03-03T19:00:00",
+                "rivalry": false
+            }
+        },
+        {
+            "match": {
+                "home": "Atlético de San Luis",
+                "away": "Mazatlán",
+                "jornada": "Clausura 2026 - J9",
+                "kickoff_datetime": "2026-03-03T21:00:00",
+                "rivalry": false
+            }
+        },
+        {
+            "match": {
+                "home": "Pumas UNAM",
+                "away": "Toluca",
+                "jornada": "Clausura 2026 - J9",
+                "kickoff_datetime": "2026-03-03T21:10:00",
+                "rivalry": false
+            }
+        },
+        {
+            "match": {
+                "home": "Monterrey",
+                "away": "Querétaro",
+                "jornada": "Clausura 2026 - J9",
+                "kickoff_datetime": "2026-03-04T19:00:00",
+                "rivalry": false
+            }
+        },
+        {
+            "match": {
+                "home": "Puebla",
+                "away": "Tigres UANL",
+                "jornada": "Clausura 2026 - J9",
+                "kickoff_datetime": "2026-03-04T19:00:00",
+                "rivalry": false
+            }
+        },
+        {
+            "match": {
+                "home": "Club América",
+                "away": "FC Juárez",
+                "jornada": "Clausura 2026 - J9",
+                "kickoff_datetime": "2026-03-04T21:00:00",
+                "rivalry": false
+            }
+        },
+        {
+            "match": {
+                "home": "Atlas",
+                "away": "Tijuana",
+                "jornada": "Clausura 2026 - J9",
+                "kickoff_datetime": "2026-03-04T21:00:00",
+                "rivalry": false
+            }
+        },
+        {
+            "match": {
+                "home": "CD Guadalajara",
+                "away": "León",
+                "jornada": "Clausura 2026 - J9",
+                "kickoff_datetime": "2026-03-05T21:00:00",
+                "rivalry": false
+            }
+        }
+    ]
+}

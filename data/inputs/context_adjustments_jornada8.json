@@ -1,0 +1,85 @@
+{
+  "_instrucciones": {
+    "descripcion": "Ajustes de contexto cualitativo para Jornada 8 Clausura 2026. Generado con investigacion web Feb 27 2026.",
+    "fuentes_clave": [
+      "mediotiempo.com - tabla general J7",
+      "t13.cl - previa Toluca vs Chivas J8",
+      "vamoscruzazul.bolavip.com - previa Monterrey vs Cruz Azul J8",
+      "americamonumental.bolavip.com - previa America vs Tigres J8",
+      "en.wikipedia.org - 2026 CONCACAF Champions Cup (Round of 16 en Marzo, NO en J8)",
+      "chivaspasion.bolavip.com - Chivas NO en Concachampions 2026"
+    ],
+    "notas_generales": "Round of 16 de Concachampions es en Marzo 2026. No hay fatiga por CCL en J8. Guadalajara no participa en CCL 2026."
+  },
+  "jornada": 8,
+  "torneo": "Clausura 2026",
+  "generated_at": "2026-02-27T10:00:00Z",
+  "context_adjustments": [
+    {
+      "match": "Toluca vs Guadalajara",
+      "team": "Toluca",
+      "type": "motivation_boost",
+      "att_adj": 1.04,
+      "def_adj": 0.97,
+      "confidence": 0.80,
+      "evidence": "Toluca invicto de local (5V 3E), mejor defensa del torneo (2 goles recibidos), recibe a lideres Chivas con opcion de alcanzar lo alto de la tabla. Historial: Chivas no gana en La Bombonera desde Apertura 2019 (saldo: 2V Toluca, 4E, 0V visitante). En Apertura 2025 Toluca goleó 0-3 a Chivas en casa.",
+      "evidence_url": "https://www.t13.cl/noticia/deportes13/toluca-fc-vs-chivas-previa-horario-y-como-llegan-para-la-fecha-8-del-clausura-25-02-2026",
+      "notes": "Toluca en la Bombonera: fortaleza local, invicto, recibe a lideres con chance de tomar el 1er lugar"
+    },
+    {
+      "match": "Monterrey vs Cruz Azul",
+      "team": "Monterrey",
+      "type": "motivation_crisis",
+      "att_adj": 0.95,
+      "def_adj": 1.05,
+      "confidence": 0.65,
+      "evidence": "Monterrey 9no en tabla con 10 pts, fuera de puestos de Liguilla. Perdio 0-2 ante Pumas en J7. ~50 aficionados se manifestaron en El Barrial con mantas 'Rayados no es marketing' y 'Dejen de vender humo'. Tecnico Domenec Torrent bajo presion.",
+      "evidence_url": "https://vamoscruzazul.bolavip.com/ligamx/mientras-cruz-azul-llega-con-confianza-esto-paso-en-la-practica-de-rayados-antes-de-la-fecha-8",
+      "notes": "Presion de aficion + 9no lugar + derrota 0-2 ante Pumas en J7 = escenario de crisis leve"
+    },
+    {
+      "match": "Monterrey vs Cruz Azul",
+      "team": "Cruz Azul",
+      "type": "motivation_boost",
+      "att_adj": 1.04,
+      "def_adj": 0.97,
+      "confidence": 0.72,
+      "evidence": "Cruz Azul 2do en tabla con 16 pts. 4 victorias en ultimos 5 partidos. Ultima victoria fue 2-1 ante Chivas (lideres), cortando racha de 6 triunfos seguidos del Guadalajara. Larcamón confirmó plantilla disponible. Historial reciente favorable: sin perder ante Monterrey en ultimos 3 (2V 1E), goleó 0-4 en el BBVA en julio 2024.",
+      "evidence_url": "https://vamoscruzazul.bolavip.com/ligamx/mientras-cruz-azul-llega-con-confianza-esto-paso-en-la-practica-de-rayados-antes-de-la-fecha-8",
+      "notes": "Cruz Azul en racha: 4V en 5 partidos, acaba de tumbar a lideres, historial dominante ante Rayados"
+    },
+    {
+      "match": "America vs Tigres",
+      "team": "Tigres",
+      "type": "suspension",
+      "att_adj": 1.0,
+      "def_adj": 1.05,
+      "confidence": 0.95,
+      "evidence": "Joaquim (defensa central brasileño) fue expulsado con tarjeta roja directa en la derrota ante Pachuca en J7. Cumplira suspension en J8 ante America. Su lugar seria ocupado por Juan Jose Purata (menor nivel).",
+      "evidence_url": "https://americamonumental.bolavip.com/noticias/bajas-ante-america-los-jugadores-de-tigres-que-no-entrenan-previo-al-juego-de-la-fecha-8-del-clausura-2026",
+      "notes": "Joaquim (CB titular) suspendido por roja en J7. Baja defensiva clave para Tigres"
+    },
+    {
+      "match": "America vs Tigres",
+      "team": "Tigres",
+      "type": "motivation_crisis",
+      "att_adj": 0.95,
+      "def_adj": 1.03,
+      "confidence": 0.65,
+      "evidence": "Tigres con 2 derrotas consecutivas: 2-1 en visita a Cruz Azul (J6) y 1-2 ante Pachuca en casa (J7). Octavo en tabla con 10 pts. Ademas, Jesus Garza concentrado con Seleccion Mexicana.",
+      "evidence_url": "https://americamonumental.bolavip.com/ligamx/las-rotaciones-que-planea-andre-jardine-para-el-america-vs-tigres-de-la-jornada-8-del-clausura-2026",
+      "notes": "Tigres: 2 derrotas seguidas + Garza con el Tri + Joaquim suspendido = crisis de confianza"
+    },
+    {
+      "match": "America vs Tigres",
+      "team": "America",
+      "type": "rotation_expected",
+      "att_adj": 0.97,
+      "def_adj": 1.03,
+      "confidence": 0.60,
+      "evidence": "America no contó con Angel Malagón, Israel Reyes, Erick Sanchez y Alexis Gutierrez en entrenamientos previos (concentrados con Seleccion Mexicana). Ademas, Alejandro Zendejas apunta a ser suplente por no estar al 100%. Jardine planeó rotaciones para este partido.",
+      "evidence_url": "https://americamonumental.bolavip.com/ligamx/las-rotaciones-que-planea-andre-jardine-para-el-america-vs-tigres-de-la-jornada-8-del-clausura-2026",
+      "notes": "4 titulares/suplentes clave con el Tri + Zendejas al 50% + rotaciones confirmadas por Jardine"
+    }
+  ]
+}

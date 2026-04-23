@@ -1,0 +1,24 @@
+# Normalizar line-endings a LF en el repo, auto-convertir a CRLF en checkout Windows.
+# Evita el "diff fantasma" (711 added / 711 deleted idéntico) entre Windows y Linux.
+
+* text=auto eol=lf
+
+# Texto: forzar LF
+*.py       text eol=lf
+*.md       text eol=lf
+*.json     text eol=lf
+*.txt      text eol=lf
+*.yml      text eol=lf
+*.yaml     text eol=lf
+*.toml     text eol=lf
+*.ini      text eol=lf
+*.cfg      text eol=lf
+*.csv      text eol=lf
+
+# Binarios: nunca tocar
+*.png      binary
+*.jpg      binary
+*.jpeg     binary
+*.pdf      binary
+*.xlsx     binary
+*.zip      binary

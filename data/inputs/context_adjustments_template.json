@@ -1,0 +1,53 @@
+{
+  "_instrucciones": {
+    "descripcion": "Ajustes de contexto cualitativo por partido. Complementa las bajas (no las reemplaza). Solo incluir si hay evidencia real y cuantificable. Si no hay contexto relevante, dejar context_adjustments vacío [].",
+    "tipos_validos": {
+      "squad_fatigue":      "Desgaste por acumulación de partidos (Concachampions, Copa, semanas de 2 partidos).",
+      "rotation_expected":  "Rotación confirmada o muy probable por el técnico (declaraciones, historial).",
+      "tactical_change":    "Cambio de sistema, nuevo DT, o reestructura de plantilla significativa.",
+      "suspension":         "Baja disciplinaria: acumulación de amarillas, roja directa. NO lesiones (esas van en bajas).",
+      "motivation_crisis":  "Crisis combinada: racha negativa + conflicto interno + presión de descenso.",
+      "motivation_boost":   "Partido extra-motivado: partido bisagra, récord en puerta, ambiente especial."
+    },
+    "magnitudes_referencia": {
+      "squad_fatigue_leve":     "att_adj: 0.97 | def_adj: 1.03  (3 partidos en 8 días, viaje largo)",
+      "squad_fatigue_severo":   "att_adj: 0.94 | def_adj: 1.06  (4+ partidos en 10 días, viaje intercontinental)",
+      "rotation_parcial":       "att_adj: 0.96 | def_adj: 1.04  (2-3 titulares fuera)",
+      "rotation_total":         "att_adj: 0.92 | def_adj: 1.08  (XI completo de rotación)",
+      "suspension_key_mid_fw":  "Ya modelada en bajas — NO duplicar aquí",
+      "motivation_crisis":      "att_adj: 0.95 | def_adj: 1.05",
+      "motivation_boost":       "att_adj: 1.04 | def_adj: 0.97"
+    },
+    "escalado_por_confianza": "El código aplica: adj_final = 1.0 + (adj_base - 1.0) * confidence. Si att_adj=0.95 y confidence=0.5 → adj_real=0.975. Sé conservador con la magnitud; la confianza reduce el efecto automáticamente.",
+    "regla_no_duplicar": "Si una baja ya está en evaluacion_bajas.json o perplexity_bajas_semana.json, NO agregarla también aquí como suspension o squad_fatigue. El modelo ya la procesa."
+  },
+  "jornada": 8,
+  "torneo": "Clausura 2026",
+  "generated_at": "YYYY-MM-DDTHH:MM:00Z",
+  "context_adjustments": [
+    {
+      "_ejemplo_fatiga": "ELIMINAR ESTE BLOQUE EN EL ARCHIVO REAL",
+      "match": "Guadalajara vs Tigres",
+      "team": "Guadalajara",
+      "type": "squad_fatigue",
+      "att_adj": 0.97,
+      "def_adj": 1.03,
+      "confidence": 0.85,
+      "evidence": "Guadalajara jugó Concachampions miércoles 18/02 en CDMX + viaje. 3 partidos en 8 días.",
+      "evidence_url": "https://concacaf.com/es/liga-de-campeones/noticias/...",
+      "notes": "Fatiga acumulada por Concachampions vs LAFC (mié 18/02)"
+    },
+    {
+      "_ejemplo_rotacion": "ELIMINAR ESTE BLOQUE EN EL ARCHIVO REAL",
+      "match": "Monterrey vs América",
+      "team": "Monterrey",
+      "type": "rotation_expected",
+      "att_adj": 0.95,
+      "def_adj": 1.05,
+      "confidence": 0.70,
+      "evidence": "Martino declaró 'habrá cambios' antes del partido de Concachampions vuelta. Histórico: rotó 8 jugadores en partido similar Apertura 2025.",
+      "evidence_url": "https://record.com.mx/...",
+      "notes": "Rotación prevista por Concachampions vuelta (jue siguiente)"
+    }
+  ]
+}

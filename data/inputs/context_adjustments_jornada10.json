@@ -1,0 +1,62 @@
+{
+  "jornada": 10,
+  "torneo": "Clausura 2026",
+  "generated_at": "2026-03-05T20:00:00Z",
+  "context_adjustments": [
+    {
+      "match": "Cruz Azul vs Atlético de San Luis",
+      "team": "Cruz Azul",
+      "type": "rotation_expected",
+      "att_adj": 0.96,
+      "def_adj": 1.04,
+      "confidence": 0.75,
+      "evidence": "Cruz Azul tiene 7 partidos en 20 días (Liga + Concachampions). Octavos de final vs Monterrey (ida: martes 10 mar en BBVA). Solo 3 días de distancia entre J10 (7 mar) y Concachampions ida. Larcamón declaró que habrá rotación estratégica ante San Luis.",
+      "evidence_url": "https://www.tvazteca.com/aztecadeportes/cruz-azul-su-mayor-reto-en-el-clausura-2026-7-partidos-en-20-dias-liga-bbva-mx-y/",
+      "notes": "Calendiario brutal de Cruz Azul en marzo. Rotación parcial esperada para preservar jugadores clave ante partido de Concachampions."
+    },
+    {
+      "match": "Atlas vs CD Guadalajara",
+      "team": "Atlas",
+      "type": "squad_fatigue",
+      "att_adj": 0.97,
+      "def_adj": 1.03,
+      "confidence": 0.70,
+      "evidence": "Atlas jugó J9 vs Tijuana el martes 4 de marzo. Solo 3 días de descanso antes del Clásico Tapatío del sábado 7 de marzo. Desgaste leve por fecha doble.",
+      "evidence_url": "https://chivaspasion.bolavip.com/noticias/las-2-dudas-y-los-5-descartados-de-gabriel-milito-en-chivas-para-enfrentar-a-atlas-en-el-clasico-tapatio",
+      "notes": "Fatiga leve por calendario comprimido. Diego Cocca debe gestionar el desgaste de su plantilla."
+    },
+    {
+      "match": "Atlas vs CD Guadalajara",
+      "team": "CD Guadalajara",
+      "type": "motivation_boost",
+      "att_adj": 1.03,
+      "def_adj": 0.97,
+      "confidence": 0.75,
+      "evidence": "Chivas tuvo bye en la fecha doble (sin partido en J9 hasta mar 18) → llega con más descanso al Clásico Tapatío. Alta motivación para reponerse de dos derrotas consecutivas (Cruz Azul y Toluca) en partido de máxima rivalidad ante Atlas.",
+      "evidence_url": "https://chivaspasion.bolavip.com/noticias/la-alineacion-que-chivas-podria-utilizar-en-el-clasico-tapatio-ante-atlas",
+      "notes": "Extra descanso por bye en jornada doble + motivación de clasico como catalizador de reacción. Aun con bajas (Luis Romo), el Rebaño suele elevar su nivel en clásicos."
+    },
+    {
+      "match": "Querétaro vs Club América",
+      "team": "Club América",
+      "type": "motivation_crisis",
+      "att_adj": 0.95,
+      "def_adj": 1.05,
+      "confidence": 0.70,
+      "evidence": "América perdió ante FC Juárez en J9 (2-1) y Víctor Dávila sufrió gravísima lesión (posible ruptura LCA rodilla derecha, baja el resto del año). Se acumulan: derrota en casa, lesión seria de delantero, racha irregular. Jardine bajo presión.",
+      "evidence_url": "https://espndeportes.espn.com/futbol/mexico/nota/_/id/16390455/america-vs-fc-juarez-victor-davila-lesion-rodilla-hospital",
+      "notes": "Crisis combinada: resultado adverso + lesión grave de figura atacante. El equipo va a Querétaro sin su punta referencial y con la moral afectada."
+    },
+    {
+      "match": "Tigres UANL vs Monterrey",
+      "team": "Monterrey",
+      "type": "motivation_boost",
+      "att_adj": 1.03,
+      "def_adj": 0.97,
+      "confidence": 0.70,
+      "evidence": "Monterrey goleó 4-0 a Querétaro en J9 con Nicolás Sánchez como nuevo DT. Debut ganador del nuevo técnico, Luca Orellano y Sergio Canales brillaron. El nuevo cuerpo técnico llega al Clásico Regio con impulso y necesidad de demostrar ante su afición.",
+      "evidence_url": "https://www.tudn.com/futbol/liga-mx/clasico-regio-oliver-torres-llora-tras-nueva-lesion-con-monterrey",
+      "notes": "Nuevo técnico Nicolás Sánchez con impulso tras goleada 4-0. Clásico Regio como escaparate ideal. A pesar de bajas (Torres, Martial), el vestuario motivado. CONTRA: también tiene Concachampions ida vs Cruz Azul el 10-mar (3 días después)."
+    }
+  ]
+}

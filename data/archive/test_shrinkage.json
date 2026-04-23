@@ -1,0 +1,53 @@
+{
+  "matches": [
+    {
+      "match": {
+        "home": "Atlas",
+        "away": "Necaxa",
+        "jornada": "Clausura 2026 - J4"
+      },
+      "stats": {
+        "home": {
+          "clausura_2026": {
+            "GF_home": 6,
+            "GC_home": 4,
+            "PJ_home": 3,
+            "GF_away": 0,
+            "GC_away": 0,
+            "PJ_away": 0,
+            "source": {
+              "evidence_level": "oficial_club"
+            }
+          },
+          "apertura_2025": {
+            "GF": 20,
+            "GC": 22,
+            "PJ": 17
+          }
+        },
+        "away": {
+          "clausura_2026": {
+            "GF_home": 4,
+            "GC_home": 3,
+            "PJ_home": 2,
+            "GF_away": 3,
+            "GC_away": 5,
+            "PJ_away": 2,
+            "source": {
+              "evidence_level": "oficial_club"
+            }
+          },
+          "apertura_2025": {
+            "GF": 18,
+            "GC": 24,
+            "PJ": 17
+          }
+        }
+      },
+      "absences": {},
+      "roster_changes": {},
+      "competitive_context": [],
+      "uncertainty": {}
+    }
+  ]
+}

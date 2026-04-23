@@ -1,0 +1,175 @@
+{
+    "meta": {
+        "source": "FBref (manual entry)",
+        "url": "https://fbref.com/en/comps/31/Liga-MX-Stats",
+        "competition": "Liga MX",
+        "season": "Clausura 2026",
+        "extracted_at": "2026-02-02T16:00:00",
+        "team_count": 18,
+        "notes": "Data copied manually from FBref. Update before each jornada."
+    },
+    "teams": {
+        "Tigres": {
+            "xG": 0.0,
+            "xGA": 0.0,
+            "npxG": 0.0,
+            "PJ": 0,
+            "xG_per_match": 0.0,
+            "xGA_per_match": 0.0,
+            "source": "FBref"
+        },
+        "CD Guadalajara": {
+            "xG": 0.0,
+            "xGA": 0.0,
+            "npxG": 0.0,
+            "PJ": 0,
+            "xG_per_match": 0.0,
+            "xGA_per_match": 0.0,
+            "source": "FBref"
+        },
+        "CF America": {
+            "xG": 0.0,
+            "xGA": 0.0,
+            "npxG": 0.0,
+            "PJ": 0,
+            "xG_per_match": 0.0,
+            "xGA_per_match": 0.0,
+            "source": "FBref"
+        },
+        "Cruz Azul": {
+            "xG": 0.0,
+            "xGA": 0.0,
+            "npxG": 0.0,
+            "PJ": 0,
+            "xG_per_match": 0.0,
+            "xGA_per_match": 0.0,
+            "source": "FBref"
+        },
+        "Monterrey": {
+            "xG": 0.0,
+            "xGA": 0.0,
+            "npxG": 0.0,
+            "PJ": 0,
+            "xG_per_match": 0.0,
+            "xGA_per_match": 0.0,
+            "source": "FBref"
+        },
+        "Pumas UNAM": {
+            "xG": 0.0,
+            "xGA": 0.0,
+            "npxG": 0.0,
+            "PJ": 0,
+            "xG_per_match": 0.0,
+            "xGA_per_match": 0.0,
+            "source": "FBref"
+        },
+        "Toluca": {
+            "xG": 0.0,
+            "xGA": 0.0,
+            "npxG": 0.0,
+            "PJ": 0,
+            "xG_per_match": 0.0,
+            "xGA_per_match": 0.0,
+            "source": "FBref"
+        },
+        "Santos Laguna": {
+            "xG": 0.0,
+            "xGA": 0.0,
+            "npxG": 0.0,
+            "PJ": 0,
+            "xG_per_match": 0.0,
+            "xGA_per_match": 0.0,
+            "source": "FBref"
+        },
+        "León": {
+            "xG": 0.0,
+            "xGA": 0.0,
+            "npxG": 0.0,
+            "PJ": 0,
+            "xG_per_match": 0.0,
+            "xGA_per_match": 0.0,
+            "source": "FBref"
+        },
+        "Necaxa": {
+            "xG": 0.0,
+            "xGA": 0.0,
+            "npxG": 0.0,
+            "PJ": 0,
+            "xG_per_match": 0.0,
+            "xGA_per_match": 0.0,
+            "source": "FBref"
+        },
+        "Puebla": {
+            "xG": 0.0,
+            "xGA": 0.0,
+            "npxG": 0.0,
+            "PJ": 0,
+            "xG_per_match": 0.0,
+            "xGA_per_match": 0.0,
+            "source": "FBref"
+        },
+        "Pachuca": {
+            "xG": 0.0,
+            "xGA": 0.0,
+            "npxG": 0.0,
+            "PJ": 0,
+            "xG_per_match": 0.0,
+            "xGA_per_match": 0.0,
+            "source": "FBref"
+        },
+        "Queretaro FC": {
+            "xG": 0.0,
+            "xGA": 0.0,
+            "npxG": 0.0,
+            "PJ": 0,
+            "xG_per_match": 0.0,
+            "xGA_per_match": 0.0,
+            "source": "FBref"
+        },
+        "Atlas": {
+            "xG": 0.0,
+            "xGA": 0.0,
+            "npxG": 0.0,
+            "PJ": 0,
+            "xG_per_match": 0.0,
+            "xGA_per_match": 0.0,
+            "source": "FBref"
+        },
+        "Tijuana": {
+            "xG": 0.0,
+            "xGA": 0.0,
+            "npxG": 0.0,
+            "PJ": 0,
+            "xG_per_match": 0.0,
+            "xGA_per_match": 0.0,
+            "source": "FBref"
+        },
+        "Atletico de San Luis": {
+            "xG": 0.0,
+            "xGA": 0.0,
+            "npxG": 0.0,
+            "PJ": 0,
+            "xG_per_match": 0.0,
+            "xGA_per_match": 0.0,
+            "source": "FBref"
+        },
+        "Mazatlán": {
+            "xG": 0.0,
+            "xGA": 0.0,
+            "npxG": 0.0,
+            "PJ": 0,
+            "xG_per_match": 0.0,
+            "xGA_per_match": 0.0,
+            "source": "FBref"
+        },
+        "FC Juarez": {
+            "xG": 0.0,
+            "xGA": 0.0,
+            "npxG": 0.0,
+            "PJ": 0,
+            "xG_per_match": 0.0,
+            "xGA_per_match": 0.0,
+            "source": "FBref"
+        }
+    }
+}

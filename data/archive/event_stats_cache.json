@@ -1,0 +1,3630 @@
+{
+    "2390150": {
+        "Shots on Goal": {
+            "home": 5,
+            "away": 2
+        },
+        "Shots off Goal": {
+            "home": 7,
+            "away": 5
+        },
+        "Total Shots": {
+            "home": 19,
+            "away": 8
+        },
+        "Blocked Shots": {
+            "home": 7,
+            "away": 1
+        },
+        "Shots insidebox": {
+            "home": 11,
+            "away": 5
+        },
+        "Shots outsidebox": {
+            "home": 8,
+            "away": 3
+        },
+        "Fouls": {
+            "home": 16,
+            "away": 12
+        },
+        "Corner Kicks": {
+            "home": 5,
+            "away": 1
+        },
+        "Offsides": {
+            "home": 1,
+            "away": 0
+        },
+        "Ball Possession": {
+            "home": 68,
+            "away": 32
+        },
+        "Yellow Cards": {
+            "home": 3,
+            "away": 3
+        },
+        "Red Cards": {
+            "home": 0,
+            "away": 0
+        },
+        "Goalkeeper Saves": {
+            "home": 1,
+            "away": 4
+        },
+        "Total passes": {
+            "home": 469,
+            "away": 225
+        },
+        "Passes accurate": {
+            "home": 399,
+            "away": 155
+        },
+        "Passes %": {
+            "home": 85,
+            "away": 69
+        },
+        "expected_goals": {
+            "home": 0,
+            "away": 0
+        },
+        "goals_prevented": {
+            "home": 0,
+            "away": 0
+        }
+    },
+    "2390151": {
+        "Shots on Goal": {
+            "home": 3,
+            "away": 4
+        },
+        "Shots off Goal": {
+            "home": 3,
+            "away": 5
+        },
+        "Total Shots": {
+            "home": 6,
+            "away": 11
+        },
+        "Blocked Shots": {
+            "home": 0,
+            "away": 2
+        },
+        "Shots insidebox": {
+            "home": 3,
+            "away": 6
+        },
+        "Shots outsidebox": {
+            "home": 3,
+            "away": 5
+        },
+        "Fouls": {
+            "home": 17,
+            "away": 12
+        },
+        "Corner Kicks": {
+            "home": 3,
+            "away": 7
+        },
+        "Offsides": {
+            "home": 1,
+            "away": 3
+        },
+        "Ball Possession": {
+            "home": 49,
+            "away": 51
+        },
+        "Yellow Cards": {
+            "home": 1,
+            "away": 3
+        },
+        "Red Cards": {
+            "home": 0,
+            "away": 0
+        },
+        "Goalkeeper Saves": {
+            "home": 5,
+            "away": 2
+        },
+        "Total passes": {
+            "home": 420,
+            "away": 430
+        },
+        "Passes accurate": {
+            "home": 342,
+            "away": 352
+        },
+        "Passes %": {
+            "home": 81,
+            "away": 82
+        },
+        "expected_goals": {
+            "home": 0,
+            "away": 0
+        },
+        "goals_prevented": {
+            "home": 0,
+            "away": 0
+        }
+    },
+    "2390152": {
+        "Shots on Goal": {
+            "home": 5,
+            "away": 4
+        },
+        "Shots off Goal": {
+            "home": 4,
+            "away": 6
+        },
+        "Total Shots": {
+            "home": 11,
+            "away": 12
+        },
+        "Blocked Shots": {
+            "home": 2,
+            "away": 2
+        },
+        "Shots insidebox": {
+            "home": 7,
+            "away": 4
+        },
+        "Shots outsidebox": {
+            "home": 4,
+            "away": 8
+        },
+        "Fouls": {
+            "home": 15,
+            "away": 10
+        },
+        "Corner Kicks": {
+            "home": 4,
+            "away": 2
+        },
+        "Offsides": {
+            "home": 1,
+            "away": 1
+        },
+        "Ball Possession": {
+            "home": 50,
+            "away": 50
+        },
+        "Yellow Cards": {
+            "home": 1,
+            "away": 0
+        },
+        "Red Cards": {
+            "home": 0,
+            "away": 0
+        },
+        "Goalkeeper Saves": {
+            "home": 2,
+            "away": 2
+        },
+        "Total passes": {
+            "home": 386,
+            "away": 378
+        },
+        "Passes accurate": {
+            "home": 331,
+            "away": 318
+        },
+        "Passes %": {
+            "home": 86,
+            "away": 84
+        },
+        "expected_goals": {
+            "home": 0,
+            "away": 0
+        },
+        "goals_prevented": {
+            "home": 0,
+            "away": 0
+        }
+    },
+    "2390153": {
+        "Shots on Goal": {
+            "home": 1,
+            "away": 6
+        },
+        "Shots off Goal": {
+            "home": 5,
+            "away": 5
+        },
+        "Total Shots": {
+            "home": 10,
+            "away": 15
+        },
+        "Blocked Shots": {
+            "home": 4,
+            "away": 4
+        },
+        "Shots insidebox": {
+            "home": 8,
+            "away": 7
+        },
+        "Shots outsidebox": {
+            "home": 2,
+            "away": 8
+        },
+        "Fouls": {
+            "home": 17,
+            "away": 8
+        },
+        "Corner Kicks": {
+            "home": 7,
+            "away": 6
+        },
+        "Offsides": {
+            "home": 1,
+            "away": 2
+        },
+        "Ball Possession": {
+            "home": 40,
+            "away": 60
+        },
+        "Yellow Cards": {
+            "home": 0,
+            "away": 1
+        },
+        "Red Cards": {
+            "home": 0,
+            "away": 0
+        },
+        "Goalkeeper Saves": {
+            "home": 6,
+            "away": 0
+        },
+        "Total passes": {
+            "home": 307,
+            "away": 443
+        },
+        "Passes accurate": {
+            "home": 224,
+            "away": 366
+        },
+        "Passes %": {
+            "home": 73,
+            "away": 83
+        },
+        "expected_goals": {
+            "home": 0,
+            "away": 0
+        },
+        "goals_prevented": {
+            "home": 0,
+            "away": 0
+        }
+    },
+    "2391876": {
+        "Shots on Goal": {
+            "home": 2,
+            "away": 1
+        },
+        "Shots off Goal": {
+            "home": 6,
+            "away": 3
+        },
+        "Total Shots": {
+            "home": 10,
+            "away": 6
+        },
+        "Blocked Shots": {
+            "home": 2,
+            "away": 2
+        },
+        "Shots insidebox": {
+            "home": 5,
+            "away": 2
+        },
+        "Shots outsidebox": {
+            "home": 5,
+            "away": 4
+        },
+        "Fouls": {
+            "home": 16,
+            "away": 13
+        },
+        "Corner Kicks": {
+            "home": 8,
+            "away": 0
+        },
+        "Offsides": {
+            "home": 1,
+            "away": 1
+        },
+        "Ball Possession": {
+            "home": 51,
+            "away": 49
+        },
+        "Yellow Cards": {
+            "home": 2,
+            "away": 2
+        },
+        "Red Cards": {
+            "home": 0,
+            "away": 1
+        },
+        "Goalkeeper Saves": {
+            "home": 1,
+            "away": 2
+        },
+        "Total passes": {
+            "home": 394,
+            "away": 391
+        },
+        "Passes accurate": {
+            "home": 294,
+            "away": 295
+        },
+        "Passes %": {
+            "home": 75,
+            "away": 75
+        },
+        "expected_goals": {
+            "home": 0,
+            "away": 0
+        },
+        "goals_prevented": {
+            "home": 0,
+            "away": 0
+        }
+    },
+    "2391877": {
+        "Shots on Goal": {
+            "home": 12,
+            "away": 2
+        },
+        "Shots off Goal": {
+            "home": 9,
+            "away": 3
+        },
+        "Total Shots": {
+            "home": 30,
+            "away": 7
+        },
+        "Blocked Shots": {
+            "home": 9,
+            "away": 2
+        },
+        "Shots insidebox": {
+            "home": 15,
+            "away": 2
+        },
+        "Shots outsidebox": {
+            "home": 15,
+            "away": 5
+        },
+        "Fouls": {
+            "home": 17,
+            "away": 16
+        },
+        "Corner Kicks": {
+            "home": 11,
+            "away": 5
+        },
+        "Offsides": {
+            "home": 1,
+            "away": 2
+        },
+        "Ball Possession": {
+            "home": 67,
+            "away": 33
+        },
+        "Yellow Cards": {
+            "home": 4,
+            "away": 3
+        },
+        "Red Cards": {
+            "home": 0,
+            "away": 0
+        },
+        "Goalkeeper Saves": {
+            "home": 1,
+            "away": 10
+        },
+        "Total passes": {
+            "home": 657,
+            "away": 322
+        },
+        "Passes accurate": {
+            "home": 545,
+            "away": 209
+        },
+        "Passes %": {
+            "home": 83,
+            "away": 65
+        },
+        "expected_goals": {
+            "home": 0,
+            "away": 0
+        },
+        "goals_prevented": {
+            "home": 0,
+            "away": 0
+        }
+    },
+    "2396115": {
+        "Shots on Goal": {
+            "home": 3,
+            "away": 6
+        },
+        "Shots off Goal": {
+            "home": 3,
+            "away": 5
+        },
+        "Total Shots": {
+            "home": 7,
+            "away": 15
+        },
+        "Blocked Shots": {
+            "home": 1,
+            "away": 4
+        },
+        "Shots insidebox": {
+            "home": 4,
+            "away": 8
+        },
+        "Shots outsidebox": {
+            "home": 3,
+            "away": 7
+        },
+        "Fouls": {
+            "home": 11,
+            "away": 18
+        },
+        "Corner Kicks": {
+            "home": 1,
+            "away": 4
+        },
+        "Offsides": {
+            "home": 1,
+            "away": 2
+        },
+        "Ball Possession": {
+            "home": 42,
+            "away": 58
+        },
+        "Yellow Cards": {
+            "home": 3,
+            "away": 2
+        },
+        "Red Cards": {
+            "home": 0,
+            "away": 0
+        },
+        "Goalkeeper Saves": {
+            "home": 6,
+            "away": 2
+        },
+        "Total passes": {
+            "home": 322,
+            "away": 446
+        },
+        "Passes accurate": {
+            "home": 269,
+            "away": 381
+        },
+        "Passes %": {
+            "home": 84,
+            "away": 85
+        },
+        "expected_goals": {
+            "home": 0,
+            "away": 0
+        },
+        "goals_prevented": {
+            "home": 0,
+            "away": 0
+        }
+    },
+    "2396116": {
+        "Shots on Goal": {
+            "home": 2,
+            "away": 2
+        },
+        "Shots off Goal": {
+            "home": 6,
+            "away": 2
+        },
+        "Total Shots": {
+            "home": 9,
+            "away": 4
+        },
+        "Blocked Shots": {
+            "home": 1,
+            "away": 0
+        },
+        "Shots insidebox": {
+            "home": 4,
+            "away": 2
+        },
+        "Shots outsidebox": {
+            "home": 5,
+            "away": 2
+        },
+        "Fouls": {
+            "home": 10,
+            "away": 9
+        },
+        "Corner Kicks": {
+            "home": 1,
+            "away": 3
+        },
+        "Offsides": {
+            "home": 0,
+            "away": 2
+        },
+        "Ball Possession": {
+            "home": 60,
+            "away": 40
+        },
+        "Yellow Cards": {
+            "home": 0,
+            "away": 2
+        },
+        "Red Cards": {
+            "home": 0,
+            "away": 0
+        },
+        "Goalkeeper Saves": {
+            "home": 2,
+            "away": 2
+        },
+        "Total passes": {
+            "home": 612,
+            "away": 406
+        },
+        "Passes accurate": {
+            "home": 533,
+            "away": 329
+        },
+        "Passes %": {
+            "home": 87,
+            "away": 81
+        },
+        "expected_goals": {
+            "home": 0,
+            "away": 0
+        },
+        "goals_prevented": {
+            "home": 0,
+            "away": 0
+        }
+    },
+    "2396117": {
+        "Shots on Goal": {
+            "home": 2,
+            "away": 3
+        },
+        "Shots off Goal": {
+            "home": 2,
+            "away": 4
+        },
+        "Total Shots": {
+            "home": 4,
+            "away": 8
+        },
+        "Blocked Shots": {
+            "home": 0,
+            "away": 1
+        },
+        "Shots insidebox": {
+            "home": 3,
+            "away": 5
+        },
+        "Shots outsidebox": {
+            "home": 1,
+            "away": 3
+        },
+        "Fouls": {
+            "home": 15,
+            "away": 14
+        },
+        "Corner Kicks": {
+            "home": 2,
+            "away": 5
+        },
+        "Offsides": {
+            "home": 2,
+            "away": 0
+        },
+        "Ball Possession": {
+            "home": 46,
+            "away": 54
+        },
+        "Yellow Cards": {
+            "home": 1,
+            "away": 0
+        },
+        "Red Cards": {
+            "home": 0,
+            "away": 0
+        },
+        "Goalkeeper Saves": {
+            "home": 1,
+            "away": 1
+        },
+        "Total passes": {
+            "home": 322,
+            "away": 372
+        },
+        "Passes accurate": {
+            "home": 254,
+            "away": 291
+        },
+        "Passes %": {
+            "home": 79,
+            "away": 78
+        },
+        "expected_goals": {
+            "home": 0,
+            "away": 0
+        },
+        "goals_prevented": {
+            "home": 0,
+            "away": 0
+        }
+    },
+    "2396118": {
+        "Shots on Goal": {
+            "home": 6,
+            "away": 2
+        },
+        "Shots off Goal": {
+            "home": 10,
+            "away": 5
+        },
+        "Total Shots": {
+            "home": 18,
+            "away": 10
+        },
+        "Blocked Shots": {
+            "home": 2,
+            "away": 3
+        },
+        "Shots insidebox": {
+            "home": 12,
+            "away": 5
+        },
+        "Shots outsidebox": {
+            "home": 6,
+            "away": 5
+        },
+        "Fouls": {
+            "home": 10,
+            "away": 15
+        },
+        "Corner Kicks": {
+            "home": 5,
+            "away": 2
+        },
+        "Offsides": {
+            "home": 1,
+            "away": 3
+        },
+        "Ball Possession": {
+            "home": 58,
+            "away": 42
+        },
+        "Yellow Cards": {
+            "home": 0,
+            "away": 2
+        },
+        "Red Cards": {
+            "home": 0,
+            "away": 0
+        },
+        "Goalkeeper Saves": {
+            "home": 3,
+            "away": 4
+        },
+        "Total passes": {
+            "home": 533,
+            "away": 402
+        },
+        "Passes accurate": {
+            "home": 453,
+            "away": 321
+        },
+        "Passes %": {
+            "home": 85,
+            "away": 80
+        },
+        "expected_goals": {
+            "home": 0,
+            "away": 0
+        },
+        "goals_prevented": {
+            "home": 0,
+            "away": 0
+        }
+    },
+    "2396119": {
+        "Shots on Goal": {
+            "home": 6,
+            "away": 7
+        },
+        "Shots off Goal": {
+            "home": 1,
+            "away": 6
+        },
+        "Total Shots": {
+            "home": 8,
+            "away": 20
+        },
+        "Blocked Shots": {
+            "home": 1,
+            "away": 7
+        },
+        "Shots insidebox": {
+            "home": 6,
+            "away": 14
+        },
+        "Shots outsidebox": {
+            "home": 2,
+            "away": 6
+        },
+        "Fouls": {
+            "home": 18,
+            "away": 16
+        },
+        "Corner Kicks": {
+            "home": 3,
+            "away": 6
+        },
+        "Offsides": {
+            "home": 3,
+            "away": 2
+        },
+        "Ball Possession": {
+            "home": 45,
+            "away": 55
+        },
+        "Yellow Cards": {
+            "home": 3,
+            "away": 1
+        },
+        "Red Cards": {
+            "home": 0,
+            "away": 0
+        },
+        "Goalkeeper Saves": {
+            "home": 6,
+            "away": 4
+        },
+        "Total passes": {
+            "home": 352,
+            "away": 412
+        },
+        "Passes accurate": {
+            "home": 274,
+            "away": 319
+        },
+        "Passes %": {
+            "home": 78,
+            "away": 77
+        },
+        "expected_goals": {
+            "home": 0,
+            "away": 0
+        },
+        "goals_prevented": {
+            "home": 0,
+            "away": 0
+        }
+    },
+    "2396120": {
+        "Shots on Goal": {
+            "home": 4,
+            "away": 6
+        },
+        "Shots off Goal": {
+            "home": 5,
+            "away": 4
+        },
+        "Total Shots": {
+            "home": 15,
+            "away": 13
+        },
+        "Blocked Shots": {
+            "home": 6,
+            "away": 3
+        },
+        "Shots insidebox": {
+            "home": 11,
+            "away": 8
+        },
+        "Shots outsidebox": {
+            "home": 4,
+            "away": 5
+        },
+        "Fouls": {
+            "home": 17,
+            "away": 13
+        },
+        "Corner Kicks": {
+            "home": 7,
+            "away": 3
+        },
+        "Offsides": {
+            "home": 2,
+            "away": 2
+        },
+        "Ball Possession": {
+            "home": 55,
+            "away": 45
+        },
+        "Yellow Cards": {
+            "home": 2,
+            "away": 1
+        },
+        "Red Cards": {
+            "home": 1,
+            "away": 0
+        },
+        "Goalkeeper Saves": {
+            "home": 3,
+            "away": 4
+        },
+        "Total passes": {
+            "home": 359,
+            "away": 303
+        },
+        "Passes accurate": {
+            "home": 275,
+            "away": 245
+        },
+        "Passes %": {
+            "home": 77,
+            "away": 81
+        },
+        "expected_goals": {
+            "home": 0,
+            "away": 0
+        },
+        "goals_prevented": {
+            "home": 0,
+            "away": 0
+        }
+    },
+    "2396121": {
+        "Shots on Goal": {
+            "home": 5,
+            "away": 2
+        },
+        "Shots off Goal": {
+            "home": 6,
+            "away": 6
+        },
+        "Total Shots": {
+            "home": 16,
+            "away": 14
+        },
+        "Blocked Shots": {
+            "home": 5,
+            "away": 6
+        },
+        "Shots insidebox": {
+            "home": 10,
+            "away": 6
+        },
+        "Shots outsidebox": {
+            "home": 6,
+            "away": 8
+        },
+        "Fouls": {
+            "home": 8,
+            "away": 18
+        },
+        "Corner Kicks": {
+            "home": 2,
+            "away": 4
+        },
+        "Offsides": {
+            "home": 1,
+            "away": 1
+        },
+        "Ball Possession": {
+            "home": 64,
+            "away": 36
+        },
+        "Yellow Cards": {
+            "home": 0,
+            "away": 5
+        },
+        "Red Cards": {
+            "home": 0,
+            "away": 0
+        },
+        "Goalkeeper Saves": {
+            "home": 1,
+            "away": 5
+        },
+        "Total passes": {
+            "home": 603,
+            "away": 336
+        },
+        "Passes accurate": {
+            "home": 521,
+            "away": 258
+        },
+        "Passes %": {
+            "home": 86,
+            "away": 77
+        },
+        "expected_goals": {
+            "home": 0,
+            "away": 0
+        },
+        "goals_prevented": {
+            "home": 0,
+            "away": 0
+        }
+    },
+    "2396122": {
+        "Shots on Goal": {
+            "home": 4,
+            "away": 4
+        },
+        "Shots off Goal": {
+            "home": 6,
+            "away": 7
+        },
+        "Total Shots": {
+            "home": 16,
+            "away": 15
+        },
+        "Blocked Shots": {
+            "home": 6,
+            "away": 4
+        },
+        "Shots insidebox": {
+            "home": 10,
+            "away": 8
+        },
+        "Shots outsidebox": {
+            "home": 6,
+            "away": 7
+        },
+        "Fouls": {
+            "home": 14,
+            "away": 9
+        },
+        "Corner Kicks": {
+            "home": 7,
+            "away": 4
+        },
+        "Offsides": {
+            "home": 1,
+            "away": 0
+        },
+        "Ball Possession": {
+            "home": 59,
+            "away": 41
+        },
+        "Yellow Cards": {
+            "home": 1,
+            "away": 0
+        },
+        "Red Cards": {
+            "home": 0,
+            "away": 0
+        },
+        "Goalkeeper Saves": {
+            "home": 3,
+            "away": 3
+        },
+        "Total passes": {
+            "home": 478,
+            "away": 334
+        },
+        "Passes accurate": {
+            "home": 420,
+            "away": 269
+        },
+        "Passes %": {
+            "home": 88,
+            "away": 81
+        },
+        "expected_goals": {
+            "home": 0,
+            "away": 0
+        },
+        "goals_prevented": {
+            "home": 0,
+            "away": 0
+        }
+    },
+    "2396123": {
+        "Shots on Goal": {
+            "home": 1,
+            "away": 3
+        },
+        "Shots off Goal": {
+            "home": 4,
+            "away": 3
+        },
+        "Total Shots": {
+            "home": 13,
+            "away": 8
+        },
+        "Blocked Shots": {
+            "home": 8,
+            "away": 2
+        },
+        "Shots insidebox": {
+            "home": 7,
+            "away": 6
+        },
+        "Shots outsidebox": {
+            "home": 6,
+            "away": 2
+        },
+        "Fouls": {
+            "home": 6,
+            "away": 15
+        },
+        "Corner Kicks": {
+            "home": 5,
+            "away": 3
+        },
+        "Offsides": {
+            "home": 1,
+            "away": 2
+        },
+        "Ball Possession": {
+            "home": 48,
+            "away": 52
+        },
+        "Yellow Cards": {
+            "home": 1,
+            "away": 2
+        },
+        "Red Cards": {
+            "home": 0,
+            "away": 0
+        },
+        "Goalkeeper Saves": {
+            "home": 1,
+            "away": 0
+        },
+        "Total passes": {
+            "home": 439,
+            "away": 489
+        },
+        "Passes accurate": {
+            "home": 358,
+            "away": 409
+        },
+        "Passes %": {
+            "home": 82,
+            "away": 84
+        },
+        "expected_goals": {
+            "home": 0,
+            "away": 0
+        },
+        "goals_prevented": {
+            "home": 0,
+            "away": 0
+        }
+    },
+    "2396126": {
+        "Shots on Goal": {
+            "home": 7,
+            "away": 6
+        },
+        "Shots off Goal": {
+            "home": 8,
+            "away": 1
+        },
+        "Total Shots": {
+            "home": 20,
+            "away": 8
+        },
+        "Blocked Shots": {
+            "home": 5,
+            "away": 1
+        },
+        "Shots insidebox": {
+            "home": 12,
+            "away": 5
+        },
+        "Shots outsidebox": {
+            "home": 8,
+            "away": 3
+        },
+        "Fouls": {
+            "home": 20,
+            "away": 13
+        },
+        "Corner Kicks": {
+            "home": 8,
+            "away": 6
+        },
+        "Offsides": {
+            "home": 0,
+            "away": 2
+        },
+        "Ball Possession": {
+            "home": 56,
+            "away": 44
+        },
+        "Yellow Cards": {
+            "home": 4,
+            "away": 1
+        },
+        "Red Cards": {
+            "home": 0,
+            "away": 0
+        },
+        "Goalkeeper Saves": {
+            "home": 5,
+            "away": 5
+        },
+        "Total passes": {
+            "home": 380,
+            "away": 296
+        },
+        "Passes accurate": {
+            "home": 326,
+            "away": 232
+        },
+        "Passes %": {
+            "home": 86,
+            "away": 78
+        },
+        "expected_goals": {
+            "home": 0,
+            "away": 0
+        },
+        "goals_prevented": {
+            "home": 0,
+            "away": 0
+        }
+    },
+    "2396124": {
+        "Shots on Goal": {
+            "home": 4,
+            "away": 4
+        },
+        "Shots off Goal": {
+            "home": 11,
+            "away": 8
+        },
+        "Total Shots": {
+            "home": 17,
+            "away": 15
+        },
+        "Blocked Shots": {
+            "home": 2,
+            "away": 3
+        },
+        "Shots insidebox": {
+            "home": 14,
+            "away": 6
+        },
+        "Shots outsidebox": {
+            "home": 3,
+            "away": 9
+        },
+        "Fouls": {
+            "home": 15,
+            "away": 12
+        },
+        "Corner Kicks": {
+            "home": 10,
+            "away": 4
+        },
+        "Offsides": {
+            "home": 1,
+            "away": 0
+        },
+        "Ball Possession": {
+            "home": 50,
+            "away": 50
+        },
+        "Yellow Cards": {
+            "home": 0,
+            "away": 0
+        },
+        "Red Cards": {
+            "home": 0,
+            "away": 0
+        },
+        "Goalkeeper Saves": {
+            "home": 2,
+            "away": 4
+        },
+        "Total passes": {
+            "home": 397,
+            "away": 416
+        },
+        "Passes accurate": {
+            "home": 337,
+            "away": 353
+        },
+        "Passes %": {
+            "home": 85,
+            "away": 85
+        },
+        "expected_goals": {
+            "home": 0,
+            "away": 0
+        },
+        "goals_prevented": {
+            "home": 0,
+            "away": 0
+        }
+    },
+    "2396125": {
+        "Shots on Goal": {
+            "home": 8,
+            "away": 2
+        },
+        "Shots off Goal": {
+            "home": 4,
+            "away": 6
+        },
+        "Total Shots": {
+            "home": 14,
+            "away": 13
+        },
+        "Blocked Shots": {
+            "home": 2,
+            "away": 5
+        },
+        "Shots insidebox": {
+            "home": 2,
+            "away": 8
+        },
+        "Shots outsidebox": {
+            "home": 12,
+            "away": 5
+        },
+        "Fouls": {
+            "home": 12,
+            "away": 10
+        },
+        "Corner Kicks": {
+            "home": 4,
+            "away": 5
+        },
+        "Offsides": {
+            "home": 0,
+            "away": 1
+        },
+        "Ball Possession": {
+            "home": 47,
+            "away": 53
+        },
+        "Yellow Cards": {
+            "home": 1,
+            "away": 0
+        },
+        "Red Cards": {
+            "home": 0,
+            "away": 0
+        },
+        "Goalkeeper Saves": {
+            "home": 1,
+            "away": 6
+        },
+        "Total passes": {
+            "home": 420,
+            "away": 452
+        },
+        "Passes accurate": {
+            "home": 351,
+            "away": 387
+        },
+        "Passes %": {
+            "home": 84,
+            "away": 86
+        },
+        "expected_goals": {
+            "home": 0,
+            "away": 0
+        },
+        "goals_prevented": {
+            "home": 0,
+            "away": 0
+        }
+    },
+    "2396127": {
+        "Shots on Goal": {
+            "home": 5,
+            "away": 2
+        },
+        "Shots off Goal": {
+            "home": 9,
+            "away": 1
+        },
+        "Total Shots": {
+            "home": 16,
+            "away": 4
+        },
+        "Blocked Shots": {
+            "home": 2,
+            "away": 1
+        },
+        "Shots insidebox": {
+            "home": 10,
+            "away": 3
+        },
+        "Shots outsidebox": {
+            "home": 6,
+            "away": 1
+        },
+        "Fouls": {
+            "home": 14,
+            "away": 14
+        },
+        "Corner Kicks": {
+            "home": 6,
+            "away": 2
+        },
+        "Offsides": {
+            "home": 1,
+            "away": 2
+        },
+        "Ball Possession": {
+            "home": 50,
+            "away": 50
+        },
+        "Yellow Cards": {
+            "home": 2,
+            "away": 3
+        },
+        "Red Cards": {
+            "home": 0,
+            "away": 0
+        },
+        "Goalkeeper Saves": {
+            "home": 2,
+            "away": 3
+        },
+        "Total passes": {
+            "home": 405,
+            "away": 422
+        },
+        "Passes accurate": {
+            "home": 342,
+            "away": 351
+        },
+        "Passes %": {
+            "home": 84,
+            "away": 83
+        },
+        "expected_goals": {
+            "home": 0,
+            "away": 0
+        },
+        "goals_prevented": {
+            "home": 0,
+            "away": 0
+        }
+    },
+    "2396128": {
+        "Shots on Goal": {
+            "home": 3,
+            "away": 5
+        },
+        "Shots off Goal": {
+            "home": 4,
+            "away": 6
+        },
+        "Total Shots": {
+            "home": 7,
+            "away": 13
+        },
+        "Blocked Shots": {
+            "home": 0,
+            "away": 2
+        },
+        "Shots insidebox": {
+            "home": 5,
+            "away": 6
+        },
+        "Shots outsidebox": {
+            "home": 2,
+            "away": 7
+        },
+        "Fouls": {
+            "home": 9,
+            "away": 8
+        },
+        "Corner Kicks": {
+            "home": 1,
+            "away": 4
+        },
+        "Offsides": {
+            "home": 0,
+            "away": 3
+        },
+        "Ball Possession": {
+            "home": 51,
+            "away": 49
+        },
+        "Yellow Cards": {
+            "home": 2,
+            "away": 2
+        },
+        "Red Cards": {
+            "home": 0,
+            "away": 0
+        },
+        "Goalkeeper Saves": {
+            "home": 5,
+            "away": 3
+        },
+        "Total passes": {
+            "home": 460,
+            "away": 442
+        },
+        "Passes accurate": {
+            "home": 379,
+            "away": 366
+        },
+        "Passes %": {
+            "home": 82,
+            "away": 83
+        },
+        "expected_goals": {
+            "home": 0,
+            "away": 0
+        },
+        "goals_prevented": {
+            "home": 0,
+            "away": 0
+        }
+    },
+    "2396129": {
+        "Shots on Goal": {
+            "home": 1,
+            "away": 7
+        },
+        "Shots off Goal": {
+            "home": 4,
+            "away": 5
+        },
+        "Total Shots": {
+            "home": 9,
+            "away": 16
+        },
+        "Blocked Shots": {
+            "home": 4,
+            "away": 4
+        },
+        "Shots insidebox": {
+            "home": 2,
+            "away": 10
+        },
+        "Shots outsidebox": {
+            "home": 7,
+            "away": 6
+        },
+        "Fouls": {
+            "home": 14,
+            "away": 8
+        },
+        "Corner Kicks": {
+            "home": 1,
+            "away": 8
+        },
+        "Offsides": {
+            "home": 0,
+            "away": 0
+        },
+        "Ball Possession": {
+            "home": 46,
+            "away": 54
+        },
+        "Yellow Cards": {
+            "home": 1,
+            "away": 0
+        },
+        "Red Cards": {
+            "home": 1,
+            "away": 0
+        },
+        "Goalkeeper Saves": {
+            "home": 3,
+            "away": 1
+        },
+        "Total passes": {
+            "home": 428,
+            "away": 492
+        },
+        "Passes accurate": {
+            "home": 369,
+            "away": 427
+        },
+        "Passes %": {
+            "home": 86,
+            "away": 87
+        },
+        "expected_goals": {
+            "home": 0,
+            "away": 0
+        },
+        "goals_prevented": {
+            "home": 0,
+            "away": 0
+        }
+    },
+    "2396130": {
+        "Shots on Goal": {
+            "home": 5,
+            "away": 4
+        },
+        "Shots off Goal": {
+            "home": 5,
+            "away": 3
+        },
+        "Total Shots": {
+            "home": 12,
+            "away": 10
+        },
+        "Blocked Shots": {
+            "home": 2,
+            "away": 3
+        },
+        "Shots insidebox": {
+            "home": 8,
+            "away": 5
+        },
+        "Shots outsidebox": {
+            "home": 4,
+            "away": 5
+        },
+        "Fouls": {
+            "home": 10,
+            "away": 14
+        },
+        "Corner Kicks": {
+            "home": 6,
+            "away": 6
+        },
+        "Offsides": {
+            "home": 1,
+            "away": 0
+        },
+        "Ball Possession": {
+            "home": 52,
+            "away": 48
+        },
+        "Yellow Cards": {
+            "home": 4,
+            "away": 2
+        },
+        "Red Cards": {
+            "home": 0,
+            "away": 0
+        },
+        "Goalkeeper Saves": {
+            "home": 1,
+            "away": 4
+        },
+        "Total passes": {
+            "home": 361,
+            "away": 351
+        },
+        "Passes accurate": {
+            "home": 293,
+            "away": 298
+        },
+        "Passes %": {
+            "home": 81,
+            "away": 85
+        },
+        "expected_goals": {
+            "home": 0,
+            "away": 0
+        },
+        "goals_prevented": {
+            "home": 0,
+            "away": 0
+        }
+    },
+    "2396131": {
+        "Shots on Goal": {
+            "home": 5,
+            "away": 4
+        },
+        "Shots off Goal": {
+            "home": 11,
+            "away": 1
+        },
+        "Total Shots": {
+            "home": 28,
+            "away": 6
+        },
+        "Blocked Shots": {
+            "home": 12,
+            "away": 1
+        },
+        "Shots insidebox": {
+            "home": 22,
+            "away": 4
+        },
+        "Shots outsidebox": {
+            "home": 6,
+            "away": 2
+        },
+        "Fouls": {
+            "home": 10,
+            "away": 18
+        },
+        "Corner Kicks": {
+            "home": 17,
+            "away": 2
+        },
+        "Offsides": {
+            "home": 2,
+            "away": 2
+        },
+        "Ball Possession": {
+            "home": 69,
+            "away": 31
+        },
+        "Yellow Cards": {
+            "home": 3,
+            "away": 6
+        },
+        "Red Cards": {
+            "home": 0,
+            "away": 1
+        },
+        "Goalkeeper Saves": {
+            "home": 3,
+            "away": 6
+        },
+        "Total passes": {
+            "home": 565,
+            "away": 273
+        },
+        "Passes accurate": {
+            "home": 501,
+            "away": 198
+        },
+        "Passes %": {
+            "home": 89,
+            "away": 73
+        },
+        "expected_goals": {
+            "home": 0,
+            "away": 0
+        },
+        "goals_prevented": {
+            "home": 0,
+            "away": 0
+        }
+    },
+    "2396132": {
+        "Shots on Goal": {
+            "home": 9,
+            "away": 2
+        },
+        "Shots off Goal": {
+            "home": 9,
+            "away": 1
+        },
+        "Total Shots": {
+            "home": 21,
+            "away": 3
+        },
+        "Blocked Shots": {
+            "home": 3,
+            "away": 0
+        },
+        "Shots insidebox": {
+            "home": 10,
+            "away": 3
+        },
+        "Shots outsidebox": {
+            "home": 11,
+            "away": 0
+        },
+        "Fouls": {
+            "home": 13,
+            "away": 10
+        },
+        "Corner Kicks": {
+            "home": 5,
+            "away": 1
+        },
+        "Offsides": {
+            "home": 2,
+            "away": 1
+        },
+        "Ball Possession": {
+            "home": 73,
+            "away": 27
+        },
+        "Yellow Cards": {
+            "home": 2,
+            "away": 6
+        },
+        "Red Cards": {
+            "home": 0,
+            "away": 0
+        },
+        "Goalkeeper Saves": {
+            "home": 1,
+            "away": 7
+        },
+        "Total passes": {
+            "home": 632,
+            "away": 228
+        },
+        "Passes accurate": {
+            "home": 565,
+            "away": 176
+        },
+        "Passes %": {
+            "home": 89,
+            "away": 77
+        },
+        "expected_goals": {
+            "home": 0,
+            "away": 0
+        },
+        "goals_prevented": {
+            "home": 0,
+            "away": 0
+        }
+    },
+    "2396133": {
+        "Shots on Goal": {
+            "home": 4,
+            "away": 11
+        },
+        "Shots off Goal": {
+            "home": 5,
+            "away": 2
+        },
+        "Total Shots": {
+            "home": 9,
+            "away": 18
+        },
+        "Blocked Shots": {
+            "home": 0,
+            "away": 5
+        },
+        "Shots insidebox": {
+            "home": 5,
+            "away": 13
+        },
+        "Shots outsidebox": {
+            "home": 4,
+            "away": 5
+        },
+        "Fouls": {
+            "home": 13,
+            "away": 8
+        },
+        "Corner Kicks": {
+            "home": 4,
+            "away": 7
+        },
+        "Offsides": {
+            "home": 0,
+            "away": 2
+        },
+        "Ball Possession": {
+            "home": 35,
+            "away": 65
+        },
+        "Yellow Cards": {
+            "home": 3,
+            "away": 1
+        },
+        "Red Cards": {
+            "home": 0,
+            "away": 0
+        },
+        "Goalkeeper Saves": {
+            "home": 6,
+            "away": 3
+        },
+        "Total passes": {
+            "home": 289,
+            "away": 567
+        },
+        "Passes accurate": {
+            "home": 231,
+            "away": 500
+        },
+        "Passes %": {
+            "home": 80,
+            "away": 88
+        },
+        "expected_goals": {
+            "home": 0,
+            "away": 0
+        },
+        "goals_prevented": {
+            "home": 0,
+            "away": 0
+        }
+    },
+    "2396134": {
+        "Shots on Goal": {
+            "home": 8,
+            "away": 4
+        },
+        "Shots off Goal": {
+            "home": 10,
+            "away": 6
+        },
+        "Total Shots": {
+            "home": 22,
+            "away": 11
+        },
+        "Blocked Shots": {
+            "home": 4,
+            "away": 1
+        },
+        "Shots insidebox": {
+            "home": 13,
+            "away": 6
+        },
+        "Shots outsidebox": {
+            "home": 9,
+            "away": 5
+        },
+        "Fouls": {
+            "home": 11,
+            "away": 11
+        },
+        "Corner Kicks": {
+            "home": 7,
+            "away": 2
+        },
+        "Offsides": {
+            "home": 1,
+            "away": 2
+        },
+        "Ball Possession": {
+            "home": 67,
+            "away": 33
+        },
+        "Yellow Cards": {
+            "home": 2,
+            "away": 3
+        },
+        "Red Cards": {
+            "home": 0,
+            "away": 0
+        },
+        "Goalkeeper Saves": {
+            "home": 3,
+            "away": 6
+        },
+        "Total passes": {
+            "home": 586,
+            "away": 281
+        },
+        "Passes accurate": {
+            "home": 514,
+            "away": 205
+        },
+        "Passes %": {
+            "home": 88,
+            "away": 73
+        },
+        "expected_goals": {
+            "home": 0,
+            "away": 0
+        },
+        "goals_prevented": {
+            "home": 0,
+            "away": 0
+        }
+    },
+    "2396135": {},
+    "2396136": {
+        "Shots on Goal": {
+            "home": 2,
+            "away": 4
+        },
+        "Shots off Goal": {
+            "home": 3,
+            "away": 2
+        },
+        "Total Shots": {
+            "home": 7,
+            "away": 11
+        },
+        "Blocked Shots": {
+            "home": 2,
+            "away": 5
+        },
+        "Shots insidebox": {
+            "home": 2,
+            "away": 6
+        },
+        "Shots outsidebox": {
+            "home": 5,
+            "away": 5
+        },
+        "Fouls": {
+            "home": 19,
+            "away": 24
+        },
+        "Corner Kicks": {
+            "home": 3,
+            "away": 3
+        },
+        "Offsides": {
+            "home": 2,
+            "away": 1
+        },
+        "Ball Possession": {
+            "home": 49,
+            "away": 51
+        },
+        "Yellow Cards": {
+            "home": 4,
+            "away": 4
+        },
+        "Red Cards": {
+            "home": 1,
+            "away": 0
+        },
+        "Goalkeeper Saves": {
+            "home": 4,
+            "away": 2
+        },
+        "Total passes": {
+            "home": 364,
+            "away": 376
+        },
+        "Passes accurate": {
+            "home": 265,
+            "away": 279
+        },
+        "Passes %": {
+            "home": 73,
+            "away": 74
+        },
+        "expected_goals": {
+            "home": 0,
+            "away": 0
+        },
+        "goals_prevented": {
+            "home": 0,
+            "away": 0
+        }
+    },
+    "2396137": {
+        "Shots on Goal": {
+            "home": 4,
+            "away": 2
+        },
+        "Shots off Goal": {
+            "home": 3,
+            "away": 3
+        },
+        "Total Shots": {
+            "home": 8,
+            "away": 9
+        },
+        "Blocked Shots": {
+            "home": 1,
+            "away": 4
+        },
+        "Shots insidebox": {
+            "home": 6,
+            "away": 6
+        },
+        "Shots outsidebox": {
+            "home": 2,
+            "away": 3
+        },
+        "Fouls": {
+            "home": 17,
+            "away": 9
+        },
+        "Corner Kicks": {
+            "home": 2,
+            "away": 1
+        },
+        "Offsides": {
+            "home": 1,
+            "away": 0
+        },
+        "Ball Possession": {
+            "home": 46,
+            "away": 54
+        },
+        "Yellow Cards": {
+            "home": 4,
+            "away": 0
+        },
+        "Red Cards": {
+            "home": 0,
+            "away": 0
+        },
+        "Goalkeeper Saves": {
+            "home": 1,
+            "away": 3
+        },
+        "Total passes": {
+            "home": 432,
+            "away": 498
+        },
+        "Passes accurate": {
+            "home": 364,
+            "away": 427
+        },
+        "Passes %": {
+            "home": 84,
+            "away": 86
+        },
+        "expected_goals": {
+            "home": 0,
+            "away": 0
+        },
+        "goals_prevented": {
+            "home": 0,
+            "away": 0
+        }
+    },
+    "2396138": {},
+    "2396139": {
+        "Shots on Goal": {
+            "home": 2,
+            "away": 6
+        },
+        "Shots off Goal": {
+            "home": 6,
+            "away": 5
+        },
+        "Total Shots": {
+            "home": 13,
+            "away": 17
+        },
+        "Blocked Shots": {
+            "home": 5,
+            "away": 6
+        },
+        "Shots insidebox": {
+            "home": 9,
+            "away": 11
+        },
+        "Shots outsidebox": {
+            "home": 4,
+            "away": 6
+        },
+        "Fouls": {
+            "home": 11,
+            "away": 14
+        },
+        "Corner Kicks": {
+            "home": 4,
+            "away": 4
+        },
+        "Offsides": {
+            "home": 3,
+            "away": 0
+        },
+        "Ball Possession": {
+            "home": 56,
+            "away": 44
+        },
+        "Yellow Cards": {
+            "home": 2,
+            "away": 1
+        },
+        "Red Cards": {
+            "home": 0,
+            "away": 0
+        },
+        "Goalkeeper Saves": {
+            "home": 6,
+            "away": 1
+        },
+        "Total passes": {
+            "home": 492,
+            "away": 382
+        },
+        "Passes accurate": {
+            "home": 419,
+            "away": 318
+        },
+        "Passes %": {
+            "home": 85,
+            "away": 83
+        },
+        "expected_goals": {
+            "home": 0,
+            "away": 0
+        },
+        "goals_prevented": {
+            "home": 0,
+            "away": 0
+        }
+    },
+    "2396140": {
+        "Shots on Goal": {
+            "home": 6,
+            "away": 10
+        },
+        "Shots off Goal": {
+            "home": 5,
+            "away": 10
+        },
+        "Total Shots": {
+            "home": 19,
+            "away": 24
+        },
+        "Blocked Shots": {
+            "home": 8,
+            "away": 4
+        },
+        "Shots insidebox": {
+            "home": 11,
+            "away": 11
+        },
+        "Shots outsidebox": {
+            "home": 8,
+            "away": 13
+        },
+        "Fouls": {
+            "home": 18,
+            "away": 13
+        },
+        "Corner Kicks": {
+            "home": 5,
+            "away": 3
+        },
+        "Offsides": {
+            "home": 2,
+            "away": 1
+        },
+        "Ball Possession": {
+            "home": 39,
+            "away": 61
+        },
+        "Yellow Cards": {
+            "home": 4,
+            "away": 4
+        },
+        "Red Cards": {
+            "home": 0,
+            "away": 0
+        },
+        "Goalkeeper Saves": {
+            "home": 8,
+            "away": 4
+        },
+        "Total passes": {
+            "home": 253,
+            "away": 406
+        },
+        "Passes accurate": {
+            "home": 161,
+            "away": 332
+        },
+        "Passes %": {
+            "home": 64,
+            "away": 82
+        },
+        "expected_goals": {
+            "home": 0,
+            "away": 0
+        },
+        "goals_prevented": {
+            "home": 0,
+            "away": 0
+        }
+    },
+    "2396141": {
+        "Shots on Goal": {
+            "home": 2,
+            "away": 2
+        },
+        "Shots off Goal": {
+            "home": 3,
+            "away": 4
+        },
+        "Total Shots": {
+            "home": 7,
+            "away": 10
+        },
+        "Blocked Shots": {
+            "home": 2,
+            "away": 4
+        },
+        "Shots insidebox": {
+            "home": 4,
+            "away": 5
+        },
+        "Shots outsidebox": {
+            "home": 3,
+            "away": 5
+        },
+        "Fouls": {
+            "home": 17,
+            "away": 10
+        },
+        "Corner Kicks": {
+            "home": 3,
+            "away": 6
+        },
+        "Offsides": {
+            "home": 1,
+            "away": 1
+        },
+        "Ball Possession": {
+            "home": 37,
+            "away": 63
+        },
+        "Yellow Cards": {
+            "home": 3,
+            "away": 1
+        },
+        "Red Cards": {
+            "home": 0,
+            "away": 0
+        },
+        "Goalkeeper Saves": {
+            "home": 2,
+            "away": 1
+        },
+        "Total passes": {
+            "home": 351,
+            "away": 601
+        },
+        "Passes accurate": {
+            "home": 289,
+            "away": 540
+        },
+        "Passes %": {
+            "home": 82,
+            "away": 90
+        },
+        "expected_goals": {
+            "home": 0,
+            "away": 0
+        },
+        "goals_prevented": {
+            "home": 0,
+            "away": 0
+        }
+    },
+    "2396142": {
+        "Shots on Goal": {
+            "home": 1,
+            "away": 5
+        },
+        "Shots off Goal": {
+            "home": 2,
+            "away": 11
+        },
+        "Total Shots": {
+            "home": 4,
+            "away": 27
+        },
+        "Blocked Shots": {
+            "home": 1,
+            "away": 11
+        },
+        "Shots insidebox": {
+            "home": 1,
+            "away": 11
+        },
+        "Shots outsidebox": {
+            "home": 3,
+            "away": 16
+        },
+        "Fouls": {
+            "home": 12,
+            "away": 10
+        },
+        "Corner Kicks": {
+            "home": 0,
+            "away": 12
+        },
+        "Offsides": {
+            "home": 1,
+            "away": 3
+        },
+        "Ball Possession": {
+            "home": 30,
+            "away": 70
+        },
+        "Yellow Cards": {
+            "home": 1,
+            "away": 3
+        },
+        "Red Cards": {
+            "home": 1,
+            "away": 0
+        },
+        "Goalkeeper Saves": {
+            "home": 6,
+            "away": 1
+        },
+        "Total passes": {
+            "home": 237,
+            "away": 556
+        },
+        "Passes accurate": {
+            "home": 179,
+            "away": 494
+        },
+        "Passes %": {
+            "home": 76,
+            "away": 89
+        },
+        "expected_goals": {
+            "home": 0,
+            "away": 0
+        },
+        "goals_prevented": {
+            "home": 0,
+            "away": 0
+        }
+    },
+    "2396143": {
+        "Shots on Goal": {
+            "home": 8,
+            "away": 7
+        },
+        "Shots off Goal": {
+            "home": 5,
+            "away": 7
+        },
+        "Total Shots": {
+            "home": 17,
+            "away": 16
+        },
+        "Blocked Shots": {
+            "home": 4,
+            "away": 2
+        },
+        "Shots insidebox": {
+            "home": 11,
+            "away": 10
+        },
+        "Shots outsidebox": {
+            "home": 6,
+            "away": 6
+        },
+        "Fouls": {
+            "home": 16,
+            "away": 14
+        },
+        "Corner Kicks": {
+            "home": 4,
+            "away": 5
+        },
+        "Offsides": {
+            "home": 5,
+            "away": 2
+        },
+        "Ball Possession": {
+            "home": 58,
+            "away": 42
+        },
+        "Yellow Cards": {
+            "home": 1,
+            "away": 2
+        },
+        "Red Cards": {
+            "home": 0,
+            "away": 1
+        },
+        "Goalkeeper Saves": {
+            "home": 3,
+            "away": 5
+        },
+        "Total passes": {
+            "home": 392,
+            "away": 301
+        },
+        "Passes accurate": {
+            "home": 323,
+            "away": 227
+        },
+        "Passes %": {
+            "home": 82,
+            "away": 75
+        },
+        "expected_goals": {
+            "home": 0,
+            "away": 0
+        },
+        "goals_prevented": {
+            "home": 0,
+            "away": 0
+        }
+    },
+    "2396144": {
+        "Shots on Goal": {
+            "home": 5,
+            "away": 4
+        },
+        "Shots off Goal": {
+            "home": 2,
+            "away": 4
+        },
+        "Total Shots": {
+            "home": 7,
+            "away": 10
+        },
+        "Blocked Shots": {
+            "home": 0,
+            "away": 2
+        },
+        "Shots insidebox": {
+            "home": 3,
+            "away": 5
+        },
+        "Shots outsidebox": {
+            "home": 4,
+            "away": 5
+        },
+        "Fouls": {
+            "home": 8,
+            "away": 18
+        },
+        "Corner Kicks": {
+            "home": 0,
+            "away": 6
+        },
+        "Offsides": {
+            "home": 3,
+            "away": 1
+        },
+        "Ball Possession": {
+            "home": 51,
+            "away": 49
+        },
+        "Yellow Cards": {
+            "home": 2,
+            "away": 3
+        },
+        "Red Cards": {
+            "home": 0,
+            "away": 0
+        },
+        "Goalkeeper Saves": {
+            "home": 4,
+            "away": 1
+        },
+        "Total passes": {
+            "home": 346,
+            "away": 315
+        },
+        "Passes accurate": {
+            "home": 299,
+            "away": 266
+        },
+        "Passes %": {
+            "home": 86,
+            "away": 84
+        },
+        "expected_goals": {
+            "home": 0,
+            "away": 0
+        },
+        "goals_prevented": {
+            "home": 0,
+            "away": 0
+        }
+    },
+    "2396145": {
+        "Shots on Goal": {
+            "home": 6,
+            "away": 3
+        },
+        "Shots off Goal": {
+            "home": 6,
+            "away": 4
+        },
+        "Total Shots": {
+            "home": 15,
+            "away": 9
+        },
+        "Blocked Shots": {
+            "home": 3,
+            "away": 2
+        },
+        "Shots insidebox": {
+            "home": 9,
+            "away": 6
+        },
+        "Shots outsidebox": {
+            "home": 6,
+            "away": 3
+        },
+        "Fouls": {
+            "home": 15,
+            "away": 6
+        },
+        "Corner Kicks": {
+            "home": 4,
+            "away": 3
+        },
+        "Offsides": {
+            "home": 1,
+            "away": 1
+        },
+        "Ball Possession": {
+            "home": 57,
+            "away": 43
+        },
+        "Yellow Cards": {
+            "home": 1,
+            "away": 1
+        },
+        "Red Cards": {
+            "home": 0,
+            "away": 0
+        },
+        "Goalkeeper Saves": {
+            "home": 3,
+            "away": 5
+        },
+        "Total passes": {
+            "home": 441,
+            "away": 332
+        },
+        "Passes accurate": {
+            "home": 368,
+            "away": 263
+        },
+        "Passes %": {
+            "home": 83,
+            "away": 79
+        },
+        "expected_goals": {
+            "home": 0,
+            "away": 0
+        },
+        "goals_prevented": {
+            "home": 0,
+            "away": 0
+        }
+    },
+    "2396148": {
+        "Shots on Goal": {
+            "home": 6,
+            "away": 1
+        },
+        "Shots off Goal": {
+            "home": 5,
+            "away": 2
+        },
+        "Total Shots": {
+            "home": 14,
+            "away": 6
+        },
+        "Blocked Shots": {
+            "home": 3,
+            "away": 3
+        },
+        "Shots insidebox": {
+            "home": 10,
+            "away": 4
+        },
+        "Shots outsidebox": {
+            "home": 4,
+            "away": 2
+        },
+        "Fouls": {
+            "home": 13,
+            "away": 12
+        },
+        "Corner Kicks": {
+            "home": 6,
+            "away": 0
+        },
+        "Offsides": {
+            "home": 0,
+            "away": 1
+        },
+        "Ball Possession": {
+            "home": 64,
+            "away": 36
+        },
+        "Yellow Cards": {
+            "home": 1,
+            "away": 3
+        },
+        "Red Cards": {
+            "home": 0,
+            "away": 1
+        },
+        "Goalkeeper Saves": {
+            "home": 1,
+            "away": 4
+        },
+        "Total passes": {
+            "home": 500,
+            "away": 291
+        },
+        "Passes accurate": {
+            "home": 449,
+            "away": 226
+        },
+        "Passes %": {
+            "home": 90,
+            "away": 78
+        },
+        "expected_goals": {
+            "home": 0,
+            "away": 0
+        },
+        "goals_prevented": {
+            "home": 0,
+            "away": 0
+        }
+    },
+    "2396150": {
+        "Shots on Goal": {
+            "home": 2,
+            "away": 7
+        },
+        "Shots off Goal": {
+            "home": 4,
+            "away": 5
+        },
+        "Total Shots": {
+            "home": 7,
+            "away": 13
+        },
+        "Blocked Shots": {
+            "home": 1,
+            "away": 1
+        },
+        "Shots insidebox": {
+            "home": 6,
+            "away": 10
+        },
+        "Shots outsidebox": {
+            "home": 1,
+            "away": 3
+        },
+        "Fouls": {
+            "home": 6,
+            "away": 13
+        },
+        "Corner Kicks": {
+            "home": 5,
+            "away": 3
+        },
+        "Offsides": {
+            "home": 3,
+            "away": 3
+        },
+        "Ball Possession": {
+            "home": 55,
+            "away": 45
+        },
+        "Yellow Cards": {
+            "home": 1,
+            "away": 3
+        },
+        "Red Cards": {
+            "home": 0,
+            "away": 0
+        },
+        "Goalkeeper Saves": {
+            "home": 5,
+            "away": 0
+        },
+        "Total passes": {
+            "home": 437,
+            "away": 362
+        },
+        "Passes accurate": {
+            "home": 362,
+            "away": 306
+        },
+        "Passes %": {
+            "home": 83,
+            "away": 85
+        },
+        "expected_goals": {
+            "home": 0,
+            "away": 0
+        },
+        "goals_prevented": {
+            "home": 0,
+            "away": 0
+        }
+    },
+    "2396146": {
+        "Shots on Goal": {
+            "home": 4,
+            "away": 6
+        },
+        "Shots off Goal": {
+            "home": 8,
+            "away": 7
+        },
+        "Total Shots": {
+            "home": 14,
+            "away": 16
+        },
+        "Blocked Shots": {
+            "home": 2,
+            "away": 3
+        },
+        "Shots insidebox": {
+            "home": 8,
+            "away": 11
+        },
+        "Shots outsidebox": {
+            "home": 6,
+            "away": 5
+        },
+        "Fouls": {
+            "home": 13,
+            "away": 11
+        },
+        "Corner Kicks": {
+            "home": 5,
+            "away": 4
+        },
+        "Offsides": {
+            "home": 4,
+            "away": 2
+        },
+        "Ball Possession": {
+            "home": 51,
+            "away": 49
+        },
+        "Yellow Cards": {
+            "home": 5,
+            "away": 3
+        },
+        "Red Cards": {
+            "home": 0,
+            "away": 1
+        },
+        "Goalkeeper Saves": {
+            "home": 4,
+            "away": 3
+        },
+        "Total passes": {
+            "home": 434,
+            "away": 414
+        },
+        "Passes accurate": {
+            "home": 362,
+            "away": 342
+        },
+        "Passes %": {
+            "home": 83,
+            "away": 83
+        },
+        "expected_goals": {
+            "home": 0,
+            "away": 0
+        },
+        "goals_prevented": {
+            "home": 0,
+            "away": 0
+        }
+    },
+    "2396147": {
+        "Shots on Goal": {
+            "home": 8,
+            "away": 5
+        },
+        "Shots off Goal": {
+            "home": 12,
+            "away": 9
+        },
+        "Total Shots": {
+            "home": 21,
+            "away": 16
+        },
+        "Blocked Shots": {
+            "home": 1,
+            "away": 2
+        },
+        "Shots insidebox": {
+            "home": 16,
+            "away": 7
+        },
+        "Shots outsidebox": {
+            "home": 5,
+            "away": 9
+        },
+        "Fouls": {
+            "home": 13,
+            "away": 14
+        },
+        "Corner Kicks": {
+            "home": 6,
+            "away": 6
+        },
+        "Offsides": {
+            "home": 1,
+            "away": 3
+        },
+        "Ball Possession": {
+            "home": 58,
+            "away": 42
+        },
+        "Yellow Cards": {
+            "home": 2,
+            "away": 4
+        },
+        "Red Cards": {
+            "home": 0,
+            "away": 0
+        },
+        "Goalkeeper Saves": {
+            "home": 4,
+            "away": 6
+        },
+        "Total passes": {
+            "home": 494,
+            "away": 360
+        },
+        "Passes accurate": {
+            "home": 431,
+            "away": 295
+        },
+        "Passes %": {
+            "home": 87,
+            "away": 82
+        },
+        "expected_goals": {
+            "home": 0,
+            "away": 0
+        },
+        "goals_prevented": {
+            "home": 0,
+            "away": 0
+        }
+    },
+    "2396149": {
+        "Shots on Goal": {
+            "home": 1,
+            "away": 1
+        },
+        "Shots off Goal": {
+            "home": 3,
+            "away": 8
+        },
+        "Total Shots": {
+            "home": 5,
+            "away": 13
+        },
+        "Blocked Shots": {
+            "home": 1,
+            "away": 4
+        },
+        "Shots insidebox": {
+            "home": 4,
+            "away": 5
+        },
+        "Shots outsidebox": {
+            "home": 1,
+            "away": 8
+        },
+        "Fouls": {
+            "home": 16,
+            "away": 12
+        },
+        "Corner Kicks": {
+            "home": 4,
+            "away": 3
+        },
+        "Offsides": {
+            "home": 1,
+            "away": 0
+        },
+        "Ball Possession": {
+            "home": 46,
+            "away": 54
+        },
+        "Yellow Cards": {
+            "home": 0,
+            "away": 2
+        },
+        "Red Cards": {
+            "home": 1,
+            "away": 0
+        },
+        "Goalkeeper Saves": {
+            "home": 1,
+            "away": 1
+        },
+        "Total passes": {
+            "home": 360,
+            "away": 429
+        },
+        "Passes accurate": {
+            "home": 279,
+            "away": 349
+        },
+        "Passes %": {
+            "home": 78,
+            "away": 81
+        },
+        "expected_goals": {
+            "home": 0,
+            "away": 0
+        },
+        "goals_prevented": {
+            "home": 0,
+            "away": 0
+        }
+    },
+    "2396151": {
+        "Shots on Goal": {
+            "home": 5,
+            "away": 2
+        },
+        "Shots off Goal": {
+            "home": 3,
+            "away": 3
+        },
+        "Total Shots": {
+            "home": 10,
+            "away": 7
+        },
+        "Blocked Shots": {
+            "home": 2,
+            "away": 2
+        },
+        "Shots insidebox": {
+            "home": 7,
+            "away": 7
+        },
+        "Shots outsidebox": {
+            "home": 3,
+            "away": 0
+        },
+        "Fouls": {
+            "home": 15,
+            "away": 17
+        },
+        "Corner Kicks": {
+            "home": 2,
+            "away": 3
+        },
+        "Offsides": {
+            "home": 3,
+            "away": 0
+        },
+        "Ball Possession": {
+            "home": 54,
+            "away": 46
+        },
+        "Yellow Cards": {
+            "home": 2,
+            "away": 2
+        },
+        "Red Cards": {
+            "home": 0,
+            "away": 1
+        },
+        "Goalkeeper Saves": {
+            "home": 1,
+            "away": 1
+        },
+        "Total passes": {
+            "home": 361,
+            "away": 309
+        },
+        "Passes accurate": {
+            "home": 299,
+            "away": 238
+        },
+        "Passes %": {
+            "home": 83,
+            "away": 77
+        },
+        "expected_goals": {
+            "home": 0,
+            "away": 0
+        },
+        "goals_prevented": {
+            "home": 0,
+            "away": 0
+        }
+    },
+    "2396152": {
+        "Shots on Goal": {
+            "home": 7,
+            "away": 3
+        },
+        "Shots off Goal": {
+            "home": 10,
+            "away": 3
+        },
+        "Total Shots": {
+            "home": 20,
+            "away": 8
+        },
+        "Blocked Shots": {
+            "home": 3,
+            "away": 2
+        },
+        "Shots insidebox": {
+            "home": 12,
+            "away": 4
+        },
+        "Shots outsidebox": {
+            "home": 8,
+            "away": 4
+        },
+        "Fouls": {
+            "home": 12,
+            "away": 15
+        },
+        "Corner Kicks": {
+            "home": 4,
+            "away": 1
+        },
+        "Offsides": {
+            "home": 1,
+            "away": 3
+        },
+        "Ball Possession": {
+            "home": 72,
+            "away": 28
+        },
+        "Yellow Cards": {
+            "home": 1,
+            "away": 3
+        },
+        "Red Cards": {
+            "home": 0,
+            "away": 0
+        },
+        "Goalkeeper Saves": {
+            "home": 2,
+            "away": 2
+        },
+        "Total passes": {
+            "home": 545,
+            "away": 214
+        },
+        "Passes accurate": {
+            "home": 492,
+            "away": 161
+        },
+        "Passes %": {
+            "home": 90,
+            "away": 75
+        },
+        "expected_goals": {
+            "home": 0,
+            "away": 0
+        },
+        "goals_prevented": {
+            "home": 0,
+            "away": 0
+        }
+    },
+    "2396153": {
+        "Shots on Goal": {
+            "home": 3,
+            "away": 4
+        },
+        "Shots off Goal": {
+            "home": 5,
+            "away": 4
+        },
+        "Total Shots": {
+            "home": 11,
+            "away": 13
+        },
+        "Blocked Shots": {
+            "home": 3,
+            "away": 5
+        },
+        "Shots insidebox": {
+            "home": 5,
+            "away": 5
+        },
+        "Shots outsidebox": {
+            "home": 6,
+            "away": 8
+        },
+        "Fouls": {
+            "home": 16,
+            "away": 15
+        },
+        "Corner Kicks": {
+            "home": 3,
+            "away": 8
+        },
+        "Offsides": {
+            "home": 1,
+            "away": 1
+        },
+        "Ball Possession": {
+            "home": 57,
+            "away": 43
+        },
+        "Yellow Cards": {
+            "home": 2,
+            "away": 1
+        },
+        "Red Cards": {
+            "home": 0,
+            "away": 0
+        },
+        "Goalkeeper Saves": {
+            "home": 4,
+            "away": 3
+        },
+        "Total passes": {
+            "home": 460,
+            "away": 348
+        },
+        "Passes accurate": {
+            "home": 408,
+            "away": 291
+        },
+        "Passes %": {
+            "home": 89,
+            "away": 84
+        },
+        "expected_goals": {
+            "home": 0,
+            "away": 0
+        },
+        "goals_prevented": {
+            "home": 0,
+            "away": 0
+        }
+    },
+    "2396154": {
+        "Shots on Goal": {
+            "home": 2,
+            "away": 5
+        },
+        "Shots off Goal": {
+            "home": 1,
+            "away": 7
+        },
+        "Total Shots": {
+            "home": 5,
+            "away": 13
+        },
+        "Blocked Shots": {
+            "home": 2,
+            "away": 1
+        },
+        "Shots insidebox": {
+            "home": 2,
+            "away": 8
+        },
+        "Shots outsidebox": {
+            "home": 3,
+            "away": 5
+        },
+        "Fouls": {
+            "home": 13,
+            "away": 9
+        },
+        "Corner Kicks": {
+            "home": 1,
+            "away": 2
+        },
+        "Offsides": {
+            "home": 3,
+            "away": 2
+        },
+        "Ball Possession": {
+            "home": 31,
+            "away": 69
+        },
+        "Yellow Cards": {
+            "home": 3,
+            "away": 2
+        },
+        "Red Cards": {
+            "home": 0,
+            "away": 0
+        },
+        "Goalkeeper Saves": {
+            "home": 3,
+            "away": 0
+        },
+        "Total passes": {
+            "home": 328,
+            "away": 733
+        },
+        "Passes accurate": {
+            "home": 265,
+            "away": 673
+        },
+        "Passes %": {
+            "home": 81,
+            "away": 92
+        },
+        "expected_goals": {
+            "home": 0,
+            "away": 0
+        },
+        "goals_prevented": {
+            "home": 0,
+            "away": 0
+        }
+    },
+    "2396155": {
+        "Shots on Goal": {
+            "home": 4,
+            "away": 6
+        },
+        "Shots off Goal": {
+            "home": 6,
+            "away": 5
+        },
+        "Total Shots": {
+            "home": 12,
+            "away": 16
+        },
+        "Blocked Shots": {
+            "home": 2,
+            "away": 5
+        },
+        "Shots insidebox": {
+            "home": 8,
+            "away": 9
+        },
+        "Shots outsidebox": {
+            "home": 4,
+            "away": 7
+        },
+        "Fouls": {
+            "home": 15,
+            "away": 9
+        },
+        "Corner Kicks": {
+            "home": 2,
+            "away": 7
+        },
+        "Offsides": {
+            "home": 4,
+            "away": 1
+        },
+        "Ball Possession": {
+            "home": 31,
+            "away": 69
+        },
+        "Yellow Cards": {
+            "home": 3,
+            "away": 4
+        },
+        "Red Cards": {
+            "home": 0,
+            "away": 1
+        },
+        "Goalkeeper Saves": {
+            "home": 6,
+            "away": 2
+        },
+        "Total passes": {
+            "home": 212,
+            "away": 502
+        },
+        "Passes accurate": {
+            "home": 156,
+            "away": 447
+        },
+        "Passes %": {
+            "home": 74,
+            "away": 89
+        },
+        "expected_goals": {
+            "home": 0,
+            "away": 0
+        },
+        "goals_prevented": {
+            "home": 0,
+            "away": 0
+        }
+    },
+    "2396156": {
+        "Shots on Goal": {
+            "home": 6,
+            "away": 3
+        },
+        "Shots off Goal": {
+            "home": 7,
+            "away": 3
+        },
+        "Total Shots": {
+            "home": 15,
+            "away": 8
+        },
+        "Blocked Shots": {
+            "home": 2,
+            "away": 2
+        },
+        "Shots insidebox": {
+            "home": 10,
+            "away": 5
+        },
+        "Shots outsidebox": {
+            "home": 5,
+            "away": 3
+        },
+        "Fouls": {
+            "home": 14,
+            "away": 12
+        },
+        "Corner Kicks": {
+            "home": 6,
+            "away": 1
+        },
+        "Offsides": {
+            "home": 3,
+            "away": 1
+        },
+        "Ball Possession": {
+            "home": 56,
+            "away": 44
+        },
+        "Yellow Cards": {
+            "home": 0,
+            "away": 2
+        },
+        "Red Cards": {
+            "home": 0,
+            "away": 0
+        },
+        "Goalkeeper Saves": {
+            "home": 2,
+            "away": 5
+        },
+        "Total passes": {
+            "home": 412,
+            "away": 325
+        },
+        "Passes accurate": {
+            "home": 339,
+            "away": 247
+        },
+        "Passes %": {
+            "home": 82,
+            "away": 76
+        },
+        "expected_goals": {
+            "home": 0,
+            "away": 0
+        },
+        "goals_prevented": {
+            "home": 0,
+            "away": 0
+        }
+    },
+    "2396157": {
+        "Shots on Goal": {
+            "home": 3,
+            "away": 3
+        },
+        "Shots off Goal": {
+            "home": 5,
+            "away": 2
+        },
+        "Total Shots": {
+            "home": 9,
+            "away": 6
+        },
+        "Blocked Shots": {
+            "home": 1,
+            "away": 1
+        },
+        "Shots insidebox": {
+            "home": 8,
+            "away": 5
+        },
+        "Shots outsidebox": {
+            "home": 1,
+            "away": 1
+        },
+        "Fouls": {
+            "home": 8,
+            "away": 11
+        },
+        "Corner Kicks": {
+            "home": 3,
+            "away": 1
+        },
+        "Offsides": {
+            "home": 4,
+            "away": 0
+        },
+        "Ball Possession": {
+            "home": 65,
+            "away": 35
+        },
+        "Yellow Cards": {
+            "home": 1,
+            "away": 2
+        },
+        "Red Cards": {
+            "home": 0,
+            "away": 0
+        },
+        "Goalkeeper Saves": {
+            "home": 1,
+            "away": 1
+        },
+        "Total passes": {
+            "home": 578,
+            "away": 310
+        },
+        "Passes accurate": {
+            "home": 508,
+            "away": 236
+        },
+        "Passes %": {
+            "home": 88,
+            "away": 76
+        },
+        "expected_goals": {
+            "home": 0,
+            "away": 0
+        },
+        "goals_prevented": {
+            "home": 0,
+            "away": 0
+        }
+    },
+    "2396158": {
+        "Shots on Goal": {
+            "home": 5,
+            "away": 2
+        },
+        "Shots off Goal": {
+            "home": 7,
+            "away": 8
+        },
+        "Total Shots": {
+            "home": 18,
+            "away": 11
+        },
+        "Blocked Shots": {
+            "home": 6,
+            "away": 1
+        },
+        "Shots insidebox": {
+            "home": 13,
+            "away": 6
+        },
+        "Shots outsidebox": {
+            "home": 5,
+            "away": 5
+        },
+        "Fouls": {
+            "home": 16,
+            "away": 7
+        },
+        "Corner Kicks": {
+            "home": 7,
+            "away": 4
+        },
+        "Offsides": {
+            "home": 0,
+            "away": 2
+        },
+        "Ball Possession": {
+            "home": 44,
+            "away": 56
+        },
+        "Yellow Cards": {
+            "home": 1,
+            "away": 1
+        },
+        "Red Cards": {
+            "home": 0,
+            "away": 0
+        },
+        "Goalkeeper Saves": {
+            "home": 2,
+            "away": 3
+        },
+        "Total passes": {
+            "home": 301,
+            "away": 370
+        },
+        "Passes accurate": {
+            "home": 231,
+            "away": 303
+        },
+        "Passes %": {
+            "home": 77,
+            "away": 82
+        },
+        "expected_goals": {
+            "home": 0,
+            "away": 0
+        },
+        "goals_prevented": {
+            "home": 0,
+            "away": 0
+        }
+    },
+    "2396159": {
+        "Shots on Goal": {
+            "home": 5,
+            "away": 2
+        },
+        "Shots off Goal": {
+            "home": 9,
+            "away": 1
+        },
+        "Total Shots": {
+            "home": 16,
+            "away": 4
+        },
+        "Blocked Shots": {
+            "home": 2,
+            "away": 2
+        },
+        "Shots insidebox": {
+            "home": 7,
+            "away": 1
+        },
+        "Shots outsidebox": {
+            "home": 9,
+            "away": 3
+        },
+        "Fouls": {
+            "home": 13,
+            "away": 12
+        },
+        "Corner Kicks": {
+            "home": 6,
+            "away": 3
+        },
+        "Offsides": {
+            "home": 5,
+            "away": 2
+        },
+        "Ball Possession": {
+            "home": 46,
+            "away": 54
+        },
+        "Yellow Cards": {
+            "home": 1,
+            "away": 3
+        },
+        "Red Cards": {
+            "home": 0,
+            "away": 0
+        },
+        "Goalkeeper Saves": {
+            "home": 2,
+            "away": 4
+        },
+        "Total passes": {
+            "home": 426,
+            "away": 504
+        },
+        "Passes accurate": {
+            "home": 373,
+            "away": 437
+        },
+        "Passes %": {
+            "home": 88,
+            "away": 87
+        },
+        "expected_goals": {
+            "home": 0,
+            "away": 0
+        },
+        "goals_prevented": {
+            "home": 0,
+            "away": 0
+        }
+    }
+}

@@ -1,0 +1,77 @@
+{
+    "jornada": 8,
+    "matches": [
+        {
+            "match": {
+                "home": "Mazatlán",
+                "away": "Pachuca",
+                "jornada": "Clausura 2026 - J8",
+                "kickoff_datetime": "2026-02-27T19:00:00"
+            }
+        },
+        {
+            "match": {
+                "home": "Querétaro",
+                "away": "Santos",
+                "jornada": "Clausura 2026 - J8",
+                "kickoff_datetime": "2026-02-27T19:00:00"
+            }
+        },
+        {
+            "match": {
+                "home": "Juárez",
+                "away": "Atlas",
+                "jornada": "Clausura 2026 - J8",
+                "kickoff_datetime": "2026-02-27T21:00:00"
+            }
+        },
+        {
+            "match": {
+                "home": "Tijuana",
+                "away": "Pumas",
+                "jornada": "Clausura 2026 - J8",
+                "kickoff_datetime": "2026-02-27T21:06:00"
+            }
+        },
+        {
+            "match": {
+                "home": "Atlético de San Luis",
+                "away": "Puebla",
+                "jornada": "Clausura 2026 - J8",
+                "kickoff_datetime": "2026-02-28T17:00:00"
+            }
+        },
+        {
+            "match": {
+                "home": "Toluca",
+                "away": "Guadalajara",
+                "jornada": "Clausura 2026 - J8",
+                "kickoff_datetime": "2026-02-28T17:00:00"
+            }
+        },
+        {
+            "match": {
+                "home": "León",
+                "away": "Necaxa",
+                "jornada": "Clausura 2026 - J8",
+                "kickoff_datetime": "2026-02-28T19:00:00"
+            }
+        },
+        {
+            "match": {
+                "home": "Monterrey",
+                "away": "Cruz Azul",
+                "jornada": "Clausura 2026 - J8",
+                "kickoff_datetime": "2026-02-28T19:05:00"
+            }
+        },
+        {
+            "match": {
+                "home": "América",
+                "away": "Tigres",
+                "jornada": "Clausura 2026 - J8",
+                "kickoff_datetime": "2026-02-28T21:10:00"
+            }
+        }
+    ]
+}

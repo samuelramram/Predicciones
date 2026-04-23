@@ -1,0 +1,57 @@
+
+================================================================================
+AUDITORÍA DE FUENTE DE VERDAD - MODELO DE PREDICCIONES
+Fecha: 2026-02-10
+================================================================================
+
+1. EXISTENCIA DE MODELO.PY
+--------------------------------------------------------------------------------
+[x] Se buscó "modelo.py" en la raíz y subdirectorios.
+RESULTADO: NO EXISTE.
+EVIDENCIA: `find_by_name` retornó solo `auditar_fuente_modelo.py`.
+
+2. FUENTE DE VERDAD ACTUAL
+--------------------------------------------------------------------------------
+[x] Se verificó importación en tiempo de ejecución.
+ARCHIVO REAL: c:\Users\Samuel Ramirez\.gemini\antigravity\scratch\Predicciones\src\predicciones\core.py
+FUNCIÓN PRINCIPAL: compute_components_and_lambdas
+EVIDENCIA:
+CORE_FILE= c:\Users\Samuel Ramirez\.gemini\antigravity\scratch\Predicciones\src\predicciones\core.py
+HAS_LAMBDAS= True
+
+3. MAPA DE EJECUCIÓN (Trace de Consumers)
+--------------------------------------------------------------------------------
+A) gen_predicciones.py
+   - L7: import src.predicciones.core as dl
+   - L249: dl.compute_components_and_lambdas(...)
+
+B) gen_reporte_tecnico.py
+   - L6: import src.predicciones.core as dl
+   - L267: dl.compute_components_and_lambdas(...)
+
+C) diagnostico_lambda.py
+   - L11: import src.predicciones.core as core
+   - L842: core.compute_components_and_lambdas(...)
+
+CONCLUSIÓN: Todos los scripts principales consumen la MISMA fuente de lógica.
+
+4. DUPLICADOS Y RIESGOS
+--------------------------------------------------------------------------------
+[x] Detección de código duplicado.
+HALLAZGO CRÍTICO: `diagnostico_visitante.py` contiene lógica HARDCODED y obsoleta.
+   - Tiene su propia función `calculate_lambda_away_components`
+   - Usa `SHRINKAGE_DIVISOR = 12.0` (El oficial es 18.0)
+   - RECOMENDACIÓN: Eliminar o refactorizar este archivo.
+
+5. DETERMINISMO
+--------------------------------------------------------------------------------
+Se ejecutó `gen_predicciones.py` dos veces consecutivas.
+HASH RUN 1: 0E4... (SHA256)
+HASH RUN 2: 0E4... (SHA256)
+RESULTADO: ✅ DETERMINISTA. El output es idéntico bit a bit.
+
+================================================================================
+VEREDICTO FINAL: INTEGRIDAD CONFIRMADA
+La arquitectura es sólida. `src/predicciones/core.py` es la autoridad única.
+El único riesgo detectado es un script de diagnóstico antiguo (`diagnostico_visitante.py`).
+================================================================================

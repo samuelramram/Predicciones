@@ -1,0 +1,412 @@
+{
+    "user": "Samuel",
+    "history": [
+        {
+            "tournament": "Clausura 2026",
+            "jornada": 9,
+            "points": 6,
+            "exact_picks": 1,
+            "rank_jornada": 10,
+            "total_predictions": 72,
+            "total_points_cumulative": 36,
+            "matches": [
+                {
+                    "home": "Atlético de San Luis",
+                    "away": "Mazatlán",
+                    "prediction": "1-0",
+                    "result": "4-1",
+                    "points": 1,
+                    "is_exact": false
+                },
+                {
+                    "home": "Monterrey",
+                    "away": "Querétaro",
+                    "prediction": "2-0",
+                    "result": "4-0",
+                    "points": 1,
+                    "is_exact": false
+                },
+                {
+                    "home": "Pachuca",
+                    "away": "Necaxa",
+                    "prediction": "1-1",
+                    "result": "2-1",
+                    "points": 0,
+                    "is_exact": false
+                },
+                {
+                    "home": "Club América",
+                    "away": "FC Juárez",
+                    "prediction": "2-0",
+                    "result": "1-2",
+                    "points": 0,
+                    "is_exact": false
+                },
+                {
+                    "home": "Atlas",
+                    "away": "Tijuana",
+                    "prediction": "2-1",
+                    "result": "2-1",
+                    "points": 2,
+                    "is_exact": true
+                },
+                {
+                    "home": "Puebla",
+                    "away": "Tigres UANL",
+                    "prediction": "0-2",
+                    "result": "3-1",
+                    "points": 0,
+                    "is_exact": false
+                },
+                {
+                    "home": "Santos Laguna",
+                    "away": "Cruz Azul",
+                    "prediction": "0-2",
+                    "result": "1-2",
+                    "points": 1,
+                    "is_exact": false
+                },
+                {
+                    "home": "Pumas UNAM",
+                    "away": "Toluca",
+                    "prediction": "0-1",
+                    "result": "2-3",
+                    "points": 1,
+                    "is_exact": false
+                }
+            ]
+        },
+        {
+            "tournament": "Clausura 2026",
+            "jornada": 8,
+            "points": 3,
+            "exact_picks": 0,
+            "rank_jornada": null,
+            "total_predictions": 63,
+            "total_points_cumulative": 30,
+            "matches": [
+                {
+                    "home": "Querétaro",
+                    "away": "Santos Laguna",
+                    "prediction": "1-0",
+                    "result": "2-2",
+                    "points": 0,
+                    "is_exact": false
+                },
+                {
+                    "home": "Mazatlán",
+                    "away": "Pachuca",
+                    "prediction": "0-1",
+                    "result": "1-0",
+                    "points": 0,
+                    "is_exact": false
+                },
+                {
+                    "home": "FC Juárez",
+                    "away": "Atlas",
+                    "prediction": "1-0",
+                    "result": "3-1",
+                    "points": 1,
+                    "is_exact": false
+                },
+                {
+                    "home": "Tijuana",
+                    "away": "Pumas UNAM",
+                    "prediction": "1-0",
+                    "result": "1-1",
+                    "points": 0,
+                    "is_exact": false
+                },
+                {
+                    "home": "Atlético de San Luis",
+                    "away": "Puebla",
+                    "prediction": "1-0",
+                    "result": "0-1",
+                    "points": 0,
+                    "is_exact": false
+                },
+                {
+                    "home": "Toluca",
+                    "away": "CD Guadalajara",
+                    "prediction": "2-1",
+                    "result": "2-0",
+                    "points": 1,
+                    "is_exact": false
+                },
+                {
+                    "home": "Monterrey",
+                    "away": "Cruz Azul",
+                    "prediction": "2-1",
+                    "result": "0-2",
+                    "points": 0,
+                    "is_exact": false
+                },
+                {
+                    "home": "León",
+                    "away": "Necaxa",
+                    "prediction": "1-0",
+                    "result": "2-1",
+                    "points": 1,
+                    "is_exact": false
+                },
+                {
+                    "home": "Club América",
+                    "away": "Tigres UANL",
+                    "prediction": "1-0",
+                    "result": "1-4",
+                    "points": 0,
+                    "is_exact": false
+                }
+            ]
+        },
+        {
+            "tournament": "Clausura 2026",
+            "jornada": 6,
+            "points": 8,
+            "exact_picks": 1,
+            "rank_jornada": 9,
+            "total_predictions": 45,
+            "total_points_cumulative": 27,
+            "matches": [
+                {
+                    "home": "Atlético de San Luis",
+                    "away": "Querétaro",
+                    "prediction": "1-0",
+                    "result": "3-0",
+                    "points": 1,
+                    "is_exact": false
+                },
+                {
+                    "home": "CD Guadalajara",
+                    "away": "Club América",
+                    "prediction": "1-0",
+                    "result": "1-0",
+                    "points": 2,
+                    "is_exact": true
+                },
+                {
+                    "home": "Monterrey",
+                    "away": "León",
+                    "prediction": "2-0",
+                    "result": "1-0",
+                    "points": 1,
+                    "is_exact": false
+                },
+                {
+                    "home": "Pachuca",
+                    "away": "Atlas",
+                    "prediction": "1-0",
+                    "result": "3-1",
+                    "points": 1,
+                    "is_exact": false
+                },
+                {
+                    "home": "Puebla",
+                    "away": "Pumas",
+                    "prediction": "1-2",
+                    "result": "2-3",
+                    "points": 1,
+                    "is_exact": false
+                },
+                {
+                    "home": "Santos Laguna",
+                    "away": "Mazatlán",
+                    "prediction": "1-0",
+                    "result": "1-2",
+                    "points": 0,
+                    "is_exact": false
+                },
+                {
+                    "home": "Cruz Azul",
+                    "away": "Tigres",
+                    "prediction": "1-0",
+                    "result": "2-1",
+                    "points": 1,
+                    "is_exact": false
+                },
+                {
+                    "home": "Toluca",
+                    "away": "Tijuana",
+                    "prediction": "2-0",
+                    "result": "1-0",
+                    "points": 1,
+                    "is_exact": false
+                },
+                {
+                    "home": "FC Juárez",
+                    "away": "Necaxa",
+                    "prediction": "2-1",
+                    "result": "1-2",
+                    "points": 0,
+                    "is_exact": false
+                }
+            ]
+        },
+        {
+            "tournament": "Clausura 2026",
+            "jornada": 5,
+            "points": 4,
+            "exact_picks": 0,
+            "rank_jornada": 20,
+            "total_predictions": 36,
+            "total_points_cumulative": 19,
+            "matches": [
+                {
+                    "home": "Pachuca",
+                    "away": "FC Juárez",
+                    "prediction": "1-2",
+                    "result": "2-0",
+                    "points": 0,
+                    "is_exact": false
+                },
+                {
+                    "home": "Club América",
+                    "away": "Monterrey",
+                    "prediction": "1-1",
+                    "result": "1-0",
+                    "points": 0,
+                    "is_exact": false
+                },
+                {
+                    "home": "Atlas",
+                    "away": "Pumas UNAM",
+                    "prediction": "1-1",
+                    "result": "2-2",
+                    "points": 1,
+                    "is_exact": false
+                },
+                {
+                    "home": "Necaxa",
+                    "away": "Atlético de San Luis",
+                    "prediction": "0-1",
+                    "result": "4-1",
+                    "points": 0,
+                    "is_exact": false
+                },
+                {
+                    "home": "Tijuana",
+                    "away": "Puebla",
+                    "prediction": "2-0",
+                    "result": "0-0",
+                    "points": 0,
+                    "is_exact": false
+                },
+                {
+                    "home": "Toluca",
+                    "away": "Cruz Azul",
+                    "prediction": "2-0",
+                    "result": "1-1",
+                    "points": 0,
+                    "is_exact": false
+                },
+                {
+                    "home": "Mazatlán",
+                    "away": "CD Guadalajara",
+                    "prediction": "0-1",
+                    "result": "1-2",
+                    "points": 1,
+                    "is_exact": false
+                },
+                {
+                    "home": "Querétaro",
+                    "away": "León",
+                    "prediction": "1-0",
+                    "result": "2-0",
+                    "points": 1,
+                    "is_exact": false
+                },
+                {
+                    "home": "Tigres UANL",
+                    "away": "Santos Laguna",
+                    "prediction": "1-0",
+                    "result": "5-1",
+                    "points": 1,
+                    "is_exact": false
+                }
+            ]
+        },
+        {
+            "tournament": "Clausura 2026",
+            "jornada": 4,
+            "points": 5,
+            "exact_picks": 0,
+            "rank_jornada": 18,
+            "total_predictions": 27,
+            "total_points_cumulative": 15,
+            "matches": [
+                {
+                    "home": "Atlético de San Luis",
+                    "away": "CD Guadalajara",
+                    "prediction": "0-1",
+                    "result": "2-3",
+                    "points": 1,
+                    "is_exact": false
+                },
+                {
+                    "home": "Monterrey",
+                    "away": "Tijuana",
+                    "prediction": "2-1",
+                    "result": "2-2",
+                    "points": 0,
+                    "is_exact": false
+                },
+                {
+                    "home": "Club América",
+                    "away": "Necaxa",
+                    "prediction": "2-1",
+                    "result": "2-0",
+                    "points": 1,
+                    "is_exact": false
+                },
+                {
+                    "home": "Atlas",
+                    "away": "Mazatlán",
+                    "prediction": "2-1",
+                    "result": "1-0",
+                    "points": 1,
+                    "is_exact": false
+                },
+                {
+                    "home": "León",
+                    "away": "Tigres UANL",
+                    "prediction": "0-1",
+                    "result": "1-2",
+                    "points": 1,
+                    "is_exact": false
+                },
+                {
+                    "home": "Puebla",
+                    "away": "Toluca",
+                    "prediction": "0-2",
+                    "result": "0-0",
+                    "points": 0,
+                    "is_exact": false
+                },
+                {
+                    "home": "FC Juárez",
+                    "away": "Cruz Azul",
+                    "prediction": "2-1",
+                    "result": "3-4",
+                    "points": 0,
+                    "is_exact": false
+                },
+                {
+                    "home": "Pumas UNAM",
+                    "away": "Santos Laguna",
+                    "prediction": "2-0",
+                    "result": "4-0",
+                    "points": 1,
+                    "is_exact": false
+                },
+                {
+                    "home": "Querétaro",
+                    "away": "Pachuca",
+                    "prediction": "0-1",
+                    "result": "0-0",
+                    "points": 0,
+                    "is_exact": false
+                }
+            ]
+        }
+    ]
+}

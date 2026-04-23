@@ -1,0 +1,80 @@
+================================================================================
+DIAGNOSTICO: Componentes de Lambda Away Base
+================================================================================
+
+[INFO] Datos cargados: 9 partidos
+
+[PARAMETROS]
+  League Avg Home: 1.3333
+  League Avg Away: 1.1111
+  League Avg (promedio): 1.2222
+  Shrinkage divisor: 12.0
+  W_curr_max: 0.85
+
+
+================================================================================
+TABLA DE COMPONENTES POR PARTIDO
+================================================================================
+
+   visitante                local  pj_away_vis  pj_home_loc  atts_curr  atts_prior  defs_curr  defs_prior  w_curr  lambda_away_base
+       Pumas               Puebla           24           10     1.5000      0.0000     2.0000      0.0000  0.8500            1.7882
+     Tijuana               Toluca           22           14     1.2727      0.0000     1.2143      0.0000  0.8500            0.9212
+Queretaro FC Atletico de San Luis           22           10     0.9091      0.0000     1.9000      0.0000  0.8500            1.0296
+       Atlas              Pachuca           22           12     0.9091      0.0000     0.9167      0.0000  0.8500            0.4967
+      Necaxa            FC Juarez           22           13     1.4545      0.0000     1.6154      0.0000  0.8500            1.4005
+        León            Monterrey           22           12     0.3636      0.0000     1.0000      0.0000  0.8500            0.2167
+  CF America       CD Guadalajara           24           12     1.2500      0.0000     1.2500      0.0000  0.8500            0.9313
+    Mazatlán        Santos Laguna           20           11     0.6000      0.0000     1.3636      0.0000  0.8500            0.4877
+      Tigres            Cruz Azul           26           13     1.4615      0.0000     1.0769      0.0000  0.8500            0.9382
+
+--------------------------------------------------------------------------------
+PROMEDIOS
+--------------------------------------------------------------------------------
+PJ Away (visitante):    22.67
+PJ Home (local):        11.89
+Atts Curr:              1.0801
+Atts Prior:             0.0000
+Defs Curr:              1.3708
+Defs Prior:             0.0000
+W Curr:                 0.8500
+Lambda Away Base:       0.9122
+
+================================================================================
+COMPARACION CON DATOS REALES
+================================================================================
+
+[REAL] Goles ANOTADOS por visitante (promedio real): 1.1111
+[MODELO] Lambda Away Base (promedio calculado):      0.9122
+[DIFERENCIA] -0.1989 (-17.90%)
+
+================================================================================
+ANALISIS DE SPLITS PEQUENOS
+================================================================================
+
+[VISITANTE] Equipos con pocos partidos como visitante (PJ_away < 3):
+  [OK] Ningun equipo con PJ_away < 3
+
+[LOCAL] Equipos locales con pocos partidos en casa (PJ_home < 3):
+  [OK] Ningun equipo local con PJ_home < 3
+
+================================================================================
+DIAGNOSTICO FINAL
+================================================================================
+
+[DATO] Lambda Away promedio (modelo): 0.9122
+[DATO] Goles Away real (Clausura 2026): 1.1111
+[DATO] Diferencia: -0.1989 (-17.90%)
+
+CAUSAS POSIBLES:
+1. Shrinkage excesivo (w_curr basado en /12.0)
+2. Splits pequenos generan ruido en atts_curr y defs_curr
+3. Prior historico desactualizado o no representativo
+
+SOLUCIONES APROBADAS:
+1. Cambiar shrinkage a /18.0 (ralentiza convergencia)
+2. Reducir ROSTER_PENALTIES de bajas medias:
+   - (mediocampista, media): 0.95 -> 0.97
+   - (atacante, media): 0.91 -> 0.93
+3. Subir OFFENSIVE_CAP_LOWER: 0.75 -> 0.82
+
+================================================================================

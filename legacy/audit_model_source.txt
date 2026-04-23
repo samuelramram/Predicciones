@@ -1,0 +1,11 @@
+[INFO] modelo.py NO EXISTE en directorio actual.
+
+--- FUENTE DE VERDAD ---
+[OK] ÚNICA definición encontrada en: .\diagnostico_lambda.py (Líneas: [483])
+
+--- CONSUMIDORES CLAVE ---
+gen_predicciones.py: Importa de 'diagnostico_lambda' [OK]
+gen_reporte_tecnico.py: Importa de 'diagnostico_lambda' [OK]
+diagnostico_lambda.py: ES LA FUENTE DE VERDAD (Define la función localmente).
+
+--- No se detectaron imports activos a 'modelo' ---
