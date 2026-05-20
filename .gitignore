@@ -47,6 +47,9 @@ data/raw/*
 !data/raw/.gitkeep
 data/processed/*
 !data/processed/.gitkeep
+# Fitted model artifacts (output of fit_model) — versionados porque son caros
+# de regenerar y son input directo de picks. Stale-rebuild es trivial: re-correr fit_model.
+!data/processed/team_strengths.json
 
 # ----- Outputs generados -----
 outputs/*
