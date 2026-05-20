@@ -254,12 +254,24 @@ def predict_lambdas(
     away: TeamStrength,
     mu: float,
     gamma: float,
-    neutral: bool = True,
+    host: str | None = None,
 ) -> tuple[float, float]:
-    """Convert a fitted model into a (lambda_home, lambda_away) pair for one match."""
-    home_flag = 0.0 if neutral else 1.0
-    lh = float(np.exp(mu + gamma * home_flag + home.attack - away.defense))
-    la = float(np.exp(mu + away.attack - home.defense))
+    """Convert fitted strengths into (lambda_home, lambda_away) for one match.
+
+    The `host` arg captures the asymmetric WC case where, by openfootball's
+    labeling convention, the host nation can appear as the AWAY column (e.g.
+    "Czech Republic vs Mexico" at Estadio Azteca — Mexico is the host).
+    The gamma boost is applied to whichever side is actually on home soil.
+
+    host values:
+        None    → fully neutral venue (no gamma boost)
+        "home"  → home team is at their stadium (gamma → lambda_home)
+        "away"  → away team is at their stadium (gamma → lambda_away)
+    """
+    home_boost = gamma if host == "home" else 0.0
+    away_boost = gamma if host == "away" else 0.0
+    lh = float(np.exp(mu + home_boost + home.attack - away.defense))
+    la = float(np.exp(mu + away_boost + away.attack - home.defense))
     return lh, la
 
 

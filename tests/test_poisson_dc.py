@@ -117,19 +117,29 @@ def test_synthetic_recovery_gamma_positive():
 def test_predict_lambdas_home_advantage_raises_lambda_home():
     a = TeamStrength("A", attack=0.3, defense=0.2, n_matches=10)
     b = TeamStrength("B", attack=0.1, defense=0.1, n_matches=10)
-    lh_n, la_n = predict_lambdas(a, b, mu=0.2, gamma=0.3, neutral=True)
-    lh_h, la_h = predict_lambdas(a, b, mu=0.2, gamma=0.3, neutral=False)
+    lh_n, la_n = predict_lambdas(a, b, mu=0.2, gamma=0.3, host=None)
+    lh_h, la_h = predict_lambdas(a, b, mu=0.2, gamma=0.3, host="home")
     # home advantage applies to home lambda only, not away
     assert lh_h > lh_n
     assert abs(la_h - la_n) < 1e-9
+
+
+def test_predict_lambdas_away_host_boosts_away_lambda_only():
+    """The asymmetric WC case: openfootball labels a host nation in the away column."""
+    a = TeamStrength("A", attack=0.3, defense=0.2, n_matches=10)
+    b = TeamStrength("B", attack=0.1, defense=0.1, n_matches=10)
+    lh_n, la_n = predict_lambdas(a, b, mu=0.2, gamma=0.3, host=None)
+    lh_aw, la_aw = predict_lambdas(a, b, mu=0.2, gamma=0.3, host="away")
+    assert la_aw > la_n
+    assert abs(lh_aw - lh_n) < 1e-9
 
 
 def test_predict_lambdas_stronger_attacker_scores_more():
     weak = TeamStrength("W", attack=-0.5, defense=0.0, n_matches=10)
     strong = TeamStrength("S", attack=+0.5, defense=0.0, n_matches=10)
     opp = TeamStrength("O", attack=0.0, defense=0.0, n_matches=10)
-    lh_weak, _ = predict_lambdas(weak, opp, mu=0.2, gamma=0.0, neutral=True)
-    lh_strong, _ = predict_lambdas(strong, opp, mu=0.2, gamma=0.0, neutral=True)
+    lh_weak, _ = predict_lambdas(weak, opp, mu=0.2, gamma=0.0, host=None)
+    lh_strong, _ = predict_lambdas(strong, opp, mu=0.2, gamma=0.0, host=None)
     assert lh_strong > lh_weak
 
 
@@ -137,6 +147,6 @@ def test_predict_lambdas_stronger_defender_concedes_less():
     weak_def = TeamStrength("WD", attack=0.0, defense=-0.5, n_matches=10)
     strong_def = TeamStrength("SD", attack=0.0, defense=+0.5, n_matches=10)
     attacker = TeamStrength("A", attack=0.0, defense=0.0, n_matches=10)
-    lh_vs_weak, _ = predict_lambdas(attacker, weak_def, mu=0.2, gamma=0.0, neutral=True)
-    lh_vs_strong, _ = predict_lambdas(attacker, strong_def, mu=0.2, gamma=0.0, neutral=True)
+    lh_vs_weak, _ = predict_lambdas(attacker, weak_def, mu=0.2, gamma=0.0, host=None)
+    lh_vs_strong, _ = predict_lambdas(attacker, strong_def, mu=0.2, gamma=0.0, host=None)
     assert lh_vs_weak > lh_vs_strong

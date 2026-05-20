@@ -47,15 +47,20 @@ def _load_fixtures() -> dict:
         return json.load(f)
 
 
-def _is_neutral(fixture: dict, venues: dict) -> bool:
-    """A WC match is non-neutral iff the venue's country equals the home team
-    (the only WC teams that ever play 'at home' are the three hosts: USA, Mexico,
-    Canada). Everything else is a true neutral venue."""
+def _host_role(fixture: dict, venues: dict) -> str | None:
+    """Returns 'home', 'away', or None depending on whether the venue's country
+    matches the home team, the away team, or neither. Captures the asymmetric WC
+    case where openfootball labels the host nation in the AWAY column (e.g.
+    "Czech Republic vs Mexico" at Estadio Azteca — host=Mexico=away column)."""
     venue = fixture.get("venue")
     if not venue or venue not in venues:
-        return True
-    venue_country = venues[venue]["country"]
-    return venue_country != fixture["home"]
+        return None
+    vc = venues[venue]["country"]
+    if vc == fixture["home"]:
+        return "home"
+    if vc == fixture["away"]:
+        return "away"
+    return None
 
 
 def predict_match(fixture: dict, fit, venues: dict, rules, mcfg):
@@ -70,9 +75,9 @@ def predict_match(fixture: dict, fit, venues: dict, rules, mcfg):
             "error": f"team strengths missing: home={home_name in fit.strengths}, away={away_name in fit.strengths}",
         }
 
-    neutral = _is_neutral(fixture, venues)
+    host = _host_role(fixture, venues)
     lh, la = predict_lambdas(fit.strengths[home_name], fit.strengths[away_name],
-                             fit.mu, fit.gamma, neutral=neutral)
+                             fit.mu, fit.gamma, host=host)
     pick = optimize_pick(lh, la, rules, mcfg)
 
     return {
@@ -84,7 +89,7 @@ def predict_match(fixture: dict, fit, venues: dict, rules, mcfg):
         "venue": fixture.get("venue"),
         "home": home_name,
         "away": away_name,
-        "neutral": neutral,
+        "host": host,
         "lambda_home": round(lh, 3),
         "lambda_away": round(la, 3),
         "p_home_win": round(pick.prob_home_win, 3),
