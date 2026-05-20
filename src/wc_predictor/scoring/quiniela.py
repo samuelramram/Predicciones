@@ -104,17 +104,30 @@ def build_score_matrix(
     return cells, raw_p1 / sum_raw, raw_px / sum_raw, raw_p2 / sum_raw, sum_raw, max_goals
 
 
-def optimize_pick(
-    lambda_home: float,
-    lambda_away: float,
+def optimize_pick_from_cells(
+    cells: list[dict],
+    p1: float,
+    px: float,
+    p2: float,
+    captured_mass: float,
+    max_goals: int,
     rules: QuinielaRules,
     mcfg: ModelConfig,
+    forbid_outcomes: tuple[str, ...] = (),
 ) -> PickResult:
-    """Choose (1X2, exact) pair maximizing EV under the pool's scoring rules."""
-    cells, p1, px, p2, captured, max_goals = build_score_matrix(lambda_home, lambda_away, mcfg)
+    """Model-agnostic EV optimizer. Takes a precomputed score table (cells +
+    marginals) and chooses the (1X2, exact) pair maximizing EV. Works with
+    Poisson+DC, bivariate Poisson, or any other generator that emits the same
+    `cells` shape.
 
+    `forbid_outcomes` lets the caller exclude e.g. "X" — backtest evidence on
+    WC 2018+2022 shows draw picks are net-negative even when the model says
+    P(X) is competitive.
+    """
     best_by_outcome: dict[str, dict] = {}
     for cell in cells:
+        if cell["outcome"] in forbid_outcomes:
+            continue
         cur = best_by_outcome.get(cell["outcome"])
         if cur is None or cell["prob"] > cur["prob"]:
             best_by_outcome[cell["outcome"]] = cell
@@ -149,8 +162,21 @@ def optimize_pick(
         prob_exact=best_cell["prob"],
         top_5_by_prob=top5,
         grid_max_goals=max_goals,
-        captured_mass=captured,
+        captured_mass=captured_mass,
     )
+
+
+def optimize_pick(
+    lambda_home: float,
+    lambda_away: float,
+    rules: QuinielaRules,
+    mcfg: ModelConfig,
+    forbid_outcomes: tuple[str, ...] = (),
+) -> PickResult:
+    """Poisson + Dixon-Coles EV optimizer (back-compatible signature)."""
+    cells, p1, px, p2, captured, max_goals = build_score_matrix(lambda_home, lambda_away, mcfg)
+    return optimize_pick_from_cells(cells, p1, px, p2, captured, max_goals, rules, mcfg,
+                                    forbid_outcomes=forbid_outcomes)
 
 
 def expected_points(

@@ -23,8 +23,18 @@ from datetime import date, datetime, timedelta
 from typing import Callable
 
 from wc_predictor.config import ModelConfig, QuinielaRules
+from wc_predictor.model.bivariate_poisson import (
+    bp_score_matrix,
+    fit_bivariate_poisson,
+    predict_bivariate_lambdas,
+)
 from wc_predictor.model.poisson_dc import fit_dc_model, predict_lambdas
-from wc_predictor.scoring.quiniela import build_score_matrix, optimize_pick, score_actual
+from wc_predictor.scoring.quiniela import (
+    build_score_matrix,
+    optimize_pick,
+    optimize_pick_from_cells,
+    score_actual,
+)
 
 
 Strategy = Callable[[float, float, ModelConfig, QuinielaRules], tuple[str, str]]
@@ -151,21 +161,29 @@ def run_tournament_backtest(
         print(f"  tournament: {len(tournament_matches)} matches, {tournament_start} → {tournament_matches[-1]['date']}")
         print(f"  training:   {len(training_rows)} matches, {training_start} → {training_cutoff}")
 
-    fit = fit_dc_model(training_rows, mcfg, as_of=training_cutoff,
-                       half_life_days=730, verbose=False)
+    fit_pois = fit_dc_model(training_rows, mcfg, as_of=training_cutoff,
+                            half_life_days=730, verbose=False)
+    fit_biv = fit_bivariate_poisson(training_rows, mcfg, as_of=training_cutoff,
+                                    half_life_days=730, verbose=False)
     if verbose:
-        print(f"  fit:        mu={fit.mu:.3f}, gamma={fit.gamma:.3f}, {fit.n_teams} teams")
+        print(f"  poisson:    mu={fit_pois.mu:.3f}, gamma={fit_pois.gamma:.3f}, {fit_pois.n_teams} teams")
+        print(f"  bivariate:  mu={fit_biv.mu:.3f}, gamma={fit_biv.gamma:.3f}, "
+              f"lambda3={fit_biv.lambda3:.3f}, {fit_biv.n_teams} teams")
 
     by_strategy: dict[str, list[dict]] = {s: [] for s in STRATEGIES}
+    by_strategy.update({f"biv_{s}": [] for s in STRATEGIES})
     per_match: list[dict] = []
 
     for m in tournament_matches:
         home, away = m["home"], m["away"]
-        if home not in fit.strengths or away not in fit.strengths:
+        if home not in fit_pois.strengths or away not in fit_pois.strengths:
             continue
         host = "home" if not m["neutral"] else None
-        lh, la = predict_lambdas(fit.strengths[home], fit.strengths[away],
-                                 fit.mu, fit.gamma, host=host)
+        lh, la = predict_lambdas(fit_pois.strengths[home], fit_pois.strengths[away],
+                                 fit_pois.mu, fit_pois.gamma, host=host)
+        l1, l2 = predict_bivariate_lambdas(fit_biv.strengths[home], fit_biv.strengths[away],
+                                           fit_biv.mu, fit_biv.gamma, host=host)
+        bv_matrix = bp_score_matrix(l1, l2, fit_biv.lambda3, max_goals=8)
 
         actual_h, actual_a = int(m["home_score"]), int(m["away_score"])
         actual_score = f"{actual_h}-{actual_a}"
@@ -175,15 +193,40 @@ def run_tournament_backtest(
             "date": m["date"], "home": home, "away": away,
             "host": host, "actual_score": actual_score, "actual_outcome": actual_outcome,
             "lambda_home": round(lh, 2), "lambda_away": round(la, 2),
+            "bv_l1": round(l1, 2), "bv_l2": round(l2, 2), "bv_l3": round(fit_biv.lambda3, 3),
             "by_strategy": {},
         }
 
+        # Poisson-DC strategies (existing strategies use lh, la)
         for name, strat in STRATEGIES.items():
             pick_1x2, pick_exact = strat(lh, la, mcfg, rules)
             pts = score_actual(actual_h, actual_a, pick_1x2, pick_exact, rules)
-            by_strategy[name].append({"pick_1x2": pick_1x2, "pick_exact": pick_exact,
-                                      "points": pts})
+            by_strategy[name].append({"pick_1x2": pick_1x2, "pick_exact": pick_exact, "points": pts})
             match_row["by_strategy"][name] = {"pick_1x2": pick_1x2, "pick_exact": pick_exact, "points": pts}
+
+        # Bivariate strategies: use the bivariate score matrix with the EV optimizer
+        biv_ev_all = optimize_pick_from_cells(
+            bv_matrix["cells"], bv_matrix["p_1"], bv_matrix["p_x"], bv_matrix["p_2"],
+            bv_matrix["captured_mass"], bv_matrix["max_goals"], rules, mcfg,
+        )
+        biv_ev_no_draw = optimize_pick_from_cells(
+            bv_matrix["cells"], bv_matrix["p_1"], bv_matrix["p_x"], bv_matrix["p_2"],
+            bv_matrix["captured_mass"], bv_matrix["max_goals"], rules, mcfg,
+            forbid_outcomes=("X",),
+        )
+        modal_cell = max(bv_matrix["cells"], key=lambda c: c["prob"])
+        biv_picks = {
+            "biv_ev_optimal": (biv_ev_all.pick_1x2, biv_ev_all.pick_exact),
+            "biv_ev_no_draw": (biv_ev_no_draw.pick_1x2, biv_ev_no_draw.pick_exact),
+            "biv_modal_poisson": (modal_cell["outcome"], modal_cell["score"]),
+            "biv_always_1_0": _favorite_pick(l1, l2, "1-0", "0-1", "0-0"),
+            "biv_always_2_1": _favorite_pick(l1, l2, "2-1", "1-2", "1-1"),
+            "biv_outcome_only_21": _favorite_pick(l1, l2, "2-1", "1-2", "1-1"),
+        }
+        for name, (p1x2, pe) in biv_picks.items():
+            pts = score_actual(actual_h, actual_a, p1x2, pe, rules)
+            by_strategy[name].append({"pick_1x2": p1x2, "pick_exact": pe, "points": pts})
+            match_row["by_strategy"][name] = {"pick_1x2": p1x2, "pick_exact": pe, "points": pts}
 
         per_match.append(match_row)
 
