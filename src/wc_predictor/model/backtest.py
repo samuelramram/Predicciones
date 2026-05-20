@@ -1,0 +1,218 @@
+"""Backtest the Poisson + DC model on past World Cup tournaments.
+
+For each tournament we:
+  1. Filter training data to ONLY what was available before tournament_start.
+  2. Fit Poisson + DC on that subset.
+  3. Predict each tournament match.
+  4. Score with the pool's quiniela rules (`score_actual`).
+  5. Compare against naive baselines to see whether the EV-optimal optimizer
+     actually delivers more points than simpler strategies, and how the
+     score-distribution bias (1-0 over-prediction) translates to actual points.
+
+Strategies compared:
+  ev_optimal       — our production model.
+  modal_poisson    — pick the single most-probable score from the matrix.
+  always_1_0       — always pick 1-0/0-1/0-0 for favorite/underdog/even by λ.
+  always_2_1       — always pick 2-1/1-2/1-1.
+  outcome_only_21  — pick 1X2 by λ; nominal exact score 2-1/1-2/1-1.
+"""
+from __future__ import annotations
+
+from dataclasses import dataclass
+from datetime import date, datetime, timedelta
+from typing import Callable
+
+from wc_predictor.config import ModelConfig, QuinielaRules
+from wc_predictor.model.poisson_dc import fit_dc_model, predict_lambdas
+from wc_predictor.scoring.quiniela import build_score_matrix, optimize_pick, score_actual
+
+
+Strategy = Callable[[float, float, ModelConfig, QuinielaRules], tuple[str, str]]
+
+
+def strategy_ev_optimal(lh: float, la: float, mcfg: ModelConfig, rules: QuinielaRules) -> tuple[str, str]:
+    pick = optimize_pick(lh, la, rules, mcfg)
+    return pick.pick_1x2, pick.pick_exact
+
+
+def strategy_modal_poisson(lh: float, la: float, mcfg: ModelConfig, rules: QuinielaRules) -> tuple[str, str]:
+    cells, _, _, _, _, _ = build_score_matrix(lh, la, mcfg)
+    best = max(cells, key=lambda c: c["prob"])
+    return best["outcome"], best["score"]
+
+
+def strategy_ev_no_draw(lh: float, la: float, mcfg: ModelConfig, rules: QuinielaRules) -> tuple[str, str]:
+    """EV-optimal among (1, 2) only — never picks X. Motivated by the empirical
+    finding that the model's draw-pick calibration is poor: it picks the right
+    NUMBER of draws across a tournament but not the right MATCHES."""
+    cells, p1, _, p2, _, _ = build_score_matrix(lh, la, mcfg)
+    best_1 = max((c for c in cells if c["outcome"] == "1"), key=lambda c: c["prob"], default=None)
+    best_2 = max((c for c in cells if c["outcome"] == "2"), key=lambda c: c["prob"], default=None)
+
+    def _ev(p_exact: float, p_outcome: float) -> float:
+        if rules.exclusive:
+            return rules.points_exact * p_exact + rules.points_1x2 * (p_outcome - p_exact)
+        return rules.points_exact * p_exact + rules.points_1x2 * p_outcome
+
+    ev_1 = _ev(best_1["prob"], p1) if best_1 else -1.0
+    ev_2 = _ev(best_2["prob"], p2) if best_2 else -1.0
+    if ev_1 >= ev_2 and best_1:
+        return "1", best_1["score"]
+    return "2", best_2["score"] if best_2 else "0-0"
+
+
+def _favorite_pick(lh: float, la: float, favorite_score: str, underdog_score: str, draw_score: str) -> tuple[str, str]:
+    if lh > la:
+        return "1", favorite_score
+    if la > lh:
+        return "2", underdog_score
+    return "X", draw_score
+
+
+def strategy_always_1_0(lh: float, la: float, mcfg: ModelConfig, rules: QuinielaRules) -> tuple[str, str]:
+    return _favorite_pick(lh, la, "1-0", "0-1", "0-0")
+
+
+def strategy_always_2_1(lh: float, la: float, mcfg: ModelConfig, rules: QuinielaRules) -> tuple[str, str]:
+    return _favorite_pick(lh, la, "2-1", "1-2", "1-1")
+
+
+def strategy_outcome_only_21(lh: float, la: float, mcfg: ModelConfig, rules: QuinielaRules) -> tuple[str, str]:
+    """Same as always_2_1 — the model is purely outcome-aware (no exact attempt)."""
+    return _favorite_pick(lh, la, "2-1", "1-2", "1-1")
+
+
+STRATEGIES: dict[str, Strategy] = {
+    "ev_optimal": strategy_ev_optimal,
+    "ev_no_draw": strategy_ev_no_draw,
+    "modal_poisson": strategy_modal_poisson,
+    "always_1_0": strategy_always_1_0,
+    "always_2_1": strategy_always_2_1,
+    "outcome_only_21": strategy_outcome_only_21,
+}
+
+
+@dataclass
+class StrategyResult:
+    strategy: str
+    n_matches: int
+    total_points: int
+    pts_per_match: float
+    exact_hits: int
+    outcome_hits: int  # 1X2 hits (includes exact hits + 1X2-only)
+    pick_dist: dict[str, int]
+
+
+@dataclass
+class TournamentBacktest:
+    tournament: str
+    year: int
+    training_cutoff: str
+    n_training: int
+    n_matches: int
+    by_strategy: dict[str, StrategyResult]
+    per_match: list[dict]
+
+
+def _filter_tournament(rows: list[dict], tournament: str, year: int) -> list[dict]:
+    return sorted(
+        [
+            r for r in rows
+            if r["tournament"] == tournament
+            and datetime.fromisoformat(r["date"]).date().year == year
+        ],
+        key=lambda r: r["date"],
+    )
+
+
+def run_tournament_backtest(
+    all_rows: list[dict],
+    tournament: str,
+    year: int,
+    rules: QuinielaRules,
+    mcfg: ModelConfig,
+    training_years: int = 5,
+    verbose: bool = True,
+) -> TournamentBacktest:
+    tournament_matches = _filter_tournament(all_rows, tournament, year)
+    if not tournament_matches:
+        raise ValueError(f"No {tournament} matches in {year}")
+
+    tournament_start = datetime.fromisoformat(tournament_matches[0]["date"]).date()
+    training_cutoff = tournament_start - timedelta(days=1)
+    training_start = date(training_cutoff.year - training_years, training_cutoff.month, training_cutoff.day)
+
+    training_rows = [
+        r for r in all_rows
+        if training_start <= datetime.fromisoformat(r["date"]).date() <= training_cutoff
+    ]
+    if verbose:
+        print(f"\n=== {tournament} {year} ===")
+        print(f"  tournament: {len(tournament_matches)} matches, {tournament_start} → {tournament_matches[-1]['date']}")
+        print(f"  training:   {len(training_rows)} matches, {training_start} → {training_cutoff}")
+
+    fit = fit_dc_model(training_rows, mcfg, as_of=training_cutoff,
+                       half_life_days=730, verbose=False)
+    if verbose:
+        print(f"  fit:        mu={fit.mu:.3f}, gamma={fit.gamma:.3f}, {fit.n_teams} teams")
+
+    by_strategy: dict[str, list[dict]] = {s: [] for s in STRATEGIES}
+    per_match: list[dict] = []
+
+    for m in tournament_matches:
+        home, away = m["home"], m["away"]
+        if home not in fit.strengths or away not in fit.strengths:
+            continue
+        host = "home" if not m["neutral"] else None
+        lh, la = predict_lambdas(fit.strengths[home], fit.strengths[away],
+                                 fit.mu, fit.gamma, host=host)
+
+        actual_h, actual_a = int(m["home_score"]), int(m["away_score"])
+        actual_score = f"{actual_h}-{actual_a}"
+        actual_outcome = "X" if actual_h == actual_a else ("1" if actual_h > actual_a else "2")
+
+        match_row = {
+            "date": m["date"], "home": home, "away": away,
+            "host": host, "actual_score": actual_score, "actual_outcome": actual_outcome,
+            "lambda_home": round(lh, 2), "lambda_away": round(la, 2),
+            "by_strategy": {},
+        }
+
+        for name, strat in STRATEGIES.items():
+            pick_1x2, pick_exact = strat(lh, la, mcfg, rules)
+            pts = score_actual(actual_h, actual_a, pick_1x2, pick_exact, rules)
+            by_strategy[name].append({"pick_1x2": pick_1x2, "pick_exact": pick_exact,
+                                      "points": pts})
+            match_row["by_strategy"][name] = {"pick_1x2": pick_1x2, "pick_exact": pick_exact, "points": pts}
+
+        per_match.append(match_row)
+
+    summaries: dict[str, StrategyResult] = {}
+    for name, entries in by_strategy.items():
+        total = sum(e["points"] for e in entries)
+        exact = sum(1 for e in entries if e["points"] == rules.points_exact)
+        outcome = sum(1 for e in entries if e["points"] >= rules.points_1x2)
+        dist = {"1": 0, "X": 0, "2": 0}
+        for e in entries:
+            dist[e["pick_1x2"]] += 1
+        summaries[name] = StrategyResult(
+            strategy=name, n_matches=len(entries),
+            total_points=total,
+            pts_per_match=total / len(entries) if entries else 0.0,
+            exact_hits=exact, outcome_hits=outcome, pick_dist=dist,
+        )
+
+    if verbose:
+        print(f"\n  Strategy        Total   /match   Exact   Outcome    1/X/2 picks")
+        print(f"  {'-'*70}")
+        for name, s in sorted(summaries.items(), key=lambda x: -x[1].total_points):
+            print(f"  {name:<16} {s.total_points:>5d}   {s.pts_per_match:>5.2f}   "
+                  f"{s.exact_hits:>3d}/{s.n_matches:<3d}  {s.outcome_hits:>3d}/{s.n_matches:<3d}  "
+                  f"{s.pick_dist['1']}/{s.pick_dist['X']}/{s.pick_dist['2']}")
+
+    return TournamentBacktest(
+        tournament=tournament, year=year,
+        training_cutoff=training_cutoff.isoformat(),
+        n_training=len(training_rows), n_matches=len(tournament_matches),
+        by_strategy=summaries, per_match=per_match,
+    )
