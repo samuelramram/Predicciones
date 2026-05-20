@@ -1,0 +1,32 @@
+{
+  "version": "2026.05.20",
+  "name": "Quiniela Mundial 2026 (pool privado de Samuel)",
+  "scoring": {
+    "points_exact_score": 2,
+    "points_1x2_only": 1,
+    "exclusive": true,
+    "use_90min_only": true,
+    "notes": [
+      "Excluyente: acertar marcador exacto NO suma el punto extra del 1X2.",
+      "Solo cuenta el resultado al minuto 90 (no penales, no tiempos extra).",
+      "Aplica a los 104 partidos del Mundial 2026."
+    ],
+    "stage_multipliers": null
+  },
+  "pool": {
+    "participants_estimated": 30,
+    "buyin_mxn": 500,
+    "total_pot_mxn_estimated": 15000,
+    "payout_structure": "TBD",
+    "tiebreaker": "TBD",
+    "submission_modality": "round_by_round",
+    "deadline_per_round": "TBD (1h antes del primer partido de la ronda?)",
+    "platform": "página propia (samuel)"
+  },
+  "todo_user_to_fill": [
+    "Definir distribución de premio (winner-takes-all? top 3? por etapa?).",
+    "Definir desempate (pts en cuartos, goles a favor, monto?).",
+    "Definir deadline exacto por ronda (cierre 1 partido antes? jornada completa?).",
+    "Confirmar si las eliminatorias tienen multiplicador (algunas pools doblan octavos/cuartos)."
+  ]
+}

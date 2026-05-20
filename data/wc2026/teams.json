@@ -1,0 +1,24 @@
+{
+  "_comment": "Las 48 selecciones del Mundial 2026. Grupos confirmados tras el sorteo (5 dic 2025). TODO: llenar con groups oficiales una vez verificado contra fuente FIFA.",
+  "version": "2026.05.20",
+  "host_nations": ["United States", "Mexico", "Canada"],
+  "groups": {
+    "_A": ["TBD", "TBD", "TBD", "TBD"],
+    "_B": ["TBD", "TBD", "TBD", "TBD"],
+    "_C": ["TBD", "TBD", "TBD", "TBD"],
+    "_D": ["TBD", "TBD", "TBD", "TBD"],
+    "_E": ["TBD", "TBD", "TBD", "TBD"],
+    "_F": ["TBD", "TBD", "TBD", "TBD"],
+    "_G": ["TBD", "TBD", "TBD", "TBD"],
+    "_H": ["TBD", "TBD", "TBD", "TBD"],
+    "_I": ["TBD", "TBD", "TBD", "TBD"],
+    "_J": ["TBD", "TBD", "TBD", "TBD"],
+    "_K": ["TBD", "TBD", "TBD", "TBD"],
+    "_L": ["TBD", "TBD", "TBD", "TBD"]
+  },
+  "team_aliases": {
+    "_comment": "Canonicalización: nombre oficial → todos los aliases que aparecen en fuentes scrapeadas. Ejemplo:",
+    "United States": ["USA", "United States of America", "Estados Unidos", "EE.UU."],
+    "South Korea": ["Korea Republic", "Korea", "Republic of Korea", "South Korea"]
+  }
+}
