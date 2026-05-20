@@ -1,4 +1,4 @@
-"""Historical international match results.
+"""Historical international match results — TRAINING SET, not live fixtures.
 
 Output: `data/historical/international_matches.csv` with columns:
     date, home, away, home_score, away_score, neutral, tournament, stage, venue
@@ -9,6 +9,11 @@ WC, Euro, Copa America, AFC Asian Cup, Africa Cup of Nations, Gold Cup, Nations 
 Primary source: github.com/martj42/international_results (CC0 license, daily updated).
 This is the cleanest dataset for cross-confederation international football and is the
 backbone of most public Elo implementations.
+
+Why not TheSportsDB here: TheSportsDB has gaps for old friendlies and lower-tier
+qualifiers (especially CAF/AFC pre-2018). For training we want exhaustive coverage,
+even at the cost of less metadata. TheSportsDB owns the *live* WC 2026 ingest only
+(see `ingest/fixtures.py`).
 
 Fallback / enrichment: FBref tournament pages for xG when available (only friendlies
 and qualifiers in major confederations have xG; WC matches do).

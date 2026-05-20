@@ -5,6 +5,7 @@ fingerprint hash captures the run reproducibly.
 """
 from __future__ import annotations
 
+import os
 from dataclasses import dataclass, field
 from pathlib import Path
 
@@ -16,6 +17,38 @@ HISTORICAL_DIR = DATA_DIR / "historical"
 RAW_DIR = DATA_DIR / "raw"
 PROCESSED_DIR = DATA_DIR / "processed"
 OUTPUTS_DIR = REPO_ROOT / "outputs"
+
+WC2026_LEAGUE_ID_THESPORTSDB = 4429
+
+
+def _load_dotenv(path: Path = REPO_ROOT / ".env") -> None:
+    """Minimal .env loader so we don't depend on python-dotenv for one feature."""
+    if not path.exists():
+        return
+    for line in path.read_text(encoding="utf-8").splitlines():
+        line = line.strip()
+        if not line or line.startswith("#") or "=" not in line:
+            continue
+        key, _, value = line.partition("=")
+        key = key.strip()
+        value = value.strip().strip('"').strip("'")
+        if key and key not in os.environ:
+            os.environ[key] = value
+
+
+_load_dotenv()
+
+
+def get_thesportsdb_key() -> str | None:
+    return os.environ.get("THESPORTSDB_API_KEY") or None
+
+
+def get_api_football_key() -> str | None:
+    return os.environ.get("API_FOOTBALL_KEY") or None
+
+
+def get_odds_api_key() -> str | None:
+    return os.environ.get("THE_ODDS_API_KEY") or None
 
 
 @dataclass(frozen=True)

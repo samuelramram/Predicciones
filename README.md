@@ -78,18 +78,48 @@ src/wc_predictor/
 ## Datos (fuente de verdad humana, versionados)
 
 Todo en `data/wc2026/` y `data/historical/`. El usuario llena los campos `TBD`; los scrapers
-llenan el resto. Ver `data/wc2026/rules.json` para las reglas exactas del pool.
+llenan el resto. Ver `data/wc2026/rules.json` para las reglas exactas del pool + las APIs.
 
-| Archivo | Quién lo llena | Cuándo |
-|---|---|---|
-| `wc2026/rules.json` | Usuario | Una vez (al definir el pool) |
-| `wc2026/teams.json` | Scraper / usuario | Una vez (post-draw, ya pasó) |
-| `wc2026/venues.json` | Curado a mano | Una vez |
-| `wc2026/fixtures.json` | Scraper Wikipedia | Una vez + actualizaciones de bracket |
-| `wc2026/squads.json` | Transfermarkt / usuario | ~7 días antes del torneo (cuando FIFA confirma 26) |
-| `wc2026/injuries.json` | Usuario + Perplexity | Antes de cada ronda |
-| `historical/international_matches.csv` | Scraper martj42 | Bootstrap + actualización semanal |
-| `historical/elo_history.csv` | Scraper eloratings.net | Bootstrap + actualización semanal |
+| Archivo | Quién lo llena | Fuente | Cuándo |
+|---|---|---|---|
+| `wc2026/rules.json` | Usuario | manual | Una vez (al definir el pool) |
+| `wc2026/teams.json` | Scraper | TheSportsDB 4429 | Una vez (post-draw) |
+| `wc2026/venues.json` | Manual | FIFA | Una vez |
+| `wc2026/fixtures.json` | Scraper | **TheSportsDB 4429** (primaria) | Una vez + actualizaciones de bracket |
+| `wc2026/squads.json` | Scraper + usuario | Transfermarkt | ~7 días antes del torneo |
+| `wc2026/injuries.json` | Usuario | Perplexity + manual | Antes de cada ronda |
+| `historical/international_matches.csv` | Scraper | martj42/international_results | Bootstrap + actualización semanal |
+| `historical/elo_history.csv` | Scraper | eloratings.net + replay propio | Bootstrap + actualización semanal |
+
+### Integración con la webapp (Lovable Cloud / Supabase)
+
+El **modelo y la webapp son repos separados**. Este repo es el arma personal del autor
+para generar SUS picks; la webapp gestiona los 30 participantes del pool.
+
+- La webapp ya consume TheSportsDB (league `4350` para Liga MX, `4429` para WC). Este
+  modelo usa la **misma fuente** para fixtures y live results → `match_id` y nombres
+  de equipo son consistentes entre los dos sistemas.
+- El modelo escribe `outputs/picks_{round}.json` con el shape del schema Supabase
+  (`match_id`, `prediction_home`, `prediction_away`). El usuario los importa a mano a
+  la webapp como un participante más.
+- Sin conexión directa Python ↔ Supabase: cero riesgo de que el modelo escriba algo
+  raro a la base que ven todos los usuarios.
+- Recomendación para la webapp WC 2026: **proyecto Lovable separado** del de Liga MX
+  (clonar + cambiar `LEAGUE_ID` a `4429`), no refactor multi-torneo. Pre-Mundial no
+  hay tiempo para reorganizar tablas + RLS.
+
+### Variables de entorno
+
+Copia `.env.example` → `.env` (gitignored) y llena las que vayas a usar:
+
+```
+THESPORTSDB_API_KEY=...     # primaria — misma key del Patreon de la webapp
+API_FOOTBALL_KEY=...        # opcional, solo si haces upgrade
+THE_ODDS_API_KEY=...        # opcional, solo si pagas odds programáticos
+```
+
+Sin ninguna de las opcionales, el modelo cae a fallbacks (scrape de Wikipedia / odds
+de football-data.co.uk / etc.).
 
 ---
 

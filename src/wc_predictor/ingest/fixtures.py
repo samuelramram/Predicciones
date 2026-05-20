@@ -1,14 +1,20 @@
 """Load the 104-match World Cup 2026 schedule.
 
 Source of truth: `data/wc2026/fixtures.json` (human-curated, committed). This module
-just loads, validates, and exposes typed accessors. Initial population can come from:
+loads, validates, and exposes typed accessors.
 
-- FIFA official site (https://www.fifa.com/fifaplus/en/tournaments/mens/worldcup/canadamexicousa2026/schedule)
-- Wikipedia (machine-readable tables, scraped via pandas.read_html)
-- API-Football fixtures endpoint when subscription is active
+Bootstrap population — primary source is **TheSportsDB league 4429** (`WC2026_LEAGUE_ID_THESPORTSDB`)
+because that is the same source the Lovable webapp consumes for live results; using it
+here keeps `match_id` and team-name normalization consistent end-to-end. The model
+output can then be pasted into the pool's UI without remapping.
 
-After the draw (already done — Dec 5, 2025), groups, dates, and venues are locked.
-Knockout opponents fill in as the bracket resolves.
+Fallback if TheSportsDB key is missing or quota-limited:
+- Wikipedia tables (`pandas.read_html` on the 2026 FIFA World Cup page).
+- FIFA.com via Firecrawl (last resort, fragile).
+
+After the draw (Dec 5, 2025) all 104 rows exist with groups, dates, venues, and
+group-stage opponents. Knockout rows have placeholders ("Winner Group A", ...) that
+we resolve dynamically as results come in.
 """
 from __future__ import annotations
 
@@ -59,10 +65,15 @@ def load_fixtures(path: Path | None = None) -> list[Fixture]:
     return fixtures
 
 
-def bootstrap_from_wikipedia() -> None:
-    """TODO: scrape https://en.wikipedia.org/wiki/2026_FIFA_World_Cup#Schedule
-    Tables include match number, date, venue, home, away, group. After the draw all
-    104 rows are populated; knockout brackets show placeholders ("Winner Group A", ...)
-    that we keep as is and resolve dynamically.
+def bootstrap_from_thesportsdb() -> None:
+    """TODO Phase 1: pull league 4429 via
+        https://www.thesportsdb.com/api/v1/json/{key}/eventsseason.php?id=4429&s=2026
+    Normalize team names against `data/wc2026/teams.json::team_aliases`. Write to
+    `data/wc2026/fixtures.json` with the schema consumed by `load_fixtures`.
     """
-    raise NotImplementedError("Bootstrap scraper pending — Phase 1.")
+    raise NotImplementedError("TheSportsDB bootstrap pending — Phase 1.")
+
+
+def bootstrap_from_wikipedia() -> None:
+    """Fallback when TheSportsDB is unavailable. Phase 1, lower priority."""
+    raise NotImplementedError("Wikipedia fallback scraper pending — Phase 1.")
