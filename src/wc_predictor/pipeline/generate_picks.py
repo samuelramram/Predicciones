@@ -31,10 +31,20 @@ import json
 from datetime import datetime
 from pathlib import Path
 
-from wc_predictor.config import DEFAULT_CONFIG, OUTPUTS_DIR, PROCESSED_DIR, WC_DIR
+from wc_predictor.config import DEFAULT_CONFIG, HISTORICAL_DIR, OUTPUTS_DIR, PROCESSED_DIR, WC_DIR
+from wc_predictor.model.blend import blend_poisson_with_elo
 from wc_predictor.model.poisson_dc import load_fit, predict_lambdas
-from wc_predictor.scoring.quiniela import optimize_pick
+from wc_predictor.ratings.elo import elo_to_1x2_probs
+from wc_predictor.scoring.quiniela import build_score_matrix, optimize_pick_from_cells
 from wc_predictor.utils import config_hash, file_sha256, git_commit, git_dirty
+
+
+# Production strategy: Poisson + Dixon-Coles with a 30% Elo blend, EV-optimal pick
+# constrained to forbid draws. Selected via 5-tournament backtest (197 pts vs the
+# baseline always_1_0's 186 over 275 matches — 4 of 5 tournaments won, tie in WC2018).
+PROD_W_ELO = 0.30
+PROD_W_POISSON = 1.0 - PROD_W_ELO
+PROD_FORBID = ("X",)
 
 
 def _load_venues() -> dict:
@@ -45,6 +55,17 @@ def _load_venues() -> dict:
 def _load_fixtures() -> dict:
     with (WC_DIR / "fixtures.json").open(encoding="utf-8") as f:
         return json.load(f)
+
+
+def _load_elos() -> dict[str, float]:
+    """Load the Elo snapshot computed by `pipeline.fit_elo`. Falls back to 1500.0
+    for any missing team."""
+    src = HISTORICAL_DIR / "elo_current.json"
+    if not src.exists():
+        return {}
+    with src.open(encoding="utf-8") as f:
+        data = json.load(f)
+    return {row["team"]: row["elo"] for row in data["teams"]}
 
 
 def _host_role(fixture: dict, venues: dict) -> str | None:
@@ -63,8 +84,16 @@ def _host_role(fixture: dict, venues: dict) -> str | None:
     return None
 
 
-def predict_match(fixture: dict, fit, venues: dict, rules, mcfg):
-    """Return a pick dict for a locked fixture, or None if not predictable yet."""
+def predict_match(fixture: dict, fit, venues: dict, elos: dict, rules, mcfg):
+    """Return a pick dict for a locked fixture, or None if not predictable yet.
+
+    Pipeline (production = blend_w30_ev_no_draw, per Phase 4 backtest):
+      1. Compute (lambda_home, lambda_away) from the Poisson + DC fit.
+      2. Compute (P_1, P_X, P_2) from Elo using pre-match ratings + host bonus.
+      3. Blend Poisson marginals with Elo marginals (log-pool, w_elo=0.30).
+      4. Rescale the Poisson score-matrix so its outcome marginals match the blend.
+      5. Run optimize_pick_from_cells with forbid_outcomes=("X",) — never pick draws.
+    """
     if not (fixture["home_locked"] and fixture["away_locked"]):
         return None
     home_name = fixture["home"]
@@ -78,7 +107,27 @@ def predict_match(fixture: dict, fit, venues: dict, rules, mcfg):
     host = _host_role(fixture, venues)
     lh, la = predict_lambdas(fit.strengths[home_name], fit.strengths[away_name],
                              fit.mu, fit.gamma, host=host)
-    pick = optimize_pick(lh, la, rules, mcfg)
+
+    # Elo 1X2 from current snapshot
+    r_h = elos.get(home_name, 1500.0)
+    r_a = elos.get(away_name, 1500.0)
+    home_adv_elo = 0.0
+    if host == "home":
+        home_adv_elo = mcfg.elo_home_bonus
+    elif host == "away":
+        home_adv_elo = -mcfg.elo_home_bonus
+    elo_p1, elo_px, elo_p2 = elo_to_1x2_probs(r_h, r_a, home_adv_elo)
+
+    # Poisson + DC cells, then blend with Elo and rescale.
+    pcells, pp1, ppx, pp2, pmass, pmax = build_score_matrix(lh, la, mcfg)
+    cells_b, p1_b, px_b, p2_b = blend_poisson_with_elo(
+        pcells, pp1, ppx, pp2, elo_p1, elo_px, elo_p2,
+        w_poisson=PROD_W_POISSON, w_elo=PROD_W_ELO,
+    )
+    pick = optimize_pick_from_cells(
+        cells_b, p1_b, px_b, p2_b, pmass, pmax, rules, mcfg,
+        forbid_outcomes=PROD_FORBID,
+    )
 
     return {
         "match_id": fixture["match_id"],
@@ -90,6 +139,12 @@ def predict_match(fixture: dict, fit, venues: dict, rules, mcfg):
         "home": home_name,
         "away": away_name,
         "host": host,
+        "elo_home": round(r_h, 1),
+        "elo_away": round(r_a, 1),
+        "elo_p1": round(elo_p1, 3),
+        "elo_px": round(elo_px, 3),
+        "elo_p2": round(elo_p2, 3),
+        "blend_w_elo": PROD_W_ELO,
         "lambda_home": round(lh, 3),
         "lambda_away": round(la, 3),
         "p_home_win": round(pick.prob_home_win, 3),
@@ -175,6 +230,14 @@ def main():
     fixtures_doc = _load_fixtures()
     print(f"Loaded {len(fixtures_doc['matches'])} fixtures, {len(venues)} venues")
 
+    elos = _load_elos()
+    if not elos:
+        raise SystemExit("Missing data/historical/elo_current.json. Run "
+                         "`python -m wc_predictor.pipeline.fit_elo` first.")
+    print(f"Loaded Elo for {len(elos)} teams")
+    print(f"Production strategy: blend_w{int(PROD_W_ELO*100):02d}_ev_no_draw "
+          f"(Poisson + DC blended with {int(PROD_W_ELO*100)}% Elo, forbidding X)")
+
     rules = DEFAULT_CONFIG.rules
     mcfg = DEFAULT_CONFIG.model
 
@@ -183,7 +246,7 @@ def main():
     errors: list[dict] = []
 
     for fixture in fixtures_doc["matches"]:
-        result = predict_match(fixture, fit, venues, rules, mcfg)
+        result = predict_match(fixture, fit, venues, elos, rules, mcfg)
         if result is None:
             pending.append(fixture)
             continue

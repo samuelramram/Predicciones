@@ -28,13 +28,18 @@ from wc_predictor.model.bivariate_poisson import (
     fit_bivariate_poisson,
     predict_bivariate_lambdas,
 )
+from wc_predictor.model.blend import blend_poisson_with_elo
 from wc_predictor.model.poisson_dc import fit_dc_model, predict_lambdas
+from wc_predictor.ratings.elo import elo_to_1x2_probs, replay_history
 from wc_predictor.scoring.quiniela import (
     build_score_matrix,
     optimize_pick,
     optimize_pick_from_cells,
     score_actual,
 )
+
+
+BLEND_WEIGHTS_ELO = (0.3, 0.5, 0.7)  # sweep of Elo weight in the log-pool
 
 
 Strategy = Callable[[float, float, ModelConfig, QuinielaRules], tuple[str, str]]
@@ -165,13 +170,27 @@ def run_tournament_backtest(
                             half_life_days=730, verbose=False)
     fit_biv = fit_bivariate_poisson(training_rows, mcfg, as_of=training_cutoff,
                                     half_life_days=730, verbose=False)
+
+    # Elo replay on the same training window (uses raw matches dating to 1872; the
+    # cutoff filters via training_rows already, but Elo benefits from full history).
+    elo_rows_all = sorted(
+        [r for r in all_rows if datetime.fromisoformat(r["date"]).date() <= training_cutoff],
+        key=lambda r: r["date"],
+    )
+    elos, _ = replay_history(elo_rows_all, mcfg)
+
     if verbose:
         print(f"  poisson:    mu={fit_pois.mu:.3f}, gamma={fit_pois.gamma:.3f}, {fit_pois.n_teams} teams")
         print(f"  bivariate:  mu={fit_biv.mu:.3f}, gamma={fit_biv.gamma:.3f}, "
               f"lambda3={fit_biv.lambda3:.3f}, {fit_biv.n_teams} teams")
+        print(f"  elo:        replayed {len(elo_rows_all)} matches → {len(elos)} teams")
 
     by_strategy: dict[str, list[dict]] = {s: [] for s in STRATEGIES}
     by_strategy.update({f"biv_{s}": [] for s in STRATEGIES})
+    for w_elo in BLEND_WEIGHTS_ELO:
+        by_strategy[f"blend_w{int(w_elo*100):02d}_ev_optimal"] = []
+        by_strategy[f"blend_w{int(w_elo*100):02d}_ev_no_draw"] = []
+    by_strategy["elo_only_outcome_21"] = []
     per_match: list[dict] = []
 
     for m in tournament_matches:
@@ -227,6 +246,55 @@ def run_tournament_backtest(
             pts = score_actual(actual_h, actual_a, p1x2, pe, rules)
             by_strategy[name].append({"pick_1x2": p1x2, "pick_exact": pe, "points": pts})
             match_row["by_strategy"][name] = {"pick_1x2": p1x2, "pick_exact": pe, "points": pts}
+
+        # Elo-blend strategies: rescale the Poisson-DC cell distribution to match
+        # log-pool(P_poisson, P_elo) marginals, then run the EV optimizer.
+        r_h = elos.get(home, 1500.0)
+        r_a = elos.get(away, 1500.0)
+        home_adv_elo = mcfg.elo_home_bonus if host == "home" else 0.0
+        if host == "away":
+            # Mirror: if away team is the host, pass the bonus on their side
+            home_adv_elo = -mcfg.elo_home_bonus
+        elo_p1, elo_px, elo_p2 = elo_to_1x2_probs(r_h, r_a, home_adv_elo)
+
+        # Pure Elo baseline (outcome by Elo, nominal 2-1/1-2/1-1 exact)
+        if elo_p1 >= elo_px and elo_p1 >= elo_p2:
+            elo_pick = ("1", "2-1")
+        elif elo_p2 >= elo_px:
+            elo_pick = ("2", "1-2")
+        else:
+            elo_pick = ("X", "1-1")
+        pts = score_actual(actual_h, actual_a, elo_pick[0], elo_pick[1], rules)
+        by_strategy["elo_only_outcome_21"].append(
+            {"pick_1x2": elo_pick[0], "pick_exact": elo_pick[1], "points": pts}
+        )
+        match_row["by_strategy"]["elo_only_outcome_21"] = {
+            "pick_1x2": elo_pick[0], "pick_exact": elo_pick[1], "points": pts
+        }
+
+        # Poisson cells from the existing fit (recompute since we don't carry them above)
+        pcells, pp1, ppx, pp2, pmass, pmax = build_score_matrix(lh, la, mcfg)
+        for w_elo in BLEND_WEIGHTS_ELO:
+            cells_b, p1_b, px_b, p2_b = blend_poisson_with_elo(
+                pcells, pp1, ppx, pp2, elo_p1, elo_px, elo_p2,
+                w_poisson=1.0 - w_elo, w_elo=w_elo,
+            )
+            pick_ev = optimize_pick_from_cells(cells_b, p1_b, px_b, p2_b, pmass, pmax, rules, mcfg)
+            pick_nd = optimize_pick_from_cells(cells_b, p1_b, px_b, p2_b, pmass, pmax, rules, mcfg,
+                                                forbid_outcomes=("X",))
+            for tag, pk in (("ev_optimal", pick_ev), ("ev_no_draw", pick_nd)):
+                name = f"blend_w{int(w_elo*100):02d}_{tag}"
+                pts = score_actual(actual_h, actual_a, pk.pick_1x2, pk.pick_exact, rules)
+                by_strategy[name].append({"pick_1x2": pk.pick_1x2, "pick_exact": pk.pick_exact, "points": pts})
+                match_row["by_strategy"][name] = {
+                    "pick_1x2": pk.pick_1x2, "pick_exact": pk.pick_exact, "points": pts,
+                }
+
+        match_row["elo_p1"] = round(elo_p1, 3)
+        match_row["elo_px"] = round(elo_px, 3)
+        match_row["elo_p2"] = round(elo_p2, 3)
+        match_row["elo_home"] = round(r_h, 1)
+        match_row["elo_away"] = round(r_a, 1)
 
         per_match.append(match_row)
 

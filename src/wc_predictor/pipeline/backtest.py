@@ -115,15 +115,25 @@ def main():
 
     OUTPUTS_DIR.mkdir(parents=True, exist_ok=True)
     backtests = []
-    for year in (2018, 2022):
-        b = run_tournament_backtest(
-            rows, "FIFA World Cup", year,
-            DEFAULT_CONFIG.rules, DEFAULT_CONFIG.model,
-            training_years=5, verbose=True,
-        )
-        backtests.append(b)
-        _dump_backtest(b, OUTPUTS_DIR / f"backtest_wc{year}.json")
-        print(f"  → wrote outputs/backtest_wc{year}.json")
+    tournaments = [
+        ("FIFA World Cup", 2014, "wc2014"),
+        ("FIFA World Cup", 2018, "wc2018"),
+        ("FIFA World Cup", 2022, "wc2022"),
+        ("UEFA Euro", 2024, "euro2024"),
+        ("Copa América", 2024, "copa2024"),
+    ]
+    for name, year, tag in tournaments:
+        try:
+            b = run_tournament_backtest(
+                rows, name, year,
+                DEFAULT_CONFIG.rules, DEFAULT_CONFIG.model,
+                training_years=5, verbose=True,
+            )
+            backtests.append(b)
+            _dump_backtest(b, OUTPUTS_DIR / f"backtest_{tag}.json")
+            print(f"  → wrote outputs/backtest_{tag}.json")
+        except ValueError as e:
+            print(f"  SKIP {name} {year}: {e}")
 
     _write_summary(backtests, OUTPUTS_DIR / "backtest_summary.md")
     print(f"\n→ wrote outputs/backtest_summary.md")
