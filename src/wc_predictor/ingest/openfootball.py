@@ -72,6 +72,17 @@ ROUND_TO_STAGE = {
 
 TIME_RE = re.compile(r"^(\d{2}):(\d{2})\s+UTC([+-]\d+)$")
 
+# openfootball uses some short names; martj42 (the training set) is the canonical authority
+# so we rewrite openfootball-style → martj42-style on ingest. Extend as new mismatches are found.
+TEAM_CANONICAL = {
+    "Bosnia & Herzegovina": "Bosnia and Herzegovina",
+    "USA": "United States",
+}
+
+
+def _canonical(name: str) -> str:
+    return TEAM_CANONICAL.get(name, name)
+
 
 def _collect_real_teams(raw: dict) -> set[str]:
     """The 48 real teams are exactly those that appear in any Matchday N (group stage)
@@ -79,8 +90,8 @@ def _collect_real_teams(raw: dict) -> set[str]:
     real: set[str] = set()
     for match in raw["matches"]:
         if match.get("round", "").startswith("Matchday "):
-            real.add(match["team1"])
-            real.add(match["team2"])
+            real.add(_canonical(match["team1"]))
+            real.add(_canonical(match["team2"]))
     return real
 
 
@@ -120,8 +131,8 @@ def parse_fixtures(raw: dict, martj42_rows: list[dict] | None = None) -> list[di
     fixtures = []
     for match in raw["matches"]:
         date = match["date"]
-        team1 = match["team1"]
-        team2 = match["team2"]
+        team1 = _canonical(match["team1"])
+        team2 = _canonical(match["team2"])
         stage = _stage_for(match)
         ground = match.get("ground", "")
         venue = GROUND_TO_VENUE.get(ground)

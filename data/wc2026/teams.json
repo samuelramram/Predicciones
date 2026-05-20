@@ -4,9 +4,9 @@
   "host_nations": ["United States", "Mexico", "Canada"],
   "groups": {
     "A": ["Mexico", "South Africa", "Czech Republic", "South Korea"],
-    "B": ["Canada", "Switzerland", "Bosnia & Herzegovina", "Qatar"],
+    "B": ["Canada", "Switzerland", "Bosnia and Herzegovina", "Qatar"],
     "C": ["Brazil", "Scotland", "Morocco", "Haiti"],
-    "D": ["USA", "Australia", "Paraguay", "Turkey"],
+    "D": ["United States", "Australia", "Paraguay", "Turkey"],
     "E": ["Germany", "Ecuador", "Ivory Coast", "Curaçao"],
     "F": ["Netherlands", "Sweden", "Japan", "Tunisia"],
     "G": ["Belgium", "Egypt", "Iran", "New Zealand"],

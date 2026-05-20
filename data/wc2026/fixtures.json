@@ -12,7 +12,7 @@
       "South Korea"
     ],
     "B": [
-      "Bosnia & Herzegovina",
+      "Bosnia and Herzegovina",
       "Canada",
       "Qatar",
       "Switzerland"
@@ -27,7 +27,7 @@
       "Australia",
       "Paraguay",
       "Turkey",
-      "USA"
+      "United States"
     ],
     "E": [
       "Curaçao",
@@ -120,7 +120,7 @@
       "away_score": null
     },
     {
-      "match_id": "m_331f5abd10",
+      "match_id": "m_6caff29155",
       "num": null,
       "stage": "group_stage",
       "round_label": "Matchday 2",
@@ -131,7 +131,7 @@
       "ground": "Toronto",
       "venue": "BMO Field",
       "home": "Canada",
-      "away": "Bosnia & Herzegovina",
+      "away": "Bosnia and Herzegovina",
       "home_placeholder": null,
       "away_placeholder": null,
       "home_locked": true,
@@ -140,7 +140,7 @@
       "away_score": null
     },
     {
-      "match_id": "m_c12b77b174",
+      "match_id": "m_50b000f273",
       "num": null,
       "stage": "group_stage",
       "round_label": "Matchday 2",
@@ -150,7 +150,7 @@
       "date_utc": "2026-06-13T01:00:00Z",
       "ground": "Los Angeles (Inglewood)",
       "venue": "SoFi Stadium",
-      "home": "USA",
+      "home": "United States",
       "away": "Paraguay",
       "home_placeholder": null,
       "away_placeholder": null,
@@ -600,7 +600,7 @@
       "away_score": null
     },
     {
-      "match_id": "m_5edbeef12a",
+      "match_id": "m_2b3c8e1d95",
       "num": null,
       "stage": "group_stage",
       "round_label": "Matchday 8",
@@ -611,7 +611,7 @@
       "ground": "Los Angeles (Inglewood)",
       "venue": "SoFi Stadium",
       "home": "Switzerland",
-      "away": "Bosnia & Herzegovina",
+      "away": "Bosnia and Herzegovina",
       "home_placeholder": null,
       "away_placeholder": null,
       "home_locked": true,
@@ -680,7 +680,7 @@
       "away_score": null
     },
     {
-      "match_id": "m_9195b30a6c",
+      "match_id": "m_6f25e6ac58",
       "num": null,
       "stage": "group_stage",
       "round_label": "Matchday 9",
@@ -690,7 +690,7 @@
       "date_utc": "2026-06-19T19:00:00Z",
       "ground": "Seattle",
       "venue": "Lumen Field",
-      "home": "USA",
+      "home": "United States",
       "away": "Australia",
       "home_placeholder": null,
       "away_placeholder": null,
@@ -1100,7 +1100,7 @@
       "away_score": null
     },
     {
-      "match_id": "m_81c07351eb",
+      "match_id": "m_127ace635b",
       "num": null,
       "stage": "group_stage",
       "round_label": "Matchday 14",
@@ -1110,7 +1110,7 @@
       "date_utc": "2026-06-24T19:00:00Z",
       "ground": "Seattle",
       "venue": "Lumen Field",
-      "home": "Bosnia & Herzegovina",
+      "home": "Bosnia and Herzegovina",
       "away": "Qatar",
       "home_placeholder": null,
       "away_placeholder": null,
@@ -1160,7 +1160,7 @@
       "away_score": null
     },
     {
-      "match_id": "m_57f525c914",
+      "match_id": "m_5338efa8b3",
       "num": null,
       "stage": "group_stage",
       "round_label": "Matchday 15",
@@ -1171,7 +1171,7 @@
       "ground": "Los Angeles (Inglewood)",
       "venue": "SoFi Stadium",
       "home": "Turkey",
-      "away": "USA",
+      "away": "United States",
       "home_placeholder": null,
       "away_placeholder": null,
       "home_locked": true,
