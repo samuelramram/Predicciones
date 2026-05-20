@@ -83,13 +83,39 @@ llenan el resto. Ver `data/wc2026/rules.json` para las reglas exactas del pool +
 | Archivo | Quién lo llena | Fuente | Cuándo |
 |---|---|---|---|
 | `wc2026/rules.json` | Usuario | manual | Una vez (al definir el pool) |
-| `wc2026/teams.json` | Scraper | TheSportsDB 4429 | Una vez (post-draw) |
+| `wc2026/teams.json` | Scraper | openfootball/worldcup.json | Una vez (post-draw) |
 | `wc2026/venues.json` | Manual | FIFA | Una vez |
-| `wc2026/fixtures.json` | Scraper | **TheSportsDB 4429** (primaria) | Una vez + actualizaciones de bracket |
+| `wc2026/fixtures.json` | **`ingest.openfootball`** | openfootball + martj42 (scores) | Bootstrap + cada ronda |
 | `wc2026/squads.json` | Scraper + usuario | Transfermarkt | ~7 días antes del torneo |
 | `wc2026/injuries.json` | Usuario | Perplexity + manual | Antes de cada ronda |
-| `historical/international_matches.csv` | Scraper | martj42/international_results | Bootstrap + actualización semanal |
-| `historical/elo_history.csv` | Scraper | eloratings.net + replay propio | Bootstrap + actualización semanal |
+| `historical/international_matches.csv` | **`ingest.martj42`** | martj42/international_results | Bootstrap + semanal |
+| `historical/elo_history.csv` | TODO Phase 2 | replay propio sobre martj42 | Bootstrap |
+
+### Pipeline de ingesta (Phase 1, funcionando)
+
+```bash
+# Histórico de entrenamiento (~11.7k partidos internacionales 2014→hoy)
+python -m wc_predictor.ingest.martj42 --bootstrap --refetch
+
+# 104 fixtures del Mundial 2026 (72 grupos + 32 eliminatorias con placeholders)
+python -m wc_predictor.ingest.openfootball --bootstrap --refetch
+```
+
+**Fuentes verificadas y usadas:**
+- [`martj42/international_results`](https://github.com/martj42/international_results) (CC0) —
+  49k partidos internacionales 1872→hoy, daily updated. Backbone del training set y del
+  feed de scores cuando los partidos del Mundial se vayan jugando.
+- [`openfootball/worldcup.json`](https://github.com/openfootball/worldcup.json) (CC-by-SA) —
+  los 104 fixtures completos con grupos oficiales del sorteo FIFA, kickoff times con tz,
+  placeholders de bracket (`1A`, `2B`, `3A/B/C/D/F`, `W89`, `L101`).
+
+**Fuentes identificadas para fases siguientes (no integradas aún):**
+- [`statsbomb/open-data`](https://github.com/statsbomb/open-data) (CC-BY-NC-SA) — xG, eventos
+  con coordenadas y freeze frames para Mundiales 1958, 62, 70, 74, 86, 90, 2018, 2022.
+  Único xG público real de Mundiales completos. Phase 2/3.
+- [`jfjelstul/worldcup`](https://github.com/jfjelstul/worldcup) (CC-BY-SA 4.0) — squads + IDs
+  + tournaments 1930-2022. Phase 3 para prior de fuerza de plantilla.
+- TheSportsDB league 4429 — para mantener `match_id` consistente con la webapp en producción.
 
 ### Integración con la webapp (Lovable Cloud / Supabase)
 
@@ -138,13 +164,14 @@ pytest                              # corre los tests del optimizer (los únicos
 
 - [x] **Phase 0** — Limpieza, archivo Liga MX en `legacy/`, esqueleto del paquete, EV optimizer
       + scorer + tests del optimizer.
-- [ ] **Phase 1 (días 1-4)** — Ingesta. Bootstrap `international_matches.csv` (martj42),
-      `elo_history.csv` (eloratings.net), `fixtures.json` (Wikipedia draw), `venues.json`
-      (ya en seed). Validación de joins.
+- [x] **Phase 1** — Ingesta de fuentes públicas. `ingest.martj42` (11.7k partidos histórico
+      2014→hoy) + `ingest.openfootball` (104 fixtures WC2026 con grupos A-L oficiales y
+      placeholders de bracket). 19/19 tests pasan.
 - [ ] **Phase 2 (días 3-7)** — Modelo base. MLE bivariate Poisson + Dixon-Coles sobre 2014-2026.
-      Validación contra Mundial 2018 + 2022 + Euro 2024 + Copa América 2024.
-- [ ] **Phase 3 (días 7-14)** — Mejoras. Squad strength (Elo de club × minutos), host advantage
-      CONCACAF, fatiga viaje/altitud, blend con odds scrapeados.
+      Replay del Elo internacional. Validación contra Mundial 2018 + 2022 + Euro 2024 + Copa América 2024.
+- [ ] **Phase 3 (días 7-14)** — Mejoras. xG features (StatsBomb open data), squad strength
+      (jfjelstul/worldcup + club Elo × minutos), host advantage CONCACAF, fatiga viaje/altitud,
+      blend con odds scrapeados.
 - [ ] **Phase 4 (días 14-19)** — Calibración + EV. Brier, reliability curves, backtest del
       scorer sobre Mundiales anteriores, pipeline orchestrator.
 - [ ] **Phase 5 (días 19-21)** — Picks fase de grupos lockeados, dashboard mínimo (CSV+MD),

@@ -1,24 +1,28 @@
 {
-  "_comment": "Las 48 selecciones del Mundial 2026. Grupos confirmados tras el sorteo (5 dic 2025). TODO: llenar con groups oficiales una vez verificado contra fuente FIFA.",
+  "_comment": "Las 48 selecciones del Mundial 2026 con grupos oficiales del sorteo FIFA (5 dic 2025). Extraídos automáticamente de openfootball/worldcup.json — re-correr ingest.openfootball regenera estos datos si algo cambia.",
   "version": "2026.05.20",
   "host_nations": ["United States", "Mexico", "Canada"],
   "groups": {
-    "_A": ["TBD", "TBD", "TBD", "TBD"],
-    "_B": ["TBD", "TBD", "TBD", "TBD"],
-    "_C": ["TBD", "TBD", "TBD", "TBD"],
-    "_D": ["TBD", "TBD", "TBD", "TBD"],
-    "_E": ["TBD", "TBD", "TBD", "TBD"],
-    "_F": ["TBD", "TBD", "TBD", "TBD"],
-    "_G": ["TBD", "TBD", "TBD", "TBD"],
-    "_H": ["TBD", "TBD", "TBD", "TBD"],
-    "_I": ["TBD", "TBD", "TBD", "TBD"],
-    "_J": ["TBD", "TBD", "TBD", "TBD"],
-    "_K": ["TBD", "TBD", "TBD", "TBD"],
-    "_L": ["TBD", "TBD", "TBD", "TBD"]
+    "A": ["Mexico", "South Africa", "Czech Republic", "South Korea"],
+    "B": ["Canada", "Switzerland", "Bosnia & Herzegovina", "Qatar"],
+    "C": ["Brazil", "Scotland", "Morocco", "Haiti"],
+    "D": ["USA", "Australia", "Paraguay", "Turkey"],
+    "E": ["Germany", "Ecuador", "Ivory Coast", "Curaçao"],
+    "F": ["Netherlands", "Sweden", "Japan", "Tunisia"],
+    "G": ["Belgium", "Egypt", "Iran", "New Zealand"],
+    "H": ["Spain", "Uruguay", "Saudi Arabia", "Cape Verde"],
+    "I": ["France", "Senegal", "Norway", "Iraq"],
+    "J": ["Argentina", "Austria", "Algeria", "Jordan"],
+    "K": ["Portugal", "Colombia", "DR Congo", "Uzbekistan"],
+    "L": ["England", "Croatia", "Ghana", "Panama"]
   },
   "team_aliases": {
-    "_comment": "Canonicalización: nombre oficial → todos los aliases que aparecen en fuentes scrapeadas. Ejemplo:",
+    "_comment": "Canonicalización: nombre oficial (como aparece en openfootball/martj42) → aliases en otras fuentes. Llenar conforme se agregue cobertura.",
     "United States": ["USA", "United States of America", "Estados Unidos", "EE.UU."],
-    "South Korea": ["Korea Republic", "Korea", "Republic of Korea", "South Korea"]
+    "South Korea": ["Korea Republic", "Korea", "Republic of Korea"],
+    "Czech Republic": ["Czechia"],
+    "Bosnia & Herzegovina": ["Bosnia and Herzegovina", "Bosnia-Herzegovina"],
+    "Ivory Coast": ["Côte d'Ivoire", "Cote d'Ivoire"],
+    "Cape Verde": ["Cabo Verde"]
   }
 }
