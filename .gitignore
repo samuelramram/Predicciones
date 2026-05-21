@@ -1,5 +1,5 @@
 # ============================================================================
-#  .gitignore — Predicciones Liga MX
+#  .gitignore — Predicciones Mundial 2026
 # ============================================================================
 
 # ----- Python -----
@@ -13,6 +13,7 @@ dist/
 build/
 .pytest_cache/
 .mypy_cache/
+.ruff_cache/
 .coverage
 htmlcov/
 .tox/
@@ -24,7 +25,7 @@ venv/
 env/
 ENV/
 
-# ----- IDE / Editores -----
+# ----- IDE / editores -----
 .vscode/
 .idea/
 *.swp
@@ -33,59 +34,37 @@ ENV/
 .DS_Store
 Thumbs.db
 
-# ----- Environment / Secretos -----
+# ----- Secretos -----
 .env
 *.env
 !.env.example
 credentials.json
 tokens.json
+api_keys.json
 
-# ----- Datos grandes / raw (no versionar) -----
-data/raw/*.json
-data/processed/*.json
-data/cache/*.json
+# ----- Datos crudos / cache (NO versionar) -----
+data/raw/*
+!data/raw/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+# Fitted model artifacts (output of fit_model) — versionados porque son caros
+# de regenerar y son input directo de picks. Stale-rebuild es trivial: re-correr fit_model.
+!data/processed/team_strengths.json
 
-# ----- Logs y outputs de depuración (en raíz) -----
+# ----- Outputs generados -----
+outputs/*
+!outputs/.gitkeep
+
+# ----- Logs y debug -----
 logs/
 *.log
 *_log.txt
-*_output.txt
-pipeline_run_output.txt
 debug_*.txt
 debug_*.log
 
-# ----- Reportes técnicos generados por jornada -----
-# Los reportes por jornada se regeneran; se mantienen en outputs/ pero NO se versionan.
-# Si quieres archivar uno en particular, muévelo a docs/archive/ y commit a mano.
-reporte_tecnico_jornada_*.md
-reports/
+# ----- Notebooks: stripear output antes de commit -----
+*.ipynb_checkpoints/
 
-# ----- Reglas de versionado selectivo de Markdown -----
-# Por defecto ignoramos .md sueltos en raíz, pero conservamos:
-#   README.md, CHANGELOG.md, CONTRIBUTING.md en raíz
-#   Todos los docs/**/*.md
-/*.md
-!/README.md
-!/CHANGELOG.md
-!/CONTRIBUTING.md
-!/config_calibracion_modelo.md
-
-# ----- Scripts de debug/inspección no versionados -----
-scripts/debug_*.py
-scripts/inspect_*.py
-temp*.py
-/test_*.py
-
-# ----- Outputs generados del pipeline -----
-# Mantenemos estructura pero no los archivos generados.
-outputs/*.csv
-outputs/*.txt
-outputs/fingerprint_*.json
-outputs/reporte_tecnico_*.md
-# Mantener el placeholder para que la carpeta exista:
-!outputs/.gitkeep
-
-# ----- Sistema operativo / misc -----
-.ipynb_checkpoints/
+# ----- Misc -----
 *.bak
 *.tmp

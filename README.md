@@ -1,213 +1,248 @@
-# Predicciones Liga MX — Modelo de Quiniela
+# Predicciones Mundial 2026 — Modelo de Quiniela
 
-Modelo probabilístico de predicciones para la quiniela de Liga MX.
-Optimiza directamente el **valor esperado de puntos** bajo scoring de
-quiniela: **2 puntos por marcador exacto + 1 punto por resultado 1X2**.
+Modelo probabilístico para ganar una quiniela del **Mundial FIFA 2026** (USA · Canadá · México).
+Scoring de la quiniela: **2 puntos por marcador exacto, 1 por resultado 1X2** (excluyente, solo 90 min).
 
-> Estado: Clausura 2026, última jornada procesada **J10** (5 de marzo, 2026).
-> Próxima corrida: sincronizar datos hasta jornada actual antes de generar predicciones.
+> Estado: **rebuild en marcha (mayo 2026)**. Modelo base Poisson + Dixon-Coles del proyecto Liga MX
+> archivado en `legacy/ligamx_2026/` y reusado donde aplica.
 
 ---
 
-## ¿Qué hace el modelo?
+## Objetivo y restricción de optimización
 
-Para cada partido de una jornada, el pipeline calcula:
+La quiniela paga `2 pts` por acertar el marcador exacto **o** `1 pt` por acertar 1X2 (sin sumar
+ambos). No paga el modal — paga lo que maximiza esperanza de puntos. El modelo no elige el
+marcador más probable: elige el par `(1X2, exacto)` con mayor **valor esperado de puntos**:
 
-1. **λ_home / λ_away** — goles esperados de cada equipo (distribución Poisson bivariada).
-2. Corrección **Dixon-Coles** (ρ negativo) para empates de marcador bajo.
-3. **P(1), P(X), P(2)** y matriz completa de marcadores con grilla Poisson adaptativa.
-4. **Optimizador de pick por EV de quiniela**: elige el par `(resultado 1X2, marcador exacto)`
-   que maximiza `EV = P(exacto) + P(resultado 1X2)` — no solo el marcador más probable.
-5. Flag de **ABSTAIN** si el gap entre candidatos es muy chico (baja confianza).
+```
+EV(pick) = points_exact · P(exacto) + points_1x2 · (P(1X2) − P(exacto))    # caso excluyente
+```
 
-Salida principal: `outputs/predicciones_jornada_{N}_final.csv` + reporte técnico markdown.
+donde `P(exacto)` y `P(1X2)` salen de una grilla bivariada Poisson + corrección Dixon-Coles
+para empates de marcador bajo. Si el gap entre el mejor y el segundo mejor candidato es chico,
+el modelo levanta una bandera **ABSTAIN** (señal de que la diferencia entre picks no es informativa).
+
+El bloque que define todo esto vive en `src/wc_predictor/scoring/quiniela.py` y está
+parametrizado por `QuinielaRules` — si cambian las reglas del pool, se cambia un dataclass.
 
 ---
 
 ## Arquitectura
 
 ```
-src/predicciones/
-├── config.py        # Hiperparámetros + alias canónicos de equipos
-├── core.py          # Canonicalización, build de stats, shrinkage bayesiano,
-│                    # blend multi-torneo, cómputo de lambdas
-├── data.py          # Ingesta de inputs manuales (stats, bajas, cualitativa)
-│                    # + penalizaciones por jugadores clave
-├── improvements.py  # Momentum, home-crisis/stronghold, rivalry factor
-├── quiniela.py      # Poisson + Dixon-Coles + optimizador de pick por EV
-└── utils.py         # Cacheo, helpers
-
-app/steps/
-├── diagnostico_lambda.py    # Paso 1: calcula y exporta λ y componentes
-├── gen_predicciones.py      # Paso 2: corre optimizador → CSV final
-└── gen_reporte_tecnico.py   # Paso 3: reporte markdown por jornada
-
-scripts/
-├── evaluate_model.py        # Backtest + log-loss + anti-leakage audit
-├── fetch_fbref_stats.py     # Scraper de FBref (semi-auto)
-├── update_key_players_data.py
-└── ... (utilidades de ingesta y debug)
-
-run_pipeline.py              # Orquesta los 3 pasos de app/steps/
+src/wc_predictor/
+├── config.py           # Hiperparámetros + reglas del pool (single source of truth)
+├── ingest/
+│   ├── fixtures.py     # Calendario 2026 (104 partidos)
+│   ├── matches.py      # Histórico internacional 2014→hoy (martj42/international_results)
+│   ├── elo.py          # Snapshots eloratings.net
+│   ├── squads.py       # Convocatorias 26 jugadores
+│   └── odds.py         # Scrape best-effort de cierre de bookmakers
+├── ratings/
+│   └── elo.py          # Update Elo internacional (K por etapa, GD multiplier)
+├── model/
+│   ├── poisson_dc.py   # MLE bivariate Poisson + Dixon-Coles
+│   ├── blend.py        # Log-pool de Poisson + Elo + odds
+│   └── adjustments.py  # Host advantage, altitud (CDMX), fatiga, bajas
+├── scoring/
+│   └── quiniela.py     # EV optimizer + scorer pool-of-truth
+├── pipeline/
+│   └── generate_picks.py  # Entry-point por ronda
+└── utils.py            # Hashes, git introspection
 ```
 
-### Componentes clave del cálculo de λ
+### Diferencias vs el modelo Liga MX (lo que cambia)
 
-| Componente | Descripción |
-|---|---|
-| **Priors multi-torneo** | Clausura 2024 (10%), Apertura 2024 (15%), Clausura 2025 (25%), Apertura 2025 (50%) |
-| **Shrinkage bayesiano** | `w_curr = min(0.85, PJ_eff/18 × 0.85)` — dominio del torneo actual crece con jornadas jugadas |
-| **xG blend** | 40% xG + 60% goles reales en el suavizado bayesiano (xgscore.io) |
-| **xPTS regression** | Ajusta hasta ±3% la λ si el equipo está sobre/sub-performing resultados vs xG |
-| **Home advantage por equipo** | Multiplicador calibrado (Toluca 1.586 máx → Pachuca 0.694 mín) |
-| **Bajas / jugadores clave** | Penalización por posición, categoría y estatus (titular/duda) con caps ofensivos |
-| **Momentum** | Dirección (últimos 2 vs 3 previos partidos) → ±2% en λ |
-| **Home crisis / stronghold** | Últimos N partidos de local → -8% crisis, +4% stronghold |
-| **Factor rivalidad** | -12% en λ en clásicos |
-| **Dixon-Coles ρ** | -0.10 (aumenta P(0-0), P(1-1); reduce P(1-0), P(0-1)) |
+| Componente | Liga MX (viejo) | Mundial 2026 (nuevo) |
+|---|---|---|
+| Cobertura de partidos | 1 liga, 18 equipos | 48 selecciones, ~10 confederaciones |
+| Datos por equipo | 100+ partidos por torneo | 3 de grupos, luego 1+ por ronda |
+| Calibración cross-equipos | Misma liga, fácil | Cross-confederation — requiere Elo internacional |
+| Home advantage | Por equipo | Solo aplica a anfitriones (USA/MEX/CAN) y altitud CDMX |
+| xG | xgscore.io | Solo en torneos top (Euro, WC). Friendlies y qualifiers pocas veces |
+| Bajas | Manual por jornada | Manual + Transfermarkt scrape post-roster announcement |
+| Mercado | No usado | **Sí** — odds de cierre como tercer source del blend |
+| Rondas | 17 jornadas regulares | 8 rondas (3 grupos + 5 eliminatorias) |
 
-### Scoring de quiniela (objetivo de optimización)
+### Lo que se mantiene del modelo Liga MX
 
-```
-Exacto acertado  → +2 pts
-Resultado 1X2 acertado (sin exacto) → +1 pt
-```
-
-El optimizador calcula, para cada candidato `(1X2, exacto)`:
-
-```
-EV = P(exacto) + P(resultado 1X2)
-```
-
-y elige el de máximo EV, con chequeo de `ev_confidence_gap` vs segundo mejor.
+- **Grilla Poisson adaptativa** (target captured mass 99.5%, grilla 5-12).
+- **Dixon-Coles ρ = -0.10** para empates bajos.
+- **EV optimizer** con candidato por outcome (1, X, 2) y elección por max EV + flag de gap.
+- **Shrinkage bayesiano** (re-parametrizado para internacionales: prior = Elo + confederación;
+  data = últimos N partidos del equipo).
+- **Fingerprint SHA-256** de inputs/outputs y `config_hash` para reproducibilidad por corrida.
 
 ---
 
-## Cómo correr el pipeline
+## Datos (fuente de verdad humana, versionados)
 
-### 1. Setup
+Todo en `data/wc2026/` y `data/historical/`. El usuario llena los campos `TBD`; los scrapers
+llenan el resto. Ver `data/wc2026/rules.json` para las reglas exactas del pool + las APIs.
+
+| Archivo | Quién lo llena | Fuente | Cuándo |
+|---|---|---|---|
+| `wc2026/rules.json` | Usuario | manual | Una vez (al definir el pool) |
+| `wc2026/teams.json` | Scraper | openfootball/worldcup.json | Una vez (post-draw) |
+| `wc2026/venues.json` | Manual | FIFA | Una vez |
+| `wc2026/fixtures.json` | **`ingest.openfootball`** | openfootball + martj42 (scores) | Bootstrap + cada ronda |
+| `wc2026/squads.json` | Scraper + usuario | Transfermarkt | ~7 días antes del torneo |
+| `wc2026/injuries.json` | Usuario | Perplexity + manual | Antes de cada ronda |
+| `historical/international_matches.csv` | **`ingest.martj42`** | martj42/international_results | Bootstrap + semanal |
+| `historical/elo_history.csv` | TODO Phase 2 | replay propio sobre martj42 | Bootstrap |
+
+### Cómo correr el pipeline
+
+**Un solo comando (recomendado)** — orquesta ingesta → Elo → fit → picks:
+
+```bash
+python -m wc_predictor.pipeline.run --round md1
+python -m wc_predictor.pipeline.run --round round_of_32 --skip-fetch
+```
+
+`--round` acepta: `all`, `group_stage`, `md1`..`md17`, `round_of_32`, `round_of_16`,
+`quarter_final`, `semi_final`, `third_place`, `final`. `--skip-fetch` omite la descarga
+de red (re-corre con los datos ya en `data/raw/`).
+
+**Por etapas (debug / desarrollo):**
+
+```bash
+python -m wc_predictor.ingest.martj42 --bootstrap --refetch       # histórico training
+python -m wc_predictor.ingest.openfootball --bootstrap --refetch  # 104 fixtures WC2026
+python -m wc_predictor.ingest.fetch_odds                          # odds bookmakers (opcional, ver abajo)
+python -m wc_predictor.pipeline.fit_elo                           # replay Elo internacional
+python -m wc_predictor.pipeline.fit_model                         # fit Poisson + Dixon-Coles
+python -m wc_predictor.pipeline.generate_picks --round group_stage
+python -m wc_predictor.pipeline.backtest                          # validación 5 torneos
+python -m wc_predictor.pipeline.simulate_pool                     # simulación de pool 30 personas
+```
+
+**Odds de bookmakers (opcional pero recomendado):** el mercado es el predictor individual
+más fuerte. Para activarlo, consigue una API key gratis en
+[the-odds-api.com](https://the-odds-api.com/) (500 créditos/mes, sin tarjeta), ponla en
+`.env` como `THE_ODDS_API_KEY=...`, y corre `python -m wc_predictor.ingest.fetch_odds`.
+El modelo pasa automáticamente a un blend de 3 vías (Poisson + Elo + odds). Sin key,
+cae al blend de 2 vías (Poisson 70% / Elo 30%) — backtesteado y funcional.
+
+> Nota: el odds blend NO está backtesteado — no existe un dataset gratuito de odds
+> históricas de selecciones. El peso de las odds (55%) es un default basado en literatura
+> (las cuotas de cierre son casi eficientes). Se puede afinar con el endpoint histórico
+> de The Odds API una vez haya key.
+
+**Fuentes verificadas y usadas:**
+- [`martj42/international_results`](https://github.com/martj42/international_results) (CC0) —
+  49k partidos internacionales 1872→hoy, daily updated. Backbone del training set y del
+  feed de scores cuando los partidos del Mundial se vayan jugando.
+- [`openfootball/worldcup.json`](https://github.com/openfootball/worldcup.json) (CC-by-SA) —
+  los 104 fixtures completos con grupos oficiales del sorteo FIFA, kickoff times con tz,
+  placeholders de bracket (`1A`, `2B`, `3A/B/C/D/F`, `W89`, `L101`).
+
+**Fuentes identificadas para fases siguientes (no integradas aún):**
+- [`statsbomb/open-data`](https://github.com/statsbomb/open-data) (CC-BY-NC-SA) — xG, eventos
+  con coordenadas y freeze frames para Mundiales 1958, 62, 70, 74, 86, 90, 2018, 2022.
+  Único xG público real de Mundiales completos. Phase 2/3.
+- [`jfjelstul/worldcup`](https://github.com/jfjelstul/worldcup) (CC-BY-SA 4.0) — squads + IDs
+  + tournaments 1930-2022. Phase 3 para prior de fuerza de plantilla.
+- TheSportsDB league 4429 — para mantener `match_id` consistente con la webapp en producción.
+
+### Integración con la webapp (Lovable Cloud / Supabase)
+
+El **modelo y la webapp son repos separados**. Este repo es el arma personal del autor
+para generar SUS picks; la webapp gestiona los 30 participantes del pool.
+
+- La webapp ya consume TheSportsDB (league `4350` para Liga MX, `4429` para WC). Este
+  modelo usa la **misma fuente** para fixtures y live results → `match_id` y nombres
+  de equipo son consistentes entre los dos sistemas.
+- El modelo escribe `outputs/picks_{round}.json` con el shape del schema Supabase
+  (`match_id`, `prediction_home`, `prediction_away`). El usuario los importa a mano a
+  la webapp como un participante más.
+- Sin conexión directa Python ↔ Supabase: cero riesgo de que el modelo escriba algo
+  raro a la base que ven todos los usuarios.
+- Recomendación para la webapp WC 2026: **proyecto Lovable separado** del de Liga MX
+  (clonar + cambiar `LEAGUE_ID` a `4429`), no refactor multi-torneo. Pre-Mundial no
+  hay tiempo para reorganizar tablas + RLS.
+
+### Variables de entorno
+
+Copia `.env.example` → `.env` (gitignored) y llena las que vayas a usar:
+
+```
+THESPORTSDB_API_KEY=...     # primaria — misma key del Patreon de la webapp
+API_FOOTBALL_KEY=...        # opcional, solo si haces upgrade
+THE_ODDS_API_KEY=...        # opcional, solo si pagas odds programáticos
+```
+
+Sin ninguna de las opcionales, el modelo cae a fallbacks (scrape de Wikipedia / odds
+de football-data.co.uk / etc.).
+
+---
+
+## Setup
 
 ```bash
 python -m venv .venv
-.venv\Scripts\activate        # Windows
-# source .venv/bin/activate   # Linux/Mac
+source .venv/bin/activate          # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
-```
-
-### 2. Preparar inputs de la jornada (manual hoy, ver Roadmap)
-
-Para jornada `N`, necesitas en `data/inputs/`:
-
-| Archivo | Contenido | Fuente |
-|---|---|---|
-| `Stats_liga_mx.json` | Histórico de partidos Clausura 2024 → actual | FBref / manual |
-| `jornada_N_final.json` | Fixtures de la jornada | Liga MX / manual |
-| `Investigacion_cualitativa_jornadaN.json` | Contexto cualitativo | Prompts en `docs/prompt_chatgpt_contexto.md` |
-| `context_adjustments_jornadaN.json` | Ajustes manuales (clásicos, etc.) | Manual |
-| `evaluacion_bajas.json` | Bajas conocidas de la temporada | Manual |
-| `perplexity_bajas_semana.json` | Bajas específicas de la semana | `docs/perplexity_prompt_bajas.md` |
-| `xg_stats.json` (raíz `data/`) | xG por equipo | xgscore.io |
-
-### 3. Correr
-
-```bash
-# Jornada explícita
-python run_pipeline.py --jornada 11
-
-# O por variable de entorno
-set PRED_JORNADA=11
-python run_pipeline.py
-```
-
-Genera en `outputs/`:
-- `predicciones_jornada_{N}_final.csv` — picks 1X2 + exactos + EV
-- `reporte_tecnico_jornada_{N}.md` — breakdown por partido
-- `diagnostico_lambda_components.csv` — componentes de λ por partido
-- `fingerprint_jornada_{N}.json` — hashes de inputs para reproducibilidad
-
-### 4. Evaluar después de la jornada
-
-Cuando tengas resultados reales, actualiza `data/historial_usuario.json`
-y corre:
-
-```bash
-python scripts/evaluate_model.py                 # todos los diagnósticos
-python scripts/evaluate_model.py --seccion logloss
-python scripts/evaluate_model.py --jornada 11
+pytest                              # 55 tests (optimizer, fit, Elo, blend, ingest, calibration)
 ```
 
 ---
 
-## Roadmap
+## Roadmap (Mundial arranca el 11 jun 2026)
 
-### Corto plazo — automatización de ingesta (siguiente sprint)
+- [x] **Phase 0** — Limpieza, archivo Liga MX en `legacy/`, esqueleto del paquete, EV optimizer.
+- [x] **Phase 1** — Ingesta. `ingest.martj42` (11.7k partidos histórico) + `ingest.openfootball`
+      (104 fixtures WC2026, grupos A-L oficiales, placeholders de bracket).
+- [x] **Phase 2** — Modelo base. MLE Poisson + Dixon-Coles. Replay Elo internacional
+      (49k partidos). Bivariate Poisson probado (λ₃≈0 → no aporta, independent Poisson confirmado).
+- [x] **Phase 3.1** — Elo blend. `blend_w30_ev_no_draw` (30% Elo + 70% Poisson, sin empates).
+      Backtest 5 torneos: 197 pts vs 186 del baseline `always_1_0` (+6%).
+- [x] **Phase 4** — Validación. Backtest sobre WC 2014/18/22 + Euro 2024 + Copa América 2024
+      (275 partidos). Calibración Brier + log-loss. Orquestador `pipeline.run`. CLI por ronda.
+- [ ] **Phase 3.2 (pendiente)** — Más features: odds scrapeadas (mayor ROI — cierra el gap de
+      calibración 0.58 → ~0.30), squad strength (jfjelstul/worldcup), altitud Azteca / fatiga.
+- [ ] **Phase 5 (pre-Mundial)** — Picks fase de grupos lockeados, simulación de pool (ranking
+      esperado entre 30 jugadores), sistema de log post-ronda.
 
-Hoy todo input es manual. El objetivo es llegar a **máximo automatizado**:
+### Resultado del backtest (275 partidos, 5 torneos)
 
-- [ ] Scraper FBref/SofaScore → merge auto a `Stats_liga_mx.json`
-- [ ] Fetcher xgscore.io semanal → `xg_stats.json`
-- [ ] Fetcher fixtures Liga MX por jornada
-- [ ] Hoy manual: contexto cualitativo + bajas (quedan humanos)
+| Estrategia | Total | Pts/match |
+|---|---:|---:|
+| **`blend_w30_ev_no_draw`** (producción) | **197** | **0.72** |
+| `always_1_0` (baseline trivial) | 186 | 0.68 |
+| `ev_optimal` (modelo Phase 2) | 182 | 0.66 |
+| `modal_poisson` | 136 | 0.49 |
 
-### Mejoras al modelo (siguiente)
-
-- [ ] Backtest rolling-origin con métrica real `quiniela_pts_per_match`
-- [ ] Calibración probabilística (reliability curves, Brier, logloss sobre 1X2 y exactos)
-- [ ] Negative Binomial / Dixon-Coles MLE sobre sobre-dispersión
-- [ ] Grid/Optuna de hiperparámetros (BAYES_K, BLEND_K, CLAMPs, XG_BLEND) optimizando EV de quiniela
-- [ ] Componente "contrarian" para concursos masivos
-- [ ] Migrar pipeline a workflow declarativo (Prefect/Dagster)
-
-### Técnico
-
-- [ ] CI con GitHub Actions (pytest + linting)
-- [ ] Tipado con `mypy`
-- [ ] `pyproject.toml` + packaging limpio
+Calibración del modelo: Brier 0.585 (random uniforme 0.667; mercado Pinnacle ~0.23).
 
 ---
 
-## Estructura de directorios
+## Datos pendientes del usuario (no scrapeables)
 
-```
-Predicciones/
-├── app/steps/           # Pasos del pipeline
-├── data/
-│   ├── inputs/          # Inputs manuales por jornada (JSON)
-│   ├── archive/         # Snapshots históricos
-│   ├── raw/             # (ignorado) dumps de APIs
-│   └── processed/       # (ignorado) cache procesado
-├── docs/                # Documentación, prompts, plans
-├── legacy/              # Código deprecado (no usar)
-├── outputs/             # (ignorado salvo .gitkeep) CSVs y reportes por jornada
-├── scripts/             # Utilidades CLI
-├── src/predicciones/    # Paquete principal
-├── tests/               # pytest
-├── config_calibracion_modelo.md
-├── requirements.txt
-├── run_pipeline.py
-└── README.md
-```
+1. **Reglamento oficial** completo del pool (deadline por ronda, bonos, desempate, distribución
+   del premio). Llenar `data/wc2026/rules.json`.
+2. **API-Football key** cuando estés listo a contratar (~$25/mes). Sin esto sigo con scraping.
+3. **Bajas de última hora** por ronda (perplexity + manual). Llenar `data/wc2026/injuries.json`.
+4. **Sesgo personal** opcional ("siempre quiero a México pase lo que pase") — se mete como
+   override controlado, no como entrada al modelo.
 
 ---
 
 ## Política de versionado de datos
 
-- **Sí se versiona:** `data/inputs/*.json`, `data/xg_stats.json`, `data/key_players.json`,
-  `data/historial_usuario.json` (son la fuente de verdad reproducible).
-- **No se versiona:** `outputs/*` (generados), `reporte_tecnico_*.md` en raíz (generados),
-  `data/raw/`, `data/processed/`, `data/cache/` (intermedios grandes).
-
-Ver `.gitignore` para detalles.
+- **Sí se versiona:** `data/wc2026/*.json`, `data/historical/*.csv` (fuente de verdad).
+- **No se versiona:** `data/raw/`, `data/processed/`, `outputs/` (intermedios y outputs grandes).
 
 ---
 
 ## Convenciones de commits
 
 ```
-feat(data): actualizar resultados Jornada 11 Clausura 2026
-feat(model): integrar xPTS regression factor
-fix(quiniela): corregir normalización con grilla adaptativa
-docs: explicar blend bayesiano en README
+feat(ingest): bootstrap historical international matches dataset
+feat(model): MLE fit for Poisson + DC params
+fix(scoring): correct EV formula for non-exclusive pool variant
+data(wc2026): update Group A teams post-draw
+docs: explain blend weight reweighting when odds missing
 ```
 
 ---

@@ -1,0 +1,62 @@
+{
+  "version": "2026.05.20",
+  "name": "Quiniela Mundial 2026 (pool privado de Samuel)",
+  "scoring": {
+    "points_exact_score": 2,
+    "points_1x2_only": 1,
+    "exclusive": true,
+    "use_90min_only": true,
+    "bracket_bonus": false,
+    "notes": [
+      "Excluyente: acertar marcador exacto NO suma el punto extra del 1X2.",
+      "Solo cuenta el resultado al minuto 90 (no penales, no tiempos extra).",
+      "Aplica a los 104 partidos del Mundial 2026.",
+      "Sin bonos de bracket (no se predicen semifinalistas, campeón, etc.)."
+    ],
+    "stage_multipliers": null
+  },
+  "pool": {
+    "participants_estimated": 30,
+    "buyin_mxn": 500,
+    "total_pot_mxn_estimated": 15000,
+    "payout_structure": "TBD",
+    "tiebreaker": "TBD",
+    "submission_modality": "round_by_round",
+    "deadline_per_round": "TBD",
+    "platform": "Lovable Cloud (Supabase) — proyecto separado del de Liga MX, recomendado"
+  },
+  "data_sources": {
+    "fixtures_and_live_results": {
+      "primary": "TheSportsDB",
+      "league_id": 4429,
+      "api_base": "https://www.thesportsdb.com/api/v1/json/{API_KEY}/",
+      "secret_env": "THESPORTSDB_API_KEY",
+      "notes": "Misma fuente que la webapp en Lovable → IDs y nombres consistentes entre modelo y app."
+    },
+    "historical_training_set": {
+      "primary": "martj42/international_results (GitHub, CC0)",
+      "url": "https://raw.githubusercontent.com/martj42/international_results/master/results.csv",
+      "notes": "Cobertura limpia de friendlies + qualifiers + torneos 1872→hoy. Usado para fit del Poisson+DC y para replay del Elo. TheSportsDB es desigual para amistosos viejos."
+    },
+    "elo_ratings": {
+      "primary": "computado localmente desde martj42",
+      "cross_check": "eloratings.net (scrape semanal)",
+      "notes": "Replay con K por etapa + GD multiplier, parámetros en ModelConfig."
+    },
+    "odds": {
+      "primary": "best-effort scrape (football-data.co.uk + agregador público)",
+      "fallback": "ninguna — si no hay odds, se redistribuye el peso del blend",
+      "upgrade_path": "API-Football Pro (~$19/mes) o Odds API (~$30/mes) si se decide pagar"
+    },
+    "squads_and_injuries": {
+      "primary": "Transfermarkt scrape + entrada manual del usuario",
+      "trigger": "post-anuncio FIFA (~7 días antes del primer partido)"
+    }
+  },
+  "todo_user_to_fill": [
+    "Definir distribución de premio (winner-takes-all? top 3? por etapa?).",
+    "Definir desempate (pts en cuartos, goles a favor, monto?).",
+    "Definir deadline exacto por ronda (cierre 1 partido antes? jornada completa?).",
+    "Decidir si se clona el proyecto Lovable de Liga MX o se crea uno nuevo desde cero."
+  ]
+}

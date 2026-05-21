@@ -1,0 +1,22 @@
+{
+  "_comment": "Las 16 sedes oficiales del Mundial 2026. Altitud y clima impactan lambdas. Fuente: FIFA, datos públicos. TODO: verificar capacidad y techo (algunos tienen techo retráctil → menos impacto climático).",
+  "version": "2026.05.20",
+  "venues": {
+    "MetLife Stadium": {"city": "East Rutherford, NJ", "country": "United States", "altitude_m": 7, "climate": "templado_humedo", "roof": false},
+    "AT&T Stadium": {"city": "Arlington, TX", "country": "United States", "altitude_m": 184, "climate": "calido_humedo", "roof": true},
+    "SoFi Stadium": {"city": "Inglewood, CA", "country": "United States", "altitude_m": 30, "climate": "mediterraneo", "roof": true},
+    "Mercedes-Benz Stadium": {"city": "Atlanta, GA", "country": "United States", "altitude_m": 320, "climate": "calido_humedo", "roof": true},
+    "Levi's Stadium": {"city": "Santa Clara, CA", "country": "United States", "altitude_m": 5, "climate": "mediterraneo", "roof": false},
+    "Hard Rock Stadium": {"city": "Miami Gardens, FL", "country": "United States", "altitude_m": 3, "climate": "tropical", "roof": false},
+    "NRG Stadium": {"city": "Houston, TX", "country": "United States", "altitude_m": 13, "climate": "calido_humedo", "roof": true},
+    "Lumen Field": {"city": "Seattle, WA", "country": "United States", "altitude_m": 17, "climate": "templado_oceanico", "roof": false},
+    "Arrowhead Stadium": {"city": "Kansas City, MO", "country": "United States", "altitude_m": 271, "climate": "continental_humedo", "roof": false},
+    "Lincoln Financial Field": {"city": "Philadelphia, PA", "country": "United States", "altitude_m": 12, "climate": "templado_humedo", "roof": false},
+    "Gillette Stadium": {"city": "Foxborough, MA", "country": "United States", "altitude_m": 81, "climate": "continental_humedo", "roof": false},
+    "BMO Field": {"city": "Toronto, ON", "country": "Canada", "altitude_m": 75, "climate": "continental_humedo", "roof": false},
+    "BC Place": {"city": "Vancouver, BC", "country": "Canada", "altitude_m": 0, "climate": "templado_oceanico", "roof": true},
+    "Estadio Azteca": {"city": "Mexico City", "country": "Mexico", "altitude_m": 2240, "climate": "templado_seco", "roof": false},
+    "Estadio Akron": {"city": "Guadalajara", "country": "Mexico", "altitude_m": 1567, "climate": "templado_seco", "roof": false},
+    "Estadio BBVA": {"city": "Monterrey", "country": "Mexico", "altitude_m": 537, "climate": "calido_seco", "roof": false}
+  }
+}
