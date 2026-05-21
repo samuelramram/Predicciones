@@ -104,6 +104,12 @@ class ModelConfig:
     # plays where the EV given up is small enough to be worth the differentiation.
     contrarian_max_ev_sacrifice: float = 0.15
 
+    # WC group stage matches score ~2.81 goals/match (2010-2026) vs ~2.46 predicted
+    # from a model trained on all international results (qualifiers, friendlies).
+    # This multiplier inflates both λ_home and λ_away proportionally before the
+    # score-matrix is built, correcting the ~12% systematic underestimate.
+    wc_lambda_inflation: float = 1.12
+
 
 @dataclass(frozen=True)
 class RunConfig:

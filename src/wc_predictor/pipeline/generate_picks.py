@@ -189,6 +189,11 @@ def predict_match(fixture: dict, fit, venues: dict, elos: dict, odds: dict, rule
     lh, la = predict_lambdas(fit.strengths[home_name], fit.strengths[away_name],
                              fit.mu, fit.gamma, host=host)
 
+    # WC group stage scores ~12% more goals than general international results.
+    # Inflate both λ proportionally so the score-matrix reflects WC reality.
+    infl = mcfg.wc_lambda_inflation
+    lh, la = lh * infl, la * infl
+
     # Elo 1X2 from current snapshot
     r_h = elos.get(home_name, 1500.0)
     r_a = elos.get(away_name, 1500.0)

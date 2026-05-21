@@ -54,6 +54,8 @@ HARDCODED_PATTERNS: list[tuple[str, str]] = [
     (r"\bev_abstain_gap\s*=\s*",  "ev_abstain_gap hardcoded (use ModelConfig.ev_abstain_gap)"),
     (r"\bcontrarian_max_ev_sacrifice\s*=\s*",
      "contrarian_max_ev_sacrifice hardcoded (use ModelConfig.contrarian_max_ev_sacrifice)"),
+    (r"\bwc_lambda_inflation\s*=\s*",
+     "wc_lambda_inflation hardcoded (use ModelConfig.wc_lambda_inflation)"),
     (r"\bpool_participants\s*=\s*\d", "pool_participants hardcoded (use QuinielaRules.pool_participants)"),
 ]
 
