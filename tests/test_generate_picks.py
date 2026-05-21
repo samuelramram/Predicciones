@@ -58,9 +58,28 @@ def test_round_filter_rejects_unknown():
 def test_round_filter_jornada():
     pred, label = resolve_round_filter("j1")
     assert label == "j1"
+    # j1 covers group_round 1 and 2 (2 matches per group × 12 groups = 24 fixtures)
     assert pred({"group_round": 1}) is True
-    assert pred({"group_round": 2}) is False
+    assert pred({"group_round": 2}) is True
+    assert pred({"group_round": 3}) is False
     assert pred({}) is False  # non group-stage fixture has no group_round
+
+
+def test_round_filter_jornada_j2():
+    pred, label = resolve_round_filter("j2")
+    assert label == "j2"
+    assert pred({"group_round": 3}) is True
+    assert pred({"group_round": 4}) is True
+    assert pred({"group_round": 1}) is False
+    assert pred({"group_round": 5}) is False
+
+
+def test_round_filter_jornada_j3():
+    pred, label = resolve_round_filter("j3")
+    assert label == "j3"
+    assert pred({"group_round": 5}) is True
+    assert pred({"group_round": 6}) is True
+    assert pred({"group_round": 4}) is False
 
 
 def test_annotate_group_rounds_indexes_within_group_by_date():

@@ -4,7 +4,7 @@ Run from repo root, after fit_model + fit_elo have produced their artifacts:
 
     python -m wc_predictor.pipeline.generate_picks                 # all locked matches
     python -m wc_predictor.pipeline.generate_picks --round group_stage
-    python -m wc_predictor.pipeline.generate_picks --round j1      # jornada 1: 1er partido de cada grupo
+    python -m wc_predictor.pipeline.generate_picks --round j1      # jornada 1: 24 partidos (ronda 1 de todos los grupos)
     python -m wc_predictor.pipeline.generate_picks --round md1     # FIFA Matchday 1
     python -m wc_predictor.pipeline.generate_picks --round round_of_32
 
@@ -67,8 +67,11 @@ def _load_venues() -> dict:
 
 def _annotate_group_rounds(matches: list[dict]) -> None:
     """Tag each group-stage fixture with `group_round` (1..6): its chronological
-    index within its own group. Enables the `jN` filter — "jornada N" = the Nth
-    match of every group (one fixture per group, 12 per jornada)."""
+    index within its own group.
+
+    Each group of 4 teams plays 6 matches total (3 rounds × 2 matches/group).
+    Jornada N covers group_round values 2N-1 and 2N, giving 2×12=24 fixtures
+    per jornada across the 12 WC2026 groups."""
     by_group: dict[str, list[dict]] = {}
     for m in matches:
         if m.get("stage") == "group_stage" and m.get("group"):
@@ -95,8 +98,9 @@ def resolve_round_filter(round_spec: str):
     Accepted values:
       all                          → every fixture (default)
       group_stage                  → all 72 group matches
-      j1 .. j6                     → "jornada N": the Nth match of every group
-                                     (12 fixtures — one per group A..L)
+      j1 .. j3                     → "jornada N": one full group-stage round
+                                     j1 = group_round ∈ {1,2}, j2 = {3,4}, j3 = {5,6}
+                                     Each jornada covers 2 matches/group × 12 groups = 24 fixtures
       md1 .. md17                  → a single FIFA calendar matchday
       round_of_32 / round_of_16 / quarter_final / semi_final / third_place / final
     """
@@ -107,7 +111,9 @@ def resolve_round_filter(round_spec: str):
         return (lambda fx: fx["stage"] == "group_stage"), "group_stage"
     if spec.startswith("j") and spec[1:].isdigit():
         n = int(spec[1:])
-        return (lambda fx: fx.get("group_round") == n), f"j{n}"
+        # Each group plays 2 matches per round: group_round 1&2 = jornada 1, 3&4 = j2, 5&6 = j3
+        low, high = 2 * n - 1, 2 * n
+        return (lambda fx, lo=low, hi=high: fx.get("group_round") in {lo, hi}), f"j{n}"
     if spec.startswith("md") and spec[2:].isdigit():
         n = int(spec[2:])
         label_target = f"Matchday {n}"
@@ -116,7 +122,7 @@ def resolve_round_filter(round_spec: str):
         return (lambda fx: fx["stage"] == spec), spec
     raise SystemExit(
         f"Unknown --round value: {round_spec!r}. "
-        f"Use: all, group_stage, j1..j6, md1..md17, or one of {', '.join(KNOCKOUT_STAGES)}."
+        f"Use: all, group_stage, j1..j3, md1..md17, or one of {', '.join(KNOCKOUT_STAGES)}."
     )
 
 
@@ -564,7 +570,7 @@ def _write_markdown(picks: list[dict], pending: list[dict], rules, mcfg, dst: Pa
 def main():
     parser = argparse.ArgumentParser(description="Generate WC2026 quiniela picks for a round.")
     parser.add_argument("--round", default="all",
-                        help="all | group_stage | j1..j6 (jornada = Nº partido de cada grupo) "
+                        help="all | group_stage | j1..j3 (jornada = ronda completa de fase de grupos, 24 partidos) "
                              "| md1..md17 (matchday FIFA) | round_of_32 | round_of_16 "
                              "| quarter_final | semi_final | third_place | final")
     args = parser.parse_args()
