@@ -38,18 +38,24 @@ from datetime import datetime
 from pathlib import Path
 
 from wc_predictor.config import DEFAULT_CONFIG, HISTORICAL_DIR, OUTPUTS_DIR, PROCESSED_DIR, WC_DIR
-from wc_predictor.model.blend import blend_poisson_with_elo
+from wc_predictor.ingest.odds import load_cached_odds
+from wc_predictor.model.blend import blend_three_sources
 from wc_predictor.model.poisson_dc import load_fit, predict_lambdas
 from wc_predictor.ratings.elo import elo_to_1x2_probs
 from wc_predictor.scoring.quiniela import build_score_matrix, optimize_pick_from_cells
 from wc_predictor.utils import config_hash, file_sha256, git_commit, git_dirty
 
 
-# Production strategy: Poisson + Dixon-Coles with a 30% Elo blend, EV-optimal pick
-# constrained to forbid draws. Selected via 5-tournament backtest (197 pts vs the
-# baseline always_1_0's 186 over 275 matches — 4 of 5 tournaments won, tie in WC2018).
-PROD_W_ELO = 0.30
-PROD_W_POISSON = 1.0 - PROD_W_ELO
+# Production blend. Without odds: Poisson 70% / Elo 30% (= blend_w30, backtested
+# optimal over 275 matches). With odds available, bookmaker probabilities take a
+# fixed slice and the Poisson:Elo pair keeps its 70:30 ratio on the remainder.
+#
+# PROD_W_ODDS is a literature-based default (closing odds are near-efficient;
+# market Brier ~0.23 vs our model ~0.58). It is NOT backtested — no free historical
+# international odds dataset exists. Tune it later via The Odds API historical
+# endpoint once a key is available. The pick is EV-optimal, draws forbidden.
+PROD_W_ODDS = 0.55
+PROD_POISSON_ELO_SPLIT = 0.70  # Poisson share of the non-odds weight
 PROD_FORBID = ("X",)
 
 
@@ -119,15 +125,27 @@ def _host_role(fixture: dict, venues: dict) -> str | None:
     return None
 
 
-def predict_match(fixture: dict, fit, venues: dict, elos: dict, rules, mcfg):
+def _odds_weights(have_odds: bool) -> tuple[float, float, float]:
+    """Return (w_poisson, w_elo, w_odds). With odds the Poisson:Elo pair keeps its
+    70:30 ratio on the (1 - w_odds) remainder; without odds it collapses to the
+    backtested blend_w30 (0.70 / 0.30 / 0.0)."""
+    if have_odds:
+        rem = 1.0 - PROD_W_ODDS
+        return rem * PROD_POISSON_ELO_SPLIT, rem * (1.0 - PROD_POISSON_ELO_SPLIT), PROD_W_ODDS
+    return PROD_POISSON_ELO_SPLIT, 1.0 - PROD_POISSON_ELO_SPLIT, 0.0
+
+
+def predict_match(fixture: dict, fit, venues: dict, elos: dict, odds: dict, rules, mcfg):
     """Return a pick dict for a locked fixture, or None if not predictable yet.
 
-    Pipeline (production = blend_w30_ev_no_draw, per Phase 4 backtest):
+    Pipeline:
       1. Compute (lambda_home, lambda_away) from the Poisson + DC fit.
       2. Compute (P_1, P_X, P_2) from Elo using pre-match ratings + host bonus.
-      3. Blend Poisson marginals with Elo marginals (log-pool, w_elo=0.30).
-      4. Rescale the Poisson score-matrix so its outcome marginals match the blend.
-      5. Run optimize_pick_from_cells with forbid_outcomes=("X",) — never pick draws.
+      3. Look up bookmaker odds for this match (if available).
+      4. Log-pool Poisson + Elo + Odds 1X2 marginals (odds dropped gracefully
+         if not covered → falls back to the backtested 70/30 Poisson/Elo blend).
+      5. Rescale the Poisson score-matrix to the blended marginals.
+      6. optimize_pick_from_cells with forbid_outcomes=("X",) — never pick draws.
     """
     if not (fixture["home_locked"] and fixture["away_locked"]):
         return None
@@ -153,11 +171,19 @@ def predict_match(fixture: dict, fit, venues: dict, elos: dict, rules, mcfg):
         home_adv_elo = -mcfg.elo_home_bonus
     elo_p1, elo_px, elo_p2 = elo_to_1x2_probs(r_h, r_a, home_adv_elo)
 
-    # Poisson + DC cells, then blend with Elo and rescale.
+    # Bookmaker odds for this match, if covered.
+    odds_entry = odds.get(f"{home_name}|{away_name}")
+    odds_1x2 = None
+    if odds_entry:
+        odds_1x2 = (odds_entry["p1"], odds_entry["px"], odds_entry["p2"])
+
+    w_poisson, w_elo, w_odds = _odds_weights(odds_1x2 is not None)
+
+    # Poisson + DC cells, then 3-way blend and rescale.
     pcells, pp1, ppx, pp2, pmass, pmax = build_score_matrix(lh, la, mcfg)
-    cells_b, p1_b, px_b, p2_b = blend_poisson_with_elo(
-        pcells, pp1, ppx, pp2, elo_p1, elo_px, elo_p2,
-        w_poisson=PROD_W_POISSON, w_elo=PROD_W_ELO,
+    cells_b, p1_b, px_b, p2_b = blend_three_sources(
+        pcells, (pp1, ppx, pp2), (elo_p1, elo_px, elo_p2), odds_1x2,
+        w_poisson=w_poisson, w_elo=w_elo, w_odds=w_odds,
     )
     pick = optimize_pick_from_cells(
         cells_b, p1_b, px_b, p2_b, pmass, pmax, rules, mcfg,
@@ -179,7 +205,12 @@ def predict_match(fixture: dict, fit, venues: dict, elos: dict, rules, mcfg):
         "elo_p1": round(elo_p1, 3),
         "elo_px": round(elo_px, 3),
         "elo_p2": round(elo_p2, 3),
-        "blend_w_elo": PROD_W_ELO,
+        "odds_p1": round(odds_1x2[0], 3) if odds_1x2 else None,
+        "odds_px": round(odds_1x2[1], 3) if odds_1x2 else None,
+        "odds_p2": round(odds_1x2[2], 3) if odds_1x2 else None,
+        "odds_n_books": odds_entry["n_books"] if odds_entry else 0,
+        "blend_weights": {"poisson": round(w_poisson, 3), "elo": round(w_elo, 3),
+                          "odds": round(w_odds, 3)},
         "lambda_home": round(lh, 3),
         "lambda_away": round(la, 3),
         "p_home_win": round(pick.prob_home_win, 3),
@@ -278,9 +309,19 @@ def main():
         raise SystemExit("Missing data/historical/elo_current.json. Run "
                          "`python -m wc_predictor.pipeline.fit_elo` first.")
     print(f"Loaded Elo for {len(elos)} teams")
+
+    odds = load_cached_odds()
+    if odds:
+        print(f"Loaded bookmaker odds for {len(odds)} matches "
+              f"(3-way blend: {int((1-PROD_W_ODDS)*PROD_POISSON_ELO_SPLIT*100)}% Poisson / "
+              f"{int((1-PROD_W_ODDS)*(1-PROD_POISSON_ELO_SPLIT)*100)}% Elo / "
+              f"{int(PROD_W_ODDS*100)}% odds)")
+    else:
+        print("No cached odds (data/raw/odds_the_odds_api.json) — "
+              "falling back to 70/30 Poisson/Elo blend. "
+              "Run `python -m wc_predictor.ingest.fetch_odds` with THE_ODDS_API_KEY set to enable.")
+
     print(f"Round filter: {round_label}")
-    print(f"Production strategy: blend_w{int(PROD_W_ELO*100):02d}_ev_no_draw "
-          f"(Poisson + DC blended with {int(PROD_W_ELO*100)}% Elo, forbidding X)")
 
     rules = DEFAULT_CONFIG.rules
     mcfg = DEFAULT_CONFIG.model
@@ -295,7 +336,7 @@ def main():
     errors: list[dict] = []
 
     for fixture in selected:
-        result = predict_match(fixture, fit, venues, elos, rules, mcfg)
+        result = predict_match(fixture, fit, venues, elos, odds, rules, mcfg)
         if result is None:
             pending.append(fixture)
             continue
@@ -324,7 +365,8 @@ def main():
                       "exclusive": rules.exclusive},
             "model": {"mu": fit.mu, "gamma": fit.gamma, "rho": fit.rho,
                       "n_teams": fit.n_teams, "n_matches": fit.n_matches,
-                      "strategy": f"blend_w{int(PROD_W_ELO*100):02d}_ev_no_draw"},
+                      "strategy": "poisson+elo+odds blend, ev_no_draw",
+                      "odds_matches": len(odds)},
             "picks": picks,
             "pending_knockouts": [
                 {"date": f["date"], "stage": f["stage"],

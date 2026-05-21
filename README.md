@@ -109,11 +109,25 @@ de red (re-corre con los datos ya en `data/raw/`).
 ```bash
 python -m wc_predictor.ingest.martj42 --bootstrap --refetch       # histórico training
 python -m wc_predictor.ingest.openfootball --bootstrap --refetch  # 104 fixtures WC2026
+python -m wc_predictor.ingest.fetch_odds                          # odds bookmakers (opcional, ver abajo)
 python -m wc_predictor.pipeline.fit_elo                           # replay Elo internacional
 python -m wc_predictor.pipeline.fit_model                         # fit Poisson + Dixon-Coles
 python -m wc_predictor.pipeline.generate_picks --round group_stage
 python -m wc_predictor.pipeline.backtest                          # validación 5 torneos
+python -m wc_predictor.pipeline.simulate_pool                     # simulación de pool 30 personas
 ```
+
+**Odds de bookmakers (opcional pero recomendado):** el mercado es el predictor individual
+más fuerte. Para activarlo, consigue una API key gratis en
+[the-odds-api.com](https://the-odds-api.com/) (500 créditos/mes, sin tarjeta), ponla en
+`.env` como `THE_ODDS_API_KEY=...`, y corre `python -m wc_predictor.ingest.fetch_odds`.
+El modelo pasa automáticamente a un blend de 3 vías (Poisson + Elo + odds). Sin key,
+cae al blend de 2 vías (Poisson 70% / Elo 30%) — backtesteado y funcional.
+
+> Nota: el odds blend NO está backtesteado — no existe un dataset gratuito de odds
+> históricas de selecciones. El peso de las odds (55%) es un default basado en literatura
+> (las cuotas de cierre son casi eficientes). Se puede afinar con el endpoint histórico
+> de The Odds API una vez haya key.
 
 **Fuentes verificadas y usadas:**
 - [`martj42/international_results`](https://github.com/martj42/international_results) (CC0) —

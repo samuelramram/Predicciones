@@ -89,3 +89,31 @@ def blend_poisson_with_elo(
     )
     cells = rescale_cells_to_marginals(poisson_cells, p1, px, p2)
     return cells, p1, px, p2
+
+
+def blend_three_sources(
+    poisson_cells: list[dict],
+    poisson_1x2: tuple[float, float, float],
+    elo_1x2: tuple[float, float, float],
+    odds_1x2: tuple[float, float, float] | None,
+    w_poisson: float,
+    w_elo: float,
+    w_odds: float,
+) -> tuple[list[dict], float, float, float]:
+    """Blend Poisson + Elo + (optionally) bookmaker odds.
+
+    The score-matrix SHAPE always comes from the Poisson cells; the blend only
+    re-balances the 1X2 marginals. When `odds_1x2` is None (no key / match not
+    covered), the odds weight is dropped and redistributed proportionally to
+    Poisson and Elo — so a missing odds source degrades gracefully to the
+    proven 2-way blend.
+    """
+    triplets = [poisson_1x2, elo_1x2]
+    weights = [w_poisson, w_elo]
+    if odds_1x2 is not None:
+        triplets.append(odds_1x2)
+        weights.append(w_odds)
+    # log_pool renormalizes weights internally, so dropping odds just reweights.
+    p1, px, p2 = log_pool(triplets, weights)
+    cells = rescale_cells_to_marginals(poisson_cells, p1, px, p2)
+    return cells, p1, px, p2
