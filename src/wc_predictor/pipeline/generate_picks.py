@@ -1,31 +1,37 @@
-"""Generate picks for the group stage from the fitted Poisson+DC model.
+"""Generate picks from the fitted model for a chosen round of the tournament.
 
-Run from repo root, after fit_model has produced team_strengths.json:
+Run from repo root, after fit_model + fit_elo have produced their artifacts:
 
-    python -m wc_predictor.pipeline.generate_picks
+    python -m wc_predictor.pipeline.generate_picks                 # all locked matches
+    python -m wc_predictor.pipeline.generate_picks --round group_stage
+    python -m wc_predictor.pipeline.generate_picks --round md1     # FIFA Matchday 1
+    python -m wc_predictor.pipeline.generate_picks --round round_of_32
 
 Reads:
     data/processed/team_strengths.json
     data/wc2026/fixtures.json
     data/wc2026/venues.json
+    data/historical/elo_current.json
 
-Writes:
-    outputs/picks_group_stage.csv          one row per match (for spreadsheets)
-    outputs/picks_group_stage.json         richer payload (for the webapp / paste)
-    outputs/picks_group_stage.md           human-readable report
-    outputs/fingerprint_group_stage.json   reproducibility hash
+Writes (suffix = the round label):
+    outputs/picks_{round}.csv          one row per match (for spreadsheets)
+    outputs/picks_{round}.json         richer payload (for the webapp / paste)
+    outputs/picks_{round}.md           human-readable report
+    outputs/fingerprint_{round}.json   reproducibility hash
 
-For each LOCKED fixture (group stage + any resolved knockouts):
-  1. Determine neutral flag: not neutral iff venue country == home_team country.
+For each LOCKED fixture in the round:
+  1. Determine host role from venue country vs the two teams.
   2. Predict (lambda_home, lambda_away) from fitted strengths.
-  3. Run optimize_pick to choose the (1X2, exact) pair maximizing EV.
-  4. Flag ABSTAIN if the EV gap to the second-best candidate is small.
+  3. Blend Poisson 1X2 with Elo 1X2 (log-pool, w_elo=0.30).
+  4. Run the EV optimizer (forbidding draws) to pick (1X2, exact).
+  5. Flag ABSTAIN if the EV gap to the second-best candidate is small.
 
 Knockout fixtures whose teams aren't decided yet (home_locked=False) are listed
-in the report as "pending bracket resolution" and re-run after each round.
+as "pending bracket resolution" and re-run after each round.
 """
 from __future__ import annotations
 
+import argparse
 import csv
 import json
 from datetime import datetime
@@ -55,6 +61,35 @@ def _load_venues() -> dict:
 def _load_fixtures() -> dict:
     with (WC_DIR / "fixtures.json").open(encoding="utf-8") as f:
         return json.load(f)
+
+
+KNOCKOUT_STAGES = ("round_of_32", "round_of_16", "quarter_final", "semi_final", "third_place", "final")
+
+
+def resolve_round_filter(round_spec: str):
+    """Return (predicate, label) for a --round argument.
+
+    Accepted values:
+      all                          → every fixture (default)
+      group_stage                  → all 72 group matches
+      md1 .. md17                  → a single FIFA matchday
+      round_of_32 / round_of_16 / quarter_final / semi_final / third_place / final
+    """
+    spec = round_spec.strip().lower()
+    if spec in ("all", ""):
+        return (lambda fx: True), "all"
+    if spec == "group_stage":
+        return (lambda fx: fx["stage"] == "group_stage"), "group_stage"
+    if spec.startswith("md") and spec[2:].isdigit():
+        n = int(spec[2:])
+        label_target = f"Matchday {n}"
+        return (lambda fx: fx.get("round_label") == label_target), f"md{n}"
+    if spec in KNOCKOUT_STAGES:
+        return (lambda fx: fx["stage"] == spec), spec
+    raise SystemExit(
+        f"Unknown --round value: {round_spec!r}. "
+        f"Use: all, group_stage, md1..md17, or one of {', '.join(KNOCKOUT_STAGES)}."
+    )
 
 
 def _load_elos() -> dict[str, float]:
@@ -172,11 +207,12 @@ def _write_csv(picks: list[dict], dst: Path) -> None:
             w.writerow(p)
 
 
-def _write_markdown(picks: list[dict], pending: list[dict], rules, mcfg, dst: Path) -> None:
-    lines = ["# Picks — Mundial 2026 (fase de grupos)\n"]
+def _write_markdown(picks: list[dict], pending: list[dict], rules, mcfg, dst: Path,
+                    round_label: str = "all") -> None:
+    lines = [f"# Picks — Mundial 2026 (ronda: {round_label})\n"]
     lines.append(f"Generado: {datetime.utcnow().isoformat()}Z  ")
     lines.append(f"Scoring: {rules.points_exact} pts exacto / {rules.points_1x2} pt 1X2 (excluyente={rules.exclusive})\n")
-    lines.append(f"Modelo: Poisson + Dixon-Coles (ρ={mcfg.dc_rho}), grilla adaptativa, optimizer EV.\n")
+    lines.append(f"Modelo: Poisson + Dixon-Coles (ρ={mcfg.dc_rho}) blended 30% Elo, optimizer EV sin empates.\n")
 
     # Sumary numbers
     total_ev = sum(p["ev"] for p in picks)
@@ -215,6 +251,13 @@ def _write_markdown(picks: list[dict], pending: list[dict], rules, mcfg, dst: Pa
 
 
 def main():
+    parser = argparse.ArgumentParser(description="Generate WC2026 quiniela picks for a round.")
+    parser.add_argument("--round", default="all",
+                        help="all | group_stage | md1..md17 | round_of_32 | round_of_16 "
+                             "| quarter_final | semi_final | third_place | final")
+    args = parser.parse_args()
+    round_filter, round_label = resolve_round_filter(args.round)
+
     fit_src = PROCESSED_DIR / "team_strengths.json"
     if not fit_src.exists():
         raise SystemExit(
@@ -235,17 +278,23 @@ def main():
         raise SystemExit("Missing data/historical/elo_current.json. Run "
                          "`python -m wc_predictor.pipeline.fit_elo` first.")
     print(f"Loaded Elo for {len(elos)} teams")
+    print(f"Round filter: {round_label}")
     print(f"Production strategy: blend_w{int(PROD_W_ELO*100):02d}_ev_no_draw "
           f"(Poisson + DC blended with {int(PROD_W_ELO*100)}% Elo, forbidding X)")
 
     rules = DEFAULT_CONFIG.rules
     mcfg = DEFAULT_CONFIG.model
 
+    selected = [fx for fx in fixtures_doc["matches"] if round_filter(fx)]
+    if not selected:
+        raise SystemExit(f"No fixtures match --round {args.round!r}.")
+    print(f"  {len(selected)} fixtures in round '{round_label}'")
+
     picks: list[dict] = []
     pending: list[dict] = []
     errors: list[dict] = []
 
-    for fixture in fixtures_doc["matches"]:
+    for fixture in selected:
         result = predict_match(fixture, fit, venues, elos, rules, mcfg)
         if result is None:
             pending.append(fixture)
@@ -262,18 +311,20 @@ def main():
 
     OUTPUTS_DIR.mkdir(parents=True, exist_ok=True)
 
-    csv_dst = OUTPUTS_DIR / "picks_group_stage.csv"
+    csv_dst = OUTPUTS_DIR / f"picks_{round_label}.csv"
     _write_csv(picks, csv_dst)
     print(f"  wrote {csv_dst}")
 
-    json_dst = OUTPUTS_DIR / "picks_group_stage.json"
+    json_dst = OUTPUTS_DIR / f"picks_{round_label}.json"
     with json_dst.open("w", encoding="utf-8") as f:
         json.dump({
             "as_of": datetime.utcnow().isoformat() + "Z",
+            "round": round_label,
             "rules": {"points_exact": rules.points_exact, "points_1x2": rules.points_1x2,
                       "exclusive": rules.exclusive},
             "model": {"mu": fit.mu, "gamma": fit.gamma, "rho": fit.rho,
-                      "n_teams": fit.n_teams, "n_matches": fit.n_matches},
+                      "n_teams": fit.n_teams, "n_matches": fit.n_matches,
+                      "strategy": f"blend_w{int(PROD_W_ELO*100):02d}_ev_no_draw"},
             "picks": picks,
             "pending_knockouts": [
                 {"date": f["date"], "stage": f["stage"],
@@ -284,14 +335,15 @@ def main():
         }, f, indent=2, ensure_ascii=False)
     print(f"  wrote {json_dst}")
 
-    md_dst = OUTPUTS_DIR / "picks_group_stage.md"
-    _write_markdown(picks, pending, rules, mcfg, md_dst)
+    md_dst = OUTPUTS_DIR / f"picks_{round_label}.md"
+    _write_markdown(picks, pending, rules, mcfg, md_dst, round_label)
     print(f"  wrote {md_dst}")
 
-    fp_dst = OUTPUTS_DIR / "fingerprint_group_stage.json"
+    fp_dst = OUTPUTS_DIR / f"fingerprint_{round_label}.json"
     with fp_dst.open("w", encoding="utf-8") as f:
         json.dump({
             "generated_at": datetime.utcnow().isoformat() + "Z",
+            "round": round_label,
             "git_commit": git_commit(),
             "git_dirty": git_dirty(),
             "config_hash": config_hash(DEFAULT_CONFIG),
@@ -301,9 +353,9 @@ def main():
                 "data/wc2026/venues.json": file_sha256(WC_DIR / "venues.json"),
             },
             "outputs": {
-                "picks_group_stage.csv": file_sha256(csv_dst),
-                "picks_group_stage.json": file_sha256(json_dst),
-                "picks_group_stage.md": file_sha256(md_dst),
+                csv_dst.name: file_sha256(csv_dst),
+                json_dst.name: file_sha256(json_dst),
+                md_dst.name: file_sha256(md_dst),
             },
             "n_picks": len(picks),
             "n_pending": len(pending),
