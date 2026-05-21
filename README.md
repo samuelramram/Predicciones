@@ -91,14 +91,28 @@ llenan el resto. Ver `data/wc2026/rules.json` para las reglas exactas del pool +
 | `historical/international_matches.csv` | **`ingest.martj42`** | martj42/international_results | Bootstrap + semanal |
 | `historical/elo_history.csv` | TODO Phase 2 | replay propio sobre martj42 | Bootstrap |
 
-### Pipeline de ingesta (Phase 1, funcionando)
+### Cómo correr el pipeline
+
+**Un solo comando (recomendado)** — orquesta ingesta → Elo → fit → picks:
 
 ```bash
-# Histórico de entrenamiento (~11.7k partidos internacionales 2014→hoy)
-python -m wc_predictor.ingest.martj42 --bootstrap --refetch
+python -m wc_predictor.pipeline.run --round md1
+python -m wc_predictor.pipeline.run --round round_of_32 --skip-fetch
+```
 
-# 104 fixtures del Mundial 2026 (72 grupos + 32 eliminatorias con placeholders)
-python -m wc_predictor.ingest.openfootball --bootstrap --refetch
+`--round` acepta: `all`, `group_stage`, `md1`..`md17`, `round_of_32`, `round_of_16`,
+`quarter_final`, `semi_final`, `third_place`, `final`. `--skip-fetch` omite la descarga
+de red (re-corre con los datos ya en `data/raw/`).
+
+**Por etapas (debug / desarrollo):**
+
+```bash
+python -m wc_predictor.ingest.martj42 --bootstrap --refetch       # histórico training
+python -m wc_predictor.ingest.openfootball --bootstrap --refetch  # 104 fixtures WC2026
+python -m wc_predictor.pipeline.fit_elo                           # replay Elo internacional
+python -m wc_predictor.pipeline.fit_model                         # fit Poisson + Dixon-Coles
+python -m wc_predictor.pipeline.generate_picks --round group_stage
+python -m wc_predictor.pipeline.backtest                          # validación 5 torneos
 ```
 
 **Fuentes verificadas y usadas:**
@@ -149,33 +163,43 @@ de football-data.co.uk / etc.).
 
 ---
 
-## Cómo correr (Phase 0 — limpieza + esqueleto. Pipeline real arranca en Phase 1)
+## Setup
 
 ```bash
 python -m venv .venv
 source .venv/bin/activate          # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
-pytest                              # corre los tests del optimizer (los únicos hoy)
+pytest                              # 55 tests (optimizer, fit, Elo, blend, ingest, calibration)
 ```
 
 ---
 
-## Roadmap (3 semanas hasta el inicio del Mundial, 11 jun 2026)
+## Roadmap (Mundial arranca el 11 jun 2026)
 
-- [x] **Phase 0** — Limpieza, archivo Liga MX en `legacy/`, esqueleto del paquete, EV optimizer
-      + scorer + tests del optimizer.
-- [x] **Phase 1** — Ingesta de fuentes públicas. `ingest.martj42` (11.7k partidos histórico
-      2014→hoy) + `ingest.openfootball` (104 fixtures WC2026 con grupos A-L oficiales y
-      placeholders de bracket). 19/19 tests pasan.
-- [ ] **Phase 2 (días 3-7)** — Modelo base. MLE bivariate Poisson + Dixon-Coles sobre 2014-2026.
-      Replay del Elo internacional. Validación contra Mundial 2018 + 2022 + Euro 2024 + Copa América 2024.
-- [ ] **Phase 3 (días 7-14)** — Mejoras. xG features (StatsBomb open data), squad strength
-      (jfjelstul/worldcup + club Elo × minutos), host advantage CONCACAF, fatiga viaje/altitud,
-      blend con odds scrapeados.
-- [ ] **Phase 4 (días 14-19)** — Calibración + EV. Brier, reliability curves, backtest del
-      scorer sobre Mundiales anteriores, pipeline orchestrator.
-- [ ] **Phase 5 (días 19-21)** — Picks fase de grupos lockeados, dashboard mínimo (CSV+MD),
-      sistema de log post-ronda.
+- [x] **Phase 0** — Limpieza, archivo Liga MX en `legacy/`, esqueleto del paquete, EV optimizer.
+- [x] **Phase 1** — Ingesta. `ingest.martj42` (11.7k partidos histórico) + `ingest.openfootball`
+      (104 fixtures WC2026, grupos A-L oficiales, placeholders de bracket).
+- [x] **Phase 2** — Modelo base. MLE Poisson + Dixon-Coles. Replay Elo internacional
+      (49k partidos). Bivariate Poisson probado (λ₃≈0 → no aporta, independent Poisson confirmado).
+- [x] **Phase 3.1** — Elo blend. `blend_w30_ev_no_draw` (30% Elo + 70% Poisson, sin empates).
+      Backtest 5 torneos: 197 pts vs 186 del baseline `always_1_0` (+6%).
+- [x] **Phase 4** — Validación. Backtest sobre WC 2014/18/22 + Euro 2024 + Copa América 2024
+      (275 partidos). Calibración Brier + log-loss. Orquestador `pipeline.run`. CLI por ronda.
+- [ ] **Phase 3.2 (pendiente)** — Más features: odds scrapeadas (mayor ROI — cierra el gap de
+      calibración 0.58 → ~0.30), squad strength (jfjelstul/worldcup), altitud Azteca / fatiga.
+- [ ] **Phase 5 (pre-Mundial)** — Picks fase de grupos lockeados, simulación de pool (ranking
+      esperado entre 30 jugadores), sistema de log post-ronda.
+
+### Resultado del backtest (275 partidos, 5 torneos)
+
+| Estrategia | Total | Pts/match |
+|---|---:|---:|
+| **`blend_w30_ev_no_draw`** (producción) | **197** | **0.72** |
+| `always_1_0` (baseline trivial) | 186 | 0.68 |
+| `ev_optimal` (modelo Phase 2) | 182 | 0.66 |
+| `modal_poisson` | 136 | 0.49 |
+
+Calibración del modelo: Brier 0.585 (random uniforme 0.667; mercado Pinnacle ~0.23).
 
 ---
 
