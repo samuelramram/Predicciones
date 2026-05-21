@@ -85,9 +85,9 @@ class ModelConfig:
     elo_k_wc_knockout: float = 60.0
     elo_home_bonus: float = 80.0
 
-    blend_elo_weight: float = 0.40
-    blend_poisson_weight: float = 0.40
-    blend_odds_weight: float = 0.20
+    blend_elo_weight: float = 0.30
+    blend_poisson_weight: float = 0.70
+    blend_odds_weight: float = 0.55
 
     host_advantage_usa: float = 1.10
     host_advantage_mexico: float = 1.18
