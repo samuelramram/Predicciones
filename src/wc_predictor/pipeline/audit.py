@@ -52,6 +52,8 @@ HARDCODED_PATTERNS: list[tuple[str, str]] = [
     (r"\bpoints_1x2\s*=\s*\d",    "points_1x2 hardcoded (use QuinielaRules.points_1x2)"),
     (r"\bdc_rho\s*=\s*-",         "dc_rho hardcoded (use ModelConfig.dc_rho)"),
     (r"\bev_abstain_gap\s*=\s*",  "ev_abstain_gap hardcoded (use ModelConfig.ev_abstain_gap)"),
+    (r"\bcontrarian_max_ev_sacrifice\s*=\s*",
+     "contrarian_max_ev_sacrifice hardcoded (use ModelConfig.contrarian_max_ev_sacrifice)"),
     (r"\bpool_participants\s*=\s*\d", "pool_participants hardcoded (use QuinielaRules.pool_participants)"),
 ]
 

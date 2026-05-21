@@ -97,6 +97,13 @@ class ModelConfig:
 
     ev_abstain_gap: float = 0.02
 
+    # Contrarian (pool-leverage) pick is flagged "actionable" only when the
+    # individual-EV sacrifice vs the EV-optimal pick stays under this threshold.
+    # contrarian_score = ev / p_outcome always favours the underdog, so without
+    # this cap ~99% of matches would flag — the cap restricts the ◆ marker to
+    # plays where the EV given up is small enough to be worth the differentiation.
+    contrarian_max_ev_sacrifice: float = 0.15
+
 
 @dataclass(frozen=True)
 class RunConfig:
