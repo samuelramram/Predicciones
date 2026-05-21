@@ -103,6 +103,29 @@ def strategy_outcome_only_21(lh: float, la: float, mcfg: ModelConfig, rules: Qui
     return _favorite_pick(lh, la, "2-1", "1-2", "1-1")
 
 
+def strategy_contrarian(lh: float, la: float, mcfg: ModelConfig, rules: QuinielaRules) -> tuple[str, str]:
+    """Pool-leverage strategy: picks the outcome maximizing ev / p_outcome.
+
+    In a 30-person pool the relevant objective is finishing first, not maximising
+    individual expected points. When the EV-optimal pick is the consensus choice
+    (high p_outcome), a hit gives no relative edge over opponents who also picked
+    it. The contrarian strategy sacrifices a small amount of individual EV for
+    significantly higher uniqueness — if the under-picked outcome hits, the player
+    leaps ahead of most of the field.
+
+    Formula: contrarian_score = ev / p_outcome (draws not forbidden here; the
+    combinator chooses freely among whatever outcomes were not excluded upstream).
+    """
+    pick = optimize_pick(lh, la, rules, mcfg)
+    return pick.contrarian_pick_1x2, pick.contrarian_pick_exact
+
+
+def strategy_contrarian_no_draw(lh: float, la: float, mcfg: ModelConfig, rules: QuinielaRules) -> tuple[str, str]:
+    """Contrarian strategy with draws forbidden (mirrors the production constraint)."""
+    pick = optimize_pick(lh, la, rules, mcfg, forbid_outcomes=("X",))
+    return pick.contrarian_pick_1x2, pick.contrarian_pick_exact
+
+
 STRATEGIES: dict[str, Strategy] = {
     "ev_optimal": strategy_ev_optimal,
     "ev_no_draw": strategy_ev_no_draw,
@@ -110,6 +133,8 @@ STRATEGIES: dict[str, Strategy] = {
     "always_1_0": strategy_always_1_0,
     "always_2_1": strategy_always_2_1,
     "outcome_only_21": strategy_outcome_only_21,
+    "contrarian": strategy_contrarian,
+    "contrarian_no_draw": strategy_contrarian_no_draw,
 }
 
 

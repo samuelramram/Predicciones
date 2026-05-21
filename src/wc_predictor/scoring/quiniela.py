@@ -66,6 +66,13 @@ class PickResult:
     top_5_by_prob: list[dict]
     grid_max_goals: int
     captured_mass: float
+    # Pool-leverage (contrarian) fields — populated by optimize_pick_from_cells.
+    # contrarian_score = ev / p_outcome: rewards outcomes the public under-picks.
+    # When contrarian_pick_1x2 != pick_1x2 the model sees a differentiation opportunity.
+    contrarian_pick_1x2: str = ""
+    contrarian_pick_exact: str = ""
+    contrarian_ev: float = 0.0
+    contrarian_score: float = 0.0
 
 
 def build_score_matrix(
@@ -150,6 +157,14 @@ def optimize_pick_from_cells(
 
     top5 = sorted(cells, key=lambda c: c["prob"], reverse=True)[:5]
 
+    # Contrarian (pool-leverage) pick: highest ev / p_outcome ratio.
+    # When the EV-optimal outcome has high public popularity (high p_outcome),
+    # an under-picked outcome may offer better pool value even with lower EV.
+    c_score, c_ev, c_outcome, c_cell = max(
+        ((ev / max(outcome_marginals[o], 1e-9), ev, o, cell) for ev, o, cell in candidates),
+        key=lambda x: x[0],
+    )
+
     return PickResult(
         pick_1x2=best_outcome,
         pick_exact=best_cell["score"],
@@ -163,6 +178,10 @@ def optimize_pick_from_cells(
         top_5_by_prob=top5,
         grid_max_goals=max_goals,
         captured_mass=captured_mass,
+        contrarian_pick_1x2=c_outcome,
+        contrarian_pick_exact=c_cell["score"],
+        contrarian_ev=c_ev,
+        contrarian_score=c_score,
     )
 
 
