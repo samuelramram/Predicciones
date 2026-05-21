@@ -59,9 +59,9 @@ def _run_stage(args: list[str], description: str) -> bool:
 def main():
     parser = argparse.ArgumentParser(description="WC2026 predictor — full pipeline orchestrator.")
     parser.add_argument("--round", default="all",
-                        help="Round to generate picks for (all | group_stage | md1..md17 "
-                             "| round_of_32 | round_of_16 | quarter_final | semi_final "
-                             "| third_place | final).")
+                        help="Round to generate picks for (all | group_stage | j1..j6 "
+                             "| md1..md17 | round_of_32 | round_of_16 | quarter_final "
+                             "| semi_final | third_place | final).")
     parser.add_argument("--skip-fetch", action="store_true",
                         help="Skip the network ingest stages; use existing data/raw/.")
     args = parser.parse_args()

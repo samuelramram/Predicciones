@@ -9,6 +9,7 @@ import pytest
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
 from wc_predictor.pipeline.generate_picks import (
+    _annotate_group_rounds,
     _boleto_block,
     _fmt_score,
     _host_role,
@@ -54,6 +55,31 @@ def test_round_filter_rejects_unknown():
         resolve_round_filter("nonsense_round")
 
 
+def test_round_filter_jornada():
+    pred, label = resolve_round_filter("j1")
+    assert label == "j1"
+    assert pred({"group_round": 1}) is True
+    assert pred({"group_round": 2}) is False
+    assert pred({}) is False  # non group-stage fixture has no group_round
+
+
+def test_annotate_group_rounds_indexes_within_group_by_date():
+    matches = [
+        {"stage": "group_stage", "group": "A", "date": "2026-06-20", "match_id": 3},
+        {"stage": "group_stage", "group": "A", "date": "2026-06-11", "match_id": 1},
+        {"stage": "group_stage", "group": "A", "date": "2026-06-15", "match_id": 2},
+        {"stage": "group_stage", "group": "B", "date": "2026-06-12", "match_id": 4},
+        {"stage": "round_of_32", "group": None, "date": "2026-07-01", "match_id": 99},
+    ]
+    _annotate_group_rounds(matches)
+    by_id = {m["match_id"]: m for m in matches}
+    assert by_id[1]["group_round"] == 1   # earliest in group A
+    assert by_id[2]["group_round"] == 2
+    assert by_id[3]["group_round"] == 3
+    assert by_id[4]["group_round"] == 1   # group B counted independently
+    assert "group_round" not in by_id[99]  # knockout fixture untouched
+
+
 # --- Host role detection ---
 
 VENUES = {
@@ -94,7 +120,8 @@ def test_fmt_score_spaces_out_scoreline():
 def test_round_title_known_and_matchday_and_fallback():
     assert _round_title("group_stage") == "Fase de grupos"
     assert _round_title("quarter_final") == "Cuartos de final"
-    assert _round_title("md7") == "Jornada 7"
+    assert _round_title("j1") == "Jornada 1 · Fase de grupos"
+    assert _round_title("md7") == "Matchday 7 (FIFA)"
     assert _round_title("weird_label") == "weird_label"
 
 

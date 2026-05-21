@@ -4,6 +4,7 @@ Run from repo root, after fit_model + fit_elo have produced their artifacts:
 
     python -m wc_predictor.pipeline.generate_picks                 # all locked matches
     python -m wc_predictor.pipeline.generate_picks --round group_stage
+    python -m wc_predictor.pipeline.generate_picks --round j1      # jornada 1: 1er partido de cada grupo
     python -m wc_predictor.pipeline.generate_picks --round md1     # FIFA Matchday 1
     python -m wc_predictor.pipeline.generate_picks --round round_of_32
 
@@ -64,9 +65,25 @@ def _load_venues() -> dict:
         return json.load(f)["venues"]
 
 
+def _annotate_group_rounds(matches: list[dict]) -> None:
+    """Tag each group-stage fixture with `group_round` (1..6): its chronological
+    index within its own group. Enables the `jN` filter — "jornada N" = the Nth
+    match of every group (one fixture per group, 12 per jornada)."""
+    by_group: dict[str, list[dict]] = {}
+    for m in matches:
+        if m.get("stage") == "group_stage" and m.get("group"):
+            by_group.setdefault(m["group"], []).append(m)
+    for group_matches in by_group.values():
+        ordered = sorted(group_matches, key=lambda x: (x["date"], x.get("date_utc", "")))
+        for idx, m in enumerate(ordered, start=1):
+            m["group_round"] = idx
+
+
 def _load_fixtures() -> dict:
     with (WC_DIR / "fixtures.json").open(encoding="utf-8") as f:
-        return json.load(f)
+        doc = json.load(f)
+    _annotate_group_rounds(doc["matches"])
+    return doc
 
 
 KNOCKOUT_STAGES = ("round_of_32", "round_of_16", "quarter_final", "semi_final", "third_place", "final")
@@ -78,7 +95,9 @@ def resolve_round_filter(round_spec: str):
     Accepted values:
       all                          → every fixture (default)
       group_stage                  → all 72 group matches
-      md1 .. md17                  → a single FIFA matchday
+      j1 .. j6                     → "jornada N": the Nth match of every group
+                                     (12 fixtures — one per group A..L)
+      md1 .. md17                  → a single FIFA calendar matchday
       round_of_32 / round_of_16 / quarter_final / semi_final / third_place / final
     """
     spec = round_spec.strip().lower()
@@ -86,6 +105,9 @@ def resolve_round_filter(round_spec: str):
         return (lambda fx: True), "all"
     if spec == "group_stage":
         return (lambda fx: fx["stage"] == "group_stage"), "group_stage"
+    if spec.startswith("j") and spec[1:].isdigit():
+        n = int(spec[1:])
+        return (lambda fx: fx.get("group_round") == n), f"j{n}"
     if spec.startswith("md") and spec[2:].isdigit():
         n = int(spec[2:])
         label_target = f"Matchday {n}"
@@ -94,7 +116,7 @@ def resolve_round_filter(round_spec: str):
         return (lambda fx: fx["stage"] == spec), spec
     raise SystemExit(
         f"Unknown --round value: {round_spec!r}. "
-        f"Use: all, group_stage, md1..md17, or one of {', '.join(KNOCKOUT_STAGES)}."
+        f"Use: all, group_stage, j1..j6, md1..md17, or one of {', '.join(KNOCKOUT_STAGES)}."
     )
 
 
@@ -266,7 +288,9 @@ def _round_title(label: str) -> str:
     if label in ROUND_TITLES:
         return ROUND_TITLES[label]
     if label.startswith("md") and label[2:].isdigit():
-        return f"Jornada {label[2:]}"
+        return f"Matchday {label[2:]} (FIFA)"
+    if label.startswith("j") and label[1:].isdigit():
+        return f"Jornada {label[1:]} · Fase de grupos"
     return label
 
 
@@ -540,7 +564,8 @@ def _write_markdown(picks: list[dict], pending: list[dict], rules, mcfg, dst: Pa
 def main():
     parser = argparse.ArgumentParser(description="Generate WC2026 quiniela picks for a round.")
     parser.add_argument("--round", default="all",
-                        help="all | group_stage | md1..md17 | round_of_32 | round_of_16 "
+                        help="all | group_stage | j1..j6 (jornada = Nº partido de cada grupo) "
+                             "| md1..md17 (matchday FIFA) | round_of_32 | round_of_16 "
                              "| quarter_final | semi_final | third_place | final")
     args = parser.parse_args()
     round_filter, round_label = resolve_round_filter(args.round)
