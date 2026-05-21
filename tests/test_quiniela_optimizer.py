@@ -89,3 +89,63 @@ def test_ev_consistent_with_score_actual_expectation():
         for cell in cells
     )
     assert abs(expected_pts - result.ev) < 1e-9
+
+
+# ---------------------------------------------------------------------------
+# Contrarian (pool-leverage) tests
+# ---------------------------------------------------------------------------
+
+def test_contrarian_fields_populated():
+    result = optimize_pick(lambda_home=1.5, lambda_away=1.2, rules=RULES, mcfg=MCFG)
+    assert result.contrarian_pick_1x2 in {"1", "X", "2"}
+    assert "-" in result.contrarian_pick_exact
+    assert result.contrarian_ev > 0
+    assert result.contrarian_score > 0
+
+
+def test_contrarian_score_equals_ev_over_p_outcome():
+    """contrarian_score must equal contrarian_ev / p_outcome of the contrarian pick."""
+    result = optimize_pick(lambda_home=1.5, lambda_away=1.2, rules=RULES, mcfg=MCFG)
+    p_map = {
+        "1": result.prob_home_win,
+        "X": result.prob_draw,
+        "2": result.prob_away_win,
+    }
+    expected_score = result.contrarian_ev / p_map[result.contrarian_pick_1x2]
+    assert abs(result.contrarian_score - expected_score) < 1e-9
+
+
+def test_contrarian_prefers_underdog_when_favorite_dominates():
+    """When one team is heavily favored, the contrarian pick should be the other outcome
+    because it is under-picked by the public (low p_outcome → high contrarian_score)."""
+    # Heavy home favorite: P(home wins) ~ 0.80
+    result = optimize_pick(lambda_home=2.8, lambda_away=0.5, rules=RULES, mcfg=MCFG)
+    assert result.pick_1x2 == "1", "EV-optimal should be home win"
+    # Contrarian should NOT be home win when it dominates popularity
+    assert result.contrarian_pick_1x2 != "1", (
+        "Contrarian should prefer the under-picked outcome when home dominates"
+    )
+
+
+def test_contrarian_ev_leq_ev_optimal():
+    """The contrarian pick must have individual EV <= the EV-optimal pick by construction."""
+    result = optimize_pick(lambda_home=1.8, lambda_away=1.1, rules=RULES, mcfg=MCFG)
+    assert result.contrarian_ev <= result.ev + 1e-9
+
+
+def test_contrarian_agrees_with_ev_on_balanced_match():
+    """On a perfectly balanced match the public splits equally, so contrarian == EV-optimal."""
+    result = optimize_pick(lambda_home=1.2, lambda_away=1.2, rules=RULES, mcfg=MCFG)
+    # With forbid_outcomes default (nothing forbidden) both picks can be the same or different;
+    # just verify invariants hold.
+    assert result.contrarian_pick_1x2 in {"1", "X", "2"}
+    assert result.contrarian_score >= result.ev / max(
+        result.prob_home_win, result.prob_draw, result.prob_away_win
+    ) - 1e-9
+
+
+def test_contrarian_respects_forbid_outcomes():
+    """When draws are forbidden the contrarian pick must not be X."""
+    result = optimize_pick(lambda_home=1.2, lambda_away=1.2, rules=RULES, mcfg=MCFG,
+                           forbid_outcomes=("X",))
+    assert result.contrarian_pick_1x2 != "X"

@@ -222,6 +222,11 @@ def predict_match(fixture: dict, fit, venues: dict, elos: dict, odds: dict, rule
         "ev": round(pick.ev, 3),
         "ev_gap": round(pick.ev_confidence_gap, 3),
         "abstain": pick.abstain,
+        "contrarian_pick_1x2": pick.contrarian_pick_1x2,
+        "contrarian_pick_exact": pick.contrarian_pick_exact,
+        "contrarian_ev": round(pick.contrarian_ev, 3),
+        "contrarian_score": round(pick.contrarian_score, 3),
+        "contrarian_differs": pick.contrarian_pick_1x2 != pick.pick_1x2,
         "top_5_scores": [{"score": c["score"], "prob": round(c["prob"], 3)} for c in pick.top_5_by_prob],
     }
 
@@ -229,6 +234,7 @@ def predict_match(fixture: dict, fit, venues: dict, elos: dict, odds: dict, rule
 def _write_csv(picks: list[dict], dst: Path) -> None:
     cols = ["date", "stage", "group", "home", "away", "venue",
             "pick_1x2", "pick_exact", "ev", "ev_gap", "abstain",
+            "contrarian_pick_1x2", "contrarian_pick_exact", "contrarian_ev", "contrarian_score", "contrarian_differs",
             "p_home_win", "p_draw", "p_away_win", "p_exact",
             "lambda_home", "lambda_away", "match_id"]
     with dst.open("w", encoding="utf-8", newline="") as f:
@@ -248,9 +254,12 @@ def _write_markdown(picks: list[dict], pending: list[dict], rules, mcfg, dst: Pa
     # Sumary numbers
     total_ev = sum(p["ev"] for p in picks)
     abstain_count = sum(1 for p in picks if p["abstain"])
+    contrarian_count = sum(1 for p in picks if p.get("contrarian_differs"))
     lines.append(f"**EV total esperado:** {total_ev:.2f} puntos sobre {len(picks)} partidos "
                  f"(max teórico = {len(picks) * rules.points_exact}).\n")
     lines.append(f"**Picks con flag ABSTAIN (gap < {mcfg.ev_abstain_gap}):** {abstain_count}\n")
+    lines.append(f"**Picks contrarian ≠ EV-óptimo (◆):** {contrarian_count} — "
+                 f"partidos donde el pick de alto leverage difiere del EV-óptimo.\n")
 
     # Group by group letter
     by_group: dict[str, list[dict]] = {}
@@ -258,14 +267,16 @@ def _write_markdown(picks: list[dict], pending: list[dict], rules, mcfg, dst: Pa
         by_group.setdefault(p.get("group") or "_", []).append(p)
     for g in sorted(by_group):
         lines.append(f"\n## Grupo {g}\n")
-        lines.append("| Fecha | Partido | Pick | EV | P(1) | P(X) | P(2) | λ home | λ away | Abstain |")
-        lines.append("|---|---|---|---:|---:|---:|---:|---:|---:|:-:|")
+        lines.append("| Fecha | Partido | Pick EV | Contrarian | EV | C-score | P(1) | P(X) | P(2) | Abstain |")
+        lines.append("|---|---|---|---|---:|---:|---:|---:|---:|:-:|")
         for p in sorted(by_group[g], key=lambda x: x["date"]):
             star = "★" if p["abstain"] else ""
+            c_flag = "◆" if p.get("contrarian_differs") else ""
             lines.append(
                 f"| {p['date']} | {p['home']} vs {p['away']} | **{p['pick_1x2']}** ({p['pick_exact']}) | "
-                f"{p['ev']:.2f} | {p['p_home_win']:.2f} | {p['p_draw']:.2f} | {p['p_away_win']:.2f} | "
-                f"{p['lambda_home']:.2f} | {p['lambda_away']:.2f} | {star} |"
+                f"{c_flag}{p.get('contrarian_pick_1x2', '')} ({p.get('contrarian_pick_exact', '')}) | "
+                f"{p['ev']:.2f} | {p.get('contrarian_score', 0):.2f} | "
+                f"{p['p_home_win']:.2f} | {p['p_draw']:.2f} | {p['p_away_win']:.2f} | {star} |"
             )
 
     if pending:
