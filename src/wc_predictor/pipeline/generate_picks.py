@@ -270,6 +270,33 @@ def _round_title(label: str) -> str:
     return label
 
 
+# Nombres de selección en español, solo para el reporte .md. La capa de datos
+# (modelo, Elo, CSV, JSON) conserva los nombres en inglés de las fuentes
+# martj42/openfootball — esto es presentación, no se toca la fuente de verdad.
+TEAM_ES = {
+    "Mexico": "México", "South Africa": "Sudáfrica", "Czech Republic": "República Checa",
+    "South Korea": "Corea del Sur", "Canada": "Canadá", "Switzerland": "Suiza",
+    "Bosnia and Herzegovina": "Bosnia y Herzegovina", "Bosnia & Herzegovina": "Bosnia y Herzegovina",
+    "Qatar": "Catar", "Brazil": "Brasil", "Scotland": "Escocia", "Morocco": "Marruecos",
+    "Haiti": "Haití", "United States": "Estados Unidos", "Australia": "Australia",
+    "Paraguay": "Paraguay", "Turkey": "Turquía", "Germany": "Alemania", "Ecuador": "Ecuador",
+    "Ivory Coast": "Costa de Marfil", "Curaçao": "Curazao", "Netherlands": "Países Bajos",
+    "Sweden": "Suecia", "Japan": "Japón", "Tunisia": "Túnez", "Belgium": "Bélgica",
+    "Egypt": "Egipto", "Iran": "Irán", "New Zealand": "Nueva Zelanda", "Spain": "España",
+    "Uruguay": "Uruguay", "Saudi Arabia": "Arabia Saudita", "Cape Verde": "Cabo Verde",
+    "France": "Francia", "Senegal": "Senegal", "Norway": "Noruega", "Iraq": "Irak",
+    "Argentina": "Argentina", "Austria": "Austria", "Algeria": "Argelia", "Jordan": "Jordania",
+    "Portugal": "Portugal", "Colombia": "Colombia", "DR Congo": "RD Congo",
+    "Uzbekistan": "Uzbekistán", "England": "Inglaterra", "Croatia": "Croacia",
+    "Ghana": "Ghana", "Panama": "Panamá",
+}
+
+
+def _team_es(name: str) -> str:
+    """Nombre de selección en español; si no está mapeado, devuelve el original."""
+    return TEAM_ES.get(name, name)
+
+
 def _fmt_score(exact: str) -> str:
     """'2-0' -> '2 - 0' for the boleto display."""
     h, _, a = exact.partition("-")
@@ -283,7 +310,7 @@ def _outcome_es(outcome: str, home: str, away: str) -> str:
 
 def _boleto_block(picks: list[dict], round_label: str, rules) -> str:
     """Monospace 'boleto' — the copy-to-quiniela section, EV-optimal + contrarian columns."""
-    name_w = max(max(len(p["home"]), len(p["away"])) for p in picks)
+    name_w = max(max(len(_team_es(p["home"])), len(_team_es(p["away"]))) for p in picks)
     prefix_w = 15 + 2 * name_w               # up to (but not including) the score columns
     width = prefix_w + 7 + 3 + 7 + 3
 
@@ -304,7 +331,8 @@ def _boleto_block(picks: list[dict], round_label: str, rules) -> str:
         if p.get("contrarian_actionable"):
             con_mark = " ◆"
             contra_n += 1
-        line = (f"  {i:>2}  {p['home']:>{name_w}}  vs  {p['away']:<{name_w}}   "
+        line = (f"  {i:>2}  {_team_es(p['home']):>{name_w}}  vs  "
+                f"{_team_es(p['away']):<{name_w}}   "
                 f"{_fmt_score(p['pick_exact']):>7}   "
                 f"{_fmt_score(p['contrarian_pick_exact']):>7}{con_mark} {flag}")
         rows.append(line.rstrip())
@@ -319,7 +347,7 @@ def _boleto_block(picks: list[dict], round_label: str, rules) -> str:
 
 def _reasoning(p: dict, rules, mcfg) -> str:
     """One paragraph explaining why the optimizer landed on this pick."""
-    home, away = p["home"], p["away"]
+    home, away = _team_es(p["home"]), _team_es(p["away"])
     pe = p["pick_exact"]
     top = p.get("top_5_scores", [])
     modal = top[0]["score"] if top else None
@@ -330,11 +358,11 @@ def _reasoning(p: dict, rules, mcfg) -> str:
     if pe == modal:
         parts.append(
             f"El marcador {pe} es además el más probable de toda la grilla "
-            f"({modal_prob:.1f}%): el optimizer EV y el marcador modal coinciden."
+            f"({modal_prob:.1f}%): el optimizador EV y el marcador modal coinciden."
         )
     else:
         parts.append(
-            f"El optimizer elige {pe} (EV {p['ev']:.2f}) por encima del marcador modal "
+            f"El optimizador elige {pe} (EV {p['ev']:.2f}) por encima del marcador modal "
             f"{modal} ({modal_prob:.1f}%): {pe} cae dentro de "
             f"{_outcome_es(p['pick_1x2'], home, away)} (P={p1x2_pct * 100:.0f}%) y maximiza "
             f"el EV combinado de marcador exacto + resultado 1X2."
@@ -370,7 +398,7 @@ def _reasoning(p: dict, rules, mcfg) -> str:
 
 def _match_card(idx: int, p: dict, rules, mcfg) -> list[str]:
     """Full technical card for one match."""
-    home, away = p["home"], p["away"]
+    home, away = _team_es(p["home"]), _team_es(p["away"])
     lines = [f"### {idx} · {home} vs {away}"]
 
     meta = []
@@ -412,8 +440,8 @@ def _match_card(idx: int, p: dict, rules, mcfg) -> list[str]:
     lines.append(f"| Probabilidad 1 / X / 2 | {p['p_home_win'] * 100:.0f}% / "
                  f"{p['p_draw'] * 100:.0f}% / {p['p_away_win'] * 100:.0f}% |")
     bw = p.get("blend_weights", {})
-    lines.append(f"| Pesos del blend | {bw.get('poisson', 0) * 100:.0f}% Poisson · "
-                 f"{bw.get('elo', 0) * 100:.0f}% Elo · {bw.get('odds', 0) * 100:.0f}% odds |")
+    lines.append(f"| Pesos de la mezcla | {bw.get('poisson', 0) * 100:.0f}% Poisson · "
+                 f"{bw.get('elo', 0) * 100:.0f}% Elo · {bw.get('odds', 0) * 100:.0f}% cuotas |")
     if p.get("odds_n_books"):
         lines.append(f"| Cuotas implícitas casas | {p['odds_p1']:.0%} / {p['odds_px']:.0%} / "
                      f"{p['odds_p2']:.0%} ({p['odds_n_books']} casas) |")
@@ -447,9 +475,10 @@ def _write_markdown(picks: list[dict], pending: list[dict], rules, mcfg, dst: Pa
     lines.append("## Cómo leer esto\n")
     lines.append("- **EV-ÓPT** — marcador que maximiza el valor esperado de puntos. Es la "
                  "recomendación por defecto, partido a partido.")
-    lines.append("- **CONTRA** — marcador de alto *leverage* de pool (C-score = EV / "
-                 "popularidad del resultado). El contrarian casi siempre apunta a la "
-                 "sorpresa; la columna lo muestra en todos los partidos como referencia.")
+    lines.append("- **CONTRA** — marcador de alto *apalancamiento* en el pool "
+                 "(C-score = EV / popularidad del resultado). El contrarian casi siempre "
+                 "apunta a la sorpresa; la columna lo muestra en todos los partidos como "
+                 "referencia.")
     lines.append(f"- **◆ contrarian accionable** — el contrarian solo se marca ◆ cuando el "
                  f"sacrificio de EV es ≤ {mcfg.contrarian_max_ev_sacrifice}: ahí pierdes "
                  f"poco valor individual y, si la sorpresa entra, te diferencias del pool. "
@@ -471,15 +500,16 @@ def _write_markdown(picks: list[dict], pending: list[dict], rules, mcfg, dst: Pa
                      f"sacrificio de EV ≤ {mcfg.contrarian_max_ev_sacrifice}; tus "
                      f"oportunidades reales de diferenciación.")
         if actionable:
-            tags = ", ".join(f"{p['home']}–{p['away']} ({p['contrarian_pick_exact']})"
-                             for p in actionable)
+            tags = ", ".join(f"{_team_es(p['home'])}–{_team_es(p['away'])} "
+                             f"({p['contrarian_pick_exact']})" for p in actionable)
             lines.append(f"  - Accionables: {tags}.")
         best = max(picks_sorted, key=lambda p: p["ev"])
         worst = min(picks_sorted, key=lambda p: p["ev_gap"])
-        lines.append(f"- Pick más sólido: **{best['home']} vs {best['away']}** "
-                     f"→ {best['pick_exact']} (EV {best['ev']:.2f}).")
-        lines.append(f"- Pick más frágil: **{worst['home']} vs {worst['away']}** "
-                     f"→ {worst['pick_exact']} (gap {worst['ev_gap']:.3f}).")
+        lines.append(f"- Pick más sólido: **{_team_es(best['home'])} vs "
+                     f"{_team_es(best['away'])}** → {best['pick_exact']} (EV {best['ev']:.2f}).")
+        lines.append(f"- Pick más frágil: **{_team_es(worst['home'])} vs "
+                     f"{_team_es(worst['away'])}** → {worst['pick_exact']} "
+                     f"(gap {worst['ev_gap']:.3f}).")
     else:
         lines.append("- Sin partidos predecibles en esta ronda todavía.")
     lines.append("")
@@ -495,11 +525,11 @@ def _write_markdown(picks: list[dict], pending: list[dict], rules, mcfg, dst: Pa
         lines.append(f"## Pendientes — {len(pending)} partidos de eliminatorias\n")
         lines.append("Se predicen cuando se resuelvan los placeholders del bracket "
                      "(tras la ronda previa).\n")
-        lines.append("| Fecha | Stage | Home | Away | Venue |")
+        lines.append("| Fecha | Ronda | Local | Visitante | Sede |")
         lines.append("|---|---|---|---|---|")
         for p in pending:
             lines.append(
-                f"| {p['date']} | {p['stage']} | {p['home_placeholder']} | "
+                f"| {p['date']} | {_round_title(p['stage'])} | {p['home_placeholder']} | "
                 f"{p['away_placeholder']} | {p.get('venue', '?')} |"
             )
         lines.append("")

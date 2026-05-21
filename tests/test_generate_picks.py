@@ -13,6 +13,7 @@ from wc_predictor.pipeline.generate_picks import (
     _fmt_score,
     _host_role,
     _round_title,
+    _team_es,
     resolve_round_filter,
 )
 from wc_predictor.config import QuinielaRules
@@ -97,6 +98,14 @@ def test_round_title_known_and_matchday_and_fallback():
     assert _round_title("weird_label") == "weird_label"
 
 
+def test_team_es_translates_and_falls_back():
+    assert _team_es("Mexico") == "México"
+    assert _team_es("South Korea") == "Corea del Sur"
+    assert _team_es("Czech Republic") == "República Checa"
+    # Unmapped names (e.g. bracket placeholders) pass through unchanged.
+    assert _team_es("Winner Group A") == "Winner Group A"
+
+
 def _pick(home, away, exact, c_exact, ev=0.9, abstain=False, differs=True, actionable=False):
     """Minimal pick dict for boleto/report rendering tests."""
     return {
@@ -117,8 +126,8 @@ def test_boleto_block_marks_only_actionable_contrarian():
     ]
     block = _boleto_block(picks, "md1", rules)
     lines = block.splitlines()
-    mexico_line = next(line for line in lines if "Mexico" in line)
-    brazil_line = next(line for line in lines if "Brazil" in line)
+    mexico_line = next(line for line in lines if "México" in line)
+    brazil_line = next(line for line in lines if "Brasil" in line)
     assert "◆" in mexico_line          # actionable → flagged
     assert "◆" not in brazil_line      # differs but not actionable → no flag
     assert "1◆ contrarian accionable" in block
