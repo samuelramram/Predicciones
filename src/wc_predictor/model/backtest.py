@@ -39,7 +39,7 @@ from wc_predictor.scoring.quiniela import (
 )
 
 
-BLEND_WEIGHTS_ELO = (0.3, 0.5, 0.7)  # sweep of Elo weight in the log-pool
+BLEND_WEIGHTS_ELO = (0.15, 0.20, 0.25, 0.30, 0.35, 0.40, 0.50, 0.70)  # finer sweep of Elo weight
 
 
 Strategy = Callable[[float, float, ModelConfig, QuinielaRules], tuple[str, str]]
