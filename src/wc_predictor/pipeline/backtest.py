@@ -52,6 +52,14 @@ def _dump_backtest(b, dst):
             }
             for name, s in b.by_strategy.items()
         },
+        "by_model_calibration": {
+            name: {
+                "brier": round(c.brier, 5),
+                "log_loss": round(c.log_loss, 5),
+                "n": c.n,
+            }
+            for name, c in b.by_model_calibration.items()
+        },
         "per_match": b.per_match,
     }
     with open(dst, "w", encoding="utf-8") as f:
@@ -82,6 +90,23 @@ def _write_summary(backtests, dst):
                 f"{s.outcome_hits}/{s.n_matches} ({100*s.outcome_hits/s.n_matches:.0f}%) | "
                 f"{s.pick_dist['1']}/{s.pick_dist['X']}/{s.pick_dist['2']} |"
             )
+
+    # Calibration table aggregating across tournaments
+    if len(backtests) > 1:
+        cal_agg: dict[str, dict] = {}
+        for b in backtests:
+            for name, c in b.by_model_calibration.items():
+                a = cal_agg.setdefault(name, {"brier_sum": 0.0, "ll_sum": 0.0, "n": 0})
+                a["brier_sum"] += c.brier * c.n
+                a["ll_sum"] += c.log_loss * c.n
+                a["n"] += c.n
+        lines.append("\n## Calibración del modelo (probabilidades 1X2)\n")
+        lines.append("Brier y log-loss medidos sobre la marginal P(1)/P(X)/P(2) que produce cada modelo. "
+                     "Random uniforme: Brier=0.667, log-loss=1.099. Más bajo = mejor calibrado.\n")
+        lines.append("| Modelo | Brier | log-loss | n |")
+        lines.append("|---|---:|---:|---:|")
+        for name, a in sorted(cal_agg.items(), key=lambda x: x[1]["brier_sum"] / max(x[1]["n"], 1)):
+            lines.append(f"| `{name}` | {a['brier_sum']/a['n']:.4f} | {a['ll_sum']/a['n']:.4f} | {a['n']} |")
 
     # Aggregate across tournaments
     if len(backtests) > 1:

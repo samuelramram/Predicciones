@@ -29,6 +29,12 @@ from wc_predictor.model.bivariate_poisson import (
     predict_bivariate_lambdas,
 )
 from wc_predictor.model.blend import blend_poisson_with_elo
+from wc_predictor.model.calibration import (
+    actual_outcome,
+    brier_score,
+    log_loss,
+    reliability_table,
+)
 from wc_predictor.model.poisson_dc import fit_dc_model, predict_lambdas
 from wc_predictor.ratings.elo import elo_to_1x2_probs, replay_history
 from wc_predictor.scoring.quiniela import (
@@ -119,6 +125,15 @@ class StrategyResult:
 
 
 @dataclass
+class ModelCalibration:
+    """Probabilistic 1X2 calibration metrics for a single model (not strategy)."""
+    model_name: str
+    brier: float
+    log_loss: float
+    n: int
+
+
+@dataclass
 class TournamentBacktest:
     tournament: str
     year: int
@@ -126,6 +141,7 @@ class TournamentBacktest:
     n_training: int
     n_matches: int
     by_strategy: dict[str, StrategyResult]
+    by_model_calibration: dict[str, ModelCalibration]
     per_match: list[dict]
 
 
@@ -191,6 +207,18 @@ def run_tournament_backtest(
         by_strategy[f"blend_w{int(w_elo*100):02d}_ev_optimal"] = []
         by_strategy[f"blend_w{int(w_elo*100):02d}_ev_no_draw"] = []
     by_strategy["elo_only_outcome_21"] = []
+
+    # Per-model 1X2 probability streams for calibration (Brier / log-loss).
+    # Each list parallels `actuals_1x2`.
+    actuals_1x2: list[str] = []
+    probs_by_model: dict[str, list[tuple[float, float, float]]] = {
+        "poisson_dc": [],
+        "bivariate": [],
+        "elo_only": [],
+    }
+    for w_elo in BLEND_WEIGHTS_ELO:
+        probs_by_model[f"blend_w{int(w_elo*100):02d}"] = []
+
     per_match: list[dict] = []
 
     for m in tournament_matches:
@@ -206,11 +234,18 @@ def run_tournament_backtest(
 
         actual_h, actual_a = int(m["home_score"]), int(m["away_score"])
         actual_score = f"{actual_h}-{actual_a}"
-        actual_outcome = "X" if actual_h == actual_a else ("1" if actual_h > actual_a else "2")
+        actual_1x2 = actual_outcome(actual_h, actual_a)
+        actuals_1x2.append(actual_1x2)
+
+        # Poisson-DC marginals (recomputed from lambdas via the score matrix)
+        pcells_calib, pp1_c, ppx_c, pp2_c, _, _ = build_score_matrix(lh, la, mcfg)
+        probs_by_model["poisson_dc"].append((pp1_c, ppx_c, pp2_c))
+        # Bivariate marginals
+        probs_by_model["bivariate"].append((bv_matrix["p_1"], bv_matrix["p_x"], bv_matrix["p_2"]))
 
         match_row = {
             "date": m["date"], "home": home, "away": away,
-            "host": host, "actual_score": actual_score, "actual_outcome": actual_outcome,
+            "host": host, "actual_score": actual_score, "actual_outcome": actual_1x2,
             "lambda_home": round(lh, 2), "lambda_away": round(la, 2),
             "bv_l1": round(l1, 2), "bv_l2": round(l2, 2), "bv_l3": round(fit_biv.lambda3, 3),
             "by_strategy": {},
@@ -256,6 +291,7 @@ def run_tournament_backtest(
             # Mirror: if away team is the host, pass the bonus on their side
             home_adv_elo = -mcfg.elo_home_bonus
         elo_p1, elo_px, elo_p2 = elo_to_1x2_probs(r_h, r_a, home_adv_elo)
+        probs_by_model["elo_only"].append((elo_p1, elo_px, elo_p2))
 
         # Pure Elo baseline (outcome by Elo, nominal 2-1/1-2/1-1 exact)
         if elo_p1 >= elo_px and elo_p1 >= elo_p2:
@@ -279,6 +315,7 @@ def run_tournament_backtest(
                 pcells, pp1, ppx, pp2, elo_p1, elo_px, elo_p2,
                 w_poisson=1.0 - w_elo, w_elo=w_elo,
             )
+            probs_by_model[f"blend_w{int(w_elo*100):02d}"].append((p1_b, px_b, p2_b))
             pick_ev = optimize_pick_from_cells(cells_b, p1_b, px_b, p2_b, pmass, pmax, rules, mcfg)
             pick_nd = optimize_pick_from_cells(cells_b, p1_b, px_b, p2_b, pmass, pmax, rules, mcfg,
                                                 forbid_outcomes=("X",))
@@ -313,17 +350,32 @@ def run_tournament_backtest(
             exact_hits=exact, outcome_hits=outcome, pick_dist=dist,
         )
 
+    # Calibration metrics per model (Brier + log-loss on 1X2 marginals).
+    calibrations: dict[str, ModelCalibration] = {}
+    for model_name, probs in probs_by_model.items():
+        if not probs:
+            continue
+        calibrations[model_name] = ModelCalibration(
+            model_name=model_name,
+            brier=brier_score(probs, actuals_1x2),
+            log_loss=log_loss(probs, actuals_1x2),
+            n=len(probs),
+        )
+
     if verbose:
         print(f"\n  Strategy        Total   /match   Exact   Outcome    1/X/2 picks")
         print(f"  {'-'*70}")
-        for name, s in sorted(summaries.items(), key=lambda x: -x[1].total_points):
+        for name, s in sorted(summaries.items(), key=lambda x: -x[1].total_points)[:8]:
             print(f"  {name:<16} {s.total_points:>5d}   {s.pts_per_match:>5.2f}   "
                   f"{s.exact_hits:>3d}/{s.n_matches:<3d}  {s.outcome_hits:>3d}/{s.n_matches:<3d}  "
                   f"{s.pick_dist['1']}/{s.pick_dist['X']}/{s.pick_dist['2']}")
+        print(f"\n  Calibration (lower=better; random uniform Brier=0.667, log-loss=1.099):")
+        for name, c in sorted(calibrations.items(), key=lambda x: x[1].brier):
+            print(f"  {name:<16} Brier={c.brier:.4f}   log-loss={c.log_loss:.4f}   n={c.n}")
 
     return TournamentBacktest(
         tournament=tournament, year=year,
         training_cutoff=training_cutoff.isoformat(),
         n_training=len(training_rows), n_matches=len(tournament_matches),
-        by_strategy=summaries, per_match=per_match,
+        by_strategy=summaries, by_model_calibration=calibrations, per_match=per_match,
     )
