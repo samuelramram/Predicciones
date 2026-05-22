@@ -42,6 +42,7 @@ from wc_predictor.config import DEFAULT_CONFIG, HISTORICAL_DIR, OUTPUTS_DIR, PRO
 from wc_predictor.ingest.odds import load_cached_odds
 from wc_predictor.model.blend import blend_three_sources
 from wc_predictor.model.poisson_dc import load_fit, predict_lambdas
+from wc_predictor.model.qualification import TOP2_SECURED, j3_stakes
 from wc_predictor.ratings.elo import elo_to_1x2_probs
 from wc_predictor.scoring.quiniela import build_score_matrix, optimize_pick_from_cells
 from wc_predictor.utils import config_hash, file_sha256, git_commit, git_dirty
@@ -90,6 +91,38 @@ def _load_fixtures() -> dict:
 
 
 KNOCKOUT_STAGES = ("round_of_32", "round_of_16", "quarter_final", "semi_final", "third_place", "final")
+
+
+def build_j3_contexts(all_matches: list[dict], elos: dict[str, float]) -> dict:
+    """Map match_id → StakesContext for every jornada-3 fixture whose group
+    already has its four jornada-1 and jornada-2 results in `fixtures.json`.
+
+    Empty before the tournament reaches jornada 3 — so the qualification-aware
+    path is a no-op until the J1+J2 scores have been ingested.
+    """
+    by_group: dict[str, list[dict]] = {}
+    for m in all_matches:
+        if m.get("stage") == "group_stage" and m.get("group"):
+            by_group.setdefault(m["group"], []).append(m)
+
+    contexts: dict = {}
+    for group, gms in by_group.items():
+        teams = sorted({t for m in gms for t in (m["home"], m["away"])})
+        if len(teams) != 4:
+            continue
+        played_j12 = [
+            m for m in gms
+            if m.get("group_round", 99) <= 4
+            and m.get("home_score") is not None and m.get("away_score") is not None
+        ]
+        if len(played_j12) < 4:
+            continue
+        for m in gms:
+            if m.get("group_round") in (5, 6):
+                ctx = j3_stakes(group, teams, played_j12, m["home"], m["away"], elos)
+                if ctx is not None:
+                    contexts[m["match_id"]] = ctx
+    return contexts
 
 
 def resolve_round_filter(round_spec: str):
@@ -163,7 +196,8 @@ def _odds_weights(have_odds: bool) -> tuple[float, float, float]:
     return PROD_POISSON_ELO_SPLIT, 1.0 - PROD_POISSON_ELO_SPLIT, 0.0
 
 
-def predict_match(fixture: dict, fit, venues: dict, elos: dict, odds: dict, rules, mcfg):
+def predict_match(fixture: dict, fit, venues: dict, elos: dict, odds: dict, rules, mcfg,
+                  qual=None):
     """Return a pick dict for a locked fixture, or None if not predictable yet.
 
     Pipeline:
@@ -174,6 +208,10 @@ def predict_match(fixture: dict, fit, venues: dict, elos: dict, odds: dict, rule
          if not covered → falls back to the backtested 70/30 Poisson/Elo blend).
       5. Rescale the Poisson score-matrix to the blended marginals.
       6. optimize_pick_from_cells with forbid_outcomes=("X",) — never pick draws.
+
+    `qual` is the jornada-3 StakesContext (or None). When present it damps a
+    team's λ if its top-2 spot is already locked (likely rotation) and lifts the
+    no-draw constraint when a draw would send both teams through.
     """
     if not (fixture["home_locked"] and fixture["away_locked"]):
         return None
@@ -193,6 +231,15 @@ def predict_match(fixture: dict, fit, venues: dict, elos: dict, odds: dict, rule
     # Inflate both λ proportionally so the score-matrix reflects WC reality.
     infl = mcfg.wc_lambda_inflation
     lh, la = lh * infl, la * infl
+
+    # Jornada-3 qualification incentive: a team whose top-2 finish is already
+    # mathematically locked tends to rotate its XI for the dead-rubber final
+    # group match — damp its expected goals (see ModelConfig.qual_rotation_lambda_mult).
+    if qual is not None:
+        if qual.home_status == TOP2_SECURED:
+            lh *= mcfg.qual_rotation_lambda_mult
+        if qual.away_status == TOP2_SECURED:
+            la *= mcfg.qual_rotation_lambda_mult
 
     # Elo 1X2 from current snapshot
     r_h = elos.get(home_name, 1500.0)
@@ -218,9 +265,13 @@ def predict_match(fixture: dict, fit, venues: dict, elos: dict, odds: dict, rule
         pcells, (pp1, ppx, pp2), (elo_p1, elo_px, elo_p2), odds_1x2,
         w_poisson=w_poisson, w_elo=w_elo, w_odds=w_odds,
     )
+    # Draws are normally forbidden (backtested net-negative), but in a J3 match
+    # where a draw qualifies both teams the calculated-draw incentive makes X a
+    # live outcome — allow it there.
+    forbid = () if (qual is not None and qual.mutual_draw_safe) else PROD_FORBID
     pick = optimize_pick_from_cells(
         cells_b, p1_b, px_b, p2_b, pmass, pmax, rules, mcfg,
-        forbid_outcomes=PROD_FORBID,
+        forbid_outcomes=forbid,
     )
 
     contrarian_differs = pick.contrarian_pick_1x2 != pick.pick_1x2
@@ -266,12 +317,23 @@ def predict_match(fixture: dict, fit, venues: dict, elos: dict, odds: dict, rule
         "contrarian_ev_sacrifice": round(ev_sacrifice, 3),
         "contrarian_actionable": contrarian_differs and ev_sacrifice <= mcfg.contrarian_max_ev_sacrifice,
         "top_5_scores": [{"score": c["score"], "prob": round(c["prob"], 3)} for c in pick.top_5_by_prob],
+        "dead_rubber": bool(qual is not None and qual.dead_rubber),
+        "qualification": (
+            {
+                "home_status": qual.home_status,
+                "away_status": qual.away_status,
+                "dead_rubber": qual.dead_rubber,
+                "mutual_draw_safe": qual.mutual_draw_safe,
+                "note": qual.note,
+            }
+            if qual is not None else None
+        ),
     }
 
 
 def _write_csv(picks: list[dict], dst: Path) -> None:
     cols = ["date", "stage", "group", "home", "away", "venue",
-            "pick_1x2", "pick_exact", "ev", "ev_gap", "abstain",
+            "pick_1x2", "pick_exact", "ev", "ev_gap", "abstain", "dead_rubber",
             "contrarian_pick_1x2", "contrarian_pick_exact", "contrarian_ev", "contrarian_score",
             "contrarian_differs", "contrarian_ev_sacrifice", "contrarian_actionable",
             "p_home_win", "p_draw", "p_away_win", "p_exact",
@@ -428,6 +490,20 @@ def _reasoning(p: dict, rules, mcfg) -> str:
                 f"(> {mcfg.contrarian_max_ev_sacrifice}). No es una jugada recomendada; "
                 f"quédate con el EV-óptimo."
             )
+
+    qual = p.get("qualification")
+    if qual and qual["dead_rubber"]:
+        parts.append(
+            "⚑ Partido sin nada en juego para la clasificación: ambas selecciones "
+            "ya tienen definida su suerte en el top-2, así que el resultado es "
+            "especialmente ruidoso (rotaciones, ritmo bajo) — baja la confianza en "
+            "este pick y considera la jugada contrarian."
+        )
+    elif qual and qual["mutual_draw_safe"]:
+        parts.append(
+            "A las dos selecciones les sirve el empate para avanzar, así que aquí "
+            "el modelo no descarta la X (riesgo de empate de conveniencia)."
+        )
     return " ".join(parts)
 
 
@@ -487,6 +563,11 @@ def _match_card(idx: int, p: dict, rules, mcfg) -> list[str]:
         top_str = " · ".join(f"`{c['score']}` {c['prob'] * 100:.1f}%" for c in top)
         lines.append(f"**Top-5 marcadores más probables:** {top_str}\n")
 
+    qual = p.get("qualification")
+    if qual:
+        marker = "⚑ " if qual["dead_rubber"] else ""
+        lines.append(f"**{marker}Contexto de clasificación (J3):** {qual['note']}\n")
+
     lines.append(f"> {_reasoning(p, rules, mcfg)}\n")
     return lines
 
@@ -524,6 +605,7 @@ def _write_markdown(picks: list[dict], pending: list[dict], rules, mcfg, dst: Pa
     # --- Resumen ejecutivo ---
     total_ev = sum(p["ev"] for p in picks_sorted)
     abstain_count = sum(1 for p in picks_sorted if p["abstain"])
+    dead_rubbers = [p for p in picks_sorted if p.get("dead_rubber")]
     actionable = [p for p in picks_sorted if p.get("contrarian_actionable")]
     max_pts = len(picks_sorted) * rules.points_exact
     lines.append("## Resumen ejecutivo\n")
@@ -531,6 +613,10 @@ def _write_markdown(picks: list[dict], pending: list[dict], rules, mcfg, dst: Pa
         lines.append(f"- **{len(picks_sorted)} partidos** · EV total **{total_ev:.2f}** / "
                      f"{max_pts} máx teórico ({total_ev / max_pts * 100:.0f}% del techo).")
         lines.append(f"- **{abstain_count}** picks marcados ABSTAIN (baja confianza).")
+        if dead_rubbers:
+            lines.append(f"- **{len(dead_rubbers)}** partidos sin nada en juego "
+                         f"(⚑ dead rubber) — clasificación ya definida, picks de baja "
+                         f"confianza.")
         lines.append(f"- **{len(actionable)}** jugadas contrarian accionables (◆) — "
                      f"sacrificio de EV ≤ {mcfg.contrarian_max_ev_sacrifice}; tus "
                      f"oportunidades reales de diferenciación.")
@@ -613,6 +699,10 @@ def main():
               "falling back to 70/30 Poisson/Elo blend. "
               "Run `python -m wc_predictor.ingest.fetch_odds` with THE_ODDS_API_KEY set to enable.")
 
+    j3_contexts = build_j3_contexts(fixtures_doc["matches"], elos)
+    if j3_contexts:
+        print(f"Jornada-3 qualification context ready for {len(j3_contexts)} fixtures")
+
     print(f"Round filter: {round_label}")
 
     rules = DEFAULT_CONFIG.rules
@@ -628,7 +718,8 @@ def main():
     errors: list[dict] = []
 
     for fixture in selected:
-        result = predict_match(fixture, fit, venues, elos, odds, rules, mcfg)
+        result = predict_match(fixture, fit, venues, elos, odds, rules, mcfg,
+                               qual=j3_contexts.get(fixture["match_id"]))
         if result is None:
             pending.append(fixture)
             continue

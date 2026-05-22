@@ -112,6 +112,13 @@ class ModelConfig:
     # score-matrix is built, correcting the ~12% systematic underestimate.
     wc_lambda_inflation: float = 1.12
 
+    # Jornada-3 qualification incentive. Once J1+J2 are played the group table
+    # is known; a team whose top-2 finish is already mathematically locked
+    # tends to rotate its XI for the dead-rubber final group match. This
+    # multiplier damps such a team's expected goals. Heuristic prior — not
+    # backtested (no per-match motivation dataset exists) — kept mild on purpose.
+    qual_rotation_lambda_mult: float = 0.90
+
 
 @dataclass(frozen=True)
 class RunConfig:
