@@ -110,6 +110,7 @@ de red (re-corre con los datos ya en `data/raw/`).
 python -m wc_predictor.ingest.martj42 --bootstrap --refetch       # histórico training
 python -m wc_predictor.ingest.openfootball --bootstrap --refetch  # 104 fixtures WC2026
 python -m wc_predictor.ingest.fetch_odds                          # odds bookmakers (opcional, ver abajo)
+python -m wc_predictor.ingest.api_football                        # lesiones API-Football (opcional, requiere plan Pro)
 python -m wc_predictor.pipeline.fit_elo                           # replay Elo internacional
 python -m wc_predictor.pipeline.fit_model                         # fit Poisson + Dixon-Coles
 python -m wc_predictor.pipeline.generate_picks --round group_stage
@@ -221,7 +222,9 @@ Calibración del modelo: Brier 0.585 (random uniforme 0.667; mercado Pinnacle ~0
 
 1. **Reglamento oficial** completo del pool (deadline por ronda, bonos, desempate, distribución
    del premio). Llenar `data/wc2026/rules.json`.
-2. **API-Football key** cuando estés listo a contratar (~$25/mes). Sin esto sigo con scraping.
+2. **API-Football — upgrade a plan de pago** (~$19/mes Pro). La key ya está en `.env` y el
+   módulo `ingest.api_football` está listo; el plan Free bloquea la temporada 2026, así que
+   la ingesta de lesiones se activa sola al hacer el upgrade (sin tocar código).
 3. **Bajas de última hora** por ronda (perplexity + manual). Llenar `data/wc2026/injuries.json`.
 4. **Sesgo personal** opcional ("siempre quiero a México pase lo que pase") — se mete como
    override controlado, no como entrada al modelo.
