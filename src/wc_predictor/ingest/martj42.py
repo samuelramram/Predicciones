@@ -60,7 +60,7 @@ def write_historical_training_set(rows: list[dict], dst: Path) -> int:
     ]
     count = 0
     with dst.open("w", encoding="utf-8", newline="") as f:
-        writer = csv.DictWriter(f, fieldnames=columns)
+        writer = csv.DictWriter(f, fieldnames=columns, lineterminator="\n")
         writer.writeheader()
         for row in rows:
             if row["home_score"] in ("NA", "", None) or row["away_score"] in ("NA", "", None):
