@@ -19,6 +19,8 @@ PROCESSED_DIR = DATA_DIR / "processed"
 OUTPUTS_DIR = REPO_ROOT / "outputs"
 
 WC2026_LEAGUE_ID_THESPORTSDB = 4429
+WC2026_LEAGUE_ID_API_FOOTBALL = 1  # API-Football's league id for the World Cup
+WC2026_SEASON = 2026
 
 
 def _load_dotenv(path: Path = REPO_ROOT / ".env") -> None:
