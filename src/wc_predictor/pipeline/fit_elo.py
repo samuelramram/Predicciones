@@ -107,9 +107,11 @@ def main():
         json.dump({"as_of": last_date, "teams": wc_elos}, f, indent=2, ensure_ascii=False)
     print(f"  wrote {wc_dst} ({len(wc_elos)} WC2026 teams)")
 
-    # Trajectory: last 30 matches per WC team (keeps file size reasonable)
+    # Trajectory: last 30 matches per WC team (keeps file size reasonable).
+    # Sort by team name — replay_history keys off a set, whose iteration order
+    # varies per process and would otherwise reshuffle the whole file each run.
     traj_dst = WC_DIR / "elo_trajectory.json"
-    trimmed = {t: traj[-30:] for t, traj in trajectories.items()}
+    trimmed = {t: trajectories[t][-30:] for t in sorted(trajectories)}
     with traj_dst.open("w", encoding="utf-8") as f:
         json.dump({"as_of": last_date, "last_n_matches": 30, "trajectories": trimmed},
                   f, indent=2, ensure_ascii=False)
