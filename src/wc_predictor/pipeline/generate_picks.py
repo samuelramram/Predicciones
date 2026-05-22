@@ -38,7 +38,7 @@ import json
 from datetime import datetime
 from pathlib import Path
 
-from wc_predictor.config import DEFAULT_CONFIG, HISTORICAL_DIR, OUTPUTS_DIR, PROCESSED_DIR, WC_DIR
+from wc_predictor.config import DEFAULT_CONFIG, HISTORICAL_DIR, OUTPUTS_DIR, PROCESSED_DIR, RAW_DIR, WC_DIR
 from wc_predictor.ingest.odds import load_cached_odds
 from wc_predictor.model.blend import blend_three_sources
 from wc_predictor.model.poisson_dc import load_fit, predict_lambdas
@@ -685,6 +685,8 @@ def main():
                 str(fit_src.relative_to(fit_src.parent.parent)): file_sha256(fit_src),
                 "data/wc2026/fixtures.json": file_sha256(WC_DIR / "fixtures.json"),
                 "data/wc2026/venues.json": file_sha256(WC_DIR / "venues.json"),
+                "data/historical/elo_current.json": file_sha256(HISTORICAL_DIR / "elo_current.json"),
+                "data/raw/odds_the_odds_api.json": file_sha256(RAW_DIR / "odds_the_odds_api.json"),
             },
             "outputs": {
                 csv_dst.name: file_sha256(csv_dst),
