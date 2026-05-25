@@ -130,6 +130,12 @@ def optimize_pick_from_cells(
     `forbid_outcomes` lets the caller exclude e.g. "X" — backtest evidence on
     WC 2018+2022 shows draw picks are net-negative even when the model says
     P(X) is competitive.
+
+    Mismatch override: when the chosen outcome's marginal exceeds
+    `mcfg.mismatch_pick_min_dominant`, the modal cell can win on EV by a
+    razor-thin margin over a more realistic blowout score. Re-rank among
+    same-outcome cells within `mismatch_pick_ev_tolerance` of the best EV and
+    prefer the one whose (h-a) is closest to round(E[h-a]).
     """
     best_by_outcome: dict[str, dict] = {}
     for cell in cells:
@@ -141,19 +147,32 @@ def optimize_pick_from_cells(
 
     outcome_marginals = {"1": p1, "X": px, "2": p2}
 
-    candidates = []
-    for outcome, cell in best_by_outcome.items():
+    def _cell_ev(cell: dict) -> float:
         p_exact = cell["prob"]
-        p_outcome = outcome_marginals[outcome]
+        p_outcome = outcome_marginals[cell["outcome"]]
         if rules.exclusive:
-            ev = rules.points_exact * p_exact + rules.points_1x2 * (p_outcome - p_exact)
-        else:
-            ev = rules.points_exact * p_exact + rules.points_1x2 * p_outcome
-        candidates.append((ev, outcome, cell))
+            return rules.points_exact * p_exact + rules.points_1x2 * (p_outcome - p_exact)
+        return rules.points_exact * p_exact + rules.points_1x2 * p_outcome
 
+    candidates = [(_cell_ev(cell), outcome, cell) for outcome, cell in best_by_outcome.items()]
     candidates.sort(key=lambda x: x[0], reverse=True)
     best_ev, best_outcome, best_cell = candidates[0]
     gap = best_ev - candidates[1][0] if len(candidates) > 1 else best_ev
+
+    if outcome_marginals[best_outcome] >= mcfg.mismatch_pick_min_dominant:
+        expected_diff = sum(c["prob"] * (c["h"] - c["a"]) for c in cells)
+        target = round(expected_diff)
+        same_outcome_evs = [(_cell_ev(c), c) for c in cells if c["outcome"] == best_outcome]
+        max_local_ev = max(ev for ev, _ in same_outcome_evs)
+        in_tol = [(ev, c) for ev, c in same_outcome_evs
+                  if max_local_ev - ev <= mcfg.mismatch_pick_ev_tolerance]
+        chosen_ev, chosen_cell = min(
+            in_tol,
+            key=lambda pair: (abs((pair[1]["h"] - pair[1]["a"]) - target), -pair[1]["prob"]),
+        )
+        if chosen_cell["score"] != best_cell["score"]:
+            best_cell = chosen_cell
+            best_ev = chosen_ev
 
     top5 = sorted(cells, key=lambda c: c["prob"], reverse=True)[:5]
 

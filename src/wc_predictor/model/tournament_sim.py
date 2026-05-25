@@ -30,6 +30,7 @@ from dataclasses import dataclass, field
 from math import exp, factorial
 
 from wc_predictor.config import ModelConfig
+from wc_predictor.model.adjustments import apply_wc_lambdas
 from wc_predictor.model.blend import log_pool
 from wc_predictor.model.poisson_dc import FitResult, predict_lambdas
 from wc_predictor.ratings.elo import elo_to_1x2_probs
@@ -353,8 +354,7 @@ def precompute_group_cdfs(
             lh, la = predict_lambdas(
                 fit.strengths[home], fit.strengths[away], fit.mu, fit.gamma, host=host
             )
-            lh *= cfg.wc_lambda_inflation
-            la *= cfg.wc_lambda_inflation
+            lh, la = apply_wc_lambdas(lh, la, cfg)
         else:
             lh = la = base_lambda
 
@@ -386,8 +386,7 @@ def precompute_ko_probs(
                 lh, la = predict_lambdas(
                     fit.strengths[a], fit.strengths[b], fit.mu, fit.gamma, host=None
                 )
-                lh *= cfg.wc_lambda_inflation
-                la *= cfg.wc_lambda_inflation
+                lh, la = apply_wc_lambdas(lh, la, cfg)
             else:
                 lh = la = base_lambda
 
