@@ -112,6 +112,28 @@ class ModelConfig:
     # score-matrix is built, correcting the ~12% systematic underestimate.
     wc_lambda_inflation: float = 1.12
 
+    # Skill-gap (mismatch) inflation. The base fit underestimates blowouts because
+    # weak nations (Cape Verde, Saudi Arabia, Curaçao, …) accumulate their defensive
+    # rating against intra-confederation rivals of similar level; the model never
+    # observes them being torched by a top side. When the predicted λ_strong / λ_weak
+    # ratio crosses `mismatch_ratio_threshold`, ramp linearly to saturation: boost
+    # the stronger team's λ up to `mismatch_strong_boost` and damp the weaker side
+    # down to `mismatch_weak_damp`. Calibrated against WC 2018+2022 blowouts
+    # (Spain 7-0 Costa Rica, Russia 5-0 Saudi, England 6-1 Panama, …).
+    mismatch_ratio_threshold: float = 3.0
+    mismatch_ratio_saturation: float = 5.0
+    mismatch_strong_boost: float = 1.50
+    mismatch_weak_damp: float = 0.65
+
+    # Mismatch-aware pick override. When the dominant outcome's marginal exceeds
+    # this threshold, expand the EV search beyond the modal cell: among home-win
+    # cells whose individual EV gap to the modal pick is below
+    # `mismatch_pick_ev_tolerance`, prefer the cell whose (h-a) is closest to
+    # round(λ_strong - λ_weak). Addresses the residual case where modal "2-0" wins
+    # on EV by a hair over "3-0" but a blowout is the more realistic outcome.
+    mismatch_pick_min_dominant: float = 0.75
+    mismatch_pick_ev_tolerance: float = 0.05
+
     # Jornada-3 qualification incentive. Once J1+J2 are played the group table
     # is known; a team whose top-2 finish is already mathematically locked
     # tends to rotate its XI for the dead-rubber final group match. This

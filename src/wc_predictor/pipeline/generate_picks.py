@@ -40,6 +40,7 @@ from pathlib import Path
 
 from wc_predictor.config import DEFAULT_CONFIG, HISTORICAL_DIR, OUTPUTS_DIR, PROCESSED_DIR, RAW_DIR, WC_DIR
 from wc_predictor.ingest.odds import load_cached_odds
+from wc_predictor.model.adjustments import apply_wc_lambdas
 from wc_predictor.model.blend import blend_three_sources
 from wc_predictor.model.poisson_dc import load_fit, predict_lambdas
 from wc_predictor.model.qualification import TOP2_SECURED, j3_stakes
@@ -227,10 +228,9 @@ def predict_match(fixture: dict, fit, venues: dict, elos: dict, odds: dict, rule
     lh, la = predict_lambdas(fit.strengths[home_name], fit.strengths[away_name],
                              fit.mu, fit.gamma, host=host)
 
-    # WC group stage scores ~12% more goals than general international results.
-    # Inflate both λ proportionally so the score-matrix reflects WC reality.
-    infl = mcfg.wc_lambda_inflation
-    lh, la = lh * infl, la * infl
+    # WC inflation + skill-gap (mismatch) inflation — single entry point for the
+    # two layers that shape the score matrix (see adjustments.apply_wc_lambdas).
+    lh, la = apply_wc_lambdas(lh, la, mcfg)
 
     # Jornada-3 qualification incentive: a team whose top-2 finish is already
     # mathematically locked tends to rotate its XI for the dead-rubber final
