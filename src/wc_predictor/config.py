@@ -81,6 +81,13 @@ class ModelConfig:
     poisson_grid_min_goals: int = 5
     poisson_grid_max_cap: int = 12
 
+    # L2 ridge penalty on attack/defense latents (zero-mean prior). Lower values
+    # let teams with fewer / more lopsided observations push further from zero —
+    # important for African/Asian sides whose ratings were otherwise compressed
+    # by the strong prior (Morocco/Senegal/Algeria looked like top-5 defenses
+    # because the penalty dragged everyone toward the mean).
+    ridge_lambda: float = 0.3
+
     elo_k_friendly: float = 20.0
     elo_k_qualifier: float = 30.0
     elo_k_tournament: float = 40.0

@@ -208,9 +208,11 @@ def run_tournament_backtest(
         print(f"  training:   {len(training_rows)} matches, {training_start} → {training_cutoff}")
 
     fit_pois = fit_dc_model(training_rows, mcfg, as_of=training_cutoff,
-                            half_life_days=730, verbose=False)
+                            half_life_days=730, ridge_lambda=mcfg.ridge_lambda,
+                            verbose=False)
     fit_biv = fit_bivariate_poisson(training_rows, mcfg, as_of=training_cutoff,
-                                    half_life_days=730, verbose=False)
+                                    half_life_days=730, ridge_lambda=mcfg.ridge_lambda,
+                                    verbose=False)
 
     # Elo replay on the same training window (uses raw matches dating to 1872; the
     # cutoff filters via training_rows already, but Elo benefits from full history).
