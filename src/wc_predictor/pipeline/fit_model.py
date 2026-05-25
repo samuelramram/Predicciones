@@ -56,7 +56,7 @@ def main():
     print(f"  {len(rows)} matches")
 
     print("Fitting Poisson + Dixon-Coles MLE ...")
-    fit = fit_dc_model(rows, DEFAULT_CONFIG.model)
+    fit = fit_dc_model(rows, DEFAULT_CONFIG.model, ridge_lambda=DEFAULT_CONFIG.model.ridge_lambda)
     print(f"  converged={fit.converged}, final NLL={fit.final_neg_log_lik:.1f}")
     print(f"  mu={fit.mu:.3f} (implies league-avg goals ≈ {pow(2.718281828, fit.mu):.2f}/team in neutral)")
     print(f"  gamma={fit.gamma:.3f} (home advantage in log-lambda; e^gamma={pow(2.718281828, fit.gamma):.2f}x)")
