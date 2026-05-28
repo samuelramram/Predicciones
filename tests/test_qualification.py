@@ -57,11 +57,15 @@ _J12_SECURED = [_m("A", "B", 1, 0), _m("C", "D", 2, 0),
                 _m("A", "C", 1, 0), _m("B", "D", 1, 0)]
 
 
-def test_j3_stakes_secured_and_eliminated_make_a_dead_rubber():
+def test_j3_stakes_top2_eliminated_team_still_chases_best_third():
+    # 2026 format: D is out of the top 2 but, by beating A in J3, can still reach
+    # 3 pts and a best-third spot — so this is NOT a dead rubber (the pre-2026 bug
+    # flagged it as one). Only a team locked into LAST place is truly out.
     ctx = j3_stakes("X", ["A", "B", "C", "D"], _J12_SECURED, "A", "D")
     assert ctx.home_status == TOP2_SECURED       # A on 6 pts cannot drop out of top 2
-    assert ctx.away_status == TOP2_ELIMINATED    # D on 0 pts cannot reach top 2
-    assert ctx.dead_rubber is True
+    assert ctx.away_status == TOP2_ELIMINATED    # D cannot reach top 2 ...
+    assert ctx.away_chasing_third is True        # ... but can still chase 3rd place
+    assert ctx.dead_rubber is False
 
 
 def test_j3_stakes_decisive_match_is_not_a_dead_rubber():
@@ -90,5 +94,15 @@ def test_j3_stakes_returns_none_before_two_rounds_complete():
 
 
 def test_j3_stakes_note_is_populated():
-    ctx = j3_stakes("X", ["A", "B", "C", "D"], _J12_SECURED, "A", "D")
+    # Use the both-secured group (genuine dead rubber under 2026 rules) so the
+    # "nada en juego" note fires.
+    j12 = [_m("A", "C", 3, 0), _m("B", "D", 3, 0),
+           _m("A", "D", 3, 0), _m("B", "C", 3, 0)]
+    ctx = j3_stakes("Y", ["A", "B", "C", "D"], j12, "A", "B")
+    assert ctx.dead_rubber is True
     assert "nada en juego" in ctx.note
+
+
+def test_j3_stakes_eliminated_team_note_mentions_best_third():
+    ctx = j3_stakes("X", ["A", "B", "C", "D"], _J12_SECURED, "A", "D")
+    assert "mejor tercero" in ctx.note

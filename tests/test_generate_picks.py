@@ -12,12 +12,16 @@ from wc_predictor.pipeline.generate_picks import (
     _annotate_group_rounds,
     _boleto_block,
     _fmt_score,
+    _forbid_outcomes,
     _host_role,
+    _odds_weights,
     _round_title,
     _team_es,
     resolve_round_filter,
 )
-from wc_predictor.config import QuinielaRules
+from wc_predictor.config import DEFAULT_CONFIG, QuinielaRules
+
+MCFG = DEFAULT_CONFIG.model
 
 
 # --- Round filter ---
@@ -185,3 +189,38 @@ def test_boleto_block_marks_abstain():
     block = _boleto_block(picks, "md1", rules)
     assert "★" in block
     assert "1★ ABSTAIN" in block
+
+
+# --- Config is the single source of truth for blend weights + draw policy ---
+
+def test_odds_weights_without_odds_is_config_two_way_blend():
+    w_po, w_el, w_od = _odds_weights(False, MCFG)
+    assert w_od == 0.0
+    assert w_po == pytest.approx(MCFG.blend_poisson_weight)
+    assert w_el == pytest.approx(MCFG.blend_elo_weight)
+    assert w_po + w_el == pytest.approx(1.0)
+
+
+def test_odds_weights_with_odds_uses_config_odds_weight():
+    w_po, w_el, w_od = _odds_weights(True, MCFG)
+    assert w_od == pytest.approx(MCFG.blend_odds_weight)
+    # Poisson:Elo keep their ratio on the remaining mass.
+    rem = 1.0 - MCFG.blend_odds_weight
+    assert w_po + w_el == pytest.approx(rem)
+    assert w_po / w_el == pytest.approx(MCFG.blend_poisson_weight / MCFG.blend_elo_weight)
+
+
+def test_forbid_outcomes_bans_draw_by_default():
+    assert _forbid_outcomes(MCFG, px_blended=0.20) == ("X",)
+
+
+def test_forbid_outcomes_lifts_draw_ban_on_strong_px():
+    assert _forbid_outcomes(MCFG, px_blended=MCFG.draw_allow_min_prob + 0.01) == ()
+
+
+class _Qual:
+    mutual_draw_safe = True
+
+
+def test_forbid_outcomes_lifts_ban_for_mutual_draw_safe():
+    assert _forbid_outcomes(MCFG, px_blended=0.10, qual=_Qual()) == ()

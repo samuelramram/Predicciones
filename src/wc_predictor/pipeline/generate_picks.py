@@ -40,7 +40,11 @@ from pathlib import Path
 
 from wc_predictor.config import DEFAULT_CONFIG, HISTORICAL_DIR, OUTPUTS_DIR, PROCESSED_DIR, RAW_DIR, WC_DIR
 from wc_predictor.ingest.odds import load_cached_odds
-from wc_predictor.model.adjustments import apply_wc_lambdas
+from wc_predictor.model.adjustments import (
+    MatchContext,
+    apply_context_adjustments,
+    apply_wc_lambdas,
+)
 from wc_predictor.model.blend import blend_three_sources
 from wc_predictor.model.poisson_dc import load_fit, predict_lambdas
 from wc_predictor.model.qualification import TOP2_SECURED, j3_stakes
@@ -49,17 +53,22 @@ from wc_predictor.scoring.quiniela import build_score_matrix, optimize_pick_from
 from wc_predictor.utils import config_hash, file_sha256, git_commit, git_dirty
 
 
-# Production blend. Without odds: Poisson 70% / Elo 30% (= blend_w30, backtested
-# optimal over 275 matches). With odds available, bookmaker probabilities take a
-# fixed slice and the Poisson:Elo pair keeps its 70:30 ratio on the remainder.
-#
-# PROD_W_ODDS is a literature-based default (closing odds are near-efficient;
-# market Brier ~0.23 vs our model ~0.58). It is NOT backtested — no free historical
-# international odds dataset exists. Tune it later via The Odds API historical
-# endpoint once a key is available. The pick is EV-optimal, draws forbidden.
-PROD_W_ODDS = 0.55
-PROD_POISSON_ELO_SPLIT = 0.70  # Poisson share of the non-odds weight
-PROD_FORBID = ("X",)
+def _forbid_outcomes(mcfg, px_blended: float, qual=None) -> tuple[str, ...]:
+    """Outcomes the optimizer may not pick for this match.
+
+    Starts from `mcfg.forbid_outcomes` (default forbids "X") and lifts the draw ban
+    when the draw signal is strong enough to be worth it:
+      - the blended P(X) clears `mcfg.draw_allow_min_prob`, or
+      - it is a J3 fixture where a draw qualifies both teams (mutual_draw_safe).
+    Banning draws globally lowers variance (good for average EV, bad for *winning*
+    a pool); this lets the model still strike on the rare high-conviction draw.
+    """
+    if qual is not None and qual.mutual_draw_safe:
+        return ()
+    forbid = tuple(mcfg.forbid_outcomes)
+    if "X" in forbid and px_blended >= mcfg.draw_allow_min_prob:
+        forbid = tuple(o for o in forbid if o != "X")
+    return forbid
 
 
 def _load_venues() -> dict:
@@ -187,14 +196,16 @@ def _host_role(fixture: dict, venues: dict) -> str | None:
     return None
 
 
-def _odds_weights(have_odds: bool) -> tuple[float, float, float]:
-    """Return (w_poisson, w_elo, w_odds). With odds the Poisson:Elo pair keeps its
-    70:30 ratio on the (1 - w_odds) remainder; without odds it collapses to the
-    backtested blend_w30 (0.70 / 0.30 / 0.0)."""
+def _odds_weights(have_odds: bool, mcfg) -> tuple[float, float, float]:
+    """Return (w_poisson, w_elo, w_odds), reading the single source of truth in
+    `config.ModelConfig`. With odds the Poisson:Elo pair keeps its configured ratio
+    on the (1 - blend_odds_weight) remainder; without odds it collapses to the
+    backtested 2-way blend (blend_poisson_weight / blend_elo_weight / 0.0)."""
+    poisson_share = mcfg.blend_poisson_weight / (mcfg.blend_poisson_weight + mcfg.blend_elo_weight)
     if have_odds:
-        rem = 1.0 - PROD_W_ODDS
-        return rem * PROD_POISSON_ELO_SPLIT, rem * (1.0 - PROD_POISSON_ELO_SPLIT), PROD_W_ODDS
-    return PROD_POISSON_ELO_SPLIT, 1.0 - PROD_POISSON_ELO_SPLIT, 0.0
+        rem = 1.0 - mcfg.blend_odds_weight
+        return rem * poisson_share, rem * (1.0 - poisson_share), mcfg.blend_odds_weight
+    return poisson_share, 1.0 - poisson_share, 0.0
 
 
 def predict_match(fixture: dict, fit, venues: dict, elos: dict, odds: dict, rules, mcfg,
@@ -232,6 +243,20 @@ def predict_match(fixture: dict, fit, venues: dict, elos: dict, odds: dict, rule
     # two layers that shape the score matrix (see adjustments.apply_wc_lambdas).
     lh, la = apply_wc_lambdas(lh, la, mcfg)
 
+    # Match-context adjustments: WC-host boost (USA/MEX/CAN), altitude (Azteca),
+    # travel and squad availability. Built from the venue record; no-ops when the
+    # venue is unknown or the optional feeds (travel km, injuries) are absent.
+    venue_rec = venues.get(fixture.get("venue") or "", {})
+    ctx = MatchContext(
+        home=home_name,
+        away=away_name,
+        venue=fixture.get("venue") or "",
+        venue_country=venue_rec.get("country", ""),
+        venue_altitude_m=float(venue_rec.get("altitude_m", 0.0)),
+        is_neutral=host is None,
+    )
+    lh, la = apply_context_adjustments(lh, la, ctx, mcfg)
+
     # Jornada-3 qualification incentive: a team whose top-2 finish is already
     # mathematically locked tends to rotate its XI for the dead-rubber final
     # group match — damp its expected goals (see ModelConfig.qual_rotation_lambda_mult).
@@ -257,7 +282,7 @@ def predict_match(fixture: dict, fit, venues: dict, elos: dict, odds: dict, rule
     if odds_entry:
         odds_1x2 = (odds_entry["p1"], odds_entry["px"], odds_entry["p2"])
 
-    w_poisson, w_elo, w_odds = _odds_weights(odds_1x2 is not None)
+    w_poisson, w_elo, w_odds = _odds_weights(odds_1x2 is not None, mcfg)
 
     # Poisson + DC cells, then 3-way blend and rescale.
     pcells, pp1, ppx, pp2, pmass, pmax = build_score_matrix(lh, la, mcfg)
@@ -265,10 +290,9 @@ def predict_match(fixture: dict, fit, venues: dict, elos: dict, odds: dict, rule
         pcells, (pp1, ppx, pp2), (elo_p1, elo_px, elo_p2), odds_1x2,
         w_poisson=w_poisson, w_elo=w_elo, w_odds=w_odds,
     )
-    # Draws are normally forbidden (backtested net-negative), but in a J3 match
-    # where a draw qualifies both teams the calculated-draw incentive makes X a
-    # live outcome — allow it there.
-    forbid = () if (qual is not None and qual.mutual_draw_safe) else PROD_FORBID
+    # Which outcomes the optimizer may pick (config-driven; the draw ban lifts on a
+    # strong blended P(X) or a J3 mutual-draw-safe fixture — see _forbid_outcomes).
+    forbid = _forbid_outcomes(mcfg, px_b, qual)
     pick = optimize_pick_from_cells(
         cells_b, p1_b, px_b, p2_b, pmass, pmax, rules, mcfg,
         forbid_outcomes=forbid,
@@ -318,6 +342,9 @@ def predict_match(fixture: dict, fit, venues: dict, elos: dict, odds: dict, rule
         "contrarian_actionable": contrarian_differs and ev_sacrifice <= mcfg.contrarian_max_ev_sacrifice,
         "top_5_scores": [{"score": c["score"], "prob": round(c["prob"], 3)} for c in pick.top_5_by_prob],
         "dead_rubber": bool(qual is not None and qual.dead_rubber),
+        # Transient (stripped before serialization) — inputs to the pool optimizer.
+        "_cells": cells_b,
+        "_elo_probs": (elo_p1, elo_px, elo_p2),
         "qualification": (
             {
                 "home_status": qual.home_status,
@@ -658,14 +685,53 @@ def _write_markdown(picks: list[dict], pending: list[dict], rules, mcfg, dst: Pa
     dst.write_text("\n".join(lines), encoding="utf-8")
 
 
+def _apply_pool_objective(picks: list[dict], rules, mcfg) -> None:
+    """Re-select picks to maximize P(finishing 1st) in the pool instead of
+    per-match EV. Mutates `picks` in place: for any match the optimizer swaps to
+    its contrarian pick, overwrite pick_1x2/pick_exact and flag `pool_swapped`.
+
+    See model.pool_optimizer — this is what actually closes the pool-sim loop.
+    """
+    from wc_predictor.model.pool_optimizer import TicketMatch, optimize_ticket
+
+    tmatches = [
+        TicketMatch(
+            match_id=p["match_id"],
+            cells=p["_cells"],
+            elo_probs=p["_elo_probs"],
+            ev_pick=(p["pick_1x2"], p["pick_exact"]),
+            contra_pick=(p["contrarian_pick_1x2"], p["contrarian_pick_exact"]),
+        )
+        for p in picks
+    ]
+    result = optimize_ticket(tmatches, rules)
+    swapped = set(result.swapped_to_contrarian)
+    for p in picks:
+        p["pool_swapped"] = p["match_id"] in swapped
+        if p["match_id"] in swapped:
+            p["pick_1x2"] = p["contrarian_pick_1x2"]
+            p["pick_exact"] = p["contrarian_pick_exact"]
+    print(f"  pool objective: P(rank=1) {result.win_prob_ev:.1%} (EV ticket) → "
+          f"{result.win_prob_pool:.1%} (pool ticket); "
+          f"{len(swapped)} pick(s) swapped to contrarian")
+
+
 def main():
     parser = argparse.ArgumentParser(description="Generate WC2026 quiniela picks for a round.")
     parser.add_argument("--round", default="all",
                         help="all | group_stage | j1..j3 (jornada = ronda completa de fase de grupos, 24 partidos) "
                              "| md1..md17 (matchday FIFA) | round_of_32 | round_of_16 "
                              "| quarter_final | semi_final | third_place | final")
+    parser.add_argument("--objective", default="ev", choices=("ev", "pool"),
+                        help="ev (default): each pick maximizes its own expected points. "
+                             "pool: optimize the whole ticket for P(finishing 1st) in the "
+                             "30-person pool by swapping marginal picks to the contrarian "
+                             "alternative (higher variance — use when you need to catch up).")
     args = parser.parse_args()
     round_filter, round_label = resolve_round_filter(args.round)
+
+    rules = DEFAULT_CONFIG.rules
+    mcfg = DEFAULT_CONFIG.model
 
     fit_src = PROCESSED_DIR / "team_strengths.json"
     if not fit_src.exists():
@@ -690,10 +756,10 @@ def main():
 
     odds = load_cached_odds()
     if odds:
+        w_po, w_el, w_od = _odds_weights(True, mcfg)
         print(f"Loaded bookmaker odds for {len(odds)} matches "
-              f"(3-way blend: {int((1-PROD_W_ODDS)*PROD_POISSON_ELO_SPLIT*100)}% Poisson / "
-              f"{int((1-PROD_W_ODDS)*(1-PROD_POISSON_ELO_SPLIT)*100)}% Elo / "
-              f"{int(PROD_W_ODDS*100)}% odds)")
+              f"(3-way blend: {int(w_po*100)}% Poisson / "
+              f"{int(w_el*100)}% Elo / {int(w_od*100)}% odds)")
     else:
         print("No cached odds (data/raw/odds_the_odds_api.json) — "
               "falling back to 70/30 Poisson/Elo blend. "
@@ -704,9 +770,6 @@ def main():
         print(f"Jornada-3 qualification context ready for {len(j3_contexts)} fixtures")
 
     print(f"Round filter: {round_label}")
-
-    rules = DEFAULT_CONFIG.rules
-    mcfg = DEFAULT_CONFIG.model
 
     selected = [fx for fx in fixtures_doc["matches"] if round_filter(fx)]
     if not selected:
@@ -733,6 +796,16 @@ def main():
         for e in errors:
             print(f"    ERROR: {e}")
 
+    strategy_label = "poisson+elo+odds blend, ev_no_draw"
+    if args.objective == "pool" and picks:
+        strategy_label = "poisson+elo+odds blend, pool-optimized (max P(rank=1))"
+        _apply_pool_objective(picks, rules, mcfg)
+
+    # Strip the transient pool-optimizer inputs before any serialization.
+    for p in picks:
+        p.pop("_cells", None)
+        p.pop("_elo_probs", None)
+
     OUTPUTS_DIR.mkdir(parents=True, exist_ok=True)
 
     csv_dst = OUTPUTS_DIR / f"picks_{round_label}.csv"
@@ -748,7 +821,7 @@ def main():
                       "exclusive": rules.exclusive},
             "model": {"mu": fit.mu, "gamma": fit.gamma, "rho": fit.rho,
                       "n_teams": fit.n_teams, "n_matches": fit.n_matches,
-                      "strategy": "poisson+elo+odds blend, ev_no_draw",
+                      "strategy": strategy_label,
                       "odds_matches": len(odds)},
             "picks": picks,
             "pending_knockouts": [

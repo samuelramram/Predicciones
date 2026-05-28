@@ -6,7 +6,11 @@ from dataclasses import replace
 import pytest
 
 from wc_predictor.config import DEFAULT_CONFIG
-from wc_predictor.model.adjustments import apply_wc_lambdas
+from wc_predictor.model.adjustments import (
+    MatchContext,
+    apply_context_adjustments,
+    apply_wc_lambdas,
+)
 
 
 MCFG = DEFAULT_CONFIG.model
@@ -96,3 +100,49 @@ def test_mismatch_pick_override_inactive_for_close_match():
     # P(home wins) ~0.44 — well below mismatch_pick_min_dominant (0.75).
     # Override must not fire; pick should remain the modal home-win cell.
     assert p1 < MCFG.mismatch_pick_min_dominant
+
+
+# --- apply_context_adjustments: host advantage + altitude (the formerly-dead config) ---
+
+def _ctx(home, away, country, altitude, **kw):
+    return MatchContext(home=home, away=away, venue="V", venue_country=country,
+                        venue_altitude_m=altitude, is_neutral=(country == ""), **kw)
+
+
+def test_context_neutral_sea_level_is_noop():
+    ctx = _ctx("France", "Brazil", "", 0.0)
+    lh, la = apply_context_adjustments(2.0, 1.5, ctx, MCFG)
+    assert (lh, la) == pytest.approx((2.0, 1.5))
+
+
+def test_context_host_advantage_boosts_host_lambda():
+    # Mexico hosting at a sea-level venue: only the host multiplier applies.
+    ctx = _ctx("Mexico", "Germany", "Mexico", 0.0)
+    lh, la = apply_context_adjustments(1.4, 1.3, ctx, MCFG)
+    assert lh == pytest.approx(1.4 * MCFG.host_advantage_mexico)
+    assert la == pytest.approx(1.3)
+
+
+def test_context_host_in_away_column_still_boosted():
+    # openfootball can list the host in the away column.
+    ctx = _ctx("Germany", "Mexico", "Mexico", 0.0)
+    lh, la = apply_context_adjustments(1.3, 1.4, ctx, MCFG)
+    assert la == pytest.approx(1.4 * MCFG.host_advantage_mexico)
+    assert lh == pytest.approx(1.3)
+
+
+def test_context_altitude_penalizes_visitor_at_azteca():
+    # Estadio Azteca 2240 m, Mexico host (acclimatized) → only the visitor is damped.
+    ctx = _ctx("Mexico", "Germany", "Mexico", 2240.0)
+    lh, la = apply_context_adjustments(1.4, 1.3, ctx, MCFG)
+    alt = 1.0 - MCFG.altitude_penalty_per_1000m * 2.24
+    assert la == pytest.approx(1.3 * alt)
+    assert lh == pytest.approx(1.4 * MCFG.host_advantage_mexico)
+
+
+def test_context_injury_penalty_is_capped():
+    ctx = _ctx("France", "Brazil", "", 0.0, home_unavail_starter_pct=0.9)
+    lh, la = apply_context_adjustments(2.0, 1.5, ctx, MCFG)
+    # Penalty capped at injury_max_lambda_penalty regardless of the 0.9 input.
+    assert lh == pytest.approx(2.0 * (1.0 - MCFG.injury_max_lambda_penalty))
+    assert la == pytest.approx(1.5)

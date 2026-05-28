@@ -1,0 +1,12 @@
+{
+  "_comment": "Bajas / lesiones por selección que el usuario llena antes de cada ronda (Perplexity + manual). Cada entrada es la fracción ESTIMADA de minutos del once titular que están fuera (0.0–1.0); generate_picks la pasa a MatchContext.{home,away}_unavail_starter_pct y model.adjustments la convierte en una penalización de lambda capada en injury_max_lambda_penalty (default 0.25) para evitar el sobre-castigo tipo Chivas-J6 de Liga MX. Mientras esté vacío es un no-op: el modelo corre igual sin datos de bajas.",
+  "version": "2026.05.20",
+  "as_of": null,
+  "scale": "unavailable_starter_pct: fracción de minutos del XI titular indisponible (0.0 = plantilla completa, 0.25 = tope de castigo)",
+  "teams": {
+    "_example_Mexico": {
+      "unavailable_starter_pct": 0.0,
+      "notes": "Ej: 'Edson Álvarez duda por molestia' — poner 0.0 mientras no haya bajas confirmadas."
+    }
+  }
+}

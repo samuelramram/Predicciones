@@ -15,23 +15,39 @@ import csv
 import json
 from datetime import datetime
 
-from wc_predictor.config import DEFAULT_CONFIG, OUTPUTS_DIR, RAW_DIR
+from wc_predictor.config import DEFAULT_CONFIG, HISTORICAL_DIR, OUTPUTS_DIR, RAW_DIR
 from wc_predictor.model.backtest import run_tournament_backtest
 
 
 def _load_all_rows() -> list[dict]:
-    src = RAW_DIR / "international_results.csv"
-    if not src.exists():
-        raise SystemExit(f"Missing {src}. Run ingest.martj42 first.")
+    """Load played matches for the backtest.
+
+    Reads the COMMITTED, canonical training set
+    `data/historical/international_matches.csv` (columns home/away/...) so the
+    backtest is reproducible from a clean clone — no network re-fetch needed.
+    Falls back to the raw martj42 dump (`data/raw/international_results.csv`,
+    columns home_team/away_team) only if the canonical file is missing.
+    """
+    canonical = HISTORICAL_DIR / "international_matches.csv"
+    raw = RAW_DIR / "international_results.csv"
+    if canonical.exists():
+        src, home_col, away_col = canonical, "home", "away"
+    elif raw.exists():
+        src, home_col, away_col = raw, "home_team", "away_team"
+    else:
+        raise SystemExit(
+            f"Missing {canonical} (and raw fallback {raw}). "
+            f"Run `python -m wc_predictor.ingest.martj42 --bootstrap` first."
+        )
     rows = []
     with src.open(encoding="utf-8") as f:
         for row in csv.DictReader(f):
             if row["home_score"] in ("NA", "", None) or row["away_score"] in ("NA", "", None):
                 continue
             rows.append({
-                "date": row["date"], "home": row["home_team"], "away": row["away_team"],
+                "date": row["date"], "home": row[home_col], "away": row[away_col],
                 "home_score": int(row["home_score"]), "away_score": int(row["away_score"]),
-                "neutral": row["neutral"].strip().lower() in {"true", "t", "1", "yes"},
+                "neutral": str(row["neutral"]).strip().lower() in {"true", "t", "1", "yes"},
                 "tournament": row["tournament"],
             })
     return rows
@@ -84,10 +100,11 @@ def _write_summary(backtests, dst):
         sorted_strats = sorted(b.by_strategy.values(), key=lambda s: -s.total_points)
         for s in sorted_strats:
             star = " ★" if s.strategy == "ev_optimal" else ""
+            n = s.n_matches or 1  # guard: a strategy with 0 scored matches
             lines.append(
                 f"| `{s.strategy}`{star} | **{s.total_points}** | {s.pts_per_match:.2f} | "
-                f"{s.exact_hits}/{s.n_matches} ({100*s.exact_hits/s.n_matches:.0f}%) | "
-                f"{s.outcome_hits}/{s.n_matches} ({100*s.outcome_hits/s.n_matches:.0f}%) | "
+                f"{s.exact_hits}/{s.n_matches} ({100*s.exact_hits/n:.0f}%) | "
+                f"{s.outcome_hits}/{s.n_matches} ({100*s.outcome_hits/n:.0f}%) | "
                 f"{s.pick_dist['1']}/{s.pick_dist['X']}/{s.pick_dist['2']} |"
             )
 
@@ -106,7 +123,8 @@ def _write_summary(backtests, dst):
         lines.append("| Modelo | Brier | log-loss | n |")
         lines.append("|---|---:|---:|---:|")
         for name, a in sorted(cal_agg.items(), key=lambda x: x[1]["brier_sum"] / max(x[1]["n"], 1)):
-            lines.append(f"| `{name}` | {a['brier_sum']/a['n']:.4f} | {a['ll_sum']/a['n']:.4f} | {a['n']} |")
+            n = a["n"] or 1
+            lines.append(f"| `{name}` | {a['brier_sum']/n:.4f} | {a['ll_sum']/n:.4f} | {a['n']} |")
 
     # Aggregate across tournaments
     if len(backtests) > 1:
@@ -123,10 +141,11 @@ def _write_summary(backtests, dst):
         lines.append("|---|---:|---:|---:|---:|")
         for name, a in sorted(agg.items(), key=lambda x: -x[1]["total"]):
             star = " ★" if name == "ev_optimal" else ""
+            n = a["n"] or 1
             lines.append(
-                f"| `{name}`{star} | **{a['total']}** | {a['total']/a['n']:.2f} | "
-                f"{a['exact']}/{a['n']} ({100*a['exact']/a['n']:.0f}%) | "
-                f"{a['outcome']}/{a['n']} ({100*a['outcome']/a['n']:.0f}%) |"
+                f"| `{name}`{star} | **{a['total']}** | {a['total']/n:.2f} | "
+                f"{a['exact']}/{a['n']} ({100*a['exact']/n:.0f}%) | "
+                f"{a['outcome']}/{a['n']} ({100*a['outcome']/n:.0f}%) |"
             )
 
     with open(dst, "w", encoding="utf-8") as f:

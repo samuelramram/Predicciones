@@ -6,7 +6,22 @@ fixture, classifies what the match is actually worth: which teams already have
 their top-2 finish locked, which can no longer reach it, whether the match is a
 dead rubber, and whether a draw sends both teams through.
 
-`pipeline.generate_picks` consumes this so a J3 game between two already-through
+FORMAT 2026 (12 groups, 32 → 48 teams): the top 2 of each group advance PLUS the
+8 best third-placed teams. A team knocked out of the top 2 is therefore NOT
+necessarily out of the tournament — it can still chase a best-third spot. Only a
+team locked into LAST place (4th) is mathematically eliminated, since 4th never
+qualifies. We cannot decide the best-third race from a single group (it needs all
+12 tables at once), so this module is deliberately conservative:
+
+  - A team is treated as having "nothing at stake" (decided) only when it is
+    SECURED top-2 (definitely through) or LOCKED LAST (definitely out).
+  - A team that can still finish 3rd is `TOP2_ELIMINATED` for the top-2 race but
+    is still PLAYING for a best-third spot, so its J3 match is NOT a dead rubber.
+
+This fixes the pre-2026 bug where any top2_secured-vs-top2_eliminated pairing was
+flagged a dead rubber even though the "eliminated" side was fighting for 3rd.
+
+`pipeline.generate_picks` consumes this so a J3 game between two already-decided
 teams is not predicted with the same confidence as a win-or-go-home decider.
 
 FIFA 2026 group tiebreakers, applied in order:
@@ -61,9 +76,13 @@ class StakesContext:
     away: str
     home_status: str
     away_status: str
-    dead_rubber: bool       # neither team's top-2 fate depends on this match
+    dead_rubber: bool       # neither team's ADVANCEMENT depends on this match
     mutual_draw_safe: bool  # a draw sends both teams through to top 2
     note: str
+    # 2026 best-third awareness: a team out of the top 2 can still chase a
+    # qualifying 3rd-place spot. False only when the team is locked into last.
+    home_chasing_third: bool = False
+    away_chasing_third: bool = False
 
 
 def _resolve_block(block: list[TeamRecord], played: list[dict],
@@ -153,10 +172,13 @@ def _top2_status_in_combo(points: dict[str, int], team: str) -> str:
 
 
 def _build_note(home: str, away: str, home_status: str, away_status: str,
-                dead_rubber: bool, mutual_draw_safe: bool) -> str:
+                dead_rubber: bool, mutual_draw_safe: bool,
+                home_chasing_third: bool = False,
+                away_chasing_third: bool = False) -> str:
+    chasing = {home: home_chasing_third, away: away_chasing_third}
     if dead_rubber:
-        note = ("Partido sin nada en juego para el top-2: la suerte de ambas "
-                "selecciones ya está decidida antes de jugarlo.")
+        note = ("Partido sin nada en juego para la clasificación: ambas "
+                "selecciones ya tienen decidida su suerte antes de jugarlo.")
     elif home_status == TOP2_POSSIBLE and away_status == TOP2_POSSIBLE:
         note = "Partido decisivo: el resultado define quién avanza en el top-2."
     else:
@@ -165,7 +187,11 @@ def _build_note(home: str, away: str, home_status: str, away_status: str,
             if status == TOP2_SECURED:
                 bits.append(f"{team} ya tiene asegurado el top-2")
             elif status == TOP2_ELIMINATED:
-                bits.append(f"{team} ya no puede entrar al top-2")
+                if chasing[team]:
+                    bits.append(f"{team} quedó fuera del top-2 pero sigue peleando "
+                                f"un puesto de mejor tercero")
+                else:
+                    bits.append(f"{team} ya está eliminado (no alcanza ni el mejor tercero)")
             else:
                 bits.append(f"{team} todavía se juega el top-2")
         note = "; ".join(bits) + "."
@@ -202,6 +228,9 @@ def j3_stakes(group, group_teams, played_j12, j3_home, j3_away, elos=None):
     base = {r.team: r.points for r in compute_standings(group_teams, played, elos)}
 
     counts = {t: {"in": 0, "out": 0, "amb": 0} for t in group_teams}
+    # `last`: number of combos in which the team is strictly LAST (>=3 teams above
+    # it on points). Locked-last == eliminated for sure, since 4th never qualifies.
+    last_counts = {t: 0 for t in group_teams}
     draw_status = {j3_home: [], j3_away: []}
     for ha, aa in _WDL:            # this fixture: j3_home vs j3_away
         for hb, ab in _WDL:        # the group's other J3 fixture: o1 vs o2
@@ -212,6 +241,8 @@ def j3_stakes(group, group_teams, played_j12, j3_home, j3_away, elos=None):
             pts[o2] += ab
             for t in group_teams:
                 counts[t][_top2_status_in_combo(pts, t)] += 1
+                if sum(1 for other in pts.values() if other > pts[t]) >= 3:
+                    last_counts[t] += 1
             if (ha, aa) == (1, 1):
                 draw_status[j3_home].append(_top2_status_in_combo(pts, j3_home))
                 draw_status[j3_away].append(_top2_status_in_combo(pts, j3_away))
@@ -226,8 +257,22 @@ def j3_stakes(group, group_teams, played_j12, j3_home, j3_away, elos=None):
 
     home_status = classify(j3_home)
     away_status = classify(j3_away)
-    decided = (TOP2_SECURED, TOP2_ELIMINATED)
-    dead_rubber = home_status in decided and away_status in decided
+
+    # 2026 best-third format: out of the top 2 but NOT locked into last place ==
+    # still chasing a qualifying 3rd-place spot, so the match still matters.
+    def chasing_third(t: str, status: str) -> bool:
+        return status == TOP2_ELIMINATED and last_counts[t] < 9
+
+    home_chasing_third = chasing_third(j3_home, home_status)
+    away_chasing_third = chasing_third(j3_away, away_status)
+
+    # A team's advancement is DECIDED only when it is secured top-2 (in for sure)
+    # or locked last (out for sure). Top-2-eliminated-but-chasing-3rd is NOT
+    # decided. Dead rubber requires both teams decided.
+    def decided(t: str, status: str) -> bool:
+        return status == TOP2_SECURED or last_counts[t] == 9
+    dead_rubber = decided(j3_home, home_status) and decided(j3_away, away_status)
+
     mutual_draw_safe = (all(s == "in" for s in draw_status[j3_home])
                         and all(s == "in" for s in draw_status[j3_away]))
 
@@ -240,5 +285,8 @@ def j3_stakes(group, group_teams, played_j12, j3_home, j3_away, elos=None):
         dead_rubber=dead_rubber,
         mutual_draw_safe=mutual_draw_safe,
         note=_build_note(j3_home, j3_away, home_status, away_status,
-                         dead_rubber, mutual_draw_safe),
+                         dead_rubber, mutual_draw_safe,
+                         home_chasing_third, away_chasing_third),
+        home_chasing_third=home_chasing_third,
+        away_chasing_third=away_chasing_third,
     )
