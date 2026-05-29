@@ -109,7 +109,8 @@ de red (re-corre con los datos ya en `data/raw/`).
 ```bash
 python -m wc_predictor.ingest.martj42 --bootstrap --refetch       # histórico training
 python -m wc_predictor.ingest.openfootball --bootstrap --refetch  # 104 fixtures WC2026
-python -m wc_predictor.ingest.fetch_odds                          # odds bookmakers (opcional, ver abajo)
+python -m wc_predictor.ingest.fetch_odds                          # odds: snapshot único (opcional)
+python -m wc_predictor.pipeline.snapshot_odds                     # odds: closing line (recomendado, ver abajo)
 python -m wc_predictor.ingest.api_football                        # lesiones API-Football (opcional, requiere plan Pro)
 python -m wc_predictor.pipeline.fit_elo                           # replay Elo internacional
 python -m wc_predictor.pipeline.fit_model                         # fit Poisson + Dixon-Coles
@@ -119,16 +120,32 @@ python -m wc_predictor.pipeline.simulate_pool                     # simulación 
 ```
 
 **Odds de bookmakers (opcional pero recomendado):** el mercado es el predictor individual
-más fuerte. Para activarlo, consigue una API key gratis en
-[the-odds-api.com](https://the-odds-api.com/) (500 créditos/mes, sin tarjeta), ponla en
-`.env` como `THE_ODDS_API_KEY=...`, y corre `python -m wc_predictor.ingest.fetch_odds`.
-El modelo pasa automáticamente a un blend de 3 vías (Poisson + Elo + odds). Sin key,
-cae al blend de 2 vías (Poisson 70% / Elo 30%) — backtesteado y funcional.
+más fuerte. API recomendada: **The Odds API, v4** (sport key `soccer_fifa_world_cup`,
+mercado `h2h` = 1X2, regiones `eu,uk` para libros afilados como Pinnacle). Es la única
+con buena cobertura de **selecciones** — football-data.co.uk es solo clubes. Consigue una
+key gratis en [the-odds-api.com](https://the-odds-api.com/) (500 créditos/mes, sin tarjeta),
+ponla en `.env` como `THE_ODDS_API_KEY=...`. El modelo pasa automáticamente a un blend de
+3 vías (Poisson + Elo + odds). Sin key, cae al blend de 2 vías — backtesteado y funcional.
+
+Dos modos de captura:
+
+- **`ingest.fetch_odds`** — snapshot único de las cuotas *actuales*. Rápido para probar.
+- **`pipeline.snapshot_odds`** (recomendado) — captura la **closing line**, el predictor de
+  verdad. El endpoint solo da la cuota del momento, así que este comando se corre en un cron
+  ~10 min antes del primer kickoff de cada jornada y, por partido, guarda el último snapshot
+  tomado *antes* del arranque (lo congela una vez empieza). `generate_picks` prefiere esta
+  tienda de closing line sobre el snapshot único de forma automática.
+
+```bash
+# cron Jun–Jul 2026: 10 min antes de los kickoffs típicos 12:00Z y 19:00Z
+50 11 * 6,7 *  cd /ruta/Predicciones && python -m wc_predictor.pipeline.snapshot_odds
+50 18 * 6,7 *  cd /ruta/Predicciones && python -m wc_predictor.pipeline.snapshot_odds
+```
 
 > Nota: el odds blend NO está backtesteado — no existe un dataset gratuito de odds
 > históricas de selecciones. El peso de las odds (55%) es un default basado en literatura
-> (las cuotas de cierre son casi eficientes). Se puede afinar con el endpoint histórico
-> de The Odds API una vez haya key.
+> (las cuotas de cierre son casi eficientes). Se puede afinar con el endpoint histórico de
+> The Odds API (10 créditos por región·mercado) una vez haya key.
 
 **Fuentes verificadas y usadas:**
 - [`martj42/international_results`](https://github.com/martj42/international_results) (CC0) —
@@ -197,24 +214,36 @@ pytest                              # 55 tests (optimizer, fit, Elo, blend, inge
 - [x] **Phase 2** — Modelo base. MLE Poisson + Dixon-Coles. Replay Elo internacional
       (49k partidos). Bivariate Poisson probado (λ₃≈0 → no aporta, independent Poisson confirmado).
 - [x] **Phase 3.1** — Elo blend. `blend_w30_ev_no_draw` (30% Elo + 70% Poisson, sin empates).
-      Backtest 5 torneos: 197 pts vs 186 del baseline `always_1_0` (+6%).
 - [x] **Phase 4** — Validación. Backtest sobre WC 2014/18/22 + Euro 2024 + Copa América 2024
       (275 partidos). Calibración Brier + log-loss. Orquestador `pipeline.run`. CLI por ronda.
-- [ ] **Phase 3.2 (pendiente)** — Más features: odds scrapeadas (mayor ROI — cierra el gap de
-      calibración 0.58 → ~0.30), squad strength (jfjelstul/worldcup), altitud Azteca / fatiga.
-- [ ] **Phase 5 (pre-Mundial)** — Picks fase de grupos lockeados, simulación de pool (ranking
-      esperado entre 30 jugadores), sistema de log post-ronda.
+      El backtest ahora lee el CSV **versionado** `data/historical/international_matches.csv`,
+      así que `python -m wc_predictor.pipeline.backtest` reproduce estos números desde un clon limpio.
+- [x] **Phase 3.2** — Adjustments conectados: **host advantage** (USA/MEX/CAN) y **altitud**
+      (Estadio Azteca 2240 m) ya alteran las lambdas vía `model.adjustments.apply_context_adjustments`.
+      Travel y bajas quedan cableados pero en no-op hasta que se llenen sus feeds
+      (`data/wc2026/injuries.json`).
+- [x] **Phase 5** — Optimización de pool: `generate_picks --objective pool` cierra el loop con
+      `model.pool_sim` y elige el boleto que maximiza **P(quedar #1)** en vez del EV individual.
+- [ ] **Pendiente (mayor ROI)** — odds de cierre (requiere `THE_ODDS_API_KEY`, código listo en
+      `ingest.fetch_odds`), squad strength (jfjelstul/worldcup), y el loop en vivo
+      (ingerir scores J1/J2 → refit → J3).
 
 ### Resultado del backtest (275 partidos, 5 torneos)
 
+Reproducible: `python -m wc_predictor.pipeline.backtest` → `outputs/backtest_summary.md`.
+
 | Estrategia | Total | Pts/match |
 |---|---:|---:|
-| **`blend_w30_ev_no_draw`** (producción) | **197** | **0.72** |
-| `always_1_0` (baseline trivial) | 186 | 0.68 |
-| `ev_optimal` (modelo Phase 2) | 182 | 0.66 |
-| `modal_poisson` | 136 | 0.49 |
+| **`blend_w35_ev_no_draw`** (mejor del sweep) | **195** | **0.71** |
+| `blend_w30_ev_no_draw` (producción) | 194 | 0.71 |
+| `always_1_0` (baseline trivial) | 184 | 0.67 |
+| `ev_optimal` (modelo Phase 2, permite empates) | 171 | 0.62 |
+| `modal_poisson` | 138 | 0.50 |
 
-Calibración del modelo: Brier 0.585 (random uniforme 0.667; mercado Pinnacle ~0.23).
+Ventaja sobre el baseline trivial: **+6%** (194 vs 184). Es real pero modesta —
+el predictor de mayor impacto sigue apagado: **las odds de cierre** (mercado Brier
+≈0.23 vs modelo ≈0.60). Calibración del modelo (agregado 275 partidos): Brier ≈0.60
+(random uniforme 0.667). Prender las cuotas es lo más barato y de mayor ROI pendiente.
 
 ---
 

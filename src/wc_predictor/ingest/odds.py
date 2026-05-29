@@ -74,7 +74,6 @@ def parse_odds_api_response(payload: list[dict]) -> dict[str, dict]:
         away = _canon(event.get("away_team", ""))
         if not home or not away:
             continue
-
         acc_p1 = acc_px = acc_p2 = acc_w = 0.0
         n_books = 0
         for book in event.get("bookmakers", []):
@@ -110,6 +109,9 @@ def parse_odds_api_response(payload: list[dict]) -> dict[str, dict]:
             "px": acc_px / acc_w,
             "p2": acc_p2 / acc_w,
             "n_books": n_books,
+            # Kickoff time, so the closing-line snapshotter knows when a match
+            # locks (additive field; existing consumers ignore it).
+            "commence_time": event.get("commence_time"),
         }
     return out
 
@@ -145,3 +147,89 @@ def load_cached_odds(cache_path: Path | None = None) -> dict[str, dict]:
         return {}
     with cache.open(encoding="utf-8") as f:
         return parse_odds_api_response(json.load(f))
+
+
+# --- Closing line capture ---------------------------------------------------
+#
+# The /odds endpoint returns the CURRENT price; the closing line is whatever the
+# market shows right before kickoff. We approximate it by snapshotting repeatedly
+# (a cron near each matchday) and, per match, keeping the latest snapshot taken
+# while the match was still upcoming. Once a match kicks off we freeze its entry
+# so a later run can't overwrite a closing line with a stale/removed price.
+
+CLOSING_LINE_PATH = RAW_DIR / "odds_closing_line.json"
+
+
+def _parse_iso_utc(ts: str | None):
+    """Parse an ISO-8601 UTC timestamp (accepts a trailing 'Z'); None on failure."""
+    if not ts:
+        return None
+    from datetime import datetime, timezone
+    try:
+        dt = datetime.fromisoformat(ts.replace("Z", "+00:00"))
+    except ValueError:
+        return None
+    return dt if dt.tzinfo else dt.replace(tzinfo=timezone.utc)
+
+
+def update_closing_line(parsed_now: dict[str, dict], now_iso: str,
+                        store: dict[str, dict]) -> dict[str, dict]:
+    """Fold a fresh snapshot into the closing-line store. Pure function.
+
+    For each match in `parsed_now`:
+      - if it has already kicked off (commence_time <= now) → keep the frozen
+        store entry untouched (it holds the last pre-kickoff price);
+      - otherwise → overwrite with the fresh snapshot, since "later but still
+        before kickoff" is by definition closer to the closing line.
+    Records `captured_at` so the freshness of each closing line is auditable.
+    """
+    now = _parse_iso_utc(now_iso)
+    out = dict(store)
+    for key, snap in parsed_now.items():
+        kickoff = _parse_iso_utc(snap.get("commence_time"))
+        already_started = now is not None and kickoff is not None and kickoff <= now
+        if already_started and key in out:
+            continue  # frozen: do not overwrite a captured closing line
+        out[key] = {**snap, "captured_at": now_iso}
+    return out
+
+
+def load_closing_line_odds(store_path: Path | None = None) -> dict[str, dict]:
+    """Load the captured closing-line store in the shape generate_picks expects
+    (`{home|away: {p1, px, p2, n_books}}`). Returns {} if no store exists yet."""
+    path = store_path or CLOSING_LINE_PATH
+    if not path.exists():
+        return {}
+    with path.open(encoding="utf-8") as f:
+        store = json.load(f)
+    return {
+        k: {"p1": v["p1"], "px": v["px"], "p2": v["p2"], "n_books": v["n_books"]}
+        for k, v in store.items()
+    }
+
+
+def snapshot_closing_odds(api_key: str | None = None, regions: str = "eu,uk",
+                          store_path: Path | None = None,
+                          now_iso: str | None = None) -> dict[str, dict]:
+    """Fetch current odds and fold them into the persistent closing-line store.
+
+    Designed to be run on a schedule (e.g. a cron ~10 min before each jornada's
+    first kickoff). Each run nudges every still-upcoming match toward its closing
+    price and leaves already-started matches frozen. Returns the updated store.
+    """
+    from datetime import datetime, timezone
+
+    now_iso = now_iso or datetime.now(timezone.utc).isoformat()
+    path = store_path or CLOSING_LINE_PATH
+
+    parsed_now = fetch_odds_api(api_key=api_key, regions=regions)
+    store: dict[str, dict] = {}
+    if path.exists():
+        with path.open(encoding="utf-8") as f:
+            store = json.load(f)
+
+    store = update_closing_line(parsed_now, now_iso, store)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("w", encoding="utf-8") as f:
+        json.dump(store, f, indent=2, ensure_ascii=False)
+    return store

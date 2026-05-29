@@ -228,8 +228,15 @@ def run_tournament_backtest(
               f"lambda3={fit_biv.lambda3:.3f}, {fit_biv.n_teams} teams")
         print(f"  elo:        replayed {len(elo_rows_all)} matches → {len(elos)} teams")
 
+    # Bivariate variants are only computed for these strategies below; creating a
+    # biv_ key for every STRATEGIES entry (e.g. biv_contrarian) would leave it with
+    # zero scored matches → a ZeroDivisionError when the summary divides by n_matches.
+    BIV_STRATEGIES = (
+        "biv_ev_optimal", "biv_ev_no_draw", "biv_modal_poisson",
+        "biv_always_1_0", "biv_always_2_1", "biv_outcome_only_21",
+    )
     by_strategy: dict[str, list[dict]] = {s: [] for s in STRATEGIES}
-    by_strategy.update({f"biv_{s}": [] for s in STRATEGIES})
+    by_strategy.update({s: [] for s in BIV_STRATEGIES})
     for w_elo in BLEND_WEIGHTS_ELO:
         by_strategy[f"blend_w{int(w_elo*100):02d}_ev_optimal"] = []
         by_strategy[f"blend_w{int(w_elo*100):02d}_ev_no_draw"] = []

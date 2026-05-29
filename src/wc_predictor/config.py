@@ -94,15 +94,44 @@ class ModelConfig:
     elo_k_wc_knockout: float = 60.0
     elo_home_bonus: float = 80.0
 
+    # Production blend weights — THE single source of truth (generate_picks reads
+    # these directly; no module-level duplicate constants).
+    #   no odds available → Poisson `blend_poisson_weight` / Elo `blend_elo_weight`
+    #                       (the two must sum to 1.0; backtested optimum ≈ 0.70/0.30).
+    #   odds available     → odds take `blend_odds_weight`, and the Poisson:Elo pair
+    #                       keeps its ratio on the remaining (1 - blend_odds_weight).
+    # `blend_odds_weight` is a literature-based default (closing odds are near
+    # efficient; market Brier ≈0.23 vs our model ≈0.55). Tune via The Odds API
+    # historical endpoint once a key exists.
     blend_elo_weight: float = 0.30
     blend_poisson_weight: float = 0.70
     blend_odds_weight: float = 0.55
 
+    # Outcomes the production optimizer may NOT pick by default. Draws are net
+    # negative in the backtest (the model picks the right NUMBER of draws but not
+    # the right MATCHES) so "X" is excluded — EXCEPT when the blended P(X) clears
+    # `draw_allow_min_prob`, where the draw signal is strong enough to be worth a
+    # forfeit of pool differentiation. A J3 mutual-draw-safe match also lifts the ban.
+    forbid_outcomes: tuple[str, ...] = ("X",)
+    draw_allow_min_prob: float = 0.42
+
+    # --- Match-context adjustments (model/adjustments.apply_context_adjustments) ---
+    # World-Cup host nations enjoy a documented home boost BEYOND the generic gamma
+    # the Poisson+DC fit already applies to the side on home soil. These multipliers
+    # are layered ON TOP of that gamma for the host nation only.
     host_advantage_usa: float = 1.10
     host_advantage_mexico: float = 1.18
     host_advantage_canada: float = 1.06
+    # Visiting (non-acclimatized) side loses this fraction of λ per 1000 m of venue
+    # altitude. Only Mexico City (Estadio Azteca, 2240 m) moves the needle materially
+    # (~9% at the default 0.04); sea-level US/Canada venues are ~0 by construction.
     altitude_penalty_per_1000m: float = 0.04
+    # λ lost per 1000 km a team travelled since its previous fixture (no-op until a
+    # travel feed populates MatchContext.{home,away}_prev_km).
     travel_penalty_per_1000km: float = 0.015
+    # Squad availability: λ is scaled by (1 - unavailable_starter_pct), capped at this
+    # fraction so a wave of withdrawals can't zero a team out (the Liga MX Chivas-J6 bug).
+    injury_max_lambda_penalty: float = 0.25
 
     ev_abstain_gap: float = 0.02
 

@@ -45,6 +45,9 @@ api_keys.json
 # ----- Datos crudos / cache (NO versionar) -----
 data/raw/*
 !data/raw/.gitkeep
+# Closing-line store IS versioned: the scheduled odds workflow commits it back so
+# it persists across runs (Actions disk is ephemeral) and builds an auditable history.
+!data/raw/odds_closing_line.json
 data/processed/*
 !data/processed/.gitkeep
 # Fitted model artifacts (output of fit_model) — versionados porque son caros
