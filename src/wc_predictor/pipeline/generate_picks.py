@@ -39,7 +39,7 @@ from datetime import datetime
 from pathlib import Path
 
 from wc_predictor.config import DEFAULT_CONFIG, HISTORICAL_DIR, OUTPUTS_DIR, PROCESSED_DIR, RAW_DIR, WC_DIR
-from wc_predictor.ingest.odds import load_cached_odds
+from wc_predictor.ingest.odds import load_cached_odds, load_closing_line_odds
 from wc_predictor.model.adjustments import (
     MatchContext,
     apply_context_adjustments,
@@ -754,16 +754,22 @@ def main():
                          "`python -m wc_predictor.pipeline.fit_elo` first.")
     print(f"Loaded Elo for {len(elos)} teams")
 
-    odds = load_cached_odds()
+    # Prefer the captured closing line (most predictive) over a one-off snapshot.
+    odds = load_closing_line_odds()
+    odds_source = "closing line"
+    if not odds:
+        odds = load_cached_odds()
+        odds_source = "snapshot"
     if odds:
         w_po, w_el, w_od = _odds_weights(True, mcfg)
-        print(f"Loaded bookmaker odds for {len(odds)} matches "
+        print(f"Loaded bookmaker odds ({odds_source}) for {len(odds)} matches "
               f"(3-way blend: {int(w_po*100)}% Poisson / "
               f"{int(w_el*100)}% Elo / {int(w_od*100)}% odds)")
     else:
-        print("No cached odds (data/raw/odds_the_odds_api.json) — "
-              "falling back to 70/30 Poisson/Elo blend. "
-              "Run `python -m wc_predictor.ingest.fetch_odds` with THE_ODDS_API_KEY set to enable.")
+        print("No cached odds — falling back to 70/30 Poisson/Elo blend. "
+              "Run `python -m wc_predictor.pipeline.snapshot_odds` (closing line, "
+              "recommended) or `python -m wc_predictor.ingest.fetch_odds` with "
+              "THE_ODDS_API_KEY set to enable.")
 
     j3_contexts = build_j3_contexts(fixtures_doc["matches"], elos)
     if j3_contexts:
@@ -851,6 +857,7 @@ def main():
                 "data/wc2026/venues.json": file_sha256(WC_DIR / "venues.json"),
                 "data/historical/elo_current.json": file_sha256(HISTORICAL_DIR / "elo_current.json"),
                 "data/raw/odds_the_odds_api.json": file_sha256(RAW_DIR / "odds_the_odds_api.json"),
+                "data/raw/odds_closing_line.json": file_sha256(RAW_DIR / "odds_closing_line.json"),
             },
             "outputs": {
                 csv_dst.name: file_sha256(csv_dst),

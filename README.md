@@ -109,7 +109,8 @@ de red (re-corre con los datos ya en `data/raw/`).
 ```bash
 python -m wc_predictor.ingest.martj42 --bootstrap --refetch       # histórico training
 python -m wc_predictor.ingest.openfootball --bootstrap --refetch  # 104 fixtures WC2026
-python -m wc_predictor.ingest.fetch_odds                          # odds bookmakers (opcional, ver abajo)
+python -m wc_predictor.ingest.fetch_odds                          # odds: snapshot único (opcional)
+python -m wc_predictor.pipeline.snapshot_odds                     # odds: closing line (recomendado, ver abajo)
 python -m wc_predictor.ingest.api_football                        # lesiones API-Football (opcional, requiere plan Pro)
 python -m wc_predictor.pipeline.fit_elo                           # replay Elo internacional
 python -m wc_predictor.pipeline.fit_model                         # fit Poisson + Dixon-Coles
@@ -119,16 +120,32 @@ python -m wc_predictor.pipeline.simulate_pool                     # simulación 
 ```
 
 **Odds de bookmakers (opcional pero recomendado):** el mercado es el predictor individual
-más fuerte. Para activarlo, consigue una API key gratis en
-[the-odds-api.com](https://the-odds-api.com/) (500 créditos/mes, sin tarjeta), ponla en
-`.env` como `THE_ODDS_API_KEY=...`, y corre `python -m wc_predictor.ingest.fetch_odds`.
-El modelo pasa automáticamente a un blend de 3 vías (Poisson + Elo + odds). Sin key,
-cae al blend de 2 vías (Poisson 70% / Elo 30%) — backtesteado y funcional.
+más fuerte. API recomendada: **The Odds API, v4** (sport key `soccer_fifa_world_cup`,
+mercado `h2h` = 1X2, regiones `eu,uk` para libros afilados como Pinnacle). Es la única
+con buena cobertura de **selecciones** — football-data.co.uk es solo clubes. Consigue una
+key gratis en [the-odds-api.com](https://the-odds-api.com/) (500 créditos/mes, sin tarjeta),
+ponla en `.env` como `THE_ODDS_API_KEY=...`. El modelo pasa automáticamente a un blend de
+3 vías (Poisson + Elo + odds). Sin key, cae al blend de 2 vías — backtesteado y funcional.
+
+Dos modos de captura:
+
+- **`ingest.fetch_odds`** — snapshot único de las cuotas *actuales*. Rápido para probar.
+- **`pipeline.snapshot_odds`** (recomendado) — captura la **closing line**, el predictor de
+  verdad. El endpoint solo da la cuota del momento, así que este comando se corre en un cron
+  ~10 min antes del primer kickoff de cada jornada y, por partido, guarda el último snapshot
+  tomado *antes* del arranque (lo congela una vez empieza). `generate_picks` prefiere esta
+  tienda de closing line sobre el snapshot único de forma automática.
+
+```bash
+# cron Jun–Jul 2026: 10 min antes de los kickoffs típicos 12:00Z y 19:00Z
+50 11 * 6,7 *  cd /ruta/Predicciones && python -m wc_predictor.pipeline.snapshot_odds
+50 18 * 6,7 *  cd /ruta/Predicciones && python -m wc_predictor.pipeline.snapshot_odds
+```
 
 > Nota: el odds blend NO está backtesteado — no existe un dataset gratuito de odds
 > históricas de selecciones. El peso de las odds (55%) es un default basado en literatura
-> (las cuotas de cierre son casi eficientes). Se puede afinar con el endpoint histórico
-> de The Odds API una vez haya key.
+> (las cuotas de cierre son casi eficientes). Se puede afinar con el endpoint histórico de
+> The Odds API (10 créditos por región·mercado) una vez haya key.
 
 **Fuentes verificadas y usadas:**
 - [`martj42/international_results`](https://github.com/martj42/international_results) (CC0) —

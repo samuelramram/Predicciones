@@ -150,3 +150,43 @@ def test_blend_three_sources_drops_missing_odds_gracefully():
     assert abs(p1_no_odds - p1_ref) < 1e-9
     assert abs(px_no_odds - px_ref) < 1e-9
     assert abs(p2_no_odds - p2_ref) < 1e-9
+
+
+# --- Closing-line capture ---
+
+from wc_predictor.ingest.odds import update_closing_line  # noqa: E402
+
+
+def _snap(p1, kickoff):
+    return {"p1": p1, "px": 0.25, "p2": round(0.75 - p1, 4),
+            "n_books": 3, "commence_time": kickoff}
+
+
+def test_closing_line_records_upcoming_match():
+    now = "2026-06-11T10:00:00Z"
+    parsed = {"Mexico|South Africa": _snap(0.55, "2026-06-11T19:00:00Z")}
+    store = update_closing_line(parsed, now, {})
+    assert store["Mexico|South Africa"]["p1"] == 0.55
+    assert store["Mexico|South Africa"]["captured_at"] == now
+
+
+def test_closing_line_overwrites_while_still_upcoming():
+    kickoff = "2026-06-11T19:00:00Z"
+    store = update_closing_line({"M|S": _snap(0.55, kickoff)}, "2026-06-11T10:00:00Z", {})
+    # A later (but still pre-kickoff) snapshot is closer to closing → it wins.
+    store = update_closing_line({"M|S": _snap(0.61, kickoff)}, "2026-06-11T18:50:00Z", store)
+    assert store["M|S"]["p1"] == 0.61
+
+
+def test_closing_line_freezes_after_kickoff():
+    kickoff = "2026-06-11T19:00:00Z"
+    store = update_closing_line({"M|S": _snap(0.61, kickoff)}, "2026-06-11T18:50:00Z", {})
+    # A snapshot taken AFTER kickoff must not overwrite the captured closing line.
+    store = update_closing_line({"M|S": _snap(0.40, kickoff)}, "2026-06-11T19:30:00Z", store)
+    assert store["M|S"]["p1"] == 0.61
+
+
+def test_closing_line_handles_missing_kickoff_gracefully():
+    # No commence_time → treat as upcoming (always updatable), never crash.
+    store = update_closing_line({"M|S": _snap(0.5, None)}, "2026-06-11T10:00:00Z", {})
+    assert store["M|S"]["p1"] == 0.5
