@@ -26,11 +26,26 @@ Valores válidos de `--round`:
 
 ## Generar picks
 
+Cuando el usuario pida correr el modelo para ver los picks de una jornada,
+**siempre genera la predicción más certera posible en ese momento**: primero
+refresca la línea de cierre del mercado y luego corre `generate_picks`. No uses
+un snapshot de odds viejo si se puede actualizar.
+
 ```bash
+# 1) Refrescar la línea de cierre (best-effort). Si no hay THE_ODDS_API_KEY,
+#    falla la red o la API, NO aborta: generate_picks usará la línea guardada
+#    más reciente. El comando degrada solo.
+python -m wc_predictor.pipeline.snapshot_odds
+
+# 2) Generar los picks de la ronda con el blend completo
+#    (Poisson + Dixon-Coles + Elo + odds, e incentivos de clasificación si aplican)
 python -m wc_predictor.pipeline.generate_picks --round j3
 ```
 
-Salida en `outputs/picks_{ronda}.{csv,json,md}`.
+Salida en `outputs/picks_{ronda}.{csv,json,md}`. Tras correr, reporta de qué
+fecha es la línea de cierre que se usó (`captured_at` en
+`data/raw/odds_closing_line.json`) para que el usuario sepa qué tan fresco es el
+mercado detrás del boleto.
 
 ## Incentivos de clasificación (jornada 3)
 
