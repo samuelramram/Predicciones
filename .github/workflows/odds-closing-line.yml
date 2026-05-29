@@ -1,0 +1,68 @@
+name: odds-closing-line
+
+# Captures the bookmaker closing line for WC 2026 by snapshotting The Odds API on
+# a schedule and committing the accumulated store back to the repo (Actions disk
+# is ephemeral, so committing is how the store persists between runs).
+#
+# Setup: add a repository secret THE_ODDS_API_KEY
+#   (Settings → Secrets and variables → Actions → New repository secret).
+#
+# NOTE: scheduled workflows only run from the DEFAULT branch — this fires once it
+# is merged to main, not from the PR branch. Use "Run workflow" to test manually.
+
+on:
+  schedule:
+    # Every 6 hours, but only in June and July (the tournament window) so it never
+    # burns credits off-season. 4 runs/day × ~39 days × 2 regions ≈ 312 credits,
+    # inside the free 500/month. The "freeze at kickoff" logic means each match
+    # keeps the last snapshot taken before it started.
+    - cron: "0 0,6,12,18 * 6,7 *"
+  workflow_dispatch: {}
+
+# Allow the job to push the updated store back to the repo.
+permissions:
+  contents: write
+
+concurrency:
+  group: odds-closing-line
+  cancel-in-progress: false
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: requirements.txt
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Snapshot closing-line odds
+        env:
+          THE_ODDS_API_KEY: ${{ secrets.THE_ODDS_API_KEY }}
+        run: |
+          if [ -z "$THE_ODDS_API_KEY" ]; then
+            echo "::error::THE_ODDS_API_KEY secret is not set — add it in Settings → Secrets and variables → Actions."
+            exit 1
+          fi
+          PYTHONPATH=src python -m wc_predictor.pipeline.snapshot_odds
+
+      - name: Commit updated closing line
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -f data/raw/odds_closing_line.json
+          if git diff --staged --quiet; then
+            echo "No change to the closing-line store — nothing to commit."
+          else
+            git commit -m "data(odds): update closing-line snapshot [skip ci]"
+            git push
+          fi
