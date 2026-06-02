@@ -31,7 +31,22 @@ No asumas "toda la fase de grupos".
 | Tercer lugar             | `third_place` | 1        |
 | Final                    | `final`       | 1        |
 
-## Paso 1 — Refrescar la línea de cierre
+## Paso 1 — Refrescar los datos del modelo (Elo + amistosos)
+
+```bash
+python -m wc_predictor.pipeline.refresh_data
+```
+
+Esto rebaja a un solo comando el ciclo completo: refetch del histórico martj42
+(incluye los amistosos más recientes) → recalcular Elo → reajustar Poisson + DC.
+`generate_picks` lee artefactos precalculados, no reentrena, así que **este paso
+es obligatorio para que los picks usen el Elo actualizado**.
+
+Si falla (red caída, fuente inalcanzable), **no abortes** — cada sub-paso degrada
+solo y cae a los artefactos versionados más recientes (`elo_current.json`,
+`team_strengths.json`). El error es informativo, no bloqueante.
+
+## Paso 2 — Refrescar la línea de cierre
 
 ```bash
 python -m wc_predictor.pipeline.snapshot_odds
@@ -40,7 +55,7 @@ python -m wc_predictor.pipeline.snapshot_odds
 Si falla (sin `THE_ODDS_API_KEY`, red caída, API no disponible), **no abortes** —
 `generate_picks` usará el snapshot guardado más reciente. El error es informativo, no bloqueante.
 
-## Paso 2 — Generar los picks
+## Paso 3 — Generar los picks
 
 ```bash
 python -m wc_predictor.pipeline.generate_picks --round <ROUND>
@@ -48,15 +63,18 @@ python -m wc_predictor.pipeline.generate_picks --round <ROUND>
 
 Sustituye `<ROUND>` con el valor de la tabla de arriba.
 
-## Paso 3 — Reportar al usuario
+## Paso 4 — Reportar al usuario
 
 Tras correr exitosamente:
 
-1. Lee `data/raw/odds_closing_line.json` y extrae el campo `captured_at`.
-2. Lee el archivo de salida `outputs/picks_<round>.md` y muéstralo completo.
-3. Informa al usuario:
+1. Lee `data/wc2026/elo_snapshot.json` y extrae el campo `as_of` (fecha del último
+   partido que entró al Elo, p. ej. el amistoso más reciente).
+2. Lee `data/raw/odds_closing_line.json` y extrae el campo `captured_at`.
+3. Lee el archivo de salida `outputs/picks_<round>.md` y muéstralo completo.
+4. Informa al usuario:
    - **Ronda**: nombre legible (ej. "Jornada 2")
-   - **Línea de cierre**: fecha y hora de `captured_at` (o "snapshot local, sin actualizar" si falló el step 1)
+   - **Datos del modelo**: fecha `as_of` del Elo (o "sin actualizar, red caída" si falló el step 1)
+   - **Línea de cierre**: fecha y hora de `captured_at` (o "snapshot local, sin actualizar" si falló el step 2)
    - **Archivos generados**: `outputs/picks_<round>.csv`, `.json`, `.md`
 
 ## Notas J3 — incentivos de clasificación

@@ -28,24 +28,32 @@ Valores válidos de `--round`:
 
 Cuando el usuario pida correr el modelo para ver los picks de una jornada,
 **siempre genera la predicción más certera posible en ese momento**: primero
-refresca la línea de cierre del mercado y luego corre `generate_picks`. No uses
-un snapshot de odds viejo si se puede actualizar.
+refresca los datos del modelo (Elo + amistosos), luego la línea de cierre del
+mercado, y al final corre `generate_picks`. No uses Elo ni odds viejos si se
+pueden actualizar.
 
 ```bash
-# 1) Refrescar la línea de cierre (best-effort). Si no hay THE_ODDS_API_KEY,
+# 1) Refrescar los datos del modelo (best-effort). Refetch del histórico
+#    martj42 (incluye amistosos recientes) → recalcula Elo → reajusta Poisson+DC.
+#    generate_picks lee artefactos precalculados (NO reentrena), así que este
+#    paso es lo que hace que los picks usen el Elo actualizado. Si la red falla,
+#    NO aborta: cada sub-paso cae a los artefactos versionados más recientes.
+python -m wc_predictor.pipeline.refresh_data
+
+# 2) Refrescar la línea de cierre (best-effort). Si no hay THE_ODDS_API_KEY,
 #    falla la red o la API, NO aborta: generate_picks usará la línea guardada
 #    más reciente. El comando degrada solo.
 python -m wc_predictor.pipeline.snapshot_odds
 
-# 2) Generar los picks de la ronda con el blend completo
+# 3) Generar los picks de la ronda con el blend completo
 #    (Poisson + Dixon-Coles + Elo + odds, e incentivos de clasificación si aplican)
 python -m wc_predictor.pipeline.generate_picks --round j3
 ```
 
 Salida en `outputs/picks_{ronda}.{csv,json,md}`. Tras correr, reporta de qué
-fecha es la línea de cierre que se usó (`captured_at` en
-`data/raw/odds_closing_line.json`) para que el usuario sepa qué tan fresco es el
-mercado detrás del boleto.
+fecha es el Elo (`as_of` en `data/wc2026/elo_snapshot.json`) y la línea de cierre
+(`captured_at` en `data/raw/odds_closing_line.json`) para que el usuario sepa qué
+tan frescos son los datos detrás del boleto.
 
 ## Incentivos de clasificación (jornada 3)
 

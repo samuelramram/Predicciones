@@ -1,0 +1,64 @@
+name: refresh-data
+
+# Keeps the model inputs fresh: refetches the martj42 international-results
+# dataset (updated daily, includes friendlies), recomputes Elo, and refits the
+# Poisson + Dixon-Coles strengths, committing the regenerated artifacts back to
+# the repo (Actions disk is ephemeral, so committing is how they persist).
+#
+# Unlike odds-closing-line, this costs nothing — martj42 is free public data —
+# so it runs year-round, not just in the tournament window.
+#
+# NOTE: scheduled workflows only run from the DEFAULT branch — this fires once it
+# is merged to main, not from the PR branch. Use "Run workflow" to test manually.
+
+on:
+  schedule:
+    # Daily at 05:00 UTC. martj42 refreshes once a day; this picks up the latest
+    # results (friendlies, qualifiers, tournament matches) the morning after.
+    - cron: "0 5 * * *"
+  workflow_dispatch: {}
+
+# Allow the job to push the regenerated artifacts back to the repo.
+permissions:
+  contents: write
+
+concurrency:
+  group: refresh-data
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: requirements.txt
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Refresh data (refetch → Elo → Poisson/DC)
+        run: PYTHONPATH=src python -m wc_predictor.pipeline.refresh_data
+
+      - name: Commit regenerated artifacts
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/historical/elo_current.json \
+                  data/historical/international_matches.csv \
+                  data/processed/team_strengths.json \
+                  data/wc2026/elo_snapshot.json \
+                  data/wc2026/elo_trajectory.json
+          if git diff --staged --quiet; then
+            echo "No change to model artifacts — nothing to commit."
+          else
+            git commit -m "data(model): refresh Elo + strengths from latest results [skip ci]"
+            git push
+          fi
