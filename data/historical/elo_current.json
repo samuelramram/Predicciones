@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-06-01",
+  "as_of": "2026-06-02",
   "params": {
     "k_friendly": 20.0,
     "k_qualifier": 30.0,
@@ -53,16 +53,16 @@
       "elo": 1985.95
     },
     {
-      "team": "Croatia",
-      "elo": 1974.83
-    },
-    {
       "team": "Morocco",
-      "elo": 1972.29
+      "elo": 1973.82
     },
     {
       "team": "Uruguay",
       "elo": 1958.41
+    },
+    {
+      "team": "Croatia",
+      "elo": 1954.1
     },
     {
       "team": "Mexico",
@@ -77,6 +77,10 @@
       "elo": 1937.81
     },
     {
+      "team": "Belgium",
+      "elo": 1935.74
+    },
+    {
       "team": "Turkey",
       "elo": 1929.48
     },
@@ -87,10 +91,6 @@
     {
       "team": "Italy",
       "elo": 1924.36
-    },
-    {
-      "team": "Belgium",
-      "elo": 1915.01
     },
     {
       "team": "Senegal",
@@ -213,16 +213,16 @@
       "elo": 1759.4
     },
     {
-      "team": "Wales",
-      "elo": 1756.4
-    },
-    {
       "team": "Hungary",
       "elo": 1755.35
     },
     {
       "team": "Guernsey",
       "elo": 1752.66
+    },
+    {
+      "team": "Wales",
+      "elo": 1750.84
     },
     {
       "team": "Slovenia",
@@ -261,10 +261,6 @@
       "elo": 1728.03
     },
     {
-      "team": "New Zealand",
-      "elo": 1724.98
-    },
-    {
       "team": "Slovakia",
       "elo": 1722.02
     },
@@ -281,20 +277,28 @@
       "elo": 1712.08
     },
     {
-      "team": "Georgia",
-      "elo": 1711.95
-    },
-    {
       "team": "Mali",
       "elo": 1711.31
+    },
+    {
+      "team": "Georgia",
+      "elo": 1709.11
     },
     {
       "team": "Bolivia",
       "elo": 1705.08
     },
     {
+      "team": "New Zealand",
+      "elo": 1703.87
+    },
+    {
       "team": "Honduras",
       "elo": 1702.79
+    },
+    {
+      "team": "Haiti",
+      "elo": 1702.15
     },
     {
       "team": "Padania",
@@ -302,7 +306,7 @@
     },
     {
       "team": "Romania",
-      "elo": 1690.69
+      "elo": 1693.53
     },
     {
       "team": "Isle of Wight",
@@ -319,10 +323,6 @@
     {
       "team": "Cape Verde",
       "elo": 1682.07
-    },
-    {
-      "team": "Haiti",
-      "elo": 1681.04
     },
     {
       "team": "Saudi Arabia",
@@ -381,16 +381,16 @@
       "elo": 1636.71
     },
     {
+      "team": "Ghana",
+      "elo": 1623.93
+    },
+    {
       "team": "County of Nice",
       "elo": 1620.81
     },
     {
       "team": "Iceland",
       "elo": 1619.07
-    },
-    {
-      "team": "Ghana",
-      "elo": 1618.36
     },
     {
       "team": "Finland",
@@ -650,7 +650,7 @@
     },
     {
       "team": "Madagascar",
-      "elo": 1503.13
+      "elo": 1501.61
     },
     {
       "team": "Délvidék",
