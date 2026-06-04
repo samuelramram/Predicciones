@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-06-02",
+  "as_of": "2026-06-03",
   "params": {
     "k_friendly": 20.0,
     "k_qualifier": 30.0,
@@ -10,95 +10,95 @@
   "teams": [
     {
       "team": "Spain",
-      "elo": 2192.96
+      "elo": 2192.95
     },
     {
       "team": "Argentina",
-      "elo": 2168.34
+      "elo": 2168.32
     },
     {
       "team": "France",
-      "elo": 2115.86
+      "elo": 2115.84
     },
     {
       "team": "Brazil",
-      "elo": 2049.7
+      "elo": 2049.68
     },
     {
       "team": "England",
-      "elo": 2048.22
+      "elo": 2048.2
     },
     {
       "team": "Colombia",
-      "elo": 2042.26
+      "elo": 2042.24
     },
     {
       "team": "Portugal",
-      "elo": 2039.77
+      "elo": 2039.76
     },
     {
       "team": "Netherlands",
-      "elo": 2007.1
+      "elo": 1991.21
     },
     {
       "team": "Japan",
-      "elo": 1986.66
+      "elo": 1986.65
     },
     {
       "team": "Germany",
-      "elo": 1986.2
+      "elo": 1986.18
     },
     {
       "team": "Ecuador",
-      "elo": 1985.95
+      "elo": 1985.94
     },
     {
       "team": "Morocco",
-      "elo": 1973.82
+      "elo": 1973.83
     },
     {
       "team": "Uruguay",
-      "elo": 1958.41
+      "elo": 1958.4
     },
     {
       "team": "Croatia",
-      "elo": 1954.1
+      "elo": 1954.08
     },
     {
       "team": "Mexico",
-      "elo": 1948.34
+      "elo": 1948.33
     },
     {
       "team": "Norway",
-      "elo": 1939.14
+      "elo": 1939.12
     },
     {
       "team": "Switzerland",
-      "elo": 1937.81
+      "elo": 1937.79
     },
     {
       "team": "Belgium",
-      "elo": 1935.74
+      "elo": 1935.72
     },
     {
       "team": "Turkey",
-      "elo": 1929.48
-    },
-    {
-      "team": "Denmark",
-      "elo": 1926.01
+      "elo": 1929.46
     },
     {
       "team": "Italy",
-      "elo": 1924.36
+      "elo": 1926.22
+    },
+    {
+      "team": "Denmark",
+      "elo": 1921.11
     },
     {
       "team": "Senegal",
-      "elo": 1895.95
+      "elo": 1895.97
     },
     {
       "team": "Canada",
-      "elo": 1894.88
+      "elo": 1894.87
     },
     {
       "team": "Australia",
@@ -110,39 +110,39 @@
     },
     {
       "team": "Austria",
-      "elo": 1881.65
+      "elo": 1881.63
     },
     {
       "team": "Paraguay",
-      "elo": 1874.96
-    },
-    {
-      "team": "Nigeria",
-      "elo": 1867.05
-    },
-    {
-      "team": "South Korea",
-      "elo": 1865.09
+      "elo": 1874.95
     },
     {
       "team": "Algeria",
-      "elo": 1852.94
+      "elo": 1868.83
+    },
+    {
+      "team": "South Korea",
+      "elo": 1867.3
+    },
+    {
+      "team": "Nigeria",
+      "elo": 1866.48
     },
     {
       "team": "Yugoslavia",
-      "elo": 1839.59
+      "elo": 1839.49
     },
     {
       "team": "United States",
-      "elo": 1835.89
-    },
-    {
-      "team": "Ukraine",
-      "elo": 1834.1
+      "elo": 1835.88
     },
     {
       "team": "Panama",
-      "elo": 1832.25
+      "elo": 1834.63
+    },
+    {
+      "team": "Ukraine",
+      "elo": 1834.08
     },
     {
       "team": "Jersey",
@@ -154,43 +154,43 @@
     },
     {
       "team": "Serbia",
-      "elo": 1819.93
+      "elo": 1819.91
     },
     {
       "team": "Russia",
-      "elo": 1819.34
+      "elo": 1819.32
     },
     {
       "team": "Venezuela",
-      "elo": 1813.59
+      "elo": 1813.57
     },
     {
       "team": "Greece",
-      "elo": 1813.22
+      "elo": 1813.2
     },
     {
       "team": "Scotland",
-      "elo": 1808.8
+      "elo": 1808.78
     },
     {
       "team": "Basque Country",
-      "elo": 1799.43
+      "elo": 1799.34
     },
     {
       "team": "Czechoslovakia",
-      "elo": 1792.26
+      "elo": 1792.17
     },
     {
       "team": "Czech Republic",
-      "elo": 1790.45
+      "elo": 1790.43
     },
     {
       "team": "Ivory Coast",
-      "elo": 1788.51
+      "elo": 1788.53
     },
     {
       "team": "Egypt",
-      "elo": 1783.85
+      "elo": 1783.87
     },
     {
       "team": "Jordan",
@@ -198,23 +198,23 @@
     },
     {
       "team": "Chile",
-      "elo": 1779.67
+      "elo": 1779.66
     },
     {
       "team": "Sweden",
-      "elo": 1777.94
+      "elo": 1777.92
     },
     {
       "team": "Poland",
-      "elo": 1766.48
+      "elo": 1767.06
     },
     {
       "team": "Peru",
-      "elo": 1759.4
+      "elo": 1759.39
     },
     {
       "team": "Hungary",
-      "elo": 1755.35
+      "elo": 1755.33
     },
     {
       "team": "Guernsey",
@@ -222,31 +222,31 @@
     },
     {
       "team": "Wales",
-      "elo": 1750.84
+      "elo": 1750.82
     },
     {
       "team": "Slovenia",
-      "elo": 1748.02
+      "elo": 1748.0
     },
     {
       "team": "Tunisia",
-      "elo": 1746.92
+      "elo": 1746.94
     },
     {
       "team": "Kosovo",
-      "elo": 1745.95
+      "elo": 1745.94
     },
     {
       "team": "DR Congo",
-      "elo": 1740.62
+      "elo": 1745.53
     },
     {
       "team": "Republic of Ireland",
-      "elo": 1737.91
+      "elo": 1737.89
     },
     {
       "team": "Costa Rica",
-      "elo": 1736.51
+      "elo": 1736.49
     },
     {
       "team": "Northern Cyprus",
@@ -254,19 +254,19 @@
     },
     {
       "team": "Isle of Man",
-      "elo": 1731.93
+      "elo": 1731.92
     },
     {
       "team": "German DR",
-      "elo": 1728.03
+      "elo": 1727.94
     },
     {
       "team": "Slovakia",
-      "elo": 1722.02
+      "elo": 1722.0
     },
     {
       "team": "Cameroon",
-      "elo": 1720.28
+      "elo": 1720.31
     },
     {
       "team": "Iraq",
@@ -278,27 +278,31 @@
     },
     {
       "team": "Mali",
-      "elo": 1711.31
+      "elo": 1711.34
     },
     {
       "team": "Georgia",
-      "elo": 1709.11
+      "elo": 1709.09
     },
     {
       "team": "Bolivia",
-      "elo": 1705.08
+      "elo": 1705.07
     },
     {
       "team": "New Zealand",
-      "elo": 1703.87
+      "elo": 1703.88
     },
     {
       "team": "Honduras",
-      "elo": 1702.79
+      "elo": 1702.77
     },
     {
       "team": "Haiti",
-      "elo": 1702.15
+      "elo": 1702.13
+    },
+    {
+      "team": "Israel",
+      "elo": 1695.72
     },
     {
       "team": "Padania",
@@ -306,27 +310,23 @@
     },
     {
       "team": "Romania",
-      "elo": 1693.53
+      "elo": 1693.5
     },
     {
       "team": "Isle of Wight",
       "elo": 1688.63
     },
     {
-      "team": "Albania",
-      "elo": 1688.45
-    },
-    {
-      "team": "Israel",
-      "elo": 1683.33
-    },
-    {
       "team": "Cape Verde",
-      "elo": 1682.07
+      "elo": 1682.09
     },
     {
       "team": "Saudi Arabia",
-      "elo": 1677.13
+      "elo": 1677.14
+    },
+    {
+      "team": "Albania",
+      "elo": 1676.03
     },
     {
       "team": "Iraqi Kurdistan",
@@ -338,11 +338,11 @@
     },
     {
       "team": "Jamaica",
-      "elo": 1663.85
+      "elo": 1663.83
     },
     {
       "team": "Catalonia",
-      "elo": 1663.73
+      "elo": 1663.65
     },
     {
       "team": "United Arab Emirates",
@@ -354,19 +354,19 @@
     },
     {
       "team": "Burkina Faso",
-      "elo": 1654.21
+      "elo": 1654.24
     },
     {
       "team": "South Africa",
-      "elo": 1650.29
+      "elo": 1650.32
     },
     {
       "team": "Guatemala",
-      "elo": 1649.45
+      "elo": 1649.43
     },
     {
       "team": "Northern Ireland",
-      "elo": 1646.58
+      "elo": 1646.56
     },
     {
       "team": "Kárpátalja",
@@ -374,15 +374,15 @@
     },
     {
       "team": "Bosnia and Herzegovina",
-      "elo": 1641.76
+      "elo": 1641.74
     },
     {
       "team": "North Macedonia",
-      "elo": 1636.71
+      "elo": 1636.69
     },
     {
       "team": "Ghana",
-      "elo": 1623.93
+      "elo": 1623.95
     },
     {
       "team": "County of Nice",
@@ -390,11 +390,11 @@
     },
     {
       "team": "Iceland",
-      "elo": 1619.07
+      "elo": 1619.05
     },
     {
       "team": "Finland",
-      "elo": 1617.59
+      "elo": 1617.57
     },
     {
       "team": "Rhodes",
@@ -402,7 +402,7 @@
     },
     {
       "team": "Syria",
-      "elo": 1608.88
+      "elo": 1608.89
     },
     {
       "team": "Oman",
@@ -410,7 +410,7 @@
     },
     {
       "team": "New Caledonia",
-      "elo": 1608.33
+      "elo": 1608.36
     },
     {
       "team": "Andalusia",
@@ -418,7 +418,7 @@
     },
     {
       "team": "Panjab",
-      "elo": 1597.94
+      "elo": 1597.95
     },
     {
       "team": "Kernow",
@@ -426,7 +426,7 @@
     },
     {
       "team": "Tamil Eelam",
-      "elo": 1593.74
+      "elo": 1593.75
     },
     {
       "team": "Kurdistan",
@@ -434,15 +434,15 @@
     },
     {
       "team": "Réunion",
-      "elo": 1584.57
+      "elo": 1584.59
     },
     {
       "team": "Angola",
-      "elo": 1582.99
+      "elo": 1583.02
     },
     {
       "team": "Suriname",
-      "elo": 1576.83
+      "elo": 1576.81
     },
     {
       "team": "Palestine",
@@ -458,19 +458,19 @@
     },
     {
       "team": "Guinea",
-      "elo": 1574.53
-    },
-    {
-      "team": "Curaçao",
-      "elo": 1568.95
+      "elo": 1574.56
     },
     {
       "team": "Menorca",
       "elo": 1568.93
     },
     {
+      "team": "Curaçao",
+      "elo": 1568.93
+    },
+    {
       "team": "Bahrain",
-      "elo": 1568.89
+      "elo": 1568.9
     },
     {
       "team": "Chameria",
@@ -490,11 +490,11 @@
     },
     {
       "team": "Zanzibar",
-      "elo": 1560.39
+      "elo": 1560.43
     },
     {
       "team": "Belarus",
-      "elo": 1559.39
+      "elo": 1559.37
     },
     {
       "team": "Cascadia",
@@ -502,7 +502,7 @@
     },
     {
       "team": "Benin",
-      "elo": 1557.89
+      "elo": 1557.92
     },
     {
       "team": "Yorkshire",
@@ -518,15 +518,15 @@
     },
     {
       "team": "Bulgaria",
-      "elo": 1554.15
+      "elo": 1554.14
     },
     {
       "team": "Zambia",
-      "elo": 1552.75
+      "elo": 1552.78
     },
     {
       "team": "Thailand",
-      "elo": 1551.84
+      "elo": 1551.85
     },
     {
       "team": "Maule Sur",
@@ -534,7 +534,7 @@
     },
     {
       "team": "Libya",
-      "elo": 1530.93
+      "elo": 1530.96
     },
     {
       "team": "Galicia",
@@ -542,7 +542,7 @@
     },
     {
       "team": "Montenegro",
-      "elo": 1526.18
+      "elo": 1526.16
     },
     {
       "team": "Western Armenia",
@@ -550,19 +550,19 @@
     },
     {
       "team": "Gambia",
-      "elo": 1523.82
+      "elo": 1523.85
     },
     {
       "team": "Gabon",
-      "elo": 1523.27
+      "elo": 1523.29
     },
     {
       "team": "Tahiti",
-      "elo": 1523.09
+      "elo": 1523.13
     },
     {
       "team": "Trinidad and Tobago",
-      "elo": 1522.87
+      "elo": 1522.86
     },
     {
       "team": "Vietnam",
@@ -578,7 +578,7 @@
     },
     {
       "team": "Guadeloupe",
-      "elo": 1519.59
+      "elo": 1519.57
     },
     {
       "team": "Parishes of Jersey",
@@ -586,7 +586,7 @@
     },
     {
       "team": "Canary Islands",
-      "elo": 1515.2
+      "elo": 1515.19
     },
     {
       "team": "Surrey",
@@ -602,7 +602,7 @@
     },
     {
       "team": "Silesia",
-      "elo": 1511.93
+      "elo": 1511.91
     },
     {
       "team": "Shetland",
@@ -614,7 +614,7 @@
     },
     {
       "team": "Kazakhstan",
-      "elo": 1508.6
+      "elo": 1508.58
     },
     {
       "team": "Crimea",
@@ -622,7 +622,7 @@
     },
     {
       "team": "Nicaragua",
-      "elo": 1507.94
+      "elo": 1507.91
     },
     {
       "team": "Elba Island",
@@ -630,27 +630,27 @@
     },
     {
       "team": "North Korea",
-      "elo": 1506.63
+      "elo": 1506.64
     },
     {
       "team": "Uganda",
-      "elo": 1505.32
+      "elo": 1505.35
     },
     {
       "team": "Guyana",
-      "elo": 1504.85
-    },
-    {
-      "team": "El Salvador",
-      "elo": 1503.46
+      "elo": 1504.83
     },
     {
       "team": "Brittany",
-      "elo": 1503.24
+      "elo": 1503.25
     },
     {
       "team": "Madagascar",
-      "elo": 1501.61
+      "elo": 1501.64
+    },
+    {
+      "team": "El Salvador",
+      "elo": 1501.22
     },
     {
       "team": "Délvidék",
@@ -658,7 +658,7 @@
     },
     {
       "team": "Mozambique",
-      "elo": 1497.22
+      "elo": 1497.25
     },
     {
       "team": "United Koreans in Japan",
@@ -670,19 +670,19 @@
     },
     {
       "team": "Saugeais",
-      "elo": 1494.7
+      "elo": 1494.71
     },
     {
       "team": "North Vietnam",
-      "elo": 1493.38
+      "elo": 1493.39
     },
     {
       "team": "Togo",
-      "elo": 1492.24
+      "elo": 1492.27
     },
     {
       "team": "Malaysia",
-      "elo": 1490.77
+      "elo": 1490.78
     },
     {
       "team": "Madrid",
@@ -694,15 +694,11 @@
     },
     {
       "team": "Zimbabwe",
-      "elo": 1489.35
+      "elo": 1489.38
     },
     {
       "team": "Luhansk PR",
       "elo": 1488.34
-    },
-    {
-      "team": "Dominican Republic",
-      "elo": 1487.69
     },
     {
       "team": "Seborga",
@@ -710,7 +706,11 @@
     },
     {
       "team": "Kenya",
-      "elo": 1486.39
+      "elo": 1486.41
+    },
+    {
+      "team": "Dominican Republic",
+      "elo": 1485.27
     },
     {
       "team": "Sápmi",
@@ -718,7 +718,7 @@
     },
     {
       "team": "Székely Land",
-      "elo": 1482.21
+      "elo": 1482.22
     },
     {
       "team": "Republic of St. Pauli",
@@ -738,7 +738,7 @@
     },
     {
       "team": "Ryūkyū",
-      "elo": 1474.58
+      "elo": 1474.59
     },
     {
       "team": "Kuwait",
@@ -754,15 +754,15 @@
     },
     {
       "team": "Papua New Guinea",
-      "elo": 1471.37
+      "elo": 1471.41
     },
     {
       "team": "Rwanda",
-      "elo": 1470.85
+      "elo": 1470.87
     },
     {
       "team": "Niger",
-      "elo": 1469.59
+      "elo": 1469.62
     },
     {
       "team": "Greenland",
@@ -774,7 +774,7 @@
     },
     {
       "team": "Sierra Leone",
-      "elo": 1465.8
+      "elo": 1465.83
     },
     {
       "team": "Sealand",
@@ -782,15 +782,15 @@
     },
     {
       "team": "Martinique",
-      "elo": 1465.0
+      "elo": 1464.97
     },
     {
       "team": "Equatorial Guinea",
-      "elo": 1464.61
+      "elo": 1464.64
     },
     {
       "team": "Mayotte",
-      "elo": 1463.28
+      "elo": 1463.3
     },
     {
       "team": "Åland Islands",
@@ -798,7 +798,7 @@
     },
     {
       "team": "South Yemen",
-      "elo": 1461.47
+      "elo": 1461.48
     },
     {
       "team": "Indonesia",
@@ -814,7 +814,7 @@
     },
     {
       "team": "Sudan",
-      "elo": 1457.12
+      "elo": 1457.14
     },
     {
       "team": "Romani people",
@@ -826,7 +826,7 @@
     },
     {
       "team": "Saarland",
-      "elo": 1451.99
+      "elo": 1451.93
     },
     {
       "team": "Aymara",
@@ -834,15 +834,11 @@
     },
     {
       "team": "Lebanon",
-      "elo": 1450.97
-    },
-    {
-      "team": "Luxembourg",
-      "elo": 1450.51
+      "elo": 1450.98
     },
     {
       "team": "Malawi",
-      "elo": 1450.2
+      "elo": 1450.23
     },
     {
       "team": "Chechnya",
@@ -850,7 +846,11 @@
     },
     {
       "team": "Comoros",
-      "elo": 1449.14
+      "elo": 1449.17
+    },
+    {
+      "team": "Luxembourg",
+      "elo": 1448.61
     },
     {
       "team": "Kabylia",
@@ -858,7 +858,7 @@
     },
     {
       "team": "Cuba",
-      "elo": 1445.66
+      "elo": 1445.63
     },
     {
       "team": "Hmong",
@@ -866,7 +866,7 @@
     },
     {
       "team": "Mauritania",
-      "elo": 1440.55
+      "elo": 1440.58
     },
     {
       "team": "Monaco",
@@ -874,11 +874,11 @@
     },
     {
       "team": "Kyrgyzstan",
-      "elo": 1435.56
+      "elo": 1435.57
     },
     {
       "team": "Vanuatu",
-      "elo": 1432.79
+      "elo": 1432.83
     },
     {
       "team": "Gotland",
@@ -886,7 +886,7 @@
     },
     {
       "team": "Armenia",
-      "elo": 1432.05
+      "elo": 1432.03
     },
     {
       "team": "Manchukuo",
@@ -894,11 +894,11 @@
     },
     {
       "team": "Faroe Islands",
-      "elo": 1425.68
+      "elo": 1425.66
     },
     {
       "team": "Western Isles",
-      "elo": 1425.18
+      "elo": 1425.17
     },
     {
       "team": "Ticino",
@@ -906,19 +906,19 @@
     },
     {
       "team": "Namibia",
-      "elo": 1424.2
+      "elo": 1424.23
     },
     {
       "team": "Estonia",
-      "elo": 1423.36
+      "elo": 1423.35
     },
     {
       "team": "Palau",
-      "elo": 1421.37
+      "elo": 1421.38
     },
     {
       "team": "Liberia",
-      "elo": 1420.47
+      "elo": 1420.51
     },
     {
       "team": "Saint Barthélemy",
@@ -926,7 +926,7 @@
     },
     {
       "team": "Azerbaijan",
-      "elo": 1419.37
+      "elo": 1419.35
     },
     {
       "team": "Tajikistan",
@@ -934,7 +934,7 @@
     },
     {
       "team": "French Guiana",
-      "elo": 1417.39
+      "elo": 1417.36
     },
     {
       "team": "Vatican City",
@@ -942,7 +942,7 @@
     },
     {
       "team": "Niue",
-      "elo": 1410.75
+      "elo": 1410.78
     },
     {
       "team": "Găgăuzia",
@@ -954,27 +954,27 @@
     },
     {
       "team": "Lesotho",
-      "elo": 1406.46
+      "elo": 1406.5
     },
     {
       "team": "Botswana",
-      "elo": 1404.37
+      "elo": 1404.41
     },
     {
       "team": "Burundi",
-      "elo": 1400.62
+      "elo": 1400.65
     },
     {
       "team": "Fiji",
-      "elo": 1399.35
+      "elo": 1399.38
     },
     {
       "team": "Turkmenistan",
-      "elo": 1395.44
+      "elo": 1395.45
     },
     {
       "team": "Tanzania",
-      "elo": 1395.04
+      "elo": 1395.07
     },
     {
       "team": "Orkney",
@@ -982,27 +982,27 @@
     },
     {
       "team": "Ethiopia",
-      "elo": 1391.16
+      "elo": 1391.2
     },
     {
       "team": "Marshall Islands",
-      "elo": 1390.46
+      "elo": 1390.45
     },
     {
       "team": "Western Australia",
-      "elo": 1387.19
+      "elo": 1387.26
     },
     {
       "team": "Central African Republic",
-      "elo": 1384.12
+      "elo": 1384.15
     },
     {
       "team": "Hong Kong",
-      "elo": 1380.62
+      "elo": 1380.63
     },
     {
       "team": "Vietnam Republic",
-      "elo": 1379.26
+      "elo": 1379.35
     },
     {
       "team": "Raetia",
@@ -1010,15 +1010,15 @@
     },
     {
       "team": "Guinea-Bissau",
-      "elo": 1375.76
+      "elo": 1375.8
     },
     {
       "team": "Puerto Rico",
-      "elo": 1372.59
+      "elo": 1372.57
     },
     {
       "team": "Cyprus",
-      "elo": 1369.62
+      "elo": 1369.6
     },
     {
       "team": "Western Sahara",
@@ -1030,19 +1030,23 @@
     },
     {
       "team": "Yemen DPR",
-      "elo": 1360.54
+      "elo": 1360.55
     },
     {
       "team": "Saint Vincent and the Grenadines",
-      "elo": 1357.69
+      "elo": 1357.66
     },
     {
       "team": "Lithuania",
-      "elo": 1353.35
+      "elo": 1353.33
+    },
+    {
+      "team": "Philippines",
+      "elo": 1350.02
     },
     {
       "team": "Congo",
-      "elo": 1348.28
+      "elo": 1348.32
     },
     {
       "team": "Barawa",
@@ -1050,31 +1054,27 @@
     },
     {
       "team": "Latvia",
-      "elo": 1347.01
-    },
-    {
-      "team": "Philippines",
-      "elo": 1346.7
+      "elo": 1346.99
     },
     {
       "team": "Eswatini",
-      "elo": 1342.19
+      "elo": 1342.22
     },
     {
       "team": "Malta",
-      "elo": 1341.8
+      "elo": 1341.78
     },
     {
       "team": "Saint Martin",
-      "elo": 1336.36
+      "elo": 1336.33
     },
     {
       "team": "Saare County",
-      "elo": 1335.6
+      "elo": 1335.59
     },
     {
       "team": "Moldova",
-      "elo": 1333.47
+      "elo": 1333.45
     },
     {
       "team": "Chagos Islands",
@@ -1082,11 +1082,11 @@
     },
     {
       "team": "Solomon Islands",
-      "elo": 1326.81
+      "elo": 1326.83
     },
     {
       "team": "Sint Maarten",
-      "elo": 1319.85
+      "elo": 1319.82
     },
     {
       "team": "Hitra",
@@ -1094,19 +1094,19 @@
     },
     {
       "team": "Bermuda",
-      "elo": 1319.54
+      "elo": 1319.51
     },
     {
       "team": "Belize",
-      "elo": 1312.02
+      "elo": 1311.99
     },
     {
       "team": "Yemen",
-      "elo": 1308.61
+      "elo": 1308.62
     },
     {
       "team": "Singapore",
-      "elo": 1305.58
+      "elo": 1305.59
     },
     {
       "team": "Saint Helena",
@@ -1118,39 +1118,39 @@
     },
     {
       "team": "Micronesia",
-      "elo": 1282.26
+      "elo": 1282.3
     },
     {
       "team": "Grenada",
-      "elo": 1282.02
+      "elo": 1282.0
     },
     {
       "team": "Saint Kitts and Nevis",
-      "elo": 1278.14
+      "elo": 1278.12
     },
     {
       "team": "South Sudan",
-      "elo": 1272.87
+      "elo": 1272.9
     },
     {
       "team": "Wallis Islands and Futuna",
-      "elo": 1271.53
+      "elo": 1271.6
     },
     {
       "team": "India",
-      "elo": 1265.76
+      "elo": 1265.77
     },
     {
       "team": "Chad",
-      "elo": 1265.64
+      "elo": 1265.68
     },
     {
       "team": "Afghanistan",
-      "elo": 1251.72
+      "elo": 1251.73
     },
     {
       "team": "Aruba",
-      "elo": 1242.18
+      "elo": 1242.15
     },
     {
       "team": "Saint Pierre and Miquelon",
@@ -1162,11 +1162,11 @@
     },
     {
       "team": "Mauritius",
-      "elo": 1235.87
+      "elo": 1235.9
     },
     {
       "team": "Samoa",
-      "elo": 1235.42
+      "elo": 1235.47
     },
     {
       "team": "Darfur",
@@ -1174,31 +1174,31 @@
     },
     {
       "team": "Montserrat",
-      "elo": 1226.83
+      "elo": 1226.8
     },
     {
       "team": "Saint Lucia",
-      "elo": 1211.47
+      "elo": 1211.44
     },
     {
       "team": "Eritrea",
-      "elo": 1194.54
+      "elo": 1194.58
     },
     {
       "team": "São Tomé and Príncipe",
-      "elo": 1194.29
+      "elo": 1194.33
     },
     {
       "team": "Tuvalu",
-      "elo": 1188.82
+      "elo": 1188.86
     },
     {
       "team": "Kiribati",
-      "elo": 1179.56
+      "elo": 1179.61
     },
     {
       "team": "Dominica",
-      "elo": 1171.42
+      "elo": 1171.39
     },
     {
       "team": "Falkland Islands",
@@ -1206,23 +1206,23 @@
     },
     {
       "team": "Andorra",
-      "elo": 1158.12
-    },
-    {
-      "team": "Bonaire",
-      "elo": 1149.2
-    },
-    {
-      "team": "Cook Islands",
-      "elo": 1148.54
+      "elo": 1158.1
     },
     {
       "team": "Gibraltar",
-      "elo": 1146.03
+      "elo": 1157.03
+    },
+    {
+      "team": "Bonaire",
+      "elo": 1149.18
+    },
+    {
+      "team": "Cook Islands",
+      "elo": 1148.59
     },
     {
       "team": "Myanmar",
-      "elo": 1142.69
+      "elo": 1142.7
     },
     {
       "team": "Frøya",
@@ -1230,43 +1230,43 @@
     },
     {
       "team": "Bangladesh",
-      "elo": 1132.35
+      "elo": 1132.37
     },
     {
       "team": "Barbados",
-      "elo": 1130.83
+      "elo": 1130.8
     },
     {
       "team": "Nepal",
-      "elo": 1124.65
+      "elo": 1124.66
     },
     {
       "team": "Antigua and Barbuda",
-      "elo": 1124.3
+      "elo": 1124.27
     },
     {
       "team": "Taiwan",
-      "elo": 1099.5
+      "elo": 1099.51
     },
     {
       "team": "Djibouti",
-      "elo": 1084.9
+      "elo": 1084.93
     },
     {
       "team": "Cayman Islands",
-      "elo": 1078.28
+      "elo": 1078.25
     },
     {
       "team": "Cambodia",
-      "elo": 1074.67
-    },
-    {
-      "team": "British Virgin Islands",
-      "elo": 1073.8
+      "elo": 1074.68
     },
     {
       "team": "Tonga",
-      "elo": 1069.64
+      "elo": 1069.69
+    },
+    {
+      "team": "British Virgin Islands",
+      "elo": 1062.75
     },
     {
       "team": "Alderney",
@@ -1274,83 +1274,83 @@
     },
     {
       "team": "Maldives",
-      "elo": 1052.7
+      "elo": 1052.72
     },
     {
       "team": "Somalia",
-      "elo": 1035.47
+      "elo": 1035.51
     },
     {
       "team": "Pakistan",
-      "elo": 1024.53
+      "elo": 1024.54
     },
     {
       "team": "Turks and Caicos Islands",
-      "elo": 1023.45
-    },
-    {
-      "team": "Guam",
-      "elo": 1021.42
+      "elo": 1023.42
     },
     {
       "team": "Seychelles",
-      "elo": 1020.29
+      "elo": 1020.33
     },
     {
       "team": "Liechtenstein",
-      "elo": 1018.33
+      "elo": 1018.31
+    },
+    {
+      "team": "Guam",
+      "elo": 1018.12
     },
     {
       "team": "United States Virgin Islands",
-      "elo": 1014.69
+      "elo": 1014.66
     },
     {
       "team": "Sri Lanka",
-      "elo": 1009.35
+      "elo": 1009.36
     },
     {
       "team": "Mongolia",
-      "elo": 1008.14
+      "elo": 1008.15
     },
     {
       "team": "San Marino",
-      "elo": 960.38
+      "elo": 960.35
     },
     {
       "team": "Laos",
-      "elo": 949.05
+      "elo": 949.06
     },
     {
       "team": "Northern Mariana Islands",
-      "elo": 948.78
+      "elo": 948.8
     },
     {
       "team": "Bahamas",
-      "elo": 948.47
+      "elo": 948.44
     },
     {
       "team": "Anguilla",
-      "elo": 930.99
+      "elo": 930.96
     },
     {
       "team": "Brunei",
-      "elo": 915.49
+      "elo": 915.51
     },
     {
       "team": "Timor-Leste",
-      "elo": 900.27
+      "elo": 900.28
     },
     {
       "team": "Macau",
-      "elo": 883.08
+      "elo": 883.09
     },
     {
       "team": "American Samoa",
-      "elo": 874.33
+      "elo": 874.37
     },
     {
       "team": "Bhutan",
-      "elo": 837.71
+      "elo": 837.72
     }
   ]
 }
