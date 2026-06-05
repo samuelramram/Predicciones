@@ -71,3 +71,7 @@ debug_*.log
 # ----- Misc -----
 *.bak
 *.tmp
+
+# ----- Research scratch -----
+analysis/cache/
+analysis/result.txt
