@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-06-04",
+  "as_of": "2026-06-05",
   "last_n_matches": 30,
   "trajectories": {
     "Algeria": [
@@ -1908,15 +1908,6 @@
     ],
     "Canada": [
       {
-        "date": "2024-06-06",
-        "elo": 1811.7095592771432,
-        "opponent": "Netherlands",
-        "vs_elo": 2016.7762360355107,
-        "venue": "away",
-        "result": "0-4",
-        "tournament": "Friendly"
-      },
-      {
         "date": "2024-06-09",
         "elo": 1819.4989395380787,
         "opponent": "France",
@@ -2175,6 +2166,15 @@
         "vs_elo": 1832.2598962912869,
         "venue": "home",
         "result": "2-0",
+        "tournament": "Friendly"
+      },
+      {
+        "date": "2026-06-05",
+        "elo": 1888.9383092765202,
+        "opponent": "Republic of Ireland",
+        "vs_elo": 1737.892220733669,
+        "venue": "home",
+        "result": "1-1",
         "tournament": "Friendly"
       }
     ],
@@ -5444,15 +5444,6 @@
     ],
     "Haiti": [
       {
-        "date": "2023-06-25",
-        "elo": 1711.0380600343128,
-        "opponent": "Qatar",
-        "vs_elo": 1677.7562267431756,
-        "venue": "neutral",
-        "result": "2-1",
-        "tournament": "Gold Cup"
-      },
-      {
         "date": "2023-06-29",
         "elo": 1694.8860252101751,
         "opponent": "Mexico",
@@ -5711,6 +5702,15 @@
         "vs_elo": 1724.9890965156467,
         "venue": "neutral",
         "result": "4-0",
+        "tournament": "Friendly"
+      },
+      {
+        "date": "2026-06-05",
+        "elo": 1693.7644969705161,
+        "opponent": "Peru",
+        "vs_elo": 1759.3865720025872,
+        "venue": "neutral",
+        "result": "1-2",
         "tournament": "Friendly"
       }
     ],
@@ -8708,15 +8708,6 @@
     ],
     "Paraguay": [
       {
-        "date": "2023-09-07",
-        "elo": 1774.3513818830625,
-        "opponent": "Peru",
-        "vs_elo": 1893.8595368933022,
-        "venue": "home",
-        "result": "0-0",
-        "tournament": "FIFA World Cup qualification"
-      },
-      {
         "date": "2023-09-12",
         "elo": 1762.655386532737,
         "opponent": "Venezuela",
@@ -8975,6 +8966,15 @@
         "vs_elo": 1963.672191586302,
         "venue": "neutral",
         "result": "1-2",
+        "tournament": "Friendly"
+      },
+      {
+        "date": "2026-06-05",
+        "elo": 1877.6033053898554,
+        "opponent": "Nicaragua",
+        "vs_elo": 1507.910550051896,
+        "venue": "home",
+        "result": "4-0",
         "tournament": "Friendly"
       }
     ],
@@ -9524,15 +9524,6 @@
     ],
     "Saudi Arabia": [
       {
-        "date": "2024-10-15",
-        "elo": 1668.7281781848296,
-        "opponent": "Bahrain",
-        "vs_elo": 1592.3879601177955,
-        "venue": "home",
-        "result": "0-0",
-        "tournament": "FIFA World Cup qualification"
-      },
-      {
         "date": "2024-11-14",
         "elo": 1678.1872184288295,
         "opponent": "Australia",
@@ -9791,6 +9782,15 @@
         "vs_elo": 1982.9571989341634,
         "venue": "neutral",
         "result": "1-2",
+        "tournament": "Friendly"
+      },
+      {
+        "date": "2026-06-05",
+        "elo": 1682.302357675396,
+        "opponent": "Puerto Rico",
+        "vs_elo": 1372.5651339769126,
+        "venue": "neutral",
+        "result": "3-0",
         "tournament": "Friendly"
       }
     ],
