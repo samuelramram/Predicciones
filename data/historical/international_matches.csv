@@ -405,7 +405,7 @@ m_3c9c4d37d6,2014-08-09,Raetia,Sealand,1,6,False,Friendly,Chur,Switzerland
 m_5765d21a8e,2014-08-10,Seborga,Sealand,2,3,False,Friendly,Ospedaletti,Italy
 m_513dedfd69,2014-08-12,Kazakhstan,Tajikistan,2,1,False,Friendly,Almaty,Kazakhstan
 m_7f8f05f20e,2014-08-13,Angola,Botswana,0,0,False,Friendly,Luanda,Angola
-m_01cf30e8cc,2014-08-14,Guatemala,Nicaragua,3,0,False,Friendly,Antigua Guatemala City,Guatemala
+m_01cf30e8cc,2014-08-14,Guatemala,Nicaragua,3,0,False,Friendly,Antigua Guatemala,Guatemala
 m_210fdffa96,2014-08-16,British Virgin Islands,Saint Martin,2,4,False,Friendly,Road Town,British Virgin Islands
 m_134facb575,2014-08-20,Azerbaijan,Uzbekistan,0,0,False,Friendly,Baku,Azerbaijan
 m_0324dd44af,2014-08-20,Panama,Cuba,4,0,False,Friendly,Panama City,Panama
@@ -6881,7 +6881,7 @@ m_258cac0c20,2021-09-07,Slovakia,Cyprus,2,0,False,FIFA World Cup qualification,B
 m_9719331296,2021-09-07,Russia,Malta,2,0,False,FIFA World Cup qualification,Moscow,Russia
 m_3c2ab9eacf,2021-09-08,Bulgaria,Georgia,4,1,False,Friendly,Sofia,Bulgaria
 m_7ab8f33212,2021-09-08,Czech Republic,Ukraine,1,1,False,Friendly,Plzeň,Czech Republic
-m_d7a2039fec,2021-09-08,Guatemala,Nicaragua,2,2,False,Friendly,Antigua Guatemala City,Guatemala
+m_d7a2039fec,2021-09-08,Guatemala,Nicaragua,2,2,False,Friendly,Antigua Guatemala,Guatemala
 m_9d9abe7594,2021-09-08,Kosovo,Spain,0,2,False,FIFA World Cup qualification,Pristina,Kosovo
 m_408b3821e1,2021-09-08,Greece,Sweden,2,1,False,FIFA World Cup qualification,Athens,Greece
 m_848baed76f,2021-09-08,Northern Ireland,Switzerland,0,0,False,FIFA World Cup qualification,Belfast,Northern Ireland
@@ -7435,7 +7435,7 @@ m_6a2a03e8c0,2022-03-24,Portugal,Turkey,3,1,False,FIFA World Cup qualification,P
 m_69aaeccfb1,2022-03-24,Sweden,Czech Republic,1,0,False,FIFA World Cup qualification,Stockholm,Sweden
 m_bc50fe341f,2022-03-24,Wales,Austria,2,1,False,FIFA World Cup qualification,Cardiff,Wales
 m_2c867df3ec,2022-03-24,Armenia,Montenegro,1,0,False,Friendly,Yerevan,Armenia
-m_75ee4c90b4,2022-03-24,Guatemala,Cuba,1,0,False,Friendly,Antigua Guatemala City,Guatemala
+m_75ee4c90b4,2022-03-24,Guatemala,Cuba,1,0,False,Friendly,Antigua Guatemala,Guatemala
 m_74d53577b3,2022-03-24,Hungary,Serbia,0,1,False,Friendly,Budapest,Hungary
 m_199036cdea,2022-03-24,Kosovo,Burkina Faso,5,0,False,Friendly,Pristina,Kosovo
 m_57667ee786,2022-03-24,Liberia,Benin,0,4,True,Friendly,Antalya,Turkey
@@ -11806,3 +11806,11 @@ m_b30885526e,2026-06-06,Venezuela,Turkey,1,2,True,Friendly,Fort Lauderdale,Unite
 m_ffe3d9b996,2026-06-06,Myanmar,Guam,6,1,True,Tri-Nations Cup,Manila,Philippines
 m_1d380f7fb6,2026-06-06,Lithuania,Latvia,1,1,False,Baltic Cup,Kaunas,Lithuania
 m_838336de8b,2026-06-06,Estonia,Faroe Islands,1,0,False,Baltic Cup,Pärnu,Estonia
+m_e47e574858,2026-06-07,Croatia,Slovenia,2,1,False,Friendly,Varaždin,Croatia
+m_673580b9b4,2026-06-07,Ecuador,Guatemala,3,0,True,Friendly,Columbus,United States
+m_ff6e361e6f,2026-06-07,Greece,Italy,0,1,False,Friendly,Heraklion,Greece
+m_28552e4ea4,2026-06-07,Jordan,Colombia,0,2,True,Friendly,San Diego,United States
+m_0154f5fa59,2026-06-07,Kosovo,Andorra,3,0,False,Friendly,Pristina,Kosovo
+m_86ece9668a,2026-06-07,Liechtenstein,Cyprus,0,2,False,Friendly,Vaduz,Liechtenstein
+m_73724fb1b0,2026-06-07,Morocco,Norway,1,1,True,Friendly,Harrison,United States
+m_b91393e876,2026-06-07,Denmark,Ukraine,2,1,False,Friendly,Odense,Denmark
