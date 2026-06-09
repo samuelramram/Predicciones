@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-06-07",
+  "as_of": "2026-06-08",
   "params": {
     "k_friendly": 20.0,
     "k_qualifier": 30.0,
@@ -10,7 +10,7 @@
   "teams": [
     {
       "team": "Spain",
-      "elo": 2183.72
+      "elo": 2186.23
     },
     {
       "team": "Argentina",
@@ -18,7 +18,7 @@
     },
     {
       "team": "France",
-      "elo": 2097.59
+      "elo": 2099.0
     },
     {
       "team": "Brazil",
@@ -37,12 +37,12 @@
       "elo": 2042.23
     },
     {
-      "team": "Germany",
-      "elo": 1994.19
+      "team": "Netherlands",
+      "elo": 1996.71
     },
     {
-      "team": "Netherlands",
-      "elo": 1991.21
+      "team": "Germany",
+      "elo": 1994.19
     },
     {
       "team": "Ecuador",
@@ -153,12 +153,12 @@
       "elo": 1826.19
     },
     {
-      "team": "Uzbekistan",
-      "elo": 1822.74
-    },
-    {
       "team": "Scotland",
       "elo": 1822.1
+    },
+    {
+      "team": "Uzbekistan",
+      "elo": 1817.24
     },
     {
       "team": "Serbia",
@@ -205,12 +205,12 @@
       "elo": 1776.17
     },
     {
-      "team": "Peru",
-      "elo": 1767.75
-    },
-    {
       "team": "Poland",
       "elo": 1767.06
+    },
+    {
+      "team": "Peru",
+      "elo": 1765.25
     },
     {
       "team": "Hungary",
@@ -345,16 +345,16 @@
       "elo": 1655.63
     },
     {
-      "team": "Northern Ireland",
-      "elo": 1654.52
-    },
-    {
       "team": "Abkhazia",
       "elo": 1654.51
     },
     {
       "team": "Jamaica",
       "elo": 1653.44
+    },
+    {
+      "team": "Northern Ireland",
+      "elo": 1653.11
     },
     {
       "team": "Cape Verde",
@@ -761,10 +761,6 @@
       "elo": 1472.37
     },
     {
-      "team": "Niger",
-      "elo": 1472.11
-    },
-    {
       "team": "Papua New Guinea",
       "elo": 1471.41
     },
@@ -809,6 +805,10 @@
       "elo": 1461.48
     },
     {
+      "team": "Niger",
+      "elo": 1461.32
+    },
+    {
       "team": "Franconia",
       "elo": 1459.75
     },
@@ -823,6 +823,10 @@
     {
       "team": "Romani people",
       "elo": 1456.16
+    },
+    {
+      "team": "Mauritania",
+      "elo": 1455.26
     },
     {
       "team": "East Turkestan",
@@ -855,10 +859,6 @@
     {
       "team": "Cuba",
       "elo": 1445.63
-    },
-    {
-      "team": "Mauritania",
-      "elo": 1444.47
     },
     {
       "team": "Hmong",
@@ -1145,10 +1145,6 @@
       "elo": 1259.56
     },
     {
-      "team": "Afghanistan",
-      "elo": 1251.73
-    },
-    {
       "team": "Aruba",
       "elo": 1238.86
     },
@@ -1179,6 +1175,10 @@
     {
       "team": "Saint Lucia",
       "elo": 1211.44
+    },
+    {
+      "team": "Afghanistan",
+      "elo": 1202.62
     },
     {
       "team": "Eritrea",
@@ -1245,6 +1245,10 @@
       "elo": 1124.27
     },
     {
+      "team": "Pakistan",
+      "elo": 1119.21
+    },
+    {
       "team": "Taiwan",
       "elo": 1099.51
     },
@@ -1259,10 +1263,6 @@
     {
       "team": "Cambodia",
       "elo": 1079.89
-    },
-    {
-      "team": "Pakistan",
-      "elo": 1070.1
     },
     {
       "team": "Tonga",
