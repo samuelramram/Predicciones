@@ -1,1514 +1,1514 @@
 {
-  "mu": 0.1562775528033971,
-  "gamma": 0.21550630839657475,
+  "mu": 0.16171531232125125,
+  "gamma": 0.20701869082855126,
   "rho": -0.1,
-  "n_matches": 11820,
+  "n_matches": 11842,
   "n_teams": 300,
   "half_life_days": 730,
   "ridge_lambda": 0.3,
   "converged": false,
-  "final_neg_log_lik": 3904.7093582164553,
+  "final_neg_log_lik": 3939.1340723495036,
   "teams": {
     "Abkhazia": {
-      "attack": 0.0938,
-      "defense": 0.1323,
+      "attack": 0.0916,
+      "defense": 0.1283,
       "n_matches": 30
     },
     "Afghanistan": {
-      "attack": -0.8998,
-      "defense": -0.4166,
+      "attack": -0.8868,
+      "defense": -0.4083,
       "n_matches": 76
     },
     "Albania": {
-      "attack": -0.1451,
-      "defense": 0.4888,
+      "attack": -0.1562,
+      "defense": 0.4834,
       "n_matches": 123
     },
     "Alderney": {
-      "attack": -0.135,
-      "defense": -0.413,
+      "attack": -0.1323,
+      "defense": -0.406,
       "n_matches": 21
     },
     "Algeria": {
-      "attack": 0.8201,
-      "defense": 0.7018,
+      "attack": 0.8159,
+      "defense": 0.7008,
       "n_matches": 154
     },
     "American Samoa": {
-      "attack": -0.7101,
-      "defense": -2.0342,
+      "attack": -0.6857,
+      "defense": -2.0295,
       "n_matches": 16
     },
     "Andorra": {
-      "attack": -1.556,
-      "defense": -0.1659,
+      "attack": -1.559,
+      "defense": -0.1802,
       "n_matches": 112
     },
     "Angola": {
-      "attack": 0.0527,
-      "defense": 0.4489,
-      "n_matches": 111
+      "attack": 0.0808,
+      "defense": 0.4647,
+      "n_matches": 112
     },
     "Anguilla": {
-      "attack": -1.3982,
-      "defense": -1.3346,
+      "attack": -1.3782,
+      "defense": -1.3201,
       "n_matches": 45
     },
     "Antigua and Barbuda": {
-      "attack": -1.0543,
-      "defense": -0.7729,
+      "attack": -1.048,
+      "defense": -0.7651,
       "n_matches": 59
     },
     "Arameans Suryoye": {
-      "attack": 0.01,
-      "defense": 0.0006,
+      "attack": 0.0097,
+      "defense": 0.0005,
       "n_matches": 5
     },
     "Argentina": {
-      "attack": 1.2195,
-      "defense": 1.5448,
-      "n_matches": 156
+      "attack": 1.2154,
+      "defense": 1.5634,
+      "n_matches": 157
     },
     "Armenia": {
-      "attack": -0.1206,
-      "defense": -0.3175,
-      "n_matches": 112
+      "attack": -0.1644,
+      "defense": -0.3211,
+      "n_matches": 113
     },
     "Artsakh": {
-      "attack": 0.057,
-      "defense": -0.0256,
+      "attack": 0.0551,
+      "defense": -0.0252,
       "n_matches": 9
     },
     "Aruba": {
-      "attack": -0.3699,
-      "defense": -0.656,
+      "attack": -0.3588,
+      "defense": -0.6365,
       "n_matches": 52
     },
     "Australia": {
-      "attack": 0.7356,
-      "defense": 1.0143,
+      "attack": 0.7435,
+      "defense": 1.0119,
       "n_matches": 130
     },
     "Austria": {
-      "attack": 0.5759,
-      "defense": 0.6782,
+      "attack": 0.5684,
+      "defense": 0.6745,
       "n_matches": 128
     },
     "Aymara": {
-      "attack": -0.0645,
-      "defense": -0.0746,
+      "attack": -0.0627,
+      "defense": -0.0727,
       "n_matches": 2
     },
     "Azerbaijan": {
-      "attack": -0.2988,
-      "defense": -0.1355,
-      "n_matches": 114
+      "attack": -0.3172,
+      "defense": -0.1512,
+      "n_matches": 115
     },
     "Bahamas": {
-      "attack": -0.9629,
-      "defense": -1.3898,
+      "attack": -0.9491,
+      "defense": -1.3736,
       "n_matches": 41
     },
     "Bahrain": {
-      "attack": 0.1361,
-      "defense": 0.3114,
+      "attack": 0.1445,
+      "defense": 0.3125,
       "n_matches": 158
     },
     "Bangladesh": {
-      "attack": -0.9313,
-      "defense": -0.5996,
+      "attack": -0.9252,
+      "defense": -0.5983,
       "n_matches": 98
     },
     "Barawa": {
-      "attack": -0.0281,
-      "defense": -0.3117,
+      "attack": -0.0277,
+      "defense": -0.3038,
       "n_matches": 12
     },
     "Barbados": {
-      "attack": -0.4423,
-      "defense": -0.871,
+      "attack": -0.4374,
+      "defense": -0.849,
       "n_matches": 77
     },
     "Basque Country": {
-      "attack": 0.2929,
-      "defense": 0.2432,
+      "attack": 0.2882,
+      "defense": 0.2315,
       "n_matches": 9
     },
     "Belarus": {
-      "attack": 0.0633,
-      "defense": 0.033,
-      "n_matches": 121
+      "attack": 0.0848,
+      "defense": 0.0169,
+      "n_matches": 122
     },
     "Belgium": {
-      "attack": 0.8805,
-      "defense": 0.7578,
+      "attack": 0.8884,
+      "defense": 0.7556,
       "n_matches": 150
     },
     "Belize": {
-      "attack": -0.4819,
-      "defense": -0.4369,
+      "attack": -0.4787,
+      "defense": -0.4231,
       "n_matches": 61
     },
     "Benin": {
-      "attack": 0.1559,
-      "defense": 0.2275,
-      "n_matches": 94
+      "attack": 0.1497,
+      "defense": 0.1209,
+      "n_matches": 95
     },
     "Bermuda": {
-      "attack": 0.0149,
-      "defense": -0.6371,
+      "attack": 0.018,
+      "defense": -0.6203,
       "n_matches": 66
     },
     "Bhutan": {
-      "attack": -1.1986,
-      "defense": -1.2634,
+      "attack": -1.1765,
+      "defense": -1.263,
       "n_matches": 50
     },
     "Biafra": {
-      "attack": -0.0713,
-      "defense": 0.1173,
+      "attack": -0.0693,
+      "defense": 0.1141,
       "n_matches": 3
     },
     "Bolivia": {
-      "attack": 0.4171,
-      "defense": 0.3378,
+      "attack": 0.4044,
+      "defense": 0.3622,
       "n_matches": 122
     },
     "Bonaire": {
-      "attack": -0.7103,
-      "defense": -0.8588,
+      "attack": -0.6951,
+      "defense": -0.8458,
       "n_matches": 36
     },
     "Bosnia and Herzegovina": {
-      "attack": 0.08,
-      "defense": 0.2108,
+      "attack": 0.0742,
+      "defense": 0.2023,
       "n_matches": 120
     },
     "Botswana": {
-      "attack": -0.3634,
-      "defense": 0.0442,
+      "attack": -0.3701,
+      "defense": 0.0301,
       "n_matches": 113
     },
     "Brazil": {
-      "attack": 1.2597,
-      "defense": 1.0818,
+      "attack": 1.2564,
+      "defense": 1.0808,
       "n_matches": 152
     },
     "British Virgin Islands": {
-      "attack": -0.8519,
-      "defense": -0.9653,
+      "attack": -0.8426,
+      "defense": -0.9482,
       "n_matches": 48
     },
     "Brunei": {
-      "attack": -1.1281,
-      "defense": -1.1082,
+      "attack": -1.1087,
+      "defense": -1.1061,
       "n_matches": 49
     },
     "Bulgaria": {
-      "attack": 0.0276,
-      "defense": -0.0005,
+      "attack": 0.0213,
+      "defense": -0.0097,
       "n_matches": 111
     },
     "Burkina Faso": {
-      "attack": 0.3797,
-      "defense": 0.2709,
-      "n_matches": 136
+      "attack": 0.3717,
+      "defense": 0.244,
+      "n_matches": 137
     },
     "Burundi": {
-      "attack": -0.2389,
-      "defense": -0.0842,
+      "attack": -0.2441,
+      "defense": -0.0882,
       "n_matches": 81
     },
     "Cambodia": {
-      "attack": -0.537,
-      "defense": -0.7178,
-      "n_matches": 105
+      "attack": -0.4978,
+      "defense": -0.6634,
+      "n_matches": 106
     },
     "Cameroon": {
-      "attack": 0.2766,
-      "defense": 0.683,
+      "attack": 0.2899,
+      "defense": 0.6787,
       "n_matches": 142
     },
     "Canada": {
-      "attack": 0.6939,
-      "defense": 0.859,
+      "attack": 0.6999,
+      "defense": 0.8614,
       "n_matches": 125
     },
     "Cape Verde": {
-      "attack": 0.183,
-      "defense": 0.3314,
+      "attack": 0.1903,
+      "defense": 0.3354,
       "n_matches": 102
     },
     "Cascadia": {
-      "attack": 0.1755,
-      "defense": -0.0597,
+      "attack": 0.1708,
+      "defense": -0.0582,
       "n_matches": 7
     },
     "Catalonia": {
-      "attack": 0.0164,
-      "defense": -0.003,
+      "attack": 0.0161,
+      "defense": -0.0024,
       "n_matches": 4
     },
     "Cayman Islands": {
-      "attack": -1.1156,
-      "defense": -1.0019,
+      "attack": -1.1102,
+      "defense": -0.9909,
       "n_matches": 40
     },
     "Central African Republic": {
-      "attack": 0.0606,
-      "defense": -0.2898,
-      "n_matches": 66
+      "attack": 0.0219,
+      "defense": -0.31,
+      "n_matches": 67
     },
     "Chad": {
-      "attack": -0.7062,
-      "defense": -0.3018,
+      "attack": -0.7116,
+      "defense": -0.3204,
       "n_matches": 44
     },
     "Chagos Islands": {
-      "attack": 0.0142,
-      "defense": -0.4926,
+      "attack": 0.014,
+      "defense": -0.4796,
       "n_matches": 14
     },
     "Chameria": {
-      "attack": 0.1957,
-      "defense": -0.0295,
+      "attack": 0.1913,
+      "defense": -0.0291,
       "n_matches": 7
     },
     "Chile": {
-      "attack": 0.8069,
-      "defense": 0.7061,
-      "n_matches": 145
+      "attack": 0.8367,
+      "defense": 0.6959,
+      "n_matches": 146
     },
     "China": {
-      "attack": 0.2027,
-      "defense": 0.3744,
-      "n_matches": 124
+      "attack": 0.1574,
+      "defense": 0.4033,
+      "n_matches": 125
     },
     "Colombia": {
-      "attack": 1.1635,
-      "defense": 1.0788,
+      "attack": 1.1644,
+      "defense": 1.0765,
       "n_matches": 145
     },
     "Comoros": {
-      "attack": 0.0089,
-      "defense": 0.0526,
-      "n_matches": 108
+      "attack": 0.0028,
+      "defense": 0.0663,
+      "n_matches": 109
     },
     "Congo": {
-      "attack": -0.3436,
-      "defense": -0.3087,
+      "attack": -0.3459,
+      "defense": -0.3161,
       "n_matches": 78
     },
     "Cook Islands": {
-      "attack": -0.6066,
-      "defense": -0.9241,
+      "attack": -0.5877,
+      "defense": -0.9082,
       "n_matches": 13
     },
     "Corsica": {
-      "attack": -0.0037,
-      "defense": 0.0154,
+      "attack": -0.0038,
+      "defense": 0.0148,
       "n_matches": 3
     },
     "Costa Rica": {
-      "attack": 0.5294,
-      "defense": 0.4072,
+      "attack": 0.5228,
+      "defense": 0.4209,
       "n_matches": 164
     },
     "County of Nice": {
-      "attack": 0.0323,
-      "defense": -0.0072,
+      "attack": 0.0314,
+      "defense": -0.0071,
       "n_matches": 9
     },
     "Croatia": {
-      "attack": 0.6387,
-      "defense": 0.7125,
+      "attack": 0.6359,
+      "defense": 0.7091,
       "n_matches": 149
     },
     "Cuba": {
-      "attack": -0.3094,
-      "defense": -0.2454,
+      "attack": -0.3123,
+      "defense": -0.237,
       "n_matches": 89
     },
     "Curaçao": {
-      "attack": 0.247,
-      "defense": 0.1586,
+      "attack": 0.2405,
+      "defense": 0.1599,
       "n_matches": 94
     },
     "Cyprus": {
-      "attack": -0.2207,
-      "defense": -0.2267,
+      "attack": -0.2313,
+      "defense": -0.2414,
       "n_matches": 111
     },
     "Czech Republic": {
-      "attack": 0.4912,
-      "defense": 0.3441,
+      "attack": 0.4839,
+      "defense": 0.3345,
       "n_matches": 133
     },
     "DR Congo": {
-      "attack": 0.2426,
-      "defense": 0.8467,
-      "n_matches": 131
+      "attack": 0.2485,
+      "defense": 0.7879,
+      "n_matches": 132
     },
     "Darfur": {
-      "attack": -0.0127,
-      "defense": -0.1597,
+      "attack": -0.0124,
+      "defense": -0.1551,
       "n_matches": 4
     },
     "Denmark": {
-      "attack": 0.6512,
-      "defense": 0.7453,
+      "attack": 0.6516,
+      "defense": 0.7419,
       "n_matches": 138
     },
     "Djibouti": {
-      "attack": -0.5816,
-      "defense": -0.792,
+      "attack": -0.5833,
+      "defense": -0.8071,
       "n_matches": 45
     },
     "Dominica": {
-      "attack": -0.8261,
-      "defense": -0.6032,
+      "attack": -0.8152,
+      "defense": -0.5892,
       "n_matches": 57
     },
     "Dominican Republic": {
-      "attack": 0.1537,
-      "defense": -0.0715,
+      "attack": 0.1442,
+      "defense": -0.0675,
       "n_matches": 74
     },
     "Donetsk PR": {
-      "attack": 0.0037,
-      "defense": 0.0114,
+      "attack": 0.0035,
+      "defense": 0.0111,
       "n_matches": 6
     },
     "Délvidék": {
-      "attack": 0.01,
+      "attack": 0.0098,
       "defense": -0.0031,
       "n_matches": 2
     },
     "East Turkestan": {
-      "attack": 0.4003,
-      "defense": -0.63,
+      "attack": 0.3941,
+      "defense": -0.624,
       "n_matches": 5
     },
     "Ecuador": {
-      "attack": 0.7837,
-      "defense": 1.2923,
+      "attack": 0.7845,
+      "defense": 1.2924,
       "n_matches": 132
     },
     "Egypt": {
-      "attack": 0.3462,
-      "defense": 0.8102,
+      "attack": 0.3387,
+      "defense": 0.8074,
       "n_matches": 143
     },
     "El Salvador": {
-      "attack": -0.2667,
-      "defense": 0.2927,
+      "attack": -0.2692,
+      "defense": 0.2989,
       "n_matches": 134
     },
     "Elba Island": {
-      "attack": 0.1525,
-      "defense": 0.0673,
+      "attack": 0.1482,
+      "defense": 0.065,
       "n_matches": 1
     },
     "Ellan Vannin": {
-      "attack": 0.1116,
-      "defense": -0.0074,
+      "attack": 0.1086,
+      "defense": -0.0076,
       "n_matches": 22
     },
     "England": {
-      "attack": 0.8119,
-      "defense": 1.148,
+      "attack": 0.7974,
+      "defense": 1.1435,
       "n_matches": 154
     },
     "Equatorial Guinea": {
-      "attack": -0.2129,
-      "defense": 0.0917,
-      "n_matches": 94
+      "attack": -0.2462,
+      "defense": 0.1053,
+      "n_matches": 95
     },
     "Eritrea": {
-      "attack": -0.0375,
-      "defense": -0.0487,
+      "attack": -0.0365,
+      "defense": -0.0471,
       "n_matches": 4
     },
     "Estonia": {
-      "attack": -0.3236,
-      "defense": -0.1265,
-      "n_matches": 143
+      "attack": -0.3374,
+      "defense": -0.1205,
+      "n_matches": 144
     },
     "Eswatini": {
-      "attack": -0.2972,
-      "defense": -0.208,
+      "attack": -0.2947,
+      "defense": -0.2155,
       "n_matches": 93
     },
     "Ethiopia": {
-      "attack": -0.1437,
-      "defense": -0.0986,
-      "n_matches": 91
+      "attack": -0.159,
+      "defense": -0.1169,
+      "n_matches": 92
     },
     "Falkland Islands": {
-      "attack": -0.1297,
-      "defense": -0.4263,
+      "attack": -0.1262,
+      "defense": -0.4204,
       "n_matches": 12
     },
     "Faroe Islands": {
-      "attack": -0.5421,
-      "defense": -0.0368,
-      "n_matches": 103
+      "attack": -0.5463,
+      "defense": -0.042,
+      "n_matches": 104
     },
     "Felvidék": {
-      "attack": -0.0083,
+      "attack": -0.008,
       "defense": -0.0066,
       "n_matches": 12
     },
     "Fiji": {
-      "attack": -0.0837,
-      "defense": -0.3095,
+      "attack": -0.0859,
+      "defense": -0.299,
       "n_matches": 70
     },
     "Finland": {
-      "attack": 0.0796,
-      "defense": 0.2269,
+      "attack": 0.0742,
+      "defense": 0.2178,
       "n_matches": 132
     },
     "France": {
-      "attack": 0.9751,
-      "defense": 0.8944,
+      "attack": 0.9691,
+      "defense": 0.8966,
       "n_matches": 161
     },
     "Franconia": {
-      "attack": 0.0452,
-      "defense": -0.0381,
+      "attack": 0.044,
+      "defense": -0.0371,
       "n_matches": 3
     },
     "French Guiana": {
-      "attack": -0.1084,
-      "defense": -0.0989,
+      "attack": -0.1067,
+      "defense": -0.0926,
       "n_matches": 65
     },
     "Frøya": {
-      "attack": -0.3534,
-      "defense": -1.0515,
+      "attack": -0.3429,
+      "defense": -1.0635,
       "n_matches": 11
     },
     "Gabon": {
-      "attack": 0.2356,
-      "defense": -0.0287,
+      "attack": 0.2272,
+      "defense": -0.0357,
       "n_matches": 109
     },
     "Galicia": {
-      "attack": -0.1185,
-      "defense": -0.0286,
+      "attack": -0.116,
+      "defense": -0.0284,
       "n_matches": 2
     },
     "Gambia": {
-      "attack": 0.2722,
-      "defense": 0.0151,
+      "attack": 0.2667,
+      "defense": 0.015,
       "n_matches": 78
     },
     "Georgia": {
-      "attack": 0.3437,
-      "defense": 0.2888,
+      "attack": 0.3417,
+      "defense": 0.2781,
       "n_matches": 123
     },
     "Germany": {
-      "attack": 0.9889,
-      "defense": 0.6663,
+      "attack": 0.9846,
+      "defense": 0.6665,
       "n_matches": 156
     },
     "Ghana": {
-      "attack": 0.249,
-      "defense": 0.4182,
+      "attack": 0.2535,
+      "defense": 0.4174,
       "n_matches": 130
     },
     "Gibraltar": {
-      "attack": -0.8302,
-      "defense": -0.6843,
+      "attack": -0.8354,
+      "defense": -0.679,
       "n_matches": 110
     },
     "Gotland": {
-      "attack": 0.0691,
-      "defense": -0.0255,
+      "attack": 0.0674,
+      "defense": -0.0249,
       "n_matches": 8
     },
     "Gozo": {
-      "attack": -0.12,
-      "defense": 0.1337,
+      "attack": -0.1163,
+      "defense": 0.127,
       "n_matches": 7
     },
     "Greece": {
-      "attack": 0.4103,
-      "defense": 0.6266,
+      "attack": 0.4123,
+      "defense": 0.6229,
       "n_matches": 124
     },
     "Greenland": {
-      "attack": -0.0829,
-      "defense": -0.4967,
+      "attack": -0.0786,
+      "defense": -0.4857,
       "n_matches": 13
     },
     "Grenada": {
-      "attack": -0.4705,
-      "defense": -0.5813,
+      "attack": -0.4697,
+      "defense": -0.5728,
       "n_matches": 79
     },
     "Guadeloupe": {
-      "attack": -0.0616,
-      "defense": 0.0235,
+      "attack": -0.0552,
+      "defense": 0.0287,
       "n_matches": 54
     },
     "Guam": {
-      "attack": -0.5621,
-      "defense": -1.1622,
+      "attack": -0.5422,
+      "defense": -1.1509,
       "n_matches": 45
     },
     "Guatemala": {
-      "attack": 0.2583,
-      "defense": 0.1243,
+      "attack": 0.2655,
+      "defense": 0.1333,
       "n_matches": 115
     },
     "Guernsey": {
-      "attack": 0.1592,
-      "defense": 0.3049,
+      "attack": 0.155,
+      "defense": 0.2958,
       "n_matches": 30
     },
     "Guinea": {
-      "attack": 0.2282,
-      "defense": 0.2785,
+      "attack": 0.2248,
+      "defense": 0.2772,
       "n_matches": 113
     },
     "Guinea-Bissau": {
-      "attack": -0.4853,
-      "defense": 0.0409,
+      "attack": -0.497,
+      "defense": 0.0316,
       "n_matches": 81
     },
     "Guyana": {
-      "attack": 0.0755,
-      "defense": -0.3615,
+      "attack": 0.0691,
+      "defense": -0.3544,
       "n_matches": 69
     },
     "Haiti": {
-      "attack": 0.6061,
-      "defense": 0.2726,
+      "attack": 0.591,
+      "defense": 0.276,
       "n_matches": 98
     },
     "Hitra": {
-      "attack": 0.4765,
-      "defense": -0.4345,
+      "attack": 0.4806,
+      "defense": -0.4326,
       "n_matches": 15
     },
     "Hmong": {
-      "attack": 0.1237,
-      "defense": -0.3171,
+      "attack": 0.1217,
+      "defense": -0.3115,
       "n_matches": 3
     },
     "Honduras": {
-      "attack": 0.2365,
-      "defense": 0.3918,
+      "attack": 0.2398,
+      "defense": 0.3975,
       "n_matches": 144
     },
     "Hong Kong": {
-      "attack": -0.2778,
-      "defense": -0.0843,
-      "n_matches": 105
+      "attack": -0.31,
+      "defense": -0.1066,
+      "n_matches": 106
     },
     "Hungary": {
-      "attack": 0.2862,
-      "defense": 0.4338,
-      "n_matches": 127
+      "attack": 0.2951,
+      "defense": 0.4104,
+      "n_matches": 128
     },
     "Iceland": {
-      "attack": 0.3494,
-      "defense": 0.1704,
-      "n_matches": 151
+      "attack": 0.3466,
+      "defense": 0.1597,
+      "n_matches": 152
     },
     "India": {
-      "attack": -0.5835,
-      "defense": -0.0794,
-      "n_matches": 105
+      "attack": -0.5591,
+      "defense": -0.0625,
+      "n_matches": 106
     },
     "Indonesia": {
-      "attack": 0.0841,
-      "defense": 0.0346,
-      "n_matches": 124
+      "attack": 0.0672,
+      "defense": 0.0687,
+      "n_matches": 125
     },
     "Iran": {
-      "attack": 0.8247,
-      "defense": 0.9035,
+      "attack": 0.8071,
+      "defense": 0.898,
       "n_matches": 137
     },
     "Iraq": {
-      "attack": 0.3202,
-      "defense": 0.6787,
-      "n_matches": 162
+      "attack": 0.3129,
+      "defense": 0.6483,
+      "n_matches": 163
     },
     "Iraqi Kurdistan": {
-      "attack": 0.0421,
-      "defense": 0.0192,
+      "attack": 0.0409,
+      "defense": 0.0185,
       "n_matches": 10
     },
     "Isle of Man": {
-      "attack": 1.0766,
-      "defense": 0.1015,
+      "attack": 1.0918,
+      "defense": 0.0954,
       "n_matches": 23
     },
     "Isle of Wight": {
-      "attack": 0.1455,
-      "defense": 0.1195,
+      "attack": 0.142,
+      "defense": 0.1155,
       "n_matches": 8
     },
     "Israel": {
-      "attack": 0.4574,
-      "defense": 0.0296,
+      "attack": 0.4575,
+      "defense": 0.0224,
       "n_matches": 101
     },
     "Italy": {
-      "attack": 0.6574,
-      "defense": 0.663,
+      "attack": 0.6495,
+      "defense": 0.6603,
       "n_matches": 145
     },
     "Ivory Coast": {
-      "attack": 0.4791,
-      "defense": 0.8421,
+      "attack": 0.4466,
+      "defense": 0.8381,
       "n_matches": 143
     },
     "Jamaica": {
-      "attack": 0.1596,
-      "defense": 0.4275,
+      "attack": 0.1643,
+      "defense": 0.4325,
       "n_matches": 149
     },
     "Japan": {
-      "attack": 1.0677,
-      "defense": 1.1221,
+      "attack": 1.0564,
+      "defense": 1.1165,
       "n_matches": 162
     },
     "Jersey": {
-      "attack": 0.8694,
-      "defense": 0.2788,
+      "attack": 0.8643,
+      "defense": 0.2701,
       "n_matches": 34
     },
     "Jordan": {
-      "attack": 0.5695,
-      "defense": 0.3895,
+      "attack": 0.5593,
+      "defense": 0.3906,
       "n_matches": 172
     },
     "Kabylia": {
-      "attack": 0.0067,
-      "defense": -0.088,
+      "attack": 0.0068,
+      "defense": -0.0857,
       "n_matches": 6
     },
     "Kazakhstan": {
-      "attack": -0.2343,
-      "defense": -0.0477,
-      "n_matches": 113
+      "attack": -0.2209,
+      "defense": -0.0746,
+      "n_matches": 114
     },
     "Kenya": {
-      "attack": -0.1122,
-      "defense": -0.0776,
+      "attack": -0.1213,
+      "defense": -0.081,
       "n_matches": 107
     },
     "Kernow": {
-      "attack": 0.0752,
-      "defense": 0.0294,
+      "attack": 0.073,
+      "defense": 0.0285,
       "n_matches": 2
     },
     "Kosovo": {
-      "attack": 0.2729,
-      "defense": 0.3229,
+      "attack": 0.2666,
+      "defense": 0.3129,
       "n_matches": 103
     },
     "Kuwait": {
-      "attack": 0.1767,
-      "defense": 0.033,
+      "attack": 0.1811,
+      "defense": 0.0375,
       "n_matches": 121
     },
     "Kyrgyzstan": {
-      "attack": 0.0935,
-      "defense": 0.0219,
-      "n_matches": 94
+      "attack": 0.0536,
+      "defense": 0.0459,
+      "n_matches": 95
     },
     "Kárpátalja": {
-      "attack": 0.1133,
-      "defense": 0.0155,
+      "attack": 0.1105,
+      "defense": 0.0148,
       "n_matches": 11
     },
     "Laos": {
-      "attack": -0.694,
-      "defense": -0.9742,
+      "attack": -0.6878,
+      "defense": -0.9605,
       "n_matches": 83
     },
     "Latvia": {
-      "attack": -0.5975,
-      "defense": -0.1692,
-      "n_matches": 118
+      "attack": -0.6543,
+      "defense": -0.1979,
+      "n_matches": 119
     },
     "Lebanon": {
-      "attack": -0.2649,
-      "defense": 0.3403,
+      "attack": -0.2594,
+      "defense": 0.3402,
       "n_matches": 107
     },
     "Lesotho": {
-      "attack": -0.5159,
-      "defense": -0.0455,
+      "attack": -0.5294,
+      "defense": -0.0581,
       "n_matches": 109
     },
     "Liberia": {
-      "attack": -0.3784,
-      "defense": -0.1017,
-      "n_matches": 72
+      "attack": -0.2862,
+      "defense": -0.1001,
+      "n_matches": 73
     },
     "Libya": {
-      "attack": 0.0406,
-      "defense": 0.2252,
+      "attack": 0.0365,
+      "defense": 0.2259,
       "n_matches": 90
     },
     "Liechtenstein": {
-      "attack": -1.8143,
-      "defense": -0.6948,
+      "attack": -1.8107,
+      "defense": -0.7178,
       "n_matches": 110
     },
     "Lithuania": {
-      "attack": -0.6929,
-      "defense": -0.0671,
-      "n_matches": 120
+      "attack": -0.748,
+      "defense": -0.0771,
+      "n_matches": 121
     },
     "Luhansk PR": {
-      "attack": 0.0249,
-      "defense": -0.0452,
+      "attack": 0.0241,
+      "defense": -0.0439,
       "n_matches": 6
     },
     "Luxembourg": {
-      "attack": -0.5949,
-      "defense": 0.1389,
+      "attack": -0.6072,
+      "defense": 0.1261,
       "n_matches": 117
     },
     "Macau": {
-      "attack": -1.2381,
-      "defense": -1.3143,
+      "attack": -1.2199,
+      "defense": -1.3017,
       "n_matches": 41
     },
     "Madagascar": {
-      "attack": 0.1471,
-      "defense": -0.0642,
+      "attack": 0.1374,
+      "defense": -0.0814,
       "n_matches": 106
     },
     "Malawi": {
-      "attack": -0.4576,
-      "defense": 0.0896,
-      "n_matches": 123
+      "attack": -0.447,
+      "defense": 0.0814,
+      "n_matches": 124
     },
     "Malaysia": {
-      "attack": 0.0057,
-      "defense": -0.042,
+      "attack": -0.0062,
+      "defense": -0.0404,
       "n_matches": 137
     },
     "Maldives": {
-      "attack": -0.8877,
-      "defense": -0.8901,
+      "attack": -0.8787,
+      "defense": -0.8781,
       "n_matches": 87
     },
     "Mali": {
-      "attack": 0.2678,
-      "defense": 0.8758,
+      "attack": 0.267,
+      "defense": 0.871,
       "n_matches": 116
     },
     "Malta": {
-      "attack": -0.5727,
-      "defense": -0.2362,
+      "attack": -0.5864,
+      "defense": -0.2497,
       "n_matches": 114
     },
     "Mapuche": {
-      "attack": 0.0245,
-      "defense": 0.0143,
+      "attack": 0.0238,
+      "defense": 0.0138,
       "n_matches": 2
     },
     "Marshall Islands": {
-      "attack": -0.2546,
-      "defense": -0.6649,
+      "attack": -0.2417,
+      "defense": -0.6449,
       "n_matches": 2
     },
     "Martinique": {
-      "attack": -0.2719,
-      "defense": 0.0232,
+      "attack": -0.2744,
+      "defense": 0.0254,
       "n_matches": 61
     },
     "Matabeleland": {
-      "attack": -0.0812,
-      "defense": 0.0124,
+      "attack": -0.0787,
+      "defense": 0.0117,
       "n_matches": 8
     },
     "Maule Sur": {
-      "attack": -0.0167,
-      "defense": 0.1171,
+      "attack": -0.0161,
+      "defense": 0.1138,
       "n_matches": 2
     },
     "Mauritania": {
-      "attack": -0.2966,
-      "defense": 0.317,
+      "attack": -0.3099,
+      "defense": 0.3207,
       "n_matches": 113
     },
     "Mauritius": {
-      "attack": -0.8084,
-      "defense": -0.2949,
+      "attack": -0.8013,
+      "defense": -0.293,
       "n_matches": 83
     },
     "Mayotte": {
-      "attack": -0.1478,
-      "defense": 0.1449,
+      "attack": -0.1414,
+      "defense": 0.1413,
       "n_matches": 12
     },
     "Menorca": {
-      "attack": 0.0848,
-      "defense": -0.0853,
+      "attack": 0.084,
+      "defense": -0.0845,
       "n_matches": 14
     },
     "Mexico": {
-      "attack": 0.7843,
-      "defense": 0.9249,
+      "attack": 0.7842,
+      "defense": 0.9167,
       "n_matches": 207
     },
     "Moldova": {
-      "attack": -0.5144,
-      "defense": -0.4044,
-      "n_matches": 126
+      "attack": -0.5243,
+      "defense": -0.3862,
+      "n_matches": 127
     },
     "Monaco": {
-      "attack": -0.0084,
-      "defense": -0.0079,
+      "attack": -0.0082,
+      "defense": -0.0076,
       "n_matches": 3
     },
     "Mongolia": {
-      "attack": -1.0791,
-      "defense": -0.8757,
+      "attack": -1.0594,
+      "defense": -0.8771,
       "n_matches": 53
     },
     "Montenegro": {
-      "attack": -0.0756,
-      "defense": -0.0062,
+      "attack": -0.0841,
+      "defense": -0.0223,
       "n_matches": 112
     },
     "Montserrat": {
-      "attack": -0.5042,
-      "defense": -0.5561,
+      "attack": -0.4959,
+      "defense": -0.5469,
       "n_matches": 39
     },
     "Morocco": {
-      "attack": 0.7063,
-      "defense": 1.3119,
+      "attack": 0.7013,
+      "defense": 1.3094,
       "n_matches": 156
     },
     "Mozambique": {
-      "attack": 0.1067,
-      "defense": -0.0469,
-      "n_matches": 118
+      "attack": 0.0719,
+      "defense": -0.0368,
+      "n_matches": 119
     },
     "Myanmar": {
-      "attack": -0.4187,
-      "defense": -0.7157,
-      "n_matches": 112
+      "attack": -0.409,
+      "defense": -0.7672,
+      "n_matches": 113
     },
     "Namibia": {
-      "attack": -0.4217,
-      "defense": 0.0307,
+      "attack": -0.419,
+      "defense": 0.0296,
       "n_matches": 101
     },
     "Nepal": {
-      "attack": -0.997,
-      "defense": -0.402,
+      "attack": -0.9931,
+      "defense": -0.3936,
       "n_matches": 89
     },
     "Netherlands": {
-      "attack": 0.9568,
-      "defense": 0.7264,
+      "attack": 0.9466,
+      "defense": 0.7227,
       "n_matches": 145
     },
     "New Caledonia": {
-      "attack": 0.2097,
-      "defense": 0.2225,
+      "attack": 0.2154,
+      "defense": 0.2245,
       "n_matches": 49
     },
     "New Zealand": {
-      "attack": 0.6014,
-      "defense": 0.587,
+      "attack": 0.6054,
+      "defense": 0.5939,
       "n_matches": 81
     },
     "Nicaragua": {
-      "attack": -0.0995,
-      "defense": 0.1005,
+      "attack": -0.0996,
+      "defense": 0.1058,
       "n_matches": 101
     },
     "Niger": {
-      "attack": 0.1557,
-      "defense": 0.0134,
+      "attack": 0.1516,
+      "defense": 0.0122,
       "n_matches": 94
     },
     "Nigeria": {
-      "attack": 0.5912,
-      "defense": 0.5373,
+      "attack": 0.5673,
+      "defense": 0.5261,
       "n_matches": 144
     },
     "North Korea": {
-      "attack": 0.192,
-      "defense": 0.2199,
+      "attack": 0.1816,
+      "defense": 0.2143,
       "n_matches": 78
     },
     "North Macedonia": {
-      "attack": -0.0702,
-      "defense": 0.141,
+      "attack": -0.0818,
+      "defense": 0.1217,
       "n_matches": 121
     },
     "Northern Cyprus": {
-      "attack": 0.1677,
-      "defense": 0.0675,
+      "attack": 0.1634,
+      "defense": 0.0653,
       "n_matches": 16
     },
     "Northern Ireland": {
-      "attack": 0.0673,
-      "defense": 0.4011,
+      "attack": 0.0615,
+      "defense": 0.3934,
       "n_matches": 118
     },
     "Northern Mariana Islands": {
-      "attack": -0.3958,
-      "defense": -1.0831,
+      "attack": -0.3744,
+      "defense": -1.059,
       "n_matches": 14
     },
     "Norway": {
-      "attack": 0.8174,
-      "defense": 0.6114,
+      "attack": 0.7985,
+      "defense": 0.6075,
       "n_matches": 123
     },
     "Occitania": {
-      "attack": 0.0104,
-      "defense": 0.0104,
+      "attack": 0.0101,
+      "defense": 0.0101,
       "n_matches": 6
     },
     "Oman": {
-      "attack": 0.0989,
-      "defense": 0.5014,
+      "attack": 0.1055,
+      "defense": 0.4926,
       "n_matches": 158
     },
     "Orkney": {
-      "attack": 0.0836,
-      "defense": -0.0579,
+      "attack": 0.0898,
+      "defense": -0.0654,
       "n_matches": 15
     },
     "Padania": {
-      "attack": 0.3019,
-      "defense": 0.0977,
+      "attack": 0.2948,
+      "defense": 0.0946,
       "n_matches": 31
     },
     "Pakistan": {
-      "attack": -0.951,
-      "defense": -0.7117,
+      "attack": -0.9347,
+      "defense": -0.7102,
       "n_matches": 40
     },
     "Palestine": {
-      "attack": 0.0875,
-      "defense": 0.404,
-      "n_matches": 113
+      "attack": 0.0368,
+      "defense": 0.4252,
+      "n_matches": 114
     },
     "Panama": {
-      "attack": 0.5723,
-      "defense": 0.4475,
+      "attack": 0.571,
+      "defense": 0.4594,
       "n_matches": 168
     },
     "Panjab": {
-      "attack": 0.2833,
+      "attack": 0.2761,
       "defense": -0.0133,
       "n_matches": 19
     },
     "Papua New Guinea": {
-      "attack": -0.2071,
-      "defense": -0.3243,
+      "attack": -0.2088,
+      "defense": -0.3167,
       "n_matches": 47
     },
     "Paraguay": {
-      "attack": 0.6384,
-      "defense": 0.9671,
+      "attack": 0.6262,
+      "defense": 0.9673,
       "n_matches": 120
     },
     "Parishes of Jersey": {
-      "attack": 0.0989,
+      "attack": 0.0962,
       "defense": 0.0003,
       "n_matches": 3
     },
     "Peru": {
-      "attack": 0.4191,
-      "defense": 0.8525,
+      "attack": 0.4059,
+      "defense": 0.8557,
       "n_matches": 145
     },
     "Philippines": {
-      "attack": -0.2547,
-      "defense": -0.2677,
-      "n_matches": 114
+      "attack": -0.187,
+      "defense": -0.2655,
+      "n_matches": 115
     },
     "Poland": {
-      "attack": 0.4329,
-      "defense": 0.3713,
+      "attack": 0.434,
+      "defense": 0.365,
       "n_matches": 137
     },
     "Portugal": {
-      "attack": 1.0009,
-      "defense": 0.8902,
+      "attack": 1.0027,
+      "defense": 0.8873,
       "n_matches": 156
     },
     "Puerto Rico": {
-      "attack": -0.2226,
-      "defense": -0.2945,
+      "attack": -0.2191,
+      "defense": -0.283,
       "n_matches": 58
     },
     "Qatar": {
-      "attack": 0.3682,
-      "defense": 0.2002,
+      "attack": 0.3762,
+      "defense": 0.2027,
       "n_matches": 185
     },
     "Raetia": {
-      "attack": 0.5008,
-      "defense": -0.3285,
+      "attack": 0.4933,
+      "defense": -0.3208,
       "n_matches": 16
     },
     "Republic of Ireland": {
-      "attack": 0.1975,
-      "defense": 0.5723,
+      "attack": 0.191,
+      "defense": 0.5644,
       "n_matches": 128
     },
     "Romani people": {
-      "attack": 0.0077,
-      "defense": -0.0313,
+      "attack": 0.0075,
+      "defense": -0.0305,
       "n_matches": 5
     },
     "Romania": {
-      "attack": 0.209,
-      "defense": 0.3325,
+      "attack": 0.1994,
+      "defense": 0.3202,
       "n_matches": 125
     },
     "Russia": {
-      "attack": 0.6041,
-      "defense": 0.8635,
-      "n_matches": 120
+      "attack": 0.6058,
+      "defense": 0.8961,
+      "n_matches": 121
     },
     "Rwanda": {
-      "attack": -0.3416,
-      "defense": 0.4681,
+      "attack": -0.3696,
+      "defense": 0.459,
       "n_matches": 90
     },
     "Ryūkyū": {
-      "attack": -0.0074,
-      "defense": -0.0536,
+      "attack": -0.0072,
+      "defense": -0.052,
       "n_matches": 1
     },
     "Réunion": {
-      "attack": -0.1009,
-      "defense": 0.1589,
+      "attack": -0.0956,
+      "defense": 0.1551,
       "n_matches": 13
     },
     "Saare County": {
-      "attack": 0.0265,
-      "defense": -0.0451,
+      "attack": 0.0261,
+      "defense": -0.0438,
       "n_matches": 8
     },
     "Saint Barthélemy": {
-      "attack": 0.1835,
-      "defense": -0.1471,
+      "attack": 0.182,
+      "defense": -0.1418,
       "n_matches": 8
     },
     "Saint Helena": {
-      "attack": -0.2317,
-      "defense": -0.9057,
+      "attack": -0.2242,
+      "defense": -0.8874,
       "n_matches": 8
     },
     "Saint Kitts and Nevis": {
-      "attack": -0.4025,
-      "defense": -0.7269,
+      "attack": -0.4048,
+      "defense": -0.709,
       "n_matches": 80
     },
     "Saint Lucia": {
-      "attack": -0.6197,
-      "defense": -0.7613,
+      "attack": -0.6186,
+      "defense": -0.7532,
       "n_matches": 56
     },
     "Saint Martin": {
-      "attack": -0.2246,
-      "defense": -0.6217,
+      "attack": -0.214,
+      "defense": -0.6017,
       "n_matches": 35
     },
     "Saint Vincent and the Grenadines": {
-      "attack": -0.1273,
-      "defense": -0.5811,
+      "attack": -0.1413,
+      "defense": -0.5722,
       "n_matches": 76
     },
     "Samoa": {
-      "attack": -0.3617,
-      "defense": -0.8205,
+      "attack": -0.3357,
+      "defense": -0.8139,
       "n_matches": 23
     },
     "San Marino": {
-      "attack": -1.6204,
-      "defense": -0.9457,
-      "n_matches": 102
+      "attack": -1.5681,
+      "defense": -0.9505,
+      "n_matches": 103
     },
     "Saudi Arabia": {
-      "attack": 0.3001,
-      "defense": 0.5619,
-      "n_matches": 172
+      "attack": 0.3074,
+      "defense": 0.5768,
+      "n_matches": 173
     },
     "Scotland": {
-      "attack": 0.5003,
-      "defense": 0.4485,
+      "attack": 0.5077,
+      "defense": 0.4494,
       "n_matches": 121
     },
     "Sealand": {
-      "attack": 0.0282,
-      "defense": -0.003,
+      "attack": 0.0275,
+      "defense": -0.0029,
       "n_matches": 5
     },
     "Seborga": {
-      "attack": 0.0019,
-      "defense": -0.0061,
+      "attack": 0.0018,
+      "defense": -0.0059,
       "n_matches": 1
     },
     "Senegal": {
-      "attack": 0.7564,
-      "defense": 0.8051,
-      "n_matches": 152
+      "attack": 0.7082,
+      "defense": 0.8276,
+      "n_matches": 153
     },
     "Serbia": {
-      "attack": 0.4206,
-      "defense": 0.4307,
+      "attack": 0.4254,
+      "defense": 0.4277,
       "n_matches": 130
     },
     "Seychelles": {
-      "attack": -1.1356,
-      "defense": -0.9966,
+      "attack": -1.1191,
+      "defense": -0.9986,
       "n_matches": 75
     },
     "Shetland": {
-      "attack": 0.4469,
-      "defense": -0.0801,
+      "attack": 0.4397,
+      "defense": -0.084,
       "n_matches": 20
     },
     "Sierra Leone": {
-      "attack": -0.1789,
-      "defense": -0.0438,
-      "n_matches": 69
+      "attack": -0.1927,
+      "defense": -0.111,
+      "n_matches": 70
     },
     "Singapore": {
-      "attack": -0.2792,
-      "defense": -0.4272,
+      "attack": -0.2746,
+      "defense": -0.417,
       "n_matches": 125
     },
     "Sint Maarten": {
-      "attack": -0.2075,
-      "defense": -0.8941,
+      "attack": -0.1936,
+      "defense": -0.8798,
       "n_matches": 37
     },
     "Slovakia": {
-      "attack": 0.2171,
-      "defense": 0.3129,
+      "attack": 0.2136,
+      "defense": 0.2977,
       "n_matches": 131
     },
     "Slovenia": {
-      "attack": 0.0941,
-      "defense": 0.5326,
+      "attack": 0.0892,
+      "defense": 0.5281,
       "n_matches": 120
     },
     "Solomon Islands": {
-      "attack": -0.129,
-      "defense": -0.4927,
+      "attack": -0.1274,
+      "defense": -0.4837,
       "n_matches": 64
     },
     "Somalia": {
-      "attack": -0.7818,
-      "defense": -0.315,
+      "attack": -0.7696,
+      "defense": -0.331,
       "n_matches": 27
     },
     "Somaliland": {
-      "attack": 0.0435,
-      "defense": -0.1093,
+      "attack": 0.0424,
+      "defense": -0.1063,
       "n_matches": 6
     },
     "South Africa": {
-      "attack": 0.1725,
-      "defense": 0.4181,
+      "attack": 0.17,
+      "defense": 0.4142,
       "n_matches": 152
     },
     "South Korea": {
-      "attack": 0.7867,
-      "defense": 0.7219,
+      "attack": 0.7773,
+      "defense": 0.7145,
       "n_matches": 168
     },
     "South Ossetia": {
-      "attack": 0.0795,
-      "defense": -0.0809,
+      "attack": 0.0774,
+      "defense": -0.0791,
       "n_matches": 16
     },
     "South Sudan": {
-      "attack": -0.7559,
-      "defense": -0.2963,
+      "attack": -0.7541,
+      "defense": -0.2943,
       "n_matches": 71
     },
     "Spain": {
-      "attack": 1.1245,
-      "defense": 1.025,
+      "attack": 1.1309,
+      "defense": 1.0274,
       "n_matches": 150
     },
     "Sri Lanka": {
-      "attack": -1.2123,
-      "defense": -0.439,
+      "attack": -1.199,
+      "defense": -0.4265,
       "n_matches": 68
     },
     "Sudan": {
-      "attack": -0.3625,
-      "defense": 0.2072,
+      "attack": -0.3723,
+      "defense": 0.2045,
       "n_matches": 98
     },
     "Suriname": {
-      "attack": 0.1296,
-      "defense": 0.3129,
+      "attack": 0.1288,
+      "defense": 0.3167,
       "n_matches": 70
     },
     "Surrey": {
-      "attack": 0.0194,
-      "defense": 0.0055,
+      "attack": 0.0189,
+      "defense": 0.0054,
       "n_matches": 1
     },
     "Sweden": {
-      "attack": 0.6002,
-      "defense": 0.3073,
+      "attack": 0.5988,
+      "defense": 0.2996,
       "n_matches": 149
     },
     "Switzerland": {
-      "attack": 0.7538,
-      "defense": 0.6559,
+      "attack": 0.7501,
+      "defense": 0.6573,
       "n_matches": 144
     },
     "Syria": {
-      "attack": 0.2095,
-      "defense": 0.2638,
+      "attack": 0.2118,
+      "defense": 0.2637,
       "n_matches": 129
     },
     "Székely Land": {
-      "attack": 0.4691,
-      "defense": -0.1678,
+      "attack": 0.4589,
+      "defense": -0.1643,
       "n_matches": 27
     },
     "Sápmi": {
-      "attack": -0.0049,
-      "defense": -0.1326,
+      "attack": -0.0047,
+      "defense": -0.1292,
       "n_matches": 15
     },
     "São Tomé and Príncipe": {
-      "attack": -0.5749,
-      "defense": -0.9193,
+      "attack": -0.5686,
+      "defense": -0.9297,
       "n_matches": 43
     },
     "Tahiti": {
-      "attack": 0.0912,
-      "defense": 0.0921,
+      "attack": 0.1019,
+      "defense": 0.0931,
       "n_matches": 35
     },
     "Taiwan": {
-      "attack": -0.3124,
+      "attack": -0.3005,
       "defense": -0.7369,
       "n_matches": 70
     },
     "Tajikistan": {
-      "attack": -0.0985,
-      "defense": 0.1465,
-      "n_matches": 94
+      "attack": -0.1016,
+      "defense": 0.128,
+      "n_matches": 95
     },
     "Tamil Eelam": {
-      "attack": 0.6342,
-      "defense": 0.3047,
+      "attack": 0.6412,
+      "defense": 0.2957,
       "n_matches": 21
     },
     "Tanzania": {
-      "attack": -0.2832,
-      "defense": 0.3001,
+      "attack": -0.2916,
+      "defense": 0.2922,
       "n_matches": 119
     },
     "Thailand": {
-      "attack": 0.2792,
-      "defense": 0.0638,
-      "n_matches": 147
+      "attack": 0.245,
+      "defense": 0.0996,
+      "n_matches": 148
     },
     "Tibet": {
-      "attack": 0.3322,
-      "defense": -0.9896,
+      "attack": 0.3267,
+      "defense": -0.9819,
       "n_matches": 10
     },
     "Ticino": {
-      "attack": -0.0671,
-      "defense": -0.5908,
+      "attack": -0.0649,
+      "defense": -0.5768,
       "n_matches": 2
     },
     "Timor-Leste": {
-      "attack": -0.9511,
-      "defense": -1.102,
+      "attack": -0.9323,
+      "defense": -1.0881,
       "n_matches": 60
     },
     "Togo": {
-      "attack": -0.1166,
-      "defense": 0.1631,
-      "n_matches": 91
+      "attack": 0.062,
+      "defense": 0.1515,
+      "n_matches": 92
     },
     "Tonga": {
-      "attack": -0.4174,
-      "defense": -1.1051,
+      "attack": -0.3962,
+      "defense": -1.0842,
       "n_matches": 20
     },
     "Trinidad and Tobago": {
-      "attack": 0.0892,
-      "defense": -0.1087,
-      "n_matches": 131
+      "attack": 0.0735,
+      "defense": -0.1004,
+      "n_matches": 132
     },
     "Tunisia": {
-      "attack": 0.2655,
-      "defense": 0.6827,
+      "attack": 0.2705,
+      "defense": 0.678,
       "n_matches": 157
     },
     "Turkey": {
-      "attack": 0.6572,
-      "defense": 0.4182,
+      "attack": 0.645,
+      "defense": 0.4103,
       "n_matches": 139
     },
     "Turkmenistan": {
-      "attack": -0.0924,
-      "defense": -0.1157,
+      "attack": -0.0933,
+      "defense": -0.1142,
       "n_matches": 57
     },
     "Turks and Caicos Islands": {
-      "attack": -0.9262,
-      "defense": -1.3634,
+      "attack": -0.9079,
+      "defense": -1.3438,
       "n_matches": 38
     },
     "Tuvalu": {
-      "attack": -0.0546,
-      "defense": -1.108,
+      "attack": -0.0478,
+      "defense": -1.0851,
       "n_matches": 19
     },
     "Two Sicilies": {
-      "attack": -0.0916,
-      "defense": -0.4278,
+      "attack": -0.0888,
+      "defense": -0.4172,
       "n_matches": 2
     },
     "Uganda": {
-      "attack": -0.0396,
-      "defense": 0.1393,
+      "attack": -0.0395,
+      "defense": 0.1291,
       "n_matches": 134
     },
     "Ukraine": {
-      "attack": 0.5401,
-      "defense": 0.3989,
+      "attack": 0.5423,
+      "defense": 0.3933,
       "n_matches": 129
     },
     "United Arab Emirates": {
-      "attack": 0.4134,
-      "defense": 0.4744,
+      "attack": 0.4126,
+      "defense": 0.4723,
       "n_matches": 155
     },
     "United Koreans in Japan": {
-      "attack": 0.0274,
-      "defense": 0.0392,
+      "attack": 0.0273,
+      "defense": 0.0379,
       "n_matches": 12
     },
     "United States": {
-      "attack": 0.7806,
-      "defense": 0.6227,
+      "attack": 0.7625,
+      "defense": 0.628,
       "n_matches": 187
     },
     "United States Virgin Islands": {
-      "attack": -0.9436,
-      "defense": -1.0372,
+      "attack": -0.9214,
+      "defense": -1.0163,
       "n_matches": 43
     },
     "Uruguay": {
-      "attack": 0.8294,
-      "defense": 1.1761,
+      "attack": 0.8324,
+      "defense": 1.1788,
       "n_matches": 139
     },
     "Uzbekistan": {
-      "attack": 0.4866,
-      "defense": 0.8334,
+      "attack": 0.4872,
+      "defense": 0.8319,
       "n_matches": 135
     },
     "Vanuatu": {
-      "attack": -0.1312,
-      "defense": -0.3888,
+      "attack": -0.1315,
+      "defense": -0.3838,
       "n_matches": 47
     },
     "Vatican City": {
-      "attack": -0.011,
+      "attack": -0.0107,
       "defense": -0.0033,
       "n_matches": 3
     },
     "Venezuela": {
-      "attack": 0.7192,
-      "defense": 0.7199,
-      "n_matches": 119
+      "attack": 0.7512,
+      "defense": 0.7365,
+      "n_matches": 120
     },
     "Vietnam": {
-      "attack": 0.0518,
-      "defense": 0.1307,
+      "attack": 0.0513,
+      "defense": 0.1348,
       "n_matches": 121
     },
     "Wales": {
-      "attack": 0.231,
-      "defense": 0.3878,
+      "attack": 0.2315,
+      "defense": 0.3801,
       "n_matches": 123
     },
     "West Papua": {
-      "attack": -0.0086,
-      "defense": -0.096,
+      "attack": -0.0079,
+      "defense": -0.0939,
       "n_matches": 2
     },
     "Western Armenia": {
-      "attack": 0.1233,
-      "defense": 0.0151,
+      "attack": 0.1203,
+      "defense": 0.0143,
       "n_matches": 16
     },
     "Western Isles": {
       "attack": -0.0012,
-      "defense": -0.1907,
+      "defense": -0.1882,
       "n_matches": 18
     },
     "Yemen": {
-      "attack": 0.0626,
-      "defense": -0.3426,
+      "attack": 0.0756,
+      "defense": -0.3493,
       "n_matches": 82
     },
     "Ynys Môn": {
-      "attack": 0.3514,
-      "defense": 0.4146,
+      "attack": 0.3455,
+      "defense": 0.3991,
       "n_matches": 20
     },
     "Yorkshire": {
-      "attack": 0.1975,
-      "defense": -0.0221,
+      "attack": 0.192,
+      "defense": -0.0215,
       "n_matches": 7
     },
     "Yoruba Nation": {
-      "attack": -0.0629,
-      "defense": 0.0127,
+      "attack": -0.0612,
+      "defense": 0.0124,
       "n_matches": 2
     },
     "Zambia": {
-      "attack": 0.1992,
-      "defense": 0.0702,
+      "attack": 0.1975,
+      "defense": 0.0637,
       "n_matches": 140
     },
     "Zanzibar": {
-      "attack": -0.1159,
-      "defense": 0.3154,
+      "attack": -0.1198,
+      "defense": 0.3075,
       "n_matches": 13
     },
     "Zimbabwe": {
-      "attack": 0.0136,
-      "defense": 0.1827,
+      "attack": 0.0022,
+      "defense": 0.177,
       "n_matches": 104
     },
     "Åland Islands": {
-      "attack": -0.1811,
-      "defense": -0.2099,
+      "attack": -0.176,
+      "defense": -0.2048,
       "n_matches": 12
     }
   },
-  "as_of": "2026-06-09"
+  "as_of": "2026-06-10"
 }

@@ -61,7 +61,7 @@ m_684bf946b1,2014-03-05,Malawi,Zimbabwe,1,4,False,Friendly,Blantyre,Malawi
 m_ff06e3c7fc,2014-03-05,Mali,Senegal,1,1,True,Friendly,Saint-Leu-la-Forêt,France
 m_587a0a8454,2014-03-05,Mauritania,Niger,1,1,False,Friendly,Nouakchott,Mauritania
 m_592d75102c,2014-03-05,Montenegro,Ghana,1,0,False,Friendly,Podgorica,Montenegro
-m_74e824ec66,2014-03-05,Morocco,Gabon,1,1,False,Friendly,Marrakech,Morocco
+m_74e824ec66,2014-03-05,Morocco,Gabon,1,1,False,Friendly,Marrakesh,Morocco
 m_94fc0d84d6,2014-03-05,Mozambique,Angola,1,1,False,Friendly,Maputo,Mozambique
 m_4f1408f982,2014-03-05,Namibia,Tanzania,1,1,False,Friendly,Windhoek,Namibia
 m_41e128b768,2014-03-05,Oman,Singapore,3,1,False,AFC Asian Cup qualification,Muscat,Oman
@@ -100,7 +100,7 @@ m_a99e89886c,2014-04-15,Yemen,Chad,0,0,True,Friendly,Doha,Qatar
 m_3e1a6ea7cb,2014-04-17,Guadeloupe,French Guiana,3,2,False,Friendly,Les Abymes,Guadeloupe
 m_4e24f06e37,2014-04-20,Mauritius,Mauritania,0,2,False,African Cup of Nations qualification,Curepipe,Mauritius
 m_c45661453a,2014-04-26,Tanzania,Burundi,0,3,False,Friendly,Dar es Salaam,Tanzania
-m_8edaa8ebd8,2014-04-27,Philippines,Malaysia,0,0,False,Friendly,Cebu,Philippines
+m_8edaa8ebd8,2014-04-27,Philippines,Malaysia,0,0,False,Friendly,Cebu City,Philippines
 m_be587de450,2014-05-02,Grenada,Saint Lucia,0,1,True,Windward Islands Tournament,Roseau,Dominica
 m_fedb353224,2014-05-04,Dominica,Grenada,3,5,False,Windward Islands Tournament,Roseau,Dominica
 m_61f721262e,2014-05-05,Sealand,Chagos Islands,1,1,True,Friendly,Godalming,England
@@ -436,7 +436,7 @@ m_cd9cb57c67,2014-09-03,Philippines,Taiwan,5,1,False,Friendly,Manila,Philippines
 m_ab117d0e0b,2014-09-03,Puerto Rico,Curaçao,2,2,False,CFU Caribbean Cup qualification,Bayamón,Puerto Rico
 m_1a62f2559d,2014-09-03,Russia,Azerbaijan,4,0,False,Friendly,Khimki,Russia
 m_8e0d1fe4e1,2014-09-03,Ukraine,Moldova,1,0,False,Friendly,Kyiv,Ukraine
-m_b10e2a8920,2014-09-04,Belarus,Tajikistan,6,1,False,Friendly,Barysaw,Belarus
+m_b10e2a8920,2014-09-04,Belarus,Tajikistan,6,1,False,Friendly,Borisov,Belarus
 m_1977bcd1d0,2014-09-04,Belgium,Australia,2,0,False,Friendly,Liège,Belgium
 m_9c307b4666,2014-09-04,Bosnia and Herzegovina,Liechtenstein,3,0,False,Friendly,Tuzla,Bosnia and Herzegovina
 m_ca0e4aff57,2014-09-04,China,Kuwait,3,1,False,Friendly,Anshan,China
@@ -489,7 +489,7 @@ m_b9f81c3060,2014-09-07,Greece,Romania,0,1,False,UEFA Euro qualification,Piraeus
 m_ff562feafb,2014-09-07,Hungary,Northern Ireland,1,2,False,UEFA Euro qualification,Budapest,Hungary
 m_2849f1f38d,2014-09-07,Kosovo,Oman,1,0,False,Friendly,Pristina,Kosovo
 m_1b2caba28d,2014-09-07,Mali,Malawi,2,0,False,African Cup of Nations qualification,Bamako,Mali
-m_329fa47863,2014-09-07,Morocco,Libya,3,0,False,Friendly,Marrakech,Morocco
+m_329fa47863,2014-09-07,Morocco,Libya,3,0,False,Friendly,Marrakesh,Morocco
 m_a706aea1d3,2014-09-07,Paraguay,United Arab Emirates,0,0,True,Friendly,Villach,Austria
 m_8478e074cb,2014-09-07,Portugal,Albania,0,1,False,UEFA Euro qualification,Aveiro,Portugal
 m_47d75bc3f7,2014-09-07,Puerto Rico,Grenada,2,2,False,CFU Caribbean Cup qualification,Bayamón,Puerto Rico
@@ -547,13 +547,13 @@ m_894ebf2138,2014-10-08,Curaçao,Martinique,1,1,True,CFU Caribbean Cup qualifica
 m_a2a68dd991,2014-10-08,Haiti,French Guiana,2,2,False,CFU Caribbean Cup qualification,Port-au-Prince,Haiti
 m_2e833f349c,2014-10-08,Saint Kitts and Nevis,Barbados,2,3,True,CFU Caribbean Cup qualification,Port-au-Prince,Haiti
 m_ed51a223ab,2014-10-08,Trinidad and Tobago,Dominican Republic,6,1,False,CFU Caribbean Cup qualification,Couva,Trinidad and Tobago
-m_bd62a5c907,2014-10-09,Belarus,Ukraine,0,2,False,UEFA Euro qualification,Barysaw,Belarus
+m_bd62a5c907,2014-10-09,Belarus,Ukraine,0,2,False,UEFA Euro qualification,Borisov,Belarus
 m_25183caa89,2014-10-09,England,San Marino,5,0,False,UEFA Euro qualification,London,England
 m_87fce874ef,2014-10-09,Liechtenstein,Montenegro,0,0,False,UEFA Euro qualification,Vaduz,Liechtenstein
 m_76124d3078,2014-10-09,Lithuania,Estonia,1,0,False,UEFA Euro qualification,Vilnius,Lithuania
 m_ff3a048042,2014-10-09,North Macedonia,Luxembourg,3,2,False,UEFA Euro qualification,Skopje,North Macedonia
 m_de63136ca3,2014-10-09,Moldova,Austria,1,2,False,UEFA Euro qualification,Chișinău,Moldova
-m_3362f1a4fb,2014-10-09,Morocco,Central African Republic,4,0,False,Friendly,Marrakech,Morocco
+m_3362f1a4fb,2014-10-09,Morocco,Central African Republic,4,0,False,Friendly,Marrakesh,Morocco
 m_4aa848f8fe,2014-10-09,Qatar,Lebanon,5,0,False,Friendly,Doha,Qatar
 m_4d3ba24373,2014-10-09,Slovakia,Spain,2,1,False,UEFA Euro qualification,Žilina,Slovakia
 m_812686d02e,2014-10-09,Slovenia,Switzerland,1,0,False,UEFA Euro qualification,Maribor,Slovenia
@@ -583,7 +583,7 @@ m_eb36fdafb0,2014-10-10,United Arab Emirates,Australia,0,0,False,Friendly,Abu Dh
 m_32e787c915,2014-10-10,Uzbekistan,Bahrain,0,0,True,Friendly,Dubai,United Arab Emirates
 m_c806c360a1,2014-10-10,Wales,Bosnia and Herzegovina,0,0,False,UEFA Euro qualification,Cardiff,Wales
 m_028eaaed14,2014-10-10,Yemen,Iraq,1,1,True,Friendly,Manama,Bahrain
-m_18390b4aea,2014-10-10,Chile,Peru,3,0,False,Friendly,Valparaiso,Chile
+m_18390b4aea,2014-10-10,Chile,Peru,3,0,False,Friendly,Valparaíso,Chile
 m_d41a627ad4,2014-10-11,Albania,Denmark,1,1,False,UEFA Euro qualification,Elbasan,Albania
 m_630676d2fc,2014-10-11,Argentina,Brazil,0,2,True,Superclásico de las Américas,Beijing,China
 m_86af3b9b36,2014-10-11,Armenia,Serbia,1,1,False,UEFA Euro qualification,Yerevan,Armenia
@@ -607,7 +607,7 @@ m_8e35cbb0de,2014-10-11,Sudan,Nigeria,1,0,False,African Cup of Nations qualifica
 m_1a6bc49d61,2014-10-11,Uganda,Togo,0,1,False,African Cup of Nations qualification,Kampala,Uganda
 m_e6da1846db,2014-10-12,Austria,Montenegro,1,0,False,UEFA Euro qualification,Vienna,Austria
 m_eba757db87,2014-10-12,Barbados,French Guiana,0,2,True,CFU Caribbean Cup qualification,Port-au-Prince,Haiti
-m_0c653e923c,2014-10-12,Belarus,Slovakia,1,3,False,UEFA Euro qualification,Barysaw,Belarus
+m_0c653e923c,2014-10-12,Belarus,Slovakia,1,3,False,UEFA Euro qualification,Borisov,Belarus
 m_d824926325,2014-10-12,Timor-Leste,Brunei,4,2,True,AFF Championship qualification,Vientiane,Laos
 m_520785df2f,2014-10-12,Estonia,England,0,1,False,UEFA Euro qualification,Tallinn,Estonia
 m_840420fc89,2014-10-12,Guadeloupe,Curaçao,0,1,False,CFU Caribbean Cup qualification,Les Abymes,Guadeloupe
@@ -632,7 +632,7 @@ m_8dd77c0c71,2014-10-13,Jordan,Kuwait,1,1,False,Friendly,Amman,Jordan
 m_5bc8362920,2014-10-13,Kazakhstan,Czech Republic,2,4,False,UEFA Euro qualification,Astana,Kazakhstan
 m_7cf63b8f87,2014-10-13,Latvia,Turkey,1,1,False,UEFA Euro qualification,Riga,Latvia
 m_73ee58c2cd,2014-10-13,Malta,Italy,0,1,False,UEFA Euro qualification,Attard,Malta
-m_c58d36615b,2014-10-13,Morocco,Kenya,3,0,False,Friendly,Marrakech,Morocco
+m_c58d36615b,2014-10-13,Morocco,Kenya,3,0,False,Friendly,Marrakesh,Morocco
 m_2f5775e786,2014-10-13,Norway,Bulgaria,2,1,False,UEFA Euro qualification,Oslo,Norway
 m_6684415e0d,2014-10-13,Oman,Uruguay,0,3,False,Friendly,Muscat,Oman
 m_5c77a49469,2014-10-13,Wales,Cyprus,2,1,False,UEFA Euro qualification,Cardiff,Wales
@@ -775,7 +775,7 @@ m_fa5ba6280b,2014-11-17,Iraq,Oman,1,1,True,Gulf Cup,Riyadh,Saudi Arabia
 m_8ea228cb00,2014-11-17,Singapore,Cambodia,4,2,False,Friendly,Yishun,Singapore
 m_58d2d93dde,2014-11-17,United Arab Emirates,Kuwait,2,2,True,Gulf Cup,Riyadh,Saudi Arabia
 m_27007b43ac,2014-11-18,Austria,Brazil,1,2,False,Friendly,Vienna,Austria
-m_453835b431,2014-11-18,Belarus,Mexico,3,2,False,Friendly,Barysaw,Belarus
+m_453835b431,2014-11-18,Belarus,Mexico,3,2,False,Friendly,Borisov,Belarus
 m_9d911d1ebb,2014-11-18,Bolivia,Venezuela,3,2,False,Friendly,La Paz,Bolivia
 m_2631047578,2014-11-18,Chile,Uruguay,1,2,False,Friendly,Santiago,Chile
 m_77128e6c7e,2014-11-18,China,Honduras,0,0,False,Friendly,Xi'an,China
@@ -962,7 +962,7 @@ m_cd3221f0c3,2015-03-15,Antigua and Barbuda,Dominica,1,0,False,Friendly,St. John
 m_f3663f5689,2015-03-17,Bhutan,Sri Lanka,2,1,False,FIFA World Cup qualification,Thimphu,Bhutan
 m_f862954259,2015-03-17,Brunei,Taiwan,0,2,False,FIFA World Cup qualification,Bandar Seri Begawan,Brunei
 m_91576d554a,2015-03-17,Macau,Cambodia,1,1,False,FIFA World Cup qualification,Taipa,Macau
-m_3c896c1f05,2015-03-17,Mongolia,Timor-Leste,3,0,False,FIFA World Cup qualification,Ulan Bator,Mongolia
+m_3c896c1f05,2015-03-17,Mongolia,Timor-Leste,3,0,False,FIFA World Cup qualification,Ulaanbaatar,Mongolia
 m_720d56e7a1,2015-03-17,Nepal,India,0,0,False,FIFA World Cup qualification,Kathmandu,Nepal
 m_b301733d09,2015-03-22,Antigua and Barbuda,British Virgin Islands,1,0,False,Friendly,St. John's,Antigua and Barbuda
 m_2bcb3228ff,2015-03-22,Barbados,United States Virgin Islands,0,1,False,FIFA World Cup qualification,Bridgetown,Barbados
@@ -1095,39 +1095,39 @@ m_945b410af8,2015-05-14,Abkhazia,Donetsk PR,1,0,False,Friendly,Sukhumi,Georgia
 m_765447ba03,2015-05-16,Lesotho,South Africa,1,1,False,Friendly,Maseru,Lesotho
 m_070a65cda6,2015-05-16,Saint Lucia,Grenada,0,2,False,Windward Islands Tournament,Vieux Fort,Saint Lucia
 m_870467301a,2015-05-16,Guernsey,Jersey,2,3,False,Muratti Vase,Guernsey,Guernsey
-m_b4d78d263b,2015-05-17,Namibia,Seychelles,0,0,True,COSAFA Cup,Moruleng-Saulspoort,South Africa
+m_b4d78d263b,2015-05-17,Namibia,Seychelles,0,0,True,COSAFA Cup,Saulspoort,South Africa
 m_756d770a2a,2015-05-17,Vietnam,North Korea,1,1,False,Friendly,Hanoi,Vietnam
-m_b2f422af87,2015-05-17,Zimbabwe,Mauritius,2,0,True,COSAFA Cup,Moruleng-Saulspoort,South Africa
+m_b2f422af87,2015-05-17,Zimbabwe,Mauritius,2,0,True,COSAFA Cup,Saulspoort,South Africa
 m_804dcdaddb,2015-05-18,Lesotho,Madagascar,1,2,True,COSAFA Cup,Phokeng,South Africa
 m_3d6daff6d8,2015-05-18,Tanzania,Eswatini,0,1,True,COSAFA Cup,Phokeng,South Africa
-m_1a511d10c8,2015-05-19,Namibia,Mauritius,2,0,True,COSAFA Cup,Moruleng-Saulspoort,South Africa
-m_49ffd4ee66,2015-05-19,Seychelles,Zimbabwe,0,1,True,COSAFA Cup,Moruleng-Saulspoort,South Africa
+m_1a511d10c8,2015-05-19,Namibia,Mauritius,2,0,True,COSAFA Cup,Saulspoort,South Africa
+m_49ffd4ee66,2015-05-19,Seychelles,Zimbabwe,0,1,True,COSAFA Cup,Saulspoort,South Africa
 m_16b7514241,2015-05-20,Lesotho,Eswatini,0,2,True,COSAFA Cup,Phokeng,South Africa
 m_732f876eb0,2015-05-20,Madagascar,Tanzania,2,0,True,COSAFA Cup,Phokeng,South Africa
 m_e43ce05a9f,2015-05-20,Thailand,North Korea,0,1,False,Friendly,Bangkok,Thailand
-m_d9d2bdf272,2015-05-21,Namibia,Zimbabwe,4,1,True,COSAFA Cup,Moruleng-Saulspoort,South Africa
+m_d9d2bdf272,2015-05-21,Namibia,Zimbabwe,4,1,True,COSAFA Cup,Saulspoort,South Africa
 m_da16abb071,2015-05-21,Seychelles,Mauritius,0,1,True,COSAFA Cup,Phokeng,South Africa
-m_a0dff90477,2015-05-22,Lesotho,Tanzania,1,0,True,COSAFA Cup,Moruleng-Saulspoort,South Africa
+m_a0dff90477,2015-05-22,Lesotho,Tanzania,1,0,True,COSAFA Cup,Saulspoort,South Africa
 m_4c15d7347e,2015-05-22,Madagascar,Eswatini,1,1,True,COSAFA Cup,Phokeng,South Africa
 m_247cd65e31,2015-05-24,Lebanon,Syria,2,2,False,Friendly,Sidon,Lebanon
-m_bc0e1f4afa,2015-05-24,South Africa,Botswana,0,0,False,COSAFA Cup,Moruleng-Saulspoort,South Africa
+m_bc0e1f4afa,2015-05-24,South Africa,Botswana,0,0,False,COSAFA Cup,Saulspoort,South Africa
 m_1d8253e173,2015-05-24,Thailand,Vietnam,1,0,False,FIFA World Cup qualification,Bangkok,Thailand
-m_abd070a9c0,2015-05-24,Zambia,Namibia,0,0,True,COSAFA Cup,Moruleng-Saulspoort,South Africa
+m_abd070a9c0,2015-05-24,Zambia,Namibia,0,0,True,COSAFA Cup,Saulspoort,South Africa
 m_204529a940,2015-05-25,Ghana,Madagascar,1,2,True,COSAFA Cup,Phokeng,South Africa
 m_3a6eb22778,2015-05-25,Mozambique,Malawi,2,2,True,COSAFA Cup,Phokeng,South Africa
-m_c7d279efc3,2015-05-27,South Africa,Malawi,0,0,False,COSAFA Cup,Moruleng-Saulspoort,South Africa
-m_c098e2bf33,2015-05-27,Zambia,Ghana,3,0,True,COSAFA Cup,Moruleng-Saulspoort,South Africa
-m_fb35e8537c,2015-05-28,Botswana,Mozambique,1,2,True,COSAFA Cup,Moruleng-Saulspoort,South Africa
-m_558956c9e9,2015-05-28,Namibia,Madagascar,3,2,True,COSAFA Cup,Moruleng-Saulspoort,South Africa
+m_c7d279efc3,2015-05-27,South Africa,Malawi,0,0,False,COSAFA Cup,Saulspoort,South Africa
+m_c098e2bf33,2015-05-27,Zambia,Ghana,3,0,True,COSAFA Cup,Saulspoort,South Africa
+m_fb35e8537c,2015-05-28,Botswana,Mozambique,1,2,True,COSAFA Cup,Saulspoort,South Africa
+m_558956c9e9,2015-05-28,Namibia,Madagascar,3,2,True,COSAFA Cup,Saulspoort,South Africa
 m_8f15bfd38a,2015-05-29,Laos,Afghanistan,0,2,False,Friendly,Vientiane,Laos
 m_d49f49422f,2015-05-29,Zambia,Malawi,0,1,True,COSAFA Cup,Phokeng,South Africa
 m_2a69a6b51c,2015-05-29,Corsica,Burkina Faso,1,0,False,Friendly,Bastia,France
 m_e6fedb9078,2015-05-30,Bahrain,Oman,0,0,False,Friendly,Riffa,Bahrain
 m_5e7b428d1d,2015-05-30,Bangladesh,Singapore,1,2,False,Friendly,Dhaka,Bangladesh
 m_1e4d34029d,2015-05-30,Jordan,Lebanon,0,0,False,Friendly,Irbid,Jordan
-m_8286bcde4b,2015-05-30,Madagascar,Botswana,2,1,True,COSAFA Cup,Moruleng-Saulspoort,South Africa
+m_8286bcde4b,2015-05-30,Madagascar,Botswana,2,1,True,COSAFA Cup,Saulspoort,South Africa
 m_eea2ec5a85,2015-05-30,Mexico,Guatemala,3,0,False,Friendly,Tuxtla Gutiérrez,Mexico
-m_f4dbf39481,2015-05-30,Namibia,Mozambique,2,0,True,COSAFA Cup,Moruleng-Saulspoort,South Africa
+m_f4dbf39481,2015-05-30,Namibia,Mozambique,2,0,True,COSAFA Cup,Saulspoort,South Africa
 m_fc190ef330,2015-05-30,Alderney,Felvidék,1,2,True,Niamh Challenge Cup,Douglas,Isle of Man
 m_53b7971987,2015-05-30,Ellan Vannin,Panjab,8,1,False,Niamh Challenge Cup,Douglas,Isle of Man
 m_da954a0660,2015-05-31,Ellan Vannin,Felvidék,3,1,False,Niamh Challenge Cup,Douglas,Isle of Man
@@ -1193,7 +1193,7 @@ m_da5dbc7f62,2015-06-11,Chile,Ecuador,2,0,False,Copa América,Santiago,Chile
 m_d8b98d3b08,2015-06-11,Dominican Republic,Belize,1,2,False,FIFA World Cup qualification,Santo Domingo,Dominican Republic
 m_30a69e3cfe,2015-06-11,Guam,Turkmenistan,1,0,False,FIFA World Cup qualification,Dededo,Guam
 m_319e370148,2015-06-11,Hong Kong,Bhutan,7,0,False,FIFA World Cup qualification,Kowloon,Hong Kong
-m_568cd3848d,2015-06-11,India,Oman,1,2,False,FIFA World Cup qualification,Bangalore,India
+m_568cd3848d,2015-06-11,India,Oman,1,2,False,FIFA World Cup qualification,Bengaluru,India
 m_3efa8af23d,2015-06-11,Japan,Iraq,4,0,False,Kirin Challenge Cup,Yokohama,Japan
 m_923bdbff6f,2015-06-11,South Korea,United Arab Emirates,3,0,True,Friendly,Kuala Lumpur,Malaysia
 m_3577670cfa,2015-06-11,Laos,Myanmar,2,2,False,FIFA World Cup qualification,Vientiane,Laos
@@ -1245,7 +1245,7 @@ m_0781c1a0a1,2015-06-13,Uganda,Botswana,2,0,False,African Cup of Nations qualifi
 m_eb0863fc27,2015-06-13,Uruguay,Jamaica,1,0,True,Copa América,Antofagasta,Chile
 m_380f0e5898,2015-06-13,Zambia,Guinea-Bissau,0,0,False,African Cup of Nations qualification,Ndola,Zambia
 m_9fed4f9d8a,2015-06-14,Barbados,Aruba,0,3,False,FIFA World Cup qualification,Bridgetown,Barbados
-m_51dd3f336a,2015-06-14,Belarus,Spain,0,1,False,UEFA Euro qualification,Barysaw,Belarus
+m_51dd3f336a,2015-06-14,Belarus,Spain,0,1,False,UEFA Euro qualification,Borisov,Belarus
 m_984ad2dce1,2015-06-14,Brazil,Peru,2,1,True,Copa América,Temuco,Chile
 m_4e97b78eee,2015-06-14,Cameroon,Mauritania,1,0,False,African Cup of Nations qualification,Yaoundé,Cameroon
 m_525f04ee23,2015-06-14,Colombia,Venezuela,0,1,True,Copa América,Rancagua,Chile
@@ -1418,7 +1418,7 @@ m_a32ed7cad4,2015-08-27,Fiji,American Samoa,6,0,False,Friendly,Nadi,Fiji
 m_4667dcf66e,2015-08-28,Oman,Yemen,1,0,False,Friendly,Seeb,Oman
 m_02864cc41d,2015-08-28,Qatar,Singapore,4,0,False,Friendly,Doha,Qatar
 m_0251de814f,2015-08-28,Rwanda,Ethiopia,3,1,False,Friendly,Kigali,Rwanda
-m_cd2d75c237,2015-08-28,Tanzania,Libya,1,2,True,Friendly,Kertepe,Turkey
+m_cd2d75c237,2015-08-28,Tanzania,Libya,1,2,True,Friendly,Kartepe,Turkey
 m_b16c8dfa43,2015-08-28,United Arab Emirates,Myanmar,1,0,False,Friendly,Abu Dhabi,United Arab Emirates
 m_0baedf368e,2015-08-29,Laos,Cambodia,2,1,True,Friendly,Bangkok,Thailand
 m_4b773acc09,2015-08-29,Malaysia,Bangladesh,0,0,False,Friendly,Shah Alam,Malaysia
@@ -1462,7 +1462,7 @@ m_fa2ed591ed,2015-09-04,Denmark,Albania,0,0,False,UEFA Euro qualification,Copenh
 m_0178127d68,2015-09-04,Djibouti,Togo,0,2,False,African Cup of Nations qualification,Djibouti,Djibouti
 m_e6e64a59e8,2015-09-04,Faroe Islands,Northern Ireland,1,3,False,UEFA Euro qualification,Tórshavn,Faroe Islands
 m_13b33969e6,2015-09-04,Georgia,Scotland,1,0,False,UEFA Euro qualification,Tbilisi,Georgia
-m_2266d19d27,2015-09-04,Germany,Poland,3,1,False,UEFA Euro qualification,Frankfurt am Main,Germany
+m_2266d19d27,2015-09-04,Germany,Poland,3,1,False,UEFA Euro qualification,Frankfurt,Germany
 m_6bb7c10eac,2015-09-04,Gibraltar,Republic of Ireland,0,4,True,UEFA Euro qualification,Faro,Portugal
 m_3a2dadb8ab,2015-09-04,Greece,Finland,0,1,False,UEFA Euro qualification,Piraeus,Greece
 m_427f57a9cc,2015-09-04,Grenada,Haiti,1,3,False,FIFA World Cup qualification,St. George's,Grenada
@@ -1535,7 +1535,7 @@ m_1eef4a1913,2015-09-07,Scotland,Germany,2,3,False,UEFA Euro qualification,Glasg
 m_570f9fe6f9,2015-09-08,United States,Brazil,1,4,False,Friendly,Foxborough,United States
 m_e658b68b46,2015-09-08,Afghanistan,Japan,0,6,True,FIFA World Cup qualification,Tehran,Iran
 m_1a66ffc957,2015-09-08,Bangladesh,Jordan,0,4,False,FIFA World Cup qualification,Dhaka,Bangladesh
-m_22e6ff1a4b,2015-09-08,Belarus,Luxembourg,2,0,False,UEFA Euro qualification,Barysaw,Belarus
+m_22e6ff1a4b,2015-09-08,Belarus,Luxembourg,2,0,False,UEFA Euro qualification,Borisov,Belarus
 m_c7d6af254d,2015-09-08,Cambodia,Syria,0,6,False,FIFA World Cup qualification,Phnom Penh,Cambodia
 m_d09aa8982b,2015-09-08,China,Maldives,3,0,False,FIFA World Cup qualification,Shenyang,China
 m_ff3c49262b,2015-09-08,Ecuador,Honduras,2,0,False,Friendly,Quito,Ecuador
@@ -1543,7 +1543,7 @@ m_6a2d1417fe,2015-09-08,El Salvador,Curaçao,1,0,False,FIFA World Cup qualificat
 m_154bd98099,2015-09-08,England,Switzerland,2,0,False,UEFA Euro qualification,London,England
 m_7e3e2449e9,2015-09-08,Guam,Oman,0,0,False,FIFA World Cup qualification,Dededo,Guam
 m_f242f6df96,2015-09-08,Hong Kong,Qatar,2,3,False,FIFA World Cup qualification,Kowloon,Hong Kong
-m_27b85869c6,2015-09-08,India,Iran,0,3,False,FIFA World Cup qualification,Bangalore,India
+m_27b85869c6,2015-09-08,India,Iran,0,3,False,FIFA World Cup qualification,Bengaluru,India
 m_fb20633178,2015-09-08,Laos,Kuwait,0,2,False,FIFA World Cup qualification,Vientiane,Laos
 m_9d763b7582,2015-09-08,Lebanon,South Korea,0,3,False,FIFA World Cup qualification,Sidon,Lebanon
 m_cd3ca03df2,2015-09-08,Liechtenstein,Russia,0,7,False,UEFA Euro qualification,Vaduz,Liechtenstein
@@ -1659,7 +1659,7 @@ m_4825669e19,2015-10-11,Nigeria,Cameroon,3,0,True,Friendly,Brussels,Belgium
 m_e6241104e2,2015-10-11,Poland,Republic of Ireland,2,1,False,UEFA Euro qualification,Warsaw,Poland
 m_8b77881078,2015-10-11,Serbia,Portugal,1,2,False,UEFA Euro qualification,Belgrade,Serbia
 m_1b42471a2a,2015-10-12,Austria,Liechtenstein,3,0,False,UEFA Euro qualification,Vienna,Austria
-m_c0356f71a5,2015-10-12,Belarus,North Macedonia,0,0,False,UEFA Euro qualification,Barysaw,Belarus
+m_c0356f71a5,2015-10-12,Belarus,North Macedonia,0,0,False,UEFA Euro qualification,Borisov,Belarus
 m_aa9edbfe18,2015-10-12,Estonia,Switzerland,0,1,False,UEFA Euro qualification,Tallinn,Estonia
 m_0d70d3483c,2015-10-12,Gabon,DR Congo,1,2,True,Friendly,Mons,Belgium
 m_6c1c715e7c,2015-10-12,Lithuania,England,0,3,False,UEFA Euro qualification,Vilnius,Lithuania
@@ -1735,7 +1735,7 @@ m_0bf299f0cc,2015-11-12,Burundi,DR Congo,2,3,False,FIFA World Cup qualification,
 m_bf13b24dc7,2015-11-12,Chile,Colombia,1,1,False,FIFA World Cup qualification,Santiago,Chile
 m_84140d0e7b,2015-11-12,China,Bhutan,12,0,False,FIFA World Cup qualification,Changsha,China
 m_8c3228d4ff,2015-11-12,Ecuador,Uruguay,2,1,False,FIFA World Cup qualification,Quito,Ecuador
-m_048233eb55,2015-11-12,India,Guam,1,0,False,FIFA World Cup qualification,Bangalore,India
+m_048233eb55,2015-11-12,India,Guam,1,0,False,FIFA World Cup qualification,Bengaluru,India
 m_7ae3ed386d,2015-11-12,Iran,Turkmenistan,3,1,False,FIFA World Cup qualification,Tehran,Iran
 m_c5db1b7b5c,2015-11-12,South Korea,Myanmar,4,0,False,FIFA World Cup qualification,Suwon,South Korea
 m_5a207ba530,2015-11-12,Lebanon,Laos,7,0,False,FIFA World Cup qualification,Sidon,Lebanon
@@ -2065,7 +2065,7 @@ m_1eb8855a65,2016-03-29,Malaysia,Macau,0,0,False,Friendly,Krubong,Malaysia
 m_d7c26ffaab,2016-03-29,Maldives,Bhutan,4,2,False,FIFA World Cup qualification,Malé,Maldives
 m_a23dcfa6c7,2016-03-29,Mexico,Canada,2,0,False,FIFA World Cup qualification,Mexico City,Mexico
 m_3158318655,2016-03-29,Montenegro,Belarus,0,0,False,Friendly,Podgorica,Montenegro
-m_fa93064f6d,2016-03-29,Morocco,Cape Verde,2,0,False,African Cup of Nations qualification,Marrakech,Morocco
+m_fa93064f6d,2016-03-29,Morocco,Cape Verde,2,0,False,African Cup of Nations qualification,Marrakesh,Morocco
 m_4cb95e6f80,2016-03-29,Namibia,Burundi,1,3,False,African Cup of Nations qualification,Windhoek,Namibia
 m_750cbcf331,2016-03-29,Niger,Senegal,1,2,False,African Cup of Nations qualification,Niamey,Niger
 m_5da4c62438,2016-03-29,Norway,Finland,2,0,False,Friendly,Oslo,Norway
@@ -2098,7 +2098,7 @@ m_9eb3851e98,2016-04-27,Martinique,Panama,0,2,False,Friendly,Fort-de-France,Mart
 m_6ee761f086,2016-05-14,Jersey,Guernsey,1,0,False,Muratti Vase,Jersey,Jersey
 m_efd077c881,2016-05-16,Romani people,Padania,0,2,True,Friendly,Milan,Italy
 m_34c890ce98,2016-05-20,Hungary,Ivory Coast,0,0,False,Friendly,Budapest,Hungary
-m_60af9103f0,2016-05-20,Galicia,Venezuela,1,1,False,Friendly,La Coruña,Spain
+m_60af9103f0,2016-05-20,Galicia,Venezuela,1,1,False,Friendly,A Coruña,Spain
 m_8594c132cc,2016-05-21,Botswana,Lesotho,2,1,False,Friendly,Serowe,Botswana
 m_b46ef045b1,2016-05-21,Abkhazia,Donetsk PR,0,0,False,Friendly,Sukhumi,Georgia
 m_b3d73a27e3,2016-05-22,England,Turkey,2,1,False,Friendly,Manchester,England
@@ -2199,7 +2199,7 @@ m_5d92575953,2016-06-03,Bosnia and Herzegovina,Denmark,2,2,True,Kirin Cup,Toyota
 m_e8dd9b16a3,2016-06-03,Myanmar,Singapore,0,1,False,Friendly,Yangon,Myanmar
 m_cbeea2c3a7,2016-06-03,China,Trinidad and Tobago,4,2,False,Friendly,Qinhuangdao,China
 m_df927a1a79,2016-06-03,Djibouti,Tunisia,0,3,False,African Cup of Nations qualification,Djibouti,Djibouti
-m_7cf45d6503,2016-06-03,Faroe Islands,Kosovo,0,2,True,Friendly,Frankfurt am Main,Germany
+m_7cf45d6503,2016-06-03,Faroe Islands,Kosovo,0,2,True,Friendly,Frankfurt,Germany
 m_20f8f997af,2016-06-03,Japan,Bulgaria,7,2,False,Kirin Cup,Toyota,Japan
 m_5b0a6403f0,2016-06-03,Libya,Morocco,1,1,True,African Cup of Nations qualification,Radès,Tunisia
 m_80f0273f60,2016-06-03,Mauritania,Cameroon,0,1,False,African Cup of Nations qualification,Nouakchott,Mauritania
@@ -2501,7 +2501,7 @@ m_a05a6f45a7,2016-09-05,Ukraine,Iceland,1,1,False,FIFA World Cup qualification,K
 m_9039598def,2016-09-05,Wales,Moldova,4,0,False,FIFA World Cup qualification,Cardiff,Wales
 m_f1e2e04230,2016-09-06,Andorra,Latvia,0,1,False,FIFA World Cup qualification,Sant Julià de Lòria,Andorra
 m_27f20b90d3,2016-09-06,Bangladesh,Bhutan,0,0,False,AFC Asian Cup qualification,Dhaka,Bangladesh
-m_bb5286b0c0,2016-09-06,Belarus,France,0,0,False,FIFA World Cup qualification,Barysaw,Belarus
+m_bb5286b0c0,2016-09-06,Belarus,France,0,0,False,FIFA World Cup qualification,Borisov,Belarus
 m_3b2ac09218,2016-09-06,Bosnia and Herzegovina,Estonia,5,0,False,FIFA World Cup qualification,Zenica,Bosnia and Herzegovina
 m_2028112eb2,2016-09-06,Brazil,Colombia,2,1,False,FIFA World Cup qualification,Manaus,Brazil
 m_d57b25ec84,2016-09-06,Bulgaria,Luxembourg,4,3,False,FIFA World Cup qualification,Sofia,Bulgaria
@@ -2555,7 +2555,7 @@ m_4e35dfb6ac,2016-10-06,Kosovo,Croatia,0,6,True,FIFA World Cup qualification,Shk
 m_a43b0b2a96,2016-10-06,Kyrgyzstan,Lebanon,0,0,False,Friendly,Bishkek,Kyrgyzstan
 m_02bc9ba917,2016-10-06,Liechtenstein,Albania,0,2,False,FIFA World Cup qualification,Vaduz,Liechtenstein
 m_4fbf6bb1f2,2016-10-06,North Macedonia,Israel,1,2,False,FIFA World Cup qualification,Skopje,North Macedonia
-m_9f24de0df6,2016-10-06,Mauritania,Canada,0,4,True,Friendly,Marrakech,Morocco
+m_9f24de0df6,2016-10-06,Mauritania,Canada,0,4,True,Friendly,Marrakesh,Morocco
 m_07d949a7b6,2016-10-06,Moldova,Serbia,0,3,False,FIFA World Cup qualification,Chișinău,Moldova
 m_c6b6925534,2016-10-06,Paraguay,Colombia,0,1,False,FIFA World Cup qualification,Asunción,Paraguay
 m_25f31108ec,2016-10-06,Peru,Argentina,2,2,False,FIFA World Cup qualification,Lima,Peru
@@ -2618,7 +2618,7 @@ m_4337848e2e,2016-10-09,Ukraine,Kosovo,3,0,True,FIFA World Cup qualification,Kra
 m_05769e74c0,2016-10-09,Wales,Georgia,1,1,False,FIFA World Cup qualification,Cardiff,Wales
 m_3c8395e7f8,2016-10-09,Zambia,Nigeria,1,2,False,FIFA World Cup qualification,Ndola,Zambia
 m_0a705aad5a,2016-10-10,Andorra,Switzerland,1,2,False,FIFA World Cup qualification,Sant Julià de Lòria,Andorra
-m_c54baf2c9c,2016-10-10,Belarus,Luxembourg,1,1,False,FIFA World Cup qualification,Barysaw,Belarus
+m_c54baf2c9c,2016-10-10,Belarus,Luxembourg,1,1,False,FIFA World Cup qualification,Borisov,Belarus
 m_887895a949,2016-10-10,Bhutan,Bangladesh,3,1,False,AFC Asian Cup qualification,Thimphu,Bhutan
 m_348ef90a4a,2016-10-10,Bosnia and Herzegovina,Cyprus,2,0,False,FIFA World Cup qualification,Zenica,Bosnia and Herzegovina
 m_269d6ec46c,2016-10-10,Estonia,Greece,0,2,False,FIFA World Cup qualification,Tallinn,Estonia
@@ -2646,7 +2646,7 @@ m_7f75bc8135,2016-10-11,Lebanon,Equatorial Guinea,1,1,False,Friendly,Beirut,Leba
 m_f81ac93cb2,2016-10-11,Lithuania,Malta,2,0,False,FIFA World Cup qualification,Vilnius,Lithuania
 m_10b8dad65b,2016-10-11,Malaysia,Afghanistan,1,1,False,Friendly,Shah Alam,Malaysia
 m_b35a61d96a,2016-10-11,Mexico,Panama,1,0,True,Friendly,Bridgeview,United States
-m_d4529810db,2016-10-11,Morocco,Canada,4,0,False,Friendly,Marrakech,Morocco
+m_d4529810db,2016-10-11,Morocco,Canada,4,0,False,Friendly,Marrakesh,Morocco
 m_625769873e,2016-10-11,Norway,San Marino,4,1,False,FIFA World Cup qualification,Oslo,Norway
 m_a431e6ed5f,2016-10-11,Oman,Bahrain,2,2,False,Friendly,Muscat,Oman
 m_ac98f9a763,2016-10-11,Poland,Armenia,2,1,False,FIFA World Cup qualification,Warsaw,Poland
@@ -2727,7 +2727,7 @@ m_6e55559a10,2016-11-12,Kenya,Mozambique,1,0,False,Friendly,Nairobi,Kenya
 m_bdd8edd86f,2016-11-12,Liechtenstein,Italy,0,4,False,FIFA World Cup qualification,Vaduz,Liechtenstein
 m_351a937af9,2016-11-12,Macau,Brunei,1,1,True,AFC Solidarity Cup,Kuching,Malaysia
 m_9e4d531dec,2016-11-12,Mali,Gabon,0,0,False,FIFA World Cup qualification,Bamako,Mali
-m_bd173000cd,2016-11-12,Morocco,Ivory Coast,0,0,False,FIFA World Cup qualification,Marrakech,Morocco
+m_bd173000cd,2016-11-12,Morocco,Ivory Coast,0,0,False,FIFA World Cup qualification,Marrakesh,Morocco
 m_b42c03d3f7,2016-11-12,Nepal,Laos,2,2,True,AFC Solidarity Cup,Kuching,Malaysia
 m_31805f97f5,2016-11-12,New Zealand,New Caledonia,2,0,False,FIFA World Cup qualification,Auckland,New Zealand
 m_30887263a6,2016-11-12,Nigeria,Algeria,3,1,False,FIFA World Cup qualification,Uyo,Nigeria
@@ -2775,7 +2775,7 @@ m_3477c50ab4,2016-11-15,Jordan,Lebanon,0,0,False,Friendly,Amman,Jordan
 m_bedded5400,2016-11-15,Kenya,Liberia,1,0,False,Friendly,Nairobi,Kenya
 m_43b5a4a48c,2016-11-15,South Korea,Uzbekistan,2,1,False,FIFA World Cup qualification,Seoul,South Korea
 m_f9abc6ca3d,2016-11-15,Malta,Iceland,0,2,False,Friendly,Attard,Malta
-m_5650c55dfa,2016-11-15,Morocco,Togo,2,1,False,Friendly,Marrakech,Morocco
+m_5650c55dfa,2016-11-15,Morocco,Togo,2,1,False,Friendly,Marrakesh,Morocco
 m_f0c8a1c54f,2016-11-15,Mozambique,South Africa,1,1,False,Friendly,Maputo,Mozambique
 m_82e1b83aee,2016-11-15,Nepal,Macau,1,0,True,AFC Solidarity Cup,Kuching,Malaysia
 m_473d06abfa,2016-11-15,New Caledonia,New Zealand,0,0,False,FIFA World Cup qualification,Koné,New Caledonia
@@ -2819,7 +2819,7 @@ m_7a1a734ae0,2017-01-04,Tunisia,Uganda,2,0,False,Friendly,Tunis,Tunisia
 m_25da6fc377,2017-01-05,Cameroon,DR Congo,2,0,False,Friendly,Yaoundé,Cameroon
 m_05163eb13f,2017-01-06,Suriname,Haiti,2,4,True,CFU Caribbean Cup qualification,Couva,Trinidad and Tobago
 m_785cc88dc2,2017-01-07,Algeria,Mauritania,3,1,False,Friendly,Blida,Algeria
-m_d7480be537,2017-01-07,Burkina Faso,Mali,2,1,True,Friendly,Marrakech,Morocco
+m_d7480be537,2017-01-07,Burkina Faso,Mali,2,1,True,Friendly,Marrakesh,Morocco
 m_90a14f8a65,2017-01-08,Egypt,Tunisia,1,0,False,Friendly,Cairo,Egypt
 m_0823686d40,2017-01-08,Ivory Coast,Sweden,2,1,True,Friendly,Abu Dhabi,United Arab Emirates
 m_d56af0bd73,2017-01-08,Libya,Senegal,1,2,True,Friendly,Brazzaville,Congo
@@ -2931,7 +2931,7 @@ m_1c9039f72d,2017-03-24,Libya,Togo,0,0,True,Friendly,Alexandria,Egypt
 m_0ba23721e7,2017-03-24,Liechtenstein,North Macedonia,0,3,False,FIFA World Cup qualification,Vaduz,Liechtenstein
 m_0af0eb91c4,2017-03-24,Mauritania,Benin,1,0,False,Friendly,Nouakchott,Mauritania
 m_84c371b48e,2017-03-24,Mexico,Costa Rica,2,0,False,FIFA World Cup qualification,Mexico City,Mexico
-m_c7d4b25946,2017-03-24,Morocco,Burkina Faso,2,0,False,Friendly,Marrakech,Morocco
+m_c7d4b25946,2017-03-24,Morocco,Burkina Faso,2,0,False,Friendly,Marrakesh,Morocco
 m_9dd16af5eb,2017-03-24,Russia,Ivory Coast,0,2,False,Friendly,Krasnodar,Russia
 m_36f699d558,2017-03-24,Spain,Israel,4,1,False,FIFA World Cup qualification,Gijón,Spain
 m_bd35f33b2a,2017-03-24,Trinidad and Tobago,Panama,1,0,False,FIFA World Cup qualification,Port of Spain,Trinidad and Tobago
@@ -2997,7 +2997,7 @@ m_aeed9f76dd,2017-03-28,Luxembourg,Cape Verde,0,2,False,Friendly,Hesperange,Luxe
 m_b9829161b4,2017-03-28,North Macedonia,Belarus,3,0,False,Friendly,Skopje,North Macedonia
 m_b0d0676242,2017-03-28,Maldives,Palestine,0,3,False,AFC Asian Cup qualification,Malé,Maldives
 m_7792996150,2017-03-28,Mauritius,Comoros,1,1,False,African Cup of Nations qualification,Mapou,Mauritius
-m_c932a34db1,2017-03-28,Morocco,Tunisia,1,0,False,Friendly,Marrakech,Morocco
+m_c932a34db1,2017-03-28,Morocco,Tunisia,1,0,False,Friendly,Marrakesh,Morocco
 m_2be9c59c9a,2017-03-28,Mozambique,Lesotho,1,0,False,Friendly,Beira,Mozambique
 m_d3c75ad138,2017-03-28,Netherlands,Italy,1,2,False,Friendly,Amsterdam,Netherlands
 m_e47ca1c271,2017-03-28,New Zealand,Fiji,2,0,False,FIFA World Cup qualification,Wellington,New Zealand
@@ -3101,7 +3101,7 @@ m_797bfc6cd2,2017-06-08,Peru,Paraguay,1,0,False,Friendly,Trujillo,Peru
 m_395f2dd190,2017-06-08,United States,Trinidad and Tobago,2,0,False,FIFA World Cup qualification,Commerce City,United States
 m_1082ea616a,2017-06-09,Andorra,Hungary,1,0,False,FIFA World Cup qualification,Sant Julià de Lòria,Andorra
 m_120dfcd57a,2017-06-09,Argentina,Brazil,1,0,True,Superclásico de las Américas,Melbourne,Australia
-m_94b052de75,2017-06-09,Belarus,Bulgaria,2,1,False,FIFA World Cup qualification,Barysaw,Belarus
+m_94b052de75,2017-06-09,Belarus,Bulgaria,2,1,False,FIFA World Cup qualification,Borisov,Belarus
 m_39033173e2,2017-06-09,Bosnia and Herzegovina,Greece,0,0,False,FIFA World Cup qualification,Zenica,Bosnia and Herzegovina
 m_70228b1a43,2017-06-09,Estonia,Belgium,0,2,False,FIFA World Cup qualification,Tallinn,Estonia
 m_a31fddb2c0,2017-06-09,Faroe Islands,Switzerland,0,2,False,FIFA World Cup qualification,Tórshavn,Faroe Islands
@@ -3174,7 +3174,7 @@ m_557c26cb1a,2017-06-13,Costa Rica,Trinidad and Tobago,2,1,False,FIFA World Cup 
 m_b14cace60a,2017-06-13,El Salvador,Ecuador,0,3,True,Friendly,Harrison,United States
 m_e903c16307,2017-06-13,France,England,3,2,False,Friendly,Saint-Denis,France
 m_fad800256f,2017-06-13,Hong Kong,North Korea,1,1,False,AFC Asian Cup qualification,So Kon Po,Hong Kong
-m_f5d428af56,2017-06-13,India,Kyrgyzstan,1,0,False,AFC Asian Cup qualification,Bangalore,India
+m_f5d428af56,2017-06-13,India,Kyrgyzstan,1,0,False,AFC Asian Cup qualification,Bengaluru,India
 m_871940c55b,2017-06-13,Indonesia,Puerto Rico,0,0,False,Friendly,Sleman,Indonesia
 m_f67e5467f5,2017-06-13,Iraq,Japan,1,1,True,FIFA World Cup qualification,Tehran,Iran
 m_38be059d32,2017-06-13,Macau,Myanmar,0,4,False,AFC Asian Cup qualification,Macau,Macau
@@ -3187,7 +3187,7 @@ m_b040cc357a,2017-06-13,Papua New Guinea,Solomon Islands,1,2,False,FIFA World Cu
 m_c04416ace9,2017-06-13,Qatar,South Korea,3,2,False,FIFA World Cup qualification,Doha,Qatar
 m_23f9a92727,2017-06-13,Romania,Chile,3,2,False,Friendly,Cluj,Romania
 m_6208acdafc,2017-06-13,Singapore,Argentina,0,6,False,Friendly,Kallang,Singapore
-m_9bbc0cad36,2017-06-13,South Africa,Zambia,1,2,False,Friendly,Moruleng,South Africa
+m_9bbc0cad36,2017-06-13,South Africa,Zambia,1,2,False,Friendly,Saulspoort,South Africa
 m_b832c5f9c0,2017-06-13,Syria,China,2,2,True,FIFA World Cup qualification,Paya Rumput,Malaysia
 m_f5d854fe9d,2017-06-13,Tajikistan,Philippines,3,4,False,AFC Asian Cup qualification,Dushanbe,Tajikistan
 m_d9f974a52a,2017-06-13,Thailand,United Arab Emirates,1,1,False,FIFA World Cup qualification,Bangkok,Thailand
@@ -3212,8 +3212,8 @@ m_9763463de2,2017-06-25,Chile,Australia,1,1,True,Confederations Cup,Moscow,Russi
 m_90cd8398a6,2017-06-25,Germany,Cameroon,3,1,True,Confederations Cup,Sochi,Russia
 m_5bf50c01fc,2017-06-25,Jamaica,Curaçao,1,2,True,CFU Caribbean Cup,Fort-de-France,Martinique
 m_88f5d3b7ab,2017-06-25,Martinique,French Guiana,0,1,False,CFU Caribbean Cup,Fort-de-France,Martinique
-m_145d6cf3f6,2017-06-25,Mauritius,Angola,0,1,True,COSAFA Cup,Moruleng,South Africa
-m_266ba90831,2017-06-25,Tanzania,Malawi,2,0,True,COSAFA Cup,Moruleng,South Africa
+m_145d6cf3f6,2017-06-25,Mauritius,Angola,0,1,True,COSAFA Cup,Saulspoort,South Africa
+m_266ba90831,2017-06-25,Tanzania,Malawi,2,0,True,COSAFA Cup,Saulspoort,South Africa
 m_0bdee10770,2017-06-25,Menorca,Orkney,1,0,True,Island Games,Stenkyrka,Sweden
 m_00dafe3422,2017-06-25,Alderney,Jersey,0,3,True,Island Games,Väskinde,Sweden
 m_066426e0bf,2017-06-25,Gotland,Frøya,7,1,False,Island Games,Visby,Sweden
@@ -3222,8 +3222,8 @@ m_1dec73a20c,2017-06-25,Guernsey,Åland Islands,1,1,True,Island Games,Dalhem,Swe
 m_01082dd252,2017-06-25,Saare County,Shetland,4,5,True,Island Games,Hemse,Sweden
 m_4326c3ba53,2017-06-25,Isle of Man,Hitra,5,0,True,Island Games,Fårösund,Sweden
 m_a53d499220,2017-06-25,Ynys Môn,Falkland Islands,3,0,True,Island Games,Säve,Sweden
-m_9a04ae1288,2017-06-26,Madagascar,Seychelles,2,0,True,COSAFA Cup,Moruleng,South Africa
-m_4824566262,2017-06-26,Mozambique,Zimbabwe,0,4,True,COSAFA Cup,Moruleng,South Africa
+m_9a04ae1288,2017-06-26,Madagascar,Seychelles,2,0,True,COSAFA Cup,Saulspoort,South Africa
+m_4824566262,2017-06-26,Mozambique,Zimbabwe,0,4,True,COSAFA Cup,Saulspoort,South Africa
 m_4bf394e6e0,2017-06-26,Jersey,Menorca,3,3,True,Island Games,Visby,Sweden
 m_7c54e03c18,2017-06-26,Orkney,Alderney,3,0,True,Island Games,Hemse,Sweden
 m_dd1430a24a,2017-06-26,Gotland,Western Isles,8,0,False,Island Games,Dalhem,Sweden
@@ -3248,7 +3248,7 @@ m_19f8bfc741,2017-06-28,Saint Lucia,Saint Vincent and the Grenadines,2,1,True,Wi
 m_25b29326e0,2017-06-28,Zimbabwe,Madagascar,0,0,True,COSAFA Cup,Rustenburg,South Africa
 m_2db2fb43e7,2017-06-29,Germany,Mexico,4,1,True,Confederations Cup,Sochi,Russia
 m_23fdadb496,2017-06-29,Malawi,Angola,0,0,True,COSAFA Cup,Rustenburg,South Africa
-m_3faa8bf121,2017-06-29,Tanzania,Mauritius,1,1,True,COSAFA Cup,Moruleng,South Africa
+m_3faa8bf121,2017-06-29,Tanzania,Mauritius,1,1,True,COSAFA Cup,Saulspoort,South Africa
 m_ab319f5e30,2017-06-29,Falkland Islands,Alderney,0,3,True,Island Games,Säve,Sweden
 m_3fea46cad0,2017-06-29,Saare County,Frøya,4,2,True,Island Games,Fardhem,Sweden
 m_c9d0d98063,2017-06-29,Hitra,Western Isles,1,1,True,Island Games,Stenkyrka,Sweden
@@ -3258,7 +3258,7 @@ m_f19762dca7,2017-06-29,Gotland,Jersey,2,3,False,Island Games,Visby,Sweden
 m_f35d76f90a,2017-06-29,Greenland,Menorca,1,1,True,Island Games,Väskinde,Sweden
 m_1f78aba092,2017-06-29,Guernsey,Isle of Man,3,4,True,Island Games,Fardhem,Sweden
 m_f198c65039,2017-06-30,Dominica,Barbados,2,1,True,Windward Islands Tournament,Sauteurs,Grenada
-m_ec47476a34,2017-06-30,Mozambique,Madagascar,1,4,True,COSAFA Cup,Moruleng,South Africa
+m_ec47476a34,2017-06-30,Mozambique,Madagascar,1,4,True,COSAFA Cup,Saulspoort,South Africa
 m_bceeaf4273,2017-06-30,Zimbabwe,Seychelles,6,0,True,COSAFA Cup,Rustenburg,South Africa
 m_2e4199436b,2017-06-30,Menorca,Guernsey,0,1,True,Island Games,Väskinde,Sweden
 m_2c3e1348da,2017-06-30,Greenland,Isle of Man,0,6,True,Island Games,Visby,Sweden
@@ -3273,18 +3273,18 @@ m_d490704876,2017-07-02,South Africa,Tanzania,0,1,False,COSAFA Cup,Rustenburg,So
 m_3a076343d9,2017-07-02,Eswatini,Zimbabwe,1,2,True,COSAFA Cup,Rustenburg,South Africa
 m_432f1b2097,2017-07-03,Barbados,Saint Lucia,1,1,True,Windward Islands Tournament,St. George's,Grenada
 m_a4e7686fed,2017-07-03,Grenada,Saint Vincent and the Grenadines,4,3,False,Friendly,St. George's,Grenada
-m_eb4f85189a,2017-07-04,Namibia,Eswatini,1,0,True,COSAFA Cup,Moruleng,South Africa
-m_c667a4b50d,2017-07-04,South Africa,Botswana,2,0,False,COSAFA Cup,Moruleng,South Africa
+m_eb4f85189a,2017-07-04,Namibia,Eswatini,1,0,True,COSAFA Cup,Saulspoort,South Africa
+m_c667a4b50d,2017-07-04,South Africa,Botswana,2,0,False,COSAFA Cup,Saulspoort,South Africa
 m_eb9e5fde02,2017-07-04,Saint Lucia,Dominica,0,0,True,Windward Islands Tournament,St. George's,Grenada
 m_5e25818e2f,2017-07-04,Saint Vincent and the Grenadines,Barbados,4,2,True,Friendly,St. George's,Grenada
-m_aaa20bc9fb,2017-07-05,Lesotho,Zimbabwe,3,4,True,COSAFA Cup,Moruleng,South Africa
-m_891606b176,2017-07-05,Zambia,Tanzania,4,2,True,COSAFA Cup,Moruleng,South Africa
+m_aaa20bc9fb,2017-07-05,Lesotho,Zimbabwe,3,4,True,COSAFA Cup,Saulspoort,South Africa
+m_891606b176,2017-07-05,Zambia,Tanzania,4,2,True,COSAFA Cup,Saulspoort,South Africa
 m_332df8d3f2,2017-07-06,Dominica,Saint Vincent and the Grenadines,2,2,True,Windward Islands Tournament,St. George's,Grenada
 m_09965f2eae,2017-07-06,Grenada,Barbados,0,2,False,Windward Islands Tournament,St. George's,Grenada
 m_ed2eff9387,2017-07-07,French Guiana,Canada,2,4,True,Gold Cup,Harrison,United States
 m_1f384f613b,2017-07-07,Honduras,Costa Rica,0,1,True,Gold Cup,Harrison,United States
-m_8877d1f5b5,2017-07-07,South Africa,Namibia,1,0,False,COSAFA Cup,Moruleng,South Africa
-m_7c2b153d18,2017-07-07,Tanzania,Lesotho,0,0,True,COSAFA Cup,Moruleng,South Africa
+m_8877d1f5b5,2017-07-07,South Africa,Namibia,1,0,False,COSAFA Cup,Saulspoort,South Africa
+m_7c2b153d18,2017-07-07,Tanzania,Lesotho,0,0,True,COSAFA Cup,Saulspoort,South Africa
 m_1968fdf383,2017-07-08,Guinea-Bissau,Gambia,0,1,False,Friendly,Bissau,Guinea-Bissau
 m_3e77c0ca1d,2017-07-08,Martinique,Nicaragua,2,0,True,Gold Cup,Nashville,United States
 m_3ddf661f9e,2017-07-08,United States,Panama,1,1,False,Gold Cup,Nashville,United States
@@ -3386,7 +3386,7 @@ m_2237b7d8a3,2017-09-02,Spain,Italy,3,0,False,FIFA World Cup qualification,Madri
 m_38481a3a01,2017-09-02,Ukraine,Turkey,2,0,False,FIFA World Cup qualification,Kharkiv,Ukraine
 m_4ade6be23e,2017-09-02,Wales,Austria,1,0,False,FIFA World Cup qualification,Cardiff,Wales
 m_7af88222f9,2017-09-02,Zambia,Algeria,3,1,False,FIFA World Cup qualification,Lusaka,Zambia
-m_eaaec777e1,2017-09-03,Belarus,Sweden,0,4,False,FIFA World Cup qualification,Barysaw,Belarus
+m_eaaec777e1,2017-09-03,Belarus,Sweden,0,4,False,FIFA World Cup qualification,Borisov,Belarus
 m_8a0fb5129a,2017-09-03,Equatorial Guinea,Benin,1,2,False,Friendly,Malabo,Equatorial Guinea
 m_598853c6da,2017-09-03,Estonia,Cyprus,1,0,False,FIFA World Cup qualification,Tallinn,Estonia
 m_e170ccb329,2017-09-03,Faroe Islands,Andorra,1,0,False,FIFA World Cup qualification,Tórshavn,Faroe Islands
@@ -3489,7 +3489,7 @@ m_edd7f64f37,2017-10-06,Spain,Albania,3,0,False,FIFA World Cup qualification,Ali
 m_762ca973be,2017-10-06,Turkey,Iceland,0,3,False,FIFA World Cup qualification,Eskişehir,Turkey
 m_566adb5e73,2017-10-06,United States,Panama,4,0,False,FIFA World Cup qualification,Orlando,United States
 m_d356d36d9f,2017-10-07,Andorra,Portugal,0,2,False,FIFA World Cup qualification,Sant Julià de Lòria,Andorra
-m_c0291b46dc,2017-10-07,Belarus,Netherlands,1,3,False,FIFA World Cup qualification,Barysaw,Belarus
+m_c0291b46dc,2017-10-07,Belarus,Netherlands,1,3,False,FIFA World Cup qualification,Borisov,Belarus
 m_05ace2a889,2017-10-07,Bosnia and Herzegovina,Belgium,3,4,False,FIFA World Cup qualification,Sarajevo,Bosnia and Herzegovina
 m_7941160a77,2017-10-07,Bulgaria,France,0,1,False,FIFA World Cup qualification,Sofia,Bulgaria
 m_a40eb781ae,2017-10-07,Cameroon,Algeria,2,0,False,FIFA World Cup qualification,Yaoundé,Cameroon
@@ -3567,7 +3567,7 @@ m_c96b274c22,2017-10-10,Turkmenistan,Singapore,2,1,False,AFC Asian Cup qualifica
 m_c9ffdfae52,2017-10-10,Uruguay,Bolivia,4,2,False,FIFA World Cup qualification,Montevideo,Uruguay
 m_61809d9137,2017-10-10,Vietnam,Cambodia,5,0,False,AFC Asian Cup qualification,Hanoi,Vietnam
 m_cd97c242e2,2017-10-10,Yemen,Philippines,1,1,True,AFC Asian Cup qualification,Al Wakrah,Qatar
-m_4c47bdb6ae,2017-10-11,India,Macau,4,1,False,AFC Asian Cup qualification,Bangalore,India
+m_4c47bdb6ae,2017-10-11,India,Macau,4,1,False,AFC Asian Cup qualification,Bengaluru,India
 m_7c5d654f3f,2017-10-24,Grenada,Panama,0,5,False,Friendly,St. George's,Grenada
 m_e80f613d45,2017-10-28,Bermuda,Barbados,2,3,False,Friendly,Hamilton,Bermuda
 m_87f71481d7,2017-11-08,Congo,Benin,1,1,False,Friendly,Brazzaville,Congo
@@ -3814,7 +3814,7 @@ m_ec5356cf4e,2018-03-24,Angola,Zimbabwe,2,2,True,Friendly,Ndola,Zambia
 m_2d1ded6545,2018-03-24,Armenia,Estonia,0,0,False,Friendly,Yerevan,Armenia
 m_dc38cff4cf,2018-03-24,Botswana,Lesotho,1,0,False,Friendly,Gaborone,Botswana
 m_cf2d80c904,2018-03-24,Canada,New Zealand,1,0,True,Friendly,San Pedro del Pinatar,Spain
-m_6d5561e75f,2018-03-24,Comoros,Kenya,2,2,True,Friendly,Marrakech,Morocco
+m_6d5561e75f,2018-03-24,Comoros,Kenya,2,2,True,Friendly,Marrakesh,Morocco
 m_68800ef95c,2018-03-24,Georgia,Lithuania,4,0,False,Friendly,Tbilisi,Georgia
 m_8b34f54a9a,2018-03-24,Israel,Romania,1,2,False,Friendly,Netanya,Israel
 m_dcc1efbc61,2018-03-24,Ivory Coast,Togo,2,2,True,Friendly,Beauvais,France
@@ -3828,7 +3828,7 @@ m_92e8cb7350,2018-03-24,Uganda,São Tomé and Príncipe,3,1,False,Friendly,Kampa
 m_2cdb42c050,2018-03-24,Zambia,South Africa,0,2,False,Friendly,Ndola,Zambia
 m_1dff751cee,2018-03-24,Alderney,Guernsey,0,2,False,Muratti Vase,Alderney,Alderney
 m_8a6f46d660,2018-03-25,Barbados,Bermuda,0,0,False,Friendly,Bridgetown,Barbados
-m_c8192d2ff9,2018-03-25,Dominican Republic,Saint Kitts and Nevis,2,1,False,Friendly,Santiago,Dominican Republic
+m_c8192d2ff9,2018-03-25,Dominican Republic,Saint Kitts and Nevis,2,1,False,Friendly,Santiago de los Caballeros,Dominican Republic
 m_9d7445a684,2018-03-25,Faroe Islands,Liechtenstein,3,0,True,Friendly,Marbella,Spain
 m_345cf1e189,2018-03-25,Gibraltar,Latvia,1,0,False,Friendly,Gibraltar,Gibraltar
 m_048be868ad,2018-03-25,Jamaica,Antigua and Barbuda,1,1,False,Friendly,Kingston,Jamaica
@@ -3853,7 +3853,7 @@ m_80ac86b61d,2018-03-27,Bahrain,Turkmenistan,4,0,False,AFC Asian Cup qualificati
 m_3fd1f32e78,2018-03-27,Belgium,Saudi Arabia,4,0,False,Friendly,Brussels,Belgium
 m_b8d7d953a9,2018-03-27,Bosnia and Herzegovina,Senegal,0,0,True,Friendly,Le Havre,France
 m_36e53a21c4,2018-03-27,Myanmar,Macau,1,0,False,AFC Asian Cup qualification,Yangon,Myanmar
-m_35aa911b05,2018-03-27,Central African Republic,Kenya,3,2,True,Friendly,Marrakech,Morocco
+m_35aa911b05,2018-03-27,Central African Republic,Kenya,3,2,True,Friendly,Marrakesh,Morocco
 m_19da7425f4,2018-03-27,Denmark,Chile,0,0,False,Friendly,Aalborg,Denmark
 m_abaaa42522,2018-03-27,England,Italy,1,1,False,Friendly,London,England
 m_6c4f9f959f,2018-03-27,Georgia,Estonia,2,0,False,Friendly,Tbilisi,Georgia
@@ -3871,7 +3871,7 @@ m_95f6609cb4,2018-03-27,Luxembourg,Austria,0,4,False,Friendly,Luxembourg,Luxembo
 m_63239f71b4,2018-03-27,Maldives,Bhutan,7,0,False,AFC Asian Cup qualification,Malé,Maldives
 m_b7daf95846,2018-03-27,Mexico,Croatia,0,1,True,Friendly,Arlington,United States
 m_1c62dff3f7,2018-03-27,Moldova,Ivory Coast,1,2,True,Friendly,Beauvais,France
-m_50795977c2,2018-03-27,Mongolia,Mauritius,0,2,False,Friendly,Ulan Bator,Mongolia
+m_50795977c2,2018-03-27,Mongolia,Mauritius,0,2,False,Friendly,Ulaanbaatar,Mongolia
 m_d04ac05531,2018-03-27,Montenegro,Turkey,2,2,False,Friendly,Podgorica,Montenegro
 m_2c8bafc598,2018-03-27,Morocco,Uzbekistan,2,0,False,Friendly,Casablanca,Morocco
 m_77daf042e1,2018-03-27,Namibia,Lesotho,2,1,False,Friendly,Windhoek,Namibia
@@ -3993,7 +3993,7 @@ m_ce3702c13c,2018-06-02,United Koreans in Japan,Kabylia,0,0,True,CONIFA World Fo
 m_895f958d1b,2018-06-02,Panjab,Western Armenia,0,1,True,CONIFA World Football Cup,Slough,England
 m_a4aa46761b,2018-06-03,Albania,Ukraine,1,4,True,Friendly,Évian-les-Bains,France
 m_da1e1041df,2018-06-03,Saudi Arabia,Peru,0,3,True,Friendly,St. Gallen,Switzerland
-m_ccbf001b8d,2018-06-03,Spain,Switzerland,1,1,False,Friendly,Vila-real,Spain
+m_ccbf001b8d,2018-06-03,Spain,Switzerland,1,1,False,Friendly,Villarreal,Spain
 m_94d89cb126,2018-06-03,Croatia,Brazil,0,2,True,Friendly,Liverpool,England
 m_3182803b94,2018-06-03,Costa Rica,Northern Ireland,3,0,False,Friendly,San José,Costa Rica
 m_c36d127fc5,2018-06-03,Barbados,Belize,0,0,False,Friendly,Bridgetown,Barbados
@@ -4187,7 +4187,7 @@ m_6ed4138c10,2018-09-06,Jordan,Lebanon,0,1,False,Friendly,Amman,Jordan
 m_ed08ab8fd5,2018-09-06,Kyrgyzstan,Palestine,1,1,False,Friendly,Bishkek,Kyrgyzstan
 m_4ca7903fd7,2018-09-06,Netherlands,Peru,2,1,False,Friendly,Amsterdam,Netherlands
 m_b590bdcf61,2018-09-06,Portugal,Croatia,1,1,False,Friendly,Faro-Loulé,Portugal
-m_f90b0bf734,2018-09-06,Trinidad and Tobago,United Arab Emirates,2,0,False,Friendly,Llagostera,Trinidad and Tobago
+m_f90b0bf734,2018-09-06,Trinidad and Tobago,United Arab Emirates,2,0,True,Friendly,Llagostera,Spain
 m_fa81f30a15,2018-09-06,Uzbekistan,Syria,1,1,False,Friendly,Tashkent,Uzbekistan
 m_9b747f7851,2018-09-06,Northern Mariana Islands,Macau,1,1,True,EAFF Championship,Ulaanbaatar,Mongolia
 m_3086a88458,2018-09-06,Mongolia,Guam,1,1,False,EAFF Championship,Ulaanbaatar,Mongolia
@@ -4300,7 +4300,7 @@ m_cb859cdadc,2018-09-11,Japan,Costa Rica,3,0,False,Kirin Challenge Cup,Suita,Jap
 m_9cb15cfac8,2018-09-11,Jordan,Oman,0,0,False,Friendly,Amman,Jordan
 m_35a32ec3c6,2018-09-11,Kenya,Malawi,1,0,False,Friendly,Nairobi,Kenya
 m_8fdb93f792,2018-09-11,South Korea,Chile,0,0,False,Friendly,Suwon,South Korea
-m_4900320bd3,2018-09-11,Laos,United Arab Emirates,0,3,False,Friendly,Llagostera,Laos
+m_4900320bd3,2018-09-11,Laos,United Arab Emirates,0,3,True,Friendly,Llagostera,Spain
 m_93a5be0962,2018-09-11,Liberia,Nigeria,1,2,False,Friendly,Monrovia,Liberia
 m_b4610807fb,2018-09-11,Northern Ireland,Israel,3,0,False,Friendly,Belfast,Northern Ireland
 m_4eccea6041,2018-09-11,Panama,Venezuela,0,2,False,Friendly,Panama City,Panama
@@ -4753,7 +4753,7 @@ m_6c3306177d,2019-03-21,North Macedonia,Latvia,3,1,False,UEFA Euro qualification
 m_72e2c1d947,2019-03-21,Israel,Slovenia,1,1,False,UEFA Euro qualification,Haifa,Israel
 m_79f53f83aa,2019-03-21,Cyprus,San Marino,5,0,False,UEFA Euro qualification,Nicosia,Cyprus
 m_aecf530653,2019-03-21,Belgium,Russia,3,1,False,UEFA Euro qualification,Brussels,Belgium
-m_4d9f835e65,2019-03-21,Kazakhstan,Scotland,3,0,False,UEFA Euro qualification,Nur-Sultan,Kazakhstan
+m_4d9f835e65,2019-03-21,Kazakhstan,Scotland,3,0,False,UEFA Euro qualification,Astana,Kazakhstan
 m_e668153e4e,2019-03-21,British Virgin Islands,Turks and Caicos Islands,2,2,True,CONCACAF Nations League qualification,The Valley,Anguilla
 m_5bdba0f880,2019-03-22,Argentina,Venezuela,1,3,True,Friendly,Madrid,Spain
 m_0d59dc581f,2019-03-22,Guatemala,Costa Rica,1,0,False,Friendly,Guatemala City,Guatemala
@@ -4817,7 +4817,7 @@ m_296d6b3b4d,2019-03-24,Israel,Austria,4,2,False,UEFA Euro qualification,Haifa,I
 m_753bc2aa9c,2019-03-24,Poland,Latvia,2,0,False,UEFA Euro qualification,Warsaw,Poland
 m_b612e258d5,2019-03-24,Slovenia,North Macedonia,1,1,False,UEFA Euro qualification,Ljubljana,Slovenia
 m_3e80289cbb,2019-03-24,San Marino,Scotland,0,2,False,UEFA Euro qualification,Serravalle,San Marino
-m_d65d9c9e52,2019-03-24,Kazakhstan,Russia,0,4,False,UEFA Euro qualification,Nur-Sultan,Kazakhstan
+m_d65d9c9e52,2019-03-24,Kazakhstan,Russia,0,4,False,UEFA Euro qualification,Astana,Kazakhstan
 m_d286f5a581,2019-03-24,Cyprus,Belgium,0,2,False,UEFA Euro qualification,Nicosia,Cyprus
 m_383ed6fc3e,2019-03-24,Benin,Togo,2,1,False,African Cup of Nations qualification,Cotonou,Benin
 m_f6ffc93a52,2019-03-24,Libya,South Africa,1,2,True,African Cup of Nations qualification,Sfax,Tunisia
@@ -4866,7 +4866,7 @@ m_38df211acf,2019-03-26,Republic of Ireland,Georgia,1,0,False,UEFA Euro qualific
 m_3d42c7e094,2019-03-26,Switzerland,Denmark,3,3,False,UEFA Euro qualification,Basel,Switzerland
 m_d49475ac09,2019-03-26,Malta,Spain,0,2,False,UEFA Euro qualification,Attard,Malta
 m_e7bfa3068a,2019-03-26,Norway,Sweden,3,3,False,UEFA Euro qualification,Oslo,Norway
-m_ca18cca52b,2019-03-26,Romania,Faroe Islands,4,1,False,UEFA Euro qualification,Cluj-Napoca,Romania
+m_ca18cca52b,2019-03-26,Romania,Faroe Islands,4,1,False,UEFA Euro qualification,Cluj,Romania
 m_c6f7af399c,2019-03-26,Bosnia and Herzegovina,Greece,2,2,False,UEFA Euro qualification,Zenica,Bosnia and Herzegovina
 m_79abd0f37e,2019-03-26,Italy,Liechtenstein,6,0,False,UEFA Euro qualification,Parma,Italy
 m_d21f38f5dc,2019-03-26,Armenia,Finland,0,2,False,UEFA Euro qualification,Yerevan,Armenia
@@ -4957,7 +4957,7 @@ m_5ff82fce1f,2019-06-07,South Africa,Malawi,0,0,False,COSAFA Cup,Durban,South Af
 m_fb7f839a44,2019-06-07,Argentina,Nicaragua,5,1,False,Friendly,San Juan,Argentina
 m_3fed98822b,2019-06-07,China,Philippines,2,0,False,Friendly,Guangzhou,China
 m_7705069bf3,2019-06-07,Fiji,Tahiti,1,1,True,Friendly,Port Vila,Vanuatu
-m_8017871f85,2019-06-07,Ivory Coast,Comoros,3,1,False,Friendly,Boulogne-Sur-Mer,Ivory Coast
+m_8017871f85,2019-06-07,Ivory Coast,Comoros,3,1,True,Friendly,Boulogne-sur-Mer,France
 m_54f53ba8ba,2019-06-07,Kenya,Madagascar,1,0,False,Friendly,Bondoufle,Kenya
 m_578c12bd31,2019-06-07,South Korea,Australia,1,0,False,Friendly,Busan,South Korea
 m_e473dc0bc5,2019-06-07,Tunisia,Iraq,2,0,False,Friendly,Radès,Tunisia
@@ -4978,7 +4978,7 @@ m_c8335f2d21,2019-06-08,Finland,Bosnia and Herzegovina,2,0,False,UEFA Euro quali
 m_a08dca59b7,2019-06-08,Armenia,Liechtenstein,3,0,False,UEFA Euro qualification,Yerevan,Armenia
 m_7d3f1a9011,2019-06-08,Greece,Italy,0,3,False,UEFA Euro qualification,Athens,Greece
 m_69110e8c07,2019-06-08,Botswana,Zambia,0,1,True,COSAFA Cup,Durban,South Africa
-m_041817744d,2019-06-08,Angola,Guinea-Bissau,2,0,False,Friendly,Penafiel,Angola
+m_041817744d,2019-06-08,Angola,Guinea-Bissau,2,0,True,Friendly,Penafiel,Portugal
 m_0aa4b82347,2019-06-08,Nigeria,Zimbabwe,0,0,False,Friendly,Asaba,Nigeria
 m_494a6c0b00,2019-06-08,Singapore,Solomon Islands,4,3,False,Friendly,Kallang,Singapore
 m_893b25073a,2019-06-08,Abkhazia,Chameria,0,0,True,CONIFA European Football Cup,Stepanakert,Azerbaijan
@@ -5016,14 +5016,14 @@ m_59c661bc07,2019-06-11,Hungary,Wales,1,0,False,UEFA Euro qualification,Budapest
 m_195b9f223f,2019-06-11,Iceland,Turkey,2,1,False,UEFA Euro qualification,Reykjavík,Iceland
 m_e7be94308e,2019-06-11,Albania,Moldova,2,0,False,UEFA Euro qualification,Elbasan,Albania
 m_fb1e0eedcd,2019-06-11,Andorra,France,0,4,False,UEFA Euro qualification,Andorra la Vella,Andorra
-m_72e2d0d2e1,2019-06-11,Kazakhstan,San Marino,4,0,False,UEFA Euro qualification,Nur-Sultan,Kazakhstan
+m_72e2d0d2e1,2019-06-11,Kazakhstan,San Marino,4,0,False,UEFA Euro qualification,Astana,Kazakhstan
 m_1a5029b4d2,2019-06-11,Belgium,Scotland,3,0,False,UEFA Euro qualification,Brussels,Belgium
 m_71296d8dc4,2019-06-11,Russia,Cyprus,1,0,False,UEFA Euro qualification,Nizhny Novgorod,Russia
 m_50fedb731f,2019-06-11,Italy,Bosnia and Herzegovina,2,1,False,UEFA Euro qualification,Turin,Italy
 m_30cfbde7ea,2019-06-11,Liechtenstein,Finland,0,2,False,UEFA Euro qualification,Vaduz,Liechtenstein
 m_33b8c4ee29,2019-06-11,Greece,Armenia,2,3,False,UEFA Euro qualification,Athens,Greece
 m_f738f214eb,2019-06-11,Algeria,Burundi,1,1,True,Friendly,Doha,Qatar
-m_759f8021b8,2019-06-11,Benin,Guinea,1,0,True,Friendly,Marrakech,Morocco
+m_759f8021b8,2019-06-11,Benin,Guinea,1,0,True,Friendly,Marrakesh,Morocco
 m_f8cfb23dfa,2019-06-11,China,Tajikistan,1,0,False,Friendly,Guangzhou,China
 m_1315f92d09,2019-06-11,Croatia,Tunisia,1,2,False,Friendly,Varaždin,Croatia
 m_364748227c,2019-06-11,Hong Kong,Taiwan,0,2,False,Friendly,Hong Kong,Hong Kong
@@ -5038,11 +5038,11 @@ m_03b1a5425a,2019-06-11,Guam,Bhutan,5,0,False,FIFA World Cup qualification,Deded
 m_621bbaca13,2019-06-11,Pakistan,Cambodia,1,2,True,FIFA World Cup qualification,Doha,Qatar
 m_5c95495f31,2019-06-11,Sri Lanka,Macau,3,0,False,FIFA World Cup qualification,Colombo,Sri Lanka
 m_65c3e1c9de,2019-06-11,Malaysia,Timor-Leste,5,1,False,FIFA World Cup qualification,Kuala Lumpur,Malaysia
-m_ba5d1f422a,2019-06-12,Morocco,Gambia,0,1,False,Friendly,Marrakech,Morocco
+m_ba5d1f422a,2019-06-12,Morocco,Gambia,0,1,False,Friendly,Marrakesh,Morocco
 m_de5431f57d,2019-06-12,Ynys Môn,Saint Helena,7,2,False,Friendly,Anglesey,Wales
 m_d882fa8cab,2019-06-13,Egypt,Tanzania,1,0,False,Friendly,Alexandria,Egypt
 m_a44e509727,2019-06-14,Cameroon,Mali,1,1,True,Friendly,Al Wakrah,Qatar
-m_b6c50e4f55,2019-06-14,Madagascar,Mauritania,1,3,True,Friendly,Marrakech,Morocco
+m_b6c50e4f55,2019-06-14,Madagascar,Mauritania,1,3,True,Friendly,Marrakesh,Morocco
 m_2764338bf2,2019-06-14,Brazil,Bolivia,3,0,False,Copa América,São Paulo,Brazil
 m_773551c151,2019-06-15,Venezuela,Peru,0,0,True,Copa América,Porto Alegre,Brazil
 m_a244c23084,2019-06-15,Argentina,Colombia,0,2,True,Copa América,Salvador,Brazil
@@ -5063,7 +5063,7 @@ m_70777a1a8c,2019-06-16,Haiti,Bermuda,2,1,True,Gold Cup,San José,Jamaica
 m_1b82249220,2019-06-16,Costa Rica,Nicaragua,4,0,True,Gold Cup,San José,Jamaica
 m_0ae48a7def,2019-06-16,Algeria,Mali,3,2,True,Friendly,Doha,Qatar
 m_e504c69f5e,2019-06-16,Egypt,Guinea,3,1,False,Friendly,Alexandria,Egypt
-m_6316bc04ee,2019-06-16,Morocco,Zambia,2,3,False,Friendly,Marrakech,Morocco
+m_6316bc04ee,2019-06-16,Morocco,Zambia,2,3,False,Friendly,Marrakesh,Morocco
 m_49cb0b337c,2019-06-16,Senegal,Nigeria,1,0,True,Friendly,Ismailia,Egypt
 m_0ed938dbff,2019-06-17,Ynys Môn,Orkney,3,1,False,Inter Games,Anglesey,Wales
 m_d9c585d117,2019-06-17,Jersey,Western Isles,7,0,True,Inter Games,Anglesey,Wales
@@ -5081,7 +5081,7 @@ m_62ae88e6ec,2019-06-18,Bolivia,Peru,1,3,True,Copa América,Rio de Janeiro,Brazi
 m_907bb95435,2019-06-18,Brazil,Venezuela,0,0,False,Copa América,Salvador,Brazil
 m_b84086217d,2019-06-18,Panama,Trinidad and Tobago,2,0,True,Gold Cup,Saint Paul,United States
 m_d759aa20af,2019-06-18,United States,Guyana,4,0,False,Gold Cup,Saint Paul,United States
-m_a5b2f9d9f3,2019-06-18,Benin,Mauritania,3,1,True,Friendly,Marrakech,Morocco
+m_a5b2f9d9f3,2019-06-18,Benin,Mauritania,3,1,True,Friendly,Marrakesh,Morocco
 m_36ebb9e844,2019-06-19,Colombia,Qatar,1,0,True,Copa América,São Paulo,Brazil
 m_abf7f44a1a,2019-06-19,Argentina,Paraguay,1,1,True,Copa América,Belo Horizonte,Brazil
 m_5b20f91f68,2019-06-19,Cuba,Martinique,0,3,True,Gold Cup,Denver,United States
@@ -5120,8 +5120,8 @@ m_8347dcd4bd,2019-06-24,Tunisia,Angola,1,1,True,African Cup of Nations,Suez,Egyp
 m_d8f872b92f,2019-06-24,Mali,Mauritania,4,1,True,African Cup of Nations,Suez,Egypt
 m_0494b51c49,2019-06-24,Chile,Uruguay,0,1,True,Copa América,Rio de Janeiro,Brazil
 m_de29480990,2019-06-24,Ecuador,Japan,1,1,True,Copa América,Belo Horizonte,Brazil
-m_e9b057f0e7,2019-06-24,Bermuda,Nicaragua,2,0,True,Gold Cup,New Jersey,United States
-m_1a7b51afde,2019-06-24,Haiti,Costa Rica,2,1,True,Gold Cup,New Jersey,United States
+m_e9b057f0e7,2019-06-24,Bermuda,Nicaragua,2,0,True,Gold Cup,Harrison,United States
+m_1a7b51afde,2019-06-24,Haiti,Costa Rica,2,1,True,Gold Cup,Harrison,United States
 m_d41d2d3686,2019-06-25,Cameroon,Guinea-Bissau,2,0,True,African Cup of Nations,Ismailia,Egypt
 m_97aa00c8ba,2019-06-25,Ghana,Benin,2,2,True,African Cup of Nations,Ismailia,Egypt
 m_360de6a7e8,2019-06-25,Jamaica,Curaçao,1,1,True,Gold Cup,Los Angeles,United States
@@ -5255,7 +5255,7 @@ m_909f2cde85,2019-08-30,Belize,Saint Vincent and the Grenadines,1,0,False,Friend
 m_871e6af699,2019-08-30,China,Myanmar,4,1,True,Friendly,Xianghe,Egypt
 m_4ca5464142,2019-08-30,Malaysia,Jordan,0,1,False,Friendly,Kuala Lumpur,Malaysia
 m_274f50d8ad,2019-08-31,United Arab Emirates,Sri Lanka,5,1,True,Friendly,Riffa,Bahrain
-m_69b668495b,2019-09-04,Libya,Burkina Faso,0,1,True,Friendly,Marrakech,Morocco
+m_69b668495b,2019-09-04,Libya,Burkina Faso,0,1,True,Friendly,Marrakesh,Morocco
 m_302dbd0fab,2019-09-04,Burundi,Tanzania,1,1,False,FIFA World Cup qualification,Bujumbura,Burundi
 m_ad06e298e6,2019-09-04,Djibouti,Eswatini,2,1,False,FIFA World Cup qualification,Djibouti,Djibouti
 m_aa4628bfe5,2019-09-04,Eritrea,Namibia,1,2,False,FIFA World Cup qualification,Asmara,Eritrea
@@ -5310,7 +5310,7 @@ m_679062ea56,2019-09-05,Somalia,Zimbabwe,1,0,True,FIFA World Cup qualification,D
 m_bb652a6e21,2019-09-06,Brazil,Colombia,2,2,True,Friendly,Miami Gardens,United States
 m_e55a287483,2019-09-06,Costa Rica,Uruguay,1,2,False,Friendly,San José,Costa Rica
 m_128aedaa69,2019-09-06,Ivory Coast,Benin,1,2,True,Friendly,Caen,Egypt
-m_47191882c3,2019-09-06,Morocco,Burkina Faso,1,1,False,Friendly,Marrakech,Morocco
+m_47191882c3,2019-09-06,Morocco,Burkina Faso,1,1,False,Friendly,Marrakesh,Morocco
 m_5d60b42826,2019-09-06,Tunisia,Mauritania,1,0,False,Friendly,Radès,Tunisia
 m_644e1bb88f,2019-09-06,United States,Mexico,0,3,False,Friendly,East Rutherford,United States
 m_f2d5de2024,2019-09-06,Estonia,Belarus,1,2,False,UEFA Euro qualification,Tallinn,Estonia
@@ -5387,7 +5387,7 @@ m_2d1854b760,2019-09-10,Ecuador,Bolivia,3,0,False,Friendly,Cuenca,Ecuador
 m_e934642a74,2019-09-10,Honduras,Chile,2,1,False,Friendly,San Pedro Sula,Honduras
 m_ffe07fafbf,2019-09-10,Ivory Coast,Tunisia,2,1,True,Friendly,Rouen,France
 m_c84b4f1f9d,2019-09-10,Jordan,Paraguay,2,4,False,Friendly,Amman,Jordan
-m_2e4e3a1ea8,2019-09-10,Morocco,Niger,1,0,False,Friendly,Marrakech,Morocco
+m_2e4e3a1ea8,2019-09-10,Morocco,Niger,1,0,False,Friendly,Marrakesh,Morocco
 m_1f13982b79,2019-09-10,Oman,Lebanon,1,0,False,Friendly,Muscat,Oman
 m_ce99357ab2,2019-09-10,Republic of Ireland,Bulgaria,3,1,False,Friendly,Dublin,Republic of Ireland
 m_fb10613377,2019-09-10,Ukraine,Nigeria,2,2,False,Friendly,Dnipro,Ukraine
@@ -5451,12 +5451,12 @@ m_f78d1419f8,2019-10-10,Slovakia,Wales,1,1,False,UEFA Euro qualification,Trnava,
 m_ff2c1a114f,2019-10-10,Austria,Israel,3,1,False,UEFA Euro qualification,Vienna,Austria
 m_ca51d26d99,2019-10-10,North Macedonia,Slovenia,2,1,False,UEFA Euro qualification,Skopje,North Macedonia
 m_bf07d04a8b,2019-10-10,Latvia,Poland,0,3,False,UEFA Euro qualification,Riga,Latvia
-m_c649181eab,2019-10-10,Kazakhstan,Cyprus,1,2,False,UEFA Euro qualification,Nur-Sultan,Kazakhstan
+m_c649181eab,2019-10-10,Kazakhstan,Cyprus,1,2,False,UEFA Euro qualification,Astana,Kazakhstan
 m_ea4dde12e2,2019-10-10,Belgium,San Marino,9,0,False,UEFA Euro qualification,Brussels,Belgium
 m_7f8274697f,2019-10-10,Russia,Scotland,4,0,False,UEFA Euro qualification,Moscow,Russia
 m_76038ed769,2019-10-10,Algeria,DR Congo,1,1,False,Friendly,Blida,Algeria
 m_d990d8eaf3,2019-10-10,Brazil,Senegal,1,1,True,Friendly,Kallang,Singapore
-m_4f23fc30dc,2019-10-10,Cape Verde,Togo,2,1,False,Friendly,Fos-sur-Mer,Cape Verde
+m_4f23fc30dc,2019-10-10,Cape Verde,Togo,2,1,True,Friendly,Fos-sur-Mer,France
 m_a201b864e8,2019-10-10,Gabon,Burkina Faso,1,0,True,Friendly,Paris,France
 m_fc5a9956bb,2019-10-10,Kosovo,Gibraltar,1,0,False,Friendly,Pristina,Kosovo
 m_3aed3d2fb7,2019-10-10,Niger,Zambia,1,1,False,Friendly,Niamey,Niger
@@ -5492,7 +5492,7 @@ m_892c3e9f36,2019-10-11,Ukraine,Lithuania,2,0,False,UEFA Euro qualification,Khar
 m_019c649245,2019-10-11,Iceland,France,0,1,False,UEFA Euro qualification,Reykjavík,Iceland
 m_595e4ae961,2019-10-11,Andorra,Moldova,1,0,False,UEFA Euro qualification,Andorra la Vella,Andorra
 m_6e1f371cf5,2019-10-11,Turkey,Albania,1,0,False,UEFA Euro qualification,Istanbul,Turkey
-m_dcdbd9a005,2019-10-11,Morocco,Libya,1,1,False,Friendly,Morocco,Morocco
+m_dcdbd9a005,2019-10-11,Morocco,Libya,1,1,False,Friendly,Rabat,Morocco
 m_9d76a3cb62,2019-10-11,Uruguay,Peru,1,0,False,Friendly,Montevideo,Uruguay
 m_f6283be6ea,2019-10-11,United States,Cuba,7,0,False,CONCACAF Nations League,"Washington, D.C.",United States
 m_0561bb8755,2019-10-11,Bermuda,Mexico,1,5,False,CONCACAF Nations League,Hamilton,Bermuda
@@ -5508,8 +5508,8 @@ m_aa994513c4,2019-10-12,Bosnia and Herzegovina,Finland,4,1,False,UEFA Euro quali
 m_f017fe9360,2019-10-12,Italy,Greece,2,0,False,UEFA Euro qualification,Rome,Italy
 m_8707e4e33a,2019-10-12,Liechtenstein,Armenia,1,1,False,UEFA Euro qualification,Vaduz,Liechtenstein
 m_67528e312d,2019-10-12,Colombia,Chile,0,0,True,Friendly,Alicante,Spain
-m_27864a636f,2019-10-12,Guinea,Comoros,0,1,False,Friendly,Guinea,Guinea
-m_24fee1c2b7,2019-10-12,Ivory Coast,DR Congo,3,1,False,Friendly,Ivory Coast,Ivory Coast
+m_27864a636f,2019-10-12,Guinea,Comoros,0,1,True,Friendly,Versailles,France
+m_24fee1c2b7,2019-10-12,Ivory Coast,DR Congo,3,1,False,Friendly,Amiens,France
 m_d53a81231f,2019-10-12,Tunisia,Cameroon,0,0,False,Friendly,Radès,Tunisia
 m_3054ee4b26,2019-10-12,Dominican Republic,Saint Lucia,3,0,False,CONCACAF Nations League,Santo Domingo,Dominican Republic
 m_f69ced2a9f,2019-10-12,Montserrat,El Salvador,0,2,False,CONCACAF Nations League,Lookout,Montserrat
@@ -5525,24 +5525,24 @@ m_ad64e59e80,2019-10-13,Poland,North Macedonia,2,0,False,UEFA Euro qualification
 m_f2152ae2c5,2019-10-13,Slovenia,Austria,0,1,False,UEFA Euro qualification,Ljubljana,Slovenia
 m_56403f4caf,2019-10-13,Scotland,San Marino,6,0,False,UEFA Euro qualification,Glasgow,Scotland
 m_9d750cdc6f,2019-10-13,Cyprus,Russia,0,5,False,UEFA Euro qualification,Nicosia,Cyprus
-m_0b47220848,2019-10-13,Kazakhstan,Belgium,0,2,False,UEFA Euro qualification,Nur-Sultan,Kazakhstan
+m_0b47220848,2019-10-13,Kazakhstan,Belgium,0,2,False,UEFA Euro qualification,Astana,Kazakhstan
 m_5f7a2046d3,2019-10-13,Gambia,Djibouti,1,1,False,African Cup of Nations qualification,Bakau,Gambia
 m_780186d0b6,2019-10-13,Chad,Liberia,1,0,False,African Cup of Nations qualification,N'Djamena,Chad
 m_2dff42bec7,2019-10-13,São Tomé and Príncipe,Mauritius,2,1,False,African Cup of Nations qualification,São Tomé,São Tomé and Príncipe
 m_76b4798697,2019-10-13,Seychelles,South Sudan,0,1,False,African Cup of Nations qualification,Victoria,Seychelles
-m_391950dfc6,2019-10-13,Benin,Zambia,2,2,False,Friendly,Benin,Benin
+m_391950dfc6,2019-10-13,Benin,Zambia,2,2,False,Friendly,Porto-Novo,Benin
 m_be3f2101a4,2019-10-13,Brazil,Nigeria,1,1,True,Friendly,Kallang,Singapore
 m_842bb406bb,2019-10-13,Ecuador,Argentina,1,6,True,Friendly,Elche,Spain
-m_d8d8462025,2019-10-13,Equatorial Guinea,Togo,1,1,False,Friendly,Equatorial Guinea,Equatorial Guinea
-m_b73f21fe76,2019-10-13,Ethiopia,Uganda,0,1,False,Friendly,Ethiopia,Ethiopia
-m_b8cf36f73c,2019-10-13,Kenya,Mozambique,0,1,False,Friendly,Kenya,Kenya
-m_d0da958f18,2019-10-13,Lesotho,Malawi,1,1,False,Friendly,Lesotho,Lesotho
-m_1edfd5d663,2019-10-13,Niger,Central African Republic,0,2,False,Friendly,Niger,Niger
+m_d8d8462025,2019-10-13,Equatorial Guinea,Togo,1,1,True,Friendly,Mallemort,France
+m_b73f21fe76,2019-10-13,Ethiopia,Uganda,0,1,False,Friendly,Bahir Dar,Ethiopia
+m_b8cf36f73c,2019-10-13,Kenya,Mozambique,0,1,False,Friendly,Kasarani,Kenya
+m_d0da958f18,2019-10-13,Lesotho,Malawi,1,1,False,Friendly,Maseru,Lesotho
+m_1edfd5d663,2019-10-13,Niger,Central African Republic,0,2,False,Friendly,Niamey,Niger
 m_05859be512,2019-10-13,Slovakia,Paraguay,1,1,False,Friendly,Bratislava,Slovakia
 m_ced68c1ee8,2019-10-13,South Africa,Mali,2,1,False,Friendly,Port Elizabeth,South Africa
 m_1c200069e2,2019-10-13,Honduras,Martinique,1,0,False,CONCACAF Nations League,San Pedro Sula,Honduras
 m_375656c3f0,2019-10-13,Costa Rica,Curaçao,0,0,False,CONCACAF Nations League,San José,Costa Rica
-m_1199e38448,2019-10-13,Saint Kitts and Nevis,Belize,0,1,False,CONCACAF Nations League,Saint Kitts and Nevis,Saint Kitts and Nevis
+m_1199e38448,2019-10-13,Saint Kitts and Nevis,Belize,0,1,False,CONCACAF Nations League,Basseterre,Saint Kitts and Nevis
 m_951c57c6f0,2019-10-13,Grenada,French Guiana,1,0,False,CONCACAF Nations League,Grenada,Grenada
 m_e570d9604e,2019-10-13,British Virgin Islands,Bonaire,3,4,True,CONCACAF Nations League,Basseterre,Saint Kitts and Nevis
 m_a2d4cd3e72,2019-10-14,Kosovo,Montenegro,2,0,False,UEFA Euro qualification,Pristina,Kosovo
@@ -5554,7 +5554,7 @@ m_f50e478568,2019-10-14,France,Turkey,1,1,False,UEFA Euro qualification,Paris,Fr
 m_a826ee30eb,2019-10-14,Moldova,Albania,0,4,False,UEFA Euro qualification,Chișinău,Moldova
 m_14bf6b18a0,2019-10-14,Czech Republic,Northern Ireland,2,3,False,Friendly,Prague,Czech Republic
 m_fccf7379c5,2019-10-14,Egypt,Botswana,1,0,False,Friendly,Cairo,Egypt
-m_d96651cf73,2019-10-14,Rwanda,Tanzania,0,0,False,Friendly,Rwanda,Rwanda
+m_d96651cf73,2019-10-14,Rwanda,Tanzania,0,0,False,Friendly,Kigali,Rwanda
 m_55a95eace2,2019-10-14,Venezuela,Trinidad and Tobago,2,0,False,Friendly,Caracas,Venezuela
 m_ab4212dc4d,2019-10-14,Guyana,Antigua and Barbuda,5,1,False,CONCACAF Nations League,Leonora,Guyana
 m_eadb326c2b,2019-10-14,Dominica,Nicaragua,0,4,False,CONCACAF Nations League,Roseau,Dominica
@@ -5569,14 +5569,14 @@ m_ba6fe3ab96,2019-10-15,Israel,Latvia,3,1,False,UEFA Euro qualification,Beer She
 m_f9891e9828,2019-10-15,Finland,Armenia,3,0,False,UEFA Euro qualification,Turku,Finland
 m_0a33c859d8,2019-10-15,Liechtenstein,Italy,0,5,False,UEFA Euro qualification,Vaduz,Liechtenstein
 m_b6050752f8,2019-10-15,Greece,Bosnia and Herzegovina,2,1,False,UEFA Euro qualification,Athens,Greece
-m_c802665f58,2019-10-15,Algeria,Colombia,3,0,False,Friendly,Villeneuve D'Ascq,Algeria
+m_c802665f58,2019-10-15,Algeria,Colombia,3,0,True,Friendly,Villeneuve-d'Ascq,France
 m_b4eb47f6f0,2019-10-15,Bermuda,Guatemala,0,0,False,Friendly,Hamilton,Bermuda
 m_839445eed0,2019-10-15,Bolivia,Haiti,3,1,False,Friendly,Santa Cruz,Bolivia
 m_386e412610,2019-10-15,Chile,Guinea,3,2,True,Friendly,Alicante,Spain
 m_8ffa49cb70,2019-10-15,Denmark,Luxembourg,4,0,False,Friendly,Aalborg,Denmark
 m_ed914337a4,2019-10-15,Kuwait,Turkmenistan,1,1,False,Friendly,Kuwait City,Kuwait
 m_79c0594970,2019-10-15,Mauritania,Libya,0,0,False,Friendly,Nouakchott,Mauritania
-m_b1e1b62552,2019-10-15,Morocco,Gabon,2,3,False,Friendly,Morocco,Morocco
+m_b1e1b62552,2019-10-15,Morocco,Gabon,2,3,False,Friendly,Tangier,Morocco
 m_441c81e6d5,2019-10-15,Peru,Uruguay,1,1,False,Friendly,Lima,Peru
 m_91e1321254,2019-10-15,Canada,United States,2,0,False,CONCACAF Nations League,Toronto,Canada
 m_0949c51225,2019-10-15,Mexico,Panama,3,1,False,CONCACAF Nations League,Mexico City,Mexico
@@ -5594,7 +5594,7 @@ m_374870c812,2019-10-15,Cambodia,Iraq,0,4,False,FIFA World Cup qualification,Phn
 m_ac529b1d47,2019-10-15,Bahrain,Iran,1,0,False,FIFA World Cup qualification,Riffa,Bahrain
 m_5b78275532,2019-10-15,Palestine,Saudi Arabia,0,0,False,FIFA World Cup qualification,Al-Ram,Palestine
 m_ae67b62da4,2019-10-15,Singapore,Uzbekistan,1,3,False,FIFA World Cup qualification,Kallang,Singapore
-m_fed06eb674,2019-10-15,India,Bangladesh,1,1,False,FIFA World Cup qualification,Kolkota,India
+m_fed06eb674,2019-10-15,India,Bangladesh,1,1,False,FIFA World Cup qualification,Kolkata,India
 m_24f4601a1e,2019-10-15,Qatar,Oman,2,1,False,FIFA World Cup qualification,Al Wakrah,Qatar
 m_e0cf83adee,2019-10-15,Mongolia,Kyrgyzstan,1,2,False,FIFA World Cup qualification,Ulaanbaatar,Mongolia
 m_51fcaa8171,2019-10-15,Tajikistan,Japan,0,3,False,FIFA World Cup qualification,Dushanbe,Tajikistan
@@ -5751,7 +5751,7 @@ m_95b3d98d07,2019-11-19,Mauritania,Central African Republic,2,0,False,African Cu
 m_ccf12a45ff,2019-11-19,Zambia,Zimbabwe,1,2,False,African Cup of Nations qualification,Lusaka,Zambia
 m_2a563889b8,2019-11-19,Equatorial Guinea,Tunisia,0,1,False,African Cup of Nations qualification,Malabo,Equatorial Guinea
 m_fd20a3f3c6,2019-11-19,Libya,Tanzania,2,1,True,African Cup of Nations qualification,Monastir,Tunisia
-m_92c06e7e61,2019-11-19,Ethiopia,Ivory Coast,2,1,False,African Cup of Nations qualification,Ethiopia,Ethiopia
+m_92c06e7e61,2019-11-19,Ethiopia,Ivory Coast,2,1,False,African Cup of Nations qualification,Bahir Dar,Ethiopia
 m_ba6fa5dc31,2019-11-19,Germany,Northern Ireland,6,1,False,UEFA Euro qualification,Frankfurt,Germany
 m_9b836735d1,2019-11-19,Netherlands,Estonia,5,0,False,UEFA Euro qualification,Amsterdam,Netherlands
 m_2b03b819c8,2019-11-19,Wales,Hungary,2,0,False,UEFA Euro qualification,Cardiff,Wales
@@ -6280,7 +6280,7 @@ m_7e7e183bc5,2021-03-28,Georgia,Spain,1,2,False,FIFA World Cup qualification,Tbi
 m_6cd7aced73,2021-03-28,Kosovo,Sweden,0,3,False,FIFA World Cup qualification,Pristina,Kosovo
 m_245c0983bf,2021-03-28,Switzerland,Lithuania,1,0,False,FIFA World Cup qualification,St. Gallen,Switzerland
 m_8005d8bae0,2021-03-28,Bulgaria,Italy,0,2,False,FIFA World Cup qualification,Sofia,Bulgaria
-m_ebabd4dc7e,2021-03-28,Kazakhstan,France,0,2,False,FIFA World Cup qualification,Nur-Sultan,Kazakhstan
+m_ebabd4dc7e,2021-03-28,Kazakhstan,France,0,2,False,FIFA World Cup qualification,Astana,Kazakhstan
 m_efa47439c1,2021-03-28,Ukraine,Finland,1,1,False,FIFA World Cup qualification,Kyiv,Ukraine
 m_a62fe1e079,2021-03-28,Denmark,Moldova,8,0,False,FIFA World Cup qualification,Herning,Denmark
 m_ff7e1416c7,2021-03-28,Austria,Faroe Islands,3,1,False,FIFA World Cup qualification,Vienna,Austria
@@ -6742,7 +6742,7 @@ m_10f19cdff1,2021-09-01,Senegal,Togo,2,0,False,FIFA World Cup qualification,Thi�
 m_ddaaa9069b,2021-09-01,Guinea-Bissau,Guinea,1,1,True,FIFA World Cup qualification,Nouakchott,Mauritania
 m_776f4f0812,2021-09-01,Portugal,Republic of Ireland,2,1,False,FIFA World Cup qualification,Faro-Loulé,Portugal
 m_0617703316,2021-09-01,Luxembourg,Azerbaijan,2,1,False,FIFA World Cup qualification,Luxembourg,Luxembourg
-m_297b2c0f54,2021-09-01,Kazakhstan,Ukraine,2,2,False,FIFA World Cup qualification,Nur-Sultan,Kazakhstan
+m_297b2c0f54,2021-09-01,Kazakhstan,Ukraine,2,2,False,FIFA World Cup qualification,Astana,Kazakhstan
 m_3198f6fcf6,2021-09-01,France,Bosnia and Herzegovina,1,1,False,FIFA World Cup qualification,Strasbourg,France
 m_377a365db4,2021-09-01,Faroe Islands,Israel,0,4,False,FIFA World Cup qualification,Tórshavn,Faroe Islands
 m_7e1a9a189e,2021-09-01,Denmark,Scotland,2,0,False,FIFA World Cup qualification,Copenhagen,Denmark
@@ -6755,7 +6755,7 @@ m_863c76fe50,2021-09-01,Slovenia,Slovakia,1,1,False,FIFA World Cup qualification
 m_d285861aa1,2021-09-01,Russia,Croatia,0,0,False,FIFA World Cup qualification,Moscow,Russia
 m_c74b55e9ce,2021-09-02,Kyrgyzstan,Palestine,1,0,False,Three Nations Cup,Bishkek,Kyrgyzstan
 m_685721358c,2021-09-02,Nepal,India,1,1,False,Friendly,Kathmandu,Nepal
-m_97dff935eb,2021-09-02,Niger,Burkina Faso,0,2,True,FIFA World Cup qualification,Marrakech,Morocco
+m_97dff935eb,2021-09-02,Niger,Burkina Faso,0,2,True,FIFA World Cup qualification,Marrakesh,Morocco
 m_bd81aa9a2c,2021-09-02,Algeria,Djibouti,8,0,False,FIFA World Cup qualification,Blida,Algeria
 m_ecd9d9b620,2021-09-02,Kenya,Uganda,0,0,False,FIFA World Cup qualification,Nairobi,Kenya
 m_6e4b590d21,2021-09-02,Namibia,Congo,1,1,True,FIFA World Cup qualification,Johannesburg,South Africa
@@ -6850,7 +6850,7 @@ m_bd51dd72ae,2021-09-07,Kyrgyzstan,Bangladesh,4,1,False,Three Nations Cup,Bishke
 m_0174069c1b,2021-09-07,Bahrain,Jordan,1,2,False,Friendly,Riffa,Bahrain
 m_5671646a48,2021-09-07,Comoros,Burundi,1,0,False,Friendly,Moroni,Comoros
 m_dc7bfe1197,2021-09-07,Luxembourg,Qatar,1,1,False,Friendly,Luxembourg,Luxembourg
-m_7446abd2ff,2021-09-07,Burkina Faso,Algeria,1,1,True,FIFA World Cup qualification,Marrakech,Morocco
+m_7446abd2ff,2021-09-07,Burkina Faso,Algeria,1,1,True,FIFA World Cup qualification,Marrakesh,Morocco
 m_a07e638c79,2021-09-07,Zambia,Tunisia,0,2,False,FIFA World Cup qualification,Ndola,Zambia
 m_472b3a38b0,2021-09-07,Equatorial Guinea,Mauritania,1,0,False,FIFA World Cup qualification,Malabo,Equatorial Guinea
 m_0fe7cfff15,2021-09-07,Cape Verde,Nigeria,1,2,False,FIFA World Cup qualification,Mindelo,Cape Verde
@@ -6909,7 +6909,7 @@ m_7610352a31,2021-10-01,Sri Lanka,Bangladesh,0,1,True,SAFF Cup,Malé,Maldives
 m_71e4073780,2021-10-01,Maldives,Nepal,0,1,False,SAFF Cup,Malé,Maldives
 m_d1ff3bacdf,2021-10-04,Bangladesh,India,1,1,True,SAFF Cup,Malé,Maldives
 m_fd4e879a03,2021-10-04,Sri Lanka,Nepal,2,3,True,SAFF Cup,Malé,Maldives
-m_b7c941f995,2021-10-06,Sudan,Guinea,1,1,True,FIFA World Cup qualification,Marrakech,Morocco
+m_b7c941f995,2021-10-06,Sudan,Guinea,1,1,True,FIFA World Cup qualification,Marrakesh,Morocco
 m_2a913d6847,2021-10-06,Morocco,Guinea-Bissau,5,0,False,FIFA World Cup qualification,Rabat,Morocco
 m_9a8f429075,2021-10-06,Bahrain,Curaçao,4,0,False,Friendly,Riffa,Bahrain
 m_34e392b0d4,2021-10-06,Jordan,Malaysia,4,0,False,Friendly,Amman,Jordan
@@ -6954,7 +6954,7 @@ m_1af684239c,2021-10-08,Iceland,Armenia,1,1,False,FIFA World Cup qualification,R
 m_c1f6599f6a,2021-10-08,Germany,Romania,2,1,False,FIFA World Cup qualification,Hamburg,Germany
 m_679e5af7e0,2021-10-08,Liechtenstein,North Macedonia,0,4,False,FIFA World Cup qualification,Vaduz,Liechtenstein
 m_3fc3c2b18e,2021-10-08,Algeria,Niger,6,1,False,FIFA World Cup qualification,Algiers,Algeria
-m_0dc408ef76,2021-10-08,Djibouti,Burkina Faso,0,4,True,FIFA World Cup qualification,Marrakech,Morocco
+m_0dc408ef76,2021-10-08,Djibouti,Burkina Faso,0,4,True,FIFA World Cup qualification,Marrakesh,Morocco
 m_6b339a0ce3,2021-10-08,Malawi,Ivory Coast,0,3,True,FIFA World Cup qualification,Johannesburg,South Africa
 m_9b05983c91,2021-10-08,Cameroon,Mozambique,3,1,False,FIFA World Cup qualification,Douala,Cameroon
 m_48aed6ad69,2021-10-08,Angola,Gabon,3,1,False,FIFA World Cup qualification,Luanda,Angola
@@ -6966,7 +6966,7 @@ m_11f3ba055d,2021-10-09,Georgia,Greece,0,2,False,FIFA World Cup qualification,Ba
 m_86ac09cf2b,2021-10-09,Lithuania,Bulgaria,3,1,False,FIFA World Cup qualification,Vilnius,Lithuania
 m_4abb988455,2021-10-09,Switzerland,Northern Ireland,2,0,False,FIFA World Cup qualification,Geneva,Switzerland
 m_2cd599e76c,2021-10-09,Finland,Ukraine,1,2,False,FIFA World Cup qualification,Helsinki,Finland
-m_e172240b8f,2021-10-09,Kazakhstan,Bosnia and Herzegovina,0,2,False,FIFA World Cup qualification,Nur-Sultan,Kazakhstan
+m_e172240b8f,2021-10-09,Kazakhstan,Bosnia and Herzegovina,0,2,False,FIFA World Cup qualification,Astana,Kazakhstan
 m_0a02939fa7,2021-10-09,Scotland,Israel,3,2,False,FIFA World Cup qualification,Glasgow,Scotland
 m_f032c562e9,2021-10-09,Faroe Islands,Austria,0,2,False,FIFA World Cup qualification,Tórshavn,Faroe Islands
 m_cf29b48a3a,2021-10-09,Moldova,Denmark,0,4,False,FIFA World Cup qualification,Chișinău,Moldova
@@ -7016,7 +7016,7 @@ m_1cf3456d79,2021-10-11,Slovenia,Russia,1,2,False,FIFA World Cup qualification,M
 m_c6087caef7,2021-10-11,Iceland,Liechtenstein,4,0,False,FIFA World Cup qualification,Reykjavík,Iceland
 m_d6a63b09e9,2021-10-11,North Macedonia,Germany,0,4,False,FIFA World Cup qualification,Skopje,North Macedonia
 m_aba637c5bd,2021-10-11,Romania,Armenia,1,0,False,FIFA World Cup qualification,Bucharest,Romania
-m_ed2588b55c,2021-10-11,Burkina Faso,Djibouti,2,0,True,FIFA World Cup qualification,Marrakech,Morocco
+m_ed2588b55c,2021-10-11,Burkina Faso,Djibouti,2,0,True,FIFA World Cup qualification,Marrakesh,Morocco
 m_008dbe87e6,2021-10-11,Mozambique,Cameroon,0,1,True,FIFA World Cup qualification,Tangier,Morocco
 m_3014159e45,2021-10-11,Ivory Coast,Malawi,2,1,True,FIFA World Cup qualification,Cotonou,Benin
 m_104b005aeb,2021-10-11,Gabon,Angola,2,0,False,FIFA World Cup qualification,Franceville,Gabon
@@ -7034,7 +7034,7 @@ m_bfd7685baa,2021-10-12,Kosovo,Georgia,1,2,False,FIFA World Cup qualification,Pr
 m_cacab2bc82,2021-10-12,Sweden,Greece,2,0,False,FIFA World Cup qualification,Stockholm,Sweden
 m_a301b5b3ab,2021-10-12,Bulgaria,Northern Ireland,2,1,False,FIFA World Cup qualification,Sofia,Bulgaria
 m_0973a290af,2021-10-12,Lithuania,Switzerland,0,4,False,FIFA World Cup qualification,Vilnius,Lithuania
-m_d7a9856143,2021-10-12,Kazakhstan,Finland,0,2,False,FIFA World Cup qualification,Nur-Sultan,Kazakhstan
+m_d7a9856143,2021-10-12,Kazakhstan,Finland,0,2,False,FIFA World Cup qualification,Astana,Kazakhstan
 m_96d7b9848b,2021-10-12,Ukraine,Bosnia and Herzegovina,1,1,False,FIFA World Cup qualification,Lviv,Ukraine
 m_3ba7ab8e23,2021-10-12,Faroe Islands,Scotland,0,1,False,FIFA World Cup qualification,Tórshavn,Faroe Islands
 m_50101c680f,2021-10-12,Denmark,Austria,1,0,False,FIFA World Cup qualification,Copenhagen,Denmark
@@ -7103,7 +7103,7 @@ m_a25b38bfde,2021-11-11,Ecuador,Venezuela,1,0,False,FIFA World Cup qualification
 m_474539c1b8,2021-11-11,Paraguay,Chile,0,1,False,FIFA World Cup qualification,Asunción,Paraguay
 m_ee4f40658b,2021-11-11,Peru,Bolivia,3,0,False,FIFA World Cup qualification,Lima,Peru
 m_fec377d747,2021-11-11,Brazil,Colombia,1,0,False,FIFA World Cup qualification,São Paulo,Brazil
-m_6dad2ce428,2021-11-12,Burkina Faso,Niger,1,1,True,FIFA World Cup qualification,Marrakech,Morocco
+m_6dad2ce428,2021-11-12,Burkina Faso,Niger,1,1,True,FIFA World Cup qualification,Marrakesh,Morocco
 m_eddd734170,2021-11-12,Djibouti,Algeria,0,4,True,FIFA World Cup qualification,Cairo,Egypt
 m_23a977bc70,2021-11-12,Gabon,Libya,1,0,False,FIFA World Cup qualification,Franceville,Gabon
 m_703c5ffc9e,2021-11-12,Angola,Egypt,2,2,False,FIFA World Cup qualification,Luanda,Angola
@@ -7163,7 +7163,7 @@ m_6f86bfcf32,2021-11-15,Lithuania,Kuwait,1,1,False,Friendly,Vilnius,Lithuania
 m_43e5e4709f,2021-11-15,Niger,Djibouti,7,2,False,FIFA World Cup qualification,Niamey,Niger
 m_229f460ec1,2021-11-15,Kenya,Rwanda,2,1,False,FIFA World Cup qualification,Nairobi,Kenya
 m_27d2dc66a5,2021-11-15,Namibia,Togo,0,1,True,FIFA World Cup qualification,Johannesburg,South Africa
-m_fadfe4f63e,2021-11-15,Guinea-Bissau,Sudan,0,0,True,FIFA World Cup qualification,Marrakech,Morocco
+m_fadfe4f63e,2021-11-15,Guinea-Bissau,Sudan,0,0,True,FIFA World Cup qualification,Marrakesh,Morocco
 m_f950d56dca,2021-11-15,Northern Ireland,Italy,0,0,False,FIFA World Cup qualification,Belfast,Northern Ireland
 m_756d3bf947,2021-11-15,Switzerland,Bulgaria,4,0,False,FIFA World Cup qualification,Lucerne,Switzerland
 m_1cfbba6d75,2021-11-15,Scotland,Denmark,2,0,False,FIFA World Cup qualification,Glasgow,Scotland
@@ -7174,7 +7174,7 @@ m_b9413e8c00,2021-11-15,Poland,Hungary,1,2,False,FIFA World Cup qualification,Wa
 m_213115876c,2021-11-15,San Marino,England,0,10,False,FIFA World Cup qualification,Serravalle,San Marino
 m_ade9f86c76,2021-11-16,Bahrain,Kyrgyzstan,4,2,False,Friendly,Isa Town,Bahrain
 m_5a4be8f889,2021-11-16,Belarus,Jordan,1,0,False,Friendly,Minsk,Belarus
-m_35d48b05ce,2021-11-16,Kazakhstan,Tajikistan,1,0,False,Friendly,Nur-Sultan,Kazakhstan
+m_35d48b05ce,2021-11-16,Kazakhstan,Tajikistan,1,0,False,Friendly,Astana,Kazakhstan
 m_fbb250ff20,2021-11-16,New Zealand,Gambia,2,0,True,Friendly,Dubai,United Arab Emirates
 m_167226495d,2021-11-16,Indonesia,Afghanistan,0,1,True,Friendly,Antalya,Turkey
 m_4c37b9893f,2021-11-16,Maldives,Seychelles,0,0,True,Mahinda Rajapaksa Cup,Colombo,Sri Lanka
@@ -7538,7 +7538,7 @@ m_15dcdb6d4f,2022-03-29,Denmark,Serbia,3,0,False,Friendly,Copenhagen,Denmark
 m_118029a7e7,2022-03-29,England,Ivory Coast,3,0,False,Friendly,London,England
 m_b4db5856ea,2022-03-29,Faroe Islands,Liechtenstein,1,0,True,Friendly,San Pedro del Pinatar,Spain
 m_a6de40de83,2022-03-29,Finland,Slovakia,0,2,True,Friendly,Murcia,Spain
-m_d884420727,2022-03-29,France,South Africa,5,0,True,Friendly,Villeneuve D'Ascq,Algeria
+m_d884420727,2022-03-29,France,South Africa,5,0,False,Friendly,Villeneuve-d'Ascq,France
 m_eff9e35176,2022-03-29,Israel,Romania,2,2,False,Friendly,Netanya,Israel
 m_bea8e58f81,2022-03-29,Liberia,Burundi,1,2,True,Friendly,Antalya,Turkey
 m_03be6769c1,2022-03-29,Malta,Kuwait,2,0,False,Friendly,Ta' Qali,Malta
@@ -7549,7 +7549,7 @@ m_cd1f3666a7,2022-03-29,Norway,Armenia,9,0,False,Friendly,Oslo,Norway
 m_d40492b327,2022-03-29,Qatar,Slovenia,0,0,False,Friendly,Al Rayyan,Qatar
 m_b7c375cdfb,2022-03-29,Republic of Ireland,Lithuania,1,0,False,Friendly,Dublin,Republic of Ireland
 m_30f5afe618,2022-03-29,Singapore,Philippines,2,0,False,Friendly,Kallang,Singapore
-m_a5b1ecf1b5,2022-03-29,Spain,Iceland,5,0,False,Friendly,La Coruña,Spain
+m_a5b1ecf1b5,2022-03-29,Spain,Iceland,5,0,False,Friendly,A Coruña,Spain
 m_d8aaf61582,2022-03-29,Switzerland,Kosovo,1,1,False,Friendly,Zürich,Switzerland
 m_7d6ca4cf93,2022-03-29,Tanzania,Sudan,1,1,False,Friendly,Dar es Salaam,Tanzania
 m_c68d3c3bd9,2022-03-29,Togo,Benin,1,1,True,Friendly,Antalya,Turkey
@@ -7559,7 +7559,7 @@ m_1cc602594c,2022-03-29,Wales,Czech Republic,1,1,False,Friendly,Cardiff,Wales
 m_0225879c11,2022-03-29,Tajikistan,Kyrgyzstan,1,0,True,Navruz Cup,Namangan,Uzbekistan
 m_340484a03d,2022-03-29,Uzbekistan,Uganda,4,2,False,Navruz Cup,Namangan,Uzbekistan
 m_d138951c50,2022-03-29,Cyprus,Estonia,2,0,False,UEFA Nations League,Larnaca,Cyprus
-m_769a737422,2022-03-29,Kazakhstan,Moldova,0,1,False,UEFA Nations League,Nur-Sultan,Kazakhstan
+m_769a737422,2022-03-29,Kazakhstan,Moldova,0,1,False,UEFA Nations League,Astana,Kazakhstan
 m_a7f02d4346,2022-03-29,Gambia,Chad,2,2,True,African Cup of Nations qualification,Agadir,Morocco
 m_94a5ec34c9,2022-03-30,Mexico,El Salvador,2,0,False,FIFA World Cup qualification,Mexico City,Mexico
 m_49ee73e85b,2022-03-30,Costa Rica,United States,2,0,False,FIFA World Cup qualification,San José,Costa Rica
@@ -7629,7 +7629,7 @@ m_2bebb62362,2022-06-02,Japan,Paraguay,4,1,False,Friendly,Sapporo,Japan
 m_fdab038a61,2022-06-02,South Korea,Brazil,1,5,False,Friendly,Seoul,South Korea
 m_e42f85fa58,2022-06-02,Mexico,Uruguay,0,3,True,Friendly,Glendale,United States
 m_9ce16474df,2022-06-03,Togo,Eswatini,2,2,False,African Cup of Nations qualification,Lomé,Togo
-m_75f9728b76,2022-06-03,Burkina Faso,Cape Verde,2,0,True,African Cup of Nations qualification,Marrakech,Morocco
+m_75f9728b76,2022-06-03,Burkina Faso,Cape Verde,2,0,True,African Cup of Nations qualification,Marrakesh,Morocco
 m_2232009a5b,2022-06-03,Comoros,Lesotho,2,0,False,African Cup of Nations qualification,Moroni,Comoros
 m_8158d701c5,2022-06-03,Ivory Coast,Zambia,3,1,False,African Cup of Nations qualification,Yamoussoukro,Ivory Coast
 m_51d582add7,2022-06-03,Curaçao,Honduras,0,1,False,CONCACAF Nations League,Willemstad,Curaçao
@@ -7642,7 +7642,7 @@ m_d12dde40ad,2022-06-03,British Virgin Islands,Cayman Islands,1,1,False,CONCACAF
 m_f113c1be8b,2022-06-03,Croatia,Austria,0,3,False,UEFA Nations League,Osijek,Croatia
 m_92633904ce,2022-06-03,France,Denmark,1,2,False,UEFA Nations League,Paris,France
 m_ee40f1ed10,2022-06-03,Belgium,Netherlands,1,4,False,UEFA Nations League,Brussels,Belgium
-m_edc2a08aff,2022-06-03,Kazakhstan,Azerbaijan,2,0,False,UEFA Nations League,Nur-Sultan,Kazakhstan
+m_edc2a08aff,2022-06-03,Kazakhstan,Azerbaijan,2,0,False,UEFA Nations League,Astana,Kazakhstan
 m_13256e868c,2022-06-03,Belarus,Slovakia,0,1,True,UEFA Nations League,Novi Sad,Serbia
 m_617b0dec75,2022-06-03,Liechtenstein,Moldova,0,2,False,UEFA Nations League,Vaduz,Liechtenstein
 m_222710b810,2022-06-03,Latvia,Andorra,3,0,False,UEFA Nations League,Riga,Latvia
@@ -7673,7 +7673,7 @@ m_a6ae84e63a,2022-06-05,Central African Republic,Ghana,1,1,True,African Cup of N
 m_cddd97934a,2022-06-05,Madagascar,Angola,1,1,False,African Cup of Nations qualification,Antananarivo,Madagascar
 m_f2fb82b6be,2022-06-05,Botswana,Tunisia,0,0,False,African Cup of Nations qualification,Francistown,Botswana
 m_31823c12e1,2022-06-05,Costa Rica,Martinique,2,0,False,CONCACAF Nations League,San José,Costa Rica
-m_a5ae2343b5,2022-06-05,Cuba,Barbados,3,0,False,CONCACAF Nations League,Santiago,Cuba
+m_a5ae2343b5,2022-06-05,Cuba,Barbados,3,0,False,CONCACAF Nations League,Santiago de Cuba,Cuba
 m_6e34c97ee4,2022-06-05,Antigua and Barbuda,Guadeloupe,1,0,True,CONCACAF Nations League,Basseterre,Saint Kitts and Nevis
 m_3aa264a1d9,2022-06-05,Guatemala,Belize,2,0,False,CONCACAF Nations League,Guatemala City,Guatemala
 m_5c172795fa,2022-06-05,Dominican Republic,French Guiana,2,3,False,CONCACAF Nations League,Santo Domingo,Dominican Republic
@@ -7710,7 +7710,7 @@ m_93e86ff273,2022-06-06,Andorra,Moldova,0,0,False,UEFA Nations League,Andorra la
 m_94eda274c9,2022-06-06,South Korea,Chile,2,0,False,Friendly,Daejeon,South Korea
 m_689654034c,2022-06-06,Japan,Brazil,0,1,False,Friendly,Tokyo,Japan
 m_7efd562eb1,2022-06-07,Eswatini,Burkina Faso,1,3,True,African Cup of Nations qualification,Johannesburg,South Africa
-m_7d2222b980,2022-06-07,Cape Verde,Togo,2,0,True,African Cup of Nations qualification,Marrakech,Morocco
+m_7d2222b980,2022-06-07,Cape Verde,Togo,2,0,True,African Cup of Nations qualification,Marrakesh,Morocco
 m_4f8fed9d7d,2022-06-07,Zambia,Comoros,2,1,False,African Cup of Nations qualification,Lusaka,Zambia
 m_7e57b1728a,2022-06-07,Senegal,Rwanda,1,0,False,African Cup of Nations qualification,Diamniadio,Senegal
 m_a35509c370,2022-06-07,Jamaica,Suriname,3,1,False,CONCACAF Nations League,Kingston,Jamaica
@@ -7730,8 +7730,8 @@ m_450df96bd6,2022-06-08,Philippines,Yemen,0,0,True,AFC Asian Cup qualification,U
 m_cc74590f0b,2022-06-08,Mongolia,Palestine,0,1,False,AFC Asian Cup qualification,Ulaanbaatar,Mongolia
 m_7324bd3663,2022-06-08,Thailand,Maldives,3,0,True,AFC Asian Cup qualification,Namangan,Uzbekistan
 m_ab97e7df0b,2022-06-08,Uzbekistan,Sri Lanka,3,0,False,AFC Asian Cup qualification,Namangan,Uzbekistan
-m_40096a355b,2022-06-08,Hong Kong,Afghanistan,2,1,True,AFC Asian Cup qualification,Kolkota,India
-m_a0c3fd298b,2022-06-08,India,Cambodia,2,0,False,AFC Asian Cup qualification,Kolkota,India
+m_40096a355b,2022-06-08,Hong Kong,Afghanistan,2,1,True,AFC Asian Cup qualification,Kolkata,India
+m_a0c3fd298b,2022-06-08,India,Cambodia,2,0,False,AFC Asian Cup qualification,Kolkata,India
 m_18a36759f6,2022-06-08,Bahrain,Bangladesh,2,0,True,AFC Asian Cup qualification,Kuala Lumpur,Malaysia
 m_2efcf62218,2022-06-08,Malaysia,Turkmenistan,3,1,False,AFC Asian Cup qualification,Kuala Lumpur,Malaysia
 m_127dfaa21c,2022-06-08,Tajikistan,Myanmar,4,0,True,AFC Asian Cup qualification,Bishkek,Kyrgyzstan
@@ -7794,8 +7794,8 @@ m_2c245c0b18,2022-06-11,Mongolia,Philippines,0,1,False,AFC Asian Cup qualificati
 m_a82c8c537f,2022-06-11,Yemen,Palestine,0,5,True,AFC Asian Cup qualification,Ulaanbaatar,Mongolia
 m_123df2c45a,2022-06-11,Sri Lanka,Thailand,0,2,True,AFC Asian Cup qualification,Namangan,Uzbekistan
 m_18ffeeff5c,2022-06-11,Uzbekistan,Maldives,4,0,False,AFC Asian Cup qualification,Namangan,Uzbekistan
-m_be6f76ae33,2022-06-11,Cambodia,Hong Kong,0,3,True,AFC Asian Cup qualification,Kolkota,India
-m_337a7c0052,2022-06-11,India,Afghanistan,2,1,False,AFC Asian Cup qualification,Kolkota,India
+m_be6f76ae33,2022-06-11,Cambodia,Hong Kong,0,3,True,AFC Asian Cup qualification,Kolkata,India
+m_337a7c0052,2022-06-11,India,Afghanistan,2,1,False,AFC Asian Cup qualification,Kolkata,India
 m_5941953dc7,2022-06-11,Bangladesh,Turkmenistan,1,2,True,AFC Asian Cup qualification,Kuala Lumpur,Malaysia
 m_30f324a5bd,2022-06-11,Malaysia,Bahrain,1,2,False,AFC Asian Cup qualification,Kuala Lumpur,Malaysia
 m_0b0586df17,2022-06-11,Singapore,Tajikistan,0,1,True,AFC Asian Cup qualification,Bishkek,Kyrgyzstan
@@ -7818,7 +7818,7 @@ m_5105d55218,2022-06-11,Luxembourg,Turkey,0,2,False,UEFA Nations League,Luxembou
 m_6be90db82f,2022-06-11,Ecuador,Cape Verde,1,0,True,Friendly,Fort Lauderdale,United States
 m_09bf1e1b56,2022-06-11,Uruguay,Panama,5,0,False,Friendly,Montevideo,Uruguay
 m_e40934e4e0,2022-06-12,Martinique,Panama,0,0,False,CONCACAF Nations League,Fort-de-France,Martinique
-m_504c6134a8,2022-06-12,Cuba,Antigua and Barbuda,3,1,False,CONCACAF Nations League,Santiago,Cuba
+m_504c6134a8,2022-06-12,Cuba,Antigua and Barbuda,3,1,False,CONCACAF Nations League,Santiago de Cuba,Cuba
 m_06be170358,2022-06-12,Guadeloupe,Barbados,2,1,False,CONCACAF Nations League,Les Abymes,Guadeloupe
 m_c43401170e,2022-06-12,Saint Kitts and Nevis,Saint Martin,1,1,False,CONCACAF Nations League,Basseterre,Saint Kitts and Nevis
 m_d0d23e2076,2022-06-12,Saint Lucia,Anguilla,2,0,False,CONCACAF Nations League,Gros Islet,Saint Lucia
@@ -7845,7 +7845,7 @@ m_6076b0f043,2022-06-13,Denmark,Austria,2,0,False,UEFA Nations League,Copenhagen
 m_d6d6cae77a,2022-06-13,France,Croatia,0,1,False,UEFA Nations League,Paris,France
 m_14f56fb439,2022-06-13,Iceland,Israel,2,2,False,UEFA Nations League,Reykjavík,Iceland
 m_2abf6d80ee,2022-06-13,Azerbaijan,Belarus,2,0,False,UEFA Nations League,Mardakan,Azerbaijan
-m_d053617ace,2022-06-13,Kazakhstan,Slovakia,2,1,False,UEFA Nations League,Nur-Sultan,Kazakhstan
+m_d053617ace,2022-06-13,Kazakhstan,Slovakia,2,1,False,UEFA Nations League,Astana,Kazakhstan
 m_44f45d8fee,2022-06-13,Albania,Estonia,0,0,False,Friendly,Tirana,Albania
 m_21e4640d69,2022-06-14,Costa Rica,New Zealand,1,0,True,FIFA World Cup qualification,Al Rayyan,Qatar
 m_53a7479a1a,2022-06-14,Kuwait,Jordan,0,3,False,AFC Asian Cup qualification,Kuwait City,Kuwait
@@ -7854,8 +7854,8 @@ m_aaa7424c75,2022-06-14,Palestine,Philippines,4,0,True,AFC Asian Cup qualificati
 m_0c785d134d,2022-06-14,Mongolia,Yemen,2,0,False,AFC Asian Cup qualification,Ulaanbaatar,Mongolia
 m_507cfa1438,2022-06-14,Maldives,Sri Lanka,1,0,True,AFC Asian Cup qualification,Namangan,Uzbekistan
 m_a42b7de6de,2022-06-14,Uzbekistan,Thailand,2,0,False,AFC Asian Cup qualification,Namangan,Uzbekistan
-m_ded8a93ca6,2022-06-14,Afghanistan,Cambodia,2,2,True,AFC Asian Cup qualification,Kolkota,India
-m_9fe5f5d1a5,2022-06-14,India,Hong Kong,4,0,False,AFC Asian Cup qualification,Kolkota,India
+m_ded8a93ca6,2022-06-14,Afghanistan,Cambodia,2,2,True,AFC Asian Cup qualification,Kolkata,India
+m_9fe5f5d1a5,2022-06-14,India,Hong Kong,4,0,False,AFC Asian Cup qualification,Kolkata,India
 m_47942e800e,2022-06-14,Bahrain,Turkmenistan,1,0,True,AFC Asian Cup qualification,Kuala Lumpur,Malaysia
 m_ac8a0d6b41,2022-06-14,Malaysia,Bangladesh,4,1,False,AFC Asian Cup qualification,Kuala Lumpur,Malaysia
 m_3436583e51,2022-06-14,Myanmar,Singapore,2,6,True,AFC Asian Cup qualification,Bishkek,Kyrgyzstan
@@ -7900,14 +7900,14 @@ m_f895ade4d9,2022-07-12,Madagascar,Namibia,0,2,True,COSAFA Cup,KwaMashu,South Af
 m_30ae8ee4bd,2022-07-12,Zambia,Botswana,1,1,True,COSAFA Cup,KwaMashu,South Africa
 m_916cce665d,2022-07-13,South Africa,Mozambique,0,0,False,COSAFA Cup,KwaMashu,South Africa
 m_80a5713b31,2022-07-13,Senegal,Eswatini,1,1,True,COSAFA Cup,KwaMashu,South Africa
-m_88b2a1c4a2,2022-07-15,South Africa,Madagascar,2,1,False,COSAFA Cup,Sugar Ray Xulu Stadium,South Africa
-m_785486e597,2022-07-15,Botswana,Eswatini,2,0,True,COSAFA Cup,Sugar Ray Xulu Stadium,South Africa
+m_88b2a1c4a2,2022-07-15,South Africa,Madagascar,2,1,False,COSAFA Cup,Clermont,South Africa
+m_785486e597,2022-07-15,Botswana,Eswatini,2,0,True,COSAFA Cup,Clermont,South Africa
 m_97bfc77be1,2022-07-15,Namibia,Mozambique,1,0,True,COSAFA Cup,Durban,South Africa
 m_5d6ee3d53a,2022-07-15,Zambia,Senegal,4,3,True,COSAFA Cup,Durban,South Africa
 m_a88ce2e35b,2022-07-16,Elba Island,Raetia,5,0,False,Friendly,Capoliveri,Italy
-m_3be22a9547,2022-07-17,South Africa,Botswana,2,1,False,COSAFA Cup,Sugar Ray Xulu Stadium,South Africa
-m_1f6d2ac714,2022-07-17,Mozambique,Senegal,1,1,True,COSAFA Cup,Moses Mabhida Stadium,South Africa
-m_8ffb84c208,2022-07-17,Namibia,Zambia,0,1,True,COSAFA Cup,Moses Mabhida Stadium,South Africa
+m_3be22a9547,2022-07-17,South Africa,Botswana,2,1,False,COSAFA Cup,Clermont,South Africa
+m_1f6d2ac714,2022-07-17,Mozambique,Senegal,1,1,True,COSAFA Cup,Durban,South Africa
+m_8ffb84c208,2022-07-17,Namibia,Zambia,0,1,True,COSAFA Cup,Durban,South Africa
 m_cec97e39ba,2022-07-19,Japan,Hong Kong,6,0,False,EAFF Championship,Kashima,Japan
 m_17e707d450,2022-07-20,China,South Korea,0,3,True,EAFF Championship,Toyota,Japan
 m_b8fbdbcb17,2022-07-24,South Korea,Hong Kong,3,0,True,EAFF Championship,Toyota,Japan
@@ -8087,7 +8087,7 @@ m_3b23157440,2022-11-16,Czech Republic,Faroe Islands,5,0,False,Friendly,Olomouc,
 m_55e5c015dd,2022-11-16,Dominican Republic,Cuba,2,4,False,Friendly,Santiago de los Caballeros,Dominican Republic
 m_b9867dc420,2022-11-16,Gibraltar,Liechtenstein,2,0,False,Friendly,Gibraltar,Gibraltar
 m_54ceee38ea,2022-11-16,Iran,Tunisia,0,2,True,Friendly,Doha,Qatar
-m_94a111621b,2022-11-16,Ivory Coast,Burundi,4,0,True,Friendly,Marrakech,Morocco
+m_94a111621b,2022-11-16,Ivory Coast,Burundi,4,0,True,Friendly,Marrakesh,Morocco
 m_fe3ce7b8ce,2022-11-16,Kosovo,Armenia,2,2,False,Friendly,Pristina,Kosovo
 m_d2ae110348,2022-11-16,Mexico,Sweden,1,2,True,Friendly,Girona,Spain
 m_5d8afd8232,2022-11-16,Moldova,Azerbaijan,1,2,False,Friendly,Chișinău,Moldova
@@ -8115,7 +8115,7 @@ m_a3e9a85883,2022-11-17,Niger,Libya,2,3,True,Friendly,Antalya,Turkey
 m_b3f532cb43,2022-11-17,North Macedonia,Finland,1,1,False,Friendly,Skopje,North Macedonia
 m_ad159f453d,2022-11-17,Portugal,Nigeria,4,0,False,Friendly,Lisbon,Portugal
 m_d917be4f4f,2022-11-17,Republic of Ireland,Norway,1,2,False,Friendly,Dublin,Republic of Ireland
-m_2ff3e430ab,2022-11-17,Romania,Slovenia,1,2,False,Friendly,Cluj-Napoca,Romania
+m_2ff3e430ab,2022-11-17,Romania,Slovenia,1,2,False,Friendly,Cluj,Romania
 m_493e49d3a7,2022-11-17,Rwanda,Sudan,0,0,False,Friendly,Kigali,Rwanda
 m_5553d71d8b,2022-11-17,South Africa,Mozambique,2,1,False,Friendly,Mbombela,South Africa
 m_66db919682,2022-11-17,Saint Lucia,San Marino,1,1,False,Friendly,Gros Islet,Saint Lucia
@@ -8130,7 +8130,7 @@ m_c3d7765aa4,2022-11-19,Albania,Armenia,2,0,False,Friendly,Tirana,Albania
 m_8b164f993f,2022-11-19,Colombia,Paraguay,2,0,True,Friendly,Fort Lauderdale,United States
 m_d613c76490,2022-11-19,Gibraltar,Andorra,1,0,False,Friendly,Gibraltar,Gibraltar
 m_a35bed07fa,2022-11-19,Guatemala,Nicaragua,3,1,True,Friendly,Carson,United States
-m_9283c010e4,2022-11-19,Ivory Coast,Burkina Faso,1,2,True,Friendly,Marrakech,Morocco
+m_9283c010e4,2022-11-19,Ivory Coast,Burkina Faso,1,2,True,Friendly,Marrakesh,Morocco
 m_ee24f9f90e,2022-11-19,Kosovo,Faroe Islands,1,1,False,Friendly,Pristina,Kosovo
 m_69b1ea5e6c,2022-11-19,Kuwait,Lebanon,2,0,True,Friendly,Dubai,United Arab Emirates
 m_45066b1e11,2022-11-19,Peru,Bolivia,1,0,False,Friendly,Arequipa,Peru
@@ -8334,7 +8334,7 @@ m_45c41fee04,2023-03-24,Tahiti,New Caledonia,2,1,False,Friendly,Pirae,Tahiti
 m_e16c490cfe,2023-03-24,Uzbekistan,Bolivia,1,0,True,Friendly,Jeddah,Saudi Arabia
 m_a4940930aa,2023-03-24,Nigeria,Guinea-Bissau,0,1,False,African Cup of Nations qualification,Abuja,Nigeria
 m_c4e32bbd17,2023-03-24,Cape Verde,Eswatini,0,0,False,African Cup of Nations qualification,Praia,Cape Verde
-m_6b504af609,2023-03-24,Burkina Faso,Togo,1,0,True,African Cup of Nations qualification,Marrakech,Morocco
+m_6b504af609,2023-03-24,Burkina Faso,Togo,1,0,True,African Cup of Nations qualification,Marrakesh,Morocco
 m_b1faeb0b5e,2023-03-24,Cameroon,Namibia,1,1,False,African Cup of Nations qualification,Yaoundé,Cameroon
 m_374ad13097,2023-03-24,Guinea,Ethiopia,2,0,True,African Cup of Nations qualification,Casablanca,Morocco
 m_e6c07c1dbb,2023-03-24,Egypt,Malawi,2,0,False,African Cup of Nations qualification,Cairo,Egypt
@@ -8398,7 +8398,7 @@ m_929f87da23,2023-03-26,Luxembourg,Portugal,0,6,False,UEFA Euro qualification,Lu
 m_463fc60b7f,2023-03-26,Slovakia,Bosnia and Herzegovina,2,0,False,UEFA Euro qualification,Bratislava,Slovakia
 m_7cd4fa4e3e,2023-03-26,Mexico,Jamaica,2,2,False,CONCACAF Nations League,Mexico City,Mexico
 m_d9f0e1666b,2023-03-26,Antigua and Barbuda,Barbados,1,2,False,CONCACAF Nations League,North Sound,Antigua and Barbuda
-m_8e2bda3911,2023-03-26,Cuba,Guadeloupe,1,0,False,CONCACAF Nations League,Santiago,Cuba
+m_8e2bda3911,2023-03-26,Cuba,Guadeloupe,1,0,False,CONCACAF Nations League,Santiago de Cuba,Cuba
 m_6b3b6f9e73,2023-03-26,Puerto Rico,Cayman Islands,5,1,False,CONCACAF Nations League,Bayamón,Puerto Rico
 m_ea81f71ed5,2023-03-27,Chile,Paraguay,3,2,False,Friendly,Santiago,Chile
 m_bd5ac14d0b,2023-03-27,Greece,Lithuania,0,0,False,Friendly,Athens,Greece
@@ -8498,7 +8498,7 @@ m_c77277c346,2023-06-14,Uzbekistan,Turkmenistan,2,0,False,CAFA Nations Cup,Tashk
 m_ad5678b263,2023-06-14,Pakistan,Kenya,0,1,True,Mauritius Four Nations Cup,Saint Pierre,Mauritius
 m_12fb0127c3,2023-06-14,Mauritius,Djibouti,1,3,False,Mauritius Four Nations Cup,Saint Pierre,Mauritius
 m_f25f47731d,2023-06-14,Guinea-Bissau,São Tomé and Príncipe,1,0,False,African Cup of Nations qualification,Bissau,Guinea-Bissau
-m_c86cd2436b,2023-06-14,Guinea,Egypt,1,2,True,African Cup of Nations qualification,Marrakech,Morocco
+m_c86cd2436b,2023-06-14,Guinea,Egypt,1,2,True,African Cup of Nations qualification,Marrakesh,Morocco
 m_847a53d8f4,2023-06-14,South Sudan,Gambia,2,3,True,African Cup of Nations qualification,Ismailia,Egypt
 m_80be2d7856,2023-06-15,Panama,Canada,0,2,True,CONCACAF Nations League,Las Vegas,United States
 m_d5bd7fcaea,2023-06-15,United States,Mexico,3,0,False,CONCACAF Nations League,Las Vegas,United States
@@ -8746,10 +8746,10 @@ m_02daaef061,2023-08-28,Tahiti,Cook Islands,9,1,False,Friendly,Pirae,Tahiti
 m_82a59b32f7,2023-08-28,Comoros,Réunion,1,1,True,Indian Ocean Island Games,Antananarivo,Madagascar
 m_226d2a1e78,2023-08-28,Mauritius,Seychelles,1,0,True,Indian Ocean Island Games,Antananarivo,Madagascar
 m_b7b45972e1,2023-08-31,Tahiti,Cook Islands,3,0,False,Friendly,Pirae,Tahiti
-m_e29f42f99a,2023-08-31,Madagascar,Comoros,4,2,False,Indian Ocean Island Games,Madagascar,Madagascar
-m_04b93d7dd8,2023-08-31,Réunion,Mauritius,2,1,True,Indian Ocean Island Games,Madagascar,Madagascar
-m_a887709959,2023-09-02,Comoros,Mauritius,0,2,True,Indian Ocean Island Games,Madagascar,Madagascar
-m_6f202eea23,2023-09-02,Madagascar,Réunion,1,0,False,Indian Ocean Island Games,Madagascar,Madagascar
+m_e29f42f99a,2023-08-31,Madagascar,Comoros,4,2,False,Indian Ocean Island Games,Antananarivo,Madagascar
+m_04b93d7dd8,2023-08-31,Réunion,Mauritius,2,1,True,Indian Ocean Island Games,Antananarivo,Madagascar
+m_a887709959,2023-09-02,Comoros,Mauritius,0,2,True,Indian Ocean Island Games,Antananarivo,Madagascar
+m_6f202eea23,2023-09-02,Madagascar,Réunion,1,0,False,Indian Ocean Island Games,Antananarivo,Madagascar
 m_1e32cfef3c,2023-09-03,Bangladesh,Afghanistan,0,0,False,Friendly,Dhaka,Bangladesh
 m_7e3a7bafe4,2023-09-03,Guatemala,Honduras,0,0,True,Friendly,Fort Lauderdale,United States
 m_bfa8576bf1,2023-09-04,Mozambique,Benin,3,2,False,African Cup of Nations qualification,Maputo,Mozambique
@@ -8779,7 +8779,7 @@ m_3590edc29d,2023-09-07,Wales,South Korea,0,0,False,Friendly,Cardiff,Wales
 m_6c8b6b2e39,2023-09-07,Ghana,Central African Republic,2,1,False,African Cup of Nations qualification,Kumasi,Ghana
 m_2c6c1bad99,2023-09-07,Angola,Madagascar,0,0,False,African Cup of Nations qualification,Lubango,Angola
 m_c059650a5b,2023-09-07,Algeria,Tanzania,0,0,False,African Cup of Nations qualification,Annaba,Algeria
-m_d1404cb406,2023-09-07,Niger,Uganda,0,2,True,African Cup of Nations qualification,Marrakech,Morocco
+m_d1404cb406,2023-09-07,Niger,Uganda,0,2,True,African Cup of Nations qualification,Marrakesh,Morocco
 m_02b6e7ee67,2023-09-07,Tunisia,Botswana,3,0,False,African Cup of Nations qualification,Radès,Tunisia
 m_ced8c7e4cc,2023-09-07,France,Republic of Ireland,2,0,False,UEFA Euro qualification,Paris,France
 m_ce0b52f355,2023-09-07,Netherlands,Greece,3,0,False,UEFA Euro qualification,Eindhoven,Netherlands
@@ -8806,7 +8806,7 @@ m_5f14ea0ab5,2023-09-08,Costa Rica,Saudi Arabia,3,1,True,Friendly,Newcastle,Engl
 m_41883ec227,2023-09-08,Indonesia,Turkmenistan,2,0,False,Friendly,Surabaya,Indonesia
 m_b57f7ce65d,2023-09-08,Myanmar,Nepal,0,0,False,Friendly,Yangon,Myanmar
 m_292361c75b,2023-09-08,Singapore,Tajikistan,0,2,False,Friendly,Bishan,Singapore
-m_952d581be1,2023-09-08,Burkina Faso,Eswatini,0,0,True,African Cup of Nations qualification,Marrakech,Morocco
+m_952d581be1,2023-09-08,Burkina Faso,Eswatini,0,0,True,African Cup of Nations qualification,Marrakesh,Morocco
 m_2c7e323e59,2023-09-08,Egypt,Ethiopia,1,0,False,African Cup of Nations qualification,Cairo,Egypt
 m_2b0771a133,2023-09-08,Mali,South Sudan,4,0,False,African Cup of Nations qualification,Bamako,Mali
 m_8f956f2c4c,2023-09-08,Georgia,Spain,1,7,False,UEFA Euro qualification,Tbilisi,Georgia
@@ -8845,7 +8845,7 @@ m_95266f827b,2023-09-10,Saint Lucia,Saint Kitts and Nevis,2,0,False,CONCACAF Nat
 m_3423aae76d,2023-09-10,Hungary,Czech Republic,1,1,False,Friendly,Budapest,Hungary
 m_e463784c2d,2023-09-10,Nigeria,São Tomé and Príncipe,6,0,False,African Cup of Nations qualification,Uyo,Nigeria
 m_bdb9dd5edd,2023-09-10,Togo,Cape Verde,3,2,False,African Cup of Nations qualification,Lomé,Togo
-m_7d042c7b19,2023-09-10,Gambia,Congo,2,2,True,African Cup of Nations qualification,Marrakech,Morocco
+m_7d042c7b19,2023-09-10,Gambia,Congo,2,2,True,African Cup of Nations qualification,Marrakesh,Morocco
 m_9eeddecdc3,2023-09-10,Republic of Ireland,Netherlands,1,2,False,UEFA Euro qualification,Dublin,Republic of Ireland
 m_271f789997,2023-09-10,Greece,Gibraltar,5,0,False,UEFA Euro qualification,Athens,Greece
 m_4d1d82ea3a,2023-09-10,Faroe Islands,Moldova,0,1,False,UEFA Euro qualification,Tórshavn,Faroe Islands
@@ -8872,7 +8872,7 @@ m_58b40aaf07,2023-09-11,Latvia,Wales,0,2,False,UEFA Euro qualification,Riga,Latv
 m_25b524df43,2023-09-11,Iceland,Bosnia and Herzegovina,1,0,False,UEFA Euro qualification,Reykjavík,Iceland
 m_c7de24ef4c,2023-09-11,Portugal,Luxembourg,9,0,False,UEFA Euro qualification,São João da Venda,Portugal
 m_4e1e91a6ef,2023-09-11,Slovakia,Liechtenstein,3,0,False,UEFA Euro qualification,Bratislava,Slovakia
-m_25e248546b,2023-09-12,Cuba,Suriname,1,0,False,CONCACAF Nations League,Santiago,Cuba
+m_25e248546b,2023-09-12,Cuba,Suriname,1,0,False,CONCACAF Nations League,Santiago de Cuba,Cuba
 m_e6ec70440a,2023-09-12,Jamaica,Haiti,2,2,False,CONCACAF Nations League,Kingston,Jamaica
 m_155b463c13,2023-09-12,Honduras,Grenada,4,0,False,CONCACAF Nations League,Tegucigalpa,Honduras
 m_484082421b,2023-09-12,Saint Vincent and the Grenadines,Bermuda,4,3,False,CONCACAF Nations League,Kingstown,Saint Vincent and the Grenadines
@@ -9150,7 +9150,7 @@ m_8f2060980a,2023-11-17,Barbados,Nicaragua,0,4,False,CONCACAF Nations League,Bri
 m_7ff97f372b,2023-11-17,Bermuda,Saint Vincent and the Grenadines,3,1,False,CONCACAF Nations League,Devonshire Parish,Bermuda
 m_e86c57a8de,2023-11-17,Belize,French Guiana,1,0,False,CONCACAF Nations League,Belmopan,Belize
 m_2547b8596f,2023-11-17,Honduras,Mexico,2,0,False,CONCACAF Nations League,Tegucigalpa,Honduras
-m_db4d586149,2023-11-17,Burkina Faso,Guinea-Bissau,1,1,True,FIFA World Cup qualification,Marrakech,Morocco
+m_db4d586149,2023-11-17,Burkina Faso,Guinea-Bissau,1,1,True,FIFA World Cup qualification,Marrakesh,Morocco
 m_865a6ac5d8,2023-11-17,Eswatini,Libya,0,1,True,FIFA World Cup qualification,Mbombela,South Africa
 m_c3d4977e31,2023-11-17,Cameroon,Mauritius,3,0,False,FIFA World Cup qualification,Douala,Cameroon
 m_237955b568,2023-11-17,Zambia,Congo,4,2,False,FIFA World Cup qualification,Ndola,Zambia
@@ -9176,7 +9176,7 @@ m_37c52fef7b,2023-11-18,Anguilla,Bonaire,0,3,False,CONCACAF Nations League,The V
 m_fbc89d7b15,2023-11-18,Jamaica,Canada,1,2,False,CONCACAF Nations League,Kingston,Jamaica
 m_13b17606db,2023-11-18,Senegal,South Sudan,4,0,False,FIFA World Cup qualification,Diamniadio,Senegal
 m_7055923c29,2023-11-18,South Africa,Benin,2,1,False,FIFA World Cup qualification,Durban,South Africa
-m_9719f6e456,2023-11-18,Niger,Tanzania,0,1,True,FIFA World Cup qualification,Marrakech,Morocco
+m_9719f6e456,2023-11-18,Niger,Tanzania,0,1,True,FIFA World Cup qualification,Marrakesh,Morocco
 m_1bd854b66b,2023-11-18,Germany,Turkey,2,3,False,Friendly,Berlin,Germany
 m_c1e4ef47af,2023-11-18,France,Gibraltar,14,0,False,UEFA Euro qualification,Nice,France
 m_c4db87c4b4,2023-11-18,Netherlands,Republic of Ireland,1,0,False,UEFA Euro qualification,Amsterdam,Netherlands
@@ -9265,7 +9265,7 @@ m_9c80077ec7,2023-11-21,Rwanda,South Africa,2,0,False,FIFA World Cup qualificati
 m_3057e65e9d,2023-11-21,Eswatini,Cape Verde,0,2,True,FIFA World Cup qualification,Mbombela,South Africa
 m_8e73c5bcde,2023-11-21,Libya,Cameroon,1,1,False,FIFA World Cup qualification,Benghazi,Libya
 m_a2ad0ea421,2023-11-21,Mauritius,Angola,0,0,False,FIFA World Cup qualification,Saint Pierre,Mauritius
-m_bc87621792,2023-11-21,Niger,Zambia,2,1,True,FIFA World Cup qualification,Marrakech,Morocco
+m_bc87621792,2023-11-21,Niger,Zambia,2,1,True,FIFA World Cup qualification,Marrakesh,Morocco
 m_61d4616b1d,2023-11-21,Tanzania,Morocco,0,2,False,FIFA World Cup qualification,Dar es Salaam,Tanzania
 m_0179e3002a,2023-11-21,Somalia,Uganda,0,1,True,FIFA World Cup qualification,Berkane,Morocco
 m_5721ee0be4,2023-11-21,Botswana,Guinea,1,0,False,FIFA World Cup qualification,Francistown,Botswana
@@ -9291,15 +9291,15 @@ m_9c8c16bc2d,2023-11-24,Northern Mariana Islands,Tahiti,0,5,True,Pacific Games,H
 m_70c3431ae9,2023-11-27,Northern Mariana Islands,American Samoa,4,0,True,Pacific Games,Honiara,Solomon Islands
 m_0d10fbd924,2023-11-27,Tonga,Tuvalu,0,4,True,Pacific Games,Honiara,Solomon Islands
 m_055883c9fd,2023-11-27,Tahiti,Samoa,2,1,True,Pacific Games,Honiara,Solomon Islands
-m_309dcdbad0,2023-11-27,Cook Islands,Papua New Guinea,0,3,True,Pacific Games,Solomon Islands,Solomon Islands
-m_59f8667a5e,2023-11-28,New Caledonia,Vanuatu,1,0,True,Pacific Games,Solomon Islands,Solomon Islands
-m_fb530f3c07,2023-11-28,Solomon Islands,Fiji,2,0,False,Pacific Games,Solomon Islands,Solomon Islands
-m_9e7375989d,2023-11-30,American Samoa,Tonga,2,6,True,Pacific Games,Solomon Islands,Solomon Islands
-m_89bb316fc1,2023-11-30,Northern Mariana Islands,Tuvalu,1,4,True,Pacific Games,Solomon Islands,Solomon Islands
-m_24c30d26db,2023-11-30,Samoa,Cook Islands,3,0,True,Pacific Games,Solomon Islands,Solomon Islands
-m_f53277e6de,2023-11-30,Tahiti,Papua New Guinea,2,0,True,Pacific Games,Solomon Islands,Solomon Islands
-m_da2dc71a1f,2023-12-01,Vanuatu,Fiji,2,4,True,Pacific Games,Solomon Islands,Solomon Islands
-m_6d7114d27c,2023-12-02,Solomon Islands,New Caledonia,2,2,False,Pacific Games,Solomon Islands,Solomon Islands
+m_309dcdbad0,2023-11-27,Cook Islands,Papua New Guinea,0,3,True,Pacific Games,Honiara,Solomon Islands
+m_59f8667a5e,2023-11-28,New Caledonia,Vanuatu,1,0,True,Pacific Games,Honiara,Solomon Islands
+m_fb530f3c07,2023-11-28,Solomon Islands,Fiji,2,0,False,Pacific Games,Honiara,Solomon Islands
+m_9e7375989d,2023-11-30,American Samoa,Tonga,2,6,True,Pacific Games,Honiara,Solomon Islands
+m_89bb316fc1,2023-11-30,Northern Mariana Islands,Tuvalu,1,4,True,Pacific Games,Honiara,Solomon Islands
+m_24c30d26db,2023-11-30,Samoa,Cook Islands,3,0,True,Pacific Games,Honiara,Solomon Islands
+m_f53277e6de,2023-11-30,Tahiti,Papua New Guinea,2,0,True,Pacific Games,Honiara,Solomon Islands
+m_da2dc71a1f,2023-12-01,Vanuatu,Fiji,2,4,True,Pacific Games,Honiara,Solomon Islands
+m_6d7114d27c,2023-12-02,Solomon Islands,New Caledonia,2,2,False,Pacific Games,Honiara,Solomon Islands
 m_1e59d93226,2023-12-16,Mexico,Colombia,2,3,True,Friendly,Los Angeles,United States
 m_3aa05ef5a3,2024-01-01,Japan,Thailand,5,0,False,Friendly,Tokyo,Japan
 m_259a75ab81,2024-01-01,China,Hong Kong,1,2,True,Friendly,Abu Dhabi,United Arab Emirates
@@ -9455,7 +9455,7 @@ m_0f6f9c95dc,2024-03-14,Kazakhstan,Turkmenistan,2,0,True,Friendly,Dubai,United A
 m_d6e89ba846,2024-03-18,Solomon Islands,Fiji,2,1,False,Friendly,Honiara,Solomon Islands
 m_3e86cf79e1,2024-03-20,Bonaire,El Salvador,1,1,True,Friendly,"Washington, D.C.",United States
 m_ad0b2d8e73,2024-03-20,San Marino,Saint Kitts and Nevis,1,3,False,Friendly,Serravalle,San Marino
-m_02d4575c40,2024-03-20,Djibouti,Liberia,0,2,True,African Cup of Nations qualification,Marrakech,Morocco
+m_02d4575c40,2024-03-20,Djibouti,Liberia,0,2,True,African Cup of Nations qualification,Marrakesh,Morocco
 m_5173498c61,2024-03-20,Somalia,Eswatini,0,3,True,African Cup of Nations qualification,El Jadida,Morocco
 m_af75f50818,2024-03-20,Tonga,Samoa,1,4,False,Oceania Nations Cup qualification,Nuku'alofa,Tonga
 m_c26b9e41a1,2024-03-21,South Africa,Andorra,1,1,True,FIFA Series,Annaba,Algeria
@@ -9511,14 +9511,14 @@ m_0e53c193fa,2024-03-22,Albania,Chile,0,3,True,Friendly,Parma,Italy
 m_906e5983f7,2024-03-22,Argentina,El Salvador,3,0,True,Friendly,Philadelphia,United States
 m_c01e9b841b,2024-03-22,Armenia,Kosovo,0,1,False,Friendly,Yerevan,Armenia
 m_81d1d0ee97,2024-03-22,Burkina Faso,Libya,1,2,True,Friendly,Casablanca,Morocco
-m_a168ab1f3a,2024-03-22,Comoros,Uganda,4,0,True,Friendly,Marrakech,Morocco
+m_a168ab1f3a,2024-03-22,Comoros,Uganda,4,0,True,Friendly,Marrakesh,Morocco
 m_1959f73573,2024-03-22,Hungary,Turkey,1,0,False,Friendly,Budapest,Hungary
 m_b3fa752067,2024-03-22,Liechtenstein,Faroe Islands,0,4,True,Friendly,San Pedro Alcántara,Spain
-m_e6db1535c9,2024-03-22,Mauritania,Mali,0,2,True,Friendly,Marrakech,Morocco
+m_e6db1535c9,2024-03-22,Mauritania,Mali,0,2,True,Friendly,Marrakesh,Morocco
 m_7c56a854c3,2024-03-22,Morocco,Angola,1,0,False,Friendly,Agadir,Morocco
 m_176cdd2f68,2024-03-22,Netherlands,Scotland,4,0,False,Friendly,Amsterdam,Netherlands
 m_9cd44ee0c4,2024-03-22,Niger,Togo,1,2,True,Friendly,Mohammedia,Morocco
-m_9e0a434efd,2024-03-22,Nigeria,Ghana,2,1,True,Friendly,Marrakech,Morocco
+m_9e0a434efd,2024-03-22,Nigeria,Ghana,2,1,True,Friendly,Marrakesh,Morocco
 m_e112dc4bbf,2024-03-22,North Macedonia,Moldova,1,1,True,Friendly,Antalya,Turkey
 m_0087f6f5be,2024-03-22,Norway,Czech Republic,1,2,False,Friendly,Oslo,Norway
 m_40690b7672,2024-03-22,Peru,Nicaragua,2,0,False,Friendly,Lima,Peru
@@ -9553,7 +9553,7 @@ m_24dc6f9bb0,2024-03-25,Cape Verde,Equatorial Guinea,1,0,True,FIFA Series,Jeddah
 m_18c5fe2117,2024-03-25,Bermuda,Guinea,1,5,True,FIFA Series,Jeddah,Saudi Arabia
 m_3be2e2e89b,2024-03-25,Central African Republic,Papua New Guinea,4,0,True,FIFA Series,Colombo,Sri Lanka
 m_1b9f3aa673,2024-03-25,Sri Lanka,Bhutan,2,0,False,FIFA Series,Colombo,Sri Lanka
-m_863986b51e,2024-03-25,Comoros,Angola,0,0,True,Friendly,Marrakech,Morocco
+m_863986b51e,2024-03-25,Comoros,Angola,0,0,True,Friendly,Marrakesh,Morocco
 m_4200dede4f,2024-03-25,Cyprus,Serbia,0,1,False,Friendly,Larnaca,Cyprus
 m_47f682e345,2024-03-25,Gabon,Congo,1,1,True,Friendly,Chambly,France
 m_0b108e0f3d,2024-03-25,Montenegro,North Macedonia,1,0,True,Friendly,Antalya,Turkey
@@ -9668,7 +9668,7 @@ m_55241fe14e,2024-06-06,Algeria,Guinea,1,2,False,FIFA World Cup qualification,Al
 m_9357beec97,2024-06-06,Malawi,São Tomé and Príncipe,3,1,False,FIFA World Cup qualification,Lilongwe,Malawi
 m_976e209e4b,2024-06-06,Mali,Ghana,1,2,False,FIFA World Cup qualification,Bamako,Mali
 m_4752f77b28,2024-06-06,Afghanistan,Qatar,0,0,True,FIFA World Cup qualification,Al Hofuf,Saudi Arabia
-m_96b89e8e71,2024-06-06,India,Kuwait,0,0,False,FIFA World Cup qualification,Kolkota,India
+m_96b89e8e71,2024-06-06,India,Kuwait,0,0,False,FIFA World Cup qualification,Kolkata,India
 m_d0b1e737a8,2024-06-06,Myanmar,Japan,0,5,False,FIFA World Cup qualification,Yangon,Myanmar
 m_a43e5d5434,2024-06-06,North Korea,Syria,1,0,True,FIFA World Cup qualification,Vientiane,Laos
 m_e24a0ade06,2024-06-06,China,Thailand,1,1,False,FIFA World Cup qualification,Shenyang,China
@@ -9803,7 +9803,7 @@ m_e3d0debeb0,2024-06-11,United Arab Emirates,Bahrain,1,1,False,FIFA World Cup qu
 m_c1eb3b03bb,2024-06-11,Yemen,Nepal,2,2,True,FIFA World Cup qualification,Dammam,Saudi Arabia
 m_d791c5d15c,2024-06-11,Lebanon,Bangladesh,4,0,True,FIFA World Cup qualification,Al Rayyan,Qatar
 m_0f46417d12,2024-06-11,Australia,Palestine,5,0,False,FIFA World Cup qualification,Perth,Australia
-m_4b737fffd9,2024-06-11,Cuba,Cayman Islands,3,0,False,FIFA World Cup qualification,Santiago,Cuba
+m_4b737fffd9,2024-06-11,Cuba,Cayman Islands,3,0,False,FIFA World Cup qualification,Santiago de Cuba,Cuba
 m_ba1092dc07,2024-06-11,Saint Kitts and Nevis,Bahamas,1,0,False,FIFA World Cup qualification,Basseterre,Saint Kitts and Nevis
 m_d0d052534d,2024-06-11,Saint Lucia,Aruba,2,2,True,FIFA World Cup qualification,Bridgetown,Barbados
 m_4a10b8ed74,2024-06-11,Guyana,Belize,3,1,True,FIFA World Cup qualification,Bridgetown,Barbados
@@ -9981,8 +9981,8 @@ m_b594ad092b,2024-09-06,Senegal,Burkina Faso,1,1,False,African Cup of Nations qu
 m_8ee2c76ffb,2024-09-06,French Guiana,Nicaragua,0,1,False,CONCACAF Nations League,Cayenne,French Guiana
 m_d8431401a2,2024-09-06,Jamaica,Cuba,0,0,False,CONCACAF Nations League,Kingston,Jamaica
 m_e61e061066,2024-09-06,Honduras,Trinidad and Tobago,4,0,False,CONCACAF Nations League,Tegucigalpa,Honduras
-m_40f2a46a12,2024-09-06,Saint Lucia,Curaçao,2,1,True,CONCACAF Nations League,Saint George's,Grenada
-m_15f95aeedd,2024-09-06,Grenada,Saint Martin,2,0,False,CONCACAF Nations League,St George's,Grenada
+m_40f2a46a12,2024-09-06,Saint Lucia,Curaçao,2,1,True,CONCACAF Nations League,St. George's,Grenada
+m_15f95aeedd,2024-09-06,Grenada,Saint Martin,2,0,False,CONCACAF Nations League,St. George's,Grenada
 m_963b35b8fe,2024-09-06,Sint Maarten,Aruba,2,0,True,CONCACAF Nations League,Mayagüez,Puerto Rico
 m_06f257608e,2024-09-06,Puerto Rico,Haiti,1,4,False,CONCACAF Nations League,Mayagüez,Puerto Rico
 m_d06d889d54,2024-09-06,Belgium,Israel,3,1,True,UEFA Nations League,Debrecen,Hungary
@@ -10042,10 +10042,10 @@ m_53cc9bc1ce,2024-09-09,Ethiopia,DR Congo,0,2,True,African Cup of Nations qualif
 m_0fb6e8c30b,2024-09-09,Uganda,Congo,2,0,False,African Cup of Nations qualification,Kira,Uganda
 m_e9bb208829,2024-09-09,Burundi,Senegal,0,1,True,African Cup of Nations qualification,Lilongwe,Malawi
 m_79520e9193,2024-09-09,Guadeloupe,Suriname,1,0,False,CONCACAF Nations League,Le Gosier,Guadeloupe
-m_ea3c2cb556,2024-09-09,Martinique,Guyana,2,2,False,CONCACAF Nations League,Fort de France,Martinique
+m_ea3c2cb556,2024-09-09,Martinique,Guyana,2,2,False,CONCACAF Nations League,Fort-de-France,Martinique
 m_11c5ba4efd,2024-09-09,Guatemala,Costa Rica,0,0,False,CONCACAF Nations League,Guatemala City,Guatemala
-m_ed08d8b8e5,2024-09-09,Curaçao,Saint Martin,4,0,True,CONCACAF Nations League,Saint George's,Grenada
-m_d5613ff4e9,2024-09-09,Grenada,Saint Lucia,1,2,False,CONCACAF Nations League,Saint George's,Grenada
+m_ed08d8b8e5,2024-09-09,Curaçao,Saint Martin,4,0,True,CONCACAF Nations League,St. George's,Grenada
+m_d5613ff4e9,2024-09-09,Grenada,Saint Lucia,1,2,False,CONCACAF Nations League,St. George's,Grenada
 m_ff0664e85a,2024-09-09,Haiti,Sint Maarten,6,0,True,CONCACAF Nations League,Mayagüez,Puerto Rico
 m_b8ac3c117d,2024-09-09,Puerto Rico,Aruba,1,0,False,CONCACAF Nations League,Mayagüez,Puerto Rico
 m_691f70a1f8,2024-09-09,France,Belgium,2,0,False,UEFA Nations League,Décines-Charpieu,France
@@ -10053,7 +10053,7 @@ m_1aea3d3f2a,2024-09-09,Israel,Italy,1,2,True,UEFA Nations League,Budapest,Hunga
 m_a92a58be3a,2024-09-09,Norway,Austria,2,1,False,UEFA Nations League,Oslo,Norway
 m_d33185a0fa,2024-09-09,Slovenia,Kazakhstan,3,0,False,UEFA Nations League,Ljubljana,Slovenia
 m_be64df2e3a,2024-09-09,Montenegro,Wales,1,2,False,UEFA Nations League,Nikšić,Montenegro
-m_595a36319d,2024-09-09,Turkey,Iceland,3,1,False,UEFA Nations League,Izmir,Turkey
+m_595a36319d,2024-09-09,Turkey,Iceland,3,1,False,UEFA Nations League,İzmir,Turkey
 m_e6b3a54d79,2024-09-09,Cyprus,Kosovo,0,4,False,UEFA Nations League,Larnaca,Cyprus
 m_5dbeab0c79,2024-09-09,Romania,Lithuania,3,1,False,UEFA Nations League,Bucharest,Romania
 m_83925f8e5d,2024-09-09,Samoa,Tonga,2,1,False,FIFA World Cup qualification,Apia,Samoa
@@ -10071,14 +10071,14 @@ m_af1589f5ba,2024-09-10,Rwanda,Nigeria,0,0,False,African Cup of Nations qualific
 m_16cf038218,2024-09-10,Benin,Libya,2,1,True,African Cup of Nations qualification,Abidjan,Ivory Coast
 m_b2429df702,2024-09-10,Liberia,Algeria,0,3,False,African Cup of Nations qualification,Monrovia,Liberia
 m_173f8af627,2024-09-10,Zambia,Sierra Leone,3,2,False,African Cup of Nations qualification,Ndola,Zambia
-m_21f2df6908,2024-09-10,Chad,Ivory Coast,0,2,True,African Cup of Nations qualification,Yaounde,Cameroon
+m_21f2df6908,2024-09-10,Chad,Ivory Coast,0,2,True,African Cup of Nations qualification,Yaoundé,Cameroon
 m_1fb905dae3,2024-09-10,Guinea,Tanzania,1,2,True,African Cup of Nations qualification,Yamoussoukro,Ivory Coast
 m_11bd7f1ba7,2024-09-10,Mozambique,Guinea-Bissau,2,1,False,African Cup of Nations qualification,Maputo,Mozambique
 m_59d3e096c2,2024-09-10,Eswatini,Mali,0,1,True,African Cup of Nations qualification,Mbombela,South Africa
 m_62f41ab671,2024-09-10,Namibia,Kenya,1,2,True,African Cup of Nations qualification,Johannesburg,South Africa
 m_4a19b4610b,2024-09-10,South Sudan,South Africa,2,3,False,African Cup of Nations qualification,Juba,South Sudan
 m_1a40a16fa0,2024-09-10,Burkina Faso,Malawi,3,1,True,African Cup of Nations qualification,Bamako,Mali
-m_09d10a29ef,2024-09-10,Cuba,Nicaragua,1,1,False,CONCACAF Nations League,Santiago,Cuba
+m_09d10a29ef,2024-09-10,Cuba,Nicaragua,1,1,False,CONCACAF Nations League,Santiago de Cuba,Cuba
 m_5c214d8710,2024-09-10,Trinidad and Tobago,French Guiana,0,0,False,CONCACAF Nations League,Bacolet,Trinidad and Tobago
 m_2b4c48d221,2024-09-10,Honduras,Jamaica,1,2,False,CONCACAF Nations League,Tegucigalpa,Honduras
 m_7d13417d86,2024-09-10,Dominican Republic,Dominica,2,0,True,CONCACAF Nations League,Piggotts,Antigua and Barbuda
@@ -10122,7 +10122,7 @@ m_c9c3affd71,2024-10-10,Ghana,Sudan,0,0,False,African Cup of Nations qualificati
 m_c789a6fedd,2024-10-10,DR Congo,Tanzania,1,0,False,African Cup of Nations qualification,Kinshasa,DR Congo
 m_6da8e415d3,2024-10-10,Namibia,Zimbabwe,0,1,True,African Cup of Nations qualification,Johannesburg,South Africa
 m_0b5738f6d0,2024-10-10,Burkina Faso,Burundi,4,1,True,African Cup of Nations qualification,Ebimpé,Ivory Coast
-m_39c524d61c,2024-10-10,Cuba,Trinidad and Tobago,2,2,False,CONCACAF Nations League,Santiago,Cuba
+m_39c524d61c,2024-10-10,Cuba,Trinidad and Tobago,2,2,False,CONCACAF Nations League,Santiago de Cuba,Cuba
 m_a36509e87e,2024-10-10,French Guiana,Honduras,2,3,False,CONCACAF Nations League,Cayenne,French Guiana
 m_d23d7698ce,2024-10-10,Nicaragua,Jamaica,0,2,False,CONCACAF Nations League,Managua,Nicaragua
 m_2207809c42,2024-10-10,Bonaire,Montserrat,0,1,True,CONCACAF Nations League,Kingstown,Saint Vincent and the Grenadines
@@ -10256,7 +10256,7 @@ m_19a52eb8dd,2024-10-15,Botswana,Cape Verde,1,0,False,African Cup of Nations qua
 m_6874aa798e,2024-10-15,Rwanda,Benin,2,1,False,African Cup of Nations qualification,Kigali,Rwanda
 m_4895dc5c41,2024-10-15,Sudan,Ghana,2,0,True,African Cup of Nations qualification,Benghazi,Libya
 m_b809016ba1,2024-10-15,Niger,Angola,0,1,True,African Cup of Nations qualification,Casablanca,Morocco
-m_5ba730cce6,2024-10-15,Chad,Zambia,0,1,True,African Cup of Nations qualification,Yaounde,Cameroon
+m_5ba730cce6,2024-10-15,Chad,Zambia,0,1,True,African Cup of Nations qualification,Yaoundé,Cameroon
 m_24222813b9,2024-10-15,Sierra Leone,Ivory Coast,1,0,True,African Cup of Nations qualification,Monrovia,Liberia
 m_7ed842fc9e,2024-10-15,Tanzania,DR Congo,0,2,False,African Cup of Nations qualification,Dar es Salaam,Tanzania
 m_9222f7a71d,2024-10-15,Ethiopia,Guinea,0,3,True,African Cup of Nations qualification,Ebimpé,Ivory Coast
@@ -10274,7 +10274,7 @@ m_7ca59eb084,2024-10-15,Belize,Turks and Caicos Islands,3,0,False,CONCACAF Natio
 m_4f7c76ae49,2024-10-15,Saint Kitts and Nevis,Cayman Islands,1,1,False,CONCACAF Nations League,Basseterre,Saint Kitts and Nevis
 m_68a937fd98,2024-10-15,Scotland,Portugal,0,0,False,UEFA Nations League,Glasgow,Scotland
 m_71322732a7,2024-10-15,Poland,Croatia,3,3,False,UEFA Nations League,Warsaw,Poland
-m_a429cf51b7,2024-10-15,Spain,Serbia,3,0,False,UEFA Nations League,Cordoba,Spain
+m_a429cf51b7,2024-10-15,Spain,Serbia,3,0,False,UEFA Nations League,Córdoba,Spain
 m_4ed225f21e,2024-10-15,Switzerland,Denmark,2,2,False,UEFA Nations League,St. Gallen,Switzerland
 m_2d569dabd9,2024-10-15,Kosovo,Cyprus,3,0,False,UEFA Nations League,Pristina,Kosovo
 m_73e22dc1a1,2024-10-15,Lithuania,Romania,1,2,False,UEFA Nations League,Kaunas,Lithuania
@@ -10418,9 +10418,9 @@ m_f320f3d032,2024-11-18,Grenada,Saint Martin,0,3,True,CONCACAF Nations League,Gr
 m_e73e58427c,2024-11-18,Saint Lucia,Curaçao,1,4,False,CONCACAF Nations League,Gros Islet,Saint Lucia
 m_bddd3dfb72,2024-11-18,Aruba,Sint Maarten,0,1,True,CONCACAF Nations League,Mayagüez,Puerto Rico
 m_d3cff9f53b,2024-11-18,Puerto Rico,Haiti,0,3,False,CONCACAF Nations League,Mayagüez,Puerto Rico
-m_e5b453c83c,2024-11-18,Cuba,Saint Kitts and Nevis,4,0,False,CONCACAF Nations League,Santiago,Cuba
+m_e5b453c83c,2024-11-18,Cuba,Saint Kitts and Nevis,4,0,False,CONCACAF Nations League,Santiago de Cuba,Cuba
 m_bf8b2904ad,2024-11-18,Panama,Costa Rica,2,2,False,CONCACAF Nations League,Panama City,Panama
-m_0cdbde65ea,2024-11-18,United States,Jamaica,4,2,False,CONCACAF Nations League,Saint Louis,United States
+m_0cdbde65ea,2024-11-18,United States,Jamaica,4,2,False,CONCACAF Nations League,St. Louis,United States
 m_8eecc5bd35,2024-11-18,India,Malaysia,1,1,False,Friendly,Hyderabad,India
 m_2954751151,2024-11-18,Singapore,Taiwan,2,3,False,Friendly,Kallang,Singapore
 m_d8d1271b47,2024-11-18,Tahiti,Vanuatu,2,0,True,FIFA World Cup qualification,Auckland,New Zealand
@@ -10549,13 +10549,13 @@ m_1491b1cd8b,2025-02-07,Jamaica,Trinidad and Tobago,1,0,False,Friendly,Montego B
 m_8f0581203b,2025-02-08,Chile,Panama,6,1,False,Friendly,Santiago,Chile
 m_dd0b1b3e60,2025-02-10,Jamaica,Trinidad and Tobago,1,1,False,Friendly,Kingston,Jamaica
 m_852d7ecd8d,2025-02-13,Oman,Sudan,0,0,False,Friendly,Muscat,Oman
-m_650cdbdf26,2025-03-09,Saint Vincent and the Grenadines,Grenada,1,1,False,Friendly,Kingston,Saint Vincent and the Grenadines
+m_650cdbdf26,2025-03-09,Saint Vincent and the Grenadines,Grenada,1,1,False,Friendly,Kingstown,Saint Vincent and the Grenadines
 m_6566075dbd,2025-03-13,Oman,Sudan,0,0,False,Friendly,Muscat,Oman
 m_96cb6eeefe,2025-03-14,Jordan,North Korea,1,1,False,Friendly,Amman,Jordan
 m_44fbe18e17,2025-03-16,Honduras,Guatemala,1,2,True,Friendly,Fort Lauderdale,United States
 m_e6930a10fc,2025-03-19,Hong Kong,Macau,2,0,False,Friendly,Hong Kong,Hong Kong
 m_1b6772338a,2025-03-19,India,Maldives,3,0,False,Friendly,Shillong,India
-m_cb5a5dd953,2025-03-19,Vietnam,Cambodia,2,1,False,Friendly,Thu Dau Mot,Vietnam
+m_cb5a5dd953,2025-03-19,Vietnam,Cambodia,2,1,False,Friendly,Thủ Dầu Một,Vietnam
 m_b27ea846b0,2025-03-19,Eswatini,Cameroon,0,0,True,FIFA World Cup qualification,Mbombela,South Africa
 m_eb9d7d51ca,2025-03-19,Liberia,Tunisia,0,1,False,FIFA World Cup qualification,Monrovia,Liberia
 m_6159ed0d29,2025-03-19,Central African Republic,Madagascar,1,4,True,FIFA World Cup qualification,Casablanca,Morocco
@@ -10598,14 +10598,14 @@ m_baa81245fe,2025-03-20,Gabon,Seychelles,3,0,False,FIFA World Cup qualification,
 m_01cd27f099,2025-03-20,Mozambique,Uganda,3,1,True,FIFA World Cup qualification,Cairo,Egypt
 m_dfef1d9592,2025-03-20,Malawi,Namibia,0,1,False,FIFA World Cup qualification,Lilongwe,Malawi
 m_03c09c9fe2,2025-03-20,Comoros,Mali,0,3,True,FIFA World Cup qualification,Berkane,Morocco
-m_f39323d3de,2025-03-20,Lebanon,Timor-Leste,4,0,False,Friendly,Al-Khor,Qatar
+m_f39323d3de,2025-03-20,Lebanon,Timor-Leste,4,0,False,Friendly,Al Khor,Qatar
 m_a43f747df3,2025-03-21,Belize,Costa Rica,0,7,False,Gold Cup qualification,Belmopan,Belize
 m_196a56a4c2,2025-03-21,Guyana,Guatemala,3,2,True,Gold Cup qualification,Wildey,Barbados
 m_a54bdb4d62,2025-03-21,Bermuda,Honduras,3,5,False,Gold Cup qualification,Hamilton,Bermuda
 m_5c5712557b,2025-03-21,Saint Vincent and the Grenadines,Jamaica,1,1,False,Gold Cup qualification,Kingstown,Saint Vincent and the Grenadines
 m_9cb02deb1d,2025-03-21,Suriname,Martinique,1,0,False,Gold Cup qualification,Paramaribo,Suriname
 m_e71473d641,2025-03-21,Guadeloupe,Nicaragua,1,0,False,Gold Cup qualification,Le Gosier,Guadeloupe
-m_f32fb3758a,2025-03-21,Cuba,Trinidad and Tobago,1,2,False,Gold Cup qualification,Santiago,Cuba
+m_f32fb3758a,2025-03-21,Cuba,Trinidad and Tobago,1,2,False,Gold Cup qualification,Santiago de Cuba,Cuba
 m_893f62b7ec,2025-03-21,Northern Ireland,Switzerland,1,1,False,Friendly,Belfast,Northern Ireland
 m_c3139c8048,2025-03-21,Puerto Rico,Dominican Republic,2,2,False,Friendly,Bayamón,Puerto Rico
 m_f03bb290c9,2025-03-21,Singapore,Nepal,0,1,False,Friendly,Kallang,Singapore
@@ -10631,7 +10631,7 @@ m_a85021bdbe,2025-03-21,Cyprus,San Marino,2,0,False,FIFA World Cup qualification
 m_b22fc3a42e,2025-03-21,Romania,Bosnia and Herzegovina,0,1,False,FIFA World Cup qualification,Bucharest,Romania
 m_607a31b692,2025-03-21,England,Albania,2,0,False,FIFA World Cup qualification,London,England
 m_eabfa2e36f,2025-03-21,Andorra,Latvia,0,1,False,FIFA World Cup qualification,Andorra la Vella,Andorra
-m_04fb1dbe8e,2025-03-22,Azerbaijan,Haiti,0,3,False,Friendly,Sumqayit,Azerbaijan
+m_04fb1dbe8e,2025-03-22,Azerbaijan,Haiti,0,3,False,Friendly,Sumgait,Azerbaijan
 m_bd28780384,2025-03-22,Luxembourg,Sweden,1,0,False,Friendly,Luxembourg,Luxembourg
 m_669250b4e7,2025-03-22,Togo,Mauritania,2,2,False,FIFA World Cup qualification,Lomé,Togo
 m_8655e1a791,2025-03-22,Sudan,Senegal,0,0,True,FIFA World Cup qualification,Benghazi,Libya
@@ -10682,13 +10682,13 @@ m_83486ba0c4,2025-03-25,Taiwan,Turkmenistan,1,2,False,AFC Asian Cup qualificatio
 m_59663c9c8f,2025-03-25,Thailand,Sri Lanka,1,0,False,AFC Asian Cup qualification,Bangkok,Thailand
 m_81fcb231cc,2025-03-25,Myanmar,Afghanistan,2,1,False,AFC Asian Cup qualification,Yangon,Myanmar
 m_1a9c86dda2,2025-03-25,Syria,Pakistan,2,0,True,AFC Asian Cup qualification,Al Hofuf,Saudi Arabia
-m_ff01bcd053,2025-03-25,Vietnam,Laos,5,0,False,AFC Asian Cup qualification,Thu Dau Mot,Vietnam
+m_ff01bcd053,2025-03-25,Vietnam,Laos,5,0,False,AFC Asian Cup qualification,Thủ Dầu Một,Vietnam
 m_e614abba70,2025-03-25,Malaysia,Nepal,2,0,False,AFC Asian Cup qualification,Johor,Malaysia
 m_c86ea57270,2025-03-25,Costa Rica,Belize,6,1,False,Gold Cup qualification,San José,Costa Rica
 m_f05edf34f6,2025-03-25,Guatemala,Guyana,2,0,False,Gold Cup qualification,Guatemala City,Guatemala
 m_d794a66bf7,2025-03-25,Honduras,Bermuda,2,0,False,Gold Cup qualification,Tegucigalpa,Honduras
 m_29a5526d20,2025-03-25,Jamaica,Saint Vincent and the Grenadines,3,0,False,Gold Cup qualification,Kingston,Jamaica
-m_08ef63bb7d,2025-03-25,Martinique,Suriname,0,1,False,Gold Cup qualification,Fort de France,Martinique
+m_08ef63bb7d,2025-03-25,Martinique,Suriname,0,1,False,Gold Cup qualification,Fort-de-France,Martinique
 m_a9c3dd1583,2025-03-25,Nicaragua,Guadeloupe,0,1,False,Gold Cup qualification,Managua,Nicaragua
 m_b57b2a2d1d,2025-03-25,Trinidad and Tobago,Cuba,4,0,False,Gold Cup qualification,Couva,Trinidad and Tobago
 m_556765b405,2025-03-25,Azerbaijan,Belarus,0,2,False,Friendly,Masazir,Azerbaijan
@@ -10697,7 +10697,7 @@ m_82d400f3e6,2025-03-25,Cambodia,Aruba,1,2,False,Friendly,Phnom Penh,Cambodia
 m_36d0afbb70,2025-03-25,Dominican Republic,Puerto Rico,2,0,False,Friendly,Santiago de los Caballeros,Dominican Republic
 m_8c9125807b,2025-03-25,Niger,Bonaire,6,0,True,Friendly,Casablanca,Morocco
 m_989da13767,2025-03-25,Sweden,Northern Ireland,5,1,False,Friendly,Solna,Sweden
-m_e0ea0930da,2025-03-25,Switzerland,Luxembourg,3,1,False,Friendly,Sankt Gallen,Switzerland
+m_e0ea0930da,2025-03-25,Switzerland,Luxembourg,3,1,False,Friendly,St. Gallen,Switzerland
 m_78d32acd48,2025-03-25,Bolivia,Uruguay,0,0,False,FIFA World Cup qualification,El Alto,Bolivia
 m_57abebd4f7,2025-03-25,Colombia,Paraguay,2,2,False,FIFA World Cup qualification,Barranquilla,Colombia
 m_0157e4c252,2025-03-25,Venezuela,Peru,1,0,False,FIFA World Cup qualification,Maturín,Venezuela
@@ -10720,7 +10720,7 @@ m_6bf560aea5,2025-03-25,Benin,South Africa,0,2,True,FIFA World Cup qualification
 m_be1b9bcb15,2025-03-25,Nigeria,Zimbabwe,1,1,False,FIFA World Cup qualification,Uyo,Nigeria
 m_97f229abec,2025-03-25,Rwanda,Lesotho,1,1,False,FIFA World Cup qualification,Kigali,Rwanda
 m_b8d297f1f4,2025-03-25,Angola,Cape Verde,1,2,False,FIFA World Cup qualification,Luanda,Angola
-m_8af58a9425,2025-03-25,Cameroon,Libya,3,1,False,FIFA World Cup qualification,Yaounde,Cameroon
+m_8af58a9425,2025-03-25,Cameroon,Libya,3,1,False,FIFA World Cup qualification,Yaoundé,Cameroon
 m_d1c4b71bd6,2025-03-25,Morocco,Tanzania,2,0,False,FIFA World Cup qualification,Oujda,Morocco
 m_9b5e7cbe25,2025-03-25,Burundi,Seychelles,5,0,True,FIFA World Cup qualification,Meknes,Morocco
 m_38faa1b1d6,2025-03-25,Uganda,Guinea,1,0,False,FIFA World Cup qualification,Kira,Uganda
@@ -10736,7 +10736,7 @@ m_7ea8171642,2025-03-25,Montenegro,Faroe Islands,1,0,False,FIFA World Cup qualif
 m_098e861d12,2025-05-09,Dominica,Barbados,0,0,False,Friendly,Roseau,Dominica
 m_12ffd080f2,2025-05-11,Dominica,Barbados,0,0,False,Friendly,Roseau,Dominica
 m_5a4ff5fbfd,2025-05-21,Saint Kitts and Nevis,Saint Vincent and the Grenadines,1,3,False,Friendly,Old Road Town,Saint Kitts and Nevis
-m_32d6a43376,2025-05-25,Anguilla,Saint Kitts and Nevis,2,4,True,Friendly,Quartier d'Orléans,Saint Martin
+m_32d6a43376,2025-05-25,Anguilla,Saint Kitts and Nevis,2,4,True,Friendly,Quartier-d'Orleans,Saint Martin
 m_01b4222dbf,2025-05-25,Saint Vincent and the Grenadines,Saint Kitts and Nevis,3,0,False,Friendly,Georgetown,Saint Vincent and the Grenadines
 m_885091d297,2025-05-27,Jamaica,Trinidad and Tobago,3,2,True,Unity Cup,London,England
 m_93e6f26b40,2025-05-28,Nigeria,Ghana,2,1,True,Unity Cup,London,England
@@ -10746,7 +10746,7 @@ m_4242fe1588,2025-05-30,Saint Vincent and the Grenadines,British Virgin Islands,
 m_19ef0ae233,2025-05-30,Saudi Arabia,Jordan,2,0,False,Friendly,Dammam,Saudi Arabia
 m_c57687cf08,2025-05-31,Trinidad and Tobago,Ghana,0,4,True,Unity Cup,London,England
 m_1d7a70d944,2025-05-31,Jamaica,Nigeria,2,2,True,Unity Cup,London,England
-m_5ff985b093,2025-06-01,Grenada,Anguilla,2,0,False,Friendly,Saint George's,Grenada
+m_5ff985b093,2025-06-01,Grenada,Anguilla,2,0,False,Friendly,St. George's,Grenada
 m_a435d594db,2025-06-01,El Salvador,Guatemala,1,1,True,Friendly,Chattanooga,United States
 m_d0e5cf5465,2025-06-01,Puerto Rico,Nicaragua,1,1,True,Friendly,Pawtucket,United States
 m_5f7b5419ec,2025-06-02,Tunisia,Burkina Faso,2,0,False,Friendly,Radès,Tunisia
@@ -10784,18 +10784,18 @@ m_b00f994819,2025-06-05,Sri Lanka,Brunei,1,0,True,Friendly,Bangkok,Thailand
 m_2dd8a61d2d,2025-06-06,Bulgaria,Cyprus,2,2,False,Friendly,Plovdiv,Bulgaria
 m_0723257376,2025-06-06,Burundi,Guinea-Bissau,1,0,True,Friendly,Berrechid,Egypt
 m_7f27c54f3e,2025-06-06,Central African Republic,Mauritania,2,1,True,Friendly,Casablanca,Morocco
-m_e7d11d73ca,2025-06-06,Equatorial Guinea,Gambia,1,2,True,Friendly,Marrakech,Morocco
+m_e7d11d73ca,2025-06-06,Equatorial Guinea,Gambia,1,2,True,Friendly,Marrakesh,Morocco
 m_555abe3a8f,2025-06-06,Hungary,Sweden,0,2,False,Friendly,Budapest,Hungary
 m_e04564f6a4,2025-06-06,Kosovo,Armenia,5,2,False,Friendly,Pristina,Kosovo
 m_3db22c5669,2025-06-06,Luxembourg,Slovenia,0,1,False,Friendly,Luxembourg,Luxembourg
-m_56efe54081,2025-06-06,Morocco,Tunisia,2,0,False,Friendly,Fès,Morocco
+m_56efe54081,2025-06-06,Morocco,Tunisia,2,0,False,Friendly,Fez,Morocco
 m_0f2e8acb54,2025-06-06,Niger,Gabon,4,3,True,Friendly,Casablanca,Morocco
-m_1db430d4a4,2025-06-06,Poland,Moldova,2,0,False,Friendly,Chorzow,Poland
+m_1db430d4a4,2025-06-06,Poland,Moldova,2,0,False,Friendly,Chorzów,Poland
 m_b4fbab7e36,2025-06-06,Republic of Ireland,Senegal,1,1,False,Friendly,Dublin,Republic of Ireland
 m_dbbcbf2495,2025-06-06,Scotland,Iceland,1,3,False,Friendly,Glasgow,Scotland
 m_949e479f69,2025-06-06,South Africa,Tanzania,0,0,False,Friendly,Polokwane,South Africa
-m_fa78df184c,2025-06-06,Uganda,Cameroon,0,3,True,Friendly,Marrakech,Morocco
-m_4c1f88c88b,2025-06-06,Zimbabwe,Burkina Faso,0,2,True,Friendly,Mohammédia,Morocco
+m_fa78df184c,2025-06-06,Uganda,Cameroon,0,3,True,Friendly,Marrakesh,Morocco
+m_4c1f88c88b,2025-06-06,Zimbabwe,Burkina Faso,0,2,True,Friendly,Mohammedia,Morocco
 m_607b92950b,2025-06-06,Russia,Nigeria,1,1,False,Friendly,Moscow,Russia
 m_458813563b,2025-06-06,Colombia,Peru,0,0,False,FIFA World Cup qualification,Barranquilla,Colombia
 m_2f9de47a5c,2025-06-06,Venezuela,Bolivia,2,0,False,FIFA World Cup qualification,Maturín,Venezuela
@@ -10824,7 +10824,7 @@ m_9876e40d5c,2025-06-07,Andorra,England,0,1,True,FIFA World Cup qualification,Ba
 m_4928566336,2025-06-07,Albania,Serbia,0,0,False,FIFA World Cup qualification,Tirana,Albania
 m_cee9026798,2025-06-07,Canada,Ukraine,4,2,False,Canadian Shield,Toronto,Canada
 m_f905cc6c9c,2025-06-07,Ivory Coast,New Zealand,0,1,True,Canadian Shield,Toronto,Canada
-m_571b95005b,2025-06-07,Kenya,Chad,0,0,True,Friendly,Marrakech,Morocco
+m_571b95005b,2025-06-07,Kenya,Chad,0,0,True,Friendly,Marrakesh,Morocco
 m_a345ee0884,2025-06-07,Cayman Islands,Honduras,0,1,False,FIFA World Cup qualification,George Town,Cayman Islands
 m_68f723f131,2025-06-07,Bahamas,Costa Rica,0,8,True,FIFA World Cup qualification,Wildey,Barbados
 m_fc2373ee2f,2025-06-07,Aruba,Haiti,0,5,False,FIFA World Cup qualification,Oranjestad,Aruba
@@ -10836,13 +10836,13 @@ m_65df885dee,2025-06-08,Portugal,Spain,2,2,True,UEFA Nations League,Munich,Germa
 m_deff77801f,2025-06-08,DR Congo,Madagascar,3,1,True,Friendly,Orléans,France
 m_6385a4ed73,2025-06-08,Georgia,Cape Verde,1,1,False,Friendly,Kutaisi,Georgia
 m_87dce3c342,2025-06-09,Algeria,Rwanda,2,0,False,Friendly,Blida,Algeria
-m_e67fce1010,2025-06-09,Equatorial Guinea,Cameroon,1,1,True,Friendly,Marrakech,Morocco
-m_924d5d7fb0,2025-06-09,Gabon,Guinea-Bissau,2,0,True,Friendly,Mohammédia,Morocco
+m_e67fce1010,2025-06-09,Equatorial Guinea,Cameroon,1,1,True,Friendly,Marrakesh,Morocco
+m_924d5d7fb0,2025-06-09,Gabon,Guinea-Bissau,2,0,True,Friendly,Mohammedia,Morocco
 m_b1ce232879,2025-06-09,Kosovo,Comoros,4,2,False,Friendly,Pristina,Kosovo
 m_222fe5741d,2025-06-09,Liechtenstein,Scotland,0,4,False,Friendly,Vaduz,Liechtenstein
 m_df5449d057,2025-06-09,Montenegro,Armenia,2,2,False,Friendly,Nikšić,Montenegro
-m_7da88b5ae6,2025-06-09,Morocco,Benin,1,0,False,Friendly,Fès,Morocco
-m_e0954a7ef8,2025-06-09,Uganda,Gambia,1,1,True,Friendly,Marrakech,Morocco
+m_7da88b5ae6,2025-06-09,Morocco,Benin,1,0,False,Friendly,Fez,Morocco
+m_e0954a7ef8,2025-06-09,Uganda,Gambia,1,1,True,Friendly,Marrakesh,Morocco
 m_611b5ab18d,2025-06-09,Italy,Moldova,2,0,False,FIFA World Cup qualification,Reggio Emilia,Italy
 m_65bf6de39f,2025-06-09,Estonia,Norway,0,1,False,FIFA World Cup qualification,Tallinn,Estonia
 m_ccf88caefd,2025-06-09,Kazakhstan,North Macedonia,0,1,False,FIFA World Cup qualification,Astana,Kazakhstan
@@ -10862,8 +10862,8 @@ m_0ed1227239,2025-06-10,Afghanistan,Syria,0,1,True,AFC Asian Cup qualification,A
 m_30b6b30dbc,2025-06-10,Laos,Nepal,2,1,False,AFC Asian Cup qualification,Vientiane,Laos
 m_4d1289506f,2025-06-10,Malaysia,Vietnam,4,0,False,AFC Asian Cup qualification,Kuala Lumpur,Malaysia
 m_d423db0b92,2025-06-10,Azerbaijan,Hungary,1,2,False,Friendly,Baku,Azerbaijan
-m_780f556581,2025-06-10,Burundi,Mauritania,0,0,True,Friendly,Mohammédia,Morocco
-m_f8019b24e2,2025-06-10,Chad,Kenya,1,2,True,Friendly,Marrakech,Morocco
+m_780f556581,2025-06-10,Burundi,Mauritania,0,0,True,Friendly,Mohammedia,Morocco
+m_f8019b24e2,2025-06-10,Chad,Kenya,1,2,True,Friendly,Marrakesh,Morocco
 m_f81dc40f84,2025-06-10,Denmark,Lithuania,5,0,False,Friendly,Odense,Denmark
 m_86f68f3618,2025-06-10,England,Senegal,1,3,False,Friendly,London,England
 m_991055c3a5,2025-06-10,Greece,Bulgaria,4,0,False,Friendly,Heraklion,Greece
@@ -10961,9 +10961,9 @@ m_badb338794,2025-07-17,Gozo,Western Isles,3,3,True,Island Games,Dounby,Scotland
 m_1bb7f4f2c4,2025-07-17,Orkney,Shetland,3,2,False,Island Games,Stromness,Scotland
 m_275352f054,2025-07-17,Isle of Man,Ynys Môn,0,1,True,Island Games,Kirkwall,Scotland
 m_1754209153,2025-07-18,Isle of Man,Jersey,3,2,True,Island Games,Kirkwall,Scotland
-m_8f3307db97,2025-08-13,United States Virgin Islands,Turks and Caicos Islands,1,1,True,Outrigger Challenge Cup,United States,United States
-m_8deb39dc4c,2025-08-14,Marshall Islands,United States Virgin Islands,0,4,True,Outrigger Challenge Cup,United States,United States
-m_ddb47f4dc2,2025-08-16,Turks and Caicos Islands,Marshall Islands,3,2,True,Outrigger Challenge Cup,United States,United States
+m_8f3307db97,2025-08-13,United States Virgin Islands,Turks and Caicos Islands,1,1,True,Outrigger Challenge Cup,Springdale,United States
+m_8deb39dc4c,2025-08-14,Marshall Islands,United States Virgin Islands,0,4,True,Outrigger Challenge Cup,Springdale,United States
+m_ddb47f4dc2,2025-08-16,Turks and Caicos Islands,Marshall Islands,3,2,True,Outrigger Challenge Cup,Springdale,United States
 m_b1570deebc,2025-08-24,Qatar,Lebanon,2,2,False,Friendly,Doha,Qatar
 m_a529fb6bae,2025-09-03,Qatar,Bahrain,2,2,False,Friendly,Doha,Qatar
 m_8005d12360,2025-09-03,Seychelles,Gabon,0,4,True,FIFA World Cup qualification,Saint Pierre,Mauritius
@@ -11197,7 +11197,7 @@ m_c9070bf882,2025-10-10,Sweden,Switzerland,0,2,False,FIFA World Cup qualificatio
 m_09f2bdbdad,2025-10-10,Iceland,Ukraine,3,5,False,FIFA World Cup qualification,Reykjavík,Iceland
 m_8b16f91713,2025-10-10,France,Azerbaijan,3,0,False,FIFA World Cup qualification,Paris,France
 m_c12342e093,2025-10-10,Kazakhstan,Liechtenstein,4,0,False,FIFA World Cup qualification,Astana,Kazakhstan
-m_6c917880d8,2025-10-10,Belgium,North Macedonia,0,0,False,FIFA World Cup qualification,Gent,Belgium
+m_6c917880d8,2025-10-10,Belgium,North Macedonia,0,0,False,FIFA World Cup qualification,Ghent,Belgium
 m_bd32f56a22,2025-10-10,Suriname,Guatemala,1,1,False,FIFA World Cup qualification,Paramaribo,Suriname
 m_83f7898293,2025-10-10,El Salvador,Panama,0,1,False,FIFA World Cup qualification,San Salvador,El Salvador
 m_a796e6884c,2025-10-10,Bermuda,Trinidad and Tobago,0,3,False,FIFA World Cup qualification,Devonshire Parish,Bermuda
@@ -11274,7 +11274,7 @@ m_daf0c681e1,2025-10-14,Algeria,Uganda,2,1,False,FIFA World Cup qualification,Ti
 m_bab53ab4f9,2025-10-14,Guinea,Botswana,2,2,True,FIFA World Cup qualification,Casablanca,Morocco
 m_5adf94d7c8,2025-10-14,Somalia,Mozambique,0,1,True,FIFA World Cup qualification,Bir El Djir,Algeria
 m_1862ff3725,2025-10-14,Spain,Bulgaria,4,0,False,FIFA World Cup qualification,Valladolid,Spain
-m_cb26fb5b46,2025-10-14,Turkey,Georgia,4,1,False,FIFA World Cup qualification,Izmit,Turkey
+m_cb26fb5b46,2025-10-14,Turkey,Georgia,4,1,False,FIFA World Cup qualification,İzmit,Turkey
 m_4d800b943e,2025-10-14,Portugal,Hungary,2,2,False,FIFA World Cup qualification,Lisbon,Portugal
 m_dad5a4d887,2025-10-14,Republic of Ireland,Armenia,1,0,False,FIFA World Cup qualification,Dublin,Republic of Ireland
 m_72473e139d,2025-10-14,Estonia,Moldova,1,1,False,FIFA World Cup qualification,Tallinn,Estonia
@@ -11394,7 +11394,7 @@ m_fb9ed9ee87,2025-11-17,Comoros,Namibia,4,0,False,Friendly,Iconi,Comoros
 m_ae168e57d4,2025-11-17,Mozambique,Chad,2,2,True,Friendly,Berrechid,Morocco
 m_57832e571d,2025-11-17,Madagascar,Equatorial Guinea,2,0,True,Friendly,Antalya,Turkey
 m_47a69c0ad4,2025-11-17,Finland,Andorra,4,0,False,Friendly,Tampere,Finland
-m_de5899f215,2025-11-17,Qatar,Zimbabwe,1,2,False,Friendly,Ar-Rayyan,Qatar
+m_de5899f215,2025-11-17,Qatar,Zimbabwe,1,2,False,Friendly,Al Rayyan,Qatar
 m_3ad354c0b2,2025-11-17,Bahrain,Somalia,1,2,False,Friendly,Riffa,Bahrain
 m_4d42591890,2025-11-17,Northern Ireland,Luxembourg,1,0,False,FIFA World Cup qualification,Belfast,Northern Ireland
 m_8511884265,2025-11-17,Germany,Slovakia,6,0,False,FIFA World Cup qualification,Leipzig,Germany
@@ -11586,7 +11586,7 @@ m_24aab25ce1,2026-03-26,Saint Martin,Barbados,3,1,True,CONCACAF Series,Rincon,Bo
 m_b1135f99e0,2026-03-26,Bonaire,Saint Vincent and the Grenadines,3,1,False,CONCACAF Series,Rincon,Bonaire
 m_6906a484be,2026-03-26,Bahamas,Anguilla,1,3,True,CONCACAF Series,George Town,Cayman Islands
 m_4769eb6ca4,2026-03-26,Cayman Islands,British Virgin Islands,1,1,False,CONCACAF Series,George Town,Cayman Islands
-m_4b23d6a68e,2026-03-27,Algeria,Guatemala,7,0,True,Friendly,Genoa,Switzerland
+m_4b23d6a68e,2026-03-27,Algeria,Guatemala,7,0,True,Friendly,Genoa,Italy
 m_3cea1ecf29,2026-03-27,Argentina,Mauritania,2,1,False,Friendly,Buenos Aires,Argentina
 m_f03d4350d5,2026-03-27,Austria,Ghana,5,1,False,Friendly,Vienna,Austria
 m_08626614fe,2026-03-27,England,Uruguay,1,1,False,Friendly,London,England
@@ -11683,7 +11683,7 @@ m_989ced4b30,2026-03-31,Russia,Mali,0,0,False,Friendly,Saint Petersburg,Russia
 m_f87ddb11a7,2026-03-31,Republic of Ireland,North Macedonia,0,0,False,Friendly,Dublin,Republic of Ireland
 m_2e2b643da0,2026-03-31,San Marino,Andorra,0,0,False,Friendly,Serravalle,San Marino
 m_edd1ae5ec1,2026-03-31,Senegal,Gambia,3,1,False,Friendly,Diamniadio,Senegal
-m_68073106fc,2026-03-31,Serbia,Saudi Arabia,2,1,False,Friendly,Backa Topola,Serbia
+m_68073106fc,2026-03-31,Serbia,Saudi Arabia,2,1,False,Friendly,Bačka Topola,Serbia
 m_962354f7ea,2026-03-31,Slovakia,Romania,2,0,False,Friendly,Bratislava,Slovakia
 m_be744c7e76,2026-03-31,South Africa,Panama,1,2,False,Friendly,Cape Town,South Africa
 m_b9f9e57982,2026-03-31,Spain,Egypt,0,0,False,Friendly,Barcelona,Spain
@@ -11728,7 +11728,7 @@ m_83b3382409,2026-05-31,Japan,Iceland,1,0,False,Friendly,Tokyo,Japan
 m_33673fc9e6,2026-06-01,Austria,Tunisia,1,0,False,Friendly,Vienna,Austria
 m_547855871e,2026-06-01,Bulgaria,Montenegro,0,1,False,Friendly,Plovdiv,Bulgaria
 m_54af3b5259,2026-06-01,Canada,Uzbekistan,2,0,False,Friendly,Edmonton,Canada
-m_e00fea2cd6,2026-06-01,Colombia,Costa Rica,3,1,False,Friendly,Bogota,Colombia
+m_e00fea2cd6,2026-06-01,Colombia,Costa Rica,3,1,False,Friendly,Bogotá,Colombia
 m_d5fd6391b5,2026-06-01,Norway,Sweden,3,1,False,Friendly,Oslo,Norway
 m_85ec1a2f6e,2026-06-01,Slovakia,Malta,2,1,False,Friendly,Dunajská Streda,Slovakia
 m_0ca0aaa176,2026-06-01,Turkey,North Macedonia,4,0,False,Friendly,Istanbul,Turkey
@@ -11757,7 +11757,7 @@ m_3c80f820df,2026-06-04,Lesotho,Kenya,1,1,True,Friendly,Pretoria,South Africa
 m_5af0957c72,2026-06-04,Mexico,Serbia,5,1,False,Friendly,Toluca,Mexico
 m_d5e122e7df,2026-06-04,Northern Ireland,Guinea,1,0,True,Friendly,La Línea de la Concepción,Spain
 m_c9f21da835,2026-06-04,Slovenia,Cyprus,1,1,False,Friendly,Ljubljana,Slovenia
-m_21412f2d87,2026-06-04,Spain,Iraq,1,1,False,Friendly,La Coruna,Spain
+m_21412f2d87,2026-06-04,Spain,Iraq,1,1,False,Friendly,A Coruña,Spain
 m_35290b4248,2026-06-04,Sweden,Greece,2,2,False,Friendly,Solna,Sweden
 m_aa0968669b,2026-06-05,Angola,Mauritania,1,1,True,Friendly,Casablanca,Morocco
 m_9a2f530aec,2026-06-05,Azerbaijan,Malta,0,2,True,Friendly,Szombathely,Hungary
@@ -11773,7 +11773,7 @@ m_34a163a1f9,2026-06-05,Paraguay,Nicaragua,4,0,False,Friendly,Asunción,Paraguay
 m_16552a6f4a,2026-06-05,San Marino,Bangladesh,1,2,False,Friendly,Serravalle,San Marino
 m_1ff6f9332a,2026-06-05,Singapore,China,1,2,False,Friendly,Singapore,Singapore
 m_c78db12681,2026-06-05,Slovakia,Montenegro,2,2,False,Friendly,Košice,Slovakia
-m_a8983e4c5a,2026-06-05,Tajikistan,India,3,1,False,Friendly,Tursunzade,Tajikistan
+m_a8983e4c5a,2026-06-05,Tajikistan,India,3,1,False,Friendly,Tursunzoda,Tajikistan
 m_7c8d04f82e,2026-06-05,Thailand,Kuwait,2,2,False,Friendly,Pathum Thani,Thailand
 m_c5f166f135,2026-06-05,Russia,Burkina Faso,3,0,False,Friendly,Volgograd,Russia
 m_7012059c74,2026-06-05,Benin,Niger,1,1,True,Friendly,Casablanca,Morocco
@@ -11793,14 +11793,14 @@ m_02252e9061,2026-06-06,England,New Zealand,1,0,True,Friendly,Tampa,United State
 m_9bb7199f9d,2026-06-06,Sierra Leone,Liberia,1,0,False,Friendly,Bo,Sierra Leone
 m_2a4f2388b0,2026-06-06,Ethiopia,Malawi,1,0,False,Friendly,Dire Dawa,Ethiopia
 m_395da201fd,2026-06-06,Gibraltar,Cayman Islands,4,1,False,Friendly,Gibraltar,Gibraltar
-m_f750609ff7,2026-06-06,Jamaica,South Africa,0,1,True,Friendly,Pachua,Mexico
+m_f750609ff7,2026-06-06,Jamaica,South Africa,0,1,True,Friendly,Pachuca,Mexico
 m_19f6caafca,2026-06-06,Kyrgyzstan,Palestine,0,0,False,Friendly,Bishkek,Kyrgyzstan
-m_0445b573a2,2026-06-06,Panama,Bosnia and Herzegovina,1,1,True,Friendly,St Louis,United States
+m_0445b573a2,2026-06-06,Panama,Bosnia and Herzegovina,1,1,True,Friendly,St. Louis,United States
 m_b97a690531,2026-06-06,Portugal,Chile,2,1,False,Friendly,Oeiras,Portugal
 m_e6fb8635bc,2026-06-06,Qatar,El Salvador,0,0,True,Friendly,Los Angeles,United States
 m_50d1b8ff7d,2026-06-06,Romania,Wales,2,1,False,Friendly,Bucharest,Romania
 m_ef95ceb52c,2026-06-06,United States,Germany,1,2,False,Friendly,Chicago,United States
-m_c6c45dde65,2026-06-06,British Virgin Islands,Bonaire,2,0,True,Friendly,Malaga,Spain
+m_c6c45dde65,2026-06-06,British Virgin Islands,Bonaire,2,0,True,Friendly,Málaga,Spain
 m_395da201fd,2026-06-06,Gibraltar,Cayman Islands,4,1,False,Friendly,Europa Point,Gibraltar
 m_b30885526e,2026-06-06,Venezuela,Turkey,1,2,True,Friendly,Fort Lauderdale,United States
 m_ffe3d9b996,2026-06-06,Myanmar,Guam,6,1,True,Tri-Nations Cup,Manila,Philippines
@@ -11819,3 +11819,25 @@ m_3a1e5b4d0f,2026-06-08,France,Northern Ireland,3,1,False,Friendly,Lille,France
 m_fe5dd1416a,2026-06-08,Netherlands,Uzbekistan,2,1,True,Friendly,New York,United States
 m_c0fa9f7952,2026-06-08,Peru,Spain,1,3,True,Friendly,Puebla,Mexico
 m_f0a4d6ab97,2026-06-08,Mauritania,Niger,1,0,True,Friendly,Casablanca,Morocco
+m_c9e6f32730,2026-06-09,Angola,Central African Republic,3,0,True,Friendly,Casablanca,Morocco
+m_5cd704d6d9,2026-06-09,Argentina,Iceland,3,0,True,Friendly,Auburn,United States
+m_44d357a38f,2026-06-09,Armenia,Moldova,1,1,False,Friendly,Yerevan,Armenia
+m_20e51b97f7,2026-06-09,Azerbaijan,San Marino,2,1,True,Friendly,Szombathely,Hungary
+m_cf0a43d82b,2026-06-09,Belarus,Burkina Faso,2,2,False,Friendly,Minsk,Belarus
+m_3460f02c79,2026-06-09,Cambodia,Hong Kong,2,0,False,Friendly,Phnom Penh,Cambodia
+m_a0d6827724,2026-06-09,China,Thailand,0,0,False,Friendly,Hangzhou,China
+m_96fbad1aff,2026-06-09,DR Congo,Chile,1,2,True,Friendly,Orléans,France
+m_7daa18e648,2026-06-09,Equatorial Guinea,Comoros,0,1,True,Friendly,Marrakesh,Morocco
+m_29463b797c,2026-06-09,Ethiopia,Malawi,1,1,False,Friendly,Dire Dawa,Ethiopia
+m_1c120087f1,2026-06-09,Hungary,Kazakhstan,3,1,False,Friendly,Debrecen,Hungary
+m_152e89c614,2026-06-09,Indonesia,Mozambique,1,0,False,Friendly,Jakarta,Indonesia
+m_50b2c479fe,2026-06-09,Kyrgyzstan,Palestine,0,0,False,Friendly,Bishkek,Kyrgyzstan
+m_eac0c307df,2026-06-09,Saudi Arabia,Senegal,0,0,True,Friendly,San Antonio,United States
+m_b4bac58ff1,2026-06-09,Tajikistan,India,1,1,False,Friendly,Hisor,Tajikistan
+m_d38f6f3cc1,2026-06-09,Philippines,Myanmar,5,1,False,Tri-Nations Cup,Manila,Philippines
+m_5925f50e77,2026-06-09,Latvia,Faroe Islands,0,1,False,Baltic Cup,Riga,Latvia
+m_8fddff84e1,2026-06-09,Estonia,Lithuania,1,0,False,Baltic Cup,Tallinn,Estonia
+m_2ab36d13b1,2026-06-09,Russia,Trinidad and Tobago,3,0,False,Friendly,Kaliningrad,Russia
+m_79c1644e77,2026-06-09,Togo,Benin,5,1,False,Friendly,Lomé,Togo
+m_caee0cea3c,2026-06-09,Liberia,Sierra Leone,3,1,False,Friendly,Monrovia,Liberia
+m_43827a7d43,2026-06-09,Iraq,Venezuela,0,2,True,Friendly,Bridgeview,United States
