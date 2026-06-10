@@ -75,8 +75,31 @@ class FitResult:
         }
 
 
-def _build_design(rows: list[dict], as_of: date, half_life_days: int) -> dict:
-    """Vectorize matches: encode teams as integer indices, build weight array."""
+def _competition_weight(tournament: str, cfg: ModelConfig) -> float:
+    """Importance multiplier for a match's competition, layered on the recency
+    weight. Mirrors the Elo K-factor tiers: friendly < qualifier < tournament < WC.
+
+    Order matters: "FIFA World Cup qualification" contains both "qualif" and "world
+    cup", and must classify as a qualifier — so the qualif check comes first.
+    """
+    t = (tournament or "").lower()
+    if "qualif" in t:
+        return cfg.competition_weight_qualifier
+    if "friendly" in t:
+        return cfg.competition_weight_friendly
+    if "world cup" in t:
+        return cfg.competition_weight_wc
+    return cfg.competition_weight_tournament
+
+
+def _build_design(rows: list[dict], as_of: date, half_life_days: int,
+                  cfg: ModelConfig | None = None) -> dict:
+    """Vectorize matches: encode teams as integer indices, build weight array.
+
+    The per-match weight is the exponential recency decay times a per-competition
+    importance multiplier (`cfg.competition_weight_*`). When `cfg` is None the
+    competition multiplier is 1.0 (pure recency weighting — preserves the legacy
+    behaviour for callers that don't pass a config)."""
     teams = sorted({r["home"] for r in rows} | {r["away"] for r in rows})
     idx = {t: i for i, t in enumerate(teams)}
 
@@ -97,7 +120,8 @@ def _build_design(rows: list[dict], as_of: date, half_life_days: int) -> dict:
         home_flag[i] = 0.0 if r["neutral"] else 1.0
         d = datetime.fromisoformat(r["date"]).date()
         age_days = (as_of - d).days
-        weights[i] = np.exp(-decay * max(age_days, 0))
+        comp_mult = _competition_weight(r.get("tournament", ""), cfg) if cfg is not None else 1.0
+        weights[i] = np.exp(-decay * max(age_days, 0)) * comp_mult
 
     # Count training matches per team (for diagnostics)
     counts = np.zeros(len(teams), dtype=np.int64)
@@ -192,7 +216,7 @@ def fit_dc_model(
     as_of = as_of or datetime.utcnow().date()
     rho_eff = cfg.dc_rho if rho is None else rho
 
-    design = _build_design(rows, as_of, half_life_days)
+    design = _build_design(rows, as_of, half_life_days, cfg)
     n_teams = len(design["teams"])
     if verbose:
         print(f"  fit: {len(rows)} matches, {n_teams} teams, half-life {half_life_days}d, "
@@ -247,6 +271,64 @@ def fit_dc_model(
         converged=bool(result.success),
         final_neg_log_lik=float(result.fun),
     )
+
+
+def profile_fit_rho(
+    rows: list[dict],
+    cfg: ModelConfig,
+    as_of: date | None = None,
+    half_life_days: int = 730,
+    ridge_lambda: float = 1.0,
+    rho_grid: list[float] | None = None,
+    max_iter: int = 500,
+    verbose: bool = True,
+) -> tuple[float, FitResult, list[dict]]:
+    """Choose the Dixon-Coles rho by profile likelihood on the training data.
+
+    For each rho in the grid the full attack/defense/mu/gamma model is refit by
+    penalized MLE and we record the resulting penalized negative log-likelihood
+    (the value the optimizer minimizes). The rho with the lowest objective wins.
+    Because the ridge penalty is on the team latents — not on rho — and barely
+    moves across rho, the selection is driven by the goodness-of-fit term; the
+    full profile table is returned so the choice is auditable.
+
+    rho is the one Dixon-Coles parameter the project never re-fit for international
+    football (it was inherited as -0.10 from the Liga MX model). Profiling it on
+    ~12k internationals re-centers the low-score correction on the right
+    competition, which matters because the within-outcome score shape — and hence
+    the exact-score half of the quiniela points — is built from it.
+
+    Returns (best_rho, best_fit, profile_table).
+    """
+    if rho_grid is None:
+        n = int(round((cfg.rho_grid_hi - cfg.rho_grid_lo) / cfg.rho_grid_step)) + 1
+        rho_grid = [round(cfg.rho_grid_lo + cfg.rho_grid_step * i, 6) for i in range(n)]
+
+    if verbose:
+        print(f"  profiling rho over {len(rho_grid)} values "
+              f"[{rho_grid[0]:+.3f} .. {rho_grid[-1]:+.3f}] ...")
+
+    best_rho: float | None = None
+    best_fit: FitResult | None = None
+    table: list[dict] = []
+    for rho in rho_grid:
+        fit = fit_dc_model(
+            rows, cfg, as_of=as_of, half_life_days=half_life_days,
+            ridge_lambda=ridge_lambda, rho=rho, max_iter=max_iter, verbose=False,
+        )
+        table.append({"rho": rho, "neg_log_lik": fit.final_neg_log_lik,
+                      "converged": fit.converged})
+        if best_fit is None or fit.final_neg_log_lik < best_fit.final_neg_log_lik:
+            best_rho, best_fit = rho, fit
+
+    if verbose:
+        for row in table:
+            mark = "  <- best" if row["rho"] == best_rho else ""
+            print(f"    rho={row['rho']:+.3f}  nll={row['neg_log_lik']:.2f}{mark}")
+        print(f"  fitted rho={best_rho:+.3f} (was {cfg.dc_rho:+.3f} default)")
+
+    assert best_rho is not None and best_fit is not None
+    return best_rho, best_fit, table
 
 
 def predict_lambdas(

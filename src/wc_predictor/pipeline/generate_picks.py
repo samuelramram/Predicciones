@@ -35,6 +35,7 @@ from __future__ import annotations
 import argparse
 import csv
 import json
+from dataclasses import replace
 from datetime import datetime
 from pathlib import Path
 
@@ -743,6 +744,14 @@ def main():
     fit = load_fit(fit_src)
     print(f"  mu={fit.mu:.3f}  gamma={fit.gamma:.3f}  rho={fit.rho:.3f}  "
           f"({fit.n_teams} teams, {fit.n_matches} matches)")
+
+    # Honour the rho persisted by fit_model. The score-matrix SHAPE (and thus the
+    # exact-score half of the quiniela points) is built from mcfg.dc_rho; without
+    # this override a data-fitted rho would be silently ignored in favour of the
+    # config default.
+    if abs(fit.rho - mcfg.dc_rho) > 1e-9:
+        print(f"  using fitted rho={fit.rho:+.3f} (config default {mcfg.dc_rho:+.3f})")
+        mcfg = replace(mcfg, dc_rho=fit.rho)
 
     venues = _load_venues()
     fixtures_doc = _load_fixtures()

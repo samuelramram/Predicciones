@@ -113,10 +113,11 @@ python -m wc_predictor.ingest.fetch_odds                          # odds: snapsh
 python -m wc_predictor.pipeline.snapshot_odds                     # odds: closing line (recomendado, ver abajo)
 python -m wc_predictor.ingest.api_football                        # lesiones API-Football (opcional, requiere plan Pro)
 python -m wc_predictor.pipeline.fit_elo                           # replay Elo internacional
-python -m wc_predictor.pipeline.fit_model                         # fit Poisson + Dixon-Coles
+python -m wc_predictor.pipeline.fit_model                         # fit Poisson + DC (perfila rho; --no-fit-rho para el viejo -0.10)
 python -m wc_predictor.pipeline.generate_picks --round group_stage
 python -m wc_predictor.pipeline.backtest                          # validación 5 torneos
 python -m wc_predictor.pipeline.simulate_pool                     # simulación de pool 30 personas
+python -m wc_predictor.pipeline.tune_odds_weight --round j1       # afina blend_odds_weight tras una jornada jugada
 ```
 
 **Odds de bookmakers (opcional pero recomendado):** el mercado es el predictor individual
@@ -224,9 +225,42 @@ pytest                              # 55 tests (optimizer, fit, Elo, blend, inge
       (`data/wc2026/injuries.json`).
 - [x] **Phase 5** — Optimización de pool: `generate_picks --objective pool` cierra el loop con
       `model.pool_sim` y elige el boleto que maximiza **P(quedar #1)** en vez del EV individual.
-- [ ] **Pendiente (mayor ROI)** — odds de cierre (requiere `THE_ODDS_API_KEY`, código listo en
-      `ingest.fetch_odds`), squad strength (jfjelstul/worldcup), y el loop en vivo
-      (ingerir scores J1/J2 → refit → J3).
+- [x] **Calibración (jun 2026)** — ρ Dixon-Coles ajustado a datos, peso por competición
+      en el fit (refuerza el loop en vivo J1/J2 → J3), y afinador del peso de odds contra
+      la línea de cierre. Ver "Mejoras de calibración (junio 2026)".
+- [ ] **Pendiente (mayor ROI)** — squad strength (jfjelstul/worldcup), e ingerir los picks
+      reales de los 30 participantes desde la webapp para que el cálculo contrarian/pool use
+      popularidad observada en vez de modelada.
+
+### Mejoras de calibración (junio 2026)
+
+Tres cambios para exprimir más puntos del blend, todos con tests en
+`tests/test_improvements.py`:
+
+1. **Dixon-Coles ρ ajustado a datos internacionales.** ρ se heredó como `-0.10`
+   del modelo Liga MX y nunca se re-ajustó. `fit_model` ahora lo **perfila por
+   verosimilitud penalizada** sobre los ~12k internacionales (grilla
+   `[-0.25, +0.05]`) y persiste el ganador en `team_strengths.json`;
+   `generate_picks` lo honra vía `dataclasses.replace` (antes el ρ guardado se
+   ignoraba al construir la grilla de marcadores — un bug latente, ya que la forma
+   del marcador exacto, la mitad de los puntos de la quiniela, depende de ρ). El
+   fit actual cae en **ρ ≈ -0.05**. `--no-fit-rho` reproduce el comportamiento viejo.
+
+2. **Peso por competición en el fit Poisson+DC.** La recencia exponencial pesaba
+   igual un amistoso y un partido de Mundial de la misma antigüedad.
+   `competition_weight_*` (amistoso 1.0 < eliminatoria 1.5 < torneo 2.0 < Mundial
+   3.0) multiplica el peso de recencia según la competición, de modo que, una vez
+   arrancado el torneo, los resultados de J1/J2 **sí mueven** las fuerzas de cara a
+   J3 (el loop de refit en vivo) en lugar de quedar ahogados por años de amistosos.
+
+3. **Afinador del peso de odds (`pipeline.tune_odds_weight`).** `blend_odds_weight`
+   (0.55) era un default de literatura nunca medido (no hay odds históricas de
+   selecciones). Tras cada jornada jugada, este comando empareja la **línea de
+   cierre congelada** con el resultado real y, para una grilla de pesos, reproduce
+   el blend de producción reportando **puntos de quiniela** (lo que importa) y
+   calibración Brier/log-loss; recomienda el peso óptimo vs el de config. Antes del
+   torneo (ningún partido liquidado) degrada a un no-op limpio — seguro de cablear
+   a un cron post-jornada.
 
 ### Resultado del backtest (275 partidos, 5 torneos)
 

@@ -13,13 +13,14 @@ Writes:
 """
 from __future__ import annotations
 
+import argparse
 import csv
 import json
 from datetime import datetime
 from pathlib import Path
 
 from wc_predictor.config import DEFAULT_CONFIG, HISTORICAL_DIR, PROCESSED_DIR, WC_DIR
-from wc_predictor.model.poisson_dc import fit_dc_model, save_fit
+from wc_predictor.model.poisson_dc import fit_dc_model, profile_fit_rho, save_fit
 
 
 def _load_training_rows(src: Path) -> list[dict]:
@@ -44,7 +45,19 @@ def _load_wc_teams() -> set[str]:
     return {t for group in teams["groups"].values() for t in group}
 
 
-def main():
+def main(argv: list[str] | None = None):
+    parser = argparse.ArgumentParser(description="Fit Poisson + Dixon-Coles on the intl training set.")
+    parser.add_argument(
+        "--no-fit-rho", dest="fit_rho", action="store_false", default=None,
+        help="Skip profiling the Dixon-Coles rho and fit at the config default "
+             f"({DEFAULT_CONFIG.model.dc_rho:+.2f}). By default rho is profiled when "
+             "config.fit_rho is enabled.",
+    )
+    args = parser.parse_args(argv)
+
+    mcfg = DEFAULT_CONFIG.model
+    fit_rho = mcfg.fit_rho if args.fit_rho is None else args.fit_rho
+
     src = HISTORICAL_DIR / "international_matches.csv"
     if not src.exists():
         raise SystemExit(
@@ -55,8 +68,12 @@ def main():
     rows = _load_training_rows(src)
     print(f"  {len(rows)} matches")
 
-    print("Fitting Poisson + Dixon-Coles MLE ...")
-    fit = fit_dc_model(rows, DEFAULT_CONFIG.model, ridge_lambda=DEFAULT_CONFIG.model.ridge_lambda)
+    if fit_rho:
+        print("Fitting Poisson + Dixon-Coles MLE (profiling rho) ...")
+        best_rho, fit, _ = profile_fit_rho(rows, mcfg, ridge_lambda=mcfg.ridge_lambda)
+    else:
+        print("Fitting Poisson + Dixon-Coles MLE ...")
+        fit = fit_dc_model(rows, mcfg, ridge_lambda=mcfg.ridge_lambda)
     print(f"  converged={fit.converged}, final NLL={fit.final_neg_log_lik:.1f}")
     print(f"  mu={fit.mu:.3f} (implies league-avg goals ≈ {pow(2.718281828, fit.mu):.2f}/team in neutral)")
     print(f"  gamma={fit.gamma:.3f} (home advantage in log-lambda; e^gamma={pow(2.718281828, fit.gamma):.2f}x)")
