@@ -81,6 +81,29 @@ class ModelConfig:
     poisson_grid_min_goals: int = 5
     poisson_grid_max_cap: int = 12
 
+    # Dixon-Coles rho was inherited as -0.10 from the Liga MX model and never
+    # re-fit for international football. `fit_model` now profiles it by penalized
+    # likelihood over this grid and persists the winner into team_strengths.json;
+    # `generate_picks` then honours the fitted value (the score-matrix SHAPE — and
+    # therefore the exact-score half of the quiniela points — depends on rho).
+    fit_rho: bool = True
+    rho_grid_lo: float = -0.25
+    rho_grid_hi: float = 0.05
+    rho_grid_step: float = 0.025
+
+    # Per-competition weight multipliers applied ON TOP of the exponential recency
+    # decay in the Poisson+DC fit. Recency alone weights a two-day-old friendly the
+    # same as a two-day-old World-Cup match, yet the WC game is far more informative
+    # for WC prediction. Up-weighting competitive matches means that, once the
+    # tournament is under way, freshly-played WC results actually move team
+    # strengths for the next round's picks (the in-tournament refit loop) instead of
+    # being drowned out by years of friendlies. `competition_weight_wc` only bites
+    # mid-tournament, since WC2026 matches aren't in the training CSV until played.
+    competition_weight_friendly: float = 1.0
+    competition_weight_qualifier: float = 1.5
+    competition_weight_tournament: float = 2.0
+    competition_weight_wc: float = 3.0
+
     # L2 ridge penalty on attack/defense latents (zero-mean prior). Lower values
     # let teams with fewer / more lopsided observations push further from zero —
     # important for African/Asian sides whose ratings were otherwise compressed
