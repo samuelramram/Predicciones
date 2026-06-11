@@ -107,11 +107,11 @@ m_61f721262e,2014-05-05,Sealand,Chagos Islands,1,1,True,Friendly,Godalming,Engla
 m_c003a17496,2014-05-10,Vatican City,Monaco,0,2,False,Friendly,Rome,Italy
 m_3ab9334e0a,2014-05-10,Palestine,Jordan,1,0,False,Palestine International Championship,Hebron,Palestine
 m_a46572299a,2014-05-11,Jersey,Guernsey,1,4,False,Muratti Vase,Jersey,Jersey
-m_d1c6da574e,2014-05-11,Pakistan,Sri Lanka,3,0,False,Palestine International Championship,Al-Ram,Palestine
+m_d1c6da574e,2014-05-11,Pakistan,Sri Lanka,3,0,True,Palestine International Championship,Al-Ram,Palestine
 m_214d220acd,2014-05-12,Afghanistan,Kyrgyzstan,1,0,True,Friendly,Kuwait City,Kuwait
 m_211af555f3,2014-05-13,Germany,Poland,0,0,False,Friendly,Hamburg,Germany
 m_b10f351857,2014-05-14,Kuwait,Afghanistan,3,2,False,Friendly,Kuwait City,Kuwait
-m_cab62466e5,2014-05-14,Jordan,Pakistan,1,0,False,Palestine International Championship,Nablus,Palestine
+m_cab62466e5,2014-05-14,Jordan,Pakistan,1,0,True,Palestine International Championship,Nablus,Palestine
 m_c59a5d2509,2014-05-14,Palestine,Sri Lanka,3,0,False,Palestine International Championship,Nablus,Palestine
 m_5c5985187d,2014-05-16,Kuwait,Kyrgyzstan,2,2,False,Friendly,Kuwait City,Kuwait
 m_4997a48375,2014-05-17,Malawi,Chad,2,0,False,African Cup of Nations qualification,Blantyre,Malawi
@@ -120,7 +120,7 @@ m_bf312950f0,2014-05-17,Namibia,Congo,1,0,False,African Cup of Nations qualifica
 m_628e51ee38,2014-05-17,Netherlands,Ecuador,1,1,False,Friendly,Amsterdam,Netherlands
 m_527e9929a9,2014-05-17,São Tomé and Príncipe,Benin,0,2,False,African Cup of Nations qualification,São Tomé,São Tomé and Príncipe
 m_a0d4d6a774,2014-05-17,Somaliland,Sealand,2,2,True,Friendly,London,England
-m_22b08b60f9,2014-05-17,Sri Lanka,Jordan,0,4,False,Palestine International Championship,Al-Ram,Palestine
+m_22b08b60f9,2014-05-17,Sri Lanka,Jordan,0,4,True,Palestine International Championship,Al-Ram,Palestine
 m_07b01ea786,2014-05-17,Palestine,Pakistan,3,0,False,Palestine International Championship,Al-Ram,Palestine
 m_8b38b917ca,2014-05-18,Belarus,Iran,0,0,True,Friendly,Kapfenberg,Austria
 m_47ed397c96,2014-05-18,Burundi,Botswana,0,0,False,African Cup of Nations qualification,Bujumbura,Burundi
@@ -7566,6 +7566,7 @@ m_49ee73e85b,2022-03-30,Costa Rica,United States,2,0,False,FIFA World Cup qualif
 m_d445d6f3a8,2022-03-30,Panama,Canada,1,0,False,FIFA World Cup qualification,Panama City,Panama
 m_04d5288620,2022-03-30,Jamaica,Honduras,2,1,False,FIFA World Cup qualification,Kingston,Jamaica
 m_554da60a9c,2022-03-30,Solomon Islands,New Zealand,0,5,True,FIFA World Cup qualification,Doha,Qatar
+m_eb73586b6d,2022-04-22,Elba Island,Vatican City,4,2,False,Friendly,Capoliveri,Italy
 m_f1c081c03d,2022-04-23,Alderney,Guernsey,0,2,False,Muratti Vase,Alderney,Alderney
 m_28d927f02d,2022-04-24,El Salvador,Guatemala,0,4,True,Friendly,San Jose,United States
 m_88319afa51,2022-04-27,Mexico,Guatemala,0,0,True,Friendly,Orlando,United States
@@ -10598,7 +10599,7 @@ m_baa81245fe,2025-03-20,Gabon,Seychelles,3,0,False,FIFA World Cup qualification,
 m_01cd27f099,2025-03-20,Mozambique,Uganda,3,1,True,FIFA World Cup qualification,Cairo,Egypt
 m_dfef1d9592,2025-03-20,Malawi,Namibia,0,1,False,FIFA World Cup qualification,Lilongwe,Malawi
 m_03c09c9fe2,2025-03-20,Comoros,Mali,0,3,True,FIFA World Cup qualification,Berkane,Morocco
-m_f39323d3de,2025-03-20,Lebanon,Timor-Leste,4,0,False,Friendly,Al Khor,Qatar
+m_f39323d3de,2025-03-20,Lebanon,Timor-Leste,4,0,True,Friendly,Al Khor,Qatar
 m_a43f747df3,2025-03-21,Belize,Costa Rica,0,7,False,Gold Cup qualification,Belmopan,Belize
 m_196a56a4c2,2025-03-21,Guyana,Guatemala,3,2,True,Gold Cup qualification,Wildey,Barbados
 m_a54bdb4d62,2025-03-21,Bermuda,Honduras,3,5,False,Gold Cup qualification,Hamilton,Bermuda
@@ -11806,7 +11807,7 @@ m_b30885526e,2026-06-06,Venezuela,Turkey,1,2,True,Friendly,Fort Lauderdale,Unite
 m_ffe3d9b996,2026-06-06,Myanmar,Guam,6,1,True,Tri-Nations Cup,Manila,Philippines
 m_1d380f7fb6,2026-06-06,Lithuania,Latvia,1,1,False,Baltic Cup,Kaunas,Lithuania
 m_838336de8b,2026-06-06,Estonia,Faroe Islands,1,0,False,Baltic Cup,Pärnu,Estonia
-m_f024ecd1cc,2026-06-07,Afghanistan,Pakistan,0,2,False,Diamond Jubilee International Football Tournament,Malé,Maldives
+m_f024ecd1cc,2026-06-07,Afghanistan,Pakistan,0,2,True,Diamond Jubilee International Football Tournament,Malé,Maldives
 m_e47e574858,2026-06-07,Croatia,Slovenia,2,1,False,Friendly,Varaždin,Croatia
 m_673580b9b4,2026-06-07,Ecuador,Guatemala,3,0,True,Friendly,Columbus,United States
 m_ff6e361e6f,2026-06-07,Greece,Italy,0,1,False,Friendly,Heraklion,Greece
@@ -11841,3 +11842,7 @@ m_2ab36d13b1,2026-06-09,Russia,Trinidad and Tobago,3,0,False,Friendly,Kaliningra
 m_79c1644e77,2026-06-09,Togo,Benin,5,1,False,Friendly,Lomé,Togo
 m_caee0cea3c,2026-06-09,Liberia,Sierra Leone,3,1,False,Friendly,Monrovia,Liberia
 m_43827a7d43,2026-06-09,Iraq,Venezuela,0,2,True,Friendly,Bridgeview,United States
+m_aca4498315,2026-06-10,Bolivia,Algeria,0,4,True,Friendly,Kansas City,United States
+m_2dc98efcc9,2026-06-10,England,Costa Rica,3,0,True,Friendly,Orlando,United States
+m_e64a5ccb59,2026-06-10,Portugal,Nigeria,2,1,False,Friendly,Leiria,Portugal
+m_832f9b1589,2026-06-10,Afghanistan,Pakistan,0,2,True,Diamond Jubilee International Football Tournament,Malé,Maldives
