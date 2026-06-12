@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-06-10",
+  "as_of": "2026-06-11",
   "last_n_matches": 30,
   "trajectories": {
     "Algeria": [
@@ -3268,15 +3268,6 @@
     ],
     "Czech Republic": [
       {
-        "date": "2023-10-15",
-        "elo": 1795.5767312666726,
-        "opponent": "Faroe Islands",
-        "vs_elo": 1324.0994296381346,
-        "venue": "home",
-        "result": "1-0",
-        "tournament": "UEFA Euro qualification"
-      },
-      {
         "date": "2023-11-17",
         "elo": 1798.2688262316885,
         "opponent": "Poland",
@@ -3536,6 +3527,15 @@
         "venue": "neutral",
         "result": "5-1",
         "tournament": "Friendly"
+      },
+      {
+        "date": "2026-06-11",
+        "elo": 1785.676381373988,
+        "opponent": "South Korea",
+        "vs_elo": 1867.282996610496,
+        "venue": "neutral",
+        "result": "1-2",
+        "tournament": "FIFA World Cup"
       }
     ],
     "DR Congo": [
@@ -7076,15 +7076,6 @@
     ],
     "Mexico": [
       {
-        "date": "2024-06-30",
-        "elo": 1865.6864749031581,
-        "opponent": "Ecuador",
-        "vs_elo": 1914.973324346341,
-        "venue": "neutral",
-        "result": "0-0",
-        "tournament": "Copa América"
-      },
-      {
         "date": "2024-09-07",
         "elo": 1877.170778056203,
         "opponent": "New Zealand",
@@ -7344,6 +7335,15 @@
         "venue": "home",
         "result": "5-1",
         "tournament": "Friendly"
+      },
+      {
+        "date": "2026-06-11",
+        "elo": 1963.1682855250106,
+        "opponent": "South Africa",
+        "vs_elo": 1660.9004687973252,
+        "venue": "home",
+        "result": "2-0",
+        "tournament": "FIFA World Cup"
       }
     ],
     "Morocco": [
@@ -10340,15 +10340,6 @@
     ],
     "South Africa": [
       {
-        "date": "2024-02-03",
-        "elo": 1679.7106980477834,
-        "opponent": "Cape Verde",
-        "vs_elo": 1653.1156993374116,
-        "venue": "neutral",
-        "result": "0-0",
-        "tournament": "African Cup of Nations"
-      },
-      {
         "date": "2024-02-07",
         "elo": 1683.1890465902486,
         "opponent": "Nigeria",
@@ -10608,18 +10599,18 @@
         "venue": "neutral",
         "result": "1-0",
         "tournament": "Friendly"
+      },
+      {
+        "date": "2026-06-11",
+        "elo": 1654.7239530125355,
+        "opponent": "Mexico",
+        "vs_elo": 1956.991769740221,
+        "venue": "away",
+        "result": "0-2",
+        "tournament": "FIFA World Cup"
       }
     ],
     "South Korea": [
-      {
-        "date": "2024-01-15",
-        "elo": 1893.0855471403356,
-        "opponent": "Bahrain",
-        "vs_elo": 1558.1179833368356,
-        "venue": "neutral",
-        "result": "3-1",
-        "tournament": "AFC Asian Cup"
-      },
       {
         "date": "2024-01-20",
         "elo": 1882.0385484077465,
@@ -10880,6 +10871,15 @@
         "venue": "neutral",
         "result": "1-0",
         "tournament": "Friendly"
+      },
+      {
+        "date": "2026-06-11",
+        "elo": 1883.5663801195292,
+        "opponent": "Czech Republic",
+        "vs_elo": 1801.9597648830213,
+        "venue": "neutral",
+        "result": "2-1",
+        "tournament": "FIFA World Cup"
       }
     ],
     "Spain": [

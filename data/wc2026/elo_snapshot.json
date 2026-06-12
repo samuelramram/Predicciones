@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-06-10",
+  "as_of": "2026-06-11",
   "teams": [
     {
       "team": "Spain",
@@ -50,16 +50,16 @@
       "elo": 1972.88
     },
     {
+      "team": "Mexico",
+      "elo": 1963.17
+    },
+    {
       "team": "Uruguay",
       "elo": 1958.28
     },
     {
       "team": "Croatia",
       "elo": 1957.14
-    },
-    {
-      "team": "Mexico",
-      "elo": 1956.99
     },
     {
       "team": "Belgium",
@@ -94,6 +94,10 @@
       "elo": 1888.94
     },
     {
+      "team": "South Korea",
+      "elo": 1883.57
+    },
+    {
       "team": "Austria",
       "elo": 1881.61
     },
@@ -104,10 +108,6 @@
     {
       "team": "Paraguay",
       "elo": 1877.47
-    },
-    {
-      "team": "South Korea",
-      "elo": 1867.28
     },
     {
       "team": "Panama",
@@ -131,7 +131,7 @@
     },
     {
       "team": "Czech Republic",
-      "elo": 1801.96
+      "elo": 1785.68
     },
     {
       "team": "Egypt",
@@ -171,7 +171,7 @@
     },
     {
       "team": "South Africa",
-      "elo": 1660.9
+      "elo": 1654.72
     },
     {
       "team": "Cape Verde",

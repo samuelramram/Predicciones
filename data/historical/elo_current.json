@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-06-10",
+  "as_of": "2026-06-11",
   "params": {
     "k_friendly": 20.0,
     "k_qualifier": 30.0,
@@ -57,16 +57,16 @@
       "elo": 1972.88
     },
     {
+      "team": "Mexico",
+      "elo": 1963.17
+    },
+    {
       "team": "Uruguay",
       "elo": 1958.28
     },
     {
       "team": "Croatia",
       "elo": 1957.14
-    },
-    {
-      "team": "Mexico",
-      "elo": 1956.99
     },
     {
       "team": "Belgium",
@@ -109,6 +109,10 @@
       "elo": 1888.94
     },
     {
+      "team": "South Korea",
+      "elo": 1883.57
+    },
+    {
       "team": "Austria",
       "elo": 1881.61
     },
@@ -119,10 +123,6 @@
     {
       "team": "Paraguay",
       "elo": 1877.47
-    },
-    {
-      "team": "South Korea",
-      "elo": 1867.28
     },
     {
       "team": "Nigeria",
@@ -177,10 +177,6 @@
       "elo": 1805.38
     },
     {
-      "team": "Czech Republic",
-      "elo": 1801.96
-    },
-    {
       "team": "Basque Country",
       "elo": 1799.34
     },
@@ -191,6 +187,10 @@
     {
       "team": "Chile",
       "elo": 1786.19
+    },
+    {
+      "team": "Czech Republic",
+      "elo": 1785.68
     },
     {
       "team": "Egypt",
@@ -333,16 +333,16 @@
       "elo": 1663.65
     },
     {
-      "team": "South Africa",
-      "elo": 1660.9
-    },
-    {
       "team": "Albania",
       "elo": 1658.94
     },
     {
       "team": "United Arab Emirates",
       "elo": 1655.59
+    },
+    {
+      "team": "South Africa",
+      "elo": 1654.72
     },
     {
       "team": "Abkhazia",
