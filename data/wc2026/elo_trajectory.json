@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-06-11",
+  "as_of": "2026-06-12",
   "last_n_matches": 30,
   "trajectories": {
     "Algeria": [
@@ -1364,15 +1364,6 @@
     ],
     "Bosnia and Herzegovina": [
       {
-        "date": "2023-06-20",
-        "elo": 1627.334277444834,
-        "opponent": "Luxembourg",
-        "vs_elo": 1475.9008264775484,
-        "venue": "home",
-        "result": "0-2",
-        "tournament": "UEFA Euro qualification"
-      },
-      {
         "date": "2023-09-08",
         "elo": 1628.0115661354796,
         "opponent": "Liechtenstein",
@@ -1632,6 +1623,15 @@
         "venue": "neutral",
         "result": "1-1",
         "tournament": "Friendly"
+      },
+      {
+        "date": "2026-06-12",
+        "elo": 1661.3676474396366,
+        "opponent": "Canada",
+        "vs_elo": 1888.9377988273536,
+        "venue": "away",
+        "result": "1-1",
+        "tournament": "FIFA World Cup"
       }
     ],
     "Brazil": [
@@ -1908,15 +1908,6 @@
     ],
     "Canada": [
       {
-        "date": "2024-06-09",
-        "elo": 1819.5504380589111,
-        "opponent": "France",
-        "vs_elo": 2093.6527096624595,
-        "venue": "away",
-        "result": "0-0",
-        "tournament": "Friendly"
-      },
-      {
         "date": "2024-06-20",
         "elo": 1812.8491675985676,
         "opponent": "Argentina",
@@ -2176,6 +2167,15 @@
         "venue": "home",
         "result": "1-1",
         "tournament": "Friendly"
+      },
+      {
+        "date": "2026-06-12",
+        "elo": 1874.3517069657632,
+        "opponent": "Bosnia and Herzegovina",
+        "vs_elo": 1646.7815555780462,
+        "venue": "home",
+        "result": "1-1",
+        "tournament": "FIFA World Cup"
       }
     ],
     "Cape Verde": [
@@ -8708,15 +8708,6 @@
     ],
     "Paraguay": [
       {
-        "date": "2023-09-12",
-        "elo": 1762.4810083137074,
-        "opponent": "Venezuela",
-        "vs_elo": 1771.9399192316018,
-        "venue": "away",
-        "result": "0-1",
-        "tournament": "FIFA World Cup qualification"
-      },
-      {
         "date": "2023-10-12",
         "elo": 1760.8934317245041,
         "opponent": "Argentina",
@@ -8976,6 +8967,15 @@
         "venue": "home",
         "result": "4-0",
         "tournament": "Friendly"
+      },
+      {
+        "date": "2026-06-12",
+        "elo": 1845.5244694954645,
+        "opponent": "United States",
+        "vs_elo": 1827.8722494697515,
+        "venue": "away",
+        "result": "1-4",
+        "tournament": "FIFA World Cup"
       }
     ],
     "Portugal": [
@@ -12244,15 +12244,6 @@
     ],
     "United States": [
       {
-        "date": "2024-06-27",
-        "elo": 1864.907795092496,
-        "opponent": "Panama",
-        "vs_elo": 1788.9466787894307,
-        "venue": "home",
-        "result": "1-2",
-        "tournament": "Copa América"
-      },
-      {
         "date": "2024-07-01",
         "elo": 1850.509696594271,
         "opponent": "Uruguay",
@@ -12512,6 +12503,15 @@
         "venue": "home",
         "result": "1-2",
         "tournament": "Friendly"
+      },
+      {
+        "date": "2026-06-12",
+        "elo": 1859.8173331701287,
+        "opponent": "Paraguay",
+        "vs_elo": 1877.4695531958416,
+        "venue": "home",
+        "result": "4-1",
+        "tournament": "FIFA World Cup"
       }
     ],
     "Uruguay": [

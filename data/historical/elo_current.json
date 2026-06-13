@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-06-11",
+  "as_of": "2026-06-12",
   "params": {
     "k_friendly": 20.0,
     "k_qualifier": 30.0,
@@ -105,10 +105,6 @@
       "elo": 1890.16
     },
     {
-      "team": "Canada",
-      "elo": 1888.94
-    },
-    {
       "team": "South Korea",
       "elo": 1883.57
     },
@@ -121,12 +117,20 @@
       "elo": 1878.99
     },
     {
-      "team": "Paraguay",
-      "elo": 1877.47
+      "team": "Canada",
+      "elo": 1874.35
     },
     {
       "team": "Nigeria",
       "elo": 1862.84
+    },
+    {
+      "team": "United States",
+      "elo": 1859.82
+    },
+    {
+      "team": "Paraguay",
+      "elo": 1845.52
     },
     {
       "team": "Yugoslavia",
@@ -147,10 +151,6 @@
     {
       "team": "Ukraine",
       "elo": 1828.54
-    },
-    {
-      "team": "United States",
-      "elo": 1827.87
     },
     {
       "team": "Scotland",
@@ -333,6 +333,10 @@
       "elo": 1663.65
     },
     {
+      "team": "Bosnia and Herzegovina",
+      "elo": 1661.37
+    },
+    {
       "team": "Albania",
       "elo": 1658.94
     },
@@ -363,10 +367,6 @@
     {
       "team": "Burkina Faso",
       "elo": 1647.68
-    },
-    {
-      "team": "Bosnia and Herzegovina",
-      "elo": 1646.78
     },
     {
       "team": "Kárpátalja",
