@@ -200,6 +200,19 @@ class ModelConfig:
     # backtested (no per-match motivation dataset exists) — kept mild on purpose.
     qual_rotation_lambda_mult: float = 0.90
 
+    # Goal-environment calibration multiplier applied to BOTH expected-goals
+    # (lambda_home, lambda_away) before the score matrix is built. The Poisson+DC
+    # fit systematically under-counts goals: across WC2014/2018/2022 + Euro/Copa
+    # 2024 (275 matches) it expects ~2.29 goals/match vs ~2.54 realized (~10% low),
+    # which costs exact-score hits because the modal scoreline sits one goal too
+    # low on favorites. Scaling lambdas up corrects the bias and lifts BOTH total
+    # points and exactos in the backtest (draws-forbidden production rule):
+    #   1.00→190 pts/42 exact · 1.11→193/45 · 1.20→194/46 · 1.25→196/48 (plateau).
+    # 1.20 sits just past the measured bias (a deliberate lean toward more exactos
+    # without chasing the overfit plateau). Sign of (lh-la) is unchanged, so 1X2
+    # picks are unaffected — only the exact-score half moves.
+    goal_env_mult: float = 1.20
+
 
 @dataclass(frozen=True)
 class RunConfig:

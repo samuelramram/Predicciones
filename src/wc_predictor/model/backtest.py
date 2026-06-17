@@ -262,6 +262,10 @@ def run_tournament_backtest(
         host = "home" if not m["neutral"] else None
         lh, la = predict_lambdas(fit_pois.strengths[home], fit_pois.strengths[away],
                                  fit_pois.mu, fit_pois.gamma, host=host)
+        # Goal-environment calibration, mirroring the production generate_picks path
+        # so the backtest scores the SAME lambdas the live model would use.
+        lh *= mcfg.goal_env_mult
+        la *= mcfg.goal_env_mult
         l1, l2 = predict_bivariate_lambdas(fit_biv.strengths[home], fit_biv.strengths[away],
                                            fit_biv.mu, fit_biv.gamma, host=host)
         bv_matrix = bp_score_matrix(l1, l2, fit_biv.lambda3, max_goals=8)
