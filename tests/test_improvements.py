@@ -180,3 +180,30 @@ def test_score_weight_grid_empty_is_safe():
     rules = QuinielaRules()
     rows = score_weight_grid([], [0.0, 0.5], poisson_share=0.7, rules=rules, mcfg=CFG)
     assert all(r["n"] == 0 and r["points"] == 0 for r in rows)
+
+
+def test_goal_env_mult_default_leans_above_calibration():
+    """The shipped default nudges lambdas up to fix the measured ~10% goal under-count."""
+    assert ModelConfig().goal_env_mult > 1.0
+
+
+def test_goal_env_mult_raises_expected_goals_of_favorite_pick():
+    """Scaling lambdas by goal_env_mult shifts the EV-optimal exact score upward
+    for a clear favorite (the mechanism behind the extra exactos in the backtest)."""
+    from wc_predictor.scoring.quiniela import optimize_pick
+
+    rules = QuinielaRules()
+    base = ModelConfig(goal_env_mult=1.0)
+    lh, la = 1.6, 0.7  # clear home favorite
+
+    pick_flat = optimize_pick(lh, la, rules, base, forbid_outcomes=("X",))
+    pick_scaled = optimize_pick(lh * 1.20, la * 1.20, rules, base, forbid_outcomes=("X",))
+
+    def total(score: str) -> int:
+        h, a = score.split("-")
+        return int(h) + int(a)
+
+    # Same winner, but the calibrated lambdas never pick a *lower*-scoring line and
+    # here pick a strictly higher one.
+    assert pick_flat.pick_1x2 == pick_scaled.pick_1x2 == "1"
+    assert total(pick_scaled.pick_exact) >= total(pick_flat.pick_exact)

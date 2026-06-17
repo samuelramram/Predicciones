@@ -258,6 +258,13 @@ def predict_match(fixture: dict, fit, venues: dict, elos: dict, odds: dict, rule
     )
     lh, la = apply_context_adjustments(lh, la, ctx, mcfg)
 
+    # Goal-environment calibration: the Poisson+DC fit under-counts goals by ~10%
+    # vs realized World-Cup/Euro/Copa scoring, so nudge both lambdas up to recover
+    # exact-score hits (see ModelConfig.goal_env_mult). Applied before the score
+    # matrix; the qual rotation damping below stays multiplicative on top.
+    lh *= mcfg.goal_env_mult
+    la *= mcfg.goal_env_mult
+
     # Jornada-3 qualification incentive: a team whose top-2 finish is already
     # mathematically locked tends to rotate its XI for the dead-rubber final
     # group match — damp its expected goals (see ModelConfig.qual_rotation_lambda_mult).

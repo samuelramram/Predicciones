@@ -1,13 +1,13 @@
 {
-  "mu": 0.18627306921651277,
-  "gamma": 0.1760429798696729,
+  "mu": 0.18627099153089716,
+  "gamma": 0.17604501416226315,
   "rho": 0.025,
   "n_matches": 11867,
   "n_teams": 300,
   "half_life_days": 730,
   "ridge_lambda": 0.3,
   "converged": false,
-  "final_neg_log_lik": 6009.0344771028185,
+  "final_neg_log_lik": 6009.03283694332,
   "teams": {
     "Abkhazia": {
       "attack": 0.1141,
@@ -125,7 +125,7 @@
       "n_matches": 12
     },
     "Barbados": {
-      "attack": -0.3818,
+      "attack": -0.3819,
       "defense": -0.9066,
       "n_matches": 77
     },
@@ -151,7 +151,7 @@
     },
     "Benin": {
       "attack": 0.1356,
-      "defense": 0.1515,
+      "defense": 0.1514,
       "n_matches": 95
     },
     "Bermuda": {
@@ -280,7 +280,7 @@
       "n_matches": 146
     },
     "China": {
-      "attack": 0.1777,
+      "attack": 0.1776,
       "defense": 0.4541,
       "n_matches": 125
     },
@@ -305,7 +305,7 @@
       "n_matches": 13
     },
     "Corsica": {
-      "attack": -0.0021,
+      "attack": -0.002,
       "defense": 0.0092,
       "n_matches": 3
     },
@@ -456,7 +456,7 @@
     },
     "Felvidék": {
       "attack": -0.0111,
-      "defense": -0.0083,
+      "defense": -0.0082,
       "n_matches": 12
     },
     "Fiji": {
@@ -575,7 +575,7 @@
       "n_matches": 113
     },
     "Guinea-Bissau": {
-      "attack": -0.4906,
+      "attack": -0.4907,
       "defense": 0.0583,
       "n_matches": 81
     },
@@ -1460,7 +1460,7 @@
       "n_matches": 2
     },
     "Western Armenia": {
-      "attack": 0.1519,
+      "attack": 0.152,
       "defense": 0.024,
       "n_matches": 16
     },
