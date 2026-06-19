@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-06-16",
+  "as_of": "2026-06-17",
   "params": {
     "k_friendly": 20.0,
     "k_qualifier": 30.0,
@@ -22,19 +22,19 @@
     },
     {
       "team": "England",
-      "elo": 2055.54
+      "elo": 2077.26
+    },
+    {
+      "team": "Colombia",
+      "elo": 2060.05
     },
     {
       "team": "Brazil",
       "elo": 2048.58
     },
     {
-      "team": "Colombia",
-      "elo": 2047.45
-    },
-    {
       "team": "Portugal",
-      "elo": 2045.94
+      "elo": 2031.71
     },
     {
       "team": "Germany",
@@ -61,16 +61,16 @@
       "elo": 1960.32
     },
     {
-      "team": "Croatia",
-      "elo": 1957.14
-    },
-    {
       "team": "Norway",
       "elo": 1955.02
     },
     {
       "team": "Uruguay",
       "elo": 1945.24
+    },
+    {
+      "team": "Croatia",
+      "elo": 1935.41
     },
     {
       "team": "Italy",
@@ -153,20 +153,12 @@
       "elo": 1829.66
     },
     {
-      "team": "Panama",
-      "elo": 1829.6
-    },
-    {
       "team": "Ukraine",
       "elo": 1828.54
     },
     {
       "team": "Venezuela",
       "elo": 1818.2
-    },
-    {
-      "team": "Uzbekistan",
-      "elo": 1817.24
     },
     {
       "team": "Serbia",
@@ -181,8 +173,16 @@
       "elo": 1805.38
     },
     {
+      "team": "Uzbekistan",
+      "elo": 1804.64
+    },
+    {
       "team": "Basque Country",
       "elo": 1799.34
+    },
+    {
+      "team": "Panama",
+      "elo": 1798.98
     },
     {
       "team": "Czechoslovakia",
@@ -221,6 +221,10 @@
       "elo": 1752.66
     },
     {
+      "team": "DR Congo",
+      "elo": 1750.75
+    },
+    {
       "team": "Kosovo",
       "elo": 1746.7
     },
@@ -231,10 +235,6 @@
     {
       "team": "Wales",
       "elo": 1741.48
-    },
-    {
-      "team": "DR Congo",
-      "elo": 1736.52
     },
     {
       "team": "Slovenia",
@@ -353,6 +353,10 @@
       "elo": 1654.72
     },
     {
+      "team": "Ghana",
+      "elo": 1654.65
+    },
+    {
       "team": "Abkhazia",
       "elo": 1654.51
     },
@@ -379,10 +383,6 @@
     {
       "team": "Guatemala",
       "elo": 1633.8
-    },
-    {
-      "team": "Ghana",
-      "elo": 1624.03
     },
     {
       "team": "County of Nice",

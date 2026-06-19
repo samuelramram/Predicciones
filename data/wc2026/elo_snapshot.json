@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-06-16",
+  "as_of": "2026-06-17",
   "teams": [
     {
       "team": "Argentina",
@@ -15,19 +15,19 @@
     },
     {
       "team": "England",
-      "elo": 2055.54
+      "elo": 2077.26
+    },
+    {
+      "team": "Colombia",
+      "elo": 2060.05
     },
     {
       "team": "Brazil",
       "elo": 2048.58
     },
     {
-      "team": "Colombia",
-      "elo": 2047.45
-    },
-    {
       "team": "Portugal",
-      "elo": 2045.94
+      "elo": 2031.71
     },
     {
       "team": "Germany",
@@ -54,16 +54,16 @@
       "elo": 1960.32
     },
     {
-      "team": "Croatia",
-      "elo": 1957.14
-    },
-    {
       "team": "Norway",
       "elo": 1955.02
     },
     {
       "team": "Uruguay",
       "elo": 1945.24
+    },
+    {
+      "team": "Croatia",
+      "elo": 1935.41
     },
     {
       "team": "Belgium",
@@ -122,16 +122,16 @@
       "elo": 1835.02
     },
     {
-      "team": "Panama",
-      "elo": 1829.6
+      "team": "Sweden",
+      "elo": 1810.21
     },
     {
       "team": "Uzbekistan",
-      "elo": 1817.24
+      "elo": 1804.64
     },
     {
-      "team": "Sweden",
-      "elo": 1810.21
+      "team": "Panama",
+      "elo": 1798.98
     },
     {
       "team": "Egypt",
@@ -147,7 +147,7 @@
     },
     {
       "team": "DR Congo",
-      "elo": 1736.52
+      "elo": 1750.75
     },
     {
       "team": "New Zealand",
@@ -183,7 +183,7 @@
     },
     {
       "team": "Ghana",
-      "elo": 1624.03
+      "elo": 1654.65
     },
     {
       "team": "Qatar",
