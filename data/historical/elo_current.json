@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-06-17",
+  "as_of": "2026-06-18",
   "params": {
     "k_friendly": 20.0,
     "k_qualifier": 30.0,
@@ -54,7 +54,7 @@
     },
     {
       "team": "Mexico",
-      "elo": 1963.17
+      "elo": 1974.58
     },
     {
       "team": "Ecuador",
@@ -81,16 +81,16 @@
       "elo": 1934.0
     },
     {
+      "team": "Switzerland",
+      "elo": 1933.38
+    },
+    {
       "team": "Australia",
       "elo": 1928.49
     },
     {
       "team": "Denmark",
       "elo": 1926.62
-    },
-    {
-      "team": "Switzerland",
-      "elo": 1920.53
     },
     {
       "team": "Austria",
@@ -101,8 +101,8 @@
       "elo": 1902.69
     },
     {
-      "team": "South Korea",
-      "elo": 1883.57
+      "team": "Canada",
+      "elo": 1882.78
     },
     {
       "team": "Iran",
@@ -113,8 +113,8 @@
       "elo": 1876.63
     },
     {
-      "team": "Canada",
-      "elo": 1874.35
+      "team": "South Korea",
+      "elo": 1872.16
     },
     {
       "team": "Algeria",
@@ -198,7 +198,7 @@
     },
     {
       "team": "Czech Republic",
-      "elo": 1785.68
+      "elo": 1778.48
     },
     {
       "team": "Poland",
@@ -337,8 +337,8 @@
       "elo": 1663.65
     },
     {
-      "team": "Bosnia and Herzegovina",
-      "elo": 1661.37
+      "team": "South Africa",
+      "elo": 1661.92
     },
     {
       "team": "Albania",
@@ -347,10 +347,6 @@
     {
       "team": "United Arab Emirates",
       "elo": 1655.59
-    },
-    {
-      "team": "South Africa",
-      "elo": 1654.72
     },
     {
       "team": "Ghana",
@@ -367,6 +363,10 @@
     {
       "team": "Northern Ireland",
       "elo": 1653.12
+    },
+    {
+      "team": "Bosnia and Herzegovina",
+      "elo": 1648.51
     },
     {
       "team": "Burkina Faso",
@@ -461,10 +461,6 @@
       "elo": 1572.97
     },
     {
-      "team": "Qatar",
-      "elo": 1570.98
-    },
-    {
       "team": "Menorca",
       "elo": 1568.93
     },
@@ -487,6 +483,10 @@
     {
       "team": "China",
       "elo": 1564.7
+    },
+    {
+      "team": "Qatar",
+      "elo": 1562.56
     },
     {
       "team": "Arameans Suryoye",
