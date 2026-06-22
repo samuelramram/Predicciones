@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-06-20",
+  "as_of": "2026-06-21",
   "teams": [
     {
       "team": "Argentina",
@@ -7,7 +7,7 @@
     },
     {
       "team": "Spain",
-      "elo": 2167.96
+      "elo": 2172.73
     },
     {
       "team": "France",
@@ -54,10 +54,6 @@
       "elo": 1955.02
     },
     {
-      "team": "Uruguay",
-      "elo": 1945.24
-    },
-    {
       "team": "Ecuador",
       "elo": 1944.06
     },
@@ -66,12 +62,16 @@
       "elo": 1935.41
     },
     {
-      "team": "Belgium",
-      "elo": 1934.0
-    },
-    {
       "team": "Switzerland",
       "elo": 1933.38
+    },
+    {
+      "team": "Uruguay",
+      "elo": 1932.03
+    },
+    {
+      "team": "Belgium",
+      "elo": 1930.93
     },
     {
       "team": "Austria",
@@ -86,12 +86,12 @@
       "elo": 1888.84
     },
     {
-      "team": "Canada",
-      "elo": 1882.78
+      "team": "Iran",
+      "elo": 1883.32
     },
     {
-      "team": "Iran",
-      "elo": 1880.25
+      "team": "Canada",
+      "elo": 1882.78
     },
     {
       "team": "Turkey",
@@ -122,6 +122,10 @@
       "elo": 1822.79
     },
     {
+      "team": "Egypt",
+      "elo": 1812.51
+    },
+    {
       "team": "Uzbekistan",
       "elo": 1804.64
     },
@@ -132,10 +136,6 @@
     {
       "team": "Sweden",
       "elo": 1791.06
-    },
-    {
-      "team": "Egypt",
-      "elo": 1789.11
     },
     {
       "team": "Czech Republic",
@@ -150,28 +150,28 @@
       "elo": 1750.75
     },
     {
-      "team": "New Zealand",
-      "elo": 1711.36
+      "team": "Iraq",
+      "elo": 1698.24
     },
     {
       "team": "Saudi Arabia",
-      "elo": 1700.84
-    },
-    {
-      "team": "Iraq",
-      "elo": 1698.24
+      "elo": 1696.07
     },
     {
       "team": "Tunisia",
       "elo": 1694.03
     },
     {
-      "team": "Haiti",
-      "elo": 1673.35
+      "team": "New Zealand",
+      "elo": 1687.96
     },
     {
       "team": "Cape Verde",
-      "elo": 1669.38
+      "elo": 1682.6
+    },
+    {
+      "team": "Haiti",
+      "elo": 1673.35
     },
     {
       "team": "South Africa",
