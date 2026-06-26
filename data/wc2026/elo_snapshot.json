@@ -54,6 +54,10 @@
       "elo": 1970.59
     },
     {
+      "team": "Switzerland",
+      "elo": 1955.07
+    },
+    {
       "team": "Croatia",
       "elo": 1947.94
     },
@@ -68,14 +72,6 @@
     {
       "team": "Belgium",
       "elo": 1930.93
-    },
-    {
-      "team": "Switzerland",
-      "elo": 1915.07
-    },
-    {
-      "team": "Canada",
-      "elo": 1901.09
     },
     {
       "team": "Australia",
@@ -104,6 +100,10 @@
     {
       "team": "Paraguay",
       "elo": 1868.79
+    },
+    {
+      "team": "Canada",
+      "elo": 1861.09
     },
     {
       "team": "Senegal",

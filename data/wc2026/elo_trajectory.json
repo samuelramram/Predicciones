@@ -2170,11 +2170,11 @@
       },
       {
         "date": "2026-06-24",
-        "elo": 1901.0902452689304,
+        "elo": 1861.0902452689304,
         "opponent": "Switzerland",
         "vs_elo": 1933.3830314576503,
         "venue": "home",
-        "result": "2-1",
+        "result": "1-2",
         "tournament": "FIFA World Cup"
       }
     ],
@@ -11690,11 +11690,11 @@
       },
       {
         "date": "2026-06-24",
-        "elo": 1915.0711359560125,
+        "elo": 1955.0711359560125,
         "opponent": "Canada",
         "vs_elo": 1882.7783497672926,
         "venue": "away",
-        "result": "1-2",
+        "result": "2-1",
         "tournament": "FIFA World Cup"
       }
     ],

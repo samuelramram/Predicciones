@@ -61,6 +61,10 @@
       "elo": 1970.59
     },
     {
+      "team": "Switzerland",
+      "elo": 1955.07
+    },
+    {
       "team": "Croatia",
       "elo": 1947.94
     },
@@ -83,14 +87,6 @@
     {
       "team": "Denmark",
       "elo": 1926.62
-    },
-    {
-      "team": "Switzerland",
-      "elo": 1915.07
-    },
-    {
-      "team": "Canada",
-      "elo": 1901.09
     },
     {
       "team": "Australia",
@@ -123,6 +119,10 @@
     {
       "team": "Nigeria",
       "elo": 1862.84
+    },
+    {
+      "team": "Canada",
+      "elo": 1861.09
     },
     {
       "team": "Senegal",
