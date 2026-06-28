@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-06-25",
+  "as_of": "2026-06-27",
   "params": {
     "k_friendly": 20.0,
     "k_qualifier": 30.0,
@@ -10,15 +10,19 @@
   "teams": [
     {
       "team": "Argentina",
-      "elo": 2192.46
+      "elo": 2196.62
     },
     {
       "team": "Spain",
-      "elo": 2172.73
+      "elo": 2180.73
     },
     {
       "team": "France",
-      "elo": 2118.67
+      "elo": 2139.59
+    },
+    {
+      "team": "England",
+      "elo": 2070.76
     },
     {
       "team": "Brazil",
@@ -26,15 +30,11 @@
     },
     {
       "team": "Colombia",
-      "elo": 2065.82
-    },
-    {
-      "team": "England",
-      "elo": 2060.49
+      "elo": 2064.84
     },
     {
       "team": "Portugal",
-      "elo": 2048.75
+      "elo": 2049.73
     },
     {
       "team": "Netherlands",
@@ -57,10 +57,6 @@
       "elo": 1986.44
     },
     {
-      "team": "Norway",
-      "elo": 1970.59
-    },
-    {
       "team": "Ecuador",
       "elo": 1967.93
     },
@@ -70,23 +66,27 @@
     },
     {
       "team": "Croatia",
-      "elo": 1947.94
+      "elo": 1954.7
+    },
+    {
+      "team": "Norway",
+      "elo": 1949.66
+    },
+    {
+      "team": "Belgium",
+      "elo": 1945.78
     },
     {
       "team": "Italy",
       "elo": 1935.28
     },
     {
-      "team": "Uruguay",
-      "elo": 1932.03
-    },
-    {
-      "team": "Belgium",
-      "elo": 1930.93
-    },
-    {
       "team": "Denmark",
       "elo": 1926.62
+    },
+    {
+      "team": "Uruguay",
+      "elo": 1924.02
     },
     {
       "team": "Turkey",
@@ -98,15 +98,19 @@
     },
     {
       "team": "Austria",
-      "elo": 1892.78
+      "elo": 1892.15
     },
     {
-      "team": "Iran",
-      "elo": 1883.32
+      "team": "Senegal",
+      "elo": 1883.04
     },
     {
       "team": "Algeria",
-      "elo": 1881.75
+      "elo": 1882.38
+    },
+    {
+      "team": "Iran",
+      "elo": 1879.3
     },
     {
       "team": "Paraguay",
@@ -123,10 +127,6 @@
     {
       "team": "Canada",
       "elo": 1861.09
-    },
-    {
-      "team": "Senegal",
-      "elo": 1861.06
     },
     {
       "team": "South Korea",
@@ -158,7 +158,7 @@
     },
     {
       "team": "Egypt",
-      "elo": 1812.51
+      "elo": 1816.53
     },
     {
       "team": "Serbia",
@@ -185,16 +185,16 @@
       "elo": 1792.18
     },
     {
-      "team": "Uzbekistan",
-      "elo": 1787.61
+      "team": "Chile",
+      "elo": 1786.19
+    },
+    {
+      "team": "DR Congo",
+      "elo": 1778.64
     },
     {
       "team": "Panama",
-      "elo": 1786.45
-    },
-    {
-      "team": "Chile",
-      "elo": 1786.19
+      "elo": 1776.18
     },
     {
       "team": "Poland",
@@ -213,16 +213,16 @@
       "elo": 1763.65
     },
     {
+      "team": "Uzbekistan",
+      "elo": 1753.94
+    },
+    {
       "team": "Guernsey",
       "elo": 1752.66
     },
     {
       "team": "Kosovo",
       "elo": 1746.7
-    },
-    {
-      "team": "DR Congo",
-      "elo": 1744.98
     },
     {
       "team": "Republic of Ireland",
@@ -234,7 +234,7 @@
     },
     {
       "team": "Jordan",
-      "elo": 1741.3
+      "elo": 1737.14
     },
     {
       "team": "Slovenia",
@@ -285,10 +285,6 @@
       "elo": 1700.89
     },
     {
-      "team": "Saudi Arabia",
-      "elo": 1696.07
-    },
-    {
       "team": "Israel",
       "elo": 1695.71
     },
@@ -297,20 +293,16 @@
       "elo": 1695.38
     },
     {
+      "team": "Saudi Arabia",
+      "elo": 1695.3
+    },
+    {
       "team": "South Africa",
       "elo": 1692.74
     },
     {
-      "team": "Iraq",
-      "elo": 1692.35
-    },
-    {
       "team": "Isle of Wight",
       "elo": 1688.63
-    },
-    {
-      "team": "New Zealand",
-      "elo": 1687.96
     },
     {
       "team": "Tunisia",
@@ -318,7 +310,7 @@
     },
     {
       "team": "Cape Verde",
-      "elo": 1682.6
+      "elo": 1683.37
     },
     {
       "team": "Bolivia",
@@ -329,12 +321,16 @@
       "elo": 1675.73
     },
     {
-      "team": "Ghana",
-      "elo": 1671.42
+      "team": "New Zealand",
+      "elo": 1673.11
     },
     {
       "team": "Bosnia and Herzegovina",
       "elo": 1671.24
+    },
+    {
+      "team": "Iraq",
+      "elo": 1670.38
     },
     {
       "team": "Ynys Môn",
@@ -343,6 +339,10 @@
     {
       "team": "Haiti",
       "elo": 1664.99
+    },
+    {
+      "team": "Ghana",
+      "elo": 1664.65
     },
     {
       "team": "Catalonia",
