@@ -1,29 +1,39 @@
 """Pool-aware ticket optimizer — maximize P(finishing 1st), not individual EV.
 
-This closes the loop the diagnostic `pool_sim` left open. In a 30-person,
-winner-takes-most pool the objective is NOT to maximize your own expected points
-(that just tracks the favourite and ties you with everyone else who did the same)
-— it is to maximize the probability of finishing FIRST. Those are different
-objectives: the EV-optimal ticket is low-variance, and low variance is exactly
-what you do NOT want when you only get paid for rank 1.
+This closes the loop the diagnostic `pool_sim` left open. In a winner-takes-most
+pool the objective is NOT to maximize your own expected points (that just tracks
+the favourite and ties you with everyone else who did the same) — it is to
+maximize the probability of finishing FIRST. Those are different objectives: the
+EV-optimal ticket is low-variance, and low variance is exactly what you do NOT
+want when you only get paid for rank 1.
+
+Horizon- and gap-aware objective (the part that decides *how much* to gamble):
+the right amount of differentiation depends on (a) how far you currently are from
+the lead and (b) how many matches are still left to play. With a big gap and few
+matches remaining you must inject variance NOW (chase); with a small gap and a
+long runway your per-match edge compounds and variance only hurts (cushion). We
+let this fall out of the simulation rather than a hand-set rule:
 
 Method (per round / jornada):
   1. For every match we already have a blended score-matrix and two candidate
      picks from the EV optimizer: the EV-optimal pick and the contrarian pick
      (max ev / p_outcome — the under-picked, high-leverage outcome).
-  2. Monte-Carlo the round with COMMON RANDOM NUMBERS:
-       - sample each match's "true" scoreline from its own blended cell
-         distribution (the model's best estimate of reality);
-       - simulate `n_opponents` synthetic humans (same field model as pool_sim)
-         and record the field's top score per simulation.
+  2. Monte-Carlo the WHOLE remaining tournament with common random numbers:
+       - decision round: sample each match's "true" scoreline from its blended
+         cells; score your ticket and every opponent against the SAME actuals
+         (this common-outcome coupling is what gives differentiation its value —
+         when the favourite loses, everyone who picked it loses together);
+       - each opponent starts from their real current points (the cushion/gap);
+       - tail (the `horizon` matches still to come after this round): add an
+         independent points draw per player from their empirical per-match skill
+         (2 pts w.p. e, 1 pt w.p. q-e, else 0). More remaining matches = more tail
+         variance = a small gap is more likely to close on its own, so the
+         optimizer keeps EV; a big gap with a short tail forces it to swap.
   3. Start from the all-EV ticket and greedily swap individual matches to their
-     contrarian pick whenever the swap raises the simulated P(rank=1). Because the
-     ticket score is a sum of independent per-match contributions, each candidate
-     swap is evaluated in O(n_sims) against pre-tabulated per-match point streams.
+     contrarian pick whenever the swap raises the simulated P(finishing 1st).
 
-The result is a ticket that deliberately trades a little expected-points for the
-differentiation that actually wins a pool. Exposed via
-`generate_picks --objective pool`.
+With no standings/horizon supplied this reduces exactly to the original
+single-round, from-zero behaviour. Exposed via `generate_picks --objective pool`.
 """
 from __future__ import annotations
 
@@ -43,6 +53,23 @@ class TicketMatch:
     elo_probs: tuple[float, float, float]   # (p1, px, p2) for the human field model
     ev_pick: tuple[str, str]                # (1x2, exact)
     contra_pick: tuple[str, str]            # (1x2, exact)
+
+
+@dataclass
+class OpponentState:
+    """A real pool opponent's current standing and empirical skill.
+
+    `points` is the cumulative score so far (the cushion you must overcome).
+    `q_rate`/`e_rate` are per-match hit rates derived from the leaderboard:
+        e_rate = exactos / matches_resolved              (exact-score rate)
+        q_rate = (points - exactos) / matches_resolved   (1X2 rate, incl. exact)
+    They drive the tail (future-match) point draws — pure marker statistics, no
+    narrative knobs.
+    """
+    name: str
+    points: float
+    q_rate: float = 0.0
+    e_rate: float = 0.0
 
 
 @dataclass
@@ -67,6 +94,25 @@ def _sample_scoreline(rng: random.Random, cells: list[dict]) -> tuple[int, int]:
     return last["h"], last["a"]
 
 
+def _sample_tail_points(rng: random.Random, q_rate: float, e_rate: float, horizon: int) -> int:
+    """Points a player accrues over `horizon` future matches, sampled from their
+    empirical per-match outcome: 2 pts w.p. e_rate, 1 pt w.p. (q_rate - e_rate),
+    else 0. q_rate is the 1X2 hit rate (which includes exacts), so q_rate >= e_rate.
+    """
+    if horizon <= 0:
+        return 0
+    e = max(0.0, min(1.0, e_rate))
+    q = max(e, min(1.0, q_rate))
+    total = 0
+    for _ in range(horizon):
+        r = rng.random()
+        if r < e:
+            total += 2
+        elif r < q:
+            total += 1
+    return total
+
+
 def optimize_ticket(
     matches: list[TicketMatch],
     rules: QuinielaRules,
@@ -77,20 +123,45 @@ def optimize_ticket(
     draw_prop_lo: float = 0.04,
     draw_prop_hi: float = 0.15,
     seed: int = 20260611,
+    *,
+    your_points: float = 0.0,
+    opponents: list[OpponentState] | None = None,
+    your_q_rate: float = 0.0,
+    your_e_rate: float = 0.0,
+    horizon: int = 0,
 ) -> TicketResult:
-    """Pick, per match, EV vs contrarian to maximize simulated P(finishing 1st)."""
+    """Pick, per match, EV vs contrarian to maximize simulated P(finishing 1st).
+
+    Single-round mode (defaults): `opponents=None`, `your_points=0`, `horizon=0`
+    reproduces the original from-zero, this-round-only objective.
+
+    Tournament mode: pass the real `opponents` (with current points + empirical
+    rates), `your_points`, your own rates, and the `horizon` of matches still to
+    come after this round. The objective becomes P(finishing the tournament 1st),
+    so the chase-vs-cushion trade-off is decided by the gap and the runway, not a
+    hand-tuned rule.
+    """
     if not matches:
         return TicketResult({}, [], 0.0, 0.0, n_sims, n_opponents)
 
     rng = random.Random(seed)
     n_matches = len(matches)
+    use_real_field = opponents is not None
+    if use_real_field:
+        n_opponents = len(opponents)
+    if n_opponents == 0:
+        # Nobody to beat: any ticket "wins". Keep the all-EV ticket.
+        chosen = {m.match_id: m.ev_pick for m in matches}
+        return TicketResult(chosen, [], 1.0, 1.0, n_sims, 0)
 
-    # Pre-tabulate, per sim: the sampled actual score, the field's best human
-    # total, and each candidate pick's points for every match (common random
-    # numbers across all candidate tickets keeps swap comparisons apples-to-apples).
+    # Pre-tabulate, per sim: your candidate per-match points, your tail draw, and
+    # the field's best total (cushion + round + tail). Common random numbers across
+    # candidate tickets keep swap comparisons apples-to-apples. The field total is
+    # independent of YOUR choice, so it is fully precomputed here.
     ev_pts = [[0] * n_sims for _ in range(n_matches)]
     contra_pts = [[0] * n_sims for _ in range(n_matches)]
-    field_best = [0] * n_sims
+    your_tail = [0] * n_sims
+    field_best = [0.0] * n_sims
 
     for s in range(n_sims):
         actuals = []
@@ -102,15 +173,25 @@ def optimize_ticket(
             ev_pts[mi][s] = score_actual(ah, aa, o_ev, e_ev, rules)
             contra_pts[mi][s] = score_actual(ah, aa, o_co, e_co, rules)
 
-        best = 0
-        for _ in range(n_opponents):
+        your_tail[s] = _sample_tail_points(rng, your_q_rate, your_e_rate, horizon)
+
+        best = float("-inf")
+        for j in range(n_opponents):
+            if use_real_field:
+                opp = opponents[j]
+                cushion = opp.points
+                q_rate, e_rate = opp.q_rate, opp.e_rate
+            else:
+                cushion = 0.0
+                q_rate = e_rate = 0.0
             skill = rng.uniform(skill_lo, skill_hi)
             draw_prop = rng.uniform(draw_prop_lo, draw_prop_hi)
-            total = 0
+            total = cushion
             for mi, m in enumerate(matches):
                 outcome, exact = _human_pick(rng, m.elo_probs, skill, draw_prop)
                 ah, aa = actuals[mi]
                 total += score_actual(ah, aa, outcome, exact, rules)
+            total += _sample_tail_points(rng, q_rate, e_rate, horizon)
             if total > best:
                 best = total
         field_best[s] = best
@@ -119,7 +200,7 @@ def optimize_ticket(
         """P(rank=1) of a ticket. choice[mi] is ev_pts[mi] or contra_pts[mi]."""
         wins = 0.0
         for s in range(n_sims):
-            total = 0
+            total = your_points + your_tail[s]
             for mi in range(n_matches):
                 total += choice[mi][s]
             if total > field_best[s]:

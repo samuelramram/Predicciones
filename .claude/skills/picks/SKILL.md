@@ -55,13 +55,33 @@ python -m wc_predictor.pipeline.snapshot_odds
 Si falla (sin `THE_ODDS_API_KEY`, red caída, API no disponible), **no abortes** —
 `generate_picks` usará el snapshot guardado más reciente. El error es informativo, no bloqueante.
 
-## Paso 3 — Generar los picks
+## Paso 3 — Actualizar standings (brecha + horizonte)
+
+Antes de generar, refresca `data/wc2026/pool_standings.json` con el leaderboard
+más reciente que tenga el usuario (puntos + exactos por jugador; al menos la cima
+de la tabla). Esto es lo que permite decidir **alcance vs colchón con matemáticas**:
+
+- `you`: nombre del usuario en la quiniela (hoy `Claudio`).
+- `players`: lista con `{name, points, exactos}` (la cima manda; captura lo que haya).
+- `matches_resolved`: partidos ya calificados (fase de grupos jugada + KO jugados).
+- `total_matches`: 104. `total_participants`: tamaño del pool. `field_baseline`:
+  relleno para los no listados.
+
+Si el usuario no tiene leaderboard nuevo, usa el archivo existente y avísale que
+los números son de la última captura.
+
+## Paso 4 — Generar los picks (objetivo pool por defecto)
 
 ```bash
-python -m wc_predictor.pipeline.generate_picks --round <ROUND>
+python -m wc_predictor.pipeline.generate_picks --round <ROUND> --objective pool
 ```
 
-Sustituye `<ROUND>` con el valor de la tabla de arriba.
+Sustituye `<ROUND>` con el valor de la tabla de arriba. **Usa siempre
+`--objective pool`**: con `pool_standings.json` presente, el optimizador maximiza
+P(terminar 1.º del torneo) considerando tu brecha al líder y los partidos que
+faltan, y de ahí decide cuánto arriesgar (no es corazonada). Si no existe el
+archivo, degrada al objetivo de un solo round. Usa `--objective ev` solo si el
+usuario pide explícitamente el boleto de máxima precisión sin estrategia de pool.
 
 ## Paso 4 — Reportar al usuario
 

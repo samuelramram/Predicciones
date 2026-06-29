@@ -55,6 +55,24 @@ fecha es el Elo (`as_of` en `data/wc2026/elo_snapshot.json`) y la línea de cier
 (`captured_at` en `data/raw/odds_closing_line.json`) para que el usuario sepa qué
 tan frescos son los datos detrás del boleto.
 
+## Estrategia de pool: alcance vs colchón (brecha + horizonte)
+
+`generate_picks --objective pool` ya no maximiza P(ganar este round) sino
+**P(terminar 1.º del torneo)**. Lee `data/wc2026/pool_standings.json` (leaderboard
+del usuario) y, vía Monte Carlo (`model/pool_optimizer.py` + `model/standings.py`),
+mete tres factores que antes ignoraba:
+
+- **Brecha real**: puntos actuales tuyos vs el líder y el resto del pool.
+- **Horizonte**: partidos que faltan tras esta ronda (`total_matches − resueltos −
+  pendientes de la ronda`); cada uno añade varianza futura.
+- **Habilidad empírica** de cada jugador, pura estadística del marcador:
+  `e = exactos/jugados`, `q = (puntos − exactos)/jugados`.
+
+Con eso la decisión **emerge de la matemática**: vas atrás por margen alcanzable
++ pocos partidos → arriesga (swaps a contrarian); brecha chica o vas cómodo +
+horizonte largo → EV puro (tu ventaja se compone sola). Sin el archivo, degrada
+al objetivo de un solo round. Actualiza `pool_standings.json` cada ronda.
+
 ## Incentivos de clasificación (jornada 3)
 
 `model/qualification.py` calcula la tabla de cada grupo tras J1+J2 con los

@@ -693,15 +693,26 @@ def _write_markdown(picks: list[dict], pending: list[dict], rules, mcfg, dst: Pa
     dst.write_text("\n".join(lines), encoding="utf-8")
 
 
-def _apply_pool_objective(picks: list[dict], rules, mcfg) -> None:
+def _apply_pool_objective(picks: list[dict], rules, mcfg, resolved_ids: set | None = None) -> None:
     """Re-select picks to maximize P(finishing 1st) in the pool instead of
     per-match EV. Mutates `picks` in place: for any match the optimizer swaps to
     its contrarian pick, overwrite pick_1x2/pick_exact and flag `pool_swapped`.
 
-    See model.pool_optimizer — this is what actually closes the pool-sim loop.
+    If `data/wc2026/pool_standings.json` exists, the objective becomes
+    P(finishing the TOURNAMENT 1st): the optimizer sees your current gap to the
+    field and the horizon of matches still to come, so it decides chase vs cushion
+    mathematically (big gap + short runway → gamble; small gap + long runway → EV).
+    Without the file it falls back to the single-round, from-zero objective.
+
+    See model.pool_optimizer / model.standings.
     """
     from wc_predictor.model.pool_optimizer import TicketMatch, optimize_ticket
+    from wc_predictor.model.standings import compute_horizon, load_pool_context
 
+    resolved_ids = resolved_ids or set()
+    # Only undecided matches are real decisions; resolved ones are already baked
+    # into the cumulative standings (the cushion), so exclude them from the round.
+    decidable = [p for p in picks if p["match_id"] not in resolved_ids]
     tmatches = [
         TicketMatch(
             match_id=p["match_id"],
@@ -710,18 +721,46 @@ def _apply_pool_objective(picks: list[dict], rules, mcfg) -> None:
             ev_pick=(p["pick_1x2"], p["pick_exact"]),
             contra_pick=(p["contrarian_pick_1x2"], p["contrarian_pick_exact"]),
         )
-        for p in picks
+        for p in decidable
     ]
-    result = optimize_ticket(tmatches, rules)
+
+    ctx = load_pool_context(WC_DIR / "pool_standings.json")
+    if ctx is not None:
+        decision_pending = len(tmatches)
+        horizon = compute_horizon(ctx, decision_pending=decision_pending)
+        gap = ctx.leader_points - ctx.your_points
+        pos = (f"vas detrás del líder por {gap:.0f}" if gap > 0
+               else f"lideras por {-gap:.0f}" if gap < 0 else "empatado en la cima")
+        print(f"  standings: {ctx.you} {ctx.your_points:.0f} pts ({pos}), "
+              f"{len(ctx.opponents)} rivales; horizonte {decision_pending + horizon} "
+              f"partidos restantes = {decision_pending} que decides ahora + {horizon} futuros (tail)")
+        if ctx.estimated_fill:
+            print(f"    ({ctx.estimated_fill} rivales estimados con field_baseline; "
+                  f"captura el leaderboard completo para precisión total)")
+        result = optimize_ticket(
+            tmatches, rules,
+            your_points=ctx.your_points,
+            opponents=ctx.opponents,
+            your_q_rate=ctx.your_q_rate,
+            your_e_rate=ctx.your_e_rate,
+            horizon=horizon,
+        )
+    else:
+        print("  standings: sin data/wc2026/pool_standings.json — objetivo de un solo "
+              "round (sin brecha ni horizonte). Crea el archivo para activar alcance/colchón.")
+        result = optimize_ticket(tmatches, rules)
+
     swapped = set(result.swapped_to_contrarian)
     for p in picks:
         p["pool_swapped"] = p["match_id"] in swapped
         if p["match_id"] in swapped:
             p["pick_1x2"] = p["contrarian_pick_1x2"]
             p["pick_exact"] = p["contrarian_pick_exact"]
-    print(f"  pool objective: P(rank=1) {result.win_prob_ev:.1%} (EV ticket) → "
-          f"{result.win_prob_pool:.1%} (pool ticket); "
-          f"{len(swapped)} pick(s) swapped to contrarian")
+    verdict = (f"COLCHÓN: {len(swapped)} swaps — tu ventaja se compone sola, EV puro"
+               if not swapped else
+               f"ALCANCE: {len(swapped)} swap(s) a contrarian para inyectar varianza y cazar al líder")
+    print(f"  pool objective: P(1.º final) {result.win_prob_ev:.1%} (EV) → "
+          f"{result.win_prob_pool:.1%} (pool) → {verdict}")
 
 
 def main():
@@ -821,7 +860,9 @@ def main():
     strategy_label = "poisson+elo+odds blend, ev_no_draw"
     if args.objective == "pool" and picks:
         strategy_label = "poisson+elo+odds blend, pool-optimized (max P(rank=1))"
-        _apply_pool_objective(picks, rules, mcfg)
+        resolved_ids = {fx["match_id"] for fx in selected
+                        if fx.get("home_score") is not None and fx.get("away_score") is not None}
+        _apply_pool_objective(picks, rules, mcfg, resolved_ids=resolved_ids)
 
     # Strip the transient pool-optimizer inputs before any serialization.
     for p in picks:

@@ -1536,8 +1536,8 @@
       "away_placeholder": "2B",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 0,
+      "away_score": 1
     },
     {
       "match_id": "m_f9043363d8",
@@ -1596,8 +1596,8 @@
       "away_placeholder": "2F",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 2,
+      "away_score": 1
     },
     {
       "match_id": "m_2a8bfa8a94",
