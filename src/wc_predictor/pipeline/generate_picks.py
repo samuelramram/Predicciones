@@ -726,12 +726,14 @@ def _apply_pool_objective(picks: list[dict], rules, mcfg, resolved_ids: set | No
 
     ctx = load_pool_context(WC_DIR / "pool_standings.json")
     if ctx is not None:
-        horizon = compute_horizon(ctx, decision_pending=len(tmatches))
+        decision_pending = len(tmatches)
+        horizon = compute_horizon(ctx, decision_pending=decision_pending)
         gap = ctx.leader_points - ctx.your_points
         pos = (f"vas detrás del líder por {gap:.0f}" if gap > 0
                else f"lideras por {-gap:.0f}" if gap < 0 else "empatado en la cima")
         print(f"  standings: {ctx.you} {ctx.your_points:.0f} pts ({pos}), "
-              f"{len(ctx.opponents)} rivales, {horizon} partidos restantes tras esta ronda")
+              f"{len(ctx.opponents)} rivales; horizonte {decision_pending + horizon} "
+              f"partidos restantes = {decision_pending} que decides ahora + {horizon} futuros (tail)")
         if ctx.estimated_fill:
             print(f"    ({ctx.estimated_fill} rivales estimados con field_baseline; "
                   f"captura el leaderboard completo para precisión total)")
