@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-06-27",
+  "as_of": "2026-06-28",
   "params": {
     "k_friendly": 20.0,
     "k_qualifier": 30.0,
@@ -113,6 +113,10 @@
       "elo": 1879.3
     },
     {
+      "team": "Canada",
+      "elo": 1872.09
+    },
+    {
       "team": "Paraguay",
       "elo": 1870.55
     },
@@ -123,10 +127,6 @@
     {
       "team": "Nigeria",
       "elo": 1862.84
-    },
-    {
-      "team": "Canada",
-      "elo": 1861.09
     },
     {
       "team": "South Korea",
@@ -297,10 +297,6 @@
       "elo": 1695.3
     },
     {
-      "team": "South Africa",
-      "elo": 1692.74
-    },
-    {
       "team": "Isle of Wight",
       "elo": 1688.63
     },
@@ -315,6 +311,10 @@
     {
       "team": "Bolivia",
       "elo": 1681.75
+    },
+    {
+      "team": "South Africa",
+      "elo": 1681.74
     },
     {
       "team": "Iraqi Kurdistan",

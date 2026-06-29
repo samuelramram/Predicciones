@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-06-27",
+  "as_of": "2026-06-28",
   "last_n_matches": 30,
   "trajectories": {
     "Algeria": [
@@ -1908,15 +1908,6 @@
     ],
     "Canada": [
       {
-        "date": "2024-06-29",
-        "elo": 1830.305854608312,
-        "opponent": "Chile",
-        "vs_elo": 1783.8588732963003,
-        "venue": "neutral",
-        "result": "0-0",
-        "tournament": "Copa América"
-      },
-      {
         "date": "2024-07-05",
         "elo": 1833.2236267003864,
         "opponent": "Venezuela",
@@ -2175,6 +2166,15 @@
         "vs_elo": 1933.3830314576503,
         "venue": "home",
         "result": "1-2",
+        "tournament": "FIFA World Cup"
+      },
+      {
+        "date": "2026-06-28",
+        "elo": 1872.092524998413,
+        "opponent": "South Africa",
+        "vs_elo": 1692.7377758599305,
+        "venue": "neutral",
+        "result": "1-0",
         "tournament": "FIFA World Cup"
       }
     ],
@@ -10340,15 +10340,6 @@
     ],
     "South Africa": [
       {
-        "date": "2024-03-21",
-        "elo": 1661.92561446845,
-        "opponent": "Andorra",
-        "vs_elo": 1181.7411594412167,
-        "venue": "neutral",
-        "result": "1-1",
-        "tournament": "FIFA Series"
-      },
-      {
         "date": "2024-03-26",
         "elo": 1673.0174541234092,
         "opponent": "Algeria",
@@ -10607,6 +10598,15 @@
         "vs_elo": 1872.1578119566884,
         "venue": "neutral",
         "result": "1-0",
+        "tournament": "FIFA World Cup"
+      },
+      {
+        "date": "2026-06-28",
+        "elo": 1681.735496130448,
+        "opponent": "Canada",
+        "vs_elo": 1861.0902452689304,
+        "venue": "neutral",
+        "result": "0-1",
         "tournament": "FIFA World Cup"
       }
     ],

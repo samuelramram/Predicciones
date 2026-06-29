@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-06-27",
+  "as_of": "2026-06-28",
   "teams": [
     {
       "team": "Argentina",
@@ -98,16 +98,16 @@
       "elo": 1879.3
     },
     {
+      "team": "Canada",
+      "elo": 1872.09
+    },
+    {
       "team": "Paraguay",
       "elo": 1870.55
     },
     {
       "team": "United States",
       "elo": 1863.8
-    },
-    {
-      "team": "Canada",
-      "elo": 1861.09
     },
     {
       "team": "South Korea",
@@ -154,16 +154,16 @@
       "elo": 1695.3
     },
     {
-      "team": "South Africa",
-      "elo": 1692.74
-    },
-    {
       "team": "Tunisia",
       "elo": 1685.87
     },
     {
       "team": "Cape Verde",
       "elo": 1683.37
+    },
+    {
+      "team": "South Africa",
+      "elo": 1681.74
     },
     {
       "team": "New Zealand",
