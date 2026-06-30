@@ -1,16 +1,18 @@
 {
-  "as_of": "2026-06-29",
+  "as_of": "2026-06-30",
   "you": "Claudio",
-  "matches_resolved": 74,
+  "matches_resolved": 76,
   "total_matches": 104,
   "total_participants": 27,
-  "_note": "Top-5 capturado del leaderboard de la app (puntos + exactos reales). Los demas participantes se rellenan con field_baseline hasta capturar el leaderboard completo; el objetivo P(1.o) lo domina la cima de la tabla, asi que la brecha al lider es exacta. Actualizar cada ronda.",
+  "_note": "Top-7 capturado del leaderboard de la app (puntos + exactos reales). Los demas participantes se rellenan con field_baseline hasta capturar el leaderboard completo; el objetivo P(1.o) lo domina la cima de la tabla, asi que la brecha al lider es exacta. Actualizar cada ronda.",
   "players": [
     {"name": "Bryan Montiel", "points": 59, "exactos": 10},
     {"name": "Claudio", "points": 58, "exactos": 13},
+    {"name": "Aldo", "points": 58, "exactos": 9},
     {"name": "SHIFTY TWIMS", "points": 57, "exactos": 11},
     {"name": "Adrián", "points": 57, "exactos": 10},
-    {"name": "Aldo", "points": 56, "exactos": 8}
+    {"name": "Lalo Camarena", "points": 56, "exactos": 6},
+    {"name": "Bryan 2", "points": 54, "exactos": 11}
   ],
   "field_baseline": {"points": 50, "exactos": 8}
 }
