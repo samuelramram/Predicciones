@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-06-29",
+  "as_of": "2026-06-30",
   "teams": [
     {
       "team": "Argentina",
@@ -11,7 +11,7 @@
     },
     {
       "team": "France",
-      "elo": 2139.59
+      "elo": 2148.35
     },
     {
       "team": "Brazil",
@@ -34,12 +34,12 @@
       "elo": 2021.95
     },
     {
-      "team": "Morocco",
-      "elo": 1999.47
+      "team": "Mexico",
+      "elo": 2008.15
     },
     {
-      "team": "Mexico",
-      "elo": 1986.44
+      "team": "Morocco",
+      "elo": 1999.47
     },
     {
       "team": "Germany",
@@ -50,8 +50,8 @@
       "elo": 1973.51
     },
     {
-      "team": "Ecuador",
-      "elo": 1967.93
+      "team": "Norway",
+      "elo": 1963.4
     },
     {
       "team": "Switzerland",
@@ -62,8 +62,8 @@
       "elo": 1954.7
     },
     {
-      "team": "Norway",
-      "elo": 1949.66
+      "team": "Ecuador",
+      "elo": 1946.22
     },
     {
       "team": "Belgium",
@@ -115,7 +115,7 @@
     },
     {
       "team": "Ivory Coast",
-      "elo": 1837.21
+      "elo": 1823.46
     },
     {
       "team": "Egypt",
@@ -127,7 +127,7 @@
     },
     {
       "team": "Sweden",
-      "elo": 1801.8
+      "elo": 1793.04
     },
     {
       "team": "DR Congo",

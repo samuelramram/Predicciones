@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-06-29",
+  "as_of": "2026-06-30",
   "last_n_matches": 30,
   "trajectories": {
     "Algeria": [
@@ -3812,15 +3812,6 @@
     ],
     "Ecuador": [
       {
-        "date": "2024-06-09",
-        "elo": 1915.2918156548867,
-        "opponent": "Argentina",
-        "vs_elo": 2174.688042261082,
-        "venue": "neutral",
-        "result": "0-1",
-        "tournament": "Friendly"
-      },
-      {
         "date": "2024-06-12",
         "elo": 1920.52178768963,
         "opponent": "Bolivia",
@@ -4079,6 +4070,15 @@
         "vs_elo": 2012.2219834953232,
         "venue": "neutral",
         "result": "2-1",
+        "tournament": "FIFA World Cup"
+      },
+      {
+        "date": "2026-06-30",
+        "elo": 1946.2159145342055,
+        "opponent": "Mexico",
+        "vs_elo": 1986.4399852042097,
+        "venue": "away",
+        "result": "0-2",
         "tournament": "FIFA World Cup"
       }
     ],
@@ -4628,15 +4628,6 @@
     ],
     "France": [
       {
-        "date": "2024-06-09",
-        "elo": 2085.867535164027,
-        "opponent": "Canada",
-        "vs_elo": 1811.7652635604784,
-        "venue": "home",
-        "result": "0-0",
-        "tournament": "Friendly"
-      },
-      {
         "date": "2024-06-17",
         "elo": 2095.8686102816105,
         "opponent": "Austria",
@@ -4895,6 +4886,15 @@
         "vs_elo": 1970.5855784248668,
         "venue": "neutral",
         "result": "4-1",
+        "tournament": "FIFA World Cup"
+      },
+      {
+        "date": "2026-06-30",
+        "elo": 2148.3540217589584,
+        "opponent": "Sweden",
+        "vs_elo": 1801.8022665170124,
+        "venue": "neutral",
+        "result": "3-0",
         "tournament": "FIFA World Cup"
       }
     ],
@@ -6260,15 +6260,6 @@
     ],
     "Ivory Coast": [
       {
-        "date": "2024-03-26",
-        "elo": 1736.6280602659708,
-        "opponent": "Uruguay",
-        "vs_elo": 2040.0793437185096,
-        "venue": "neutral",
-        "result": "2-1",
-        "tournament": "Friendly"
-      },
-      {
         "date": "2024-06-07",
         "elo": 1741.7273425733486,
         "opponent": "Gabon",
@@ -6527,6 +6518,15 @@
         "vs_elo": 1581.6585324857333,
         "venue": "neutral",
         "result": "2-0",
+        "tournament": "FIFA World Cup"
+      },
+      {
+        "date": "2026-06-30",
+        "elo": 1823.4637946968662,
+        "opponent": "Norway",
+        "vs_elo": 1949.660998320949,
+        "venue": "neutral",
+        "result": "1-2",
         "tournament": "FIFA World Cup"
       }
     ],
@@ -7076,15 +7076,6 @@
     ],
     "Mexico": [
       {
-        "date": "2024-10-15",
-        "elo": 1886.6924881508626,
-        "opponent": "United States",
-        "vs_elo": 1843.9267669353671,
-        "venue": "home",
-        "result": "2-0",
-        "tournament": "Friendly"
-      },
-      {
         "date": "2024-11-15",
         "elo": 1844.6426355152444,
         "opponent": "Honduras",
@@ -7343,6 +7334,15 @@
         "vs_elo": 1778.4759377246055,
         "venue": "home",
         "result": "3-0",
+        "tournament": "FIFA World Cup"
+      },
+      {
+        "date": "2026-06-30",
+        "elo": 2008.1548514152553,
+        "opponent": "Ecuador",
+        "vs_elo": 1967.930780745251,
+        "venue": "home",
+        "result": "2-0",
         "tournament": "FIFA World Cup"
       }
     ],
@@ -8164,15 +8164,6 @@
     ],
     "Norway": [
       {
-        "date": "2023-10-15",
-        "elo": 1787.6417436450165,
-        "opponent": "Spain",
-        "vs_elo": 2062.973942605252,
-        "venue": "home",
-        "result": "0-1",
-        "tournament": "UEFA Euro qualification"
-      },
-      {
         "date": "2023-11-16",
         "elo": 1788.8913071982147,
         "opponent": "Faroe Islands",
@@ -8431,6 +8422,15 @@
         "vs_elo": 2118.6684874083935,
         "venue": "neutral",
         "result": "1-4",
+        "tournament": "FIFA World Cup"
+      },
+      {
+        "date": "2026-06-30",
+        "elo": 1963.4046128725786,
+        "opponent": "Ivory Coast",
+        "vs_elo": 1837.2074092484959,
+        "venue": "neutral",
+        "result": "2-1",
         "tournament": "FIFA World Cup"
       }
     ],
@@ -11156,15 +11156,6 @@
     ],
     "Sweden": [
       {
-        "date": "2023-11-16",
-        "elo": 1754.20094401449,
-        "opponent": "Azerbaijan",
-        "vs_elo": 1511.277926859168,
-        "venue": "away",
-        "result": "0-3",
-        "tournament": "UEFA Euro qualification"
-      },
-      {
         "date": "2023-11-19",
         "elo": 1758.9279921238576,
         "opponent": "Estonia",
@@ -11423,6 +11414,15 @@
         "vs_elo": 1999.634880877639,
         "venue": "neutral",
         "result": "1-1",
+        "tournament": "FIFA World Cup"
+      },
+      {
+        "date": "2026-06-30",
+        "elo": 1793.0413122703656,
+        "opponent": "France",
+        "vs_elo": 2139.5930675123113,
+        "venue": "neutral",
+        "result": "0-3",
         "tournament": "FIFA World Cup"
       }
     ],

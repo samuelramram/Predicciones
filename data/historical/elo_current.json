@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-06-29",
+  "as_of": "2026-06-30",
   "params": {
     "k_friendly": 20.0,
     "k_qualifier": 30.0,
@@ -18,7 +18,7 @@
     },
     {
       "team": "France",
-      "elo": 2139.59
+      "elo": 2148.35
     },
     {
       "team": "Brazil",
@@ -41,12 +41,12 @@
       "elo": 2021.95
     },
     {
-      "team": "Morocco",
-      "elo": 1999.47
+      "team": "Mexico",
+      "elo": 2008.15
     },
     {
-      "team": "Mexico",
-      "elo": 1986.44
+      "team": "Morocco",
+      "elo": 1999.47
     },
     {
       "team": "Germany",
@@ -57,8 +57,8 @@
       "elo": 1973.51
     },
     {
-      "team": "Ecuador",
-      "elo": 1967.93
+      "team": "Norway",
+      "elo": 1963.4
     },
     {
       "team": "Switzerland",
@@ -69,8 +69,8 @@
       "elo": 1954.7
     },
     {
-      "team": "Norway",
-      "elo": 1949.66
+      "team": "Ecuador",
+      "elo": 1946.22
     },
     {
       "team": "Belgium",
@@ -137,10 +137,6 @@
       "elo": 1839.49
     },
     {
-      "team": "Ivory Coast",
-      "elo": 1837.21
-    },
-    {
       "team": "Jersey",
       "elo": 1832.01
     },
@@ -151,6 +147,10 @@
     {
       "team": "Ukraine",
       "elo": 1828.54
+    },
+    {
+      "team": "Ivory Coast",
+      "elo": 1823.46
     },
     {
       "team": "Venezuela",
@@ -173,12 +173,12 @@
       "elo": 1805.38
     },
     {
-      "team": "Sweden",
-      "elo": 1801.8
-    },
-    {
       "team": "Basque Country",
       "elo": 1799.34
+    },
+    {
+      "team": "Sweden",
+      "elo": 1793.04
     },
     {
       "team": "Czechoslovakia",
