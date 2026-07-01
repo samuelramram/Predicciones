@@ -17,7 +17,6 @@ from __future__ import annotations
 import argparse
 import csv
 import hashlib
-import urllib.request
 from datetime import datetime
 from pathlib import Path
 
@@ -25,6 +24,12 @@ from wc_predictor.config import HISTORICAL_DIR, RAW_DIR
 
 MARTJ42_URL = "https://raw.githubusercontent.com/martj42/international_results/master/results.csv"
 HISTORICAL_TRAINING_START = datetime(2014, 1, 1).date()
+
+# The dataset has ~49k rows since 1872 and only ever grows. A download parsing
+# to fewer rows than this is a truncated/garbage response (proxies have been
+# observed silently cutting the stream), not a real upstream shrink.
+MIN_EXPECTED_RAW_ROWS = 40_000
+FETCH_ATTEMPTS = 3
 
 
 def _truthy(value: str) -> bool:
@@ -38,12 +43,45 @@ def _match_id(date_str: str, home: str, away: str) -> str:
 
 
 def fetch_raw(dst: Path | None = None) -> Path:
-    """Download latest results.csv into data/raw/. Overwrites."""
+    """Download latest results.csv into data/raw/. Overwrites only after the
+    download VALIDATES.
+
+    A truncated download must never poison the pipeline: the file is written to
+    a temp path first, parsed, and required to (a) clear MIN_EXPECTED_RAW_ROWS
+    and (b) not shrink vs the copy already on disk. Only then does it replace
+    `dst` atomically. Any failure raises, so callers' degrade-don't-abort
+    fallbacks keep the previous artifacts instead of refitting on garbage
+    (a proxy once cut the stream mid-body and the empty file cascaded into a
+    0-match Poisson fit).
+    """
+    import requests
+
     dst = dst or (RAW_DIR / "international_results.csv")
     dst.parent.mkdir(parents=True, exist_ok=True)
-    with urllib.request.urlopen(MARTJ42_URL) as response, dst.open("wb") as f:
-        f.write(response.read())
-    return dst
+    tmp = dst.with_name(dst.name + ".tmp")
+    prev_rows = len(_read_rows(dst)) if dst.exists() else 0
+
+    last_err: Exception | None = None
+    for attempt in range(FETCH_ATTEMPTS):
+        try:
+            with requests.get(MARTJ42_URL, timeout=120, stream=True) as resp:
+                resp.raise_for_status()
+                with tmp.open("wb") as f:
+                    for chunk in resp.iter_content(1 << 16):
+                        f.write(chunk)
+            n_rows = len(_read_rows(tmp))
+            if n_rows < MIN_EXPECTED_RAW_ROWS:
+                raise IOError(f"suspiciously small download: {n_rows} rows "
+                              f"(expected >= {MIN_EXPECTED_RAW_ROWS})")
+            if n_rows < prev_rows:
+                raise IOError(f"download has fewer rows than the copy on disk "
+                              f"({n_rows} < {prev_rows}) — refusing to shrink")
+            tmp.replace(dst)
+            return dst
+        except Exception as e:  # truncated body, HTTP error, parse error...
+            last_err = e
+    tmp.unlink(missing_ok=True)
+    raise RuntimeError(f"martj42 fetch failed after {FETCH_ATTEMPTS} attempts: {last_err}")
 
 
 def _read_rows(src: Path) -> list[dict]:
@@ -108,6 +146,21 @@ def bootstrap(src: Path | None = None, refetch: bool = False) -> dict:
     print(f"Read {len(rows)} rows from {src}")
 
     historical_dst = HISTORICAL_DIR / "international_matches.csv"
+    # Second belt (fetch_raw already validates): never let a bad raw file shrink
+    # the committed training set materially — a half-empty CSV would silently
+    # refit Elo + Poisson on garbage downstream.
+    if historical_dst.exists():
+        prev_n = len(_read_rows(historical_dst))
+        would_write = sum(
+            1 for row in rows
+            if row["home_score"] not in ("NA", "", None)
+            and row["away_score"] not in ("NA", "", None)
+            and datetime.fromisoformat(row["date"]).date() >= HISTORICAL_TRAINING_START
+        )
+        if would_write < prev_n * 0.9:
+            raise RuntimeError(
+                f"refusing to shrink training set: raw would yield {would_write} "
+                f"matches vs {prev_n} committed (>10% drop — bad download?)")
     n = write_historical_training_set(rows, historical_dst)
     print(f"Wrote {n} historical matches >= {HISTORICAL_TRAINING_START} to {historical_dst}")
 

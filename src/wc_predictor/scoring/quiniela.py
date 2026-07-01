@@ -73,6 +73,9 @@ class PickResult:
     contrarian_pick_exact: str = ""
     contrarian_ev: float = 0.0
     contrarian_score: float = 0.0
+    # Best cell of every outcome OTHER than pick_1x2 (forbidden ones included),
+    # ordered by EV desc — the pool optimizer's alternative candidates per match.
+    alt_picks: list = None
 
 
 def build_score_matrix(
@@ -121,6 +124,7 @@ def optimize_pick_from_cells(
     rules: QuinielaRules,
     mcfg: ModelConfig,
     forbid_outcomes: tuple[str, ...] = (),
+    contrarian_include_forbidden: bool = True,
 ) -> PickResult:
     """Model-agnostic EV optimizer. Takes a precomputed score table (cells +
     marginals) and chooses the (1X2, exact) pair maximizing EV. Works with
@@ -129,7 +133,12 @@ def optimize_pick_from_cells(
 
     `forbid_outcomes` lets the caller exclude e.g. "X" — backtest evidence on
     WC 2018+2022 shows draw picks are net-negative even when the model says
-    P(X) is competitive.
+    P(X) is competitive. The ban applies to the EV pick; the CONTRARIAN pick
+    (and `alt_picks`) still consider forbidden outcomes by default, because in
+    knockout fixtures the under-picked draw (1-1/0-0) is the cheapest pool
+    differentiation there is and the pool Monte-Carlo — not the per-match EV
+    rule — should decide whether it's worth playing. Pass
+    `contrarian_include_forbidden=False` to restore the old behaviour.
 
     Mismatch override: when the chosen outcome's marginal exceeds
     `mcfg.mismatch_pick_min_dominant`, the modal cell can win on EV by a
@@ -139,8 +148,6 @@ def optimize_pick_from_cells(
     """
     best_by_outcome: dict[str, dict] = {}
     for cell in cells:
-        if cell["outcome"] in forbid_outcomes:
-            continue
         cur = best_by_outcome.get(cell["outcome"])
         if cur is None or cell["prob"] > cur["prob"]:
             best_by_outcome[cell["outcome"]] = cell
@@ -154,8 +161,9 @@ def optimize_pick_from_cells(
             return rules.points_exact * p_exact + rules.points_1x2 * (p_outcome - p_exact)
         return rules.points_exact * p_exact + rules.points_1x2 * p_outcome
 
-    candidates = [(_cell_ev(cell), outcome, cell) for outcome, cell in best_by_outcome.items()]
-    candidates.sort(key=lambda x: x[0], reverse=True)
+    all_candidates = [(_cell_ev(cell), outcome, cell) for outcome, cell in best_by_outcome.items()]
+    all_candidates.sort(key=lambda x: x[0], reverse=True)
+    candidates = [c for c in all_candidates if c[1] not in forbid_outcomes]
     best_ev, best_outcome, best_cell = candidates[0]
     gap = best_ev - candidates[1][0] if len(candidates) > 1 else best_ev
 
@@ -179,10 +187,13 @@ def optimize_pick_from_cells(
     # Contrarian (pool-leverage) pick: highest ev / p_outcome ratio.
     # When the EV-optimal outcome has high public popularity (high p_outcome),
     # an under-picked outcome may offer better pool value even with lower EV.
+    contra_pool = all_candidates if contrarian_include_forbidden else candidates
     c_score, c_ev, c_outcome, c_cell = max(
-        ((ev / max(outcome_marginals[o], 1e-9), ev, o, cell) for ev, o, cell in candidates),
+        ((ev / max(outcome_marginals[o], 1e-9), ev, o, cell) for ev, o, cell in contra_pool),
         key=lambda x: x[0],
     )
+
+    alt_picks = [(o, cell["score"]) for ev, o, cell in all_candidates if o != best_outcome]
 
     return PickResult(
         pick_1x2=best_outcome,
@@ -201,6 +212,7 @@ def optimize_pick_from_cells(
         contrarian_pick_exact=c_cell["score"],
         contrarian_ev=c_ev,
         contrarian_score=c_score,
+        alt_picks=alt_picks,
     )
 
 
@@ -210,11 +222,13 @@ def optimize_pick(
     rules: QuinielaRules,
     mcfg: ModelConfig,
     forbid_outcomes: tuple[str, ...] = (),
+    contrarian_include_forbidden: bool = True,
 ) -> PickResult:
     """Poisson + Dixon-Coles EV optimizer (back-compatible signature)."""
     cells, p1, px, p2, captured, max_goals = build_score_matrix(lambda_home, lambda_away, mcfg)
     return optimize_pick_from_cells(cells, p1, px, p2, captured, max_goals, rules, mcfg,
-                                    forbid_outcomes=forbid_outcomes)
+                                    forbid_outcomes=forbid_outcomes,
+                                    contrarian_include_forbidden=contrarian_include_forbidden)
 
 
 def expected_points(

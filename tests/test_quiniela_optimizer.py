@@ -144,8 +144,17 @@ def test_contrarian_agrees_with_ev_on_balanced_match():
     ) - 1e-9
 
 
-def test_contrarian_respects_forbid_outcomes():
-    """When draws are forbidden the contrarian pick must not be X."""
+def test_contrarian_ignores_forbid_by_default():
+    """The forbid list constrains the EV pick only; the contrarian candidate may
+    still be the under-picked draw (the pool MC decides whether to play it)."""
     result = optimize_pick(lambda_home=1.2, lambda_away=1.2, rules=RULES, mcfg=MCFG,
                            forbid_outcomes=("X",))
+    assert result.pick_1x2 != "X"
+    assert result.contrarian_pick_1x2 == "X"  # coin-flip match: X dominates ev/p
+
+
+def test_contrarian_respects_forbid_when_asked():
+    """contrarian_include_forbidden=False restores the historical constraint."""
+    result = optimize_pick(lambda_home=1.2, lambda_away=1.2, rules=RULES, mcfg=MCFG,
+                           forbid_outcomes=("X",), contrarian_include_forbidden=False)
     assert result.contrarian_pick_1x2 != "X"

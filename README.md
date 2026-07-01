@@ -228,9 +228,18 @@ pytest                              # 55 tests (optimizer, fit, Elo, blend, inge
 - [x] **Calibración (jun 2026)** — ρ Dixon-Coles ajustado a datos, peso por competición
       en el fit (refuerza el loop en vivo J1/J2 → J3), y afinador del peso de odds contra
       la línea de cierre. Ver "Mejoras de calibración (junio 2026)".
-- [ ] **Pendiente (mayor ROI)** — squad strength (jfjelstul/worldcup), e ingerir los picks
-      reales de los 30 participantes desde la webapp para que el cálculo contrarian/pool use
-      popularidad observada en vez de modelada.
+- [x] **Endgame de pool (jul 2026)** — `ingest.pool_picks` ingiere los CSV exportados de la
+      webapp: picks REALES de todos los participantes (`pool_picks.json`), leaderboard con
+      exactos (`pool_standings.json`) y resultados a 90' mergeados a `fixtures.json` (fuente
+      de verdad para eliminatorias — martj42 registra el marcador con tiempo extra). El pool
+      optimizer ahora simula el campo con los boletos capturados, gana por la regla real del
+      leaderboard `(puntos, exactos)` y puede moverse a cualquier outcome por partido
+      (incluida la X). Calibración KO: `ko_draw_allow_min_prob=0.33` (la X se desbloquea en
+      eliminatorias, ~25-35% terminan empatadas a 90') y `ko_goal_env_ratio=0.90` (amortigua
+      la inflación de goles calibrada con fase de grupos).
+- [ ] **Pendiente (mayor ROI)** — squad strength (jfjelstul/worldcup); usar el mercado de
+      totales (over/under) para calibrar el λ total por partido en vez del multiplicador
+      global `goal_env_mult`.
 
 ### Mejoras de calibración (junio 2026)
 

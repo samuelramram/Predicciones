@@ -121,8 +121,10 @@ def strategy_contrarian(lh: float, la: float, mcfg: ModelConfig, rules: Quiniela
 
 
 def strategy_contrarian_no_draw(lh: float, la: float, mcfg: ModelConfig, rules: QuinielaRules) -> tuple[str, str]:
-    """Contrarian strategy with draws forbidden (mirrors the production constraint)."""
-    pick = optimize_pick(lh, la, rules, mcfg, forbid_outcomes=("X",))
+    """Contrarian strategy with draws forbidden (mirrors the historical
+    production constraint — the ban applies to the contrarian pick too)."""
+    pick = optimize_pick(lh, la, rules, mcfg, forbid_outcomes=("X",),
+                         contrarian_include_forbidden=False)
     return pick.contrarian_pick_1x2, pick.contrarian_pick_exact
 
 

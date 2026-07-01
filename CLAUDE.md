@@ -32,6 +32,17 @@ refresca los datos del modelo (Elo + amistosos), luego la línea de cierre del
 mercado, y al final corre `generate_picks`. No uses Elo ni odds viejos si se
 pueden actualizar.
 
+**Si el usuario comparte los CSV exportados de la app** (picks de todos los
+participantes por ronda), ingiérelos ANTES de generar picks — actualizan
+`fixtures.json` (resultados a 90', fuente de verdad para eliminatorias),
+`pool_standings.json` (leaderboard con exactos) y `pool_picks.json` (boletos
+reales que usa `--objective pool`):
+
+```bash
+python -m wc_predictor.ingest.pool_picks data/wc2026/pool_exports/*.csv \
+    --you Claudio --set-result "Bélgica vs Senegal=2-2"  # override si la app aún dice Pendiente
+```
+
 ```bash
 # 1) Refrescar los datos del modelo (best-effort). Refetch del histórico
 #    martj42 (incluye amistosos recientes) → recalcula Elo → reajusta Poisson+DC.
@@ -60,18 +71,37 @@ tan frescos son los datos detrás del boleto.
 `generate_picks --objective pool` ya no maximiza P(ganar este round) sino
 **P(terminar 1.º del torneo)**. Lee `data/wc2026/pool_standings.json` (leaderboard
 del usuario) y, vía Monte Carlo (`model/pool_optimizer.py` + `model/standings.py`),
-mete tres factores que antes ignoraba:
+mete los factores que antes ignoraba:
 
 - **Brecha real**: puntos actuales tuyos vs el líder y el resto del pool.
+- **Desempate por exactos**: la victoria en la simulación es lexicográfica
+  `(puntos, exactos)` — el colchón de exactos cuenta como ventaja real.
+- **Picks reales de los rivales** (`pool_picks.json`, vía `ingest.pool_picks`):
+  el campo se simula con los boletos capturados de la app, no con humanos
+  sintéticos; la diferenciación se evalúa contra lo que de verdad picaron.
 - **Horizonte**: partidos que faltan tras esta ronda (`total_matches − resueltos −
   pendientes de la ronda`); cada uno añade varianza futura.
 - **Habilidad empírica** de cada jugador, pura estadística del marcador:
   `e = exactos/jugados`, `q = (puntos − exactos)/jugados`.
+- **Multi-candidato**: por partido puede moverse del pick EV al mejor marcador
+  de cualquier otro outcome (incluida la X, aunque esté vetada para el pick EV).
 
 Con eso la decisión **emerge de la matemática**: vas atrás por margen alcanzable
 + pocos partidos → arriesga (swaps a contrarian); brecha chica o vas cómodo +
-horizonte largo → EV puro (tu ventaja se compone sola). Sin el archivo, degrada
-al objetivo de un solo round. Actualiza `pool_standings.json` cada ronda.
+horizonte largo → EV puro (tu ventaja se compone sola). Sin los archivos, degrada
+al objetivo de un solo round. Ingiere los exports (`ingest.pool_picks`) cada ronda.
+
+## Eliminatorias (calibración específica)
+
+- `ko_draw_allow_min_prob` (0.33): la quiniela sigue siendo a 90' en KO y ~25-35%
+  de esos partidos terminan empatados; el gate de 0.42 de grupos era inalcanzable
+  con odds en el blend, así que en eliminatorias la X se permite desde P(X) ≥ 0.33.
+- `ko_goal_env_ratio` (0.90): la inflación de goles (`wc_lambda_inflation`,
+  `goal_env_mult`) se calibró con fase de grupos; en KO a 90' se anota menos y
+  este ratio la amortigua para no picar marcadores un gol arriba.
+- Los resultados de KO en `fixtures.json` vienen del export de la app (90'), no
+  de martj42 (que registra el marcador con tiempo extra); `refresh_data` solo
+  mergea marcadores de fase de grupos.
 
 ## Incentivos de clasificación (jornada 3)
 
