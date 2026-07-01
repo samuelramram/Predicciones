@@ -1056,8 +1056,8 @@
       "away_placeholder": null,
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 0,
+      "away_score": 3
     },
     {
       "match_id": "m_fa1bde4415",
@@ -1076,8 +1076,8 @@
       "away_placeholder": null,
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 1,
+      "away_score": 0
     },
     {
       "match_id": "m_623802ed98",
@@ -1096,8 +1096,8 @@
       "away_placeholder": null,
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 2,
+      "away_score": 1
     },
     {
       "match_id": "m_127ace635b",
@@ -1116,8 +1116,8 @@
       "away_placeholder": null,
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 3,
+      "away_score": 1
     },
     {
       "match_id": "m_284ef41450",
@@ -1136,8 +1136,8 @@
       "away_placeholder": null,
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 0,
+      "away_score": 3
     },
     {
       "match_id": "m_6ea920134b",
@@ -1156,8 +1156,8 @@
       "away_placeholder": null,
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 4,
+      "away_score": 2
     },
     {
       "match_id": "m_5338efa8b3",
@@ -1176,8 +1176,8 @@
       "away_placeholder": null,
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 3,
+      "away_score": 2
     },
     {
       "match_id": "m_90c9003692",
@@ -1196,8 +1196,8 @@
       "away_placeholder": null,
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 0,
+      "away_score": 0
     },
     {
       "match_id": "m_6aacb667ee",
@@ -1216,8 +1216,8 @@
       "away_placeholder": null,
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 0,
+      "away_score": 2
     },
     {
       "match_id": "m_256517dc50",
@@ -1236,8 +1236,8 @@
       "away_placeholder": null,
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 2,
+      "away_score": 1
     },
     {
       "match_id": "m_e9a5a24773",
@@ -1256,8 +1256,8 @@
       "away_placeholder": null,
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 1,
+      "away_score": 1
     },
     {
       "match_id": "m_68519d998e",
@@ -1276,8 +1276,8 @@
       "away_placeholder": null,
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 1,
+      "away_score": 3
     },
     {
       "match_id": "m_9486141e10",
@@ -1296,8 +1296,8 @@
       "away_placeholder": null,
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 1,
+      "away_score": 1
     },
     {
       "match_id": "m_782277b6ea",
@@ -1316,8 +1316,8 @@
       "away_placeholder": null,
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 1,
+      "away_score": 5
     },
     {
       "match_id": "m_c7daa47eeb",
@@ -1336,8 +1336,8 @@
       "away_placeholder": null,
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 0,
+      "away_score": 0
     },
     {
       "match_id": "m_f842c9f7bc",
@@ -1356,8 +1356,8 @@
       "away_placeholder": null,
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 0,
+      "away_score": 1
     },
     {
       "match_id": "m_cd51ab60c9",
@@ -1376,8 +1376,8 @@
       "away_placeholder": null,
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 1,
+      "away_score": 4
     },
     {
       "match_id": "m_3a4496809f",
@@ -1396,8 +1396,8 @@
       "away_placeholder": null,
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 5,
+      "away_score": 0
     },
     {
       "match_id": "m_20ed27a9c2",
@@ -1416,8 +1416,8 @@
       "away_placeholder": null,
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 3,
+      "away_score": 3
     },
     {
       "match_id": "m_efd0d73e5a",
@@ -1436,8 +1436,8 @@
       "away_placeholder": null,
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 1,
+      "away_score": 3
     },
     {
       "match_id": "m_0f698cb21a",
@@ -1456,8 +1456,8 @@
       "away_placeholder": null,
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 0,
+      "away_score": 0
     },
     {
       "match_id": "m_4c2461706c",
@@ -1476,8 +1476,8 @@
       "away_placeholder": null,
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 3,
+      "away_score": 1
     },
     {
       "match_id": "m_3af4a8e4d6",
@@ -1496,8 +1496,8 @@
       "away_placeholder": null,
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 0,
+      "away_score": 2
     },
     {
       "match_id": "m_d26a377dfc",
@@ -1516,8 +1516,8 @@
       "away_placeholder": null,
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 2,
+      "away_score": 1
     },
     {
       "match_id": "m_6dbaff3f19",
@@ -1556,8 +1556,8 @@
       "away_placeholder": "3A/B/C/D/F",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 1,
+      "away_score": 1
     },
     {
       "match_id": "m_16bd5fd046",
@@ -1576,8 +1576,8 @@
       "away_placeholder": "2C",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 1,
+      "away_score": 1
     },
     {
       "match_id": "m_28d638fcf4",
@@ -1616,8 +1616,8 @@
       "away_placeholder": "3C/D/F/G/H",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 3,
+      "away_score": 0
     },
     {
       "match_id": "m_697fabdf30",
@@ -1636,8 +1636,8 @@
       "away_placeholder": "2I",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 1,
+      "away_score": 2
     },
     {
       "match_id": "m_389b23dc2c",
@@ -1656,8 +1656,8 @@
       "away_placeholder": "3C/E/F/H/I",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 2,
+      "away_score": 0
     },
     {
       "match_id": "m_625368b3ed",
@@ -1676,8 +1676,8 @@
       "away_placeholder": "3E/H/I/J/K",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 2,
+      "away_score": 1
     },
     {
       "match_id": "m_6e01b48e6d",
@@ -1716,8 +1716,8 @@
       "away_placeholder": "3A/E/H/I/J",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 2,
+      "away_score": 2
     },
     {
       "match_id": "m_43b6f64592",

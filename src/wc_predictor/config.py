@@ -67,6 +67,10 @@ class QuinielaRules:
     points_1x2: int = 1
     exclusive: bool = True
     use_90min_only: bool = True
+    # Rank ties broken by total exact-score hits (matches the app leaderboard,
+    # which sorts equal-point players by exactos). Drives the pool optimizer's
+    # win condition: (points, exactos) lexicographic instead of points alone.
+    tiebreaker_exactos: bool = True
     stage_multipliers: dict[str, float] = field(default_factory=dict)
     pool_participants: int = 30
     pool_buyin_mxn: int = 500
@@ -137,6 +141,12 @@ class ModelConfig:
     # forfeit of pool differentiation. A J3 mutual-draw-safe match also lifts the ban.
     forbid_outcomes: tuple[str, ...] = ("X",)
     draw_allow_min_prob: float = 0.42
+    # Knockout-specific draw gate. The quiniela scores the 90-minute result and
+    # ~25-35% of WC knockout matches end level at 90' (2026 R32 so far: 3 of 9),
+    # yet the 0.42 group-stage gate is unreachable once odds enter the blend
+    # (market P(X) tops out ≈0.35) — so the model could never strike a
+    # high-conviction knockout draw. Lower gate for KO fixtures only.
+    ko_draw_allow_min_prob: float = 0.33
 
     # --- Match-context adjustments (model/adjustments.apply_context_adjustments) ---
     # World-Cup host nations enjoy a documented home boost BEYOND the generic gamma
@@ -212,6 +222,16 @@ class ModelConfig:
     # without chasing the overfit plateau). Sign of (lh-la) is unchanged, so 1X2
     # picks are unaffected — only the exact-score half moves.
     goal_env_mult: float = 1.20
+
+    # Knockout goal-environment ratio, applied ON TOP of the multipliers above
+    # for knockout fixtures only. `wc_lambda_inflation` (1.12) was calibrated on
+    # GROUP-stage scoring (~2.81 goals/match) and `goal_env_mult` on a mixed
+    # backtest, but knockout football at 90' scores materially less (caution,
+    # closer matchups): WC2026 R32 so far runs ~2.56 goals/match at 90' vs 2.81
+    # in groups (ratio ≈0.91, consistent with prior WCs). Without this damp the
+    # exact-score picks in KO sit one goal too high — costly when exactos are
+    # the leaderboard tiebreaker. 1.0 restores the old behaviour.
+    ko_goal_env_ratio: float = 0.90
 
 
 @dataclass(frozen=True)

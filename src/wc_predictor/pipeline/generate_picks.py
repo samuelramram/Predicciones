@@ -49,17 +49,21 @@ from wc_predictor.model.adjustments import (
 from wc_predictor.model.blend import blend_three_sources
 from wc_predictor.model.poisson_dc import load_fit, predict_lambdas
 from wc_predictor.model.qualification import TOP2_SECURED, j3_stakes
+from wc_predictor.names import team_es as _team_es
 from wc_predictor.ratings.elo import elo_to_1x2_probs
 from wc_predictor.scoring.quiniela import build_score_matrix, optimize_pick_from_cells
 from wc_predictor.utils import config_hash, file_sha256, git_commit, git_dirty
 
 
-def _forbid_outcomes(mcfg, px_blended: float, qual=None) -> tuple[str, ...]:
+def _forbid_outcomes(mcfg, px_blended: float, qual=None, is_knockout: bool = False) -> tuple[str, ...]:
     """Outcomes the optimizer may not pick for this match.
 
     Starts from `mcfg.forbid_outcomes` (default forbids "X") and lifts the draw ban
     when the draw signal is strong enough to be worth it:
-      - the blended P(X) clears `mcfg.draw_allow_min_prob`, or
+      - the blended P(X) clears the stage's gate (`draw_allow_min_prob` for group
+        matches, the lower `ko_draw_allow_min_prob` for knockouts — the quiniela
+        scores the 90' result and knockout matches end level at 90' far more
+        often than the group gate implies), or
       - it is a J3 fixture where a draw qualifies both teams (mutual_draw_safe).
     Banning draws globally lowers variance (good for average EV, bad for *winning*
     a pool); this lets the model still strike on the rare high-conviction draw.
@@ -67,7 +71,8 @@ def _forbid_outcomes(mcfg, px_blended: float, qual=None) -> tuple[str, ...]:
     if qual is not None and qual.mutual_draw_safe:
         return ()
     forbid = tuple(mcfg.forbid_outcomes)
-    if "X" in forbid and px_blended >= mcfg.draw_allow_min_prob:
+    gate = mcfg.ko_draw_allow_min_prob if is_knockout else mcfg.draw_allow_min_prob
+    if "X" in forbid and px_blended >= gate:
         forbid = tuple(o for o in forbid if o != "X")
     return forbid
 
@@ -265,6 +270,13 @@ def predict_match(fixture: dict, fit, venues: dict, elos: dict, odds: dict, rule
     lh *= mcfg.goal_env_mult
     la *= mcfg.goal_env_mult
 
+    # Knockout damp: group-calibrated inflation overshoots the quieter 90' goal
+    # environment of knockout football (see ModelConfig.ko_goal_env_ratio).
+    is_knockout = fixture["stage"] in KNOCKOUT_STAGES
+    if is_knockout:
+        lh *= mcfg.ko_goal_env_ratio
+        la *= mcfg.ko_goal_env_ratio
+
     # Jornada-3 qualification incentive: a team whose top-2 finish is already
     # mathematically locked tends to rotate its XI for the dead-rubber final
     # group match — damp its expected goals (see ModelConfig.qual_rotation_lambda_mult).
@@ -299,8 +311,9 @@ def predict_match(fixture: dict, fit, venues: dict, elos: dict, odds: dict, rule
         w_poisson=w_poisson, w_elo=w_elo, w_odds=w_odds,
     )
     # Which outcomes the optimizer may pick (config-driven; the draw ban lifts on a
-    # strong blended P(X) or a J3 mutual-draw-safe fixture — see _forbid_outcomes).
-    forbid = _forbid_outcomes(mcfg, px_b, qual)
+    # strong blended P(X) — lower gate in knockouts — or a J3 mutual-draw-safe
+    # fixture; see _forbid_outcomes).
+    forbid = _forbid_outcomes(mcfg, px_b, qual, is_knockout=is_knockout)
     pick = optimize_pick_from_cells(
         cells_b, p1_b, px_b, p2_b, pmass, pmax, rules, mcfg,
         forbid_outcomes=forbid,
@@ -353,6 +366,7 @@ def predict_match(fixture: dict, fit, venues: dict, elos: dict, odds: dict, rule
         # Transient (stripped before serialization) — inputs to the pool optimizer.
         "_cells": cells_b,
         "_elo_probs": (elo_p1, elo_px, elo_p2),
+        "_alt_picks": list(pick.alt_picks or []),
         "qualification": (
             {
                 "home_status": qual.home_status,
@@ -402,31 +416,8 @@ def _round_title(label: str) -> str:
     return label
 
 
-# Nombres de selección en español, solo para el reporte .md. La capa de datos
-# (modelo, Elo, CSV, JSON) conserva los nombres en inglés de las fuentes
-# martj42/openfootball — esto es presentación, no se toca la fuente de verdad.
-TEAM_ES = {
-    "Mexico": "México", "South Africa": "Sudáfrica", "Czech Republic": "República Checa",
-    "South Korea": "Corea del Sur", "Canada": "Canadá", "Switzerland": "Suiza",
-    "Bosnia and Herzegovina": "Bosnia y Herzegovina", "Bosnia & Herzegovina": "Bosnia y Herzegovina",
-    "Qatar": "Catar", "Brazil": "Brasil", "Scotland": "Escocia", "Morocco": "Marruecos",
-    "Haiti": "Haití", "United States": "Estados Unidos", "Australia": "Australia",
-    "Paraguay": "Paraguay", "Turkey": "Turquía", "Germany": "Alemania", "Ecuador": "Ecuador",
-    "Ivory Coast": "Costa de Marfil", "Curaçao": "Curazao", "Netherlands": "Países Bajos",
-    "Sweden": "Suecia", "Japan": "Japón", "Tunisia": "Túnez", "Belgium": "Bélgica",
-    "Egypt": "Egipto", "Iran": "Irán", "New Zealand": "Nueva Zelanda", "Spain": "España",
-    "Uruguay": "Uruguay", "Saudi Arabia": "Arabia Saudita", "Cape Verde": "Cabo Verde",
-    "France": "Francia", "Senegal": "Senegal", "Norway": "Noruega", "Iraq": "Irak",
-    "Argentina": "Argentina", "Austria": "Austria", "Algeria": "Argelia", "Jordan": "Jordania",
-    "Portugal": "Portugal", "Colombia": "Colombia", "DR Congo": "RD Congo",
-    "Uzbekistan": "Uzbekistán", "England": "Inglaterra", "Croatia": "Croacia",
-    "Ghana": "Ghana", "Panama": "Panamá",
-}
-
-
-def _team_es(name: str) -> str:
-    """Nombre de selección en español; si no está mapeado, devuelve el original."""
-    return TEAM_ES.get(name, name)
+# Los nombres de selección en español (solo presentación) viven en
+# wc_predictor.names, compartidos con el ingest de los exports de la app.
 
 
 def _fmt_score(exact: str) -> str:
@@ -699,15 +690,19 @@ def _apply_pool_objective(picks: list[dict], rules, mcfg, resolved_ids: set | No
     its contrarian pick, overwrite pick_1x2/pick_exact and flag `pool_swapped`.
 
     If `data/wc2026/pool_standings.json` exists, the objective becomes
-    P(finishing the TOURNAMENT 1st): the optimizer sees your current gap to the
-    field and the horizon of matches still to come, so it decides chase vs cushion
-    mathematically (big gap + short runway → gamble; small gap + long runway → EV).
-    Without the file it falls back to the single-round, from-zero objective.
+    P(finishing the TOURNAMENT 1st) under the leaderboard's tie rule (points,
+    then exactos): the optimizer sees your current gap to the field, your
+    exactos cushion and the horizon of matches still to come, so it decides
+    chase vs cushion mathematically (big gap + short runway → gamble; small gap
+    + long runway → EV). When `pool_picks.json` (ingest.pool_picks) is present,
+    opponents are simulated on their REAL submitted picks for this round instead
+    of a synthetic human model. Without the files it falls back to the
+    single-round, from-zero objective.
 
     See model.pool_optimizer / model.standings.
     """
     from wc_predictor.model.pool_optimizer import TicketMatch, optimize_ticket
-    from wc_predictor.model.standings import compute_horizon, load_pool_context
+    from wc_predictor.model.standings import attach_real_picks, compute_horizon, load_pool_context
 
     resolved_ids = resolved_ids or set()
     # Only undecided matches are real decisions; resolved ones are already baked
@@ -720,6 +715,7 @@ def _apply_pool_objective(picks: list[dict], rules, mcfg, resolved_ids: set | No
             elo_probs=p["_elo_probs"],
             ev_pick=(p["pick_1x2"], p["pick_exact"]),
             contra_pick=(p["contrarian_pick_1x2"], p["contrarian_pick_exact"]),
+            alt_picks=p.get("_alt_picks") or None,
         )
         for p in decidable
     ]
@@ -731,15 +727,24 @@ def _apply_pool_objective(picks: list[dict], rules, mcfg, resolved_ids: set | No
         gap = ctx.leader_points - ctx.your_points
         pos = (f"vas detrás del líder por {gap:.0f}" if gap > 0
                else f"lideras por {-gap:.0f}" if gap < 0 else "empatado en la cima")
-        print(f"  standings: {ctx.you} {ctx.your_points:.0f} pts ({pos}), "
+        print(f"  standings: {ctx.you} {ctx.your_points:.0f} pts / "
+              f"{ctx.your_exactos:.0f} exactos ({pos}), "
               f"{len(ctx.opponents)} rivales; horizonte {decision_pending + horizon} "
               f"partidos restantes = {decision_pending} que decides ahora + {horizon} futuros (tail)")
         if ctx.estimated_fill:
             print(f"    ({ctx.estimated_fill} rivales estimados con field_baseline; "
                   f"captura el leaderboard completo para precisión total)")
+        n_real = attach_real_picks(ctx, WC_DIR / "pool_picks.json")
+        if n_real:
+            print(f"  picks reales cargados para {n_real} rivales (pool_picks.json) — "
+                  f"el campo se simula con sus boletos capturados")
+        else:
+            print("  sin pool_picks.json — el campo se simula con el modelo sintético "
+                  "de humanos (corre ingest.pool_picks tras capturar los exports)")
         result = optimize_ticket(
             tmatches, rules,
             your_points=ctx.your_points,
+            your_exactos=ctx.your_exactos,
             opponents=ctx.opponents,
             your_q_rate=ctx.your_q_rate,
             your_e_rate=ctx.your_e_rate,
@@ -753,12 +758,12 @@ def _apply_pool_objective(picks: list[dict], rules, mcfg, resolved_ids: set | No
     swapped = set(result.swapped_to_contrarian)
     for p in picks:
         p["pool_swapped"] = p["match_id"] in swapped
-        if p["match_id"] in swapped:
-            p["pick_1x2"] = p["contrarian_pick_1x2"]
-            p["pick_exact"] = p["contrarian_pick_exact"]
+        chosen = result.chosen.get(p["match_id"])
+        if p["match_id"] in swapped and chosen is not None:
+            p["pick_1x2"], p["pick_exact"] = chosen
     verdict = (f"COLCHÓN: {len(swapped)} swaps — tu ventaja se compone sola, EV puro"
                if not swapped else
-               f"ALCANCE: {len(swapped)} swap(s) a contrarian para inyectar varianza y cazar al líder")
+               f"ALCANCE: {len(swapped)} swap(s) fuera del pick EV para maximizar P(1.º)")
     print(f"  pool objective: P(1.º final) {result.win_prob_ev:.1%} (EV) → "
           f"{result.win_prob_pool:.1%} (pool) → {verdict}")
 
@@ -868,6 +873,7 @@ def main():
     for p in picks:
         p.pop("_cells", None)
         p.pop("_elo_probs", None)
+        p.pop("_alt_picks", None)
 
     OUTPUTS_DIR.mkdir(parents=True, exist_ok=True)
 

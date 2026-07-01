@@ -40,6 +40,7 @@ class PoolContext:
     total_matches: int
     leader_points: float           # the current top score in the field (excluding you)
     estimated_fill: int            # how many opponents were padded from field_baseline
+    your_exactos: float = 0.0      # cumulative exact hits — the leaderboard tiebreaker
 
 
 def _rates(points: float, exactos: float, matches_resolved: int) -> tuple[float, float]:
@@ -66,15 +67,18 @@ def load_pool_context(path: Path) -> PoolContext | None:
     players = doc.get("players", [])
 
     your_points = 0.0
+    your_exactos = 0.0
     your_q = your_e = 0.0
     opponents: list[OpponentState] = []
     for p in players:
         q, e = _rates(p["points"], p.get("exactos", 0), matches_resolved)
         if p["name"] == you:
             your_points = float(p["points"])
+            your_exactos = float(p.get("exactos", 0))
             your_q, your_e = q, e
         else:
-            opponents.append(OpponentState(p["name"], float(p["points"]), q, e))
+            opponents.append(OpponentState(p["name"], float(p["points"]), q, e,
+                                           exactos=float(p.get("exactos", 0))))
 
     # Pad the rest of the field with a documented baseline so the pool size is
     # right even before the full leaderboard is captured. These are dominated by
@@ -101,7 +105,29 @@ def load_pool_context(path: Path) -> PoolContext | None:
         total_matches=total_matches,
         leader_points=leader_points,
         estimated_fill=estimated_fill,
+        your_exactos=your_exactos,
     )
+
+
+def attach_real_picks(ctx: PoolContext, picks_path: Path) -> int:
+    """Attach real submitted picks (ingest.pool_picks → pool_picks.json) to each
+    opponent. Returns how many opponents got at least one pick attached.
+
+    The optimizer only consults picks for the matches it is deciding, so it is
+    fine to attach the full pick history — resolved matches are simply ignored.
+    """
+    if not picks_path.exists():
+        return 0
+    with picks_path.open(encoding="utf-8") as f:
+        doc = json.load(f)
+    players = doc.get("players", {})
+    attached = 0
+    for opp in ctx.opponents:
+        picks = players.get(opp.name)
+        if picks:
+            opp.picks = picks
+            attached += 1
+    return attached
 
 
 def compute_horizon(ctx: PoolContext, decision_pending: int) -> int:
