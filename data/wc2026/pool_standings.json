@@ -1,114 +1,114 @@
 {
-  "as_of": "2026-07-01",
+  "as_of": "2026-07-03",
   "you": "Claudio",
-  "matches_resolved": 81,
+  "matches_resolved": 85,
   "total_matches": 104,
   "total_participants": 34,
   "_note": "Generado por ingest.pool_picks desde los exports de la app (puntos de la app + exactos contados de Puntos==2). Leaderboard completo: sin field_baseline.",
   "players": [
     {
       "name": "Aldo",
-      "points": 64,
-      "exactos": 11
-    },
-    {
-      "name": "Bryan Montiel",
-      "points": 64,
-      "exactos": 11
-    },
-    {
-      "name": "Claudio",
-      "points": 63,
-      "exactos": 14
-    },
-    {
-      "name": "Adrián",
-      "points": 63,
-      "exactos": 11
-    },
-    {
-      "name": "Bryan 2",
-      "points": 61,
+      "points": 70,
       "exactos": 13
     },
     {
-      "name": "SHIFTY TWIMS",
-      "points": 61,
-      "exactos": 11
+      "name": "Bryan Montiel",
+      "points": 69,
+      "exactos": 13
     },
     {
-      "name": "Lalo Camarena",
-      "points": 61,
-      "exactos": 7
+      "name": "Claudio",
+      "points": 68,
+      "exactos": 15
+    },
+    {
+      "name": "SHIFTY TWIMS",
+      "points": 67,
+      "exactos": 13
     },
     {
       "name": "Yankee",
-      "points": 60,
-      "exactos": 10
+      "points": 67,
+      "exactos": 13
+    },
+    {
+      "name": "Adrián",
+      "points": 67,
+      "exactos": 12
+    },
+    {
+      "name": "Bryan 2",
+      "points": 66,
+      "exactos": 14
+    },
+    {
+      "name": "Lalo Camarena",
+      "points": 66,
+      "exactos": 8
     },
     {
       "name": "Daniel Flores",
-      "points": 58,
-      "exactos": 10
+      "points": 64,
+      "exactos": 12
     },
     {
-      "name": "Innavoeg",
-      "points": 58,
-      "exactos": 9
+      "name": "Oscar herrera",
+      "points": 62,
+      "exactos": 16
     },
     {
       "name": "Andrés Román",
+      "points": 61,
+      "exactos": 9
+    },
+    {
+      "name": "El inquisidor de Excel",
+      "points": 61,
+      "exactos": 9
+    },
+    {
+      "name": "Innavoeg",
+      "points": 61,
+      "exactos": 9
+    },
+    {
+      "name": "Juan Pablo",
+      "points": 59,
+      "exactos": 9
+    },
+    {
+      "name": "Erika",
+      "points": 59,
+      "exactos": 8
+    },
+    {
+      "name": "Cuquito power",
+      "points": 58,
+      "exactos": 8
+    },
+    {
+      "name": "Carlos",
+      "points": 57,
+      "exactos": 10
+    },
+    {
+      "name": "Alex villa",
       "points": 56,
       "exactos": 7
     },
     {
-      "name": "Oscar herrera",
+      "name": "Héctor Carrera",
       "points": 55,
-      "exactos": 13
-    },
-    {
-      "name": "El inquisidor de Excel",
-      "points": 55,
-      "exactos": 7
-    },
-    {
-      "name": "Erika",
-      "points": 55,
-      "exactos": 7
-    },
-    {
-      "name": "Carlos",
-      "points": 53,
       "exactos": 9
     },
     {
-      "name": "Cuquito power",
-      "points": 53,
-      "exactos": 7
-    },
-    {
-      "name": "Juan Pablo",
-      "points": 53,
-      "exactos": 7
-    },
-    {
       "name": "dieroberg48",
-      "points": 53,
+      "points": 55,
       "exactos": 7
     },
     {
       "name": "Paty Baez",
-      "points": 52,
-      "exactos": 7
-    },
-    {
-      "name": "Alex villa",
-      "points": 51,
-      "exactos": 6
-    },
-    {
-      "name": "Héctor Carrera",
-      "points": 50,
+      "points": 54,
       "exactos": 7
     },
     {
@@ -117,28 +117,28 @@
       "exactos": 4
     },
     {
+      "name": "Fer y Cyn",
+      "points": 46,
+      "exactos": 5
+    },
+    {
+      "name": "Ponchovsky",
+      "points": 46,
+      "exactos": 3
+    },
+    {
+      "name": "Luis lucha",
+      "points": 43,
+      "exactos": 6
+    },
+    {
       "name": "JIMMYLARA",
       "points": 42,
       "exactos": 5
     },
     {
-      "name": "Ponchovsky",
-      "points": 42,
-      "exactos": 3
-    },
-    {
-      "name": "Luis lucha",
-      "points": 41,
-      "exactos": 6
-    },
-    {
-      "name": "Fer y Cyn",
-      "points": 41,
-      "exactos": 4
-    },
-    {
       "name": "Jocker!",
-      "points": 41,
+      "points": 42,
       "exactos": 4
     },
     {
@@ -147,14 +147,14 @@
       "exactos": 5
     },
     {
+      "name": "Arnoldo Barba",
+      "points": 39,
+      "exactos": 6
+    },
+    {
       "name": "Andrey",
       "points": 36,
       "exactos": 5
-    },
-    {
-      "name": "Arnoldo Barba",
-      "points": 34,
-      "exactos": 4
     },
     {
       "name": "Cosmo",

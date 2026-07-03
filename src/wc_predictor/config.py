@@ -148,6 +148,30 @@ class ModelConfig:
     # high-conviction knockout draw. Lower gate for KO fixtures only.
     ko_draw_allow_min_prob: float = 0.33
 
+    # Second knockout draw path: even below the probability gate above, lift the
+    # X ban when the MODAL blended scoreline is itself a draw (0-0/1-1) and the
+    # blended P(X) clears this floor. In tight KO matchups the draw cell tops the
+    # grid while P(X) sits at market levels (~0.28-0.32) that the gates above
+    # never reach, so the EV optimizer was structurally locked out of scorelines
+    # it ranked #1. Group stage keeps the hard gate: the same unlock backtests
+    # NEGATIVE on 204 group matches of WC2014/18/22 + Euro/Copa 2024 (X picks in
+    # groups are net losers), while on the 13 resolved 90' R32 results of WC2026
+    # it recovers the missed 1-1s. See ko_exacto_ev_bonus for the ranking side.
+    ko_modal_draw_min_prob: float = 0.30
+
+    # Knockout-only EV bonus per exact-score point when RANKING candidate picks
+    # (the reported EV stays at the true scoring rule). Two reasons this exists:
+    # (a) the leaderboard breaks point ties by exactos, so a pick with a higher
+    # P(exact) at equal points-EV is strictly better than the EV tie suggests;
+    # (b) with exclusive scoring, plain EV almost never lands on a modal draw
+    # (P(1) > P(X) swamps the exact-cell edge), so the unlock above is inert
+    # without a nudge toward the exact component. Backtest (13 resolved R32 at
+    # 90', ET-corrected): production 14 pts/4 exactos → 16 pts/5 exactos with
+    # bonus 0.5; values 0.5-1.0 are equivalent, 0.25 too weak to strike the 1-1.
+    # OUT of knockouts the same bonus LOSES points (204-match group backtest:
+    # 140/33 → 138/31), hence KO-only. 0.0 restores pure-EV ranking.
+    ko_exacto_ev_bonus: float = 0.5
+
     # --- Match-context adjustments (model/adjustments.apply_context_adjustments) ---
     # World-Cup host nations enjoy a documented home boost BEYOND the generic gamma
     # the Poisson+DC fit already applies to the side on home soil. These multipliers

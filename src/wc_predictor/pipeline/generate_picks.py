@@ -55,7 +55,8 @@ from wc_predictor.scoring.quiniela import build_score_matrix, optimize_pick_from
 from wc_predictor.utils import config_hash, file_sha256, git_commit, git_dirty
 
 
-def _forbid_outcomes(mcfg, px_blended: float, qual=None, is_knockout: bool = False) -> tuple[str, ...]:
+def _forbid_outcomes(mcfg, px_blended: float, qual=None, is_knockout: bool = False,
+                     modal_outcome: str | None = None) -> tuple[str, ...]:
     """Outcomes the optimizer may not pick for this match.
 
     Starts from `mcfg.forbid_outcomes` (default forbids "X") and lifts the draw ban
@@ -64,6 +65,12 @@ def _forbid_outcomes(mcfg, px_blended: float, qual=None, is_knockout: bool = Fal
         matches, the lower `ko_draw_allow_min_prob` for knockouts — the quiniela
         scores the 90' result and knockout matches end level at 90' far more
         often than the group gate implies), or
+      - it is a KNOCKOUT fixture whose modal blended scoreline is itself a draw
+        (`modal_outcome == "X"`) with P(X) ≥ `ko_modal_draw_min_prob` — the
+        market-compressed blend rarely reaches the probability gates, yet the
+        grid's #1 cell being a 0-0/1-1 is a draw signal in its own right
+        (group matches deliberately do NOT get this path: it backtests
+        negative there), or
       - it is a J3 fixture where a draw qualifies both teams (mutual_draw_safe).
     Banning draws globally lowers variance (good for average EV, bad for *winning*
     a pool); this lets the model still strike on the rare high-conviction draw.
@@ -72,7 +79,11 @@ def _forbid_outcomes(mcfg, px_blended: float, qual=None, is_knockout: bool = Fal
         return ()
     forbid = tuple(mcfg.forbid_outcomes)
     gate = mcfg.ko_draw_allow_min_prob if is_knockout else mcfg.draw_allow_min_prob
-    if "X" in forbid and px_blended >= gate:
+    lift = px_blended >= gate or (
+        is_knockout and modal_outcome == "X"
+        and px_blended >= mcfg.ko_modal_draw_min_prob
+    )
+    if "X" in forbid and lift:
         forbid = tuple(o for o in forbid if o != "X")
     return forbid
 
@@ -311,12 +322,19 @@ def predict_match(fixture: dict, fit, venues: dict, elos: dict, odds: dict, rule
         w_poisson=w_poisson, w_elo=w_elo, w_odds=w_odds,
     )
     # Which outcomes the optimizer may pick (config-driven; the draw ban lifts on a
-    # strong blended P(X) — lower gate in knockouts — or a J3 mutual-draw-safe
-    # fixture; see _forbid_outcomes).
-    forbid = _forbid_outcomes(mcfg, px_b, qual, is_knockout=is_knockout)
+    # strong blended P(X) — lower gate in knockouts — a KO fixture whose modal
+    # blended scoreline is a draw, or a J3 mutual-draw-safe fixture; see
+    # _forbid_outcomes). In knockouts the ranking also gets the exactos-tiebreak
+    # tilt (`ko_exacto_ev_bonus`): the leaderboard breaks ties by exact hits, and
+    # without the tilt the EV rule can never land on the modal draw it just
+    # unlocked.
+    modal_outcome = max(cells_b, key=lambda c: c["prob"])["outcome"]
+    forbid = _forbid_outcomes(mcfg, px_b, qual, is_knockout=is_knockout,
+                              modal_outcome=modal_outcome)
     pick = optimize_pick_from_cells(
         cells_b, p1_b, px_b, p2_b, pmass, pmax, rules, mcfg,
         forbid_outcomes=forbid,
+        exact_ev_bonus=mcfg.ko_exacto_ev_bonus if is_knockout else 0.0,
     )
 
     contrarian_differs = pick.contrarian_pick_1x2 != pick.pick_1x2

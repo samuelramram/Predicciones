@@ -237,6 +237,18 @@ pytest                              # 55 tests (optimizer, fit, Elo, blend, inge
       (incluida la X). Calibración KO: `ko_draw_allow_min_prob=0.33` (la X se desbloquea en
       eliminatorias, ~25-35% terminan empatadas a 90') y `ko_goal_env_ratio=0.90` (amortigua
       la inflación de goles calibrada con fase de grupos).
+- [x] **Empates en KO (jul 2026)** — el talón de Aquiles del boleto R32 (los fallos fueron
+      empates a 90'): (1) en eliminatorias la X también se desbloquea cuando el marcador
+      MODAL del blend es empate con P(X) ≥ `ko_modal_draw_min_prob=0.30` (las gates de
+      probabilidad eran inalcanzables con odds al 55%); (2) el ranking de candidatos usa
+      `ko_exacto_ev_bonus=0.5` — EV con peso efectivo del exacto 2.5, porque el leaderboard
+      desempata por exactos y sin el tilt el EV puro nunca aterriza en la X modal. Solo KO:
+      en 204 partidos de grupos históricos (WC14/18/22+Euro/Copa24) ambas palancas RESTAN
+      puntos; en los 13 R32 resueltos a 90' suman (14 pts/4 exactos → 16/5). Además el
+      greedy del pool optimizer desempata swaps de P(1.º) plana por exactos esperados, y
+      `ingest.pool_picks` valida el "Resultado Real" contra los puntos de la app e infiere
+      el marcador de 90' cuando la app muestra el score con tiempo extra (caso
+      Bélgica-Senegal: mostraba 3-2, pagó sobre 2-2).
 - [ ] **Pendiente (mayor ROI)** — squad strength (jfjelstul/worldcup); usar el mercado de
       totales (over/under) para calibrar el λ total por partido en vez del multiplicador
       global `goal_env_mult`.

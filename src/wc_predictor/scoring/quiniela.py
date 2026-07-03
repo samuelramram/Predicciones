@@ -125,11 +125,22 @@ def optimize_pick_from_cells(
     mcfg: ModelConfig,
     forbid_outcomes: tuple[str, ...] = (),
     contrarian_include_forbidden: bool = True,
+    exact_ev_bonus: float = 0.0,
 ) -> PickResult:
     """Model-agnostic EV optimizer. Takes a precomputed score table (cells +
     marginals) and chooses the (1X2, exact) pair maximizing EV. Works with
     Poisson+DC, bivariate Poisson, or any other generator that emits the same
     `cells` shape.
+
+    `exact_ev_bonus` tilts the RANKING metric toward the exact-score component:
+    candidates are ordered by EV computed with an effective
+    `points_exact + exact_ev_bonus`, reflecting that the pool leaderboard breaks
+    point ties by exactos (an exact hit is worth more than its face points).
+    The returned `ev` / `contrarian_ev` are always the TRUE expected points
+    under the real rules; only the choice (and `ev_confidence_gap`, which
+    describes the selection) uses the tilted metric. 0.0 = pure EV (default).
+    Production passes `mcfg.ko_exacto_ev_bonus` for knockout fixtures only —
+    the tilt backtests negative on group-stage matches.
 
     `forbid_outcomes` lets the caller exclude e.g. "X" — backtest evidence on
     WC 2018+2022 shows draw picks are net-negative even when the model says
@@ -154,42 +165,48 @@ def optimize_pick_from_cells(
 
     outcome_marginals = {"1": p1, "X": px, "2": p2}
 
-    def _cell_ev(cell: dict) -> float:
+    def _cell_ev(cell: dict, bonus: float = 0.0) -> float:
         p_exact = cell["prob"]
         p_outcome = outcome_marginals[cell["outcome"]]
         if rules.exclusive:
-            return rules.points_exact * p_exact + rules.points_1x2 * (p_outcome - p_exact)
-        return rules.points_exact * p_exact + rules.points_1x2 * p_outcome
+            return (rules.points_exact + bonus) * p_exact + rules.points_1x2 * (p_outcome - p_exact)
+        return (rules.points_exact + bonus) * p_exact + rules.points_1x2 * p_outcome
 
-    all_candidates = [(_cell_ev(cell), outcome, cell) for outcome, cell in best_by_outcome.items()]
+    # Rank with the tilted metric; report true EV (see docstring).
+    all_candidates = [(_cell_ev(cell, exact_ev_bonus), outcome, cell)
+                      for outcome, cell in best_by_outcome.items()]
     all_candidates.sort(key=lambda x: x[0], reverse=True)
     candidates = [c for c in all_candidates if c[1] not in forbid_outcomes]
-    best_ev, best_outcome, best_cell = candidates[0]
-    gap = best_ev - candidates[1][0] if len(candidates) > 1 else best_ev
+    best_rank_ev, best_outcome, best_cell = candidates[0]
+    gap = best_rank_ev - candidates[1][0] if len(candidates) > 1 else best_rank_ev
 
     if outcome_marginals[best_outcome] >= mcfg.mismatch_pick_min_dominant:
         expected_diff = sum(c["prob"] * (c["h"] - c["a"]) for c in cells)
         target = round(expected_diff)
-        same_outcome_evs = [(_cell_ev(c), c) for c in cells if c["outcome"] == best_outcome]
+        same_outcome_evs = [(_cell_ev(c, exact_ev_bonus), c) for c in cells
+                            if c["outcome"] == best_outcome]
         max_local_ev = max(ev for ev, _ in same_outcome_evs)
         in_tol = [(ev, c) for ev, c in same_outcome_evs
                   if max_local_ev - ev <= mcfg.mismatch_pick_ev_tolerance]
-        chosen_ev, chosen_cell = min(
+        _, chosen_cell = min(
             in_tol,
             key=lambda pair: (abs((pair[1]["h"] - pair[1]["a"]) - target), -pair[1]["prob"]),
         )
         if chosen_cell["score"] != best_cell["score"]:
             best_cell = chosen_cell
-            best_ev = chosen_ev
+
+    best_ev = _cell_ev(best_cell)
 
     top5 = sorted(cells, key=lambda c: c["prob"], reverse=True)[:5]
 
-    # Contrarian (pool-leverage) pick: highest ev / p_outcome ratio.
+    # Contrarian (pool-leverage) pick: highest ev / p_outcome ratio (true EV —
+    # the tiebreak tilt is about OUR ranking, not the field's popularity model).
     # When the EV-optimal outcome has high public popularity (high p_outcome),
     # an under-picked outcome may offer better pool value even with lower EV.
     contra_pool = all_candidates if contrarian_include_forbidden else candidates
     c_score, c_ev, c_outcome, c_cell = max(
-        ((ev / max(outcome_marginals[o], 1e-9), ev, o, cell) for ev, o, cell in contra_pool),
+        ((_cell_ev(cell) / max(outcome_marginals[o], 1e-9), _cell_ev(cell), o, cell)
+         for _, o, cell in contra_pool),
         key=lambda x: x[0],
     )
 
@@ -223,12 +240,14 @@ def optimize_pick(
     mcfg: ModelConfig,
     forbid_outcomes: tuple[str, ...] = (),
     contrarian_include_forbidden: bool = True,
+    exact_ev_bonus: float = 0.0,
 ) -> PickResult:
     """Poisson + Dixon-Coles EV optimizer (back-compatible signature)."""
     cells, p1, px, p2, captured, max_goals = build_score_matrix(lambda_home, lambda_away, mcfg)
     return optimize_pick_from_cells(cells, p1, px, p2, captured, max_goals, rules, mcfg,
                                     forbid_outcomes=forbid_outcomes,
-                                    contrarian_include_forbidden=contrarian_include_forbidden)
+                                    contrarian_include_forbidden=contrarian_include_forbidden,
+                                    exact_ev_bonus=exact_ev_bonus)
 
 
 def expected_points(

@@ -281,7 +281,16 @@ def optimize_ticket(
                 wins += 0.5  # split on a dead-even tie (points AND tiebreaker)
         return wins / n_sims
 
-    # Greedy: start all-EV, move a match to any alternative only if it helps.
+    # Expected exactos of each candidate (per match, independent across matches):
+    # the greedy tie-breaker below. When a swap leaves simulated P(rank=1) flat —
+    # common under Monte-Carlo quantization — prefer the candidate that banks
+    # more expected exact hits: exactos break leaderboard point ties, so at equal
+    # win probability the deeper exactos cushion strictly dominates.
+    ex_mean = [[sum(col) / n_sims for col in cand_ex[mi]] for mi in range(n_matches)]
+
+    # Greedy: start all-EV, move a match to any alternative only if it helps —
+    # more win probability, or equal win probability with more expected exactos
+    # (only a tiebreak-aware swap; never trades win probability away).
     choice = [0] * n_matches
     base_win = win_prob(choice)
     current = base_win
@@ -298,7 +307,13 @@ def optimize_ticket(
                     continue
                 choice[mi] = ci
                 cand = win_prob(choice)
-                if cand > best_win + 1e-9:
+                better = cand > best_win + 1e-9
+                tied_more_exactos = (
+                    tiebreak
+                    and abs(cand - best_win) <= 1e-9
+                    and ex_mean[mi][ci] > ex_mean[mi][best_ci] + 1e-9
+                )
+                if better or tied_more_exactos:
                     best_ci, best_win = ci, cand
             choice[mi] = best_ci
             if best_win > current + 1e-9:
