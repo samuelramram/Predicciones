@@ -40,7 +40,7 @@ reales que usa `--objective pool`):
 
 ```bash
 python -m wc_predictor.ingest.pool_picks data/wc2026/pool_exports/*.csv \
-    --you Claudio --set-result "Bélgica vs Senegal=2-2"  # override si la app aún dice Pendiente
+    --you Claudio  # el 90' se infiere de los puntos de la app; --set-result solo si es ambiguo
 ```
 
 ```bash
@@ -96,12 +96,27 @@ al objetivo de un solo round. Ingiere los exports (`ingest.pool_picks`) cada ron
 - `ko_draw_allow_min_prob` (0.33): la quiniela sigue siendo a 90' en KO y ~25-35%
   de esos partidos terminan empatados; el gate de 0.42 de grupos era inalcanzable
   con odds en el blend, así que en eliminatorias la X se permite desde P(X) ≥ 0.33.
+- `ko_modal_draw_min_prob` (0.30): segunda vía de desbloqueo de la X en KO — si
+  el marcador MODAL del blend es un empate (0-0/1-1) y P(X) ≥ 0.30, la X entra al
+  optimizador aunque no alcance el gate de arriba. Solo KO: en 204 partidos de
+  grupos históricos (WC14/18/22 + Euro/Copa 24) la misma regla resta puntos.
+- `ko_exacto_ev_bonus` (0.5): en KO los candidatos se rankean con EV inclinado al
+  exacto (peso efectivo 2.5) porque el leaderboard desempata por exactos y, con
+  scoring excluyente, el EV puro casi nunca aterriza en la X modal recién
+  desbloqueada. El EV reportado sigue siendo el real. Backtest de los 13 R32
+  resueltos a 90': 14 pts/4 exactos → 16/5.
 - `ko_goal_env_ratio` (0.90): la inflación de goles (`wc_lambda_inflation`,
   `goal_env_mult`) se calibró con fase de grupos; en KO a 90' se anota menos y
   este ratio la amortigua para no picar marcadores un gol arriba.
 - Los resultados de KO en `fixtures.json` vienen del export de la app (90'), no
   de martj42 (que registra el marcador con tiempo extra); `refresh_data` solo
   mergea marcadores de fase de grupos.
+- Ojo: en KO decididos en prórroga la app puede MOSTRAR el marcador con tiempo
+  extra aunque pague los puntos sobre el 90' (Bélgica-Senegal mostró 3-2 y pagó
+  sobre 2-2). `ingest.pool_picks` valida cada "Resultado Real" contra los puntos
+  pagados e infiere el 90' cuando no cuadran o cuando sigue "Pendiente" con
+  puntos ya asignados — `--set-result` solo hace falta si la inferencia es
+  ambigua (pocos jugadores puntuados).
 
 ## Incentivos de clasificación (jornada 3)
 

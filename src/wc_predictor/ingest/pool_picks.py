@@ -7,9 +7,14 @@ The Lovable app exports one CSV per round with columns:
 - `Partido` uses Spanish team names ("Bélgica vs Senegal") in app order, which
   may be flipped vs fixtures.json — picks/results are re-oriented to the
   fixture's home/away before persisting.
-- `Resultado Real` is the **90-minute** score ("2-1") or "Pendiente". This makes
-  the export the right source of truth for knockout fixtures, where martj42
-  records the extra-time score (useless for a 90'-only quiniela).
+- `Resultado Real` is USUALLY the 90-minute score ("2-1") or "Pendiente" — but
+  for knockout matches decided in extra time the app has been observed to
+  display the FINAL (post-ET) score while still awarding `Puntos` on the 90'
+  result (Bélgica-Senegal R32: displayed 3-2, points paid on 2-2). Since the
+  quiniela is 90'-only and fixtures.json is the knockout source of truth, every
+  displayed result is cross-checked against the app's own points and, when
+  inconsistent (or still Pendiente), the 90' score is INFERRED as the unique
+  scoreline that reproduces every player's points (see `_reconcile_results`).
 - `Puntos` is the app's own scoring (2 exact / 1 result / 0), already applied
   even for matches the export still lists as Pendiente but that finished while
   the export was generated — so player totals are summed straight from it.
@@ -131,7 +136,72 @@ def parse_export(path: Path, round_spec: str,
 
     if unmatched:
         print(f"  WARNING [{path.name}]: no fixture match for: {sorted(unmatched)}")
+
+    _reconcile_results(results, picks, points, label=path.name)
     return {"round": round_spec, "results": results, "picks": picks, "points": points}
+
+
+def _consistent_with_points(result: tuple[int, int],
+                            scored: list[tuple[tuple[int, int], int]]) -> bool:
+    """True iff `result` reproduces every (pick, app_points) pair under the rules."""
+    rules = DEFAULT_CONFIG.rules
+    for (ph, pa), pts in scored:
+        outcome = "X" if ph == pa else ("1" if ph > pa else "2")
+        if score_actual(result[0], result[1], outcome, f"{ph}-{pa}", rules) != pts:
+            return False
+    return True
+
+
+def _reconcile_results(results: dict[str, tuple[int, int] | None],
+                       picks: dict[str, dict[str, tuple[int, int]]],
+                       points: dict[str, dict[str, int | None]],
+                       label: str = "", max_goals: int = 10) -> None:
+    """Cross-check each match's displayed result against the app's own points;
+    infer the 90' score when they disagree (or when the result is Pendiente but
+    points were already awarded). Mutates `results` in place.
+
+    Why: `Puntos` is always scored on the 90' result, but for knockout matches
+    decided in extra time the app can display the post-ET score (Bélgica-Senegal
+    R32: displayed 3-2, points paid on 2-2). Ingesting the displayed score would
+    corrupt fixtures.json — the knockout source of truth — and every backtest
+    and refit downstream. With ~30 varied picks per match, the 90' scoreline is
+    (in practice) the unique one that reproduces everyone's points, so it can be
+    recovered even when the export still says Pendiente — no --set-result needed.
+    """
+    for mid, displayed in results.items():
+        scored = []
+        for player, per_match in points.items():
+            pts = per_match.get(mid)
+            pick = picks.get(player, {}).get(mid)
+            if pts is not None and pick is not None:
+                scored.append((pick, pts))
+        if not scored:
+            continue  # nothing awarded yet — keep whatever the export said
+        if displayed is not None and _consistent_with_points(displayed, scored):
+            continue
+
+        candidates = [
+            (h, a)
+            for h in range(max_goals + 1)
+            for a in range(max_goals + 1)
+            if _consistent_with_points((h, a), scored)
+        ]
+        if len(candidates) == 1:
+            inferred = candidates[0]
+            was = f"{displayed[0]}-{displayed[1]}" if displayed else "Pendiente"
+            print(f"  NOTE [{label}] {mid}: displayed result {was} does not match the "
+                  f"app's points — using inferred 90' score "
+                  f"{inferred[0]}-{inferred[1]} (likely an extra-time score, or a "
+                  f"result the export still lists as Pendiente).")
+            results[mid] = inferred
+        elif displayed is not None:
+            # Inconsistent AND ambiguous: refuse to guess, but do not ingest a
+            # score the app's own points contradict.
+            print(f"  WARNING [{label}] {mid}: displayed result "
+                  f"{displayed[0]}-{displayed[1]} contradicts the app's points and "
+                  f"{len(candidates)} scorelines fit — dropping it; re-export once "
+                  f"the app settles or pass --set-result.")
+            results[mid] = None
 
 
 def merge_results_into_fixtures(all_results: dict[str, tuple[int, int]]) -> int:
