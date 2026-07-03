@@ -1696,8 +1696,8 @@
       "away_placeholder": "3B/E/F/I/J",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 2,
+      "away_score": 0
     },
     {
       "match_id": "m_99c2cba2ac",
@@ -1716,7 +1716,7 @@
       "away_placeholder": "3A/E/H/I/J",
       "home_locked": true,
       "away_locked": true,
-      "home_score": 2,
+      "home_score": 3,
       "away_score": 2
     },
     {
@@ -1736,8 +1736,8 @@
       "away_placeholder": "2L",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 2,
+      "away_score": 1
     },
     {
       "match_id": "m_9d76cb08a7",
@@ -1756,8 +1756,8 @@
       "away_placeholder": "2J",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 3,
+      "away_score": 0
     },
     {
       "match_id": "m_645db06425",
@@ -1776,8 +1776,8 @@
       "away_placeholder": "3E/F/G/I/J",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 2,
+      "away_score": 0
     },
     {
       "match_id": "m_0b0ba9789c",
