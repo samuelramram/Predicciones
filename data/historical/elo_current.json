@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-07-01",
+  "as_of": "2026-07-02",
   "params": {
     "k_friendly": 20.0,
     "k_qualifier": 30.0,
@@ -14,7 +14,7 @@
     },
     {
       "team": "Spain",
-      "elo": 2180.73
+      "elo": 2191.91
     },
     {
       "team": "France",
@@ -34,7 +34,7 @@
     },
     {
       "team": "Portugal",
-      "elo": 2049.73
+      "elo": 2064.39
     },
     {
       "team": "Netherlands",
@@ -53,6 +53,10 @@
       "elo": 1981.81
     },
     {
+      "team": "Switzerland",
+      "elo": 1978.88
+    },
+    {
       "team": "Japan",
       "elo": 1973.51
     },
@@ -65,16 +69,12 @@
       "elo": 1962.21
     },
     {
-      "team": "Switzerland",
-      "elo": 1955.07
+      "team": "Ecuador",
+      "elo": 1946.22
     },
     {
       "team": "Croatia",
-      "elo": 1954.7
-    },
-    {
-      "team": "Ecuador",
-      "elo": 1946.22
+      "elo": 1940.04
     },
     {
       "team": "Italy",
@@ -98,11 +98,7 @@
     },
     {
       "team": "Austria",
-      "elo": 1892.15
-    },
-    {
-      "team": "Algeria",
-      "elo": 1882.38
+      "elo": 1880.97
     },
     {
       "team": "Iran",
@@ -127,6 +123,10 @@
     {
       "team": "Nigeria",
       "elo": 1862.84
+    },
+    {
+      "team": "Algeria",
+      "elo": 1858.57
     },
     {
       "team": "South Korea",
