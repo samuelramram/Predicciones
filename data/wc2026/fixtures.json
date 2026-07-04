@@ -1796,8 +1796,8 @@
       "away_placeholder": "2H",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 1,
+      "away_score": 1
     },
     {
       "match_id": "m_bed7174461",
@@ -1816,8 +1816,8 @@
       "away_placeholder": "3D/E/I/J/L",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 1,
+      "away_score": 0
     },
     {
       "match_id": "m_c3e3cb6f3a",
@@ -1836,8 +1836,8 @@
       "away_placeholder": "2G",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 1,
+      "away_score": 1
     },
     {
       "match_id": "m_19871bed87",
