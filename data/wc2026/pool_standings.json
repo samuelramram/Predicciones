@@ -1,34 +1,34 @@
 {
-  "as_of": "2026-07-03",
+  "as_of": "2026-07-04",
   "you": "Claudio",
-  "matches_resolved": 85,
+  "matches_resolved": 88,
   "total_matches": 104,
   "total_participants": 34,
-  "_note": "Generado por ingest.pool_picks desde los exports de la app (puntos de la app + exactos contados de Puntos==2). Leaderboard completo: sin field_baseline.",
+  "_note": "Top 5 actualizado a mano desde captura de la app del 2026-07-04 (88 partidos, R32 completo). Resto de jugadores conserva valores del export del 2026-07-03 (85 partidos) — pueden estar 0-3 pts abajo.",
   "players": [
     {
       "name": "Aldo",
+      "points": 73,
+      "exactos": 14
+    },
+    {
+      "name": "Bryan Montiel",
       "points": 70,
       "exactos": 13
     },
     {
-      "name": "Bryan Montiel",
-      "points": 69,
-      "exactos": 13
-    },
-    {
       "name": "Claudio",
-      "points": 68,
+      "points": 69,
       "exactos": 15
     },
     {
       "name": "SHIFTY TWIMS",
-      "points": 67,
+      "points": 68,
       "exactos": 13
     },
     {
       "name": "Yankee",
-      "points": 67,
+      "points": 68,
       "exactos": 13
     },
     {
