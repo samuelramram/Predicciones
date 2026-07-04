@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-07-02",
+  "as_of": "2026-07-03",
   "last_n_matches": 30,
   "trajectories": {
     "Algeria": [
@@ -276,15 +276,6 @@
     ],
     "Argentina": [
       {
-        "date": "2024-06-09",
-        "elo": 2178.4216927401335,
-        "opponent": "Ecuador",
-        "vs_elo": 1919.0254661339384,
-        "venue": "neutral",
-        "result": "1-0",
-        "tournament": "Friendly"
-      },
-      {
         "date": "2024-06-14",
         "elo": 2179.7743223878965,
         "opponent": "Guatemala",
@@ -544,18 +535,18 @@
         "venue": "neutral",
         "result": "3-1",
         "tournament": "FIFA World Cup"
+      },
+      {
+        "date": "2026-07-03",
+        "elo": 2198.5962919960766,
+        "opponent": "Cape Verde",
+        "vs_elo": 1683.3715232074796,
+        "venue": "neutral",
+        "result": "3-2",
+        "tournament": "FIFA World Cup"
       }
     ],
     "Australia": [
-      {
-        "date": "2024-01-23",
-        "elo": 1874.7109546459421,
-        "opponent": "Uzbekistan",
-        "vs_elo": 1760.0244082876457,
-        "venue": "neutral",
-        "result": "1-1",
-        "tournament": "AFC Asian Cup"
-      },
       {
         "date": "2024-01-28",
         "elo": 1880.5787267479714,
@@ -815,6 +806,15 @@
         "vs_elo": 1868.7855424091013,
         "venue": "neutral",
         "result": "0-0",
+        "tournament": "FIFA World Cup"
+      },
+      {
+        "date": "2026-07-03",
+        "elo": 1893.1145478316355,
+        "opponent": "Egypt",
+        "vs_elo": 1816.5271479798796,
+        "venue": "neutral",
+        "result": "1-1",
         "tournament": "FIFA World Cup"
       }
     ],
@@ -2180,15 +2180,6 @@
     ],
     "Cape Verde": [
       {
-        "date": "2024-01-29",
-        "elo": 1653.1156993374116,
-        "opponent": "Mauritania",
-        "vs_elo": 1509.8545959487074,
-        "venue": "neutral",
-        "result": "1-0",
-        "tournament": "African Cup of Nations"
-      },
-      {
         "date": "2024-02-03",
         "elo": 1654.7363620400295,
         "opponent": "South Africa",
@@ -2448,18 +2439,18 @@
         "venue": "neutral",
         "result": "0-0",
         "tournament": "FIFA World Cup"
+      },
+      {
+        "date": "2026-07-03",
+        "elo": 1681.3904934374243,
+        "opponent": "Argentina",
+        "vs_elo": 2196.6152622260215,
+        "venue": "neutral",
+        "result": "2-3",
+        "tournament": "FIFA World Cup"
       }
     ],
     "Colombia": [
-      {
-        "date": "2024-06-15",
-        "elo": 2061.9527886135475,
-        "opponent": "Bolivia",
-        "vs_elo": 1639.890991519598,
-        "venue": "neutral",
-        "result": "3-0",
-        "tournament": "Friendly"
-      },
       {
         "date": "2024-06-24",
         "elo": 2068.154341005081,
@@ -2719,6 +2710,15 @@
         "vs_elo": 2048.7465625839973,
         "venue": "neutral",
         "result": "0-0",
+        "tournament": "FIFA World Cup"
+      },
+      {
+        "date": "2026-07-03",
+        "elo": 2068.4716664759926,
+        "opponent": "Ghana",
+        "vs_elo": 1664.6539551505723,
+        "venue": "neutral",
+        "result": "1-0",
         "tournament": "FIFA World Cup"
       }
     ],
@@ -4084,15 +4084,6 @@
     ],
     "Egypt": [
       {
-        "date": "2024-09-10",
-        "elo": 1769.5195878015757,
-        "opponent": "Botswana",
-        "vs_elo": 1455.4630963892942,
-        "venue": "away",
-        "result": "4-0",
-        "tournament": "African Cup of Nations qualification"
-      },
-      {
         "date": "2024-10-11",
         "elo": 1773.990021590768,
         "opponent": "Mauritania",
@@ -4349,6 +4340,15 @@
         "elo": 1816.5271479798796,
         "opponent": "Iran",
         "vs_elo": 1883.3189969407879,
+        "venue": "neutral",
+        "result": "1-1",
+        "tournament": "FIFA World Cup"
+      },
+      {
+        "date": "2026-07-03",
+        "elo": 1821.1168621175402,
+        "opponent": "Australia",
+        "vs_elo": 1897.704261969296,
         "venue": "neutral",
         "result": "1-1",
         "tournament": "FIFA World Cup"
@@ -5172,15 +5172,6 @@
     ],
     "Ghana": [
       {
-        "date": "2024-01-08",
-        "elo": 1655.043953121937,
-        "opponent": "Namibia",
-        "vs_elo": 1558.7668094894857,
-        "venue": "home",
-        "result": "0-0",
-        "tournament": "Friendly"
-      },
-      {
         "date": "2024-01-14",
         "elo": 1631.0785181793274,
         "opponent": "Cape Verde",
@@ -5439,6 +5430,15 @@
         "vs_elo": 1947.938833289537,
         "venue": "neutral",
         "result": "1-2",
+        "tournament": "FIFA World Cup"
+      },
+      {
+        "date": "2026-07-03",
+        "elo": 1661.02110787737,
+        "opponent": "Colombia",
+        "vs_elo": 2064.8388192027905,
+        "venue": "neutral",
+        "result": "0-1",
         "tournament": "FIFA World Cup"
       }
     ],

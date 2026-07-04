@@ -1,9 +1,9 @@
 {
-  "as_of": "2026-07-02",
+  "as_of": "2026-07-03",
   "teams": [
     {
       "team": "Argentina",
-      "elo": 2196.62
+      "elo": 2198.6
     },
     {
       "team": "Spain",
@@ -23,7 +23,7 @@
     },
     {
       "team": "Colombia",
-      "elo": 2064.84
+      "elo": 2068.47
     },
     {
       "team": "Portugal",
@@ -79,7 +79,7 @@
     },
     {
       "team": "Australia",
-      "elo": 1897.7
+      "elo": 1893.11
     },
     {
       "team": "Austria",
@@ -119,7 +119,7 @@
     },
     {
       "team": "Egypt",
-      "elo": 1816.53
+      "elo": 1821.12
     },
     {
       "team": "Scotland",
@@ -158,12 +158,12 @@
       "elo": 1685.87
     },
     {
-      "team": "Cape Verde",
-      "elo": 1683.37
-    },
-    {
       "team": "South Africa",
       "elo": 1681.74
+    },
+    {
+      "team": "Cape Verde",
+      "elo": 1681.39
     },
     {
       "team": "New Zealand",
@@ -179,7 +179,7 @@
     },
     {
       "team": "Ghana",
-      "elo": 1664.65
+      "elo": 1661.02
     },
     {
       "team": "Bosnia and Herzegovina",

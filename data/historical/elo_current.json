@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-07-02",
+  "as_of": "2026-07-03",
   "params": {
     "k_friendly": 20.0,
     "k_qualifier": 30.0,
@@ -10,7 +10,7 @@
   "teams": [
     {
       "team": "Argentina",
-      "elo": 2196.62
+      "elo": 2198.6
     },
     {
       "team": "Spain",
@@ -30,7 +30,7 @@
     },
     {
       "team": "Colombia",
-      "elo": 2064.84
+      "elo": 2068.47
     },
     {
       "team": "Portugal",
@@ -94,7 +94,7 @@
     },
     {
       "team": "Australia",
-      "elo": 1897.7
+      "elo": 1893.11
     },
     {
       "team": "Austria",
@@ -153,12 +153,12 @@
       "elo": 1823.46
     },
     {
-      "team": "Venezuela",
-      "elo": 1818.2
+      "team": "Egypt",
+      "elo": 1821.12
     },
     {
-      "team": "Egypt",
-      "elo": 1816.53
+      "team": "Venezuela",
+      "elo": 1818.2
     },
     {
       "team": "Serbia",
@@ -305,16 +305,16 @@
       "elo": 1685.87
     },
     {
-      "team": "Cape Verde",
-      "elo": 1683.37
-    },
-    {
       "team": "Bolivia",
       "elo": 1681.75
     },
     {
       "team": "South Africa",
       "elo": 1681.74
+    },
+    {
+      "team": "Cape Verde",
+      "elo": 1681.39
     },
     {
       "team": "Iraqi Kurdistan",
@@ -337,12 +337,12 @@
       "elo": 1664.99
     },
     {
-      "team": "Ghana",
-      "elo": 1664.65
-    },
-    {
       "team": "Catalonia",
       "elo": 1663.65
+    },
+    {
+      "team": "Ghana",
+      "elo": 1661.02
     },
     {
       "team": "Bosnia and Herzegovina",
