@@ -156,7 +156,8 @@ def optimize_ticket(
     matches: list[TicketMatch],
     rules: QuinielaRules,
     n_opponents: int = 29,
-    n_sims: int = 4000,
+    n_sims: int = 20000,
+    min_gain: float = 0.002,
     skill_lo: float = 0.78,
     skill_hi: float = 1.0,
     draw_prop_lo: float = 0.04,
@@ -182,6 +183,15 @@ def optimize_ticket(
     this round. The objective becomes P(finishing the tournament 1st) under the
     leaderboard's tie rule, so the chase-vs-cushion trade-off is decided by the
     gap and the runway, not a hand-tuned rule.
+
+    `min_gain` is the Monte-Carlo noise floor: a swap must raise simulated
+    P(rank=1) by more than this to be accepted. At n_sims=20000 the paired
+    standard error of a swap's delta is ~0.1-0.2pp, so the 0.2pp default keeps
+    phantom swaps (improvements that don't replicate across seeds) out of the
+    ticket. Swaps that are win-prob-flat within the noise band stay on the EV
+    pick: flat means the sim — which already scores the exactos tiebreak inside
+    its lexicographic win test — found the EV sacrifice and the exactos gain
+    cancel, and defaulting to EV is the lower-variance side of a coin flip.
     """
     if not matches:
         return TicketResult({}, [], 0.0, 0.0, n_sims, n_opponents)
@@ -282,15 +292,15 @@ def optimize_ticket(
         return wins / n_sims
 
     # Expected exactos of each candidate (per match, independent across matches):
-    # the greedy tie-breaker below. When a swap leaves simulated P(rank=1) flat —
-    # common under Monte-Carlo quantization — prefer the candidate that banks
-    # more expected exact hits: exactos break leaderboard point ties, so at equal
-    # win probability the deeper exactos cushion strictly dominates.
+    # the greedy tie-breaker below. Only a DEAD-EVEN win probability (same wins
+    # count on the shared draws) defers to expected exactos; a delta merely
+    # inside the noise band is NOT a tie — it reads as "no measurable edge" and
+    # the ticket stays on the EV pick.
     ex_mean = [[sum(col) / n_sims for col in cand_ex[mi]] for mi in range(n_matches)]
 
-    # Greedy: start all-EV, move a match to any alternative only if it helps —
-    # more win probability, or equal win probability with more expected exactos
-    # (only a tiebreak-aware swap; never trades win probability away).
+    # Greedy: start all-EV, move a match to any alternative only if it raises
+    # win probability by more than the noise floor (or exactly ties it with
+    # more expected exactos).
     choice = [0] * n_matches
     base_win = win_prob(choice)
     current = base_win
@@ -301,13 +311,14 @@ def optimize_ticket(
         for mi in range(n_matches):
             if len(cand_picks[mi]) == 1:
                 continue
+            prev_ci = choice[mi]
             best_ci, best_win = choice[mi], current
             for ci in range(len(cand_picks[mi])):
                 if ci == choice[mi]:
                     continue
                 choice[mi] = ci
                 cand = win_prob(choice)
-                better = cand > best_win + 1e-9
+                better = cand > best_win + min_gain
                 tied_more_exactos = (
                     tiebreak
                     and abs(cand - best_win) <= 1e-9
@@ -316,9 +327,13 @@ def optimize_ticket(
                 if better or tied_more_exactos:
                     best_ci, best_win = ci, cand
             choice[mi] = best_ci
-            if best_win > current + 1e-9:
+            if best_win > current + min_gain:
                 current = best_win
                 improved = True
+            elif best_ci != prev_ci:
+                # Exactos-tiebreak swap: track the ticket's actual win prob but
+                # don't count it as an improvement (avoids re-sweep churn).
+                current = best_win
 
     chosen: dict = {}
     swapped: list = []
