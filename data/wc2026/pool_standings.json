@@ -1,10 +1,10 @@
 {
-  "as_of": "2026-07-04",
+  "as_of": "2026-07-05",
   "you": "Claudio",
-  "matches_resolved": 88,
+  "matches_resolved": 90,
   "total_matches": 104,
   "total_participants": 34,
-  "_note": "Top-8 alineado a mano con la captura de la app del 2026-07-04 17:26 ('tabla al día de hoy', 88 partidos = R32 completo, octavos pendientes). El resto conserva los valores reconstruidos por ingest.pool_picks (van ~2-3 pts abajo del live pero consistentemente; están 10+ pts atrás y no cambian la estrategia).",
+  "_note": "Generado por ingest.pool_picks desde los exports de la app (puntos de la app + exactos contados de Puntos==2). Leaderboard completo: sin field_baseline.",
   "players": [
     {
       "name": "Aldo",
@@ -48,62 +48,62 @@
     },
     {
       "name": "Daniel Flores",
-      "points": 66,
+      "points": 67,
       "exactos": 12
     },
     {
       "name": "Oscar herrera",
-      "points": 63,
+      "points": 64,
       "exactos": 16
     },
     {
-      "name": "Cuquito power",
-      "points": 62,
-      "exactos": 10
-    },
-    {
       "name": "Andrés Román",
-      "points": 62,
+      "points": 64,
       "exactos": 9
     },
     {
       "name": "El inquisidor de Excel",
-      "points": 62,
+      "points": 64,
       "exactos": 9
     },
     {
+      "name": "Cuquito power",
+      "points": 63,
+      "exactos": 10
+    },
+    {
       "name": "Alex villa",
-      "points": 61,
+      "points": 63,
       "exactos": 9
     },
     {
       "name": "Erika",
-      "points": 61,
+      "points": 63,
       "exactos": 9
     },
     {
       "name": "Innavoeg",
-      "points": 61,
+      "points": 62,
       "exactos": 9
     },
     {
       "name": "Juan Pablo",
-      "points": 60,
+      "points": 62,
       "exactos": 9
     },
     {
       "name": "Carlos",
-      "points": 58,
+      "points": 60,
       "exactos": 10
     },
     {
       "name": "Héctor Carrera",
-      "points": 57,
+      "points": 58,
       "exactos": 9
     },
     {
       "name": "Paty Baez",
-      "points": 55,
+      "points": 57,
       "exactos": 7
     },
     {
@@ -117,18 +117,23 @@
       "exactos": 4
     },
     {
+      "name": "Ponchovsky",
+      "points": 48,
+      "exactos": 3
+    },
+    {
       "name": "Fer y Cyn",
       "points": 46,
       "exactos": 5
     },
     {
-      "name": "Ponchovsky",
-      "points": 46,
-      "exactos": 3
-    },
-    {
       "name": "Luis lucha",
       "points": 43,
+      "exactos": 6
+    },
+    {
+      "name": "Arnoldo Barba",
+      "points": 42,
       "exactos": 6
     },
     {
@@ -142,11 +147,6 @@
       "exactos": 4
     },
     {
-      "name": "Arnoldo Barba",
-      "points": 40,
-      "exactos": 6
-    },
-    {
       "name": "Armando",
       "points": 40,
       "exactos": 5
@@ -158,7 +158,7 @@
     },
     {
       "name": "Cosmo",
-      "points": 32,
+      "points": 34,
       "exactos": 1
     },
     {
@@ -168,7 +168,7 @@
     },
     {
       "name": "Arturo",
-      "points": 23,
+      "points": 24,
       "exactos": 3
     },
     {
