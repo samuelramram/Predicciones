@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-07-04",
+  "as_of": "2026-07-05",
   "params": {
     "k_friendly": 20.0,
     "k_qualifier": 30.0,
@@ -21,12 +21,8 @@
       "elo": 2155.29
     },
     {
-      "team": "Brazil",
-      "elo": 2085.98
-    },
-    {
       "team": "England",
-      "elo": 2077.04
+      "elo": 2097.68
     },
     {
       "team": "Colombia",
@@ -37,6 +33,10 @@
       "elo": 2064.39
     },
     {
+      "team": "Brazil",
+      "elo": 2045.81
+    },
+    {
       "team": "Morocco",
       "elo": 2022.19
     },
@@ -45,8 +45,12 @@
       "elo": 2021.95
     },
     {
+      "team": "Norway",
+      "elo": 2003.57
+    },
+    {
       "team": "Mexico",
-      "elo": 2008.15
+      "elo": 1987.51
     },
     {
       "team": "Germany",
@@ -59,10 +63,6 @@
     {
       "team": "Japan",
       "elo": 1973.51
-    },
-    {
-      "team": "Norway",
-      "elo": 1963.4
     },
     {
       "team": "Belgium",
