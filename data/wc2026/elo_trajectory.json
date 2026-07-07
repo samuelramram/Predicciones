@@ -1898,11 +1898,11 @@
       },
       {
         "date": "2026-07-05",
-        "elo": 2045.813140789789,
+        "elo": 2059.2016755386276,
         "opponent": "Norway",
         "vs_elo": 1963.4046128725786,
         "venue": "neutral",
-        "result": "0-2",
+        "result": "1-2",
         "tournament": "FIFA World Cup"
       }
     ],
@@ -8426,11 +8426,11 @@
       },
       {
         "date": "2026-07-05",
-        "elo": 2003.5702171190942,
+        "elo": 1990.1816823702557,
         "opponent": "Brazil",
         "vs_elo": 2085.9787450363046,
         "venue": "neutral",
-        "result": "2-0",
+        "result": "2-1",
         "tournament": "FIFA World Cup"
       }
     ],
