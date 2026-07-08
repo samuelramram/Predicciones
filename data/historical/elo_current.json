@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-07-05",
+  "as_of": "2026-07-07",
   "params": {
     "k_friendly": 20.0,
     "k_qualifier": 30.0,
@@ -9,12 +9,12 @@
   },
   "teams": [
     {
-      "team": "Argentina",
-      "elo": 2198.6
+      "team": "Spain",
+      "elo": 2204.88
     },
     {
-      "team": "Spain",
-      "elo": 2191.91
+      "team": "Argentina",
+      "elo": 2202.68
     },
     {
       "team": "France",
@@ -26,15 +26,15 @@
     },
     {
       "team": "Colombia",
-      "elo": 2068.47
-    },
-    {
-      "team": "Portugal",
-      "elo": 2064.39
+      "elo": 2063.43
     },
     {
       "team": "Brazil",
       "elo": 2059.2
+    },
+    {
+      "team": "Portugal",
+      "elo": 2051.42
     },
     {
       "team": "Morocco",
@@ -45,6 +45,10 @@
       "elo": 2021.95
     },
     {
+      "team": "Belgium",
+      "elo": 1996.4
+    },
+    {
       "team": "Norway",
       "elo": 1990.18
     },
@@ -53,20 +57,16 @@
       "elo": 1987.51
     },
     {
+      "team": "Switzerland",
+      "elo": 1983.93
+    },
+    {
       "team": "Germany",
       "elo": 1981.81
     },
     {
-      "team": "Switzerland",
-      "elo": 1978.88
-    },
-    {
       "team": "Japan",
       "elo": 1973.51
-    },
-    {
-      "team": "Belgium",
-      "elo": 1962.21
     },
     {
       "team": "Ecuador",
@@ -105,10 +105,6 @@
       "elo": 1879.3
     },
     {
-      "team": "United States",
-      "elo": 1874.14
-    },
-    {
       "team": "Paraguay",
       "elo": 1870.14
     },
@@ -133,6 +129,10 @@
       "elo": 1841.34
     },
     {
+      "team": "United States",
+      "elo": 1839.96
+    },
+    {
       "team": "Yugoslavia",
       "elo": 1839.49
     },
@@ -153,12 +153,12 @@
       "elo": 1823.46
     },
     {
-      "team": "Egypt",
-      "elo": 1821.12
-    },
-    {
       "team": "Venezuela",
       "elo": 1818.2
+    },
+    {
+      "team": "Egypt",
+      "elo": 1817.03
     },
     {
       "team": "Serbia",
