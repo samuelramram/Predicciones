@@ -1,109 +1,109 @@
 {
-  "as_of": "2026-07-05",
+  "as_of": "2026-07-08",
   "you": "Claudio",
-  "matches_resolved": 90,
+  "matches_resolved": 96,
   "total_matches": 104,
   "total_participants": 34,
   "_note": "Generado por ingest.pool_picks desde los exports de la app (puntos de la app + exactos contados de Puntos==2). Leaderboard completo: sin field_baseline.",
   "players": [
     {
       "name": "Aldo",
-      "points": 75,
-      "exactos": 14
-    },
-    {
-      "name": "Claudio",
-      "points": 72,
-      "exactos": 16
+      "points": 78,
+      "exactos": 15
     },
     {
       "name": "Bryan Montiel",
-      "points": 72,
+      "points": 75,
       "exactos": 13
     },
     {
-      "name": "Yankee",
-      "points": 70,
-      "exactos": 13
+      "name": "Claudio",
+      "points": 74,
+      "exactos": 16
+    },
+    {
+      "name": "Lalo Camarena",
+      "points": 72,
+      "exactos": 9
     },
     {
       "name": "Bryan 2",
-      "points": 69,
+      "points": 71,
       "exactos": 14
     },
     {
-      "name": "SHIFTY TWIMS",
-      "points": 69,
+      "name": "Yankee",
+      "points": 71,
       "exactos": 13
     },
     {
       "name": "Adrián",
-      "points": 69,
+      "points": 71,
       "exactos": 12
     },
     {
-      "name": "Lalo Camarena",
-      "points": 69,
-      "exactos": 8
+      "name": "SHIFTY TWIMS",
+      "points": 70,
+      "exactos": 13
     },
     {
       "name": "Daniel Flores",
-      "points": 67,
+      "points": 69,
       "exactos": 12
     },
     {
-      "name": "Oscar herrera",
-      "points": 64,
-      "exactos": 16
+      "name": "Cuquito power",
+      "points": 67,
+      "exactos": 11
     },
     {
       "name": "Andrés Román",
-      "points": 64,
+      "points": 67,
       "exactos": 9
     },
     {
-      "name": "El inquisidor de Excel",
-      "points": 64,
-      "exactos": 9
+      "name": "Oscar herrera",
+      "points": 66,
+      "exactos": 16
     },
     {
-      "name": "Cuquito power",
-      "points": 63,
+      "name": "Carlos",
+      "points": 65,
+      "exactos": 10
+    },
+    {
+      "name": "Innavoeg",
+      "points": 65,
       "exactos": 10
     },
     {
       "name": "Alex villa",
-      "points": 63,
+      "points": 65,
+      "exactos": 9
+    },
+    {
+      "name": "El inquisidor de Excel",
+      "points": 65,
       "exactos": 9
     },
     {
       "name": "Erika",
-      "points": 63,
-      "exactos": 9
-    },
-    {
-      "name": "Innavoeg",
-      "points": 62,
+      "points": 65,
       "exactos": 9
     },
     {
       "name": "Juan Pablo",
-      "points": 62,
+      "points": 64,
       "exactos": 9
     },
     {
-      "name": "Carlos",
-      "points": 60,
-      "exactos": 10
-    },
-    {
       "name": "Héctor Carrera",
-      "points": 58,
+      "points": 59,
       "exactos": 9
     },
     {
       "name": "Paty Baez",
-      "points": 57,
+      "points": 59,
       "exactos": 7
     },
     {
@@ -112,14 +112,14 @@
       "exactos": 7
     },
     {
+      "name": "Ponchovsky",
+      "points": 51,
+      "exactos": 3
+    },
+    {
       "name": "Juan lucio",
       "points": 50,
       "exactos": 4
-    },
-    {
-      "name": "Ponchovsky",
-      "points": 48,
-      "exactos": 3
     },
     {
       "name": "Fer y Cyn",
@@ -127,24 +127,24 @@
       "exactos": 5
     },
     {
+      "name": "Arnoldo Barba",
+      "points": 45,
+      "exactos": 7
+    },
+    {
       "name": "Luis lucha",
-      "points": 43,
+      "points": 44,
       "exactos": 6
     },
     {
-      "name": "Arnoldo Barba",
-      "points": 42,
-      "exactos": 6
+      "name": "Jocker!",
+      "points": 43,
+      "exactos": 4
     },
     {
       "name": "JIMMYLARA",
       "points": 42,
       "exactos": 5
-    },
-    {
-      "name": "Jocker!",
-      "points": 42,
-      "exactos": 4
     },
     {
       "name": "Armando",
@@ -158,7 +158,7 @@
     },
     {
       "name": "Cosmo",
-      "points": 34,
+      "points": 36,
       "exactos": 1
     },
     {
@@ -168,7 +168,7 @@
     },
     {
       "name": "Arturo",
-      "points": 24,
+      "points": 25,
       "exactos": 3
     },
     {
