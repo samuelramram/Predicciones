@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-07-07",
+  "as_of": "2026-07-09",
   "params": {
     "k_friendly": 20.0,
     "k_qualifier": 30.0,
@@ -18,7 +18,7 @@
     },
     {
       "team": "France",
-      "elo": 2155.29
+      "elo": 2174.33
     },
     {
       "team": "England",
@@ -37,12 +37,12 @@
       "elo": 2051.42
     },
     {
-      "team": "Morocco",
-      "elo": 2022.19
-    },
-    {
       "team": "Netherlands",
       "elo": 2021.95
+    },
+    {
+      "team": "Morocco",
+      "elo": 2003.15
     },
     {
       "team": "Belgium",
