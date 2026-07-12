@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-07-09",
+  "as_of": "2026-07-10",
   "last_n_matches": 30,
   "trajectories": {
     "Algeria": [
@@ -1092,15 +1092,6 @@
     ],
     "Belgium": [
       {
-        "date": "2024-06-08",
-        "elo": 2030.6859118701882,
-        "opponent": "Luxembourg",
-        "vs_elo": 1540.9281148379125,
-        "venue": "home",
-        "result": "3-0",
-        "tournament": "Friendly"
-      },
-      {
         "date": "2024-06-17",
         "elo": 1995.9140648804066,
         "opponent": "Slovakia",
@@ -1359,6 +1350,15 @@
         "vs_elo": 1874.144433626729,
         "venue": "away",
         "result": "4-1",
+        "tournament": "FIFA World Cup"
+      },
+      {
+        "date": "2026-07-10",
+        "elo": 1987.139472417192,
+        "opponent": "Spain",
+        "vs_elo": 2204.8788112302827,
+        "venue": "neutral",
+        "result": "1-2",
         "tournament": "FIFA World Cup"
       }
     ],
@@ -10884,15 +10884,6 @@
     ],
     "Spain": [
       {
-        "date": "2024-06-24",
-        "elo": 2111.2872600707615,
-        "opponent": "Albania",
-        "vs_elo": 1665.2751205651564,
-        "venue": "neutral",
-        "result": "1-0",
-        "tournament": "UEFA Euro"
-      },
-      {
         "date": "2024-06-30",
         "elo": 2119.4117428818117,
         "opponent": "Georgia",
@@ -11151,6 +11142,15 @@
         "vs_elo": 2064.391035657519,
         "venue": "neutral",
         "result": "1-0",
+        "tournament": "FIFA World Cup"
+      },
+      {
+        "date": "2026-07-10",
+        "elo": 2214.137009306526,
+        "opponent": "Belgium",
+        "vs_elo": 1996.3976704934353,
+        "venue": "neutral",
+        "result": "2-1",
         "tournament": "FIFA World Cup"
       }
     ],

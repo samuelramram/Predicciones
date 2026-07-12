@@ -1,9 +1,9 @@
 {
-  "as_of": "2026-07-09",
+  "as_of": "2026-07-10",
   "teams": [
     {
       "team": "Spain",
-      "elo": 2204.88
+      "elo": 2214.14
     },
     {
       "team": "Argentina",
@@ -38,16 +38,16 @@
       "elo": 2003.15
     },
     {
-      "team": "Belgium",
-      "elo": 1996.4
-    },
-    {
       "team": "Norway",
       "elo": 1990.18
     },
     {
       "team": "Mexico",
       "elo": 1987.51
+    },
+    {
+      "team": "Belgium",
+      "elo": 1987.14
     },
     {
       "team": "Switzerland",
