@@ -1,13 +1,13 @@
 {
-  "as_of": "2026-07-10",
+  "as_of": "2026-07-11",
   "teams": [
+    {
+      "team": "Argentina",
+      "elo": 2215.95
+    },
     {
       "team": "Spain",
       "elo": 2214.14
-    },
-    {
-      "team": "Argentina",
-      "elo": 2202.68
     },
     {
       "team": "France",
@@ -15,7 +15,7 @@
     },
     {
       "team": "England",
-      "elo": 2097.68
+      "elo": 2111.68
     },
     {
       "team": "Colombia",
@@ -38,10 +38,6 @@
       "elo": 2003.15
     },
     {
-      "team": "Norway",
-      "elo": 1990.18
-    },
-    {
       "team": "Mexico",
       "elo": 1987.51
     },
@@ -50,16 +46,20 @@
       "elo": 1987.14
     },
     {
-      "team": "Switzerland",
-      "elo": 1983.93
-    },
-    {
       "team": "Germany",
       "elo": 1981.81
     },
     {
+      "team": "Norway",
+      "elo": 1976.18
+    },
+    {
       "team": "Japan",
       "elo": 1973.51
+    },
+    {
+      "team": "Switzerland",
+      "elo": 1970.66
     },
     {
       "team": "Ecuador",
