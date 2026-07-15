@@ -2096,8 +2096,8 @@
       "away_placeholder": "W98",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 0,
+      "away_score": 2
     },
     {
       "match_id": "m_8d58ee7a7a",
@@ -2116,8 +2116,8 @@
       "away_placeholder": "W100",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 1,
+      "away_score": 2
     },
     {
       "match_id": "m_6e3365a8d1",
@@ -2130,12 +2130,12 @@
       "date_utc": "2026-07-18T21:00:00Z",
       "ground": "Miami (Miami Gardens)",
       "venue": "Hard Rock Stadium",
-      "home": null,
-      "away": null,
+      "home": "France",
+      "away": "England",
       "home_placeholder": "L101",
       "away_placeholder": "L102",
-      "home_locked": false,
-      "away_locked": false,
+      "home_locked": true,
+      "away_locked": true,
       "home_score": null,
       "away_score": null
     },
@@ -2150,12 +2150,12 @@
       "date_utc": "2026-07-19T19:00:00Z",
       "ground": "New York/New Jersey (East Rutherford)",
       "venue": "MetLife Stadium",
-      "home": null,
-      "away": null,
+      "home": "Spain",
+      "away": "Argentina",
       "home_placeholder": "W101",
       "away_placeholder": "W102",
-      "home_locked": false,
-      "away_locked": false,
+      "home_locked": true,
+      "away_locked": true,
       "home_score": null,
       "away_score": null
     }

@@ -1,7 +1,7 @@
 {
-  "as_of": "2026-07-14",
+  "as_of": "2026-07-15",
   "you": "Claudio",
-  "matches_resolved": 100,
+  "matches_resolved": 102,
   "total_matches": 104,
   "total_participants": 34,
   "_note": "Generado por ingest.pool_picks desde los exports de la app (puntos de la app + exactos contados de Puntos==2). Leaderboard completo: sin field_baseline.",
@@ -13,13 +13,18 @@
     },
     {
       "name": "Claudio",
-      "points": 76,
-      "exactos": 17
+      "points": 78,
+      "exactos": 18
     },
     {
       "name": "Bryan Montiel",
-      "points": 76,
+      "points": 77,
       "exactos": 13
+    },
+    {
+      "name": "Yankee",
+      "points": 76,
+      "exactos": 15
     },
     {
       "name": "Lalo Camarena",
@@ -32,13 +37,13 @@
       "exactos": 15
     },
     {
-      "name": "Yankee",
-      "points": 74,
-      "exactos": 14
-    },
-    {
       "name": "Adrián",
       "points": 73,
+      "exactos": 12
+    },
+    {
+      "name": "El inquisidor de Excel",
+      "points": 72,
       "exactos": 12
     },
     {
@@ -52,11 +57,6 @@
       "exactos": 12
     },
     {
-      "name": "El inquisidor de Excel",
-      "points": 70,
-      "exactos": 11
-    },
-    {
       "name": "Andrés Román",
       "points": 70,
       "exactos": 10
@@ -67,8 +67,13 @@
       "exactos": 17
     },
     {
+      "name": "Carlos",
+      "points": 69,
+      "exactos": 12
+    },
+    {
       "name": "Cuquito power",
-      "points": 68,
+      "points": 69,
       "exactos": 11
     },
     {
@@ -77,13 +82,8 @@
       "exactos": 10
     },
     {
-      "name": "Carlos",
-      "points": 67,
-      "exactos": 11
-    },
-    {
       "name": "Juan Pablo",
-      "points": 66,
+      "points": 67,
       "exactos": 9
     },
     {
@@ -153,8 +153,8 @@
     },
     {
       "name": "Cosmo",
-      "points": 37,
-      "exactos": 1
+      "points": 40,
+      "exactos": 2
     },
     {
       "name": "Andrey",
@@ -163,8 +163,8 @@
     },
     {
       "name": "Arturo",
-      "points": 28,
-      "exactos": 4
+      "points": 31,
+      "exactos": 5
     },
     {
       "name": "Ricardo",
