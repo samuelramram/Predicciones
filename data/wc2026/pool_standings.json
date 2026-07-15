@@ -4,7 +4,7 @@
   "matches_resolved": 102,
   "total_matches": 104,
   "total_participants": 34,
-  "_note": "Leaderboard app (102 predicciones, QF+SF). Los 4 cuartos no tuvieron export propio; top-5 contendientes parcheados a los totales reales de la app (unicos a <=4 pts del lider). Resto: acumulado de exports (98).",
+  "_note": "Generado por ingest.pool_picks desde los exports de la app (puntos de la app + exactos contados de Puntos==2). Leaderboard completo: sin field_baseline.",
   "players": [
     {
       "name": "Aldo",
@@ -33,48 +33,58 @@
     },
     {
       "name": "Bryan 2",
-      "points": 71,
-      "exactos": 14
+      "points": 75,
+      "exactos": 15
     },
     {
       "name": "Adrián",
-      "points": 71,
+      "points": 73,
+      "exactos": 12
+    },
+    {
+      "name": "El inquisidor de Excel",
+      "points": 72,
       "exactos": 12
     },
     {
       "name": "SHIFTY TWIMS",
-      "points": 70,
+      "points": 71,
       "exactos": 13
     },
     {
       "name": "Daniel Flores",
+      "points": 71,
+      "exactos": 12
+    },
+    {
+      "name": "Andrés Román",
+      "points": 70,
+      "exactos": 10
+    },
+    {
+      "name": "Oscar herrera",
+      "points": 69,
+      "exactos": 17
+    },
+    {
+      "name": "Carlos",
       "points": 69,
       "exactos": 12
     },
     {
       "name": "Cuquito power",
+      "points": 69,
+      "exactos": 11
+    },
+    {
+      "name": "Alex villa",
       "points": 68,
-      "exactos": 11
-    },
-    {
-      "name": "Carlos",
-      "points": 67,
-      "exactos": 11
-    },
-    {
-      "name": "El inquisidor de Excel",
-      "points": 67,
       "exactos": 10
     },
     {
-      "name": "Andrés Román",
+      "name": "Juan Pablo",
       "points": 67,
       "exactos": 9
-    },
-    {
-      "name": "Oscar herrera",
-      "points": 66,
-      "exactos": 16
     },
     {
       "name": "Innavoeg",
@@ -82,28 +92,18 @@
       "exactos": 10
     },
     {
-      "name": "Alex villa",
-      "points": 65,
-      "exactos": 9
-    },
-    {
       "name": "Erika",
       "points": 65,
       "exactos": 9
     },
     {
-      "name": "Juan Pablo",
-      "points": 65,
-      "exactos": 9
-    },
-    {
       "name": "Héctor Carrera",
-      "points": 59,
-      "exactos": 9
+      "points": 61,
+      "exactos": 10
     },
     {
       "name": "Paty Baez",
-      "points": 59,
+      "points": 61,
       "exactos": 7
     },
     {
@@ -113,7 +113,7 @@
     },
     {
       "name": "Ponchovsky",
-      "points": 51,
+      "points": 53,
       "exactos": 3
     },
     {
@@ -133,7 +133,7 @@
     },
     {
       "name": "Luis lucha",
-      "points": 44,
+      "points": 45,
       "exactos": 6
     },
     {
@@ -153,7 +153,7 @@
     },
     {
       "name": "Cosmo",
-      "points": 39,
+      "points": 40,
       "exactos": 2
     },
     {
@@ -163,8 +163,8 @@
     },
     {
       "name": "Arturo",
-      "points": 28,
-      "exactos": 4
+      "points": 31,
+      "exactos": 5
     },
     {
       "name": "Ricardo",

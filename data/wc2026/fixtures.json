@@ -2016,8 +2016,8 @@
       "away_placeholder": "W90",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 2,
+      "away_score": 0
     },
     {
       "match_id": "m_dfb2913012",
@@ -2036,8 +2036,8 @@
       "away_placeholder": "W94",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 2,
+      "away_score": 1
     },
     {
       "match_id": "m_85d0f6b37a",
@@ -2056,8 +2056,8 @@
       "away_placeholder": "W92",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 1,
+      "away_score": 1
     },
     {
       "match_id": "m_8e6e2a7ac3",
@@ -2076,8 +2076,8 @@
       "away_placeholder": "W96",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 1,
+      "away_score": 1
     },
     {
       "match_id": "m_b8b8b06dfe",
