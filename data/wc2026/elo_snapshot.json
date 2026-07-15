@@ -1,17 +1,17 @@
 {
-  "as_of": "2026-07-11",
+  "as_of": "2026-07-14",
   "teams": [
+    {
+      "team": "Spain",
+      "elo": 2240.71
+    },
     {
       "team": "Argentina",
       "elo": 2215.95
     },
     {
-      "team": "Spain",
-      "elo": 2214.14
-    },
-    {
       "team": "France",
-      "elo": 2174.33
+      "elo": 2147.75
     },
     {
       "team": "England",

@@ -1,40 +1,40 @@
 {
-  "as_of": "2026-07-08",
+  "as_of": "2026-07-15",
   "you": "Claudio",
-  "matches_resolved": 96,
+  "matches_resolved": 102,
   "total_matches": 104,
   "total_participants": 34,
-  "_note": "Generado por ingest.pool_picks desde los exports de la app (puntos de la app + exactos contados de Puntos==2). Leaderboard completo: sin field_baseline.",
+  "_note": "Leaderboard app (102 predicciones, QF+SF). Los 4 cuartos no tuvieron export propio; top-5 contendientes parcheados a los totales reales de la app (unicos a <=4 pts del lider). Resto: acumulado de exports (98).",
   "players": [
     {
       "name": "Aldo",
-      "points": 78,
+      "points": 80,
       "exactos": 15
     },
     {
+      "name": "Claudio",
+      "points": 78,
+      "exactos": 18
+    },
+    {
       "name": "Bryan Montiel",
-      "points": 75,
+      "points": 77,
       "exactos": 13
     },
     {
-      "name": "Claudio",
-      "points": 74,
-      "exactos": 16
+      "name": "Yankee",
+      "points": 76,
+      "exactos": 15
     },
     {
       "name": "Lalo Camarena",
-      "points": 72,
-      "exactos": 9
+      "points": 76,
+      "exactos": 10
     },
     {
       "name": "Bryan 2",
       "points": 71,
       "exactos": 14
-    },
-    {
-      "name": "Yankee",
-      "points": 71,
-      "exactos": 13
     },
     {
       "name": "Adrián",
@@ -53,8 +53,18 @@
     },
     {
       "name": "Cuquito power",
+      "points": 68,
+      "exactos": 11
+    },
+    {
+      "name": "Carlos",
       "points": 67,
       "exactos": 11
+    },
+    {
+      "name": "El inquisidor de Excel",
+      "points": 67,
+      "exactos": 10
     },
     {
       "name": "Andrés Román",
@@ -67,11 +77,6 @@
       "exactos": 16
     },
     {
-      "name": "Carlos",
-      "points": 65,
-      "exactos": 10
-    },
-    {
       "name": "Innavoeg",
       "points": 65,
       "exactos": 10
@@ -82,18 +87,13 @@
       "exactos": 9
     },
     {
-      "name": "El inquisidor de Excel",
-      "points": 65,
-      "exactos": 9
-    },
-    {
       "name": "Erika",
       "points": 65,
       "exactos": 9
     },
     {
       "name": "Juan Pablo",
-      "points": 64,
+      "points": 65,
       "exactos": 9
     },
     {
@@ -152,23 +152,23 @@
       "exactos": 5
     },
     {
+      "name": "Cosmo",
+      "points": 39,
+      "exactos": 2
+    },
+    {
       "name": "Andrey",
       "points": 36,
       "exactos": 5
     },
     {
-      "name": "Cosmo",
-      "points": 36,
-      "exactos": 1
+      "name": "Arturo",
+      "points": 28,
+      "exactos": 4
     },
     {
       "name": "Ricardo",
       "points": 27,
-      "exactos": 3
-    },
-    {
-      "name": "Arturo",
-      "points": 25,
       "exactos": 3
     },
     {
