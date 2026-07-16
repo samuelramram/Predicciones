@@ -1,197 +1,197 @@
 {
-  "as_of": "2026-07-14",
+  "as_of": "2026-07-15",
   "teams": [
     {
       "team": "Spain",
-      "elo": 2240.71
+      "elo": 2240.92
     },
     {
       "team": "Argentina",
-      "elo": 2215.95
+      "elo": 2230.23
     },
     {
       "team": "France",
-      "elo": 2147.75
+      "elo": 2147.94
     },
     {
       "team": "England",
-      "elo": 2111.68
+      "elo": 2097.71
     },
     {
       "team": "Colombia",
-      "elo": 2063.43
+      "elo": 2063.52
     },
     {
       "team": "Brazil",
-      "elo": 2059.2
+      "elo": 2059.31
     },
     {
       "team": "Portugal",
-      "elo": 2051.42
+      "elo": 2051.6
     },
     {
       "team": "Netherlands",
-      "elo": 2021.95
+      "elo": 2022.15
     },
     {
       "team": "Morocco",
-      "elo": 2003.15
+      "elo": 2003.29
     },
     {
       "team": "Mexico",
-      "elo": 1987.51
+      "elo": 1987.62
     },
     {
       "team": "Belgium",
-      "elo": 1987.14
+      "elo": 1987.32
     },
     {
       "team": "Germany",
-      "elo": 1981.81
+      "elo": 1982.0
     },
     {
       "team": "Norway",
-      "elo": 1976.18
+      "elo": 1976.4
     },
     {
       "team": "Japan",
-      "elo": 1973.51
+      "elo": 1973.63
     },
     {
       "team": "Switzerland",
-      "elo": 1970.66
+      "elo": 1970.88
     },
     {
       "team": "Ecuador",
-      "elo": 1946.22
+      "elo": 1946.3
     },
     {
       "team": "Croatia",
-      "elo": 1940.04
+      "elo": 1940.24
     },
     {
       "team": "Uruguay",
-      "elo": 1924.02
+      "elo": 1924.11
     },
     {
       "team": "Turkey",
-      "elo": 1904.46
+      "elo": 1904.69
     },
     {
       "team": "Australia",
-      "elo": 1893.11
+      "elo": 1893.22
     },
     {
       "team": "Austria",
-      "elo": 1880.97
+      "elo": 1881.18
     },
     {
       "team": "Iran",
-      "elo": 1879.3
+      "elo": 1879.42
     },
     {
       "team": "Paraguay",
-      "elo": 1870.14
+      "elo": 1870.24
     },
     {
       "team": "Senegal",
-      "elo": 1866.61
+      "elo": 1866.75
     },
     {
       "team": "Algeria",
-      "elo": 1858.57
+      "elo": 1858.7
     },
     {
       "team": "Canada",
-      "elo": 1849.38
+      "elo": 1849.49
     },
     {
       "team": "South Korea",
-      "elo": 1841.34
+      "elo": 1841.45
     },
     {
       "team": "United States",
-      "elo": 1839.96
+      "elo": 1840.07
     },
     {
       "team": "Ivory Coast",
-      "elo": 1823.46
+      "elo": 1823.6
     },
     {
       "team": "Egypt",
-      "elo": 1817.03
+      "elo": 1817.15
     },
     {
       "team": "Scotland",
-      "elo": 1808.3
+      "elo": 1808.52
     },
     {
       "team": "Sweden",
-      "elo": 1793.04
+      "elo": 1793.31
     },
     {
       "team": "Panama",
-      "elo": 1776.18
+      "elo": 1776.26
     },
     {
       "team": "DR Congo",
-      "elo": 1772.37
+      "elo": 1772.5
     },
     {
       "team": "Czech Republic",
-      "elo": 1766.61
+      "elo": 1766.85
     },
     {
       "team": "Uzbekistan",
-      "elo": 1753.94
+      "elo": 1754.06
     },
     {
       "team": "Jordan",
-      "elo": 1737.14
+      "elo": 1737.27
     },
     {
       "team": "Saudi Arabia",
-      "elo": 1695.3
+      "elo": 1695.41
     },
     {
       "team": "Tunisia",
-      "elo": 1685.87
+      "elo": 1686.01
     },
     {
       "team": "South Africa",
-      "elo": 1681.74
+      "elo": 1681.86
     },
     {
       "team": "Cape Verde",
-      "elo": 1681.39
+      "elo": 1681.52
     },
     {
       "team": "New Zealand",
-      "elo": 1673.11
+      "elo": 1673.21
     },
     {
       "team": "Iraq",
-      "elo": 1670.38
+      "elo": 1670.49
     },
     {
       "team": "Haiti",
-      "elo": 1664.99
+      "elo": 1665.07
     },
     {
       "team": "Ghana",
-      "elo": 1661.02
+      "elo": 1661.14
     },
     {
       "team": "Bosnia and Herzegovina",
-      "elo": 1660.9
+      "elo": 1661.12
     },
     {
       "team": "Curaçao",
-      "elo": 1569.82
+      "elo": 1569.88
     },
     {
       "team": "Qatar",
-      "elo": 1539.83
+      "elo": 1539.96
     }
   ]
 }

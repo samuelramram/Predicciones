@@ -8553,7 +8553,7 @@ m_9fee33a730,2023-06-17,Montenegro,Hungary,0,0,False,UEFA Euro qualification,Pod
 m_bbfe73ac92,2023-06-17,Luxembourg,Liechtenstein,2,0,False,UEFA Euro qualification,Luxembourg,Luxembourg
 m_e300cdf9a7,2023-06-17,Iceland,Slovakia,1,2,False,UEFA Euro qualification,Reykjavík,Iceland
 m_07fbf569ed,2023-06-17,Portugal,Bosnia and Herzegovina,3,0,False,UEFA Euro qualification,Lisbon,Portugal
-m_6a6abeb928,2023-06-17,Ticino,Raetia,1,8,False,CONIFA World Football Cup qualification,Tenero-Contra,Switzerland
+m_377f4790cf,2023-06-17,Canton Ticino,Raetia,1,8,False,CONIFA World Football Cup qualification,Tenero-Contra,Switzerland
 m_95e77312b2,2023-06-17,Turkmenistan,Oman,0,2,True,CAFA Nations Cup,Tashkent,Uzbekistan
 m_2f91eec34a,2023-06-17,Uzbekistan,Tajikistan,5,1,False,CAFA Nations Cup,Tashkent,Uzbekistan
 m_83202ef30a,2023-06-17,Djibouti,Pakistan,3,1,True,Mauritius Four Nations Cup,Saint Pierre,Mauritius
@@ -8736,7 +8736,7 @@ m_fd7b7fb02d,2023-08-02,Ethiopia,Guyana,2,0,True,Friendly,Leesburg,United States
 m_95f14c37c4,2023-08-04,Tamil Eelam,Hmong,3,0,True,CONIFA Asia Cup,Alcochete,Portugal
 m_ee079e42cb,2023-08-05,Hmong,Tibet,5,4,True,CONIFA Asia Cup,Alcochete,Portugal
 m_6ba9a14f34,2023-08-06,Tibet,Tamil Eelam,1,3,True,CONIFA Asia Cup,Alcochete,Portugal
-m_87936080c8,2023-08-06,Raetia,Ticino,5,1,False,Friendly,Domat/Ems,Switzerland
+m_196fd78f5f,2023-08-06,Raetia,Canton Ticino,5,1,False,Friendly,Domat/Ems,Switzerland
 m_7638dcca3a,2023-08-08,Tamil Eelam,Hmong,3,1,True,CONIFA Asia Cup,Alcochete,Portugal
 m_e4a2c909e5,2023-08-24,Comoros,Mayotte,0,0,True,Indian Ocean Island Games,Antananarivo,Madagascar
 m_42d27b2d1b,2023-08-24,Madagascar,Seychelles,1,0,False,Indian Ocean Island Games,Antananarivo,Madagascar
@@ -11739,6 +11739,10 @@ m_b933277120,2026-06-02,Georgia,Romania,1,1,False,Friendly,Tbilisi,Georgia
 m_eb91347c49,2026-06-02,Haiti,New Zealand,4,0,True,Friendly,Fort Lauderdale,United States
 m_e7cd7cdc70,2026-06-02,Morocco,Madagascar,4,0,False,Friendly,Rabat,Morocco
 m_a1a757cedf,2026-06-02,Wales,Ghana,1,1,False,Friendly,Cardiff,Wales
+m_e5ddcbf8a6,2026-06-02,Padania,Raetia,4,1,False,CONIFA European Football Cup,Carate Brianza,Italy
+m_79fc68e574,2026-06-02,Rouet-Provence,Canton Ticino,0,1,True,CONIFA European Football Cup,Carate Brianza,Italy
+m_89a174cc64,2026-06-03,Padania,Greenland,3,1,False,CONIFA European Football Cup,Carate Brianza,Italy
+m_81c1c7fdd2,2026-06-03,Canton Ticino,Northern Cyprus,1,5,True,CONIFA European Football Cup,Carate Brianza,Italy
 m_939095a053,2026-06-03,Albania,Israel,0,1,False,Friendly,Tirana,Albania
 m_3f9f4acb45,2026-06-03,DR Congo,Denmark,0,0,True,Friendly,Liège,Belgium
 m_21d90fb6bb,2026-06-03,Gibraltar,British Virgin Islands,4,0,False,Friendly,Europa Point,Gibraltar
@@ -11748,7 +11752,9 @@ m_709f910ecd,2026-06-03,Netherlands,Algeria,0,1,False,Friendly,Rotterdam,Netherl
 m_02d4152576,2026-06-03,Panama,Dominican Republic,4,2,False,Friendly,Panama City,Panama
 m_f53d147f23,2026-06-03,Poland,Nigeria,2,2,False,Friendly,Warsaw,Poland
 m_bcfb5867fa,2026-06-03,Philippines,Guam,5,1,False,Friendly,Manila,Philippines
-m_176ce89b96,2026-06-01,Maldives,Pakistan,0,3,False,Diamond Jubilee International Football Tournament,Malé,Maldives
+m_84314a0ba1,2026-06-04,Raetia,Greenland,1,4,True,CONIFA European Football Cup,Carate Brianza,Italy
+m_f71cea7133,2026-06-04,Rouet-Provence,Northern Cyprus,0,4,True,CONIFA European Football Cup,Carate Brianza,Italy
+m_e16de2d8f3,2026-06-04,Maldives,Pakistan,0,3,False,Diamond Jubilee International Football Tournament,Malé,Maldives
 m_1649ffee34,2026-06-04,Andorra,Liechtenstein,2,0,False,Friendly,Encamp,Andorra
 m_c882383f0d,2026-06-04,Cambodia,Bhutan,4,0,False,Friendly,Phnom Penh,Cambodia
 m_a9de867ad1,2026-06-04,France,Ivory Coast,1,2,False,Friendly,Nantes,France
@@ -11780,6 +11786,9 @@ m_c5f166f135,2026-06-05,Russia,Burkina Faso,3,0,False,Friendly,Volgograd,Russia
 m_7012059c74,2026-06-05,Benin,Niger,1,1,True,Friendly,Casablanca,Morocco
 m_9a5855688c,2026-06-05,Central African Republic,Togo,1,1,True,Friendly,Mohammedia,Morocco
 m_5f0bd4988c,2026-06-05,Puerto Rico,Saudi Arabia,0,3,True,Friendly,Austin,United States
+m_dc73f44530,2026-06-06,Raetia,Rouet-Provence,3,3,True,CONIFA European Football Cup,Carate Brianza,Italy
+m_fbbd33ae5b,2026-06-06,Greenland,Canton Ticino,3,2,True,CONIFA European Football Cup,Carate Brianza,Italy
+m_5c7dc81330,2026-06-06,Padania,Northern Cyprus,1,6,False,CONIFA European Football Cup,Carate Brianza,Italy
 m_1139b3cde9,2026-06-06,Vanuatu,Fiji,2,1,False,Friendly,Port Vila,Vanuatu
 m_a4afd56f9a,2026-06-06,Albania,Luxembourg,0,1,False,Friendly,Tirana,Albania
 m_caeb7de1b7,2026-06-06,Argentina,Honduras,2,0,True,Friendly,College Station,United States
@@ -11793,7 +11802,6 @@ m_9b6ca29dc0,2026-06-06,Curaçao,Aruba,4,0,False,Friendly,Willemstad,Curaçao
 m_02252e9061,2026-06-06,England,New Zealand,1,0,True,Friendly,Tampa,United States
 m_9bb7199f9d,2026-06-06,Sierra Leone,Liberia,1,0,False,Friendly,Bo,Sierra Leone
 m_2a4f2388b0,2026-06-06,Ethiopia,Malawi,1,0,False,Friendly,Dire Dawa,Ethiopia
-m_395da201fd,2026-06-06,Gibraltar,Cayman Islands,4,1,False,Friendly,Gibraltar,Gibraltar
 m_f750609ff7,2026-06-06,Jamaica,South Africa,0,1,True,Friendly,Pachuca,Mexico
 m_19f6caafca,2026-06-06,Kyrgyzstan,Palestine,0,0,False,Friendly,Bishkek,Kyrgyzstan
 m_0445b573a2,2026-06-06,Panama,Bosnia and Herzegovina,1,1,True,Friendly,St. Louis,United States
@@ -11947,3 +11955,4 @@ m_c4cb210127,2026-07-10,Spain,Belgium,2,1,True,FIFA World Cup,Inglewood,United S
 m_fd386ea9fb,2026-07-11,Norway,England,1,2,True,FIFA World Cup,Miami Gardens,United States
 m_f3d5c28d21,2026-07-11,Argentina,Switzerland,3,1,True,FIFA World Cup,Kansas City,United States
 m_beb06e2668,2026-07-14,France,Spain,0,2,True,FIFA World Cup,Arlington,United States
+m_2c228b7079,2026-07-15,England,Argentina,1,2,True,FIFA World Cup,Atlanta,United States
