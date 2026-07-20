@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-07-15",
+  "as_of": "2026-07-19",
   "params": {
     "k_friendly": 20.0,
     "k_qualifier": 30.0,
@@ -10,19 +10,19 @@
   "teams": [
     {
       "team": "Spain",
-      "elo": 2240.92
+      "elo": 2260.3
     },
     {
       "team": "Argentina",
-      "elo": 2230.23
-    },
-    {
-      "team": "France",
-      "elo": 2147.94
+      "elo": 2210.84
     },
     {
       "team": "England",
-      "elo": 2097.71
+      "elo": 2132.02
+    },
+    {
+      "team": "France",
+      "elo": 2113.63
     },
     {
       "team": "Colombia",
