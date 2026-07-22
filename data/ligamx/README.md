@@ -5,16 +5,18 @@ espejo de `data/wc2026/` pero para Liga MX (TheSportsDB league **4350**).
 
 | Archivo | Estado | Quién lo llena | Notas |
 |---|---|---|---|
-| `venues.json` | **template — VERIFICAR** | usuario / Fase 1 | Estadio + altitud por equipo. La altitud alimenta `altitude_penalty_per_1000m`; en Liga MX se lee en **cada** partido (localía por equipo). |
-| `teams.json` | **template — VERIFICAR** | usuario / Fase 1 | 18 equipos + su sede. Reconciliar nombres con el spelling de TheSportsDB 4350. |
-| `rules.json` | **template — VERIFICAR** | usuario | Scoring del pool, desempate, premio, fuentes. |
-| `fixtures.json` | pendiente Fase 1 | `ingest` 4350 | Calendario + resultados live. |
-| `matches_history.csv` | pendiente Fase 1 | `ingest` 4350 + fbref | Histórico de entrenamiento (3-4 torneos atrás). |
-| `elo_current.json` | pendiente Fase 1 | clubelo.com | Elo de clubes. |
+| `teams.json` | ✅ del webapp | `quinielacartoimagen` | 18 equipos, nombres EXACTOS del webapp (`name_es` = clave canónica). Atlante marcado `cold_start`. |
+| `venues.json` | ✅ | manual | Estadio + altitud. La altitud alimenta `altitude_penalty_per_1000m`; en Liga MX se lee en **cada** partido (localía por equipo). América y Cruz Azul en Azteca toda la temporada. |
+| `matches_history.csv` | ✅ ingest | `ingest.ligamx` | 1028 partidos (3 temporadas + actual). Columnas idénticas al CSV internacional → fit y Elo lo consumen sin cambios. |
+| `fixtures.json` | ✅ ingest | `ingest.ligamx` | Calendario Apertura 2026 (153 fixtures, 17 jornadas × 9). Se re-corre para traer resultados. |
+| `rules.json` | **template — VERIFICAR** | usuario | Scoring del pool, desempate, premio. |
+| `elo_current.json` | pendiente Fase 1b | replay local | Elo de clubes por replay sobre el historial (no clubelo). |
 | `injuries.json` | pendiente | manual | Bajas por jornada. |
 
-**Todo lo marcado "VERIFICAR"** son valores plausibles de arranque, no verdad
-confirmada — especialmente las altitudes y la sede de América/Cruz Azul (Azteca
-está en obras post-Mundial). Revísalos antes de generar picks reales.
+Regenerar historial + fixtures:
+
+```bash
+python -m wc_predictor.ingest.ligamx --bootstrap   # necesita THESPORTSDB_API_KEY premium
+```
 
 Ver el plan completo en `docs/ligamx_apertura.md`.

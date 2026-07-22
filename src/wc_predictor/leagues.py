@@ -47,8 +47,11 @@ class LeagueProfile:
     data_dirname
         Sub-directory of ``data/`` holding this league's versioned truth files.
     elo_source
-        ``"international"`` (replay over martj42) or ``"clubelo"`` (clubelo.com
-        API for club sides). Selects which ratings ingest the pipeline uses.
+        ``"international"`` (replay over martj42) or ``"replay_ligamx"`` (Elo
+        computed locally by replay over the Liga MX match history). clubelo.com
+        was the original plan but is HTTP-only and unreachable behind the HTTPS
+        proxy, so Liga MX Elo is self-computed from the ingested history instead
+        — cleaner and dependency-free. Selects which ratings ingest is used.
     neutral_venues
         World Cup fixtures are at neutral venues except for the host nations, so
         the "home" advantage is derived from the venue country (``host_only``).
@@ -154,7 +157,7 @@ LIGAMX_APERTURA_PROFILE = LeagueProfile(
     thesportsdb_league_id=4350,
     season="2026-2027",
     data_dirname="ligamx",
-    elo_source="clubelo",
+    elo_source="replay_ligamx",
     neutral_venues=False,
     home_advantage_mode="per_team",
     odds_sport_key="soccer_mexico_ligamx",

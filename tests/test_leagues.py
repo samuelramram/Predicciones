@@ -75,7 +75,7 @@ def test_ligamx_keeps_shared_knobs_active():
 def test_ligamx_metadata():
     p = LIGAMX_APERTURA_PROFILE
     assert p.thesportsdb_league_id == 4350
-    assert p.elo_source == "clubelo"
+    assert p.elo_source == "replay_ligamx"
     assert p.neutral_venues is False
     assert p.home_advantage_mode == "per_team"
     assert p.odds_sport_key == "soccer_mexico_ligamx"

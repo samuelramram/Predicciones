@@ -17,10 +17,41 @@ Documento de diseño para reusar este motor de quiniela (hoy cableado al Mundial
 
 | Fase | Entregable | Estado |
 |---|---|---|
-| **0** | Doc de diseño + capa de perfil de liga + scaffolding de datos + `.md` | ✅ este commit |
-| **1** | Refactor `core/` + perfil `ligamx` cableado · ingesta 4350/fbref/clubelo · fit + backtest Clausura reciente · picks por jornada | ⏳ siguiente |
+| **0** | Doc de diseño + capa de perfil de liga + scaffolding de datos + `.md` | ✅ |
+| **1a** | Datos alineados al webapp + **ingest real** (TheSportsDB 4350) → 1028 partidos de historial + calendario Apertura 2026 (153 fixtures) | ✅ este commit |
+| **1b** | Elo por replay + fit Poisson+DC + `generate_picks` con perfil `ligamx` + picks por jornada + backtest | ⏳ siguiente |
+| **1c** | Liguilla a doble partido (marcador global + desempate) | pendiente |
 | **2** | Optimizador de pool con rivales reales (reusa `ingest.pool_picks`) | pendiente |
 | **3** | Módulo de apuestas de valor (O/U + doble oportunidad, ¼ Kelly, CLV) | pendiente |
+
+### Hechos confirmados en Fase 1a (leer antes de corregir)
+
+- **Fuente de verdad de equipos/nombres** = el webapp `samuelramram/quinielacartoimagen`
+  (`src/data/ligaMxApertura2026.ts` + migración Supabase). `data/ligamx/teams.json`
+  usa esos nombres exactos (`name_es` como clave canónica).
+- **Acceso a datos disponible**: el entorno tiene `THESPORTSDB_API_KEY` premium,
+  `THE_ODDS_API_KEY` y `API_FOOTBALL_KEY`. El ingest (`ingest.ligamx`) ya corre
+  contra la key premium y produce `matches_history.csv` + `fixtures.json`.
+- **Elo NO viene de clubelo** — clubelo.com es HTTP puro y el proxy solo pasa
+  HTTPS (connection reset). El Elo de clubes se computa por **replay** sobre
+  `matches_history.csv` (reusa `ratings/elo.py`). `profile.elo_source =
+  "replay_ligamx"`.
+- **fbref/xG**: aún no cableado; el fit base arranca con goles de TheSportsDB.
+  xG es una mejora de Fase 1b+.
+
+### Atlante cold-start (decisión del usuario)
+
+El Apertura 2026 mete a **Atlante** en lugar de Mazatlán. No es un ascenso
+normal: es la **misma franquicia comprada a Mazatlán, que desaparece**, y
+**arranca de cero** (sin continuidad de rating). En los datos:
+
+- El historial (`matches_history.csv`) tiene a **Mazatlán** como oponente de
+  temporadas pasadas y a **Atlante con 1 solo partido** (su J1 2026-2027).
+- El fit debe tratar a Atlante como **equipo nuevo**: prior de fuerza =
+  media de liga (o media − pequeño castigo de recién llegado), **varianza
+  amplia**, para que las primeras jornadas lo muevan rápido. NO heredar el
+  rating de Mazatlán. Implementar en Fase 1b (shrinkage con prior explícito
+  para `cold_start=true` en `teams.json`).
 
 Decisiones ya cerradas con el usuario:
 
@@ -84,7 +115,7 @@ Dos perfiles:
 | Fixtures + live | TheSportsDB **4350** | Misma que la webapp → `match_id`/nombres consistentes |
 | Histórico (fit) | TheSportsDB 4350 + fbref | 3-4 torneos atrás |
 | xG | fbref | Mejora fuerte de λ; el legado tenía `fetch_fbref_stats.py` |
-| Elo de clubes | clubelo.com (API) | Reemplaza replay martj42 |
+| Elo de clubes | **replay local** sobre `matches_history.csv` | clubelo es HTTP-only, inalcanzable tras el proxy; se computa con `ratings/elo.py` |
 | Odds | The Odds API `soccer_mexico_ligamx` | Comparar Caliente/Betway; Pinnacle como precio justo |
 | Bajas | manual + perplexity | Impactos por rol del legado |
 

@@ -1,0 +1,1029 @@
+match_id,date,home,away,home_score,away_score,neutral,tournament,city,country
+m_13b524b4e5,2023-07-01,América,Juárez,1,2,False,Liga MX Apertura 2023,Estadio Azteca,Mexico
+m_ad05703690,2023-07-01,Mazatlán,Pachuca,1,1,False,Liga MX Apertura 2023,Estadio de Mazatlán,Mexico
+m_75e9729d0a,2023-07-01,San Luis,Monterrey,1,1,False,Liga MX Apertura 2023,Estadio Alfonso Lastras Ramírez,Mexico
+m_6cef596308,2023-07-01,Tijuana,Pumas,2,3,False,Liga MX Apertura 2023,Estadio Caliente,Mexico
+m_19f7b13cae,2023-07-02,Atlas,Cruz Azul,2,0,False,Liga MX Apertura 2023,Estadio Jalisco,Mexico
+m_d4acd50f6e,2023-07-02,Tigres,Puebla,1,1,False,Liga MX Apertura 2023,Estadio Universitario,Mexico
+m_912e3192e3,2023-07-02,Toluca,Necaxa,0,0,False,Liga MX Apertura 2023,Estadio Nemesio Díez,Mexico
+m_85756fbe5d,2023-07-03,Santos,Querétaro,0,2,False,Liga MX Apertura 2023,Estadio Corona,Mexico
+m_38869b6f76,2023-07-04,León,Guadalajara,1,2,False,Liga MX Apertura 2023,Estadio León,Mexico
+m_d7d5f1fba6,2023-07-08,Cruz Azul,Toluca,0,2,False,Liga MX Apertura 2023,Estadio Azteca,Mexico
+m_2ddc95ff01,2023-07-08,Necaxa,Tijuana,1,1,False,Liga MX Apertura 2023,Estadio Victoria,Mexico
+m_ad362e80e8,2023-07-08,Puebla,Santos,2,3,False,Liga MX Apertura 2023,Estadio Cuauhtémoc,Mexico
+m_91a5180665,2023-07-09,Guadalajara,San Luis,3,1,False,Liga MX Apertura 2023,Estadio AKRON,Mexico
+m_0b4e69fad3,2023-07-09,Juárez,Tigres,1,1,False,Liga MX Apertura 2023,Estadio Olímpico Benito Juárez,Mexico
+m_aaf87e8f3d,2023-07-09,Pumas,Mazatlán,0,0,False,Liga MX Apertura 2023,Estadio Olímpico Universitario,Mexico
+m_9fbd343ae7,2023-07-10,Monterrey,Atlas,1,0,False,Liga MX Apertura 2023,Estadio BBVA,Mexico
+m_e22f15326c,2023-07-11,León,Pachuca,4,0,False,Liga MX Apertura 2023,Estadio León,Mexico
+m_a0dad0806e,2023-07-14,Guadalajara,Necaxa,2,0,False,Liga MX Apertura 2023,Estadio AKRON,Mexico
+m_440d41b972,2023-07-14,Santos,Atlas,0,0,False,Liga MX Apertura 2023,Estadio Corona,Mexico
+m_297e60baff,2023-07-15,Mazatlán,Monterrey,0,3,False,Liga MX Apertura 2023,Estadio de Mazatlán,Mexico
+m_0e5aad9b17,2023-07-15,San Luis,Querétaro,4,1,False,Liga MX Apertura 2023,Estadio Alfonso Lastras Ramírez,Mexico
+m_ab11f6833a,2023-07-15,Tijuana,Cruz Azul,2,1,False,Liga MX Apertura 2023,Estadio Caliente,Mexico
+m_ace41b96bf,2023-07-16,América,Puebla,3,0,False,Liga MX Apertura 2023,Estadio Azteca,Mexico
+m_531d509043,2023-07-16,Tigres,León,1,0,False,Liga MX Apertura 2023,Estadio Universitario,Mexico
+m_6c0d3bda70,2023-07-16,Toluca,Juárez,2,4,False,Liga MX Apertura 2023,Estadio Nemesio Díez,Mexico
+m_11eff5f27c,2023-07-17,Pachuca,Pumas,1,1,False,Liga MX Apertura 2023,Estadio Hidalgo,Mexico
+m_93b28ca3b8,2023-08-19,Juárez,Guadalajara,1,1,False,Liga MX Apertura 2023,Estadio Olímpico Benito Juárez,Mexico
+m_230c9cda52,2023-08-19,León,Mazatlán,2,1,False,Liga MX Apertura 2023,Estadio León,Mexico
+m_49f8cf5423,2023-08-19,Puebla,San Luis,1,2,False,Liga MX Apertura 2023,Estadio Cuauhtémoc,Mexico
+m_c93e4601f9,2023-08-19,Pumas,Toluca,1,1,False,Liga MX Apertura 2023,Estadio Olímpico Universitario,Mexico
+m_124a7b603a,2023-08-20,Cruz Azul,Santos,2,2,False,Liga MX Apertura 2023,Estadio Azteca,Mexico
+m_b18517f3e0,2023-08-21,Atlas,América,1,1,False,Liga MX Apertura 2023,Estadio Azteca,Mexico
+m_82210e98c0,2023-08-21,Necaxa,Tigres,0,3,False,Liga MX Apertura 2023,Estadio Victoria,Mexico
+m_878d5a2e72,2023-08-21,Querétaro,Pachuca,1,1,False,Liga MX Apertura 2023,Estadio Corregidora,Mexico
+m_dbf59fa598,2023-08-23,Guadalajara,Tijuana,1,0,False,Liga MX Apertura 2023,Estadio AKRON,Mexico
+m_44c4902e24,2023-08-23,Juárez,Pumas,4,1,False,Liga MX Apertura 2023,Estadio Olímpico Benito Juárez,Mexico
+m_20809ee312,2023-08-23,Mazatlán,Puebla,1,0,False,Liga MX Apertura 2023,Estadio de Mazatlán,Mexico
+m_ae136485b3,2023-08-24,América,Necaxa,3,2,False,Liga MX Apertura 2023,Estadio Azteca,Mexico
+m_d7311ec400,2023-08-24,Pachuca,Cruz Azul,1,0,False,Liga MX Apertura 2023,Estadio Hidalgo,Mexico
+m_f4b69af480,2023-08-24,San Luis,León,3,0,False,Liga MX Apertura 2023,Estadio Alfonso Lastras Ramírez,Mexico
+m_5686fd9762,2023-08-26,Atlas,Toluca,0,0,False,Liga MX Apertura 2023,Estadio Jalisco,Mexico
+m_d67b758649,2023-08-26,Puebla,Juárez,1,0,False,Liga MX Apertura 2023,Estadio Cuauhtémoc,Mexico
+m_5a0aae6237,2023-08-26,Tijuana,Mazatlán,1,1,False,Liga MX Apertura 2023,Estadio Caliente,Mexico
+m_5a6fe6c23c,2023-08-27,América,León,1,1,False,Liga MX Apertura 2023,Estadio Azteca,Mexico
+m_decc8a6cd5,2023-08-27,Santos,Guadalajara,2,1,False,Liga MX Apertura 2023,Estadio Corona,Mexico
+m_ddd3830f8d,2023-08-28,Monterrey,Cruz Azul,1,2,False,Liga MX Apertura 2023,Estadio BBVA,Mexico
+m_bf3681ca26,2023-08-28,Necaxa,Querétaro,0,1,False,Liga MX Apertura 2023,Estadio Victoria,Mexico
+m_e2540e2470,2023-08-28,Pumas,Tigres,2,1,False,Liga MX Apertura 2023,Estadio Olímpico Universitario,Mexico
+m_c89a496f6c,2023-08-29,Pachuca,San Luis,0,2,False,Liga MX Apertura 2023,Estadio Hidalgo,Mexico
+m_c58aab54db,2023-08-31,Querétaro,Atlas,1,2,False,Liga MX Apertura 2023,Estadio Corregidora,Mexico
+m_5930276f5b,2023-08-31,Tigres,Santos,3,2,False,Liga MX Apertura 2023,Estadio Universitario,Mexico
+m_a51a67b4ac,2023-08-31,Toluca,Monterrey,1,0,False,Liga MX Apertura 2023,Estadio Nemesio Díez,Mexico
+m_1497273c34,2023-09-02,Juárez,Mazatlán,3,1,False,Liga MX Apertura 2023,Estadio Olímpico Benito Juárez,Mexico
+m_61fc73ef9f,2023-09-02,León,Necaxa,1,1,False,Liga MX Apertura 2023,Estadio León,Mexico
+m_92ac14d6b8,2023-09-02,Puebla,Tijuana,3,0,False,Liga MX Apertura 2023,Estadio Cuauhtémoc,Mexico
+m_20030be7a1,2023-09-03,Cruz Azul,América,2,3,False,Liga MX Apertura 2023,Estadio Azteca,Mexico
+m_ace9ccc236,2023-09-03,Guadalajara,Monterrey,1,2,False,Liga MX Apertura 2023,Estadio AKRON,Mexico
+m_d0a950c5a4,2023-09-03,Santos,Pumas,2,1,False,Liga MX Apertura 2023,Estadio Corona,Mexico
+m_b79542409a,2023-09-03,Tigres,Querétaro,5,0,False,Liga MX Apertura 2023,Estadio Universitario,Mexico
+m_152677309a,2023-09-03,Toluca,Pachuca,5,0,False,Liga MX Apertura 2023,Estadio Nemesio Díez,Mexico
+m_1b8313df95,2023-09-04,San Luis,Atlas,2,0,False,Liga MX Apertura 2023,Estadio Alfonso Lastras Ramírez,Mexico
+m_3dedc69abf,2023-09-16,Mazatlán,Cruz Azul,2,2,False,Liga MX Apertura 2023,Estadio de Mazatlán,Mexico
+m_5a81124b32,2023-09-16,Necaxa,Juárez,1,1,False,Liga MX Apertura 2023,Estadio Victoria,Mexico
+m_77c1c7bf5a,2023-09-16,Tijuana,Toluca,2,1,False,Liga MX Apertura 2023,Estadio Caliente,Mexico
+m_eac34ce586,2023-09-17,América,Guadalajara,4,0,False,Liga MX Apertura 2023,Estadio Azteca,Mexico
+m_f86ee1205e,2023-09-17,Monterrey,León,3,1,False,Liga MX Apertura 2023,Estadio BBVA,Mexico
+m_59af6f9c5e,2023-09-17,Pumas,San Luis,3,2,False,Liga MX Apertura 2023,Estadio Olímpico Universitario,Mexico
+m_629da4fc4a,2023-09-17,Querétaro,Puebla,1,1,False,Liga MX Apertura 2023,Estadio Corregidora,Mexico
+m_e4272dc8d4,2023-09-18,Atlas,Tigres,2,0,False,Liga MX Apertura 2023,Estadio Jalisco,Mexico
+m_05013e67db,2023-09-19,Pachuca,Santos,3,2,False,Liga MX Apertura 2023,Estadio Hidalgo,Mexico
+m_1be058640b,2023-09-21,Querétaro,América,1,2,False,Liga MX Apertura 2023,Estadio Corregidora,Mexico
+m_8ea6f9d033,2023-09-23,Juárez,Atlas,1,2,False,Liga MX Apertura 2023,Estadio Olímpico Benito Juárez,Mexico
+m_713ffc6770,2023-09-23,Puebla,Pumas,0,2,False,Liga MX Apertura 2023,Estadio Cuauhtémoc,Mexico
+m_81a00b03ac,2023-09-23,San Luis,Mazatlán,3,2,False,Liga MX Apertura 2023,Estadio Alfonso Lastras Ramírez,Mexico
+m_a5f45709d3,2023-09-24,Guadalajara,Pachuca,0,0,False,Liga MX Apertura 2023,Estadio AKRON,Mexico
+m_02a364b61d,2023-09-24,León,Tijuana,1,0,False,Liga MX Apertura 2023,Estadio León,Mexico
+m_bf77dbd0c8,2023-09-24,Tigres,Monterrey,3,0,False,Liga MX Apertura 2023,Estadio Universitario,Mexico
+m_dbdaf2c2a5,2023-09-24,Toluca,América,1,1,False,Liga MX Apertura 2023,Estadio Nemesio Díez,Mexico
+m_4eca330d37,2023-09-25,Cruz Azul,Querétaro,1,3,False,Liga MX Apertura 2023,Estadio Azteca,Mexico
+m_1cf20a6c01,2023-09-25,Santos,Necaxa,2,5,False,Liga MX Apertura 2023,Estadio Corona,Mexico
+m_da90e1ce23,2023-09-27,Guadalajara,Mazatlán,1,3,False,Liga MX Apertura 2023,Estadio AKRON,Mexico
+m_6632861b69,2023-09-29,Atlas,Puebla,2,3,False,Liga MX Apertura 2023,Estadio Jalisco,Mexico
+m_d4277284fc,2023-09-30,Pachuca,Necaxa,1,1,False,Liga MX Apertura 2023,Estadio Hidalgo,Mexico
+m_2efe25c14a,2023-09-30,Querétaro,León,1,1,False,Liga MX Apertura 2023,Estadio Corregidora,Mexico
+m_028cc74938,2023-09-30,San Luis,Cruz Azul,1,2,False,Liga MX Apertura 2023,Estadio Alfonso Lastras Ramírez,Mexico
+m_292fe25de9,2023-09-30,Tijuana,Juárez,5,1,False,Liga MX Apertura 2023,Estadio Caliente,Mexico
+m_da3224ec08,2023-10-01,América,Pumas,1,0,False,Liga MX Apertura 2023,Estadio Azteca,Mexico
+m_ae0ca4270a,2023-10-01,Mazatlán,Tigres,2,3,False,Liga MX Apertura 2023,Estadio de Mazatlán,Mexico
+m_00168d3b6a,2023-10-02,Toluca,Guadalajara,1,1,False,Liga MX Apertura 2023,Estadio Nemesio Díez,Mexico
+m_a170bc1f87,2023-10-04,América,Pachuca,4,0,False,Liga MX Apertura 2023,Estadio Azteca,Mexico
+m_764c140dcf,2023-10-04,Puebla,Monterrey,1,1,False,Liga MX Apertura 2023,Estadio Cuauhtémoc,Mexico
+m_7aa7824b61,2023-10-05,Necaxa,Cruz Azul,1,3,False,Liga MX Apertura 2023,Estadio Victoria,Mexico
+m_334edad677,2023-10-05,Pumas,Querétaro,4,0,False,Liga MX Apertura 2023,Estadio Olímpico Universitario,Mexico
+m_9b4ad5c643,2023-10-05,Santos,Tijuana,2,1,False,Liga MX Apertura 2023,Estadio Corona,Mexico
+m_765d216715,2023-10-05,Tigres,Toluca,2,2,False,Liga MX Apertura 2023,Estadio Universitario,Mexico
+m_45b7487682,2023-10-07,Mazatlán,América,1,2,False,Liga MX Apertura 2023,Estadio de Mazatlán,Mexico
+m_1041490f89,2023-10-07,Monterrey,Juárez,3,1,False,Liga MX Apertura 2023,Estadio BBVA,Mexico
+m_fb1722ac71,2023-10-08,Cruz Azul,Pumas,1,4,False,Liga MX Apertura 2023,Estadio Azteca,Mexico
+m_9f69f98387,2023-10-08,Guadalajara,Atlas,4,1,False,Liga MX Apertura 2023,Estadio AKRON,Mexico
+m_7a6087f36b,2023-10-08,Necaxa,Puebla,1,2,False,Liga MX Apertura 2023,Estadio Victoria,Mexico
+m_d3b44a7299,2023-10-08,Pachuca,Tigres,1,1,False,Liga MX Apertura 2023,Estadio Hidalgo,Mexico
+m_6ed8d864d7,2023-10-08,Toluca,Querétaro,3,1,False,Liga MX Apertura 2023,Estadio Nemesio Díez,Mexico
+m_34fbc53169,2023-10-09,Santos,León,0,2,False,Liga MX Apertura 2023,Estadio Corona,Mexico
+m_f302d60e49,2023-10-09,Tijuana,San Luis,2,1,False,Liga MX Apertura 2023,Estadio Caliente,Mexico
+m_62ef1cdefb,2023-10-21,Atlas,Mazatlán,1,3,False,Liga MX Apertura 2023,Estadio Jalisco,Mexico
+m_0b5268a36d,2023-10-21,Juárez,Pachuca,0,1,False,Liga MX Apertura 2023,Estadio Olímpico Benito Juárez,Mexico
+m_0e9eb9e74a,2023-10-21,León,Toluca,1,0,False,Liga MX Apertura 2023,Estadio León,Mexico
+m_a2e36685ce,2023-10-21,Puebla,Guadalajara,0,2,False,Liga MX Apertura 2023,Estadio Cuauhtémoc,Mexico
+m_48ef983352,2023-10-22,América,Santos,4,3,False,Liga MX Apertura 2023,Estadio Azteca,Mexico
+m_b551459ade,2023-10-22,Pumas,Monterrey,0,1,False,Liga MX Apertura 2023,Estadio Olímpico Universitario,Mexico
+m_30fc5819a8,2023-10-22,Querétaro,Tijuana,1,0,False,Liga MX Apertura 2023,Estadio Corregidora,Mexico
+m_36d03ac725,2023-10-22,Tigres,Cruz Azul,2,1,False,Liga MX Apertura 2023,Estadio Universitario,Mexico
+m_65db238452,2023-10-23,San Luis,Necaxa,4,0,False,Liga MX Apertura 2023,Estadio Alfonso Lastras Ramírez,Mexico
+m_7f93b10e45,2023-10-25,León,Atlas,1,1,False,Liga MX Apertura 2023,Estadio León,Mexico
+m_24321c799d,2023-10-26,Juárez,San Luis,3,2,False,Liga MX Apertura 2023,Estadio Olímpico Benito Juárez,Mexico
+m_cbcffa56a3,2023-10-26,Monterrey,Tijuana,3,1,False,Liga MX Apertura 2023,Estadio BBVA,Mexico
+m_90c6e5541b,2023-10-28,Mazatlán,Querétaro,3,0,False,Liga MX Apertura 2023,Estadio de Mazatlán,Mexico
+m_6f3977c810,2023-10-28,Necaxa,Pumas,1,0,False,Liga MX Apertura 2023,Estadio Victoria,Mexico
+m_f9a4f736a8,2023-10-29,Cruz Azul,León,1,0,False,Liga MX Apertura 2023,Estadio Azteca,Mexico
+m_42025d1808,2023-10-29,Guadalajara,Tigres,0,4,False,Liga MX Apertura 2023,Estadio Jalisco,Mexico
+m_6e05906b55,2023-10-29,Monterrey,América,0,3,False,Liga MX Apertura 2023,Estadio BBVA,Mexico
+m_2a69e0d871,2023-10-29,Pachuca,Puebla,1,1,False,Liga MX Apertura 2023,Estadio Hidalgo,Mexico
+m_7b9c299adf,2023-10-29,Toluca,San Luis,3,1,False,Liga MX Apertura 2023,Estadio Nemesio Díez,Mexico
+m_4dfcb4e2e6,2023-10-30,Santos,Juárez,5,1,False,Liga MX Apertura 2023,Estadio Corona,Mexico
+m_c2a416c16a,2023-10-30,Tijuana,Atlas,2,0,False,Liga MX Apertura 2023,Estadio Caliente,Mexico
+m_f189da842a,2023-11-01,León,Pumas,1,1,False,Liga MX Apertura 2023,Estadio León,Mexico
+m_3a61168203,2023-11-01,Monterrey,Necaxa,3,0,False,Liga MX Apertura 2023,Estadio BBVA,Mexico
+m_9803679d34,2023-11-01,Querétaro,Guadalajara,1,2,False,Liga MX Apertura 2023,Estadio Corregidora,Mexico
+m_a8ca0c03bb,2023-11-01,Toluca,Puebla,0,1,False,Liga MX Apertura 2023,Estadio Nemesio Díez,Mexico
+m_374e44eec8,2023-11-02,Atlas,Pachuca,0,2,False,Liga MX Apertura 2023,Estadio Jalisco,Mexico
+m_261670954b,2023-11-02,Cruz Azul,Juárez,2,0,False,Liga MX Apertura 2023,Estadio Azteca,Mexico
+m_0a494129e0,2023-11-02,Mazatlán,Santos,3,1,False,Liga MX Apertura 2023,Estadio de Mazatlán,Mexico
+m_2bc25f12eb,2023-11-02,San Luis,América,0,1,False,Liga MX Apertura 2023,Estadio Alfonso Lastras Ramírez,Mexico
+m_27ad558b5f,2023-11-02,Tijuana,Tigres,2,0,False,Liga MX Apertura 2023,Estadio Caliente,Mexico
+m_7dbd71d523,2023-11-04,Puebla,León,5,4,False,Liga MX Apertura 2023,Estadio Cuauhtémoc,Mexico
+m_344c32052e,2023-11-04,Tigres,San Luis,2,2,False,Liga MX Apertura 2023,Estadio Universitario,Mexico
+m_1ec1ebad2e,2023-11-05,América,Tijuana,3,0,False,Liga MX Apertura 2023,Estadio Azteca,Mexico
+m_92caaf24c5,2023-11-05,Guadalajara,Cruz Azul,1,0,False,Liga MX Apertura 2023,Estadio AKRON,Mexico
+m_7e8c8add72,2023-11-05,Necaxa,Mazatlán,4,0,False,Liga MX Apertura 2023,Estadio Victoria,Mexico
+m_fad4498a4e,2023-11-05,Pachuca,Monterrey,0,2,False,Liga MX Apertura 2023,Estadio Hidalgo,Mexico
+m_8f7ca84afe,2023-11-05,Pumas,Atlas,3,0,False,Liga MX Apertura 2023,Estadio Olímpico Universitario,Mexico
+m_5d4e34aa73,2023-11-06,Juárez,Querétaro,0,3,False,Liga MX Apertura 2023,Estadio Olímpico Benito Juárez,Mexico
+m_9bae15cd0f,2023-11-06,Santos,Toluca,3,1,False,Liga MX Apertura 2023,Estadio Corona,Mexico
+m_3ea0c0cc4a,2023-11-09,Monterrey,Santos,3,0,False,Liga MX Apertura 2023,Estadio BBVA,Mexico
+m_a510156fa9,2023-11-11,Atlas,Necaxa,0,0,False,Liga MX Apertura 2023,Estadio Jalisco,Mexico
+m_e376b60830,2023-11-11,Mazatlán,Toluca,1,0,False,Liga MX Apertura 2023,Estadio de Mazatlán,Mexico
+m_d016d15e31,2023-11-11,Querétaro,Monterrey,0,0,False,Liga MX Apertura 2023,Estadio Corregidora,Mexico
+m_bbc0a6c021,2023-11-11,San Luis,Santos,0,2,False,Liga MX Apertura 2023,Estadio Alfonso Lastras Ramírez,Mexico
+m_ec979daed6,2023-11-11,Tijuana,Pachuca,2,3,False,Liga MX Apertura 2023,Estadio Caliente,Mexico
+m_336c5eb3b7,2023-11-12,Pumas,Guadalajara,1,0,False,Liga MX Apertura 2023,Estadio Olímpico Universitario,Mexico
+m_df68c69c8d,2023-11-12,Tigres,América,0,0,False,Liga MX Apertura 2023,Estadio Universitario,Mexico
+m_c6446c1b33,2023-11-13,Cruz Azul,Puebla,1,2,False,Liga MX Apertura 2023,Estadio Azteca,Mexico
+m_926c75c080,2023-11-13,León,Juárez,2,1,False,Liga MX Apertura 2023,Estadio León,Mexico
+m_448738e9ea,2023-11-24,San Luis,León,3,2,False,Liga MX Apertura 2023,Estadio Alfonso Lastras Ramírez,Mexico
+m_d5f65cd689,2023-11-24,Santos,Mazatlán,2,1,False,Liga MX Apertura 2023,Estadio Corona,Mexico
+m_be3dfc386c,2023-11-27,León,Santos,3,2,False,Liga MX Apertura 2023,Estadio León,Mexico
+m_7398a47378,2023-11-30,León,América,2,2,False,Liga MX Apertura 2023,Estadio León,Mexico
+m_2c01013716,2023-11-30,San Luis,Monterrey,1,0,False,Liga MX Apertura 2023,Estadio Alfonso Lastras Ramírez,Mexico
+m_d910ad52b5,2023-12-01,Guadalajara,Pumas,1,0,False,Liga MX Apertura 2023,Estadio AKRON,Mexico
+m_4f30e94a34,2023-12-01,Puebla,Tigres,2,2,False,Liga MX Apertura 2023,Estadio Cuauhtémoc,Mexico
+m_1a0803f11b,2023-12-03,América,León,2,0,False,Liga MX Apertura 2023,Estadio Azteca,Mexico
+m_b2f1768b0e,2023-12-03,Monterrey,San Luis,1,1,False,Liga MX Apertura 2023,Estadio BBVA,Mexico
+m_2debd494ce,2023-12-04,Pumas,Guadalajara,3,0,False,Liga MX Apertura 2023,Estadio Olímpico Universitario,Mexico
+m_58042bb28a,2023-12-04,Tigres,Puebla,3,0,False,Liga MX Apertura 2023,Estadio Universitario,Mexico
+m_74f4b8e2e3,2023-12-07,San Luis,América,0,5,False,Liga MX Apertura 2023,Estadio Alfonso Lastras Ramírez,Mexico
+m_95d887b1f2,2023-12-08,Pumas,Tigres,0,1,False,Liga MX Apertura 2023,Estadio Olímpico Universitario,Mexico
+m_16232ab923,2023-12-10,América,San Luis,0,2,False,Liga MX Apertura 2023,Estadio Azteca,Mexico
+m_b1f1de1e37,2023-12-11,Tigres,Pumas,1,1,False,Liga MX Apertura 2023,Estadio Universitario,Mexico
+m_782973f87f,2023-12-15,Tigres,América,1,1,False,Liga MX Apertura 2023,Estadio Universitario,Mexico
+m_bcf36f0d4b,2023-12-18,América,Tigres,3,0,False,Liga MX Apertura 2023,Estadio Azteca,Mexico
+m_2ec0306e5d,2024-01-13,Mazatlán,San Luis,0,1,False,Liga MX Clausura 2024,Estadio de Mazatlán,Mexico
+m_710077a497,2024-01-13,Querétaro,Toluca,2,2,False,Liga MX Clausura 2024,Estadio Corregidora,Mexico
+m_153c7c3d53,2024-01-14,Cruz Azul,Pachuca,0,1,False,Liga MX Clausura 2024,Estadio Ciudad de los Deportes,Mexico
+m_f93e7368f4,2024-01-14,Guadalajara,Santos,1,1,False,Liga MX Clausura 2024,Estadio AKRON,Mexico
+m_85a9cef480,2024-01-14,Monterrey,Puebla,2,0,False,Liga MX Clausura 2024,Estadio BBVA,Mexico
+m_a4354fe91e,2024-01-14,Pumas,Juárez,1,0,False,Liga MX Clausura 2024,Estadio Olímpico Universitario,Mexico
+m_a3f5b9b654,2024-01-14,Tijuana,América,0,2,False,Liga MX Clausura 2024,Estadio Caliente,Mexico
+m_47a496b937,2024-01-15,Necaxa,Atlas,2,1,False,Liga MX Clausura 2024,Estadio Victoria,Mexico
+m_1738594c70,2024-01-18,León,Tigres,1,2,False,Liga MX Clausura 2024,Estadio León,Mexico
+m_622d0a1387,2024-01-20,Juárez,Cruz Azul,0,0,False,Liga MX Clausura 2024,Estadio Olímpico Benito Juárez,Mexico
+m_9cf836ed43,2024-01-20,Puebla,Necaxa,1,2,False,Liga MX Clausura 2024,Estadio Cuauhtémoc,Mexico
+m_7fa29f3f99,2024-01-20,San Luis,Pumas,3,1,False,Liga MX Clausura 2024,Estadio Alfonso Lastras Ramírez,Mexico
+m_0bb49a29b3,2024-01-20,Toluca,Mazatlán,4,1,False,Liga MX Clausura 2024,Estadio Nemesio Díez,Mexico
+m_09434ca248,2024-01-21,América,Querétaro,2,0,False,Liga MX Clausura 2024,Estadio Azteca,Mexico
+m_ac79cea07d,2024-01-21,Atlas,Tijuana,0,0,False,Liga MX Clausura 2024,Estadio Jalisco,Mexico
+m_4b24b391a5,2024-01-22,Santos,Monterrey,0,2,False,Liga MX Clausura 2024,Estadio Corona,Mexico
+m_96150c509b,2024-01-22,Tigres,Guadalajara,1,0,False,Liga MX Clausura 2024,Estadio Universitario,Mexico
+m_715cad65b6,2024-01-25,Juárez,América,0,2,False,Liga MX Clausura 2024,Estadio Olímpico Benito Juárez,Mexico
+m_d99b0afd7d,2024-01-25,Monterrey,Querétaro,1,1,False,Liga MX Clausura 2024,Estadio BBVA,Mexico
+m_42e60d27de,2024-01-25,San Luis,Tigres,1,2,False,Liga MX Clausura 2024,Estadio Alfonso Lastras Ramírez,Mexico
+m_2fa965ea7f,2024-01-27,Cruz Azul,Mazatlán,2,1,False,Liga MX Clausura 2024,Estadio Ciudad de los Deportes,Mexico
+m_bdcf246360,2024-01-27,León,Santos,3,2,False,Liga MX Clausura 2024,Estadio León,Mexico
+m_5c77027d95,2024-01-27,Puebla,Toluca,1,1,False,Liga MX Clausura 2024,Estadio Cuauhtémoc,Mexico
+m_e2093cef01,2024-01-27,Tijuana,Guadalajara,1,1,False,Liga MX Clausura 2024,Estadio Caliente,Mexico
+m_f94ed430bf,2024-01-28,Monterrey,San Luis,3,1,False,Liga MX Clausura 2024,Estadio BBVA,Mexico
+m_fc32ed679b,2024-01-28,Necaxa,América,0,0,False,Liga MX Clausura 2024,Estadio Victoria,Mexico
+m_9d186d8e16,2024-01-28,Pumas,Pachuca,3,1,False,Liga MX Clausura 2024,Estadio Olímpico Universitario,Mexico
+m_235842786f,2024-01-29,Atlas,Juárez,2,1,False,Liga MX Clausura 2024,Estadio Jalisco,Mexico
+m_4166cb8bc9,2024-01-29,Querétaro,Tigres,1,1,False,Liga MX Clausura 2024,Estadio Corregidora,Mexico
+m_403ead5f26,2024-01-31,Cruz Azul,Tijuana,1,0,False,Liga MX Clausura 2024,Estadio Ciudad de los Deportes,Mexico
+m_818da9f188,2024-01-31,Guadalajara,Toluca,3,2,False,Liga MX Clausura 2024,Estadio AKRON,Mexico
+m_b2a6159bd9,2024-01-31,Mazatlán,León,2,2,False,Liga MX Clausura 2024,Estadio de Mazatlán,Mexico
+m_c516c93b62,2024-01-31,Santos,Puebla,3,0,False,Liga MX Clausura 2024,Estadio Corona,Mexico
+m_c37ed3bdb6,2024-02-01,Pachuca,Atlas,4,3,False,Liga MX Clausura 2024,Estadio Hidalgo,Mexico
+m_7030c85e99,2024-02-01,Pumas,Necaxa,2,2,False,Liga MX Clausura 2024,Estadio Olímpico Universitario,Mexico
+m_c11711cfa5,2024-02-03,Puebla,Mazatlán,3,2,False,Liga MX Clausura 2024,Estadio Cuauhtémoc,Mexico
+m_6a45110136,2024-02-03,Querétaro,Cruz Azul,1,3,False,Liga MX Clausura 2024,Estadio Corregidora,Mexico
+m_ebc6adb517,2024-02-03,Toluca,León,4,1,False,Liga MX Clausura 2024,Estadio Nemesio Díez,Mexico
+m_d194c43494,2024-02-04,América,Monterrey,1,1,False,Liga MX Clausura 2024,Estadio Azteca,Mexico
+m_b19872e972,2024-02-04,Juárez,Necaxa,2,2,False,Liga MX Clausura 2024,Estadio Olímpico Benito Juárez,Mexico
+m_5b0fafa649,2024-02-04,Pachuca,Tijuana,3,2,False,Liga MX Clausura 2024,Estadio Hidalgo,Mexico
+m_2a75e4000e,2024-02-04,Tigres,Pumas,2,2,False,Liga MX Clausura 2024,Estadio Universitario,Mexico
+m_66a9de0000,2024-02-05,Atlas,Santos,3,0,False,Liga MX Clausura 2024,Estadio Jalisco,Mexico
+m_dfad9bbb8d,2024-02-05,San Luis,Guadalajara,0,2,False,Liga MX Clausura 2024,Estadio Alfonso Lastras Ramírez,Mexico
+m_e5a3cceefa,2024-02-08,Pachuca,León,3,2,False,Liga MX Clausura 2024,Estadio Hidalgo,Mexico
+m_d52df60d02,2024-02-10,Guadalajara,Juárez,2,1,False,Liga MX Clausura 2024,Estadio AKRON,Mexico
+m_648a6a8a3f,2024-02-10,Mazatlán,Atlas,2,0,False,Liga MX Clausura 2024,Estadio de Mazatlán,Mexico
+m_6a23198a8a,2024-02-10,Necaxa,Toluca,3,3,False,Liga MX Clausura 2024,Estadio Victoria,Mexico
+m_29fac03448,2024-02-10,Tijuana,Querétaro,1,1,False,Liga MX Clausura 2024,Estadio Caliente,Mexico
+m_5edb356bfb,2024-02-11,Cruz Azul,San Luis,3,0,False,Liga MX Clausura 2024,Estadio Ciudad de los Deportes,Mexico
+m_87ac201b5b,2024-02-11,León,América,0,1,False,Liga MX Clausura 2024,Estadio León,Mexico
+m_e8fd531927,2024-02-11,Monterrey,Pachuca,3,2,False,Liga MX Clausura 2024,Estadio BBVA,Mexico
+m_b88ef170aa,2024-02-11,Pumas,Puebla,3,0,False,Liga MX Clausura 2024,Estadio Olímpico Universitario,Mexico
+m_0045093c81,2024-02-11,Santos,Tigres,0,3,False,Liga MX Clausura 2024,Estadio Corona,Mexico
+m_44cb074621,2024-02-15,Atlas,Pumas,0,0,False,Liga MX Clausura 2024,Estadio Jalisco,Mexico
+m_0a27fd6960,2024-02-17,Mazatlán,Guadalajara,2,2,False,Liga MX Clausura 2024,Estadio de Mazatlán,Mexico
+m_5e9c67845c,2024-02-17,Querétaro,Necaxa,1,1,False,Liga MX Clausura 2024,Estadio Corregidora,Mexico
+m_40a743e8de,2024-02-17,San Luis,Tijuana,3,3,False,Liga MX Clausura 2024,Estadio Alfonso Lastras Ramírez,Mexico
+m_6cc5b2cc7e,2024-02-18,Atlas,León,0,1,False,Liga MX Clausura 2024,Estadio Jalisco,Mexico
+m_76dd2e25be,2024-02-18,Cruz Azul,Tigres,1,0,False,Liga MX Clausura 2024,Estadio Ciudad de los Deportes,Mexico
+m_b58960c5ba,2024-02-18,Pachuca,América,2,1,False,Liga MX Clausura 2024,Estadio Hidalgo,Mexico
+m_07c9ee44f0,2024-02-19,Monterrey,Toluca,0,0,False,Liga MX Clausura 2024,Estadio BBVA,Mexico
+m_05c5879758,2024-02-19,Pumas,Santos,3,0,False,Liga MX Clausura 2024,Estadio Olímpico Universitario,Mexico
+m_6d747e8d9e,2024-02-21,Necaxa,Guadalajara,1,0,False,Liga MX Clausura 2024,Estadio Victoria,Mexico
+m_43470e537d,2024-02-21,Puebla,Pachuca,1,4,False,Liga MX Clausura 2024,Estadio Cuauhtémoc,Mexico
+m_d016a3e394,2024-02-22,América,Mazatlán,2,2,False,Liga MX Clausura 2024,Estadio Azteca,Mexico
+m_fe49fa10c4,2024-02-22,León,Cruz Azul,2,3,False,Liga MX Clausura 2024,Estadio León,Mexico
+m_8a1b998642,2024-02-22,Toluca,Santos,1,0,False,Liga MX Clausura 2024,Estadio Nemesio Díez,Mexico
+m_13fc6c8b95,2024-02-24,Juárez,Monterrey,0,3,False,Liga MX Clausura 2024,Estadio Olímpico Benito Juárez,Mexico
+m_e8ecef08c8,2024-02-24,León,San Luis,1,0,False,Liga MX Clausura 2024,Estadio León,Mexico
+m_a625b07df8,2024-02-24,Necaxa,Pachuca,1,1,False,Liga MX Clausura 2024,Estadio Victoria,Mexico
+m_058dfe22a6,2024-02-24,Puebla,Querétaro,0,2,False,Liga MX Clausura 2024,Estadio Cuauhtémoc,Mexico
+m_7137ec0e5e,2024-02-25,América,Cruz Azul,1,0,False,Liga MX Clausura 2024,Estadio Azteca,Mexico
+m_8221c311c8,2024-02-25,Guadalajara,Pumas,3,1,False,Liga MX Clausura 2024,Estadio AKRON,Mexico
+m_73eaedc6f0,2024-02-25,Tigres,Atlas,1,1,False,Liga MX Clausura 2024,Estadio Universitario,Mexico
+m_17ac8c6b57,2024-02-25,Toluca,Tijuana,2,0,False,Liga MX Clausura 2024,Estadio Nemesio Díez,Mexico
+m_1ba602943e,2024-02-26,Santos,Mazatlán,1,0,False,Liga MX Clausura 2024,Estadio Corona,Mexico
+m_2b4fa6f699,2024-02-28,Querétaro,San Luis,4,1,False,Liga MX Clausura 2024,Estadio Corregidora,Mexico
+m_97585dc2fe,2024-02-29,Tigres,Juárez,1,0,False,Liga MX Clausura 2024,Estadio Universitario,Mexico
+m_9b48ddcb70,2024-02-29,Tijuana,Monterrey,1,1,False,Liga MX Clausura 2024,Estadio Caliente,Mexico
+m_f3c4d5272a,2024-03-02,Mazatlán,Necaxa,2,1,False,Liga MX Clausura 2024,Estadio de Mazatlán,Mexico
+m_a73a9b1756,2024-03-02,Querétaro,Santos,0,1,False,Liga MX Clausura 2024,Estadio Corregidora,Mexico
+m_b689459a3b,2024-03-02,San Luis,Puebla,4,0,False,Liga MX Clausura 2024,Estadio Alfonso Lastras Ramírez,Mexico
+m_92a8136548,2024-03-02,Toluca,Tigres,2,1,False,Liga MX Clausura 2024,Estadio Nemesio Díez,Mexico
+m_ed07a6e3f4,2024-03-03,Atlas,América,1,5,False,Liga MX Clausura 2024,Estadio Jalisco,Mexico
+m_cf19ba732e,2024-03-03,Cruz Azul,Guadalajara,3,0,False,Liga MX Clausura 2024,Estadio Azteca,Mexico
+m_2fe9b4cd56,2024-03-03,Pachuca,Juárez,3,2,False,Liga MX Clausura 2024,Estadio Hidalgo,Mexico
+m_2675c715e7,2024-03-04,Monterrey,Pumas,3,0,False,Liga MX Clausura 2024,Estadio BBVA,Mexico
+m_da3b4b3860,2024-03-04,Tijuana,León,1,1,False,Liga MX Clausura 2024,Estadio Caliente,Mexico
+m_cebccec52e,2024-03-09,Guadalajara,León,1,2,False,Liga MX Clausura 2024,Estadio AKRON,Mexico
+m_0ed28b3a5b,2024-03-09,Juárez,Toluca,1,1,False,Liga MX Clausura 2024,Estadio Olímpico Benito Juárez,Mexico
+m_061f300ca8,2024-03-09,Necaxa,San Luis,3,1,False,Liga MX Clausura 2024,Estadio Victoria,Mexico
+m_4936950564,2024-03-09,Puebla,Atlas,2,2,False,Liga MX Clausura 2024,Estadio Cuauhtémoc,Mexico
+m_ce003ab5fd,2024-03-10,América,Tigres,2,0,False,Liga MX Clausura 2024,Estadio Azteca,Mexico
+m_2a1db1ba83,2024-03-10,Pachuca,Querétaro,1,2,False,Liga MX Clausura 2024,Estadio Hidalgo,Mexico
+m_54e49ccf2f,2024-03-10,Pumas,Tijuana,3,3,False,Liga MX Clausura 2024,Estadio Olímpico Universitario,Mexico
+m_68886c7426,2024-03-10,Santos,Cruz Azul,3,0,False,Liga MX Clausura 2024,Estadio Corona,Mexico
+m_28f00d0e87,2024-03-11,Monterrey,Mazatlán,2,1,False,Liga MX Clausura 2024,Estadio BBVA,Mexico
+m_03dd7f3003,2024-03-16,Cruz Azul,Necaxa,1,2,False,Liga MX Clausura 2024,Estadio Ciudad de los Deportes,Mexico
+m_55caba61c8,2024-03-16,Querétaro,Juárez,1,0,False,Liga MX Clausura 2024,Estadio Corregidora,Mexico
+m_a217eb9c9c,2024-03-16,Tijuana,Santos,2,2,False,Liga MX Clausura 2024,Estadio Caliente,Mexico
+m_a221c944f6,2024-03-17,Atlas,Monterrey,1,2,False,Liga MX Clausura 2024,Estadio Jalisco,Mexico
+m_c4e60457ec,2024-03-17,Guadalajara,América,0,0,False,Liga MX Clausura 2024,Estadio AKRON,Mexico
+m_f09bc5abf4,2024-03-17,León,Puebla,2,1,False,Liga MX Clausura 2024,Estadio León,Mexico
+m_842d07e49e,2024-03-17,Tigres,Mazatlán,5,1,False,Liga MX Clausura 2024,Estadio Universitario,Mexico
+m_6d76fea95d,2024-03-18,San Luis,Pachuca,2,1,False,Liga MX Clausura 2024,Estadio Alfonso Lastras Ramírez,Mexico
+m_a58f229451,2024-03-18,Toluca,Pumas,3,0,False,Liga MX Clausura 2024,Estadio Nemesio Díez,Mexico
+m_8ab8d44f77,2024-03-24,Juárez,Puebla,4,3,False,Liga MX Clausura 2024,Estadio Olímpico Benito Juárez,Mexico
+m_3fbe096e69,2024-03-30,América,San Luis,2,1,False,Liga MX Clausura 2024,Estadio Azteca,Mexico
+m_8760967860,2024-03-30,Mazatlán,Tijuana,2,0,False,Liga MX Clausura 2024,Estadio de Mazatlán,Mexico
+m_e296f02ce4,2024-03-30,Puebla,Tigres,2,3,False,Liga MX Clausura 2024,Estadio Cuauhtémoc,Mexico
+m_38a94fe76a,2024-03-31,Atlas,Querétaro,2,3,False,Liga MX Clausura 2024,Estadio Jalisco,Mexico
+m_b70fbdfab1,2024-03-31,Monterrey,Guadalajara,0,2,False,Liga MX Clausura 2024,Estadio BBVA,Mexico
+m_dd6bf4daba,2024-03-31,Pachuca,Toluca,2,3,False,Liga MX Clausura 2024,Estadio Hidalgo,Mexico
+m_e2f3cf226c,2024-03-31,Pumas,Cruz Azul,0,0,False,Liga MX Clausura 2024,Estadio Olímpico Universitario,Mexico
+m_ad74c061b7,2024-04-01,Juárez,Santos,2,1,False,Liga MX Clausura 2024,Estadio Olímpico Benito Juárez,Mexico
+m_6f38bcfbc3,2024-04-01,Necaxa,León,1,2,False,Liga MX Clausura 2024,Estadio Victoria,Mexico
+m_1bc78f0c9a,2024-04-06,León,Querétaro,0,2,False,Liga MX Clausura 2024,Estadio León,Mexico
+m_86fa848d2e,2024-04-06,Mazatlán,Pumas,0,4,False,Liga MX Clausura 2024,Estadio de Mazatlán,Mexico
+m_ba0d8e8d88,2024-04-06,Tijuana,Necaxa,2,3,False,Liga MX Clausura 2024,Estadio Caliente,Mexico
+m_d269a6edaa,2024-04-07,Cruz Azul,Monterrey,2,1,False,Liga MX Clausura 2024,Estadio Ciudad de los Deportes,Mexico
+m_9a5552dbda,2024-04-07,Guadalajara,Puebla,3,2,False,Liga MX Clausura 2024,Estadio AKRON,Mexico
+m_7e2cf02636,2024-04-07,Santos,América,1,1,False,Liga MX Clausura 2024,Estadio Corona,Mexico
+m_adcdefe004,2024-04-07,Tigres,Pachuca,0,3,False,Liga MX Clausura 2024,Estadio Universitario,Mexico
+m_87ce04c6e3,2024-04-07,Toluca,Atlas,4,1,False,Liga MX Clausura 2024,Estadio Nemesio Díez,Mexico
+m_8e3d1772b9,2024-04-08,San Luis,Juárez,2,3,False,Liga MX Clausura 2024,Estadio Alfonso Lastras Ramírez,Mexico
+m_195ae41ad6,2024-04-13,Necaxa,Santos,2,0,False,Liga MX Clausura 2024,Estadio Victoria,Mexico
+m_04cbca0803,2024-04-13,Pachuca,Guadalajara,0,1,False,Liga MX Clausura 2024,Estadio Hidalgo,Mexico
+m_e84db1ac6f,2024-04-13,Puebla,Cruz Azul,0,1,False,Liga MX Clausura 2024,Estadio Cuauhtémoc,Mexico
+m_5767b93e86,2024-04-13,Querétaro,Mazatlán,0,2,False,Liga MX Clausura 2024,Estadio Corregidora,Mexico
+m_c88001b1c6,2024-04-14,América,Toluca,5,1,False,Liga MX Clausura 2024,Estadio Azteca,Mexico
+m_6513032bd7,2024-04-14,Monterrey,Tigres,3,3,False,Liga MX Clausura 2024,Estadio BBVA,Mexico
+m_7a187f300b,2024-04-15,Atlas,San Luis,2,1,False,Liga MX Clausura 2024,Estadio Jalisco,Mexico
+m_ece5bfee79,2024-04-15,Juárez,Tijuana,0,1,False,Liga MX Clausura 2024,Estadio Olímpico Benito Juárez,Mexico
+m_54415e9acf,2024-04-15,Pumas,León,1,0,False,Liga MX Clausura 2024,Estadio Olímpico Universitario,Mexico
+m_e8dfd7e460,2024-04-20,León,Monterrey,2,0,False,Liga MX Clausura 2024,Estadio León,Mexico
+m_b12c5be3a0,2024-04-20,Mazatlán,Juárez,0,2,False,Liga MX Clausura 2024,Estadio de Mazatlán,Mexico
+m_9eda38a955,2024-04-20,San Luis,Toluca,1,5,False,Liga MX Clausura 2024,Estadio Alfonso Lastras Ramírez,Mexico
+m_cea7f2be78,2024-04-20,Tijuana,Puebla,3,1,False,Liga MX Clausura 2024,Estadio Caliente,Mexico
+m_1e1cefde0b,2024-04-21,Guadalajara,Querétaro,2,0,False,Liga MX Clausura 2024,Estadio AKRON,Mexico
+m_80f986c847,2024-04-21,Pumas,América,2,1,False,Liga MX Clausura 2024,Estadio Olímpico Universitario,Mexico
+m_36a814dc34,2024-04-21,Santos,Pachuca,0,2,False,Liga MX Clausura 2024,Estadio Corona,Mexico
+m_9f8d98c888,2024-04-21,Tigres,Necaxa,5,2,False,Liga MX Clausura 2024,Estadio Universitario,Mexico
+m_f4ea58683c,2024-04-22,Cruz Azul,Atlas,2,2,False,Liga MX Clausura 2024,Estadio Ciudad de los Deportes,Mexico
+m_826de86439,2024-04-27,Juárez,León,1,1,False,Liga MX Clausura 2024,Estadio Olímpico Benito Juárez,Mexico
+m_295d41f763,2024-04-27,Puebla,América,1,2,False,Liga MX Clausura 2024,Estadio Cuauhtémoc,Mexico
+m_66c1bd3184,2024-04-27,Querétaro,Pumas,1,1,False,Liga MX Clausura 2024,Estadio Corregidora,Mexico
+m_45cafa4a3f,2024-04-28,Atlas,Guadalajara,0,1,False,Liga MX Clausura 2024,Estadio Jalisco,Mexico
+m_0cd2edd683,2024-04-28,Pachuca,Mazatlán,1,1,False,Liga MX Clausura 2024,Estadio Hidalgo,Mexico
+m_aca123a3ef,2024-04-28,Tigres,Tijuana,4,1,False,Liga MX Clausura 2024,Estadio Universitario,Mexico
+m_d7a7131df9,2024-04-28,Toluca,Cruz Azul,0,1,False,Liga MX Clausura 2024,Estadio Nemesio Díez,Mexico
+m_c04eef9b5e,2024-04-29,Necaxa,Monterrey,2,5,False,Liga MX Clausura 2024,Estadio Victoria,Mexico
+m_20bdab3478,2024-04-29,Santos,San Luis,0,3,False,Liga MX Clausura 2024,Estadio Corona,Mexico
+m_9086dc5c12,2024-05-03,Necaxa,Querétaro,1,1,False,Liga MX Clausura 2024,Estadio Victoria,Mexico
+m_c7a81102d7,2024-05-03,Pachuca,Pumas,0,0,False,Liga MX Clausura 2024,Estadio Hidalgo,Mexico
+m_5eacdc9b86,2024-05-06,Pachuca,Necaxa,2,1,False,Liga MX Clausura 2024,Estadio Hidalgo,Mexico
+m_63e3f9875d,2024-05-09,Guadalajara,Toluca,1,0,False,Liga MX Clausura 2024,Estadio AKRON,Mexico
+m_33f0ecaa4e,2024-05-09,Pachuca,América,1,1,False,Liga MX Clausura 2024,Estadio Hidalgo,Mexico
+m_43cad37991,2024-05-10,Pumas,Cruz Azul,0,2,False,Liga MX Clausura 2024,Estadio Olímpico Universitario,Mexico
+m_b27ad4c951,2024-05-10,Tigres,Monterrey,1,2,False,Liga MX Clausura 2024,Estadio Universitario,Mexico
+m_209c7062a8,2024-05-12,América,Pachuca,1,1,False,Liga MX Clausura 2024,Estadio Azteca,Mexico
+m_092b261c12,2024-05-12,Toluca,Guadalajara,0,0,False,Liga MX Clausura 2024,Estadio Nemesio Díez,Mexico
+m_bbf857cfd6,2024-05-13,Cruz Azul,Pumas,2,2,False,Liga MX Clausura 2024,Estadio Ciudad de los Deportes,Mexico
+m_f3d71bf3a7,2024-05-13,Monterrey,Tigres,1,1,False,Liga MX Clausura 2024,Estadio BBVA,Mexico
+m_6a39ffe97b,2024-05-16,Guadalajara,América,0,0,False,Liga MX Clausura 2024,Estadio AKRON,Mexico
+m_1f767b6548,2024-05-17,Monterrey,Cruz Azul,0,1,False,Liga MX Clausura 2024,Estadio BBVA,Mexico
+m_37ded8c121,2024-05-19,América,Guadalajara,1,0,False,Liga MX Clausura 2024,Estadio Azteca,Mexico
+m_209b7bbf4d,2024-05-20,Cruz Azul,Monterrey,1,2,False,Liga MX Clausura 2024,Estadio Ciudad de los Deportes,Mexico
+m_2e5857108e,2024-05-24,Cruz Azul,América,1,1,False,Liga MX Clausura 2024,Estadio Ciudad de los Deportes,Mexico
+m_783730cf87,2024-05-27,América,Cruz Azul,1,0,False,Liga MX Clausura 2024,Estadio Azteca,Mexico
+m_a0e1323225,2024-07-05,Puebla,Santos,1,0,False,Liga MX Apertura 2024,Estadio Cuauhtémoc,Mexico
+m_977bb11b78,2024-07-06,Juárez,Atlas,2,2,False,Liga MX Apertura 2024,Estadio Olímpico Benito Juárez,Mexico
+m_bf43c94518,2024-07-06,Querétaro,Tijuana,1,2,False,Liga MX Apertura 2024,Estadio La Corregidora,Mexico
+m_9fc487f3a3,2024-07-06,San Luis,América,2,1,False,Liga MX Apertura 2024,Estadio Alfonso Lastras,Mexico
+m_b406115b49,2024-07-07,Cruz Azul,Mazatlán,1,0,False,Liga MX Apertura 2024,Estadio Ciudad de los Deportes,Mexico
+m_189156701c,2024-07-07,Guadalajara,Toluca,0,0,False,Liga MX Apertura 2024,Estadio Akron,Mexico
+m_1d97107c88,2024-07-07,Pumas,León,4,1,False,Liga MX Apertura 2024,Estadio Olímpico Universitario,Mexico
+m_d032e72988,2024-07-07,Tigres,Necaxa,1,0,False,Liga MX Apertura 2024,Estadio Universitario,Mexico
+m_19ec558408,2024-07-08,Pachuca,Monterrey,0,1,False,Liga MX Apertura 2024,Estadio Hidalgo,Mexico
+m_7ad7765968,2024-07-13,América,Querétaro,3,1,False,Liga MX Apertura 2024,Estadio Azteca,Mexico
+m_3ceee82c7f,2024-07-13,Atlas,Tigres,1,1,False,Liga MX Apertura 2024,Jalisco,Mexico
+m_8c327e9999,2024-07-13,León,Pachuca,0,0,False,Liga MX Apertura 2024,Estadio León,Mexico
+m_3d0eb8829e,2024-07-13,Mazatlán,San Luis,2,2,False,Liga MX Apertura 2024,Estadio de Mazatlán,Mexico
+m_9d93e710f7,2024-07-13,Necaxa,Puebla,4,1,False,Liga MX Apertura 2024,Estadio Victoria,Mexico
+m_fa1ff8ac1b,2024-07-13,Tijuana,Guadalajara,4,2,False,Liga MX Apertura 2024,Estadio Caliente,Mexico
+m_0be4275442,2024-07-14,Monterrey,Cruz Azul,0,4,False,Liga MX Apertura 2024,Estadio BBVA,Mexico
+m_6f0e7b9c97,2024-07-14,Santos,Pumas,1,1,False,Liga MX Apertura 2024,Estadio Corona,Mexico
+m_79613f0678,2024-07-14,Toluca,Juárez,3,2,False,Liga MX Apertura 2024,Estadio Nemesio Díez,Mexico
+m_5d3c9c6120,2024-07-17,Atlas,Santos,1,0,False,Liga MX Apertura 2024,Jalisco,Mexico
+m_d7cf107cc7,2024-07-17,Cruz Azul,Tijuana,3,0,False,Liga MX Apertura 2024,Estadio Ciudad de los Deportes,Mexico
+m_330244c9b6,2024-07-17,Pachuca,San Luis,2,0,False,Liga MX Apertura 2024,Estadio Hidalgo,Mexico
+m_c07d9f5427,2024-07-17,Puebla,León,2,2,False,Liga MX Apertura 2024,Estadio Cuauhtémoc,Mexico
+m_41e11d331b,2024-07-17,Querétaro,Guadalajara,0,2,False,Liga MX Apertura 2024,Estadio La Corregidora,Mexico
+m_27f3156a01,2024-07-18,Juárez,Pumas,1,2,False,Liga MX Apertura 2024,Estadio Olímpico Benito Juárez,Mexico
+m_a8259822ae,2024-07-18,Necaxa,Monterrey,0,1,False,Liga MX Apertura 2024,Estadio Victoria,Mexico
+m_b93585c272,2024-07-18,Tigres,América,1,0,False,Liga MX Apertura 2024,Estadio Universitario,Mexico
+m_ed064e5b6a,2024-07-18,Toluca,Mazatlán,3,0,False,Liga MX Apertura 2024,Estadio Nemesio Díez,Mexico
+m_d5d52024fb,2024-07-20,Guadalajara,Mazatlán,2,0,False,Liga MX Apertura 2024,Estadio Akron,Mexico
+m_ce601c0635,2024-07-20,Puebla,Atlas,1,2,False,Liga MX Apertura 2024,Estadio Cuauhtémoc,Mexico
+m_976e7ce416,2024-07-20,San Luis,Tijuana,1,1,False,Liga MX Apertura 2024,Estadio Alfonso Lastras,Mexico
+m_27df5f42a2,2024-07-21,Cruz Azul,Toluca,1,1,False,Liga MX Apertura 2024,Estadio Ciudad de los Deportes,Mexico
+m_a96fe7e1ff,2024-07-21,Juárez,América,1,2,False,Liga MX Apertura 2024,Estadio Olímpico Benito Juárez,Mexico
+m_0148b7c390,2024-07-21,Monterrey,Querétaro,2,1,False,Liga MX Apertura 2024,Estadio BBVA,Mexico
+m_06ef11b5ce,2024-07-21,Pumas,Pachuca,2,0,False,Liga MX Apertura 2024,Estadio Olímpico Universitario,Mexico
+m_ee3615bb1d,2024-07-21,Santos,Tigres,0,3,False,Liga MX Apertura 2024,Estadio Corona,Mexico
+m_6a3b712320,2024-07-22,León,Necaxa,1,1,False,Liga MX Apertura 2024,Estadio León,Mexico
+m_9a3ea843c0,2024-08-17,Puebla,Monterrey,1,2,False,Liga MX Apertura 2024,Estadio Cuauhtémoc,Mexico
+m_3d89a7f64a,2024-08-19,San Luis,Querétaro,4,0,False,Liga MX Apertura 2024,Estadio Alfonso Lastras,Mexico
+m_bcf5ba5fdd,2024-08-19,Tijuana,Santos,3,1,False,Liga MX Apertura 2024,Estadio Caliente,Mexico
+m_60c79e58a8,2024-08-24,Mazatlán,Pachuca,3,0,False,Liga MX Apertura 2024,Estadio de Mazatlán,Mexico
+m_721464d497,2024-08-24,Necaxa,Juárez,3,0,False,Liga MX Apertura 2024,Estadio Victoria,Mexico
+m_4b88c370c4,2024-08-24,Querétaro,Cruz Azul,0,2,False,Liga MX Apertura 2024,Estadio La Corregidora,Mexico
+m_96deb6e960,2024-08-24,Tijuana,Monterrey,2,2,False,Liga MX Apertura 2024,Estadio Caliente,Mexico
+m_d512867127,2024-08-25,América,Puebla,0,1,False,Liga MX Apertura 2024,Estadio Azteca,Mexico
+m_7de014d944,2024-08-25,Atlas,Pumas,2,1,False,Liga MX Apertura 2024,Jalisco,Mexico
+m_0bea5d3455,2024-08-25,León,Santos,1,1,False,Liga MX Apertura 2024,Estadio León,Mexico
+m_297a14ef86,2024-08-25,Tigres,Guadalajara,1,1,False,Liga MX Apertura 2024,Estadio Universitario,Mexico
+m_12ead7f9aa,2024-08-25,Toluca,San Luis,2,1,False,Liga MX Apertura 2024,Estadio Nemesio Díez,Mexico
+m_517eb610cd,2024-08-31,Guadalajara,Juárez,5,0,False,Liga MX Apertura 2024,Estadio Akron,Mexico
+m_c1f7f66213,2024-08-31,Mazatlán,Puebla,1,1,False,Liga MX Apertura 2024,Estadio de Mazatlán,Mexico
+m_3aaa747472,2024-08-31,Pachuca,Querétaro,1,1,False,Liga MX Apertura 2024,Estadio Hidalgo,Mexico
+m_6d9d26cfb0,2024-08-31,San Luis,Atlas,2,1,False,Liga MX Apertura 2024,Estadio Alfonso Lastras,Mexico
+m_d188fcc959,2024-08-31,Tijuana,León,2,1,False,Liga MX Apertura 2024,Estadio Caliente,Mexico
+m_47fa8eb951,2024-09-01,Cruz Azul,América,4,1,False,Liga MX Apertura 2024,Estadio Ciudad de los Deportes,Mexico
+m_c8f2c43ee2,2024-09-01,Monterrey,Toluca,1,2,False,Liga MX Apertura 2024,Estadio BBVA,Mexico
+m_35ff18b840,2024-09-01,Pumas,Tigres,1,3,False,Liga MX Apertura 2024,Estadio Olímpico Universitario,Mexico
+m_57f1ea5784,2024-09-02,Santos,Necaxa,3,2,False,Liga MX Apertura 2024,Estadio Corona,Mexico
+m_d1796b9baf,2024-09-14,Atlas,Pachuca,2,0,False,Liga MX Apertura 2024,Jalisco,Mexico
+m_119ef6c20e,2024-09-14,Juárez,Mazatlán,1,0,False,Liga MX Apertura 2024,Estadio Olímpico Benito Juárez,Mexico
+m_44b522b041,2024-09-14,Necaxa,Pumas,2,0,False,Liga MX Apertura 2024,Estadio Victoria,Mexico
+m_86f0d1f4ec,2024-09-14,Puebla,Querétaro,2,1,False,Liga MX Apertura 2024,Estadio Cuauhtémoc,Mexico
+m_11c5880124,2024-09-14,Tigres,San Luis,1,0,False,Liga MX Apertura 2024,Estadio Universitario,Mexico
+m_0dc70699a6,2024-09-14,Toluca,Tijuana,4,0,False,Liga MX Apertura 2024,Estadio Nemesio Díez,Mexico
+m_9223f59415,2024-09-15,América,Guadalajara,1,0,False,Liga MX Apertura 2024,Estadio Azteca,Mexico
+m_b98662a116,2024-09-15,León,Cruz Azul,1,2,False,Liga MX Apertura 2024,Estadio León,Mexico
+m_05adb7a0fc,2024-09-15,Santos,Monterrey,0,2,False,Liga MX Apertura 2024,Estadio Corona,Mexico
+m_ad728fb05f,2024-09-18,América,Atlas,3,0,False,Liga MX Apertura 2024,Estadio Azteca,Mexico
+m_d2255ac82b,2024-09-18,Pachuca,Toluca,2,2,False,Liga MX Apertura 2024,Estadio Hidalgo,Mexico
+m_8854dbdd67,2024-09-18,Pumas,Puebla,1,0,False,Liga MX Apertura 2024,Estadio Olímpico Universitario,Mexico
+m_30a88f72b7,2024-09-18,Querétaro,Tigres,1,0,False,Liga MX Apertura 2024,Estadio La Corregidora,Mexico
+m_cdda369f36,2024-09-18,San Luis,Cruz Azul,3,1,False,Liga MX Apertura 2024,Estadio Alfonso Lastras,Mexico
+m_eb297d7ef6,2024-09-19,Guadalajara,León,2,0,False,Liga MX Apertura 2024,Estadio Akron,Mexico
+m_8bad487fcc,2024-09-19,Mazatlán,Necaxa,0,0,False,Liga MX Apertura 2024,Estadio de Mazatlán,Mexico
+m_205271817f,2024-09-19,Monterrey,Juárez,3,2,False,Liga MX Apertura 2024,Estadio BBVA,Mexico
+m_81546317ba,2024-09-21,Atlas,Querétaro,0,1,False,Liga MX Apertura 2024,Jalisco,Mexico
+m_04918fe7a5,2024-09-21,León,San Luis,1,0,False,Liga MX Apertura 2024,Estadio León,Mexico
+m_dc25535566,2024-09-21,Puebla,Pachuca,2,3,False,Liga MX Apertura 2024,Estadio Cuauhtémoc,Mexico
+m_e98b8256e2,2024-09-22,Cruz Azul,Guadalajara,1,0,False,Liga MX Apertura 2024,Estadio Ciudad de los Deportes,Mexico
+m_4a5bbb7028,2024-09-22,Monterrey,Mazatlán,0,0,False,Liga MX Apertura 2024,Estadio BBVA,Mexico
+m_c307c6de52,2024-09-22,Necaxa,América,1,1,False,Liga MX Apertura 2024,Estadio Victoria,Mexico
+m_2760e4de72,2024-09-22,Pumas,Tijuana,1,0,False,Liga MX Apertura 2024,Estadio Olímpico Universitario,Mexico
+m_8c75d474c6,2024-09-23,Juárez,Tigres,0,1,False,Liga MX Apertura 2024,Estadio Olímpico Benito Juárez,Mexico
+m_80f1436181,2024-09-23,Santos,Toluca,2,0,False,Liga MX Apertura 2024,Estadio Corona,Mexico
+m_59bdd5907c,2024-09-28,Puebla,Juárez,2,3,False,Liga MX Apertura 2024,Estadio Cuauhtémoc,Mexico
+m_d8ffb8ad71,2024-09-28,Querétaro,Necaxa,0,0,False,Liga MX Apertura 2024,Estadio La Corregidora,Mexico
+m_866b13a6c2,2024-09-28,Tigres,León,2,2,False,Liga MX Apertura 2024,Estadio Universitario,Mexico
+m_afef3ea8c2,2024-09-28,Tijuana,Mazatlán,1,0,False,Liga MX Apertura 2024,Estadio Caliente,Mexico
+m_5a0bcc20b9,2024-09-28,Toluca,Atlas,4,1,False,Liga MX Apertura 2024,Estadio Nemesio Díez,Mexico
+m_16e9990011,2024-09-29,Guadalajara,Monterrey,1,1,False,Liga MX Apertura 2024,Estadio Akron,Mexico
+m_852361d8cd,2024-09-29,Pachuca,Cruz Azul,2,4,False,Liga MX Apertura 2024,Estadio Hidalgo,Mexico
+m_817467906b,2024-09-29,San Luis,Santos,3,1,False,Liga MX Apertura 2024,Estadio Alfonso Lastras,Mexico
+m_1903d44793,2024-09-30,América,Pumas,0,1,False,Liga MX Apertura 2024,Estadio Azteca,Mexico
+m_872791b2e3,2024-10-05,Cruz Azul,Necaxa,3,0,False,Liga MX Apertura 2024,Estadio Ciudad de los Deportes,Mexico
+m_a049dedffc,2024-10-05,Mazatlán,Querétaro,2,2,False,Liga MX Apertura 2024,Estadio de Mazatlán,Mexico
+m_ee1272769b,2024-10-05,San Luis,Monterrey,1,0,False,Liga MX Apertura 2024,Estadio Alfonso Lastras,Mexico
+m_6a43354065,2024-10-05,Tigres,Puebla,1,0,False,Liga MX Apertura 2024,Estadio Universitario,Mexico
+m_0cb09927ed,2024-10-05,Tijuana,Pachuca,2,1,False,Liga MX Apertura 2024,Estadio Caliente,Mexico
+m_820cf7da2b,2024-10-06,Guadalajara,Atlas,2,3,False,Liga MX Apertura 2024,Estadio Akron,Mexico
+m_b89290af6c,2024-10-06,León,América,1,1,False,Liga MX Apertura 2024,Estadio León,Mexico
+m_71d62b48b7,2024-10-06,Toluca,Pumas,1,1,False,Liga MX Apertura 2024,Estadio Nemesio Díez,Mexico
+m_46bf85e652,2024-10-07,Santos,Juárez,0,2,False,Liga MX Apertura 2024,Estadio Corona,Mexico
+m_eab8980be9,2024-10-19,Atlas,Mazatlán,0,0,False,Liga MX Apertura 2024,Jalisco,Mexico
+m_2b44dec379,2024-10-19,Necaxa,Tijuana,1,2,False,Liga MX Apertura 2024,Estadio Victoria,Mexico
+m_6859105215,2024-10-19,Pachuca,Guadalajara,0,2,False,Liga MX Apertura 2024,Estadio Hidalgo,Mexico
+m_742fd9f919,2024-10-19,Puebla,Cruz Azul,1,2,False,Liga MX Apertura 2024,Estadio Cuauhtémoc,Mexico
+m_e03996bfbc,2024-10-19,Querétaro,Toluca,0,1,False,Liga MX Apertura 2024,Estadio La Corregidora,Mexico
+m_a09e7e76fe,2024-10-20,América,Santos,3,0,False,Liga MX Apertura 2024,Estadio Azteca,Mexico
+m_4480d7f92f,2024-10-20,Juárez,León,2,3,False,Liga MX Apertura 2024,Estadio Olímpico Benito Juárez,Mexico
+m_7570715880,2024-10-20,Monterrey,Tigres,4,2,False,Liga MX Apertura 2024,Estadio BBVA,Mexico
+m_3c2a39ca73,2024-10-20,Pumas,San Luis,3,0,False,Liga MX Apertura 2024,Estadio Olímpico Universitario,Mexico
+m_8950f6e269,2024-10-23,Guadalajara,Necaxa,3,2,False,Liga MX Apertura 2024,Estadio Akron,Mexico
+m_2b7cad65b3,2024-10-23,Mazatlán,Tigres,2,0,False,Liga MX Apertura 2024,Estadio de Mazatlán,Mexico
+m_60bae33ce3,2024-10-23,Santos,Pachuca,1,1,False,Liga MX Apertura 2024,Estadio Corona,Mexico
+m_1b4c47a5aa,2024-10-23,Toluca,Puebla,5,0,False,Liga MX Apertura 2024,Estadio Nemesio Díez,Mexico
+m_e732165cca,2024-10-24,Cruz Azul,Juárez,4,0,False,Liga MX Apertura 2024,Estadio Ciudad de los Deportes,Mexico
+m_a021af6775,2024-10-24,León,Atlas,0,0,False,Liga MX Apertura 2024,Estadio León,Mexico
+m_4964a72076,2024-10-24,Monterrey,Pumas,0,0,False,Liga MX Apertura 2024,Estadio BBVA,Mexico
+m_1b9a9a1863,2024-10-24,Tijuana,América,2,2,False,Liga MX Apertura 2024,Estadio Caliente,Mexico
+m_3d616a99cf,2024-10-26,León,Querétaro,4,0,False,Liga MX Apertura 2024,Estadio León,Mexico
+m_a3f09f2b68,2024-10-26,Puebla,Guadalajara,1,0,False,Liga MX Apertura 2024,Estadio Cuauhtémoc,Mexico
+m_9796d31805,2024-10-26,Santos,Mazatlán,0,0,False,Liga MX Apertura 2024,Estadio Corona,Mexico
+m_b91b51a99a,2024-10-27,Atlas,Tijuana,0,0,False,Liga MX Apertura 2024,Jalisco,Mexico
+m_6450ecdfe8,2024-10-27,Pumas,Cruz Azul,0,2,False,Liga MX Apertura 2024,Estadio Olímpico Universitario,Mexico
+m_e2d13e2f40,2024-10-27,Tigres,Pachuca,2,1,False,Liga MX Apertura 2024,Estadio Universitario,Mexico
+m_7a0e95cf42,2024-10-28,América,Monterrey,2,1,False,Liga MX Apertura 2024,Estadio Azteca,Mexico
+m_6e5eed95a8,2024-10-28,Juárez,San Luis,2,4,False,Liga MX Apertura 2024,Estadio Olímpico Benito Juárez,Mexico
+m_03ea299086,2024-10-28,Necaxa,Toluca,1,3,False,Liga MX Apertura 2024,Estadio Victoria,Mexico
+m_8bca1074fc,2024-11-02,Mazatlán,América,0,5,False,Liga MX Apertura 2024,Estadio de Mazatlán,Mexico
+m_24fb9f8e43,2024-11-02,Querétaro,Juárez,1,2,False,Liga MX Apertura 2024,Estadio La Corregidora,Mexico
+m_f21382dff9,2024-11-02,San Luis,Puebla,2,0,False,Liga MX Apertura 2024,Estadio Alfonso Lastras,Mexico
+m_0bcdaaaf24,2024-11-02,Tijuana,Tigres,0,3,False,Liga MX Apertura 2024,Estadio Caliente,Mexico
+m_2d64d28844,2024-11-02,Toluca,León,2,2,False,Liga MX Apertura 2024,Estadio Nemesio Díez,Mexico
+m_a4e7a776b9,2024-11-03,Cruz Azul,Santos,2,0,False,Liga MX Apertura 2024,Estadio Ciudad de los Deportes,Mexico
+m_2050bd6d4e,2024-11-03,Guadalajara,Pumas,0,0,False,Liga MX Apertura 2024,Estadio Akron,Mexico
+m_660b5b8efc,2024-11-03,Monterrey,Atlas,4,0,False,Liga MX Apertura 2024,Estadio BBVA,Mexico
+m_f8fd8e0c43,2024-11-03,Pachuca,Necaxa,6,2,False,Liga MX Apertura 2024,Estadio Hidalgo,Mexico
+m_fceed6be16,2024-11-06,León,Mazatlán,0,0,False,Liga MX Apertura 2024,Estadio León,Mexico
+m_b5342df2ec,2024-11-06,Pumas,Querétaro,2,0,False,Liga MX Apertura 2024,Estadio Olímpico Universitario,Mexico
+m_9cbd1bcd13,2024-11-06,Santos,Guadalajara,0,2,False,Liga MX Apertura 2024,Estadio Corona,Mexico
+m_a7d04b099f,2024-11-07,América,Pachuca,2,1,False,Liga MX Apertura 2024,Estadio Azteca,Mexico
+m_a33d4110d4,2024-11-07,Atlas,Cruz Azul,2,2,False,Liga MX Apertura 2024,Jalisco,Mexico
+m_d6e7ce894a,2024-11-07,Juárez,Tijuana,1,1,False,Liga MX Apertura 2024,Estadio Olímpico Benito Juárez,Mexico
+m_b94b776cc8,2024-11-07,Necaxa,San Luis,1,1,False,Liga MX Apertura 2024,Estadio Victoria,Mexico
+m_f6b0514d74,2024-11-07,Tigres,Toluca,2,1,False,Liga MX Apertura 2024,Estadio Universitario,Mexico
+m_cfe16b8427,2024-11-09,Guadalajara,San Luis,0,1,False,Liga MX Apertura 2024,Estadio Akron,Mexico
+m_89ccc6f3f0,2024-11-09,Mazatlán,Pumas,0,1,False,Liga MX Apertura 2024,Estadio de Mazatlán,Mexico
+m_a2f02de53b,2024-11-09,Querétaro,Santos,3,2,False,Liga MX Apertura 2024,Estadio La Corregidora,Mexico
+m_7c94ee8abf,2024-11-10,Cruz Azul,Tigres,1,1,False,Liga MX Apertura 2024,Estadio Ciudad de los Deportes,Mexico
+m_7a88f88731,2024-11-10,Necaxa,Atlas,0,0,False,Liga MX Apertura 2024,Estadio Victoria,Mexico
+m_4b6b7a8685,2024-11-10,Pachuca,Juárez,0,1,False,Liga MX Apertura 2024,Estadio Hidalgo,Mexico
+m_b625d57dda,2024-11-10,Toluca,América,4,0,False,Liga MX Apertura 2024,Estadio Nemesio Díez,Mexico
+m_f5f752da5d,2024-11-11,Monterrey,León,2,1,False,Liga MX Apertura 2024,Estadio BBVA,Mexico
+m_146a2a7ce9,2024-11-11,Tijuana,Puebla,2,1,False,Liga MX Apertura 2024,Estadio Caliente,Mexico
+m_7786ea6722,2024-11-22,Guadalajara,Atlas,1,2,False,Liga MX Apertura 2024,,Mexico
+m_774a30bfad,2024-11-22,Tijuana,América,2,2,False,Liga MX Apertura 2024,Estadio Caliente,Mexico
+m_7a4fafbbd7,2024-11-25,Tijuana,Atlas,3,0,False,Liga MX Apertura 2024,Estadio Caliente,Mexico
+m_c0832ea910,2024-11-28,América,Toluca,2,0,False,Liga MX Apertura 2024,Estadio Azteca,Mexico
+m_b486a81be2,2024-11-28,Tijuana,Cruz Azul,3,0,False,Liga MX Apertura 2024,Estadio Caliente,Mexico
+m_3e526ec0c6,2024-11-29,Monterrey,Pumas,1,0,False,Liga MX Apertura 2024,Estadio BBVA,Mexico
+m_4abab0659b,2024-11-29,San Luis,Tigres,3,0,False,Liga MX Apertura 2024,,Mexico
+m_b2d1580a35,2024-11-30,Toluca,América,0,2,False,Liga MX Apertura 2024,Estadio Nemesio Díez,Mexico
+m_8d64024699,2024-12-01,Cruz Azul,Tijuana,3,0,False,Liga MX Apertura 2024,Estadio Ciudad de los Deportes,Mexico
+m_4e670c7bd2,2024-12-01,Pumas,Monterrey,3,5,False,Liga MX Apertura 2024,Estadio Olímpico Universitario,Mexico
+m_4fe1bcd622,2024-12-02,Tigres,San Luis,0,0,False,Liga MX Apertura 2024,Estadio Universitario,Mexico
+m_cc9b3c9709,2024-12-05,San Luis,Monterrey,2,1,False,Liga MX Apertura 2024,,Mexico
+m_72ecdce097,2024-12-06,América,Cruz Azul,0,0,False,Liga MX Apertura 2024,Estadio Azteca,Mexico
+m_a25ca09f8c,2024-12-08,Monterrey,San Luis,5,1,False,Liga MX Apertura 2024,Estadio BBVA,Mexico
+m_49260fbaea,2024-12-09,Cruz Azul,América,3,4,False,Liga MX Apertura 2024,Estadio Ciudad de los Deportes,Mexico
+m_79d533ff33,2024-12-13,América,Monterrey,2,1,False,Liga MX Apertura 2024,Estadio Azteca,Mexico
+m_0f8e111db1,2024-12-16,Monterrey,América,1,1,False,Liga MX Apertura 2024,Estadio BBVA,Mexico
+m_2c20bcf28d,2025-01-11,Mazatlán,Juárez,1,1,False,Liga MX Clausura 2025,Estadio de Mazatlán,Mexico
+m_9b66edec7d,2025-01-11,Querétaro,América,0,1,False,Liga MX Clausura 2025,Estadio La Corregidora,Mexico
+m_40ac24eca5,2025-01-11,San Luis,Tigres,1,3,False,Liga MX Clausura 2025,,Mexico
+m_130ca3f7dd,2025-01-11,Tijuana,Toluca,2,4,False,Liga MX Clausura 2025,Estadio Caliente,Mexico
+m_a5026bfc29,2025-01-12,Cruz Azul,Atlas,1,1,False,Liga MX Clausura 2025,Estadio Ciudad de los Deportes,Mexico
+m_35ea7b9a02,2025-01-12,Guadalajara,Santos,1,0,False,Liga MX Clausura 2025,,Mexico
+m_c7f4235973,2025-01-12,Pumas,Necaxa,2,1,False,Liga MX Clausura 2025,Estadio Olímpico Universitario,Mexico
+m_9835c6700c,2025-01-13,Monterrey,Puebla,1,1,False,Liga MX Clausura 2025,Estadio BBVA,Mexico
+m_5b5f518ce6,2025-01-17,América,Tijuana,1,1,False,Liga MX Clausura 2025,Estadio Azteca,Mexico
+m_1a81932629,2025-01-18,Juárez,Cruz Azul,1,0,False,Liga MX Clausura 2025,Estadio Olímpico Benito Juárez,Mexico
+m_0ed39fa2ab,2025-01-18,Necaxa,Guadalajara,3,2,False,Liga MX Clausura 2025,Estadio Victoria,Mexico
+m_1a9b12337a,2025-01-18,Puebla,San Luis,1,2,False,Liga MX Clausura 2025,Estadio Cuauhtémoc,Mexico
+m_5f82f816ce,2025-01-18,Tigres,Mazatlán,2,1,False,Liga MX Clausura 2025,Estadio Universitario,Mexico
+m_af09b0e2b6,2025-01-19,Atlas,León,1,2,False,Liga MX Clausura 2025,Jalisco,Mexico
+m_ef47b75e21,2025-01-19,Querétaro,Pumas,3,2,False,Liga MX Clausura 2025,Estadio La Corregidora,Mexico
+m_c476bd3fa8,2025-01-19,Toluca,Monterrey,1,1,False,Liga MX Clausura 2025,Estadio Nemesio Díez,Mexico
+m_480dc5dbab,2025-01-21,Pachuca,Santos,2,1,False,Liga MX Clausura 2025,Estadio Hidalgo,Mexico
+m_9b872bc571,2025-01-25,Cruz Azul,Puebla,1,1,False,Liga MX Clausura 2025,Estadio Ciudad de los Deportes,Mexico
+m_10ee61615c,2025-01-25,León,Juárez,1,0,False,Liga MX Clausura 2025,Estadio León,Mexico
+m_3dda0087e5,2025-01-25,Mazatlán,Toluca,2,1,False,Liga MX Clausura 2025,Estadio de Mazatlán,Mexico
+m_8460f21800,2025-01-25,San Luis,Necaxa,0,3,False,Liga MX Clausura 2025,,Mexico
+m_320efa47b5,2025-01-25,Tijuana,Querétaro,2,1,False,Liga MX Clausura 2025,Estadio Caliente,Mexico
+m_07235fa23a,2025-01-26,Guadalajara,Tigres,1,1,False,Liga MX Clausura 2025,,Mexico
+m_5aab488597,2025-01-26,Monterrey,Pachuca,2,3,False,Liga MX Clausura 2025,Estadio BBVA,Mexico
+m_614f7b33cc,2025-01-26,Pumas,Atlas,0,0,False,Liga MX Clausura 2025,Estadio Olímpico Universitario,Mexico
+m_f14e89ed60,2025-01-26,Santos,América,1,4,False,Liga MX Clausura 2025,Estadio Corona,Mexico
+m_bada2d2b72,2025-01-29,América,San Luis,3,0,False,Liga MX Clausura 2025,Estadio Azteca,Mexico
+m_cb7682d842,2025-01-29,León,Guadalajara,2,1,False,Liga MX Clausura 2025,Estadio León,Mexico
+m_3ad092685d,2025-01-29,Necaxa,Cruz Azul,1,3,False,Liga MX Clausura 2025,Estadio Victoria,Mexico
+m_25e97c2b32,2025-01-29,Puebla,Mazatlán,0,1,False,Liga MX Clausura 2025,Estadio Cuauhtémoc,Mexico
+m_be8c0188c7,2025-01-29,Tigres,Tijuana,4,0,False,Liga MX Clausura 2025,Estadio Universitario,Mexico
+m_e7350b963f,2025-01-30,Atlas,Monterrey,3,3,False,Liga MX Clausura 2025,Jalisco,Mexico
+m_043c061fc9,2025-01-30,Juárez,Santos,1,0,False,Liga MX Clausura 2025,Estadio Olímpico Benito Juárez,Mexico
+m_5cad1cb02b,2025-01-30,Pumas,Toluca,1,1,False,Liga MX Clausura 2025,Estadio Olímpico Universitario,Mexico
+m_5f686436df,2025-01-30,Querétaro,Pachuca,0,1,False,Liga MX Clausura 2025,Estadio La Corregidora,Mexico
+m_45908d7aa4,2025-02-01,América,Juárez,4,0,False,Liga MX Clausura 2025,Estadio Azteca,Mexico
+m_5807ef5ba2,2025-02-01,Guadalajara,Querétaro,1,1,False,Liga MX Clausura 2025,,Mexico
+m_bad7e3a487,2025-02-01,Mazatlán,León,1,2,False,Liga MX Clausura 2025,Estadio de Mazatlán,Mexico
+m_6192a5c56a,2025-02-01,Tijuana,Cruz Azul,2,3,False,Liga MX Clausura 2025,Estadio Caliente,Mexico
+m_faaa0f4fcf,2025-02-02,Monterrey,Necaxa,1,0,False,Liga MX Clausura 2025,Estadio BBVA,Mexico
+m_b16ce032ff,2025-02-02,Pachuca,Atlas,0,0,False,Liga MX Clausura 2025,Estadio Hidalgo,Mexico
+m_18f25d0ae8,2025-02-02,Santos,Puebla,0,2,False,Liga MX Clausura 2025,Estadio Corona,Mexico
+m_29e07f4044,2025-02-02,Toluca,Tigres,1,0,False,Liga MX Clausura 2025,Estadio Nemesio Díez,Mexico
+m_f6568a3d17,2025-02-03,San Luis,Pumas,2,3,False,Liga MX Clausura 2025,,Mexico
+m_92425737f3,2025-02-06,Pachuca,León,1,2,False,Liga MX Clausura 2025,Estadio Hidalgo,Mexico
+m_3951ee9bc0,2025-02-08,Necaxa,Santos,3,2,False,Liga MX Clausura 2025,Estadio Victoria,Mexico
+m_6cff26917f,2025-02-08,Puebla,América,1,2,False,Liga MX Clausura 2025,Estadio Cuauhtémoc,Mexico
+m_3ebef7d1dc,2025-02-08,Querétaro,San Luis,1,0,False,Liga MX Clausura 2025,Estadio La Corregidora,Mexico
+m_307064e4bf,2025-02-09,Cruz Azul,Pachuca,2,1,False,Liga MX Clausura 2025,Estadio Ciudad de los Deportes,Mexico
+m_ec40b7ecbc,2025-02-09,Juárez,Monterrey,2,1,False,Liga MX Clausura 2025,Estadio Olímpico Benito Juárez,Mexico
+m_50fffabfda,2025-02-09,León,Toluca,3,3,False,Liga MX Clausura 2025,Estadio León,Mexico
+m_bd2169777a,2025-02-09,Tigres,Atlas,2,1,False,Liga MX Clausura 2025,Estadio Universitario,Mexico
+m_6f7e201285,2025-02-10,Guadalajara,Tijuana,2,1,False,Liga MX Clausura 2025,,Mexico
+m_a77fb46257,2025-02-10,Pumas,Mazatlán,1,0,False,Liga MX Clausura 2025,Estadio Olímpico Universitario,Mexico
+m_3f35f158d2,2025-02-15,América,Necaxa,2,3,False,Liga MX Clausura 2025,Estadio Azteca,Mexico
+m_1d1f58d151,2025-02-15,Atlas,Puebla,3,2,False,Liga MX Clausura 2025,Jalisco,Mexico
+m_b745418761,2025-02-15,Mazatlán,Santos,1,1,False,Liga MX Clausura 2025,Estadio de Mazatlán,Mexico
+m_e03b95cd94,2025-02-15,Tijuana,Juárez,1,2,False,Liga MX Clausura 2025,Estadio Caliente,Mexico
+m_afe41edb5b,2025-02-16,Querétaro,Monterrey,2,4,False,Liga MX Clausura 2025,Estadio La Corregidora,Mexico
+m_993fc2dbcf,2025-02-16,Tigres,Cruz Azul,2,1,False,Liga MX Clausura 2025,Estadio Universitario,Mexico
+m_fe8509670a,2025-02-16,Toluca,Guadalajara,2,1,False,Liga MX Clausura 2025,Estadio Nemesio Díez,Mexico
+m_2138cf6c34,2025-02-17,Pachuca,Pumas,2,1,False,Liga MX Clausura 2025,Estadio Hidalgo,Mexico
+m_c760931672,2025-02-17,San Luis,León,1,2,False,Liga MX Clausura 2025,,Mexico
+m_b669a08496,2025-02-19,Atlas,Necaxa,0,4,False,Liga MX Clausura 2025,Jalisco,Mexico
+m_f56777196b,2025-02-20,América,León,1,1,False,Liga MX Clausura 2025,Estadio Azteca,Mexico
+m_2c7606bd0b,2025-02-20,Santos,Cruz Azul,0,1,False,Liga MX Clausura 2025,Estadio Corona,Mexico
+m_f3c6746d3c,2025-02-22,Juárez,Toluca,0,4,False,Liga MX Clausura 2025,Estadio Olímpico Benito Juárez,Mexico
+m_ace7dd0af7,2025-02-22,Necaxa,Mazatlán,3,1,False,Liga MX Clausura 2025,Estadio Victoria,Mexico
+m_52f321dd80,2025-02-22,Puebla,Tijuana,2,0,False,Liga MX Clausura 2025,Estadio Cuauhtémoc,Mexico
+m_4cede45d2d,2025-02-23,Guadalajara,Pachuca,2,1,False,Liga MX Clausura 2025,,Mexico
+m_c9c104c6ba,2025-02-23,León,Tigres,1,0,False,Liga MX Clausura 2025,Estadio León,Mexico
+m_3429152845,2025-02-23,Monterrey,San Luis,3,1,False,Liga MX Clausura 2025,Estadio BBVA,Mexico
+m_c6b99cddb0,2025-02-23,Pumas,América,0,2,False,Liga MX Clausura 2025,Estadio Olímpico Universitario,Mexico
+m_62f301440d,2025-02-23,Santos,Atlas,2,0,False,Liga MX Clausura 2025,Estadio Corona,Mexico
+m_794bfca673,2025-02-24,Cruz Azul,Querétaro,1,0,False,Liga MX Clausura 2025,Estadio Ciudad de los Deportes,Mexico
+m_53b0088049,2025-02-26,Mazatlán,Monterrey,1,0,False,Liga MX Clausura 2025,Estadio de Mazatlán,Mexico
+m_b81b49a8b9,2025-02-26,Tigres,Juárez,0,1,False,Liga MX Clausura 2025,Estadio Universitario,Mexico
+m_9f35bfb236,2025-02-26,Tijuana,Pumas,4,2,False,Liga MX Clausura 2025,Estadio Caliente,Mexico
+m_2f1195ecee,2025-02-27,Pachuca,Puebla,2,1,False,Liga MX Clausura 2025,Estadio Hidalgo,Mexico
+m_73251e10cc,2025-02-27,San Luis,Guadalajara,3,1,False,Liga MX Clausura 2025,,Mexico
+m_a47fbc39eb,2025-02-27,Toluca,Querétaro,5,0,False,Liga MX Clausura 2025,Estadio Nemesio Díez,Mexico
+m_c2e532e5ad,2025-03-01,América,Toluca,3,0,False,Liga MX Clausura 2025,Estadio Azteca,Mexico
+m_bb11bda9ff,2025-03-01,Juárez,Pachuca,2,2,False,Liga MX Clausura 2025,Estadio Olímpico Benito Juárez,Mexico
+m_5e10254d3a,2025-03-01,Mazatlán,Cruz Azul,1,1,False,Liga MX Clausura 2025,Estadio de Mazatlán,Mexico
+m_1f5c95f76f,2025-03-02,León,Tijuana,2,1,False,Liga MX Clausura 2025,Estadio León,Mexico
+m_07e1f8522d,2025-03-02,Necaxa,Tigres,1,2,False,Liga MX Clausura 2025,Estadio Victoria,Mexico
+m_b5dc8c17e2,2025-03-02,Pumas,Guadalajara,0,1,False,Liga MX Clausura 2025,Estadio Olímpico Universitario,Mexico
+m_b88d3fa6af,2025-03-02,Querétaro,Puebla,2,0,False,Liga MX Clausura 2025,Estadio La Corregidora,Mexico
+m_5938af7518,2025-03-03,Atlas,San Luis,3,1,False,Liga MX Clausura 2025,Jalisco,Mexico
+m_dd82ce89e3,2025-03-03,Monterrey,Santos,4,2,False,Liga MX Clausura 2025,Estadio BBVA,Mexico
+m_f24925cdfe,2025-03-08,Puebla,Pumas,1,3,False,Liga MX Clausura 2025,Estadio Cuauhtémoc,Mexico
+m_72853d20ab,2025-03-08,San Luis,Juárez,1,0,False,Liga MX Clausura 2025,,Mexico
+m_b5f1d4bece,2025-03-08,Tigres,Querétaro,1,0,False,Liga MX Clausura 2025,Estadio Universitario,Mexico
+m_f0611c9266,2025-03-08,Toluca,Necaxa,5,2,False,Liga MX Clausura 2025,Estadio Nemesio Díez,Mexico
+m_d919532871,2025-03-09,Cruz Azul,Monterrey,1,1,False,Liga MX Clausura 2025,Estadio Ciudad de los Deportes,Mexico
+m_621b22057c,2025-03-09,Guadalajara,América,0,0,False,Liga MX Clausura 2025,,Mexico
+m_f90744f39c,2025-03-09,Pachuca,Mazatlán,1,1,False,Liga MX Clausura 2025,Estadio Hidalgo,Mexico
+m_4bbbf6b72f,2025-03-09,Santos,León,2,1,False,Liga MX Clausura 2025,Estadio Corona,Mexico
+m_df868c422c,2025-03-10,Tijuana,Atlas,3,4,False,Liga MX Clausura 2025,Estadio Caliente,Mexico
+m_5e7ac5939b,2025-03-15,Necaxa,León,2,1,False,Liga MX Clausura 2025,Estadio Victoria,Mexico
+m_ac3b514d68,2025-03-15,Puebla,Toluca,0,3,False,Liga MX Clausura 2025,Estadio Cuauhtémoc,Mexico
+m_dc430e3512,2025-03-15,Querétaro,Mazatlán,1,0,False,Liga MX Clausura 2025,Estadio La Corregidora,Mexico
+m_1519e613e0,2025-03-15,Tigres,Santos,3,0,False,Liga MX Clausura 2025,Estadio Universitario,Mexico
+m_bbde60849a,2025-03-16,Atlas,América,1,3,False,Liga MX Clausura 2025,Jalisco,Mexico
+m_42f94acdf8,2025-03-16,Cruz Azul,San Luis,3,0,False,Liga MX Clausura 2025,Estadio Ciudad de los Deportes,Mexico
+m_4a1faa5b5d,2025-03-16,Juárez,Guadalajara,1,1,False,Liga MX Clausura 2025,Estadio Olímpico Benito Juárez,Mexico
+m_1b9f0becf0,2025-03-17,Pachuca,Tijuana,4,1,False,Liga MX Clausura 2025,Estadio Hidalgo,Mexico
+m_6fe1a2aca7,2025-03-17,Pumas,Monterrey,1,3,False,Liga MX Clausura 2025,Estadio Olímpico Universitario,Mexico
+m_8665938e16,2025-03-29,Juárez,Puebla,2,0,False,Liga MX Clausura 2025,Estadio Olímpico Benito Juárez,Mexico
+m_c968a80a89,2025-03-29,Mazatlán,Atlas,3,2,False,Liga MX Clausura 2025,Estadio de Mazatlán,Mexico
+m_b72c693780,2025-03-29,Necaxa,Querétaro,2,0,False,Liga MX Clausura 2025,Estadio Victoria,Mexico
+m_b86d846d52,2025-03-29,Toluca,Pachuca,3,2,False,Liga MX Clausura 2025,Estadio Nemesio Díez,Mexico
+m_e34d05ad6d,2025-03-30,América,Tigres,3,0,False,Liga MX Clausura 2025,Estadio Azteca,Mexico
+m_dbe549917c,2025-03-30,Guadalajara,Cruz Azul,0,1,False,Liga MX Clausura 2025,,Mexico
+m_b1431e993c,2025-03-30,Monterrey,Tijuana,1,2,False,Liga MX Clausura 2025,Estadio BBVA,Mexico
+m_bf8d481eb8,2025-03-30,Santos,San Luis,2,3,False,Liga MX Clausura 2025,Estadio Corona,Mexico
+m_41e5c9051e,2025-03-31,León,Pumas,1,2,False,Liga MX Clausura 2025,Estadio León,Mexico
+m_b0d0473ce2,2025-04-05,Atlas,Juárez,1,1,False,Liga MX Clausura 2025,Jalisco,Mexico
+m_0535516ddd,2025-04-05,Pachuca,América,1,0,False,Liga MX Clausura 2025,Estadio Hidalgo,Mexico
+m_9a5664b6e4,2025-04-05,Puebla,Tigres,0,0,False,Liga MX Clausura 2025,Estadio Cuauhtémoc,Mexico
+m_4c2338f89d,2025-04-05,Querétaro,León,1,1,False,Liga MX Clausura 2025,Estadio La Corregidora,Mexico
+m_d2c4c0dea0,2025-04-05,Tijuana,Necaxa,1,2,False,Liga MX Clausura 2025,Estadio Caliente,Mexico
+m_e716aaba1e,2025-04-06,Cruz Azul,Pumas,3,2,False,Liga MX Clausura 2025,Estadio Ciudad de los Deportes,Mexico
+m_68bdfd533a,2025-04-06,Monterrey,Guadalajara,3,1,False,Liga MX Clausura 2025,Estadio BBVA,Mexico
+m_fbf685ba98,2025-04-06,San Luis,Mazatlán,2,1,False,Liga MX Clausura 2025,,Mexico
+m_bb31a65932,2025-04-07,Toluca,Santos,2,1,False,Liga MX Clausura 2025,Estadio Nemesio Díez,Mexico
+m_477c436353,2025-04-11,Tijuana,San Luis,2,1,False,Liga MX Clausura 2025,Estadio Caliente,Mexico
+m_5c4e4aea3b,2025-04-12,León,Puebla,1,0,False,Liga MX Clausura 2025,Estadio León,Mexico
+m_c12160fc05,2025-04-12,Mazatlán,Guadalajara,1,1,False,Liga MX Clausura 2025,Estadio de Mazatlán,Mexico
+m_8bab834128,2025-04-12,Necaxa,Pachuca,3,5,False,Liga MX Clausura 2025,Estadio Victoria,Mexico
+m_2af5fe4cf6,2025-04-12,Pumas,Juárez,0,0,False,Liga MX Clausura 2025,Estadio Olímpico Universitario,Mexico
+m_bd00ae230f,2025-04-13,América,Cruz Azul,0,0,False,Liga MX Clausura 2025,Estadio Azteca,Mexico
+m_0f0170e300,2025-04-13,Atlas,Toluca,2,3,False,Liga MX Clausura 2025,Jalisco,Mexico
+m_b897fe800f,2025-04-13,Santos,Querétaro,1,2,False,Liga MX Clausura 2025,Estadio Corona,Mexico
+m_d6d23ebd8b,2025-04-13,Tigres,Monterrey,2,1,False,Liga MX Clausura 2025,Estadio Universitario,Mexico
+m_c5477e232c,2025-04-16,Cruz Azul,León,2,1,False,Liga MX Clausura 2025,Estadio Ciudad de los Deportes,Mexico
+m_c23787719e,2025-04-16,Guadalajara,Puebla,1,0,False,Liga MX Clausura 2025,,Mexico
+m_274def5e5d,2025-04-16,Juárez,Necaxa,2,2,False,Liga MX Clausura 2025,Estadio Olímpico Benito Juárez,Mexico
+m_dae8c34f51,2025-04-16,Pachuca,Tigres,0,0,False,Liga MX Clausura 2025,Estadio Hidalgo,Mexico
+m_7ea95c52b8,2025-04-17,Mazatlán,Tijuana,0,2,False,Liga MX Clausura 2025,Estadio de Mazatlán,Mexico
+m_1c091ec4b0,2025-04-17,Monterrey,América,1,0,False,Liga MX Clausura 2025,Estadio BBVA,Mexico
+m_3fdea9a295,2025-04-17,Pumas,Santos,2,0,False,Liga MX Clausura 2025,Estadio Olímpico Universitario,Mexico
+m_47d9cab5e6,2025-04-17,Querétaro,Atlas,1,2,False,Liga MX Clausura 2025,Estadio La Corregidora,Mexico
+m_26ffc1004b,2025-04-17,San Luis,Toluca,0,1,False,Liga MX Clausura 2025,Estadio Alfonso Lastras Ramírez,Mexico
+m_6aaebf1718,2025-04-19,América,Mazatlán,5,0,False,Liga MX Clausura 2025,Estadio Azteca,Mexico
+m_562fa6a639,2025-04-19,Puebla,Necaxa,0,1,False,Liga MX Clausura 2025,Estadio Cuauhtémoc,Mexico
+m_30053a5b80,2025-04-20,Atlas,Guadalajara,1,1,False,Liga MX Clausura 2025,Jalisco,Mexico
+m_c7c37927a8,2025-04-20,Santos,Tijuana,0,4,False,Liga MX Clausura 2025,Estadio Corona,Mexico
+m_82e49e320c,2025-04-20,Tigres,Pumas,2,1,False,Liga MX Clausura 2025,Estadio Universitario,Mexico
+m_f332b11123,2025-04-20,Toluca,Cruz Azul,2,2,False,Liga MX Clausura 2025,Estadio Nemesio Díez,Mexico
+m_fc8353327e,2025-04-21,Juárez,Querétaro,0,2,False,Liga MX Clausura 2025,Estadio Olímpico Benito Juárez,Mexico
+m_e2f11e6c4c,2025-04-21,León,Monterrey,0,2,False,Liga MX Clausura 2025,Estadio León,Mexico
+m_b24e52d98e,2025-04-21,San Luis,Pachuca,2,1,False,Liga MX Clausura 2025,Estadio Alfonso Lastras Ramírez,Mexico
+m_87c326c385,2025-04-28,Juárez,Pumas,1,1,False,Liga MX Clausura 2025,Estadio Olímpico Benito Juárez,Mexico
+m_b9fec1ba5c,2025-04-28,Monterrey,Pachuca,1,2,False,Liga MX Clausura 2025,Estadio BBVA,Mexico
+m_9fac4c7229,2025-05-05,Monterrey,Pumas,2,0,False,Liga MX Clausura 2025,Estadio BBVA,Mexico
+m_615845339c,2025-05-08,Monterrey,Toluca,3,2,False,Liga MX Clausura 2025,Estadio BBVA,Mexico
+m_24de65cf05,2025-05-08,Pachuca,América,0,0,False,Liga MX Clausura 2025,Estadio Hidalgo,Mexico
+m_2d66718e07,2025-05-09,León,Cruz Azul,2,3,False,Liga MX Clausura 2025,Estadio León,Mexico
+m_fd54e40d8e,2025-05-09,Necaxa,Tigres,0,0,False,Liga MX Clausura 2025,Estadio Victoria,Mexico
+m_f2746a9575,2025-05-11,América,Pachuca,2,0,False,Liga MX Clausura 2025,Estadio Azteca,Mexico
+m_16378b2c00,2025-05-11,Toluca,Monterrey,2,1,False,Liga MX Clausura 2025,Estadio Nemesio Díez,Mexico
+m_587d6c4a1e,2025-05-12,Cruz Azul,León,2,1,False,Liga MX Clausura 2025,Estadio Olímpico Universitario,Mexico
+m_c2760169fa,2025-05-12,Tigres,Necaxa,2,2,False,Liga MX Clausura 2025,Estadio Universitario,Mexico
+m_fde14f7bc2,2025-05-15,Tigres,Toluca,1,1,False,Liga MX Clausura 2025,Estadio Universitario,Mexico
+m_ce503f2e05,2025-05-16,Cruz Azul,América,1,0,False,Liga MX Clausura 2025,Estadio Olímpico Universitario,Mexico
+m_c43362389a,2025-05-18,Toluca,Tigres,3,0,False,Liga MX Clausura 2025,Estadio Nemesio Díez,Mexico
+m_238fae5770,2025-05-19,América,Cruz Azul,2,1,False,Liga MX Clausura 2025,Estadio Azteca,Mexico
+m_0133ae196c,2025-05-23,América,Toluca,0,0,False,Liga MX Clausura 2025,Estadio Ciudad de los Deportes,Mexico
+m_60dfd5841a,2025-05-26,Toluca,América,2,0,False,Liga MX Clausura 2025,Estadio Nemesio Díez,Mexico
+m_d945a66d83,2025-07-12,Juárez,América,1,1,False,Liga MX Apertura 2025,Estadio Olímpico Benito Juárez,Mexico
+m_58b231e47b,2025-07-12,Puebla,Atlas,2,3,False,Liga MX Apertura 2025,Estadio Cuauhtémoc,Mexico
+m_74c15b3b8b,2025-07-12,Tijuana,Querétaro,1,0,False,Liga MX Apertura 2025,Estadio Caliente,Mexico
+m_ef6c790e5a,2025-07-13,Cruz Azul,Mazatlán,0,0,False,Liga MX Apertura 2025,Estadio Olímpico Universitario,Mexico
+m_bbf49f42af,2025-07-13,Pachuca,Monterrey,3,0,False,Liga MX Apertura 2025,Estadio Hidalgo,Mexico
+m_46225afb18,2025-07-13,Santos,Pumas,3,0,False,Liga MX Apertura 2025,Estadio Corona,Mexico
+m_7bef0b32aa,2025-07-13,Toluca,Necaxa,3,1,False,Liga MX Apertura 2025,Estadio Nemesio Díez,Mexico
+m_5f1170fd66,2025-07-14,León,San Luis,0,1,False,Liga MX Apertura 2025,Estadio León,Mexico
+m_7390c18e4a,2025-07-17,América,Tijuana,3,1,False,Liga MX Apertura 2025,Estadio Ciudad de los Deportes,Mexico
+m_0900db920b,2025-07-17,Santos,Toluca,2,4,False,Liga MX Apertura 2025,Estadio Corona,Mexico
+m_3bee16dfd1,2025-07-19,Mazatlán,Puebla,2,1,False,Liga MX Apertura 2025,Estadio de Mazatlán,Mexico
+m_a1281c9180,2025-07-19,Necaxa,Querétaro,3,1,False,Liga MX Apertura 2025,Estadio Victoria,Mexico
+m_b4b9cf00ac,2025-07-19,San Luis,Monterrey,0,1,False,Liga MX Apertura 2025,Estadio Alfonso Lastras Ramírez,Mexico
+m_4a73552273,2025-07-20,Atlas,Cruz Azul,3,3,False,Liga MX Apertura 2025,Estadio Jalisco,Mexico
+m_6cfe309d65,2025-07-20,León,Guadalajara,1,0,False,Liga MX Apertura 2025,Estadio León,Mexico
+m_76585b9b31,2025-07-20,Pumas,Pachuca,2,3,False,Liga MX Apertura 2025,Estadio Olímpico Universitario,Mexico
+m_04756e12d0,2025-07-20,Tigres,Juárez,1,0,False,Liga MX Apertura 2025,Estadio Universitario UANL,Mexico
+m_7a45666c9f,2025-07-26,Guadalajara,San Luis,4,3,False,Liga MX Apertura 2025,Estadio Akron,Mexico
+m_71d244f5f4,2025-07-26,Pachuca,Mazatlán,1,0,False,Liga MX Apertura 2025,Estadio Hidalgo,Mexico
+m_0d0f88e1ae,2025-07-26,Puebla,Santos,1,0,False,Liga MX Apertura 2025,Estadio Cuauhtémoc,Mexico
+m_f6bab60a73,2025-07-26,Querétaro,Pumas,0,2,False,Liga MX Apertura 2025,Estadio La Corregidora,Mexico
+m_46555411de,2025-07-26,Tijuana,Juárez,1,1,False,Liga MX Apertura 2025,Estadio Caliente,Mexico
+m_b2177e156e,2025-07-27,Cruz Azul,León,4,1,False,Liga MX Apertura 2025,Estadio Olímpico Universitario,Mexico
+m_9a2ebb6f96,2025-07-27,Monterrey,Atlas,3,1,False,Liga MX Apertura 2025,Estadio BBVA,Mexico
+m_62048e3f37,2025-07-27,Necaxa,América,1,1,False,Liga MX Apertura 2025,Estadio Victoria,Mexico
+m_0e4b5c7c2e,2025-07-27,Toluca,Tigres,3,4,False,Liga MX Apertura 2025,Estadio Nemesio Díez,Mexico
+m_22085b3fdd,2025-08-09,Tigres,Puebla,7,0,False,Liga MX Apertura 2025,Estadio Universitario UANL,Mexico
+m_34010f5142,2025-08-10,América,Querétaro,1,0,False,Liga MX Apertura 2025,Estadio Ciudad de los Deportes,Mexico
+m_f8ee94c4cb,2025-08-10,Atlas,Pachuca,0,3,False,Liga MX Apertura 2025,Estadio Jalisco,Mexico
+m_472f3d6f24,2025-08-10,Mazatlán,Tijuana,2,2,False,Liga MX Apertura 2025,Estadio de Mazatlán,Mexico
+m_a24f49f214,2025-08-11,Pumas,Necaxa,1,1,False,Liga MX Apertura 2025,Estadio Olímpico Universitario,Mexico
+m_fd08b93239,2025-08-11,Santos,Guadalajara,1,0,False,Liga MX Apertura 2025,Estadio Corona,Mexico
+m_f7c2127dbe,2025-08-12,Juárez,Toluca,0,2,False,Liga MX Apertura 2025,Estadio Olímpico Benito Juárez,Mexico
+m_b5e65accfc,2025-08-12,León,Monterrey,1,3,False,Liga MX Apertura 2025,Estadio León,Mexico
+m_5a3f4a3c59,2025-08-12,San Luis,Cruz Azul,1,2,False,Liga MX Apertura 2025,Estadio Alfonso Lastras Ramírez,Mexico
+m_acca00db97,2025-08-16,Guadalajara,Juárez,1,2,False,Liga MX Apertura 2025,Estadio Akron,Mexico
+m_46fb83fe37,2025-08-16,Necaxa,León,0,1,False,Liga MX Apertura 2025,Estadio Victoria,Mexico
+m_fcceed788b,2025-08-16,Puebla,San Luis,0,2,False,Liga MX Apertura 2025,Estadio Cuauhtémoc,Mexico
+m_26bcb5472d,2025-08-17,Cruz Azul,Santos,3,2,False,Liga MX Apertura 2025,Estadio Olímpico Universitario,Mexico
+m_313bee84b2,2025-08-17,Pachuca,Tijuana,0,2,False,Liga MX Apertura 2025,Estadio Hidalgo,Mexico
+m_ffe85b248d,2025-08-17,Querétaro,Atlas,3,3,False,Liga MX Apertura 2025,Estadio La Corregidora,Mexico
+m_1ab1846bdd,2025-08-17,Tigres,América,1,3,False,Liga MX Apertura 2025,Estadio Universitario UANL,Mexico
+m_bab73048e0,2025-08-17,Toluca,Pumas,1,1,False,Liga MX Apertura 2025,Estadio Nemesio Díez,Mexico
+m_fe020a0331,2025-08-18,Monterrey,Mazatlán,3,2,False,Liga MX Apertura 2025,Estadio BBVA,Mexico
+m_f1f1fe5d01,2025-08-23,Juárez,Santos,2,1,False,Liga MX Apertura 2025,Estadio Olímpico Benito Juárez,Mexico
+m_4ed49dc5ba,2025-08-23,León,Pachuca,1,1,False,Liga MX Apertura 2025,Estadio León,Mexico
+m_b0226ffb9b,2025-08-23,Querétaro,San Luis,3,2,False,Liga MX Apertura 2025,Estadio La Corregidora,Mexico
+m_d0f7d04f7d,2025-08-23,Tijuana,Guadalajara,3,3,False,Liga MX Apertura 2025,Estadio Caliente,Mexico
+m_bd13fa000a,2025-08-24,Cruz Azul,Toluca,1,0,False,Liga MX Apertura 2025,Estadio Olímpico Universitario,Mexico
+m_bf72693afa,2025-08-24,Mazatlán,Tigres,2,2,False,Liga MX Apertura 2025,Estadio de Mazatlán,Mexico
+m_914e94af18,2025-08-24,Monterrey,Necaxa,3,0,False,Liga MX Apertura 2025,Estadio BBVA,Mexico
+m_c309fb7205,2025-08-24,Pumas,Puebla,0,0,False,Liga MX Apertura 2025,Estadio Olímpico Universitario,Mexico
+m_eac52497ef,2025-08-25,Atlas,América,2,4,False,Liga MX Apertura 2025,Estadio Jalisco,Mexico
+m_2ef3cc2d1c,2025-08-30,Juárez,Mazatlán,1,0,False,Liga MX Apertura 2025,Estadio Olímpico Benito Juárez,Mexico
+m_2f4b20c33d,2025-08-30,León,Querétaro,3,0,False,Liga MX Apertura 2025,Estadio León,Mexico
+m_4a0a27002c,2025-08-30,Puebla,Monterrey,2,4,False,Liga MX Apertura 2025,Estadio Cuauhtémoc,Mexico
+m_58cde66634,2025-08-30,San Luis,Toluca,1,3,False,Liga MX Apertura 2025,Estadio Alfonso Lastras Ramírez,Mexico
+m_1ece60a61f,2025-08-31,América,Pachuca,2,0,False,Liga MX Apertura 2025,Estadio Ciudad de los Deportes,Mexico
+m_9026324d92,2025-08-31,Guadalajara,Cruz Azul,1,2,False,Liga MX Apertura 2025,Estadio Akron,Mexico
+m_36c7798567,2025-08-31,Pumas,Atlas,1,0,False,Liga MX Apertura 2025,Estadio Olímpico Universitario,Mexico
+m_591b2dcc76,2025-08-31,Santos,Tigres,0,1,False,Liga MX Apertura 2025,Estadio Corona,Mexico
+m_ff9c3b5041,2025-09-01,Tijuana,Necaxa,3,0,False,Liga MX Apertura 2025,Estadio Caliente,Mexico
+m_cad0055815,2025-09-13,Mazatlán,Pumas,1,4,False,Liga MX Apertura 2025,Estadio de Mazatlán,Mexico
+m_2a1f189f99,2025-09-13,Necaxa,Juárez,1,1,False,Liga MX Apertura 2025,Estadio Victoria,Mexico
+m_cb10c5d69d,2025-09-13,Pachuca,Cruz Azul,0,1,False,Liga MX Apertura 2025,Estadio Hidalgo,Mexico
+m_64a8b9a7a8,2025-09-14,América,Guadalajara,1,2,False,Liga MX Apertura 2025,Estadio Ciudad de los Deportes,Mexico
+m_88e3408054,2025-09-14,Atlas,Santos,2,2,False,Liga MX Apertura 2025,Estadio Jalisco,Mexico
+m_9a64015057,2025-09-14,Querétaro,Monterrey,0,1,False,Liga MX Apertura 2025,Estadio La Corregidora,Mexico
+m_ef0f807ef3,2025-09-14,Tigres,León,0,0,False,Liga MX Apertura 2025,Estadio Universitario UANL,Mexico
+m_9d42767194,2025-09-14,Toluca,Puebla,3,1,False,Liga MX Apertura 2025,Estadio Nemesio Díez,Mexico
+m_f211818f45,2025-09-15,San Luis,Tijuana,1,1,False,Liga MX Apertura 2025,Estadio Alfonso Lastras Ramírez,Mexico
+m_240a2f5bf6,2025-09-18,Guadalajara,Tigres,0,0,False,Liga MX Apertura 2025,Estadio Akron,Mexico
+m_2ad914a2dc,2025-09-20,Cruz Azul,Juárez,3,2,False,Liga MX Apertura 2025,Estadio Olímpico Universitario,Mexico
+m_cd2687238c,2025-09-20,Mazatlán,Atlas,1,1,False,Liga MX Apertura 2025,Estadio de Mazatlán,Mexico
+m_79e3f5783a,2025-09-20,Necaxa,Puebla,1,0,False,Liga MX Apertura 2025,Estadio Victoria,Mexico
+m_e613e9f733,2025-09-20,Pachuca,Querétaro,0,2,False,Liga MX Apertura 2025,Estadio Hidalgo,Mexico
+m_fbad5cb891,2025-09-20,Tijuana,León,5,0,False,Liga MX Apertura 2025,Estadio Caliente,Mexico
+m_3fb43198a5,2025-09-21,Guadalajara,Toluca,0,3,False,Liga MX Apertura 2025,Estadio Akron,Mexico
+m_84183cedf5,2025-09-21,Monterrey,América,2,2,False,Liga MX Apertura 2025,Estadio BBVA,Mexico
+m_aef3960efb,2025-09-21,Pumas,Tigres,1,1,False,Liga MX Apertura 2025,Estadio Olímpico Universitario,Mexico
+m_1988c02cbf,2025-09-21,Santos,San Luis,1,4,False,Liga MX Apertura 2025,Estadio Corona,Mexico
+m_30cf9e923e,2025-09-24,Guadalajara,Necaxa,3,1,False,Liga MX Apertura 2025,Estadio Akron,Mexico
+m_0720f191d8,2025-09-24,Juárez,Pumas,3,1,False,Liga MX Apertura 2025,Estadio Olímpico Benito Juárez,Mexico
+m_c7b692bc33,2025-09-24,León,Mazatlán,2,2,False,Liga MX Apertura 2025,Estadio León,Mexico
+m_f09c595c43,2025-09-24,Puebla,Pachuca,2,2,False,Liga MX Apertura 2025,Estadio Cuauhtémoc,Mexico
+m_b033f03a9a,2025-09-25,Cruz Azul,Querétaro,2,2,False,Liga MX Apertura 2025,Estadio Olímpico Universitario,Mexico
+m_4aa140573b,2025-09-25,San Luis,América,0,1,False,Liga MX Apertura 2025,Estadio Alfonso Lastras Ramírez,Mexico
+m_04196a8485,2025-09-25,Santos,Tijuana,1,0,False,Liga MX Apertura 2025,Estadio Corona,Mexico
+m_19c440eb80,2025-09-25,Tigres,Atlas,2,0,False,Liga MX Apertura 2025,Estadio Universitario UANL,Mexico
+m_c2a3cfc741,2025-09-25,Toluca,Monterrey,6,2,False,Liga MX Apertura 2025,Estadio Nemesio Díez,Mexico
+m_9f06758040,2025-09-27,Atlas,Necaxa,3,2,False,Liga MX Apertura 2025,Estadio Jalisco,Mexico
+m_088338e5c4,2025-09-27,Juárez,León,2,0,False,Liga MX Apertura 2025,Estadio Olímpico Benito Juárez,Mexico
+m_554a74850f,2025-09-27,Pachuca,San Luis,2,1,False,Liga MX Apertura 2025,Estadio Hidalgo,Mexico
+m_c87ba077e8,2025-09-27,Puebla,Guadalajara,0,2,False,Liga MX Apertura 2025,Estadio Cuauhtémoc,Mexico
+m_649e998fe8,2025-09-28,América,Pumas,4,1,False,Liga MX Apertura 2025,Estadio Ciudad de los Deportes,Mexico
+m_df3c51e085,2025-09-28,Monterrey,Santos,1,0,False,Liga MX Apertura 2025,Estadio BBVA,Mexico
+m_f66d4db830,2025-09-28,Querétaro,Tigres,0,2,False,Liga MX Apertura 2025,Estadio La Corregidora,Mexico
+m_d300a59895,2025-09-28,Toluca,Mazatlán,3,1,False,Liga MX Apertura 2025,Estadio Nemesio Díez,Mexico
+m_e61de3dabc,2025-09-29,Tijuana,Cruz Azul,2,0,False,Liga MX Apertura 2025,Estadio Caliente,Mexico
+m_553e69d2f1,2025-10-04,Atlas,Juárez,3,1,False,Liga MX Apertura 2025,Estadio Jalisco,Mexico
+m_484245f814,2025-10-04,Mazatlán,San Luis,2,1,False,Liga MX Apertura 2025,Estadio de Mazatlán,Mexico
+m_c6d4a3943d,2025-10-04,Necaxa,Pachuca,0,1,False,Liga MX Apertura 2025,Estadio Victoria,Mexico
+m_633b04026c,2025-10-04,Querétaro,Puebla,3,1,False,Liga MX Apertura 2025,Estadio La Corregidora,Mexico
+m_be85cc18d7,2025-10-05,América,Santos,3,0,False,Liga MX Apertura 2025,Estadio Ciudad de los Deportes,Mexico
+m_871be37106,2025-10-05,León,Toluca,2,4,False,Liga MX Apertura 2025,Estadio León,Mexico
+m_d2a8e43a92,2025-10-05,Tigres,Cruz Azul,1,1,False,Liga MX Apertura 2025,Estadio Universitario UANL,Mexico
+m_24132231cb,2025-10-06,Pumas,Guadalajara,1,2,False,Liga MX Apertura 2025,Estadio Olímpico Universitario,Mexico
+m_c7464770d9,2025-10-06,Tijuana,Monterrey,2,2,False,Liga MX Apertura 2025,Estadio Caliente,Mexico
+m_a3d618335f,2025-10-18,Juárez,Pachuca,2,2,False,Liga MX Apertura 2025,Estadio Olímpico Benito Juárez,Mexico
+m_610fac2176,2025-10-18,Puebla,Tijuana,4,3,False,Liga MX Apertura 2025,Estadio Cuauhtémoc,Mexico
+m_77bed8ba78,2025-10-18,San Luis,Atlas,2,0,False,Liga MX Apertura 2025,Estadio Alfonso Lastras Ramírez,Mexico
+m_53f05b7bb2,2025-10-18,Santos,León,2,0,False,Liga MX Apertura 2025,Estadio Corona,Mexico
+m_5e68583c1b,2025-10-18,Tigres,Necaxa,5,3,False,Liga MX Apertura 2025,Estadio Universitario UANL,Mexico
+m_c81d22d915,2025-10-18,Toluca,Querétaro,4,0,False,Liga MX Apertura 2025,Estadio Nemesio Díez,Mexico
+m_0b7130846f,2025-10-19,Cruz Azul,América,2,1,False,Liga MX Apertura 2025,Estadio Olímpico Universitario,Mexico
+m_e85b03dbee,2025-10-19,Guadalajara,Mazatlán,2,0,False,Liga MX Apertura 2025,Estadio Akron,Mexico
+m_eae4483187,2025-10-19,Monterrey,Pumas,1,1,False,Liga MX Apertura 2025,Estadio BBVA,Mexico
+m_8e635b95e3,2025-10-22,América,Puebla,2,1,False,Liga MX Apertura 2025,Estadio Ciudad de los Deportes,Mexico
+m_aec30ca9f7,2025-10-22,Mazatlán,Santos,2,2,False,Liga MX Apertura 2025,Estadio de Mazatlán,Mexico
+m_5a4dc00be0,2025-10-22,Monterrey,Juárez,4,2,False,Liga MX Apertura 2025,Estadio BBVA,Mexico
+m_c9a90893d7,2025-10-22,Necaxa,Cruz Azul,1,1,False,Liga MX Apertura 2025,Estadio Victoria,Mexico
+m_522a9e396c,2025-10-23,Atlas,León,2,0,False,Liga MX Apertura 2025,Estadio Jalisco,Mexico
+m_5a61f02f8e,2025-10-23,Pachuca,Tigres,1,2,False,Liga MX Apertura 2025,Estadio Hidalgo,Mexico
+m_d2bfc296c7,2025-10-23,Pumas,San Luis,0,1,False,Liga MX Apertura 2025,Estadio Olímpico Universitario,Mexico
+m_05e4876c63,2025-10-23,Querétaro,Guadalajara,1,0,False,Liga MX Apertura 2025,Estadio La Corregidora,Mexico
+m_55f99f5be7,2025-10-23,Tijuana,Toluca,0,0,False,Liga MX Apertura 2025,Estadio Caliente,Mexico
+m_19d915486c,2025-10-25,Juárez,Puebla,4,4,False,Liga MX Apertura 2025,Estadio Olímpico Benito Juárez,Mexico
+m_71b0d7777c,2025-10-25,Mazatlán,América,2,2,False,Liga MX Apertura 2025,Estadio de Mazatlán,Mexico
+m_35829e70f3,2025-10-25,Tigres,Tijuana,2,0,False,Liga MX Apertura 2025,Estadio Universitario UANL,Mexico
+m_ea13abb217,2025-10-26,Cruz Azul,Monterrey,2,0,False,Liga MX Apertura 2025,Estadio Olímpico Universitario,Mexico
+m_94ebd7d87a,2025-10-26,Guadalajara,Atlas,4,1,False,Liga MX Apertura 2025,Estadio Akron,Mexico
+m_47fba1c489,2025-10-26,León,Pumas,1,1,False,Liga MX Apertura 2025,Estadio León,Mexico
+m_d2fd90aade,2025-10-26,Santos,Querétaro,3,1,False,Liga MX Apertura 2025,Estadio Corona,Mexico
+m_51e6c021a7,2025-10-27,San Luis,Necaxa,3,4,False,Liga MX Apertura 2025,Estadio Alfonso Lastras Ramírez,Mexico
+m_bfdf6a30c8,2025-10-27,Toluca,Pachuca,2,2,False,Liga MX Apertura 2025,Estadio Nemesio Díez,Mexico
+m_82d75c0f73,2025-11-01,Atlas,Toluca,0,0,False,Liga MX Apertura 2025,Estadio Jalisco,Mexico
+m_353adea664,2025-11-01,Necaxa,Santos,4,1,False,Liga MX Apertura 2025,Estadio Victoria,Mexico
+m_159f3a8c46,2025-11-01,Puebla,Cruz Azul,0,3,False,Liga MX Apertura 2025,Estadio Cuauhtémoc,Mexico
+m_546159dbd2,2025-11-01,San Luis,Juárez,1,2,False,Liga MX Apertura 2025,Estadio Alfonso Lastras Ramírez,Mexico
+m_19e99516ad,2025-11-02,América,León,2,0,False,Liga MX Apertura 2025,Estadio Ciudad de los Deportes,Mexico
+m_1c90a059f3,2025-11-02,Monterrey,Tigres,1,1,False,Liga MX Apertura 2025,Estadio BBVA,Mexico
+m_da384dfee8,2025-11-02,Pumas,Tijuana,4,1,False,Liga MX Apertura 2025,Estadio Olímpico Universitario,Mexico
+m_3007ec21df,2025-11-02,Querétaro,Mazatlán,1,0,False,Liga MX Apertura 2025,Estadio La Corregidora,Mexico
+m_9e1b663a05,2025-11-03,Pachuca,Guadalajara,0,1,False,Liga MX Apertura 2025,Estadio Hidalgo,Mexico
+m_52c59bea19,2025-11-08,Guadalajara,Monterrey,4,2,False,Liga MX Apertura 2025,Estadio Akron,Mexico
+m_f66b33181a,2025-11-08,Juárez,Querétaro,1,2,False,Liga MX Apertura 2025,Estadio Olímpico Benito Juárez,Mexico
+m_c9a6f7ac6b,2025-11-08,Mazatlán,Necaxa,1,1,False,Liga MX Apertura 2025,Estadio de Mazatlán,Mexico
+m_623dcd0b0e,2025-11-08,Tigres,San Luis,3,1,False,Liga MX Apertura 2025,Estadio Universitario UANL,Mexico
+m_7718545070,2025-11-08,Tijuana,Atlas,2,0,False,Liga MX Apertura 2025,Estadio Caliente,Mexico
+m_957904d256,2025-11-09,Cruz Azul,Pumas,2,3,False,Liga MX Apertura 2025,Estadio Olímpico Universitario,Mexico
+m_df13932182,2025-11-09,León,Puebla,1,2,False,Liga MX Apertura 2025,Estadio León,Mexico
+m_2e371c2b0a,2025-11-09,Santos,Pachuca,1,0,False,Liga MX Apertura 2025,Estadio Corona,Mexico
+m_fed56ccb09,2025-11-09,Toluca,América,2,0,False,Liga MX Apertura 2025,Estadio Nemesio Díez,Mexico
+m_b43dd7edd5,2025-11-21,Pachuca,Pumas,3,1,False,Liga MX Apertura 2025,Estadio Hidalgo,Mexico
+m_0ef76e750f,2025-11-21,Tijuana,Juárez,3,1,False,Liga MX Apertura 2025,Estadio Caliente,Mexico
+m_c2d8365f4b,2025-11-24,Juárez,Pachuca,2,1,False,Liga MX Apertura 2025,Estadio Olímpico Benito Juárez,Mexico
+m_53578737eb,2025-11-27,Juárez,Toluca,1,2,False,Liga MX Apertura 2025,Estadio Olímpico Benito Juárez,Mexico
+m_c67dfa335e,2025-11-27,Monterrey,América,2,0,False,Liga MX Apertura 2025,Estadio BBVA,Mexico
+m_f652d66be1,2025-11-27,Tijuana,Tigres,3,0,False,Liga MX Apertura 2025,Estadio Caliente,Mexico
+m_74776b648a,2025-11-28,Guadalajara,Cruz Azul,0,0,False,Liga MX Apertura 2025,Estadio Akron,Mexico
+m_388c1bd652,2025-11-29,América,Monterrey,2,1,False,Liga MX Apertura 2025,Estadio Ciudad de los Deportes,Mexico
+m_693f9ed3d3,2025-11-30,Tigres,Tijuana,5,0,False,Liga MX Apertura 2025,Estadio Universitario UANL,Mexico
+m_ed9299b905,2025-11-30,Toluca,Juárez,0,0,False,Liga MX Apertura 2025,Estadio Nemesio Díez,Mexico
+m_870a2583c9,2025-12-01,Cruz Azul,Guadalajara,3,2,False,Liga MX Apertura 2025,Estadio Olímpico Universitario,Mexico
+m_f1c5776c64,2025-12-04,Cruz Azul,Tigres,1,1,False,Liga MX Apertura 2025,Estadio Olímpico Universitario,Mexico
+m_21351354d9,2025-12-04,Monterrey,Toluca,1,0,False,Liga MX Apertura 2025,Estadio BBVA,Mexico
+m_a8ddbf084e,2025-12-07,Tigres,Cruz Azul,1,1,False,Liga MX Apertura 2025,Estadio Universitario UANL,Mexico
+m_6e2dec0063,2025-12-07,Toluca,Monterrey,3,2,False,Liga MX Apertura 2025,Estadio Nemesio Díez,Mexico
+m_733af76091,2025-12-12,Tigres,Toluca,1,0,False,Liga MX Apertura 2025,Estadio Universitario UANL,Mexico
+m_5db6677fe2,2025-12-15,Toluca,Tigres,2,1,False,Liga MX Apertura 2025,Estadio Nemesio Díez,Mexico
+m_0a68921642,2026-01-10,Atlas,Puebla,1,0,False,Liga MX Clausura 2026,Estadio Jalisco,Mexico
+m_a299d8cf1b,2026-01-10,Guadalajara,Pachuca,2,0,False,Liga MX Clausura 2026,Estadio Akron,Mexico
+m_25919a31bb,2026-01-10,Mazatlán,Juárez,1,2,False,Liga MX Clausura 2026,Estadio de Mazatlán,Mexico
+m_f2bc079a4c,2026-01-10,Tijuana,América,0,0,False,Liga MX Clausura 2026,Estadio Caliente,Mexico
+m_ad1b816475,2026-01-11,León,Cruz Azul,2,1,False,Liga MX Clausura 2026,Estadio León,Mexico
+m_2bd832b9a5,2026-01-11,Monterrey,Toluca,0,1,False,Liga MX Clausura 2026,Estadio BBVA,Mexico
+m_e2fa67ccbf,2026-01-11,Pumas,Querétaro,1,1,False,Liga MX Clausura 2026,Estadio Olímpico Universitario,Mexico
+m_2716a55e4d,2026-01-11,Santos,Necaxa,1,3,False,Liga MX Clausura 2026,Estadio Corona,Mexico
+m_c1c2d51485,2026-01-12,San Luis,Tigres,1,2,False,Liga MX Clausura 2026,Estadio Alfonso Lastras Ramírez,Mexico
+m_fff0fc811f,2026-01-13,Puebla,Mazatlán,2,1,False,Liga MX Clausura 2026,Estadio Cuauhtémoc,Mexico
+m_797e4e36aa,2026-01-14,Cruz Azul,Atlas,2,0,False,Liga MX Clausura 2026,Estadio Olímpico Universitario,Mexico
+m_95dabb7fc8,2026-01-14,Juárez,Guadalajara,0,1,False,Liga MX Clausura 2026,Estadio Olímpico Benito Juárez,Mexico
+m_13e9c40034,2026-01-14,Necaxa,Monterrey,0,2,False,Liga MX Clausura 2026,Estadio Victoria,Mexico
+m_dbe9a378cb,2026-01-14,Pachuca,León,2,1,False,Liga MX Clausura 2026,Estadio Hidalgo,Mexico
+m_072e814730,2026-01-15,América,San Luis,0,2,False,Liga MX Clausura 2026,Estadio Ciudad de los Deportes,Mexico
+m_ff38251a28,2026-01-15,Querétaro,Tijuana,1,2,False,Liga MX Clausura 2026,Estadio La Corregidora,Mexico
+m_5c45153762,2026-01-15,Tigres,Pumas,0,1,False,Liga MX Clausura 2026,Estadio Universitario UANL,Mexico
+m_09a3f88656,2026-01-15,Toluca,Santos,3,1,False,Liga MX Clausura 2026,Estadio Nemesio Díez,Mexico
+m_6c27074dc0,2026-01-17,Guadalajara,Querétaro,2,1,False,Liga MX Clausura 2026,Estadio Akron,Mexico
+m_b9f86639c1,2026-01-17,Mazatlán,Monterrey,1,5,False,Liga MX Clausura 2026,Estadio de Mazatlán,Mexico
+m_4aaaa480ee,2026-01-17,Necaxa,Atlas,0,1,False,Liga MX Clausura 2026,Estadio Victoria,Mexico
+m_2411e443a6,2026-01-18,Cruz Azul,Puebla,1,0,False,Liga MX Clausura 2026,Estadio Olímpico Universitario,Mexico
+m_947273dd40,2026-01-18,Pumas,León,1,1,False,Liga MX Clausura 2026,Estadio Olímpico Universitario,Mexico
+m_d3e014766b,2026-01-18,Santos,Juárez,2,2,False,Liga MX Clausura 2026,Estadio Corona,Mexico
+m_836c6a331f,2026-01-18,Tigres,Toluca,0,0,False,Liga MX Clausura 2026,Estadio Universitario UANL,Mexico
+m_8883c54a78,2026-01-18,Tijuana,San Luis,1,1,False,Liga MX Clausura 2026,Estadio Caliente,Mexico
+m_43125f03d2,2026-01-19,Pachuca,América,0,0,False,Liga MX Clausura 2026,Estadio Hidalgo,Mexico
+m_ea7c7ec6cb,2026-01-31,América,Necaxa,2,0,False,Liga MX Clausura 2026,Estadio Ciudad de los Deportes,Mexico
+m_887b026b49,2026-01-31,Atlas,Mazatlán,1,0,False,Liga MX Clausura 2026,Estadio Jalisco,Mexico
+m_50aad02391,2026-01-31,Juárez,Cruz Azul,3,4,False,Liga MX Clausura 2026,Estadio Olímpico Benito Juárez,Mexico
+m_f4dd8577a4,2026-01-31,Puebla,Toluca,0,0,False,Liga MX Clausura 2026,Estadio Cuauhtémoc,Mexico
+m_facb3e24a0,2026-01-31,Pumas,Santos,4,0,False,Liga MX Clausura 2026,Estadio Olímpico Universitario,Mexico
+m_9df42d6807,2026-01-31,San Luis,Guadalajara,2,3,False,Liga MX Clausura 2026,Estadio Alfonso Lastras Ramírez,Mexico
+m_549ce76e5f,2026-02-01,León,Tigres,1,2,False,Liga MX Clausura 2026,Estadio León,Mexico
+m_e46f67086b,2026-02-01,Monterrey,Tijuana,2,2,False,Liga MX Clausura 2026,Estadio BBVA,Mexico
+m_32a5d55c55,2026-02-01,Querétaro,Pachuca,0,0,False,Liga MX Clausura 2026,Estadio La Corregidora,Mexico
+m_cb651fcd42,2026-02-07,Mazatlán,Guadalajara,1,2,False,Liga MX Clausura 2026,Estadio de Mazatlán,Mexico
+m_0198665cc4,2026-02-07,Necaxa,San Luis,4,1,False,Liga MX Clausura 2026,Estadio Victoria,Mexico
+m_3a703475f6,2026-02-07,Querétaro,León,2,0,False,Liga MX Clausura 2026,Estadio La Corregidora,Mexico
+m_c2eabe2b0c,2026-02-07,Tigres,Santos,5,1,False,Liga MX Clausura 2026,Estadio Universitario UANL,Mexico
+m_f929232b73,2026-02-07,Tijuana,Puebla,0,0,False,Liga MX Clausura 2026,Estadio Caliente,Mexico
+m_a11913b256,2026-02-07,Toluca,Cruz Azul,1,1,False,Liga MX Clausura 2026,Estadio Nemesio Díez,Mexico
+m_ba37335bfc,2026-02-08,América,Monterrey,1,0,False,Liga MX Clausura 2026,Estadio Ciudad de los Deportes,Mexico
+m_6a3654de68,2026-02-08,Atlas,Pumas,2,2,False,Liga MX Clausura 2026,Estadio Jalisco,Mexico
+m_b9b23ba8bb,2026-02-08,Pachuca,Juárez,2,0,False,Liga MX Clausura 2026,Estadio Hidalgo,Mexico
+m_a5d0068ef8,2026-02-14,Pachuca,Atlas,3,1,False,Liga MX Clausura 2026,Estadio Hidalgo,Mexico
+m_54bd548dfb,2026-02-14,Puebla,Pumas,2,3,False,Liga MX Clausura 2026,Estadio Cuauhtémoc,Mexico
+m_9ac05d9bc7,2026-02-14,San Luis,Querétaro,3,0,False,Liga MX Clausura 2026,Estadio Alfonso Lastras Ramírez,Mexico
+m_a6327bfc59,2026-02-14,Toluca,Tijuana,1,0,False,Liga MX Clausura 2026,Estadio Nemesio Díez,Mexico
+m_7b1f5af4e5,2026-02-15,Cruz Azul,Tigres,2,1,False,Liga MX Clausura 2026,Estadio Olímpico Universitario,Mexico
+m_a43ba53382,2026-02-15,Guadalajara,América,1,0,False,Liga MX Clausura 2026,Estadio Akron,Mexico
+m_a3be94a719,2026-02-15,Juárez,Necaxa,1,2,False,Liga MX Clausura 2026,Estadio Olímpico Benito Juárez,Mexico
+m_528193d6ac,2026-02-15,Monterrey,León,1,0,False,Liga MX Clausura 2026,Estadio BBVA,Mexico
+m_6aa8ca46e5,2026-02-15,Santos,Mazatlán,1,2,False,Liga MX Clausura 2026,,Mexico
+m_6ce1c63537,2026-02-21,Atlas,San Luis,3,2,False,Liga MX Clausura 2026,Estadio Jalisco,Mexico
+m_688cc1532b,2026-02-21,Puebla,América,0,4,False,Liga MX Clausura 2026,Estadio Cuauhtémoc,Mexico
+m_063347a7b4,2026-02-21,Tigres,Pachuca,1,2,False,Liga MX Clausura 2026,Estadio Universitario UANL,Mexico
+m_6c59e980ee,2026-02-22,Cruz Azul,Guadalajara,2,1,False,Liga MX Clausura 2026,Estadio Olímpico Universitario,Mexico
+m_2f3bf0ab4a,2026-02-22,León,Santos,2,1,False,Liga MX Clausura 2026,Estadio León,Mexico
+m_c08df17c49,2026-02-22,Necaxa,Toluca,0,3,False,Liga MX Clausura 2026,Estadio Victoria,Mexico
+m_cdc4996c81,2026-02-22,Pumas,Monterrey,2,0,False,Liga MX Clausura 2026,Estadio Olímpico Universitario,Mexico
+m_0cf5d03b05,2026-02-22,Tijuana,Mazatlán,1,1,False,Liga MX Clausura 2026,Estadio Caliente,Mexico
+m_81a0fd7ac1,2026-02-28,Juárez,Atlas,3,1,False,Liga MX Clausura 2026,Estadio Olímpico Benito Juárez,Mexico
+m_8613e5500e,2026-02-28,Mazatlán,Pachuca,1,0,False,Liga MX Clausura 2026,Estadio de Mazatlán,Mexico
+m_aa2e4cca46,2026-02-28,Querétaro,Santos,2,2,False,Liga MX Clausura 2026,Estadio La Corregidora,Mexico
+m_6f427d1903,2026-02-28,San Luis,Puebla,0,1,False,Liga MX Clausura 2026,Estadio Alfonso Lastras Ramírez,Mexico
+m_8dee1580ba,2026-02-28,Tijuana,Pumas,1,1,False,Liga MX Clausura 2026,Estadio Caliente,Mexico
+m_0f75b2f295,2026-02-28,Toluca,Guadalajara,2,0,False,Liga MX Clausura 2026,Estadio Nemesio Díez,Mexico
+m_e4cfa10937,2026-03-01,América,Tigres,1,4,False,Liga MX Clausura 2026,Estadio Ciudad de los Deportes,Mexico
+m_3942786559,2026-03-01,León,Necaxa,2,1,False,Liga MX Clausura 2026,Estadio León,Mexico
+m_c4b0ba89ab,2026-03-01,Monterrey,Cruz Azul,0,2,False,Liga MX Clausura 2026,Estadio BBVA,Mexico
+m_4a3b2c2cb6,2026-03-04,Pachuca,Necaxa,2,1,False,Liga MX Clausura 2026,Estadio Hidalgo,Mexico
+m_b4a4020adf,2026-03-04,Pumas,Toluca,2,3,False,Liga MX Clausura 2026,Estadio Olímpico Universitario,Mexico
+m_0687b6d28e,2026-03-04,San Luis,Mazatlán,4,1,False,Liga MX Clausura 2026,Estadio Alfonso Lastras Ramírez,Mexico
+m_ffa76aab94,2026-03-04,Santos,Cruz Azul,1,2,False,Liga MX Clausura 2026,Estadio Corona,Mexico
+m_6cdbb9d94f,2026-03-05,América,Juárez,1,2,False,Liga MX Clausura 2026,Estadio Ciudad de los Deportes,Mexico
+m_0b24cafef5,2026-03-05,Atlas,Tijuana,2,1,False,Liga MX Clausura 2026,Estadio Jalisco,Mexico
+m_8a90321b29,2026-03-05,Monterrey,Querétaro,4,0,False,Liga MX Clausura 2026,Estadio BBVA,Mexico
+m_f55cf98b36,2026-03-05,Puebla,Tigres,3,1,False,Liga MX Clausura 2026,Estadio Cuauhtémoc,Mexico
+m_0636afbaa3,2026-03-07,Cruz Azul,San Luis,3,0,False,Liga MX Clausura 2026,Estadio Olímpico Universitario,Mexico
+m_3077408c92,2026-03-07,Mazatlán,León,4,2,False,Liga MX Clausura 2026,Estadio de Mazatlán,Mexico
+m_6ac318bbb0,2026-03-07,Necaxa,Pumas,0,1,False,Liga MX Clausura 2026,Estadio Victoria,Mexico
+m_34e3db474b,2026-03-07,Querétaro,América,1,2,False,Liga MX Clausura 2026,Estadio La Corregidora,Mexico
+m_b554c7283a,2026-03-08,Atlas,Guadalajara,1,2,False,Liga MX Clausura 2026,Estadio Jalisco,Mexico
+m_94d10e662e,2026-03-08,Pachuca,Puebla,2,1,False,Liga MX Clausura 2026,Estadio Hidalgo,Mexico
+m_d34337f8e2,2026-03-08,Tigres,Monterrey,1,0,False,Liga MX Clausura 2026,Estadio Universitario UANL,Mexico
+m_48c96dea74,2026-03-08,Toluca,Juárez,3,1,False,Liga MX Clausura 2026,Estadio Nemesio Díez,Mexico
+m_5ad2737165,2026-03-09,Tijuana,Santos,1,2,False,Liga MX Clausura 2026,Estadio Caliente,Mexico
+m_8df9777ca8,2026-03-14,Guadalajara,Santos,3,0,False,Liga MX Clausura 2026,Estadio Akron,Mexico
+m_16039541fc,2026-03-14,Juárez,Monterrey,2,2,False,Liga MX Clausura 2026,Estadio Olímpico Benito Juárez,Mexico
+m_9b40a155b8,2026-03-14,Puebla,Necaxa,0,0,False,Liga MX Clausura 2026,Estadio Cuauhtémoc,Mexico
+m_105f23412e,2026-03-14,San Luis,Pachuca,1,1,False,Liga MX Clausura 2026,Estadio Alfonso Lastras Ramírez,Mexico
+m_63188c0eb7,2026-03-15,León,Tijuana,0,3,False,Liga MX Clausura 2026,Estadio León,Mexico
+m_eeb5c94190,2026-03-15,Pumas,Cruz Azul,2,2,False,Liga MX Clausura 2026,Estadio Olímpico Universitario,Mexico
+m_8a629a5188,2026-03-15,Tigres,Querétaro,0,0,False,Liga MX Clausura 2026,Estadio Universitario UANL,Mexico
+m_707c828b11,2026-03-15,Toluca,Atlas,1,1,False,Liga MX Clausura 2026,Estadio Nemesio Díez,Mexico
+m_ea5e515070,2026-03-16,América,Mazatlán,2,0,False,Liga MX Clausura 2026,Estadio Ciudad de los Deportes,Mexico
+m_d3176ebe30,2026-03-19,Guadalajara,León,5,0,False,Liga MX Clausura 2026,Estadio Akron,Mexico
+m_8997855e80,2026-03-21,Atlas,Querétaro,0,0,False,Liga MX Clausura 2026,Estadio Jalisco,Mexico
+m_9c491bdd8d,2026-03-21,Mazatlán,Cruz Azul,1,1,False,Liga MX Clausura 2026,Estadio de Mazatlán,Mexico
+m_a1df577b00,2026-03-21,Necaxa,Tijuana,3,0,False,Liga MX Clausura 2026,Estadio Victoria,Mexico
+m_801f9a6cd6,2026-03-22,Monterrey,Guadalajara,2,3,False,Liga MX Clausura 2026,Estadio BBVA,Mexico
+m_b3dd386295,2026-03-22,Pachuca,Toluca,1,1,False,Liga MX Clausura 2026,Estadio Hidalgo,Mexico
+m_6eaaa89d48,2026-03-22,Pumas,América,1,0,False,Liga MX Clausura 2026,Estadio Olímpico Universitario,Mexico
+m_89d015de24,2026-03-22,San Luis,León,1,2,False,Liga MX Clausura 2026,Estadio Alfonso Lastras Ramírez,Mexico
+m_fcb719b501,2026-03-22,Santos,Puebla,2,1,False,Liga MX Clausura 2026,Estadio Corona,Mexico
+m_a556d7a08c,2026-03-23,Juárez,Tigres,2,1,False,Liga MX Clausura 2026,Estadio Olímpico Benito Juárez,Mexico
+m_833f157dd1,2026-04-04,Monterrey,San Luis,1,2,False,Liga MX Clausura 2026,Estadio BBVA,Mexico
+m_ebfa2f5d47,2026-04-04,Necaxa,Mazatlán,2,1,False,Liga MX Clausura 2026,Estadio Victoria,Mexico
+m_0bb849ad4b,2026-04-04,Puebla,Juárez,1,1,False,Liga MX Clausura 2026,Estadio Cuauhtémoc,Mexico
+m_5fb5f25b4d,2026-04-04,Querétaro,Toluca,1,0,False,Liga MX Clausura 2026,Estadio La Corregidora,Mexico
+m_2f60fdd809,2026-04-04,Tijuana,Tigres,1,0,False,Liga MX Clausura 2026,Estadio Caliente,Mexico
+m_2a680efbfe,2026-04-05,Cruz Azul,Pachuca,1,2,False,Liga MX Clausura 2026,Estadio Olímpico Universitario,Mexico
+m_2494d82576,2026-04-05,León,Atlas,2,0,False,Liga MX Clausura 2026,Estadio León,Mexico
+m_b9dcf45b36,2026-04-05,Santos,América,1,1,False,Liga MX Clausura 2026,Estadio Corona,Mexico
+m_2617cc036a,2026-04-06,Guadalajara,Pumas,2,2,False,Liga MX Clausura 2026,Estadio Akron,Mexico
+m_0399492c81,2026-04-08,Querétaro,Juárez,1,1,False,Liga MX Clausura 2026,Estadio La Corregidora,Mexico
+m_391244f20a,2026-04-11,Juárez,Tijuana,1,2,False,Liga MX Clausura 2026,Estadio Olímpico Benito Juárez,Mexico
+m_2ef8e8f7e0,2026-04-11,Puebla,León,0,1,False,Liga MX Clausura 2026,Estadio Cuauhtémoc,Mexico
+m_b9a9db75d2,2026-04-11,Querétaro,Necaxa,3,1,False,Liga MX Clausura 2026,Estadio La Corregidora,Mexico
+m_f79d83e403,2026-04-11,Tigres,Guadalajara,4,1,False,Liga MX Clausura 2026,Estadio Universitario UANL,Mexico
+m_643d2dc329,2026-04-12,América,Cruz Azul,1,1,False,Liga MX Clausura 2026,Estadio Ciudad de los Deportes,Mexico
+m_9f48f947f2,2026-04-12,Atlas,Monterrey,0,0,False,Liga MX Clausura 2026,Estadio Jalisco,Mexico
+m_8591808dfd,2026-04-12,Pachuca,Santos,4,2,False,Liga MX Clausura 2026,Estadio Hidalgo,Mexico
+m_d5f92ffbdf,2026-04-12,Pumas,Mazatlán,3,1,False,Liga MX Clausura 2026,Estadio Olímpico Universitario,Mexico
+m_93c1c18305,2026-04-13,Toluca,San Luis,1,1,False,Liga MX Clausura 2026,Estadio Nemesio Díez,Mexico
+m_312885716d,2026-04-18,Cruz Azul,Tijuana,1,1,False,Liga MX Clausura 2026,Estadio Olímpico Universitario,Mexico
+m_7c28334203,2026-04-18,Mazatlán,Querétaro,1,1,False,Liga MX Clausura 2026,Estadio de Mazatlán,Mexico
+m_5f0d67d1dc,2026-04-18,Necaxa,Tigres,1,1,False,Liga MX Clausura 2026,Estadio Victoria,Mexico
+m_0209c90b33,2026-04-18,San Luis,Pumas,0,2,False,Liga MX Clausura 2026,Estadio Alfonso Lastras Ramírez,Mexico
+m_7a4898eec2,2026-04-19,América,Toluca,2,1,False,Liga MX Clausura 2026,Estadio Ciudad de los Deportes,Mexico
+m_c8224587b5,2026-04-19,Guadalajara,Puebla,5,0,False,Liga MX Clausura 2026,Estadio Akron,Mexico
+m_8950af86be,2026-04-19,León,Juárez,3,1,False,Liga MX Clausura 2026,Estadio León,Mexico
+m_75c4b3f163,2026-04-19,Monterrey,Pachuca,1,3,False,Liga MX Clausura 2026,Estadio BBVA,Mexico
+m_c05f47530d,2026-04-19,Santos,Atlas,0,1,False,Liga MX Clausura 2026,Estadio Corona,Mexico
+m_9ea8760b3b,2026-04-22,León,América,2,3,False,Liga MX Clausura 2026,Estadio León,Mexico
+m_3f7f7ad32c,2026-04-22,Monterrey,Puebla,2,1,False,Liga MX Clausura 2026,Estadio BBVA,Mexico
+m_408cea2179,2026-04-22,Pumas,Juárez,4,2,False,Liga MX Clausura 2026,Estadio Olímpico Universitario,Mexico
+m_e8b993e5e0,2026-04-22,Querétaro,Cruz Azul,1,1,False,Liga MX Clausura 2026,Estadio La Corregidora,Mexico
+m_b245124dab,2026-04-23,Atlas,Tigres,0,0,False,Liga MX Clausura 2026,Estadio Jalisco,Mexico
+m_b0bd1f6c33,2026-04-23,Mazatlán,Toluca,4,3,False,Liga MX Clausura 2026,Estadio de Mazatlán,Mexico
+m_760c012296,2026-04-23,Necaxa,Guadalajara,0,0,False,Liga MX Clausura 2026,Estadio Victoria,Mexico
+m_5e89f4dc79,2026-04-23,San Luis,Santos,2,0,False,Liga MX Clausura 2026,Estadio Alfonso Lastras Ramírez,Mexico
+m_3421f49c65,2026-04-23,Tijuana,Pachuca,3,1,False,Liga MX Clausura 2026,Estadio Caliente,Mexico
+m_97df8ae3f8,2026-04-25,Pachuca,Pumas,0,2,False,Liga MX Clausura 2026,Estadio Hidalgo,Mexico
+m_2783da8882,2026-04-25,Puebla,Querétaro,1,2,False,Liga MX Clausura 2026,Estadio Cuauhtémoc,Mexico
+m_16cb2ed4b1,2026-04-25,Tigres,Mazatlán,5,1,False,Liga MX Clausura 2026,Estadio Universitario UANL,Mexico
+m_138270120e,2026-04-26,América,Atlas,0,1,False,Liga MX Clausura 2026,Estadio Ciudad de los Deportes,Mexico
+m_eb1a883fc6,2026-04-26,Guadalajara,Tijuana,0,0,False,Liga MX Clausura 2026,Estadio Akron,Mexico
+m_9c297b8974,2026-04-26,Juárez,San Luis,2,1,False,Liga MX Clausura 2026,Estadio Olímpico Benito Juárez,Mexico
+m_06982f159d,2026-04-26,Santos,Monterrey,3,0,False,Liga MX Clausura 2026,Estadio Corona,Mexico
+m_26ada265fa,2026-04-26,Toluca,León,4,1,False,Liga MX Clausura 2026,Estadio Nemesio Díez,Mexico
+m_2d0831dbba,2026-04-27,Cruz Azul,Necaxa,4,1,False,Liga MX Clausura 2026,Estadio Olímpico Universitario,Mexico
+m_f68a9a096c,2026-05-03,América,Pumas,3,3,False,Liga MX Clausura 2026,Estadio Ciudad de los Deportes,Mexico
+m_32270bfb33,2026-05-03,Atlas,Cruz Azul,2,3,False,Liga MX Clausura 2026,Estadio Jalisco,Mexico
+m_78ff47e0fe,2026-05-03,Tigres,Guadalajara,3,1,False,Liga MX Clausura 2026,Estadio Universitario UANL,Mexico
+m_7afe7e4335,2026-05-04,Toluca,Pachuca,0,1,False,Liga MX Clausura 2026,Estadio Nemesio Díez,Mexico
+m_ba01c3669b,2026-05-10,Cruz Azul,Atlas,1,0,False,Liga MX Clausura 2026,Estadio Azteca,Mexico
+m_14362e3ecf,2026-05-10,Guadalajara,Tigres,2,0,False,Liga MX Clausura 2026,Estadio Akron,Mexico
+m_fe0b667eac,2026-05-10,Pachuca,Toluca,2,0,False,Liga MX Clausura 2026,Estadio Hidalgo,Mexico
+m_e8952c6db7,2026-05-11,Pumas,América,3,3,False,Liga MX Clausura 2026,Estadio Olímpico Universitario,Mexico
+m_f7ba2ddd31,2026-05-14,Cruz Azul,Guadalajara,2,2,False,Liga MX Clausura 2026,Estadio Azteca,Mexico
+m_8ebdc84904,2026-05-15,Pachuca,Pumas,1,0,False,Liga MX Clausura 2026,Estadio Hidalgo,Mexico
+m_0fa4f9cdc6,2026-05-17,Guadalajara,Cruz Azul,1,2,False,Liga MX Clausura 2026,Estadio Akron,Mexico
+m_a358e99323,2026-05-18,Pumas,Pachuca,1,0,False,Liga MX Clausura 2026,Estadio Olímpico Universitario,Mexico
+m_42d5dad8fb,2026-05-22,Cruz Azul,Pumas,0,0,False,Liga MX Clausura 2026,Estadio Ciudad de los Deportes,Mexico
+m_111b47ffc1,2026-05-25,Pumas,Cruz Azul,1,2,False,Liga MX Clausura 2026,Estadio Olímpico Universitario,Mexico
+m_12981270b6,2026-07-17,Necaxa,Atlante,2,1,False,Liga MX Apertura 2026,Estadio Victoria,Mexico
+m_ab9d7f95de,2026-07-17,Tijuana,Tigres,3,1,False,Liga MX Apertura 2026,Estadio Caliente,Mexico
+m_e9cb048bec,2026-07-18,Juárez,Puebla,0,1,False,Liga MX Apertura 2026,Estadio Olímpico Benito Juárez,Mexico
+m_5dad18af91,2026-07-18,León,Atlas,2,3,False,Liga MX Apertura 2026,Estadio León,Mexico
+m_7e9e172fdf,2026-07-18,Pumas,Pachuca,0,3,False,Liga MX Apertura 2026,Estadio Olímpico Universitario,Mexico
+m_1e898ff140,2026-07-18,San Luis,Cruz Azul,2,3,False,Liga MX Apertura 2026,Estadio Alfonso Lastras Ramírez,Mexico
+m_b3d0c99d81,2026-07-19,Guadalajara,Toluca,0,2,False,Liga MX Apertura 2026,Estadio Akron,Mexico
+m_937f2dc03b,2026-07-19,Monterrey,Santos,3,2,False,Liga MX Apertura 2026,Estadio BBVA,Mexico
+m_1961dbe960,2026-07-19,Querétaro,América,0,1,False,Liga MX Apertura 2026,Estadio La Corregidora,Mexico
+m_8d49d73e1a,2026-07-22,Cruz Azul,Puebla,2,1,False,Liga MX Apertura 2026,Estadio Banorte,Mexico
+m_99d2f1a4b2,2026-07-22,Toluca,Pumas,1,2,False,Liga MX Apertura 2026,Estadio Nemesio Díez,Mexico
