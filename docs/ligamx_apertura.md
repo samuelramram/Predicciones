@@ -18,8 +18,9 @@ Documento de diseño para reusar este motor de quiniela (hoy cableado al Mundial
 | Fase | Entregable | Estado |
 |---|---|---|
 | **0** | Doc de diseño + capa de perfil de liga + scaffolding de datos + `.md` | ✅ |
-| **1a** | Datos alineados al webapp + **ingest real** (TheSportsDB 4350) → 1028 partidos de historial + calendario Apertura 2026 (153 fixtures) | ✅ este commit |
-| **1b** | Elo por replay + fit Poisson+DC + `generate_picks` con perfil `ligamx` + picks por jornada + backtest | ⏳ siguiente |
+| **1a** | Datos alineados al webapp + **ingest real** (TheSportsDB 4350) → 1028 partidos de historial + calendario Apertura 2026 (153 fixtures) | ✅ |
+| **1b** | Elo por replay + fit Poisson+DC + **picks por jornada** (`pipeline/ligamx.py`, localía por equipo + altitud diferencial) | ✅ este commit |
+| **1b.2** | Odds de Liga MX en el blend (`soccer_mexico_ligamx`) + **backtest walk-forward** + calibración `goal_env_mult`/gate de empate a datos LMX | ⏳ siguiente |
 | **1c** | Liguilla a doble partido (marcador global + desempate) | pendiente |
 | **2** | Optimizador de pool con rivales reales (reusa `ingest.pool_picks`) | pendiente |
 | **3** | Módulo de apuestas de valor (O/U + doble oportunidad, ¼ Kelly, CLV) | pendiente |

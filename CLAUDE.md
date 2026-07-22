@@ -10,10 +10,29 @@ del pool privado + módulo de apuestas de valor). El **plan completo, el estado
 por fases y los puntos de acoplamiento a refactorizar** están en
 `docs/ligamx_apertura.md` — **léelo antes de tocar cualquier cosa de Liga MX.**
 
-Estado: **Fase 0 completa** (perfil de liga en `src/wc_predictor/leagues.py`,
-scaffolding de datos en `data/ligamx/`, doc de diseño). El pipeline
-`generate_picks` todavía está cableado al Mundial; el cableado del perfil
-`ligamx` es la Fase 1. Las reglas de abajo aplican al Mundial mientras tanto.
+Estado: **Fase 1b** — ya hay pipeline Liga MX funcional y picks reales por
+jornada. El `generate_picks` del Mundial sigue intacto (Liga MX corre por su
+propio `pipeline/ligamx.py`, reusando el core). Las reglas de picks de abajo
+aplican al Mundial; para Liga MX ver el runbook siguiente.
+
+### Picks de Liga MX (runbook)
+
+Perfil `LIGAMX_APERTURA_PROFILE` (`src/wc_predictor/leagues.py`), datos en
+`data/ligamx/`. Cuando el usuario pida picks de Liga MX **sin jornada**,
+pregúntale cuál (`j1`..`j17`). Flujo:
+
+```bash
+# 1) Refrescar datos (historial + calendario/resultados) — key premium en THESPORTSDB_API_KEY
+python -m wc_predictor.ingest.ligamx --bootstrap
+# 2) Re-fit (Elo replay + Poisson·DC) sobre el historial actualizado
+python -m wc_predictor.pipeline.ligamx fit
+# 3) Picks de la jornada
+python -m wc_predictor.pipeline.ligamx picks --round j2
+```
+
+Salida en `outputs/ligamx_picks_{ronda}.{json,md}`. Atlante es cold-start
+(franquicia comprada a Mazatlán) — cerca del promedio de liga hasta que junte
+partidos. Pendiente: odds en el blend + backtest walk-forward (Fase 1b.2).
 
 ## Regla de interacción: picks por jornada
 
