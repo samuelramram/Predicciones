@@ -6,13 +6,14 @@
     "count": 18,
     "notes": [
       "América y Cruz Azul comparten Estadio Azteca toda la temporada (confirmado por el usuario).",
-      "Atlante entra en lugar de Mazatlán: es la MISMA franquicia comprada a Mazatlán (que desaparece). Arranca SIN historial de primera división — el fit debe tratarlo como equipo nuevo (prior de ascenso/expansión, varianza amplia, que las primeras jornadas lo muevan rápido). Ver docs/ligamx_apertura.md §Atlante cold-start."
+      "Atlante entra en lugar de Mazatlán: es la MISMA franquicia comprada a Mazatlán (que desaparece). Arranca SIN historial de primera división — el fit debe tratarlo como equipo nuevo (prior de ascenso/expansión, varianza amplia, que las primeras jornadas lo muevan rápido). Ver docs/ligamx_apertura.md §Atlante cold-start.",
+      "Atlante juega de local en el Estadio Azteca (2240 m), confirmado por el usuario — no en Cancún."
     ]
   },
   "teams": [
     {"name": "Club América",          "name_es": "América",     "short": "AME", "home_venue": "Estadio Azteca",                "cold_start": false},
     {"name": "Atlas FC",              "name_es": "Atlas",       "short": "ATL", "home_venue": "Estadio Jalisco",               "cold_start": false},
-    {"name": "Atlante FC",            "name_es": "Atlante",     "short": "ATE", "home_venue": "Estadio Andres Quimicano",      "cold_start": true},
+    {"name": "Atlante FC",            "name_es": "Atlante",     "short": "ATE", "home_venue": "Estadio Azteca",                "cold_start": true},
     {"name": "Atlético San Luis",     "name_es": "San Luis",    "short": "SLU", "home_venue": "Estadio Alfonso Lastras",       "cold_start": false},
     {"name": "Cruz Azul",             "name_es": "Cruz Azul",   "short": "CAZ", "home_venue": "Estadio Azteca",                "cold_start": false},
     {"name": "Chivas de Guadalajara", "name_es": "Guadalajara", "short": "GDL", "home_venue": "Estadio Akron",                 "cold_start": false},
