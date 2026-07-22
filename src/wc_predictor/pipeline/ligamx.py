@@ -90,6 +90,20 @@ def _current_teams() -> list[dict]:
     return json.loads(TEAMS_JSON.read_text(encoding="utf-8"))["teams"]
 
 
+_HOME_VENUE_CACHE: dict[str, str] | None = None
+
+
+def home_venue_name(name_es: str) -> str | None:
+    """The home team's registered stadium (teams.json) — kept consistent with the
+    altitude, unlike the fixture's TheSportsDB strVenue which can carry stray data
+    (e.g. Atlante, a relocated franchise with an uncertain venue)."""
+    global _HOME_VENUE_CACHE
+    if _HOME_VENUE_CACHE is None:
+        _HOME_VENUE_CACHE = {t["name_es"]: t.get("home_venue")
+                             for t in _current_teams()}
+    return _HOME_VENUE_CACHE.get(name_es)
+
+
 # --- altitude (differential) --------------------------------------------------
 def altitude_factor(venue_alt: float, visitor_home_alt: float, mcfg) -> float:
     """λ multiplier for the VISITOR, from the altitude they must climb to.
@@ -205,7 +219,7 @@ def predict_fixture(fx: dict, fit, elos: dict[str, float], altitudes: dict[str, 
         "match_id": fx.get("match_id"),
         "jornada": fx.get("jornada"),
         "date": fx.get("date"),
-        "venue": fx.get("venue"),
+        "venue": home_venue_name(home) or fx.get("venue"),
         "home": home,
         "away": away,
         "elo_home": round(r_h, 1),
@@ -230,6 +244,11 @@ def predict_fixture(fx: dict, fit, elos: dict[str, float], altitudes: dict[str, 
         "contrarian_pick_1x2": pick.contrarian_pick_1x2,
         "contrarian_pick_exact": pick.contrarian_pick_exact,
         "contrarian_ev": round(pick.contrarian_ev, 3),
+        "contrarian_score": round(pick.contrarian_score, 3),
+        "contrarian_differs": pick.contrarian_pick_1x2 != pick.pick_1x2,
+        "contrarian_ev_sacrifice": round(pick.ev - pick.contrarian_ev, 3),
+        "contrarian_actionable": (pick.contrarian_pick_1x2 != pick.pick_1x2
+                                  and (pick.ev - pick.contrarian_ev) <= mcfg.contrarian_max_ev_sacrifice),
         "top_5_scores": [{"score": c["score"], "prob": round(c["prob"], 3)}
                          for c in pick.top_5_by_prob],
         "actual": (f"{fx['home_score']}-{fx['away_score']}"
@@ -348,18 +367,26 @@ def run_picks(round_spec: str, objective: str = "ev") -> None:
         for k in ("_cells", "_elo_probs", "_alt_picks"):
             p.pop(k, None)
 
+    elo_as_of = json.loads(ELO_JSON.read_text(encoding="utf-8")).get("as_of")
+    odds_h2h = LIGAMX_DIR / "odds_h2h.json"
+    odds_as_of = (json.loads(odds_h2h.read_text(encoding="utf-8")).get("as_of")
+                  if odds_h2h.exists() else None)
+
     OUTPUTS_DIR.mkdir(parents=True, exist_ok=True)
     json_dst = OUTPUTS_DIR / f"ligamx_picks_{label}.json"
     json_dst.write_text(json.dumps({
         "as_of": datetime.utcnow().isoformat() + "Z",
         "league": "Liga MX", "round": label,
-        "elo_as_of": json.loads(ELO_JSON.read_text(encoding="utf-8")).get("as_of"),
+        "elo_as_of": elo_as_of, "odds_as_of": odds_as_of,
         "rules": {"points_exact": rules.points_exact, "points_1x2": rules.points_1x2},
         "picks": picks, "errors": errors,
     }, indent=2, ensure_ascii=False), encoding="utf-8")
     md_dst = OUTPUTS_DIR / f"ligamx_picks_{label}.md"
-    md_dst.write_text(_render_md(picks, label, rules), encoding="utf-8")
+    md_dst.write_text(_render_md(picks, label, rules, mcfg, elo_as_of, odds_as_of),
+                      encoding="utf-8")
     print(f"  wrote {json_dst}\n  wrote {md_dst}")
+    print(f"  datos: Elo al {elo_as_of}"
+          + (f" · odds capturadas {odds_as_of}" if odds_as_of else " · sin odds"))
 
     print(f"\nBoleto {label} ({len(picks)} partidos):")
     for p in sorted(picks, key=lambda x: x.get("date") or ""):
@@ -369,21 +396,157 @@ def run_picks(round_spec: str, objective: str = "ev") -> None:
               f"[{p['pick_1x2']}] EV={p['ev']:.2f}{flag}{act}")
 
 
-def _render_md(picks: list[dict], label: str, rules) -> str:
-    lines = [f"# Picks Liga MX — {label.upper()}\n",
-             f"_Generado {datetime.utcnow().isoformat()}Z · scoring "
-             f"{rules.points_exact} exacto / {rules.points_1x2} 1X2 (excluyente, 90')._\n",
-             "| Local | Marcador | Visitante | 1X2 | P(exacto) | EV | 1/X/2 | Real |",
-             "|---|:--:|---|:--:|--:|--:|--|:--:|"]
-    for p in sorted(picks, key=lambda x: x.get("date") or ""):
-        star = " ★" if p["abstain"] else ""
-        prob = f"{p['p_home_win']*100:.0f}/{p['p_draw']*100:.0f}/{p['p_away_win']*100:.0f}"
-        lines.append(
-            f"| {p['home']} | **{p['pick_exact']}** | {p['away']} | {p['pick_1x2']}{star} | "
-            f"{p['p_exact']*100:.0f}% | {p['ev']:.2f} | {prob} | {p.get('actual') or '—'} |"
-        )
-    lines.append("\n★ = ABSTAIN (gap de EV bajo, poca confianza).")
-    return "\n".join(lines)
+def _outcome_es(outcome: str, home: str, away: str) -> str:
+    return {"1": f"victoria de {home}", "X": "empate", "2": f"victoria de {away}"}[outcome]
+
+
+def _fmt_score(exact: str) -> str:
+    h, _, a = exact.partition("-")
+    return f"{h} - {a}"
+
+
+def _boleto_block(picks: list[dict], label: str, rules) -> str:
+    """Monospace 'boleto' — copiar-a-la-quiniela, columnas EV-óptimo + contrarian."""
+    name_w = max(max(len(p["home"]), len(p["away"])) for p in picks)
+    prefix_w = 12 + 2 * name_w
+    width = prefix_w + 7 + 3 + 7 + 4
+    rows = ["═" * width,
+            f"  TU BOLETO · Liga MX · {label.upper()}",
+            "═" * width,
+            " " * prefix_w + f"{'EV-ÓPT':>7}   {'CONTRA':>7}",
+            "─" * width]
+    total_ev = 0.0
+    abstain_n = contra_n = 0
+    for i, p in enumerate(picks, start=1):
+        total_ev += p["ev"]
+        flag = "★" if p["abstain"] else ""
+        if p["abstain"]:
+            abstain_n += 1
+        con_mark = ""
+        if p.get("contrarian_actionable"):
+            con_mark = " ◆"; contra_n += 1
+        rows.append((f"  {i:>2}  {p['home']:>{name_w}}  vs  {p['away']:<{name_w}}   "
+                     f"{_fmt_score(p['pick_exact']):>7}   "
+                     f"{_fmt_score(p['contrarian_pick_exact']):>7}{con_mark} {flag}").rstrip())
+    max_pts = len(picks) * rules.points_exact
+    rows += ["─" * width,
+             f"  {len(picks)} partidos · EV total {total_ev:.2f} / {max_pts} máx · "
+             f"{abstain_n}★ ABSTAIN · {contra_n}◆ contrarian accionable",
+             "═" * width]
+    return "\n".join(rows)
+
+
+def _reasoning(p: dict, mcfg) -> str:
+    home, away = p["home"], p["away"]
+    pe = p["pick_exact"]
+    top = p.get("top_5_scores", [])
+    modal = top[0]["score"] if top else None
+    modal_prob = top[0]["prob"] * 100 if top else 0.0
+    p1x2 = {"1": p["p_home_win"], "X": p["p_draw"], "2": p["p_away_win"]}[p["pick_1x2"]]
+    parts = []
+    if pe == modal:
+        parts.append(f"El marcador {pe} es además el más probable de la grilla "
+                     f"({modal_prob:.1f}%): el optimizador EV y el marcador modal coinciden.")
+    else:
+        parts.append(f"El optimizador elige {pe} (EV {p['ev']:.2f}) sobre el modal {modal} "
+                     f"({modal_prob:.1f}%): cae en {_outcome_es(p['pick_1x2'], home, away)} "
+                     f"(P={p1x2*100:.0f}%) y maximiza el EV de exacto + 1X2.")
+    if p["abstain"]:
+        parts.append(f"⚠ ABSTAIN: el gap de EV al 2.º candidato es {p['ev_gap']:.3f} "
+                     f"(< {mcfg.ev_abstain_gap}); confianza baja.")
+    if p.get("odds_n_books"):
+        parts.append(f"El mercado ({p['odds_n_books']} casas) implica "
+                     f"{p['odds_p1']*100:.0f}/{p['odds_px']*100:.0f}/{p['odds_p2']*100:.0f} "
+                     f"y pesa {p['blend_weights']['odds']*100:.0f}% del blend.")
+    if p.get("contrarian_differs"):
+        c_pct = {"1": p["p_home_win"], "X": p["p_draw"],
+                 "2": p["p_away_win"]}[p["contrarian_pick_1x2"]]
+        sac = p.get("contrarian_ev_sacrifice", 0.0)
+        if p.get("contrarian_actionable"):
+            parts.append(f"◆ Contrarian accionable: {p['contrarian_pick_exact']} "
+                         f"({_outcome_es(p['contrarian_pick_1x2'], home, away)}, P={c_pct*100:.0f}%). "
+                         f"Solo sacrificas {sac:.2f} de EV y te diferencias del pool si entra. "
+                         f"Recomendable si vas atrás.")
+        else:
+            parts.append(f"El contrarian apuntaría a {p['contrarian_pick_exact']} pero cuesta "
+                         f"{sac:.2f} de EV (> {mcfg.contrarian_max_ev_sacrifice}): quédate con el EV-óptimo.")
+    return " ".join(parts)
+
+
+def _match_card(idx: int, p: dict, mcfg) -> list[str]:
+    home, away = p["home"], p["away"]
+    L = [f"### {idx} · {home} vs {away}"]
+    meta = [f"J{p.get('jornada')}", p.get("date") or "", p.get("venue") or ""]
+    if p.get("altitude_m"):
+        meta.append(f"{int(p['altitude_m'])} m")
+    L.append("_" + " · ".join(m for m in meta if m) + "_\n")
+    L.append(f"**Marcador EV-óptimo: {p['pick_exact']}** "
+             f"({_outcome_es(p['pick_1x2'], home, away)})  ")
+    L.append(f"EV {p['ev']:.2f} · P(exacto) {p['p_exact']*100:.1f}% · gap {p['ev_gap']:.3f}"
+             + (f" · real {p['actual']}" if p.get("actual") else "") + "\n")
+    if p.get("contrarian_differs"):
+        mark = " ◆" if p.get("contrarian_actionable") else ""
+        tag = "accionable" if p.get("contrarian_actionable") else "no recomendada (costo alto)"
+        L.append(f"**Alternativa contrarian: {p['contrarian_pick_exact']}**{mark} "
+                 f"({_outcome_es(p['contrarian_pick_1x2'], home, away)}) — {tag}\n")
+    L += ["| Métrica | Valor |", "|---|---|",
+          f"| Goles esperados (λ) | {home} {p['lambda_home']:.2f} — {p['lambda_away']:.2f} {away} |",
+          f"| Rating Elo | {p['elo_home']:.0f} vs {p['elo_away']:.0f} |",
+          f"| Probabilidad 1 / X / 2 | {p['p_home_win']*100:.0f}% / {p['p_draw']*100:.0f}% / {p['p_away_win']*100:.0f}% |",
+          f"| Pesos del blend | {p['blend_weights']['poisson']*100:.0f}% Poisson · "
+          f"{p['blend_weights']['elo']*100:.0f}% Elo · {p['blend_weights']['odds']*100:.0f}% mercado |"]
+    if p.get("odds_n_books"):
+        L.append(f"| Cuotas implícitas | {p['odds_p1']*100:.0f}% / {p['odds_px']*100:.0f}% / "
+                 f"{p['odds_p2']*100:.0f}% ({p['odds_n_books']} casas) |")
+    top = p.get("top_5_scores", [])
+    if top:
+        L.append("")
+        L.append("**Top-5 marcadores:** " + " · ".join(
+            f"`{c['score']}` {c['prob']*100:.1f}%" for c in top))
+    L.append(f"\n> {_reasoning(p, mcfg)}\n")
+    return L
+
+
+def _render_md(picks: list[dict], label: str, rules, mcfg, elo_as_of=None, odds_as_of=None) -> str:
+    ps = sorted(picks, key=lambda x: (x.get("date") or "", x.get("home") or ""))
+    L = [f"# Picks Liga MX — {label.upper()}\n",
+         f"_Generado {datetime.utcnow().isoformat()}Z · scoring {rules.points_exact} exacto / "
+         f"{rules.points_1x2} 1X2 (excluyente, 90')._  "]
+    fresh = []
+    if elo_as_of:
+        fresh.append(f"Elo al {elo_as_of}")
+    if odds_as_of:
+        fresh.append(f"odds capturadas {odds_as_of}")
+    if fresh:
+        L.append(f"_Frescura de datos: {' · '.join(fresh)}._\n")
+    if ps:
+        L.append("```")
+        L.append(_boleto_block(ps, label, rules))
+        L.append("```\n")
+    # Resumen ejecutivo
+    total_ev = sum(p["ev"] for p in ps)
+    abstain = sum(1 for p in ps if p["abstain"])
+    actionable = [p for p in ps if p.get("contrarian_actionable")]
+    with_odds = sum(1 for p in ps if p.get("odds_n_books"))
+    max_pts = len(ps) * rules.points_exact
+    L.append("## Resumen ejecutivo\n")
+    if ps:
+        L.append(f"- **{len(ps)} partidos** · EV total **{total_ev:.2f}** / {max_pts} máx "
+                 f"({total_ev/max_pts*100:.0f}% del techo).")
+        L.append(f"- **{with_odds}/{len(ps)}** con cuotas de mercado en el blend (3 vías).")
+        L.append(f"- **{abstain}** ABSTAIN (baja confianza) · **{len(actionable)}** contrarian accionables (◆).")
+        best = max(ps, key=lambda p: p["ev"]); worst = min(ps, key=lambda p: p["ev_gap"])
+        L.append(f"- Pick más sólido: **{best['home']} vs {best['away']}** → {best['pick_exact']} (EV {best['ev']:.2f}).")
+        L.append(f"- Pick más frágil: **{worst['home']} vs {worst['away']}** → {worst['pick_exact']} (gap {worst['ev_gap']:.3f}).")
+    L.append("\n## Cómo leer\n")
+    L.append("- **EV-ÓPT**: marcador que maximiza el valor esperado de puntos (recomendación por defecto).")
+    L.append(f"- **◆ contrarian accionable**: sacrificio de EV ≤ {mcfg.contrarian_max_ev_sacrifice} — "
+             "diferenciación barata si vas atrás en el pool.")
+    L.append(f"- **★ ABSTAIN**: gap de EV < {mcfg.ev_abstain_gap}; pick de baja confianza.\n")
+    L.append("## Fichas técnicas por partido\n")
+    for i, p in enumerate(ps, start=1):
+        L.extend(_match_card(i, p, mcfg))
+    return "\n".join(L)
 
 
 def main(argv: list[str] | None = None) -> None:
