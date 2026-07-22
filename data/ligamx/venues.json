@@ -1,0 +1,28 @@
+{
+  "_meta": {
+    "purpose": "Home venue + altitude per Liga MX team. Altitude drives the visitor-lambda penalty (config.altitude_penalty_per_1000m). In Liga MX localía is per-team (no neutral venues), so this table is read on EVERY match, unlike the WC where only Azteca moved the needle.",
+    "source": "Scaffolding template — user/Fase 1 to VERIFY every altitude and the América/Cruz Azul venue (Estadio Azteca is under post-WC2026 works; both clubs have used Estadio Ciudad de los Deportes). Altitudes are approximate metres above sea level.",
+    "verify": true,
+    "altitude_units": "m"
+  },
+  "venues": {
+    "Estadio Nemesio Diez": {"team": "Toluca", "city": "Toluca", "altitude_m": 2660},
+    "Estadio Hidalgo": {"team": "Pachuca", "city": "Pachuca", "altitude_m": 2400},
+    "Estadio Olimpico Universitario": {"team": "Pumas UNAM", "city": "Ciudad de Mexico", "altitude_m": 2270},
+    "Estadio Ciudad de los Deportes": {"team": "America", "city": "Ciudad de Mexico", "altitude_m": 2240},
+    "Estadio Cruz Azul": {"team": "Cruz Azul", "city": "Ciudad de Mexico", "altitude_m": 2240},
+    "Estadio Cuauhtemoc": {"team": "Puebla", "city": "Puebla", "altitude_m": 2160},
+    "Estadio Victoria": {"team": "Necaxa", "city": "Aguascalientes", "altitude_m": 1880},
+    "Estadio Alfonso Lastras": {"team": "Atletico San Luis", "city": "San Luis Potosi", "altitude_m": 1860},
+    "Estadio Corregidora": {"team": "Queretaro", "city": "Queretaro", "altitude_m": 1820},
+    "Estadio Nou Camp": {"team": "Leon", "city": "Leon", "altitude_m": 1815},
+    "Estadio Akron": {"team": "Guadalajara", "city": "Guadalajara", "altitude_m": 1560},
+    "Estadio Jalisco": {"team": "Atlas", "city": "Guadalajara", "altitude_m": 1560},
+    "Estadio Benito Juarez": {"team": "FC Juarez", "city": "Ciudad Juarez", "altitude_m": 1140},
+    "Estadio Corona TSM": {"team": "Santos Laguna", "city": "Torreon", "altitude_m": 1120},
+    "Estadio Universitario": {"team": "Tigres UANL", "city": "San Nicolas de los Garza", "altitude_m": 530},
+    "Estadio BBVA": {"team": "Monterrey", "city": "Guadalupe", "altitude_m": 500},
+    "Estadio Caliente": {"team": "Tijuana", "city": "Tijuana", "altitude_m": 30},
+    "Estadio El Encanto": {"team": "Mazatlan", "city": "Mazatlan", "altitude_m": 10}
+  }
+}

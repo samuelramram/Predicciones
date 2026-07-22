@@ -5,6 +5,11 @@ Scoring de la quiniela: **2 puntos por marcador exacto, 1 por resultado 1X2** (e
 
 > Estado: **rebuild en marcha (mayo 2026)**. Modelo base Poisson + Dixon-Coles del proyecto Liga MX
 > archivado en `legacy/ligamx_2026/` y reusado donde aplica.
+>
+> **Nuevo (Fase 0):** este motor se está adaptando para el **Apertura de Liga MX**
+> (quiniela + apuestas de valor). Plan completo y estado por fases en
+> [`docs/ligamx_apertura.md`](docs/ligamx_apertura.md). La capa de perfil de liga
+> vive en `src/wc_predictor/leagues.py` y el scaffolding de datos en `data/ligamx/`.
 
 ---
 
@@ -202,7 +207,7 @@ de football-data.co.uk / etc.).
 python -m venv .venv
 source .venv/bin/activate          # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
-pytest                              # 55 tests (optimizer, fit, Elo, blend, ingest, calibration)
+pytest                              # 173 tests (optimizer, fit, Elo, blend, ingest, calibration, league profiles)
 ```
 
 ---

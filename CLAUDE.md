@@ -3,6 +3,18 @@
 Modelo de quiniela del Mundial 2026 (Poisson + Dixon-Coles + Elo, picks
 EV-óptimos). La documentación completa está en `README.md`.
 
+## Proyecto activo: adaptación a Liga MX Apertura
+
+Se está reusando este motor para el **Apertura de Liga MX** (ganar la quiniela
+del pool privado + módulo de apuestas de valor). El **plan completo, el estado
+por fases y los puntos de acoplamiento a refactorizar** están en
+`docs/ligamx_apertura.md` — **léelo antes de tocar cualquier cosa de Liga MX.**
+
+Estado: **Fase 0 completa** (perfil de liga en `src/wc_predictor/leagues.py`,
+scaffolding de datos en `data/ligamx/`, doc de diseño). El pipeline
+`generate_picks` todavía está cableado al Mundial; el cableado del perfil
+`ligamx` es la Fase 1. Las reglas de abajo aplican al Mundial mientras tanto.
+
 ## Regla de interacción: picks por jornada
 
 Cuando el usuario pida "picks", "boleto" o "predicciones" **sin especificar la

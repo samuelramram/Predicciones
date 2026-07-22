@@ -1,0 +1,28 @@
+{
+  "_meta": {
+    "purpose": "Canonical Liga MX team list for the Apertura edition, with the home venue key into venues.json. Team names should match TheSportsDB league 4350 so match_id / names stay consistent with the webapp.",
+    "source": "Scaffolding template — user/Fase 1 to VERIFY the final 18-team roster for the specific Apertura edition (promotions/relegation, franchise changes) and reconcile every `name` with TheSportsDB spelling.",
+    "verify": true,
+    "count_expected": 18
+  },
+  "teams": [
+    {"name": "America", "home_venue": "Estadio Ciudad de los Deportes"},
+    {"name": "Guadalajara", "home_venue": "Estadio Akron"},
+    {"name": "Cruz Azul", "home_venue": "Estadio Cruz Azul"},
+    {"name": "Pumas UNAM", "home_venue": "Estadio Olimpico Universitario"},
+    {"name": "Toluca", "home_venue": "Estadio Nemesio Diez"},
+    {"name": "Monterrey", "home_venue": "Estadio BBVA"},
+    {"name": "Tigres UANL", "home_venue": "Estadio Universitario"},
+    {"name": "Santos Laguna", "home_venue": "Estadio Corona TSM"},
+    {"name": "Leon", "home_venue": "Estadio Nou Camp"},
+    {"name": "Pachuca", "home_venue": "Estadio Hidalgo"},
+    {"name": "Puebla", "home_venue": "Estadio Cuauhtemoc"},
+    {"name": "Atlas", "home_venue": "Estadio Jalisco"},
+    {"name": "Necaxa", "home_venue": "Estadio Victoria"},
+    {"name": "Queretaro", "home_venue": "Estadio Corregidora"},
+    {"name": "Tijuana", "home_venue": "Estadio Caliente"},
+    {"name": "Mazatlan", "home_venue": "Estadio El Encanto"},
+    {"name": "FC Juarez", "home_venue": "Estadio Benito Juarez"},
+    {"name": "Atletico San Luis", "home_venue": "Estadio Alfonso Lastras"}
+  ]
+}

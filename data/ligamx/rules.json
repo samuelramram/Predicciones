@@ -1,0 +1,63 @@
+{
+  "version": "TEMPLATE",
+  "name": "Quiniela Liga MX Apertura (pool privado)",
+  "scoring": {
+    "points_exact_score": 2,
+    "points_1x2_only": 1,
+    "exclusive": true,
+    "use_90min_only": true,
+    "notes": [
+      "Plantilla — copiada del pool del Mundial. VERIFICAR contra el reglamento real del pool de Liga MX antes de la J1.",
+      "Excluyente: acertar marcador exacto NO suma además el punto del 1X2.",
+      "Solo cuenta el resultado al minuto 90 (relevante en liguilla: la app puede mostrar el marcador con tiempo extra/penales)."
+    ],
+    "stage_multipliers": null
+  },
+  "pool": {
+    "participants_estimated": "TBD",
+    "buyin_mxn": "TBD",
+    "payout_structure": "TBD",
+    "tiebreaker": "exactos (por confirmar)",
+    "submission_modality": "round_by_round",
+    "deadline_per_round": "TBD",
+    "platform": "webapp Lovable/Supabase existente (league 4350)"
+  },
+  "data_sources": {
+    "fixtures_and_live_results": {
+      "primary": "TheSportsDB",
+      "league_id": 4350,
+      "api_base": "https://www.thesportsdb.com/api/v1/json/{API_KEY}/",
+      "secret_env": "THESPORTSDB_API_KEY",
+      "notes": "Misma fuente que la webapp → match_id y nombres consistentes."
+    },
+    "historical_training_set": {
+      "primary": "TheSportsDB league 4350 (temporadas previas) + fbref",
+      "notes": "Liga MX tiene 100+ partidos por equipo por torneo — muchísimo mejor calibrado que las 3 partidos/equipo del WC. Usar 3-4 torneos hacia atrás (Clausura/Apertura recientes)."
+    },
+    "xg": {
+      "primary": "fbref (Sports Reference)",
+      "notes": "xG SÍ disponible para Liga MX (el WC casi no lo tenía). Mejora fuerte de lambda sobre goles crudos. El legado legacy/ligamx_2026 ya tenía fetch_fbref_stats.py."
+    },
+    "elo_ratings": {
+      "primary": "clubelo.com (API de clubes)",
+      "url": "http://api.clubelo.com/",
+      "notes": "Elo de CLUBES, no internacional. Reemplaza el replay martj42 del WC."
+    },
+    "odds": {
+      "primary": "The Odds API (sport key soccer_mexico_ligamx)",
+      "betting_books": ["Caliente", "Betway"],
+      "sharp_reference": "Pinnacle / línea de cierre",
+      "notes": "Para el módulo de apuestas: line-shopping Caliente vs Betway, precio justo vs Pinnacle sin vig, CLV tracking."
+    },
+    "injuries": {
+      "primary": "manual + perplexity por jornada",
+      "notes": "El legado ya tenía impactos por rol (goleador, portero, etc.)."
+    }
+  },
+  "todo_user_to_fill": [
+    "Confirmar reglamento del pool (scoring, desempate, premio, deadline por jornada).",
+    "Confirmar los 18 equipos de la edición y su spelling en TheSportsDB.",
+    "Verificar la tabla de altitudes en venues.json.",
+    "Definir bankroll y umbral de valor para el módulo de apuestas."
+  ]
+}
