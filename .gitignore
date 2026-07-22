@@ -71,3 +71,7 @@ debug_*.log
 # ----- Misc -----
 *.bak
 *.tmp
+
+# Liga MX live odds snapshots (ephemeral — regenerate with ingest.ligamx_odds)
+data/ligamx/odds_h2h.json
+data/ligamx/odds_markets.json

@@ -153,14 +153,19 @@ def run_fit(fit_rho: bool | None = None) -> None:
 
 
 # --- picks --------------------------------------------------------------------
-def _odds_weights(mcfg) -> tuple[float, float]:
-    """(w_poisson, w_elo) for the no-odds 2-way blend (backtested ≈0.70/0.30)."""
+def _odds_weights(mcfg, have_odds: bool) -> tuple[float, float, float]:
+    """(w_poisson, w_elo, w_odds). Without odds → 2-way blend (≈0.70/0.30);
+    with odds → odds take blend_odds_weight, Poisson:Elo keep their ratio on the
+    remainder (same policy as the WC path)."""
     share = mcfg.blend_poisson_weight / (mcfg.blend_poisson_weight + mcfg.blend_elo_weight)
-    return share, 1.0 - share
+    if have_odds:
+        rem = 1.0 - mcfg.blend_odds_weight
+        return rem * share, rem * (1.0 - share), mcfg.blend_odds_weight
+    return share, 1.0 - share, 0.0
 
 
 def predict_fixture(fx: dict, fit, elos: dict[str, float], altitudes: dict[str, float],
-                    mcfg, rules) -> dict | None:
+                    mcfg, rules, odds: dict | None = None) -> dict | None:
     home, away = fx["home"], fx["away"]
     if home not in fit.strengths or away not in fit.strengths:
         return {"match_id": fx.get("match_id"), "home": home, "away": away,
@@ -178,12 +183,16 @@ def predict_fixture(fx: dict, fit, elos: dict[str, float], altitudes: dict[str, 
     r_a = elos.get(away, 1500.0)
     elo_p1, elo_px, elo_p2 = elo_to_1x2_probs(r_h, r_a, mcfg.elo_home_bonus)
 
-    # Poisson·DC score matrix → 2-way blend with Elo (no odds yet).
-    w_po, w_el = _odds_weights(mcfg)
+    # Bookmaker 1X2 for this match, if covered (de-vigged closing/live line).
+    odds_entry = (odds or {}).get(f"{home}|{away}")
+    odds_1x2 = (odds_entry["p1"], odds_entry["px"], odds_entry["p2"]) if odds_entry else None
+
+    # Poisson·DC score matrix → blend with Elo (+ odds when available).
+    w_po, w_el, w_od = _odds_weights(mcfg, odds_1x2 is not None)
     pcells, pp1, ppx, pp2, pmass, pmax = build_score_matrix(lh, la, mcfg)
     cells_b, p1_b, px_b, p2_b = blend_three_sources(
-        pcells, (pp1, ppx, pp2), (elo_p1, elo_px, elo_p2), None,
-        w_poisson=w_po, w_elo=w_el, w_odds=0.0,
+        pcells, (pp1, ppx, pp2), (elo_p1, elo_px, elo_p2), odds_1x2,
+        w_poisson=w_po, w_elo=w_el, w_odds=w_od,
     )
 
     forbid = tuple(mcfg.forbid_outcomes)
@@ -204,6 +213,11 @@ def predict_fixture(fx: dict, fit, elos: dict[str, float], altitudes: dict[str, 
         "lambda_home": round(lh, 3),
         "lambda_away": round(la, 3),
         "altitude_m": venue_alt,
+        "odds_p1": round(odds_1x2[0], 3) if odds_1x2 else None,
+        "odds_px": round(odds_1x2[1], 3) if odds_1x2 else None,
+        "odds_p2": round(odds_1x2[2], 3) if odds_1x2 else None,
+        "odds_n_books": odds_entry["n_books"] if odds_entry else 0,
+        "blend_weights": {"poisson": round(w_po, 3), "elo": round(w_el, 3), "odds": round(w_od, 3)},
         "p_home_win": round(p1_b, 3),
         "p_draw": round(px_b, 3),
         "p_away_win": round(p2_b, 3),
@@ -299,6 +313,15 @@ def run_picks(round_spec: str, objective: str = "ev") -> None:
     altitudes = load_team_altitudes()
     fx_doc = json.loads(FIXTURES_JSON.read_text(encoding="utf-8"))
 
+    odds = {}
+    odds_h2h = LIGAMX_DIR / "odds_h2h.json"
+    if odds_h2h.exists():
+        odds = json.loads(odds_h2h.read_text(encoding="utf-8")).get("matches", {})
+        print(f"  odds cargadas para {len(odds)} partidos (blend 3 vías, "
+              f"{int(mcfg.blend_odds_weight*100)}% mercado)")
+    else:
+        print("  sin odds_h2h.json — blend 2 vías (corre ingest.ligamx_odds). ")
+
     spec = round_spec.strip().lower()
     if spec in ("all", ""):
         selected = fx_doc["matches"]
@@ -314,7 +337,7 @@ def run_picks(round_spec: str, objective: str = "ev") -> None:
 
     picks, errors = [], []
     for fx in selected:
-        r = predict_fixture(fx, fit, elos, altitudes, mcfg, rules)
+        r = predict_fixture(fx, fit, elos, altitudes, mcfg, rules, odds=odds)
         (errors if r and "error" in r else picks).append(r)
 
     if objective == "pool" and picks:

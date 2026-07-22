@@ -35,10 +35,17 @@ def test_altitude_factor_noop_when_disabled():
     assert altitude_factor(2660, 0, mcfg) == 1.0
 
 
-def test_odds_weights_sum_to_one_and_favor_poisson():
-    w_po, w_el = _odds_weights(MCFG)
+def test_odds_weights_two_way_and_three_way():
+    # No odds → 2-way blend sums to 1, Poisson favored.
+    w_po, w_el, w_od = _odds_weights(MCFG, have_odds=False)
+    assert w_od == 0.0
     assert abs(w_po + w_el - 1.0) < 1e-9
-    assert w_po > w_el  # backtested ≈0.70/0.30
+    assert w_po > w_el
+    # With odds → all three sum to 1, market takes blend_odds_weight.
+    w_po, w_el, w_od = _odds_weights(MCFG, have_odds=True)
+    assert abs(w_po + w_el + w_od - 1.0) < 1e-9
+    assert abs(w_od - MCFG.blend_odds_weight) < 1e-9
+    assert w_po > w_el  # Poisson:Elo ratio preserved on the remainder
 
 
 def _mini_fit():

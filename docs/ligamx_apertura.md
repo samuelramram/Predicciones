@@ -20,10 +20,23 @@ Documento de diseño para reusar este motor de quiniela (hoy cableado al Mundial
 | **0** | Doc de diseño + capa de perfil de liga + scaffolding de datos + `.md` | ✅ |
 | **1a** | Datos alineados al webapp + **ingest real** (TheSportsDB 4350) → 1028 partidos de historial + calendario Apertura 2026 (153 fixtures) | ✅ |
 | **1b** | Elo por replay + fit Poisson+DC + **picks por jornada** (`pipeline/ligamx.py`, localía por equipo + altitud diferencial) | ✅ este commit |
-| **1b.2** | Odds de Liga MX en el blend (`soccer_mexico_ligamx`) + **backtest walk-forward** + calibración `goal_env_mult`/gate de empate a datos LMX | ⏳ siguiente |
+| **1b.2** | Odds de Liga MX en el blend (3 vías) + **backtest walk-forward** | ✅ este commit |
 | **1c** | Liguilla a doble partido (marcador global + desempate) | pendiente |
 | **2** | Optimizador de pool con rivales reales (`--objective pool` + `ingest.ligamx_pool`) | ✅ este commit |
 | **3** | Módulo de apuestas de valor (O/U + doble oportunidad, ¼ Kelly, CLV) | pendiente |
+
+### Fase 1b.2 — odds + backtest (implementado)
+
+- `ingest.ligamx_odds`: The Odds API `soccer_mexico_ligamx` (activo, ~23 casas,
+  h2h + totals). Produce `odds_h2h.json` (1X2 devigado → 3.ª fuente del blend,
+  55% mercado) y `odds_markets.json` (fair + mejor precio por casa para 1X2 y
+  O/U → módulo de apuestas). Odds efímeras, gitignored; regenerar por jornada.
+- `pipeline.ligamx_backtest`: walk-forward, refit por semana, sin look-ahead.
+  **Resultado (347 partidos out-of-sample): 0.611 pts/partido vs 0.565 del
+  baseline trivial "1-0" = +8.2%** (comparable al +6% del Mundial). Es SIN odds
+  — mide la skill base; en producción el mercado (55%) lo sube.
+- Calibración a datos LMX (`goal_env_mult`, gate de empate): pendiente de afinar
+  con más jornadas jugadas; los defaults del perfil son un punto de arranque.
 
 ### Fase 2 — objetivo de pool (implementado)
 

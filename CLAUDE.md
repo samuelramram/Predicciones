@@ -24,6 +24,8 @@ pregúntale cuál (`j1`..`j17`). Flujo:
 ```bash
 # 1) Refrescar datos (historial + calendario/resultados) — key premium en THESPORTSDB_API_KEY
 python -m wc_predictor.ingest.ligamx --bootstrap
+# 1b) Odds de mercado (1X2 devigado para el blend + mercados para apuestas)
+python -m wc_predictor.ingest.ligamx_odds
 # 2) Re-fit (Elo replay + Poisson·DC) sobre el historial actualizado
 python -m wc_predictor.pipeline.ligamx fit
 # 3) Picks de la jornada (EV por partido)
