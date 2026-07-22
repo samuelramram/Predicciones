@@ -22,8 +22,30 @@ Documento de diseño para reusar este motor de quiniela (hoy cableado al Mundial
 | **1b** | Elo por replay + fit Poisson+DC + **picks por jornada** (`pipeline/ligamx.py`, localía por equipo + altitud diferencial) | ✅ este commit |
 | **1b.2** | Odds de Liga MX en el blend (`soccer_mexico_ligamx`) + **backtest walk-forward** + calibración `goal_env_mult`/gate de empate a datos LMX | ⏳ siguiente |
 | **1c** | Liguilla a doble partido (marcador global + desempate) | pendiente |
-| **2** | Optimizador de pool con rivales reales (reusa `ingest.pool_picks`) | pendiente |
+| **2** | Optimizador de pool con rivales reales (`--objective pool` + `ingest.ligamx_pool`) | ✅ este commit |
 | **3** | Módulo de apuestas de valor (O/U + doble oportunidad, ¼ Kelly, CLV) | pendiente |
+
+### Fase 2 — objetivo de pool (implementado)
+
+`pipeline.ligamx picks --round jN --objective pool` optimiza el boleto para
+**P(quedar 1.º del torneo)** en vez del EV por partido, reusando el optimizador
+genérico (`model/pool_optimizer` + `model/standings`, los mismos del Mundial).
+
+- Lee `data/ligamx/pool_standings.json` (brecha al líder, exactos, habilidad
+  empírica) y, si existe, `data/ligamx/pool_picks.json` (picks REALES de los
+  rivales → el campo se simula con sus boletos, no con humanos sintéticos).
+- `total_matches` = tamaño del calendario (153 en regular). Con horizonte largo
+  + brecha chica juega **EV** (tu ventaja se compone); con brecha grande + pocos
+  partidos **arriesga** (swaps a contrarian). La decisión emerge de la mate.
+- Sin los archivos degrada al objetivo de un solo round (igual que el WC).
+
+**Datos del pool (RLS):** la tabla `predictions` del webapp revela las picks de
+un rival **solo cuando el partido termina** — así que las picks de la jornada
+que estás por jugar no son visibles para nadie hasta el cierre/reveal (correcto).
+El leaderboard (de partidos ya jugados) sí es derivable. Flujo actual: exportar
+los CSV por jornada de la app e ingerirlos con `ingest.ligamx_pool` (desacoplado
+de Supabase, como el WC). Un pull directo del leaderboard de Supabase es una
+mejora futura posible (solo lectura).
 
 ### Hechos confirmados en Fase 1a (leer antes de corregir)
 

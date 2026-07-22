@@ -213,14 +213,83 @@ def predict_fixture(fx: dict, fit, elos: dict[str, float], altitudes: dict[str, 
         "ev": round(pick.ev, 3),
         "ev_gap": round(pick.ev_confidence_gap, 3),
         "abstain": pick.abstain,
+        "contrarian_pick_1x2": pick.contrarian_pick_1x2,
+        "contrarian_pick_exact": pick.contrarian_pick_exact,
+        "contrarian_ev": round(pick.contrarian_ev, 3),
         "top_5_scores": [{"score": c["score"], "prob": round(c["prob"], 3)}
                          for c in pick.top_5_by_prob],
         "actual": (f"{fx['home_score']}-{fx['away_score']}"
                    if fx.get("home_score") is not None else None),
+        # Transient (stripped before serialization) — inputs to the pool optimizer.
+        "_cells": cells_b,
+        "_elo_probs": (elo_p1, elo_px, elo_p2),
+        "_alt_picks": list(pick.alt_picks or []),
     }
 
 
-def run_picks(round_spec: str) -> None:
+POOL_STANDINGS_JSON = LIGAMX_DIR / "pool_standings.json"
+POOL_PICKS_JSON = LIGAMX_DIR / "pool_picks.json"
+
+
+def _apply_pool_objective(picks: list[dict], fx_doc: dict, rules) -> None:
+    """Re-select picks to maximize P(finishing 1st) in the pool instead of
+    per-match EV. Mutates `picks` in place (mirrors the WC path, LMX data dirs).
+
+    With data/ligamx/pool_standings.json the objective sees your gap to the
+    field, exactos cushion and the horizon of matches still to come; with
+    pool_picks.json the field is simulated on opponents' REAL submitted picks.
+    Without the files it degrades to the single-round objective. See
+    model.pool_optimizer / model.standings and docs/ligamx_apertura.md §Fase 2.
+    """
+    from wc_predictor.model.pool_optimizer import TicketMatch, optimize_ticket
+    from wc_predictor.model.standings import attach_real_picks, compute_horizon, load_pool_context
+
+    resolved_ids = {m["match_id"] for m in fx_doc["matches"]
+                    if m.get("home_score") is not None}
+    decidable = [p for p in picks if p["match_id"] not in resolved_ids]
+    tmatches = [
+        TicketMatch(
+            match_id=p["match_id"], cells=p["_cells"], elo_probs=p["_elo_probs"],
+            ev_pick=(p["pick_1x2"], p["pick_exact"]),
+            contra_pick=(p["contrarian_pick_1x2"], p["contrarian_pick_exact"]),
+            alt_picks=p.get("_alt_picks") or None,
+        )
+        for p in decidable
+    ]
+
+    ctx = load_pool_context(POOL_STANDINGS_JSON)
+    if ctx is not None:
+        horizon = compute_horizon(ctx, decision_pending=len(tmatches))
+        gap = ctx.leader_points - ctx.your_points
+        pos = (f"vas detrás del líder por {gap:.0f}" if gap > 0
+               else f"lideras por {-gap:.0f}" if gap < 0 else "empatado en la cima")
+        print(f"  standings: {ctx.you} {ctx.your_points:.0f} pts / {ctx.your_exactos:.0f} "
+              f"exactos ({pos}), {len(ctx.opponents)} rivales; horizonte "
+              f"{len(tmatches) + horizon} partidos")
+        n_real = attach_real_picks(ctx, POOL_PICKS_JSON)
+        print(f"  {'picks reales cargados para %d rivales' % n_real if n_real else 'sin pool_picks.json — campo sintético'}")
+        result = optimize_ticket(tmatches, rules, your_points=ctx.your_points,
+                                 your_exactos=ctx.your_exactos, opponents=ctx.opponents,
+                                 your_q_rate=ctx.your_q_rate, your_e_rate=ctx.your_e_rate,
+                                 horizon=horizon)
+    else:
+        print("  standings: sin data/ligamx/pool_standings.json — objetivo de un solo "
+              "round (corre ingest.ligamx_pool para activar alcance/colchón).")
+        result = optimize_ticket(tmatches, rules)
+
+    swapped = set(result.swapped_to_contrarian)
+    for p in picks:
+        p["pool_swapped"] = p["match_id"] in swapped
+        chosen = result.chosen.get(p["match_id"])
+        if p["match_id"] in swapped and chosen is not None:
+            p["pick_1x2"], p["pick_exact"] = chosen
+    verdict = ("COLCHÓN: 0 swaps — tu ventaja se compone, EV puro" if not swapped
+               else f"ALCANCE: {len(swapped)} swap(s) fuera del pick EV para maximizar P(1.º)")
+    print(f"  pool objective: P(1.º) {result.win_prob_ev:.1%} (EV) → "
+          f"{result.win_prob_pool:.1%} (pool) → {verdict}")
+
+
+def run_picks(round_spec: str, objective: str = "ev") -> None:
     mcfg, rules = PROFILE.model, PROFILE.rules
     if not STRENGTHS_JSON.exists():
         raise SystemExit(f"Missing {STRENGTHS_JSON}. Run `... ligamx fit` first.")
@@ -247,6 +316,14 @@ def run_picks(round_spec: str) -> None:
     for fx in selected:
         r = predict_fixture(fx, fit, elos, altitudes, mcfg, rules)
         (errors if r and "error" in r else picks).append(r)
+
+    if objective == "pool" and picks:
+        _apply_pool_objective(picks, fx_doc, rules)
+
+    # Strip transient pool-optimizer inputs before serialization.
+    for p in picks:
+        for k in ("_cells", "_elo_probs", "_alt_picks"):
+            p.pop(k, None)
 
     OUTPUTS_DIR.mkdir(parents=True, exist_ok=True)
     json_dst = OUTPUTS_DIR / f"ligamx_picks_{label}.json"
@@ -293,12 +370,16 @@ def main(argv: list[str] | None = None) -> None:
     pf.add_argument("--no-fit-rho", dest="fit_rho", action="store_false", default=None)
     pp = sub.add_parser("picks", help="Genera picks de una jornada.")
     pp.add_argument("--round", default="all", help="j1..j17 | all")
+    pp.add_argument("--objective", default="ev", choices=("ev", "pool"),
+                    help="ev (default): cada pick maximiza sus propios puntos esperados. "
+                         "pool: optimiza el boleto entero para P(quedar 1.º) usando "
+                         "data/ligamx/pool_standings.json (+ pool_picks.json si existe).")
     args = parser.parse_args(argv)
 
     if args.cmd == "fit":
         run_fit(fit_rho=args.fit_rho)
     elif args.cmd == "picks":
-        run_picks(args.round)
+        run_picks(args.round, objective=args.objective)
 
 
 if __name__ == "__main__":

@@ -26,8 +26,13 @@ pregúntale cuál (`j1`..`j17`). Flujo:
 python -m wc_predictor.ingest.ligamx --bootstrap
 # 2) Re-fit (Elo replay + Poisson·DC) sobre el historial actualizado
 python -m wc_predictor.pipeline.ligamx fit
-# 3) Picks de la jornada
+# 3) Picks de la jornada (EV por partido)
 python -m wc_predictor.pipeline.ligamx picks --round j2
+
+# 3b) Picks optimizados para P(quedar 1.º) — requiere pool_standings.json
+#     (ingiere primero los exports de la app; sin ellos degrada a EV)
+python -m wc_predictor.ingest.ligamx_pool data/ligamx/pool_exports/*j*.csv --you Samuel
+python -m wc_predictor.pipeline.ligamx picks --round j2 --objective pool
 ```
 
 Salida en `outputs/ligamx_picks_{ronda}.{json,md}`. Atlante es cold-start
