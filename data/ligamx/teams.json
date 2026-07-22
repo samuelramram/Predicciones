@@ -1,0 +1,33 @@
+{
+  "_meta": {
+    "purpose": "18 equipos del Apertura Liga MX, nombres EXACTOS del webapp (samuelramram/quinielacartoimagen: src/data/ligaMxApertura2026.ts + migración Supabase). `name` = nombre completo en la BD, `name_es` = display corto y clave canónica del modelo, `short` = código de 3 letras / logo. `home_venue` cruza con venues.json.",
+    "source": "samuelramram/quinielacartoimagen (fuente de verdad de la quiniela) — reconciliado 2026-07. TheSportsDB league 4350 usa spelling distinto (p.ej. 'CD Guadalajara', 'Atlético de San Luis'); el mapeo se resuelve en la capa de nombres del ingest.",
+    "verify": false,
+    "count": 18,
+    "notes": [
+      "América y Cruz Azul comparten Estadio Azteca toda la temporada (confirmado por el usuario).",
+      "Atlante entra en lugar de Mazatlán: es la MISMA franquicia comprada a Mazatlán (que desaparece). Arranca SIN historial de primera división — el fit debe tratarlo como equipo nuevo (prior de ascenso/expansión, varianza amplia, que las primeras jornadas lo muevan rápido). Ver docs/ligamx_apertura.md §Atlante cold-start.",
+      "Atlante juega de local en el Estadio Azteca (2240 m), confirmado por el usuario — no en Cancún."
+    ]
+  },
+  "teams": [
+    {"name": "Club América",          "name_es": "América",     "short": "AME", "home_venue": "Estadio Azteca",                "cold_start": false},
+    {"name": "Atlas FC",              "name_es": "Atlas",       "short": "ATL", "home_venue": "Estadio Jalisco",               "cold_start": false},
+    {"name": "Atlante FC",            "name_es": "Atlante",     "short": "ATE", "home_venue": "Estadio Azteca",                "cold_start": true},
+    {"name": "Atlético San Luis",     "name_es": "San Luis",    "short": "SLU", "home_venue": "Estadio Alfonso Lastras",       "cold_start": false},
+    {"name": "Cruz Azul",             "name_es": "Cruz Azul",   "short": "CAZ", "home_venue": "Estadio Azteca",                "cold_start": false},
+    {"name": "Chivas de Guadalajara", "name_es": "Guadalajara", "short": "GDL", "home_venue": "Estadio Akron",                 "cold_start": false},
+    {"name": "FC Juárez",             "name_es": "Juárez",      "short": "JUA", "home_venue": "Estadio Olimpico Benito Juarez","cold_start": false},
+    {"name": "Club León",             "name_es": "León",        "short": "LEO", "home_venue": "Estadio León",                  "cold_start": false},
+    {"name": "Rayados de Monterrey",  "name_es": "Monterrey",   "short": "MTY", "home_venue": "Estadio BBVA",                  "cold_start": false},
+    {"name": "Necaxa",                "name_es": "Necaxa",      "short": "NEC", "home_venue": "Estadio Victoria",              "cold_start": false},
+    {"name": "Pachuca",               "name_es": "Pachuca",     "short": "PAC", "home_venue": "Estadio Hidalgo",               "cold_start": false},
+    {"name": "Puebla FC",             "name_es": "Puebla",      "short": "PUE", "home_venue": "Estadio Cuauhtemoc",            "cold_start": false},
+    {"name": "Pumas UNAM",            "name_es": "Pumas",       "short": "PUM", "home_venue": "Estadio Olimpico Universitario","cold_start": false},
+    {"name": "Querétaro FC",          "name_es": "Querétaro",   "short": "QRO", "home_venue": "Estadio Corregidora",           "cold_start": false},
+    {"name": "Santos Laguna",         "name_es": "Santos",      "short": "SAN", "home_venue": "Estadio Corona TSM",            "cold_start": false},
+    {"name": "Tigres UANL",           "name_es": "Tigres",      "short": "TIG", "home_venue": "Estadio Universitario",         "cold_start": false},
+    {"name": "Xolos de Tijuana",      "name_es": "Tijuana",     "short": "TIJ", "home_venue": "Estadio Caliente",              "cold_start": false},
+    {"name": "Toluca FC",             "name_es": "Toluca",      "short": "TOL", "home_venue": "Estadio Nemesio Diez",          "cold_start": false}
+  ]
+}

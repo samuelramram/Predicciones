@@ -3,6 +3,51 @@
 Modelo de quiniela del Mundial 2026 (Poisson + Dixon-Coles + Elo, picks
 EV-óptimos). La documentación completa está en `README.md`.
 
+## Proyecto activo: adaptación a Liga MX Apertura
+
+Se está reusando este motor para el **Apertura de Liga MX** (ganar la quiniela
+del pool privado + módulo de apuestas de valor). El **plan completo, el estado
+por fases y los puntos de acoplamiento a refactorizar** están en
+`docs/ligamx_apertura.md` — **léelo antes de tocar cualquier cosa de Liga MX.**
+
+Estado: **Fase 1b** — ya hay pipeline Liga MX funcional y picks reales por
+jornada. El `generate_picks` del Mundial sigue intacto (Liga MX corre por su
+propio `pipeline/ligamx.py`, reusando el core). Las reglas de picks de abajo
+aplican al Mundial; para Liga MX ver el runbook siguiente.
+
+### Picks de Liga MX (runbook)
+
+Perfil `LIGAMX_APERTURA_PROFILE` (`src/wc_predictor/leagues.py`), datos en
+`data/ligamx/`. Cuando el usuario pida picks de Liga MX **sin jornada**,
+pregúntale cuál (`j1`..`j17`). Flujo:
+
+```bash
+# 1) Refrescar datos (historial + calendario/resultados) — key premium en THESPORTSDB_API_KEY
+python -m wc_predictor.ingest.ligamx --bootstrap
+# 1b) Odds de mercado (1X2 devigado para el blend + mercados para apuestas)
+python -m wc_predictor.ingest.ligamx_odds
+# 2) Re-fit (Elo replay + Poisson·DC) sobre el historial actualizado
+python -m wc_predictor.pipeline.ligamx fit
+# 3) Picks de la jornada (EV por partido)
+python -m wc_predictor.pipeline.ligamx picks --round j2
+
+# 3b) Picks optimizados para P(quedar 1.º) — requiere pool_standings.json
+#     (ingiere primero los exports de la app; sin ellos degrada a EV)
+python -m wc_predictor.ingest.ligamx_pool data/ligamx/pool_exports/*j*.csv --you Samuel
+python -m wc_predictor.pipeline.ligamx picks --round j2 --objective pool
+
+# 4) Apuestas de valor (modelo independiente vs mercado, ¼-Kelly, line-shopping)
+#    Requiere ingest.ligamx_odds. Edge ≥8% = probable error del modelo, no valor.
+python -m wc_predictor.pipeline.ligamx_bets --round j2 --bankroll 500
+
+# 5) Backtest walk-forward (validación out-of-sample, sin odds)
+python -m wc_predictor.pipeline.ligamx_backtest --since 2025-07-01
+```
+
+Salida en `outputs/ligamx_picks_{ronda}.{json,md}`. Atlante es cold-start
+(franquicia comprada a Mazatlán) — cerca del promedio de liga hasta que junte
+partidos. Pendiente: odds en el blend + backtest walk-forward (Fase 1b.2).
+
 ## Regla de interacción: picks por jornada
 
 Cuando el usuario pida "picks", "boleto" o "predicciones" **sin especificar la

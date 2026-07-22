@@ -1,0 +1,109 @@
+{
+  "mu": 0.15308645931390338,
+  "gamma": 0.30004208303625335,
+  "rho": -0.05,
+  "n_matches": 1028,
+  "n_teams": 19,
+  "half_life_days": 730,
+  "ridge_lambda": 0.3,
+  "converged": true,
+  "final_neg_log_lik": 2120.070410384695,
+  "teams": {
+    "América": {
+      "attack": 0.1987,
+      "defense": 0.4174,
+      "n_matches": 132
+    },
+    "Atlante": {
+      "attack": -0.2391,
+      "defense": -0.1736,
+      "n_matches": 1
+    },
+    "Atlas": {
+      "attack": -0.1385,
+      "defense": -0.1183,
+      "n_matches": 107
+    },
+    "Cruz Azul": {
+      "attack": 0.2213,
+      "defense": 0.2683,
+      "n_matches": 128
+    },
+    "Guadalajara": {
+      "attack": 0.0595,
+      "defense": 0.2182,
+      "n_matches": 116
+    },
+    "Juárez": {
+      "attack": -0.0538,
+      "defense": -0.1813,
+      "n_matches": 108
+    },
+    "León": {
+      "attack": -0.0918,
+      "defense": -0.1325,
+      "n_matches": 109
+    },
+    "Mazatlán": {
+      "attack": -0.2034,
+      "defense": -0.1869,
+      "n_matches": 103
+    },
+    "Monterrey": {
+      "attack": 0.2125,
+      "defense": 0.0635,
+      "n_matches": 123
+    },
+    "Necaxa": {
+      "attack": 0.0408,
+      "defense": -0.153,
+      "n_matches": 107
+    },
+    "Pachuca": {
+      "attack": 0.0346,
+      "defense": 0.1202,
+      "n_matches": 116
+    },
+    "Puebla": {
+      "attack": -0.3065,
+      "defense": -0.2496,
+      "n_matches": 106
+    },
+    "Pumas": {
+      "attack": 0.0961,
+      "defense": 0.1215,
+      "n_matches": 122
+    },
+    "Querétaro": {
+      "attack": -0.3034,
+      "defense": -0.032,
+      "n_matches": 104
+    },
+    "San Luis": {
+      "attack": 0.0716,
+      "defense": -0.1573,
+      "n_matches": 112
+    },
+    "Santos": {
+      "attack": -0.1776,
+      "defense": -0.3028,
+      "n_matches": 105
+    },
+    "Tigres": {
+      "attack": 0.1663,
+      "defense": 0.2731,
+      "n_matches": 125
+    },
+    "Tijuana": {
+      "attack": 0.084,
+      "defense": -0.0488,
+      "n_matches": 110
+    },
+    "Toluca": {
+      "attack": 0.3286,
+      "defense": 0.2539,
+      "n_matches": 122
+    }
+  },
+  "as_of": "2026-07-22"
+}

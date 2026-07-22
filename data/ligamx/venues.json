@@ -1,0 +1,27 @@
+{
+  "_meta": {
+    "purpose": "Sede + altitud por estadio. La altitud alimenta el penalti al visitante (config.altitude_penalty_per_1000m). En Liga MX la localía es por-equipo (sin sedes neutrales), así que esta tabla se lee en CADA partido — a diferencia del Mundial, donde solo el Azteca movía la aguja.",
+    "source": "Nombres de estadio alineados con TheSportsDB/webapp; altitudes en metros s.n.m. (valores de referencia, redondeados). Azteca lo comparten América y Cruz Azul toda la temporada.",
+    "altitude_units": "m",
+    "verify": false
+  },
+  "venues": {
+    "Estadio Nemesio Diez":            {"city": "Toluca",                    "altitude_m": 2660},
+    "Estadio Hidalgo":                 {"city": "Pachuca",                   "altitude_m": 2400},
+    "Estadio Olimpico Universitario":  {"city": "Ciudad de Mexico",          "altitude_m": 2270},
+    "Estadio Azteca":                  {"city": "Ciudad de Mexico",          "altitude_m": 2240},
+    "Estadio Cuauhtemoc":              {"city": "Puebla",                    "altitude_m": 2160},
+    "Estadio Victoria":                {"city": "Aguascalientes",            "altitude_m": 1880},
+    "Estadio Alfonso Lastras":         {"city": "San Luis Potosi",           "altitude_m": 1860},
+    "Estadio Corregidora":             {"city": "Queretaro",                 "altitude_m": 1820},
+    "Estadio León":                    {"city": "Leon",                      "altitude_m": 1815},
+    "Estadio Akron":                   {"city": "Guadalajara",               "altitude_m": 1560},
+    "Estadio Jalisco":                 {"city": "Guadalajara",               "altitude_m": 1560},
+    "Estadio Olimpico Benito Juarez":  {"city": "Ciudad Juarez",             "altitude_m": 1140},
+    "Estadio Corona TSM":              {"city": "Torreon",                   "altitude_m": 1120},
+    "Estadio Universitario":           {"city": "San Nicolas de los Garza",  "altitude_m": 530},
+    "Estadio BBVA":                    {"city": "Guadalupe",                 "altitude_m": 500},
+    "Estadio Caliente":                {"city": "Tijuana",                   "altitude_m": 30},
+    "Estadio Andres Quimicano":        {"city": "Cancun",                    "altitude_m": 10}
+  }
+}
