@@ -35,6 +35,13 @@ python -m wc_predictor.pipeline.ligamx picks --round j2
 #     (ingiere primero los exports de la app; sin ellos degrada a EV)
 python -m wc_predictor.ingest.ligamx_pool data/ligamx/pool_exports/*j*.csv --you Samuel
 python -m wc_predictor.pipeline.ligamx picks --round j2 --objective pool
+
+# 4) Apuestas de valor (modelo independiente vs mercado, ¼-Kelly, line-shopping)
+#    Requiere ingest.ligamx_odds. Edge ≥8% = probable error del modelo, no valor.
+python -m wc_predictor.pipeline.ligamx_bets --round j2 --bankroll 500
+
+# 5) Backtest walk-forward (validación out-of-sample, sin odds)
+python -m wc_predictor.pipeline.ligamx_backtest --since 2025-07-01
 ```
 
 Salida en `outputs/ligamx_picks_{ronda}.{json,md}`. Atlante es cold-start

@@ -23,7 +23,7 @@ Documento de diseño para reusar este motor de quiniela (hoy cableado al Mundial
 | **1b.2** | Odds de Liga MX en el blend (3 vías) + **backtest walk-forward** | ✅ este commit |
 | **1c** | Liguilla a doble partido (marcador global + desempate) | pendiente |
 | **2** | Optimizador de pool con rivales reales (`--objective pool` + `ingest.ligamx_pool`) | ✅ este commit |
-| **3** | Módulo de apuestas de valor (O/U + doble oportunidad, ¼ Kelly, CLV) | pendiente |
+| **3** | Módulo de apuestas de valor (1X2 + O/U, ¼ Kelly, line-shopping) | ✅ este commit |
 
 ### Fase 1b.2 — odds + backtest (implementado)
 
@@ -216,9 +216,21 @@ qué tan bien lo predice el modelo y qué tan blando suele estar el book:
   promedio positivo ⇒ el edge es real; si no, concentrarse en la quiniela (ahí
   compites contra 30 humanos, no contra un book con vig — tu ventaja real).
 
-Diseño técnico: módulo nuevo `betting/` (sin dependencia del pipeline de
-quiniela): `devig()`, `edge()`, `kelly_fraction()`, `bankroll.py`, `clv.py`.
-Reusa la matriz de marcadores que ya produce `scoring/quiniela.build_score_matrix`.
+Diseño técnico: módulo `betting/value.py` (puro) + `pipeline/ligamx_bets.py`.
+Compara la probabilidad **independiente** del modelo (Poisson+Elo, SIN odds en
+el blend — si no, el modelo solo haría eco del mercado) vs el precio devigado
+del book, y marca +EV con ¼-Kelly topado. Line-shopping: muestra el mejor
+precio y la casa. Mercados: 1X2 + O/U 2.5 (los que el feed cotiza densamente).
+
+**Honestidad de calibración (crítico):** el backtest dice que el modelo solo le
+gana ~8% a un baseline trivial → **NO es más afilado que el mercado** (Brier del
+mercado ≈0.23 vs modelo ≈0.55). Por eso un edge grande (≥8%) casi siempre es
+**error del modelo, no valor** — el output lo advierte. El valor real del módulo
+es la **medición** (registrar CLV a lo largo de la temporada para descubrir
+empíricamente si algún mercado tiene edge), no apostar los edges crudos. La
+ventaja de verdad está en la quiniela (30 humanos), no contra el book.
+Pendiente: doble oportunidad/BTTS (requieren esos markets en el fetch),
+`betting/clv.py` y ledger de bankroll persistente.
 
 ---
 
