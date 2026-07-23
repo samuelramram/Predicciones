@@ -74,6 +74,7 @@ NAME_MAP = {
     "Atletico de San Luis": "San Luis",
     "Atlético de San Luis": "San Luis",
     "Atletico San Luis": "San Luis",
+    "Atlético San Luis": "San Luis",
     "Cruz Azul": "Cruz Azul",
     "CD Guadalajara": "Guadalajara",
     "Guadalajara": "Guadalajara",
@@ -107,8 +108,23 @@ NAME_MAP = {
 _STRIP_PREFIXES = ("CF ", "CD ", "FC ", "Club ", "Deportivo ")
 
 
+def _fold(s: str) -> str:
+    """Accent- and case-insensitive key: 'Atlético San Luis' → 'atletico san luis'.
+    Also drops a standalone ' de ' so 'Atlético de San Luis' folds the same way."""
+    import unicodedata
+    s = unicodedata.normalize("NFKD", s)
+    s = "".join(c for c in s if not unicodedata.combining(c))
+    return s.lower().replace(" de ", " ").strip()
+
+
+# Folded index of NAME_MAP so any accent/spacing variant of a known name resolves
+# instead of silently passing through (which would drop that match's odds — the
+# feed spells "Atlético San Luis" where fixtures use "San Luis").
+_FOLDED_MAP = {_fold(k): v for k, v in NAME_MAP.items()}
+
+
 def normalize_name(raw: str) -> str:
-    """Map a TheSportsDB team name to the canonical short name_es."""
+    """Map a TheSportsDB / odds-feed team name to the canonical short name_es."""
     if not raw:
         return raw
     raw = raw.strip()
@@ -119,8 +135,9 @@ def normalize_name(raw: str) -> str:
             stripped = raw[len(pre):].strip()
             if stripped in NAME_MAP:
                 return NAME_MAP[stripped]
-            return stripped
-    return raw
+            return _FOLDED_MAP.get(_fold(stripped), stripped)
+    # Accent-insensitive fallback before giving up.
+    return _FOLDED_MAP.get(_fold(raw), raw)
 
 
 def _tournament_label(date_str: str) -> str:
