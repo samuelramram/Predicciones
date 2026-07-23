@@ -72,6 +72,23 @@ def test_ligamx_keeps_shared_knobs_active():
     assert m.poisson_grid_target_mass == ModelConfig().poisson_grid_target_mass
 
 
+def test_ligamx_tuned_calibration():
+    """Fase 1b.2 walk-forward re-fit: stronger localía than the WC default and
+    more Elo weight both backtested better on Liga MX (441 vs 434 pts oos).
+    Locks the tuned values so a future edit can't silently revert them."""
+    m = LIGAMX_APERTURA_PROFILE.model
+    d = ModelConfig()
+    # Home advantage tuned UP from the shared default.
+    assert m.elo_home_bonus == 100.0
+    assert m.elo_home_bonus > d.elo_home_bonus
+    # Blend leans MORE on Elo than the WC 70/30, and the pair still sums to 1.
+    assert m.blend_poisson_weight == 0.60
+    assert m.blend_elo_weight == 0.40
+    assert abs(m.blend_poisson_weight + m.blend_elo_weight - 1.0) < 1e-9
+    # goal_env_mult stays neutral — the league fit self-calibrates to ~2.84 g/match.
+    assert m.goal_env_mult == 1.0
+
+
 def test_ligamx_metadata():
     p = LIGAMX_APERTURA_PROFILE
     assert p.thesportsdb_league_id == 4350

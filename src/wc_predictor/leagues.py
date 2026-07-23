@@ -149,6 +149,24 @@ _LIGAMX_MODEL = replace(
     # Altitude matters MORE in Liga MX than the WC (Toluca 2660 m, Azteca/CDMX
     # 2240 m, Pachuca 2400 m). Keep the penalty active; verify magnitude in fase1.
     altitude_penalty_per_1000m=0.04,
+    # --- Fase 1b.2 re-fit against Liga MX history (ligamx_backtest walk-forward) ---
+    # goal_env_mult stays 1.0: the WC default (1.20) corrected a group-stage
+    # under-count, but the Liga MX fit trains on the league's OWN goals — measured
+    # 2.84 g/match over 1028 matches (2023-2026) and the fit predicts ~2.86, so it
+    # self-calibrates. No inflation needed (an extra multiplier here overshot).
+    #
+    # Home advantage and blend weights were tuned on the walk-forward backtest
+    # (687 out-of-sample matches, rho profiled per week, baselines scored on the
+    # SAME matches). Liga MX localía is strong (~47% home wins, plus altitude),
+    # so a higher Elo home bonus and MORE Elo weight both help:
+    #   default (hb80, 70/30 Poisson/Elo):  434 pts · 70 exactos · +9.0% vs 1-0
+    #   tuned   (hb100, 60/40):              441 pts · 72 exactos · +10.8% vs 1-0
+    # The gain replicated on both disjoint yearly segments (not a single-window
+    # fluke). Re-run `python -m wc_predictor.pipeline.ligamx_backtest` after new
+    # jornadas to confirm these still hold.
+    elo_home_bonus=100.0,
+    blend_poisson_weight=0.60,
+    blend_elo_weight=0.40,
 )
 
 LIGAMX_APERTURA_PROFILE = LeagueProfile(

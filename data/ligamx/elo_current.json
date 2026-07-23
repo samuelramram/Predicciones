@@ -4,79 +4,79 @@
   "teams": [
     {
       "team": "Cruz Azul",
-      "elo": 1743.9
+      "elo": 1748.12
     },
     {
       "team": "Pachuca",
-      "elo": 1661.96
-    },
-    {
-      "team": "Pumas",
-      "elo": 1623.3
+      "elo": 1663.93
     },
     {
       "team": "Toluca",
-      "elo": 1622.51
+      "elo": 1626.86
+    },
+    {
+      "team": "Pumas",
+      "elo": 1624.21
     },
     {
       "team": "América",
-      "elo": 1602.71
+      "elo": 1605.44
     },
     {
       "team": "Tijuana",
-      "elo": 1593.18
+      "elo": 1594.02
     },
     {
       "team": "Tigres",
-      "elo": 1579.39
+      "elo": 1583.57
     },
     {
       "team": "Guadalajara",
-      "elo": 1574.97
+      "elo": 1575.33
     },
     {
       "team": "Atlante",
-      "elo": 1480.74
+      "elo": 1481.83
     },
     {
       "team": "Atlas",
-      "elo": 1463.65
+      "elo": 1464.27
     },
     {
       "team": "Monterrey",
-      "elo": 1458.99
+      "elo": 1459.47
     },
     {
       "team": "Querétaro",
-      "elo": 1453.17
+      "elo": 1450.58
     },
     {
       "team": "Necaxa",
-      "elo": 1452.15
-    },
-    {
-      "team": "San Luis",
-      "elo": 1402.05
+      "elo": 1449.98
     },
     {
       "team": "Juárez",
-      "elo": 1401.61
+      "elo": 1400.05
+    },
+    {
+      "team": "San Luis",
+      "elo": 1397.81
     },
     {
       "team": "León",
-      "elo": 1375.24
+      "elo": 1372.14
     },
     {
       "team": "Mazatlán",
-      "elo": 1365.83
+      "elo": 1364.62
     },
     {
       "team": "Santos",
-      "elo": 1325.61
+      "elo": 1322.0
     },
     {
       "team": "Puebla",
-      "elo": 1319.04
+      "elo": 1315.77
     }
   ]
 }

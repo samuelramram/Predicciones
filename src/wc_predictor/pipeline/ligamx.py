@@ -31,6 +31,7 @@ from __future__ import annotations
 import argparse
 import csv
 import json
+from dataclasses import replace
 from datetime import datetime, date
 from pathlib import Path
 
@@ -322,11 +323,23 @@ def _apply_pool_objective(picks: list[dict], fx_doc: dict, rules) -> None:
           f"{result.win_prob_pool:.1%} (pool) → {verdict}")
 
 
+def effective_model_config(fit, mcfg):
+    """The score matrix must be built with the SAME rho the fit was optimized
+    under (`... ligamx fit` profiles it), not the config default — mirrors
+    generate_picks. Returns mcfg with dc_rho replaced by the fitted value."""
+    if abs(fit.rho - mcfg.dc_rho) > 1e-9:
+        return replace(mcfg, dc_rho=fit.rho)
+    return mcfg
+
+
 def run_picks(round_spec: str, objective: str = "ev") -> None:
     mcfg, rules = PROFILE.model, PROFILE.rules
     if not STRENGTHS_JSON.exists():
         raise SystemExit(f"Missing {STRENGTHS_JSON}. Run `... ligamx fit` first.")
     fit = load_fit(STRENGTHS_JSON)
+    if abs(fit.rho - mcfg.dc_rho) > 1e-9:
+        print(f"  usando rho ajustado {fit.rho:+.3f} (default de config {mcfg.dc_rho:+.3f})")
+    mcfg = effective_model_config(fit, mcfg)
     elos = {row["team"]: row["elo"]
             for row in json.loads(ELO_JSON.read_text(encoding="utf-8"))["teams"]}
     altitudes = load_team_altitudes()

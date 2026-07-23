@@ -32,11 +32,26 @@ Documento de diseño para reusar este motor de quiniela (hoy cableado al Mundial
   55% mercado) y `odds_markets.json` (fair + mejor precio por casa para 1X2 y
   O/U → módulo de apuestas). Odds efímeras, gitignored; regenerar por jornada.
 - `pipeline.ligamx_backtest`: walk-forward, refit por semana, sin look-ahead.
-  **Resultado (347 partidos out-of-sample): 0.611 pts/partido vs 0.565 del
-  baseline trivial "1-0" = +8.2%** (comparable al +6% del Mundial). Es SIN odds
-  — mide la skill base; en producción el mercado (55%) lo sube.
-- Calibración a datos LMX (`goal_env_mult`, gate de empate): pendiente de afinar
-  con más jornadas jugadas; los defaults del perfil son un punto de arranque.
+  **Resultado (347 partidos out-of-sample, calibración afinada): 0.646
+  pts/partido vs 0.562 del baseline trivial "1-0" = +14.9%.** Es SIN odds — mide
+  la skill base; en producción el mercado (55%) lo sube. El backtest ahora
+  perfila rho por semana (misma ruta que producción) y puntúa los baselines
+  sobre los MISMOS partidos que el modelo (antes se comparaba contra un conjunto
+  desalineado, lo que inflaba/deflactaba el edge sin querer).
+- **Calibración re-fiteada (Fase 1b.2)** contra el histórico real vía el
+  backtest walk-forward (687 partidos oos, dos ventanas anuales disjuntas para
+  descartar sobreajuste):
+  - `goal_env_mult=1.0` — se confirma neutral: la liga rinde 2.84 g/partido y el
+    fit predice ~2.86, se autocalibra (el 1.20 del Mundial corregía el
+    sub-conteo de fase de grupos; aquí sobra). **TODO cerrado.**
+  - `elo_home_bonus=100` (vs 80 default) y blend **60/40 Poisson/Elo** (vs
+    70/30): la localía de Liga MX es fuerte (~47% gana el local + altitud) y más
+    peso de Elo ayuda. 441 vs 434 pts / 72 vs 70 exactos oos. Re-correr el
+    backtest tras nuevas jornadas para confirmar.
+- **Bug corregido:** `ligamx picks` construía la matriz de marcadores con el rho
+  default (−0.10) en vez del rho perfilado por `ligamx fit` (−0.05), degradando
+  el componente de exacto (los 2 puntos). Ahora adopta el rho ajustado igual que
+  `generate_picks` del Mundial (`effective_model_config`).
 
 ### Fase 2 — objetivo de pool (implementado)
 
@@ -47,9 +62,15 @@ genérico (`model/pool_optimizer` + `model/standings`, los mismos del Mundial).
 - Lee `data/ligamx/pool_standings.json` (brecha al líder, exactos, habilidad
   empírica) y, si existe, `data/ligamx/pool_picks.json` (picks REALES de los
   rivales → el campo se simula con sus boletos, no con humanos sintéticos).
-- `total_matches` = tamaño del calendario (153 en regular). Con horizonte largo
-  + brecha chica juega **EV** (tu ventaja se compone); con brecha grande + pocos
-  partidos **arriesga** (swaps a contrarian). La decisión emerge de la mate.
+- `total_matches` = partidos que la quiniela **realmente puntúa**, no el
+  calendario entero. `ingest.ligamx_pool` lo calcula con `--start-round`
+  (default 3: este pool arrancó en J3, así que J1-J2 nunca dan puntos) +
+  `--liguilla-matches` (default 17: 3 reclasificación + 8 QF + 4 SF + 2 final).
+  Contar los 153 del calendario completo (bug anterior) sobreestimaba el
+  horizonte y sesgaba al optimizador a jugar demasiado conservador cerca del
+  cierre. Con horizonte largo + brecha chica juega **EV** (tu ventaja se
+  compone); con brecha grande + pocos partidos **arriesga** (swaps a
+  contrarian). La decisión emerge de la mate.
 - Sin los archivos degrada al objetivo de un solo round (igual que el WC).
 
 **Datos del pool (RLS):** la tabla `predictions` del webapp revela las picks de

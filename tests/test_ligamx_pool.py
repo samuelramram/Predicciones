@@ -8,6 +8,7 @@ from wc_predictor.ingest.ligamx_pool import (
     _parse_score,
     build_standings,
     parse_export,
+    pool_total_matches,
     resolve_team,
     round_from_filename,
     _name_resolver,
@@ -57,6 +58,23 @@ def test_build_standings_ranks_by_points_then_exactos():
     assert st["players"][0] == {"name": "B", "points": 4, "exactos": 2}
     # m2 for C was None → not counted as resolved for C, but m1/m2 resolved overall.
     assert st["matches_resolved"] == 2
+
+
+def test_pool_total_matches_counts_from_start_round():
+    """Regression: the pool horizon must count only the matches the pool WILL
+    score (J3→final), not the full 153-match calendar. Over-counting the horizon
+    biased the P(1.º) optimizer toward playing it too safe near the finish."""
+    # J3..J17 = 15 jornadas * 9 = 135 regular matches (committed fixtures).
+    doc = json.loads(FIXTURES_JSON.read_text(encoding="utf-8"))
+    regular_from_j3 = sum(1 for m in doc["matches"] if (m.get("jornada") or 0) >= 3)
+    assert pool_total_matches(3, 0) == regular_from_j3
+    # Liguilla matches (not yet in fixtures.json) are added on top.
+    assert pool_total_matches(3, 17) == regular_from_j3 + 17
+    # A pool that scored from J1 counts the whole calendar (+ liguilla).
+    all_regular = sum(1 for m in doc["matches"] if (m.get("jornada") or 0) >= 1)
+    assert pool_total_matches(1, 0) == all_regular
+    # start_round is exclusive-below: J3 anchor drops J1+J2 (18 matches).
+    assert pool_total_matches(1, 0) - pool_total_matches(3, 0) == 18
 
 
 def test_parse_export_orients_to_fixture(tmp_path):

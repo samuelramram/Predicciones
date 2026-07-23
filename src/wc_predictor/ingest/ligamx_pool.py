@@ -135,14 +135,36 @@ def build_standings(rounds: list[dict], you: str, total_matches: int) -> dict:
     }
 
 
+def pool_total_matches(start_round: int, liguilla_matches: int) -> int:
+    """How many matches the POOL will score in total — the horizon anchor for
+    the P(1.º) optimizer. The pool starts at `start_round` (J1/J2 are never
+    scored when the pool joined late) and runs through the liguilla, whose
+    fixtures don't exist yet in fixtures.json, so their count is passed in.
+    Counting the full 153-match calendar here (the old behaviour) overstated
+    the horizon and biased the optimizer toward playing it too safe."""
+    doc = json.loads(FIXTURES_JSON.read_text(encoding="utf-8"))
+    regular = sum(1 for m in doc["matches"] if (m.get("jornada") or 0) >= start_round)
+    return regular + liguilla_matches
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="Ingest exports del pool Liga MX.")
     parser.add_argument("csvs", nargs="+", help="CSVs por jornada (nombre con j1..j17).")
     parser.add_argument("--you", default="Samuel", help="tu nombre en la app.")
+    parser.add_argument("--start-round", type=int, default=3,
+                        help="primera jornada que la quiniela puntúa (default 3: "
+                             "este pool arrancó en la J3; J1-J2 no cuentan).")
+    parser.add_argument("--liguilla-matches", type=int, default=17,
+                        help="partidos de liguilla que puntuará la quiniela (default 17: "
+                             "3 de reclasificación + 8 QF + 4 SF + 2 final; ajusta si "
+                             "la app no puntúa la reclasificación → 14).")
     args = parser.parse_args()
 
     resolver = _name_resolver()
-    total_matches = len(json.loads(FIXTURES_JSON.read_text(encoding="utf-8"))["matches"])
+    total_matches = pool_total_matches(args.start_round, args.liguilla_matches)
+    print(f"  pool: puntúa desde J{args.start_round} → total {total_matches} partidos "
+          f"({total_matches - args.liguilla_matches} de regular + "
+          f"{args.liguilla_matches} de liguilla)")
 
     rounds = [parse_export(Path(p), resolver) for p in args.csvs]
     for rd, p in zip(rounds, args.csvs):
