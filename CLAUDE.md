@@ -33,7 +33,10 @@ python -m wc_predictor.pipeline.ligamx picks --round j2
 
 # 3b) Picks optimizados para P(quedar 1.º) — requiere pool_standings.json
 #     (ingiere primero los exports de la app; sin ellos degrada a EV)
-python -m wc_predictor.ingest.ligamx_pool data/ligamx/pool_exports/*j*.csv --you Samuel
+#     --start-round 3: el pool puntúa desde J3 (J1-J2 no cuentan); --liguilla-matches
+#     ancla el horizonte real (regular + liguilla), no el calendario completo.
+python -m wc_predictor.ingest.ligamx_pool data/ligamx/pool_exports/*j*.csv --you Samuel \
+    --start-round 3 --liguilla-matches 17
 python -m wc_predictor.pipeline.ligamx picks --round j2 --objective pool
 
 # 4) Apuestas de valor (modelo independiente vs mercado, ¼-Kelly, line-shopping)
@@ -46,7 +49,9 @@ python -m wc_predictor.pipeline.ligamx_backtest --since 2025-07-01
 
 Salida en `outputs/ligamx_picks_{ronda}.{json,md}`. Atlante es cold-start
 (franquicia comprada a Mazatlán) — cerca del promedio de liga hasta que junte
-partidos. Pendiente: odds en el blend + backtest walk-forward (Fase 1b.2).
+partidos. La calibración está re-fiteada contra el histórico real (localía Elo
+100, blend 60/40, rho perfilado, `goal_env_mult` neutral): +14.9% vs baseline
+"1-0" en el backtest walk-forward. Pendiente: liguilla a doble partido (Fase 1c).
 
 ## Regla de interacción: picks por jornada
 

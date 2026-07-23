@@ -6,6 +6,7 @@ from wc_predictor.model.poisson_dc import FitResult, TeamStrength
 from wc_predictor.pipeline.ligamx import (
     _odds_weights,
     altitude_factor,
+    effective_model_config,
     predict_fixture,
 )
 
@@ -80,3 +81,43 @@ def test_predict_fixture_missing_strengths():
     fx = {"match_id": "y", "home": "Fuerte", "away": "Inexistente"}
     p = predict_fixture(fx, fit, {}, {}, MCFG, RULES)
     assert "error" in p
+
+
+def test_effective_model_config_honors_fitted_rho():
+    """Regression: the score matrix (and the exact-score half of the pool points)
+    must be built with the rho the fit was optimized under, not the config
+    default. `ligamx fit` profiles rho; `run_picks` must adopt it, mirroring
+    generate_picks. Before this fix Liga MX picks silently used the -0.10 default."""
+    fit = _mini_fit()  # rho = -0.05
+    assert MCFG.dc_rho != fit.rho
+    eff = effective_model_config(fit, MCFG)
+    assert eff.dc_rho == fit.rho
+    # Everything else is untouched (only rho is overridden).
+    assert eff.elo_home_bonus == MCFG.elo_home_bonus
+    assert eff.blend_poisson_weight == MCFG.blend_poisson_weight
+
+
+def test_effective_model_config_noop_when_equal():
+    from dataclasses import replace
+    fit = _mini_fit()
+    mcfg = replace(MCFG, dc_rho=fit.rho)
+    # No divergence → the same object is returned (no needless copy).
+    assert effective_model_config(fit, mcfg) is mcfg
+
+
+def test_fitted_rho_changes_pick_exact():
+    """The rho fix is not cosmetic: a doubly-negative rho inflates 0-0/1-1 and
+    can move the EV-optimal exact score. Guards against a regression that
+    ignores the fitted rho again."""
+    from dataclasses import replace
+    fit = _mini_fit()  # rho -0.05
+    elos = {"Fuerte": 1550.0, "Débil": 1500.0}  # near-even → draw cells matter
+    alts = {"Fuerte": 0.0, "Débil": 0.0}
+    fx = {"match_id": "z", "jornada": 3, "date": "2026-08-01", "venue": "v",
+          "home": "Fuerte", "away": "Débil", "home_score": None, "away_score": None}
+    p_fit = predict_fixture(fx, fit, elos, alts, effective_model_config(fit, MCFG), RULES)
+    p_default = predict_fixture(fx, fit, elos, alts, replace(MCFG, dc_rho=MCFG.dc_rho), RULES)
+    # The draw marginal differs between the fitted rho (-0.05) and the config
+    # default the buggy path used — the fix is not cosmetic.
+    assert fit.rho != MCFG.dc_rho
+    assert p_fit["p_draw"] != p_default["p_draw"]

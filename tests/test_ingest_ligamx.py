@@ -30,6 +30,18 @@ def test_normalize_name_prefix_fallback_and_passthrough():
     assert normalize_name("") == ""
 
 
+def test_normalize_name_accent_insensitive_variants():
+    """Regression: the odds feed spells 'Atlético San Luis' (accent, no 'de')
+    where fixtures use 'San Luis'. Before the accent-folding fallback this exact
+    variant fell through and the match silently lost its market odds in the blend."""
+    assert normalize_name("Atlético San Luis") == "San Luis"      # feed spelling
+    assert normalize_name("Atletico San Luis") == "San Luis"      # no accent
+    assert normalize_name("Atlético de San Luis") == "San Luis"   # with 'de'
+    # Accent-folding also covers other accented feed variants.
+    assert normalize_name("Club León") == "León"
+    assert normalize_name("Queretaro") == "Querétaro"
+
+
 def test_tournament_label_splits_apertura_clausura():
     assert _tournament_label("2025-08-10") == "Liga MX Apertura 2025"
     assert _tournament_label("2025-12-01") == "Liga MX Apertura 2025"
