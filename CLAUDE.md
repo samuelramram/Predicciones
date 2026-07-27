@@ -82,6 +82,26 @@ que **siempre que generes picks o la proyección, publica ese `.html` como
 Artifact** (`outputs/ligamx_picks_{ronda}.html` o `ligamx_liguilla.html`) para
 que lo vea en claude.ai. Es el boleto/serie/tabla renderado bonito, no el ASCII.
 
+**Calibración de liguilla (medida con datos de Liga MX).** El ingest ahora guarda
+la ronda de TheSportsDB en `matches_history.csv` (`round` + `stage`), lo que
+permitió aislar **99 partidos de playoff (2023-2026)** y medirlos contra el rol
+regular:
+
+| | goles/partido | empates a 90' |
+|---|---|---|
+| rol regular (936) | 2.860 | 23.9% |
+| liguilla (99) | **2.576** | **32.3%** |
+
+Ratio de goles **0.90** — coincide con el `ko_goal_env_ratio` del Mundial, ahora
+sobre evidencia local. Así que los legs de liguilla corren con la calibración de
+playoff (`predict_fixture(..., liguilla=True)`): λ amortiguada, gate de empate
+`ko_draw_allow_min_prob` con el desbloqueo por marcador modal, y el tilt de
+exactos. Un tercio de los legs termina empatado — el gate de rol regular no puede
+expresar eso. Ojo: TheSportsDB **omite `intRound` en liguillas enteras**, así que
+`annotate_stages` las rellena por fecha (todo lo posterior a la última jornada
+fechada del torneo es playoff); sin ese backfill solo se recuperaban 44 de 99.
+El A/B está en `ligamx_backtest --no-liguilla-calibration`.
+
 **Liguilla (Fase 1c, hecha).** Formato Apertura 2026: sin Play-In, top-8 directo,
 cuartos 1-8/2-7/3-6/4-5, semis resembradas por posición en la tabla general,
 todo ida y vuelta; global empatado avanza el mejor sembrado en cuartos/semis y en
@@ -160,10 +180,32 @@ fecha es el Elo (`as_of` en `data/wc2026/elo_snapshot.json`) y la línea de cier
 (`captured_at` en `data/raw/odds_closing_line.json`) para que el usuario sepa qué
 tan frescos son los datos detrás del boleto.
 
+## Reglamento real del pool de Liga MX (verificado, no plantilla)
+
+Todo esto salió del código de la webapp (`samuelramram/quinielacartoimagen`) y
+está fijado en `data/ligamx/rules.json` + `LIGAMX_APERTURA_PROFILE.rules`:
+
+- **Scoring**: 2 pts marcador exacto, 1 pt el 1X2, **excluyente** (`get_leaderboard`
+  cuenta exactos como `points_awarded = 2`). Desempate por **exactos**
+  (`ORDER BY total_points DESC, exact_results DESC`).
+- **Dinero**: $200 de inscripción + $50 por jornada jugada. El bote se reparte
+  **80% al 1.º y 20% al 2.º** (`src/lib/ligaMxPricing.ts`).
+- **Arranca en la J3**: J1 y J2 quedan como historial con 0 puntos
+  (`counts_for_leaderboard = false`). Por eso `ingest.ligamx_pool --start-round 3`.
+
+**Que el bote pague dos lugares cambia el objetivo.** El optimizador ya no
+maximiza P(1.º) sino el **premio esperado** `0.8·P(1.º) + 0.2·P(2.º)`
+(`QuinielaRules.prize_shares`, `model/pool_optimizer.py`). Importa de verdad: con
+el 1.º fuera de alcance, maximizar P(1.º) es una función **plana en cero** — el
+boleto se vuelve arbitrario — mientras que el 20% del bote sigue vivo y se puede
+defender. El Mundial sigue en `(1.0,)` (winner-takes-all), así que su ruta no
+cambia. El pool sin standings dimensiona el campo con `rules.pool_participants`
+(15 en Liga MX), no con la constante de 30 del Mundial.
+
 ## Estrategia de pool: alcance vs colchón (brecha + horizonte)
 
 `generate_picks --objective pool` ya no maximiza P(ganar este round) sino
-**P(terminar 1.º del torneo)**. Lee `data/wc2026/pool_standings.json` (leaderboard
+**P(terminar 1.º del torneo)** (en Liga MX, el premio esperado — ver arriba). Lee `data/wc2026/pool_standings.json` (leaderboard
 del usuario) y, vía Monte Carlo (`model/pool_optimizer.py` + `model/standings.py`),
 mete los factores que antes ignoraba:
 

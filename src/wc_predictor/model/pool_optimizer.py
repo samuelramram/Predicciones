@@ -1,4 +1,4 @@
-"""Pool-aware ticket optimizer — maximize P(finishing 1st), not individual EV.
+"""Pool-aware ticket optimizer — maximize expected PRIZE, not individual EV.
 
 This closes the loop the diagnostic `pool_sim` left open. In a winner-takes-most
 pool the objective is NOT to maximize your own expected points (that just tracks
@@ -6,6 +6,14 @@ the favourite and ties you with everyone else who did the same) — it is to
 maximize the probability of finishing FIRST. Those are different objectives: the
 EV-optimal ticket is low-variance, and low variance is exactly what you do NOT
 want when you only get paid for rank 1.
+
+**Paying more than one place changes the objective** (`rules.prize_shares`). The
+Liga MX pot pays 80% to 1st and 20% to 2nd, so 2nd is worth a quarter of 1st —
+not zero. Maximizing P(1st) alone would happily trade a near-certain 2nd for a
+long-shot 1st, which is negative in money. The objective is therefore the
+expected share of the pot, `sum_r prize_shares[r] * P(rank = r+1)`, with ties
+splitting the shares they span. With the default `(1.0,)` this is identical to
+P(1st), so a winner-takes-all pool (and the World Cup path) is unchanged.
 
 Horizon- and gap-aware objective (the part that decides *how much* to gamble):
 the right amount of differentiation depends on (a) how far you currently are from
@@ -30,7 +38,11 @@ What the simulation knows (all optional, all degrade gracefully):
 - **Multiple candidates per match** (`TicketMatch.alt_picks`): besides the
   EV-optimal pick the optimizer may choose the best cell of ANY other outcome —
   including the draw, which per-match EV rules forbid. The greedy sweep accepts
-  whichever candidate raises simulated P(rank=1).
+  whichever candidate raises the simulated expected prize.
+- **Paid places** (`rules.prize_shares`): how many ranks the pot pays and in
+  what proportion. Each sim keeps the top-K distinct field scores with their
+  multiplicities (K = number of paid places), which is all that is needed to
+  place you exactly — including ties — among the paying ranks.
 
 Method (per round / jornada):
   1. Monte-Carlo the WHOLE remaining tournament with common random numbers:
@@ -42,7 +54,7 @@ Method (per round / jornada):
          (points, exactos) draw per player from their empirical per-match skill
          (2 pts w.p. e, 1 pt w.p. q-e, else 0).
   2. Start from the all-EV ticket and greedily swap individual matches to any
-     alternative candidate whenever the swap raises simulated P(finishing 1st).
+     alternative candidate whenever the swap raises the simulated expected prize.
 
 With no standings/horizon supplied this reduces to the original single-round,
 from-zero behaviour. Exposed via `generate_picks --objective pool`.
@@ -102,6 +114,25 @@ class TicketResult:
     win_prob_pool: float                    # P(rank=1) of the optimized ticket
     n_sims: int
     n_opponents: int
+    # Expected share of the pot (the maximized objective). With winner-takes-all
+    # prize_shares these equal win_prob_ev / win_prob_pool by construction.
+    prize_ev: float = 0.0                   # of the all-EV ticket
+    prize_pool: float = 0.0                 # of the optimized ticket
+    prize_shares: tuple[float, ...] = (1.0,)
+
+
+def _placement_share(n_better: int, n_tied: int, shares: tuple[float, ...]) -> float:
+    """Your expected prize share when `n_better` opponents beat you outright and
+    `n_tied` land on exactly your score.
+
+    You and the tied players jointly occupy ranks `n_better+1 .. n_better+n_tied+1`
+    and split what those ranks pay, which is how the pot is actually handed out
+    when a tie survives the leaderboard's tiebreaker.
+    """
+    if n_better >= len(shares):
+        return 0.0
+    total = sum(shares[r] for r in range(n_better, min(n_better + n_tied + 1, len(shares))))
+    return total / (n_tied + 1)
 
 
 def _sample_scoreline(rng: random.Random, cells: list[dict]) -> tuple[int, int]:
@@ -155,7 +186,7 @@ def _parse_pick(txt: str) -> tuple[str, str]:
 def optimize_ticket(
     matches: list[TicketMatch],
     rules: QuinielaRules,
-    n_opponents: int = 29,
+    n_opponents: int | None = None,
     n_sims: int = 20000,
     min_gain: float = 0.002,
     skill_lo: float = 0.78,
@@ -171,21 +202,24 @@ def optimize_ticket(
     your_e_rate: float = 0.0,
     horizon: int = 0,
 ) -> TicketResult:
-    """Pick, per match, among the EV pick and its alternatives to maximize
-    simulated P(finishing 1st).
+    """Pick, per match, among the EV pick and its alternatives to maximize the
+    simulated expected prize (P(finishing 1st) when the pool pays one place).
 
     Single-round mode (defaults): `opponents=None`, `your_points=0`, `horizon=0`
-    reproduces the original from-zero, this-round-only objective.
+    reproduces the original from-zero, this-round-only objective, and the
+    synthetic field is sized from `rules.pool_participants`.
 
     Tournament mode: pass the real `opponents` (with cumulative points/exactos,
     empirical rates and — when captured — their real picks for this round),
     your own cumulative stats, and the `horizon` of matches still to come after
-    this round. The objective becomes P(finishing the tournament 1st) under the
-    leaderboard's tie rule, so the chase-vs-cushion trade-off is decided by the
-    gap and the runway, not a hand-tuned rule.
+    this round. The objective becomes your expected share of the pot at the end
+    of the tournament under the leaderboard's tie rule, so the chase-vs-cushion
+    trade-off is decided by the gap, the runway and what each rank actually
+    pays, not a hand-tuned rule. When `rules.prize_shares` pays a second place,
+    a swap that trades a likely 2nd for a long-shot 1st now has to earn it.
 
-    `min_gain` is the Monte-Carlo noise floor: a swap must raise simulated
-    P(rank=1) by more than this to be accepted. At n_sims=20000 the paired
+    `min_gain` is the Monte-Carlo noise floor: a swap must raise the simulated
+    expected prize by more than this to be accepted. At n_sims=20000 the paired
     standard error of a swap's delta is ~0.1-0.2pp, so the 0.2pp default keeps
     phantom swaps (improvements that don't replicate across seeds) out of the
     ticket. Swaps that are win-prob-flat within the noise band stay on the EV
@@ -194,19 +228,30 @@ def optimize_ticket(
     cancel, and defaulting to EV is the lower-variance side of a coin flip.
     """
     if not matches:
-        return TicketResult({}, [], 0.0, 0.0, n_sims, n_opponents)
+        return TicketResult({}, [], 0.0, 0.0, n_sims, n_opponents or 0)
 
     rng = random.Random(seed)
     n_matches = len(matches)
     use_real_field = opponents is not None
     if use_real_field:
         n_opponents = len(opponents)
+    elif n_opponents is None:
+        # No standings loaded: size the synthetic field from the pool's own rules
+        # rather than a World-Cup-sized constant. Simulating far more rivals than
+        # the pool has makes winning look artificially hard and over-tilts the
+        # ticket toward contrarian swaps.
+        n_opponents = max(0, getattr(rules, "pool_participants", 30) - 1)
     if n_opponents == 0:
         # Nobody to beat: any ticket "wins". Keep the all-EV ticket.
         chosen = {m.match_id: m.ev_pick for m in matches}
-        return TicketResult(chosen, [], 1.0, 1.0, n_sims, 0)
+        top = (getattr(rules, "prize_shares", None) or (1.0,))[0]
+        return TicketResult(chosen, [], 1.0, 1.0, n_sims, 0,
+                            prize_ev=top, prize_pool=top,
+                            prize_shares=tuple(getattr(rules, "prize_shares", None) or (1.0,)))
 
     tiebreak = getattr(rules, "tiebreaker_exactos", False)
+    shares = tuple(getattr(rules, "prize_shares", None) or (1.0,))
+    n_paid = len(shares)
 
     # Candidate picks per match: EV first, then alternatives (deduped).
     cand_picks: list[list[tuple[str, str]]] = []
@@ -229,14 +274,19 @@ def optimize_ticket(
             opp_real.append(row)
 
     # Pre-tabulate, per sim: your candidates' per-match (points, exactos), your
-    # tail draw, and the field's best (points, exactos) tuple (cushion + round +
-    # tail). Common random numbers across candidate tickets keep swap
-    # comparisons apples-to-apples. The field total is independent of YOUR
-    # choice, so it is fully precomputed here.
+    # tail draw, and the field's top-K DISTINCT (points, exactos) tuples with how
+    # many opponents hold each (cushion + round + tail). Common random numbers
+    # across candidate tickets keep swap comparisons apples-to-apples. The field
+    # totals are independent of YOUR choice, so they are fully precomputed here.
+    #
+    # K = number of paid places is all we need: an opponent scoring below the
+    # K-th distinct field score can never push you out of the money, because
+    # reaching that far down already means at least K players are ahead of you.
     cand_pts = [[[0] * n_sims for _ in cands] for cands in cand_picks]
     cand_ex = [[[0] * n_sims for _ in cands] for cands in cand_picks]
     your_tail = [(0, 0)] * n_sims
-    field_best: list[tuple[float, float]] = [(float("-inf"), float("-inf"))] * n_sims
+    # Per sim: [(key, count), ...] for the top n_paid distinct opponent scores.
+    field_top: list[list[tuple[tuple[float, float], int]]] = [[] for _ in range(n_sims)]
 
     for s in range(n_sims):
         actuals = []
@@ -250,7 +300,7 @@ def optimize_ticket(
 
         your_tail[s] = _sample_tail(rng, your_q_rate, your_e_rate, horizon)
 
-        best: tuple[float, float] = (float("-inf"), float("-inf"))
+        seen_scores: dict[tuple[float, float], int] = {}
         for j in range(n_opponents):
             if use_real_field:
                 opp = opponents[j]
@@ -271,13 +321,17 @@ def optimize_ticket(
             total += t_pts
             total_ex += t_ex
             key = (total, total_ex) if tiebreak else (total, 0.0)
-            if key > best:
-                best = key
-        field_best[s] = best
+            seen_scores[key] = seen_scores.get(key, 0) + 1
+        field_top[s] = sorted(seen_scores.items(), key=lambda kv: kv[0],
+                              reverse=True)[:n_paid]
 
-    def win_prob(choice: list[int]) -> float:
-        """P(rank=1) of a ticket. choice[mi] indexes cand_picks[mi]."""
+    def evaluate(choice: list[int]) -> tuple[float, float]:
+        """(P(rank=1), expected prize share) of a ticket, on the shared draws.
+        choice[mi] indexes cand_picks[mi]. The optimizer maximizes the second;
+        the first is reported so the ticket's headline win probability stays
+        comparable across runs."""
         wins = 0.0
+        prize = 0.0
         for s in range(n_sims):
             pts = your_points + your_tail[s][0]
             ex = your_exactos + your_tail[s][1]
@@ -285,11 +339,21 @@ def optimize_ticket(
                 pts += cand_pts[mi][choice[mi]][s]
                 ex += cand_ex[mi][choice[mi]][s]
             key = (pts, ex) if tiebreak else (pts, 0.0)
-            if key > field_best[s]:
-                wins += 1.0
-            elif key == field_best[s]:
-                wins += 0.5  # split on a dead-even tie (points AND tiebreaker)
-        return wins / n_sims
+            # Walk the top field scores: everything strictly above you costs a
+            # rank, an exact match on your score is a tie you split.
+            n_better = n_tied = 0
+            for other_key, count in field_top[s]:
+                if other_key > key:
+                    n_better += count
+                elif other_key == key:
+                    n_tied = count
+                    break
+                else:
+                    break
+            if n_better == 0:
+                wins += 1.0 / (n_tied + 1)  # split a dead-even tie for the lead
+            prize += _placement_share(n_better, n_tied, shares)
+        return wins / n_sims, prize / n_sims
 
     # Expected exactos of each candidate (per match, independent across matches):
     # the greedy tie-breaker below. Only a DEAD-EVEN win probability (same wins
@@ -299,11 +363,11 @@ def optimize_ticket(
     ex_mean = [[sum(col) / n_sims for col in cand_ex[mi]] for mi in range(n_matches)]
 
     # Greedy: start all-EV, move a match to any alternative only if it raises
-    # win probability by more than the noise floor (or exactly ties it with
+    # the expected prize by more than the noise floor (or exactly ties it with
     # more expected exactos).
     choice = [0] * n_matches
-    base_win = win_prob(choice)
-    current = base_win
+    base_win, base_prize = evaluate(choice)
+    current_win, current = base_win, base_prize
 
     improved = True
     while improved:
@@ -312,28 +376,28 @@ def optimize_ticket(
             if len(cand_picks[mi]) == 1:
                 continue
             prev_ci = choice[mi]
-            best_ci, best_win = choice[mi], current
+            best_ci, best_prize, best_win = choice[mi], current, current_win
             for ci in range(len(cand_picks[mi])):
                 if ci == choice[mi]:
                     continue
                 choice[mi] = ci
-                cand = win_prob(choice)
-                better = cand > best_win + min_gain
+                cand_win, cand = evaluate(choice)
+                better = cand > best_prize + min_gain
                 tied_more_exactos = (
                     tiebreak
-                    and abs(cand - best_win) <= 1e-9
+                    and abs(cand - best_prize) <= 1e-9
                     and ex_mean[mi][ci] > ex_mean[mi][best_ci] + 1e-9
                 )
                 if better or tied_more_exactos:
-                    best_ci, best_win = ci, cand
+                    best_ci, best_prize, best_win = ci, cand, cand_win
             choice[mi] = best_ci
-            if best_win > current + min_gain:
-                current = best_win
+            if best_prize > current + min_gain:
+                current, current_win = best_prize, best_win
                 improved = True
             elif best_ci != prev_ci:
-                # Exactos-tiebreak swap: track the ticket's actual win prob but
+                # Exactos-tiebreak swap: track the ticket's actual objective but
                 # don't count it as an improvement (avoids re-sweep churn).
-                current = best_win
+                current, current_win = best_prize, best_win
 
     chosen: dict = {}
     swapped: list = []
@@ -347,7 +411,10 @@ def optimize_ticket(
         chosen=chosen,
         swapped_to_contrarian=swapped,
         win_prob_ev=base_win,
-        win_prob_pool=current,
+        win_prob_pool=current_win,
         n_sims=n_sims,
         n_opponents=n_opponents,
+        prize_ev=base_prize,
+        prize_pool=current,
+        prize_shares=shares,
     )

@@ -71,6 +71,12 @@ class QuinielaRules:
     # which sorts equal-point players by exactos). Drives the pool optimizer's
     # win condition: (points, exactos) lexicographic instead of points alone.
     tiebreaker_exactos: bool = True
+    # How the pot is split, best rank first: (1.0,) = winner-takes-all, so the
+    # optimizer's objective is exactly P(1st). A pool that also pays 2nd (Liga MX
+    # pays 80/20) makes the objective EXPECTED PRIZE — finishing 2nd is worth real
+    # money, and a ticket that chases 1st at the cost of dropping out of 2nd is
+    # burning it. Shares are relative; only their ratio matters.
+    prize_shares: tuple[float, ...] = (1.0,)
     stage_multipliers: dict[str, float] = field(default_factory=dict)
     pool_participants: int = 30
     pool_buyin_mxn: int = 500

@@ -71,6 +71,10 @@ def load_history_rows(src: Path = HISTORY_CSV) -> list[dict]:
                 "away_score": int(r["away_score"]),
                 "neutral": r["neutral"].strip().lower() in {"true", "t", "1", "yes"},
                 "tournament": r["tournament"],
+                # 'regular' | 'liguilla' | '' — lets the backtest score playoff
+                # matches under the playoff calibration instead of averaging them
+                # into the regular season they don't behave like.
+                "stage": (r.get("stage") or "").strip(),
             })
     rows.sort(key=lambda x: x["date"])
     return rows
@@ -183,7 +187,8 @@ def _odds_weights(mcfg, have_odds: bool) -> tuple[float, float, float]:
 
 def blended_matchup(home: str, away: str, fit, elos: dict[str, float],
                     altitudes: dict[str, float], mcfg,
-                    odds_1x2: tuple[float, float, float] | None = None) -> dict | None:
+                    odds_1x2: tuple[float, float, float] | None = None,
+                    liguilla: bool = False) -> dict | None:
     """Blended score matrix + 1X2 for one home/away pairing — the shared core of a
     Liga MX prediction (per-team localía + altitude differential + Elo, and the
     market when supplied). Returns None if either side lacks fitted strengths.
@@ -192,6 +197,11 @@ def blended_matchup(home: str, away: str, fit, elos: dict[str, float],
     matrix for ANY matchup (not just a fixtures.json row) without re-deriving the
     pipeline. Keys: cells, p1/px/p2 (blended), lambda_home/away, elo_home/away,
     venue_alt, blend weights, pmass, pmax.
+
+    `liguilla=True` damps the goal environment: the fit trains on a sample that is
+    ~90% regular season, but Liga MX playoff football is measurably quieter — over
+    99 playoff matches (2023-2026) it runs 2.576 goals/match vs 2.860 in the
+    regular season, a ratio of 0.90 (see ModelConfig.ko_goal_env_ratio).
     """
     if home not in fit.strengths or away not in fit.strengths:
         return None
@@ -201,6 +211,9 @@ def blended_matchup(home: str, away: str, fit, elos: dict[str, float],
     # Altitude differential: the visitor climbs to the home venue's altitude.
     venue_alt = altitudes.get(home, 0.0)
     la *= altitude_factor(venue_alt, altitudes.get(away, 0.0), mcfg)
+    if liguilla:
+        lh *= mcfg.ko_goal_env_ratio
+        la *= mcfg.ko_goal_env_ratio
     # Elo 1X2 with home bonus.
     r_h = elos.get(home, 1500.0)
     r_a = elos.get(away, 1500.0)
@@ -221,14 +234,44 @@ def blended_matchup(home: str, away: str, fit, elos: dict[str, float],
     }
 
 
+def _liguilla_forbid(mcfg, px_blended: float, modal_outcome: str,
+                     liguilla: bool) -> tuple[str, ...]:
+    """Outcomes the optimizer may not pick, with the playoff exception.
+
+    The draw is banned by default and the ban lifts on a strong enough P(X). The
+    liguilla gets the same two-track treatment the World Cup knockouts do,
+    because Liga MX playoff football behaves the same way: over 99 playoff
+    matches (2023-2026) **32.3% ended level at 90'** vs 23.9% in the regular
+    season, so the regular-season gate is calibrated for the wrong base rate.
+      - the gate drops to `ko_draw_allow_min_prob`, and
+      - a playoff leg whose MODAL blended scoreline is itself a draw unlocks the
+        X from `ko_modal_draw_min_prob` — the market-compressed blend rarely
+        reaches the probability gates outright, but the grid's #1 cell being a
+        0-0/1-1 is a draw signal in its own right.
+    """
+    forbid = tuple(mcfg.forbid_outcomes)
+    gate = mcfg.ko_draw_allow_min_prob if liguilla else mcfg.draw_allow_min_prob
+    lift = px_blended >= gate or (
+        liguilla and modal_outcome == "X" and px_blended >= mcfg.ko_modal_draw_min_prob
+    )
+    if "X" in forbid and lift:
+        forbid = tuple(o for o in forbid if o != "X")
+    return forbid
+
+
 def predict_fixture(fx: dict, fit, elos: dict[str, float], altitudes: dict[str, float],
-                    mcfg, rules, odds: dict | None = None) -> dict | None:
+                    mcfg, rules, odds: dict | None = None,
+                    liguilla: bool = False) -> dict | None:
+    """One fixture → pick + diagnostics. `liguilla=True` switches the match to the
+    playoff calibration (quieter goal environment, the lower draw gate and the
+    exactos tilt) — see :func:`_liguilla_forbid` for the evidence."""
     home, away = fx["home"], fx["away"]
     # Bookmaker 1X2 for this match, if covered (de-vigged closing/live line).
     odds_entry = (odds or {}).get(f"{home}|{away}")
     odds_1x2 = (odds_entry["p1"], odds_entry["px"], odds_entry["p2"]) if odds_entry else None
 
-    m = blended_matchup(home, away, fit, elos, altitudes, mcfg, odds_1x2=odds_1x2)
+    m = blended_matchup(home, away, fit, elos, altitudes, mcfg, odds_1x2=odds_1x2,
+                        liguilla=liguilla)
     if m is None:
         return {"match_id": fx.get("match_id"), "home": home, "away": away,
                 "error": "missing strengths"}
@@ -240,11 +283,13 @@ def predict_fixture(fx: dict, fit, elos: dict[str, float], altitudes: dict[str, 
     elo_p1, elo_px, elo_p2 = m["elo_probs"]
     w_po, w_el, w_od = m["weights"]
 
-    forbid = tuple(mcfg.forbid_outcomes)
-    if px_b >= mcfg.draw_allow_min_prob and "X" in forbid:
-        forbid = tuple(o for o in forbid if o != "X")
-    pick = optimize_pick_from_cells(cells_b, p1_b, px_b, p2_b, pmass, pmax, rules, mcfg,
-                                    forbid_outcomes=forbid)
+    modal_outcome = max(cells_b, key=lambda c: c["prob"])["outcome"]
+    forbid = _liguilla_forbid(mcfg, px_b, modal_outcome, liguilla)
+    pick = optimize_pick_from_cells(
+        cells_b, p1_b, px_b, p2_b, pmass, pmax, rules, mcfg,
+        forbid_outcomes=forbid,
+        exact_ev_bonus=mcfg.ko_exacto_ev_bonus if liguilla else 0.0,
+    )
 
     return {
         "match_id": fx.get("match_id"),
@@ -348,9 +393,12 @@ def _apply_pool_objective(picks: list[dict], fx_doc: dict, rules) -> None:
         if p["match_id"] in swapped and chosen is not None:
             p["pick_1x2"], p["pick_exact"] = chosen
     verdict = ("COLCHÓN: 0 swaps — tu ventaja se compone, EV puro" if not swapped
-               else f"ALCANCE: {len(swapped)} swap(s) fuera del pick EV para maximizar P(1.º)")
-    print(f"  pool objective: P(1.º) {result.win_prob_ev:.1%} (EV) → "
-          f"{result.win_prob_pool:.1%} (pool) → {verdict}")
+               else f"ALCANCE: {len(swapped)} swap(s) fuera del pick EV para maximizar el premio")
+    pays = len(result.prize_shares)
+    print(f"  pool objective: P(1.º) {result.win_prob_ev:.1%} → {result.win_prob_pool:.1%}; "
+          f"premio esperado {result.prize_ev:.1%} → {result.prize_pool:.1%} del bote "
+          f"({'/'.join(f'{s:.0%}' for s in result.prize_shares)} a {pays} lugar"
+          f"{'es' if pays > 1 else ''}) → {verdict}")
 
 
 def effective_model_config(fit, mcfg):
@@ -380,14 +428,15 @@ def _load_model():
     return fit, mcfg, rules, elos, altitudes
 
 
-def _matchup_cells_closure(fit, elos, altitudes, mcfg):
-    """Memoised (home, away) -> blended cells, for the liguilla projector."""
+def _matchup_cells_closure(fit, elos, altitudes, mcfg, liguilla: bool = False):
+    """Memoised (home, away) -> blended cells, for the liguilla projector.
+    `liguilla=True` builds the matrices under the playoff goal environment."""
     cache: dict[tuple[str, str], list | None] = {}
 
     def cells(home: str, away: str):
         key = (home, away)
         if key not in cache:
-            m = blended_matchup(home, away, fit, elos, altitudes, mcfg)
+            m = blended_matchup(home, away, fit, elos, altitudes, mcfg, liguilla=liguilla)
             cache[key] = m["cells"] if m is not None else None
         return cache[key]
 
@@ -693,8 +742,9 @@ def run_liguilla_picks(round_key: str) -> None:
         for leg, home, away in s.legs():
             fx = {"match_id": f"lg_{round_key}_{home}_{away}_{leg}", "home": home,
                   "away": away, "date": None, "jornada": None}
-            p = predict_fixture(fx, fit, elos, altitudes, mcfg, rules, odds={})
-            m = blended_matchup(home, away, fit, elos, altitudes, mcfg)
+            p = predict_fixture(fx, fit, elos, altitudes, mcfg, rules, odds={},
+                                liguilla=True)
+            m = blended_matchup(home, away, fit, elos, altitudes, mcfg, liguilla=True)
             leg_cells[leg] = m["cells"] if m else None
             p["leg"] = leg
             legs.append(p)
@@ -757,7 +807,9 @@ def run_liguilla(n_sims: int = 10000) -> None:
     print(f"  tabla desde {len(played)} partidos jugados; proyectando {len(remaining)} "
           f"restantes × {n_sims} sims ...")
     cells_fn = _matchup_cells_closure(fit, elos, altitudes, mcfg)
-    proj = project_liguilla(played, remaining, cells_fn, teams, n_sims=n_sims)
+    liguilla_cells_fn = _matchup_cells_closure(fit, elos, altitudes, mcfg, liguilla=True)
+    proj = project_liguilla(played, remaining, cells_fn, teams, n_sims=n_sims,
+                            liguilla_cells=liguilla_cells_fn)
     print(f"  proyección lista en {proj.elapsed_seconds:.1f}s")
 
     elo_as_of = json.loads(ELO_JSON.read_text(encoding="utf-8")).get("as_of")

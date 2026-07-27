@@ -319,3 +319,87 @@ oportunidad queda documentada como no disponible vía esta API.
 - **Liguilla ida/vuelta** es la pieza genuinamente nueva (el WC es a partido
   único). No subestimar el modelado del global + desempate.
 - **Verificar datos template** de `data/ligamx/` antes de picks reales.
+
+---
+
+## 8. Auditoría "¿algo mejorable para ganar?" (jul 2026)
+
+Revisión del motor contra el reglamento REAL del pool y contra los datos. Tres
+cosas cambiaron, una se probó y se descartó.
+
+### 8.1 El bote paga 80/20 — el objetivo era el equivocado
+
+`src/lib/ligaMxPricing.ts` reparte **80% al 1.º y 20% al 2.º**, pero
+`pool_optimizer` maximizaba P(rank=1) y trataba el 2.º como **cero** (literal en
+su docstring: *"want when you only get paid for rank 1"*). Dos consecuencias
+reales, ambas caras:
+
+- Yendo atrás al final, el optimizador cambiaba un 2.º casi seguro por un 1.º
+  improbable — negativo en dinero.
+- Con el 1.º ya inalcanzable, P(1.º) es **plana en cero**: sin gradiente, el
+  boleto quedaba a merced del desempate por exactos. En un escenario de prueba
+  hacía **5 swaps arbitrarios**; con premio esperado hace 1, dirigido.
+
+Ahora el objetivo es `sum_r prize_shares[r]·P(rank=r+1)`
+(`QuinielaRules.prize_shares`, Liga MX `(0.8, 0.2)`, Mundial `(1.0,)`). La sim
+guarda las **top-K puntuaciones distintas del campo con su multiplicidad** — lo
+justo para ubicarte exacto entre los lugares que pagan, empates incluidos
+(`_placement_share`). Con `(1.0,)` el objetivo ES P(1.º), así que la ruta del
+Mundial no se mueve. Tests en `tests/test_prize_objective.py`.
+
+También: sin `pool_standings.json` el campo sintético se dimensionaba con 29
+rivales (número del Mundial). Ahora sale de `rules.pool_participants` (15).
+
+### 8.2 La liguilla corría con calibración de rol regular
+
+`pipeline/ligamx.py` aplicaba solo `draw_allow_min_prob`; los tres knobs de
+eliminatoria vivían únicamente en `generate_picks.py` (Mundial). Antes de
+copiarlos por fe, se midieron con datos de Liga MX — para lo cual hubo que
+arreglar el ingest, que **tiraba el `intRound`** de TheSportsDB.
+
+Con `round` + `stage` en `matches_history.csv` (y `annotate_stages` rellenando
+las liguillas que el feed manda sin ronda — sin eso solo se recuperan 44 de 99):
+
+| | n | goles/partido | empates | local gana |
+|---|---|---|---|---|
+| rol regular | 936 | 2.860 | 23.9% | 46.8% |
+| **liguilla** | 99 | **2.576** | **32.3%** | 49.5% |
+
+Ratio de goles **0.9006**, prácticamente idéntico al `ko_goal_env_ratio=0.90` que
+el Mundial calibró por su cuenta. Los legs de liguilla ahora corren con
+`liguilla=True` (λ amortiguada + gate `ko_draw_allow_min_prob` + desbloqueo por
+marcador modal + tilt de exactos), y la proyección Monte-Carlo usa matrices de
+playoff para el bracket y de rol regular para lo que queda de temporada.
+
+### 8.3 `rules.json` dejó de ser plantilla
+
+Verificado contra la app: scoring 2/1 excluyente ✓, desempate por exactos ✓,
+arranque en J3 ✓, $200 + $50/jornada, reparto 80/20. Queda por confirmar el
+deadline de captura y **si la liguilla puntúa en la misma tabla `ligamx`** — eso
+define el horizonte real que consume `--liguilla-matches`.
+
+### 8.4 Descartado con evidencia: el gate de empate del rol regular
+
+`draw_allow_min_prob = 0.42` (heredado de fase de grupos del Mundial) parecía un
+bug obvio: el P(X) del blend **nunca pasa de 0.298** en los 135 partidos
+pendientes, o sea la X es inalcanzable, y el **1-1 es el marcador más común de
+Liga MX** (12.2%, arriba del 1-0 con 10.1%).
+
+Pero no cuesta nada: bajando el gate a 0.38/0.34/0.32/0.30/0.28 el backtest
+walk-forward da **229 pts / 35 exactos idénticos en los seis casos**, y el boleto
+de los 135 pendientes no cambia ni un partido. La X nunca gana por EV contra el
+lado ganador, y `alt_picks` ya se la ofrece al optimizador de pool aunque esté
+vetada para el pick EV. **No tocar** — el gate solo importa en liguilla, donde
+ya se bajó por la vía de 8.2.
+
+### 8.5 Lo que queda sin explotar
+
+- **`pool_standings.json` / `pool_picks.json` no existen.** Toda la Fase 2 está
+  construida y sin combustible: `--objective pool` degrada al objetivo de un
+  round. Ahora mismo empata con EV (el pool arranca en J3, todos en cero), pero
+  las tasas empíricas `e`/`q` necesitan historial — hay que exportar e ingerir
+  **cada jornada desde la J3**, no a mitad de temporada.
+- **Alineaciones y bajas.** `API_FOOTBALL_KEY` está en el entorno y la app ya
+  tiene cron de lineups, pero el modelo ignora la disponibilidad de jugadores.
+  Es la única fuente que el mercado (55% del blend) podría no tener incorporada
+  a la hora de capturar. Proyecto, no parche, y con payoff incierto.

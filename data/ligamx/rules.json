@@ -1,26 +1,43 @@
 {
-  "version": "TEMPLATE",
+  "version": "2026.07.27",
   "name": "Quiniela Liga MX Apertura (pool privado)",
+  "verified_against": {
+    "repo": "samuelramram/quinielacartoimagen",
+    "sources": [
+      "src/lib/ligaMxPricing.ts — inscripción, cuota por jornada y reparto del bote",
+      "supabase/migrations/*_ligamx_per_jornada_payments.sql — arranque en J3 y modelo de pago",
+      "supabase get_leaderboard() — puntos (2 exacto / 1 el 1X2) y desempate por exactos",
+      "supabase *_enable_ligamx_apertura_jornada1.sql — torneo 'ligamx' aparte, 18 equipos"
+    ],
+    "note": "Ya no es plantilla: cada campo de abajo sale del código de la app."
+  },
   "scoring": {
     "points_exact_score": 2,
     "points_1x2_only": 1,
     "exclusive": true,
     "use_90min_only": true,
     "notes": [
-      "Plantilla — copiada del pool del Mundial. VERIFICAR contra el reglamento real del pool de Liga MX antes de la J1.",
+      "Verificado: get_leaderboard cuenta exactos como points_awarded = 2, el 1X2 paga 1.",
       "Excluyente: acertar marcador exacto NO suma además el punto del 1X2.",
       "Solo cuenta el resultado al minuto 90 (relevante en liguilla: la app puede mostrar el marcador con tiempo extra/penales)."
     ],
     "stage_multipliers": null
   },
   "pool": {
-    "participants_estimated": "TBD",
-    "buyin_mxn": "TBD",
-    "payout_structure": "TBD",
-    "tiebreaker": "exactos (por confirmar)",
+    "participants_estimated": "10-20 (confirmado por el usuario; el conteo exacto sale del primer export)",
+    "entry_fee_mxn": 200,
+    "per_jornada_mxn": 50,
+    "payout_structure": {
+      "first_pct": 0.8,
+      "second_pct": 0.2,
+      "note": "El bote paga DOS lugares. Por eso el optimizador maximiza premio esperado (0.8·P(1.º) + 0.2·P(2.º)) y no P(1.º) a secas — un boleto que persigue el 1.º tirando el 2.º pierde dinero."
+    },
+    "starts_at_round": 3,
+    "starts_at_round_note": "J1 y J2 quedan como historial: la migración las puso en counts_for_leaderboard = false y forzó 0 puntos.",
+    "tiebreaker": "exactos (verificado: ORDER BY total_points DESC, exact_results DESC)",
     "submission_modality": "round_by_round",
     "deadline_per_round": "TBD",
-    "platform": "webapp Lovable/Supabase existente (league 4350)"
+    "platform": "webapp Lovable/Supabase existente (league 4350, tournament = 'ligamx')"
   },
   "data_sources": {
     "fixtures_and_live_results": {
@@ -55,8 +72,8 @@
     }
   },
   "todo_user_to_fill": [
-    "Confirmar reglamento del pool (scoring, desempate, premio, deadline por jornada).",
-    "Confirmar los 18 equipos de la edición y su spelling en TheSportsDB.",
+    "Confirmar el deadline de captura por jornada (lo único del reglamento que no está en el código de la app).",
+    "Confirmar si la liguilla se puntúa en la MISMA tabla 'ligamx' o como torneo aparte — define el horizonte real que usa --liguilla-matches.",
     "Verificar la tabla de altitudes en venues.json.",
     "Definir bankroll y umbral de valor para el módulo de apuestas."
   ]

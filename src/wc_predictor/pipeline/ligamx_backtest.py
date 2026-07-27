@@ -57,10 +57,15 @@ def baseline_points(rows: list[dict], rules) -> dict[str, int]:
     return pts
 
 
-def run(since: str, mcfg: ModelConfig | None = None, quiet: bool = False) -> dict:
+def run(since: str, mcfg: ModelConfig | None = None, quiet: bool = False,
+        liguilla_calibration: bool = True) -> dict:
     """Walk-forward backtest. Returns {n, points, exactos, pts_per_match,
-    baselines, edge_vs_1_0_pct}. `mcfg` overrides the profile's model config
-    (calibration sweeps); rules always come from the profile."""
+    baselines, edge_vs_1_0_pct, by_stage}. `mcfg` overrides the profile's model
+    config (calibration sweeps); rules always come from the profile.
+
+    `liguilla_calibration=False` scores playoff matches with the regular-season
+    calibration — the A/B that tells us whether the playoff knobs actually earn
+    their keep out-of-sample, instead of being inherited on faith from the WC."""
     mcfg = mcfg or PROFILE.model
     rules = PROFILE.rules
     rows = load_history_rows()
@@ -80,6 +85,7 @@ def run(since: str, mcfg: ModelConfig | None = None, quiet: bool = False) -> dic
 
     total_pts = exactos = 0
     scored_rows: list[dict] = []
+    by_stage: dict[str, dict[str, int]] = {}
     for wk in sorted(batches):
         batch = batches[wk]
         first = min(r["date"] for r in batch)
@@ -99,7 +105,9 @@ def run(since: str, mcfg: ModelConfig | None = None, quiet: bool = False) -> dic
             if r["home"] not in fit.strengths or r["away"] not in fit.strengths:
                 continue
             fx = {"match_id": None, "home": r["home"], "away": r["away"], "home_score": None}
-            p = predict_fixture(fx, fit, elos, altitudes, wk_mcfg, rules, odds=None)
+            is_liguilla = r.get("stage") == "liguilla"
+            p = predict_fixture(fx, fit, elos, altitudes, wk_mcfg, rules, odds=None,
+                                liguilla=is_liguilla and liguilla_calibration)
             if "error" in p:
                 continue
             pts = score_actual(r["home_score"], r["away_score"],
@@ -107,6 +115,11 @@ def run(since: str, mcfg: ModelConfig | None = None, quiet: bool = False) -> dic
             total_pts += pts
             exactos += 1 if pts >= rules.points_exact else 0
             scored_rows.append(r)
+            st = by_stage.setdefault(r.get("stage") or "sin_stage",
+                                     {"n": 0, "points": 0, "exactos": 0})
+            st["n"] += 1
+            st["points"] += pts
+            st["exactos"] += 1 if pts >= rules.points_exact else 0
 
     n = len(scored_rows)
     if n == 0:
@@ -122,6 +135,10 @@ def run(since: str, mcfg: ModelConfig | None = None, quiet: bool = False) -> dic
         print(f"  baseline home-win 1X2:           {base['always_home_win_1x2']} pts · "
               f"{base['always_home_win_1x2']/n:.3f} pts/partido")
         print(f"\n  ventaja del modelo vs 1-0: {edge:+.1f}%")
+        for st in sorted(by_stage):
+            s = by_stage[st]
+            print(f"    · {st:<10} {s['n']:>4} partidos · {s['points']:>4} pts · "
+                  f"{s['points']/s['n']:.3f} p/p · {s['exactos']} exactos")
 
     return {
         "n": n,
@@ -130,6 +147,7 @@ def run(since: str, mcfg: ModelConfig | None = None, quiet: bool = False) -> dic
         "pts_per_match": total_pts / n,
         "baselines": base,
         "edge_vs_1_0_pct": edge,
+        "by_stage": by_stage,
     }
 
 
@@ -139,12 +157,16 @@ def main(argv: list[str] | None = None) -> None:
                         help="fecha de inicio de la ventana de prueba (YYYY-MM-DD).")
     parser.add_argument("--no-fit-rho", dest="fit_rho", action="store_false", default=True,
                         help="usa el rho fijo de config en vez de perfilarlo por semana.")
+    parser.add_argument("--no-liguilla-calibration", dest="liguilla_calibration",
+                        action="store_false", default=True,
+                        help="puntúa los partidos de liguilla con la calibración de "
+                             "rol regular (el A/B de los knobs de playoff).")
     args = parser.parse_args(argv)
     mcfg = PROFILE.model
     if not args.fit_rho:
         from dataclasses import replace
         mcfg = replace(mcfg, fit_rho=False)
-    run(args.since, mcfg=mcfg)
+    run(args.since, mcfg=mcfg, liguilla_calibration=args.liguilla_calibration)
 
 
 if __name__ == "__main__":
