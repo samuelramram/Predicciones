@@ -371,6 +371,22 @@ el Mundial calibró por su cuenta. Los legs de liguilla ahora corren con
 marcador modal + tilt de exactos), y la proyección Monte-Carlo usa matrices de
 playoff para el bracket y de rol regular para lo que queda de temporada.
 
+**A/B out-of-sample (honesto): la ganancia en puntos es ruido.** Con
+`ligamx_backtest --since 2024-07-01 [--no-liguilla-calibration]`, sobre los 65
+partidos de playoff que caen en la ventana:
+
+| calibración de los legs | pts | p/p | exactos |
+|---|---|---|---|
+| rol regular (antes) | 43 | 0.662 | 9 |
+| playoff (nueva) | **44** | 0.677 | 9 |
+
+**+1 punto en 65 partidos** — dentro del ruido, no una mejora demostrada. Lo que
+justifica el cambio es la **medición del entorno** (2.576 vs 2.860 goles y 32.3%
+vs 23.9% de empates son diferencias grandes sobre 99 partidos), no este delta. La
+calibración es correcta por construcción y no cuesta nada, pero **no esperes que
+mueva la aguja del marcador**. Re-correr el A/B cuando haya más liguillas en la
+ventana: 65 partidos no alcanzan para distinguir +1 de 0.
+
 ### 8.3 `rules.json` dejó de ser plantilla
 
 Verificado contra la app: scoring 2/1 excluyente ✓, desempate por exactos ✓,
