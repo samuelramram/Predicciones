@@ -167,6 +167,13 @@ _LIGAMX_MODEL = replace(
     elo_home_bonus=100.0,
     blend_poisson_weight=0.60,
     blend_elo_weight=0.40,
+    # Recency half-life: club rosters turn over every window, so a shorter decay
+    # (365/540d) was the intuitive bet — but the walk-forward backtest says
+    # otherwise. Swept {365, 540, 730, 1095}d on the same harness: 730d wins
+    # (224 pts / 34 exactos / +14.9% vs 1-0) over 365/540/1095 (all 222 / +13.8%).
+    # With only ~1000 matches of club history the extra data outweighs the
+    # staleness, so keep the 730d default. Re-sweep when more seasons accumulate.
+    half_life_days=730,
 )
 
 LIGAMX_APERTURA_PROFILE = LeagueProfile(
@@ -183,12 +190,12 @@ LIGAMX_APERTURA_PROFILE = LeagueProfile(
         "all",
         # 17 regular-season jornadas
         *(f"j{n}" for n in range(1, 18)),
-        # Liguilla (playoffs): play-in single match, then two-legged rounds
-        "play_in", "reclasificacion",
+        # Liguilla (Apertura 2026): the Play-In was scrapped — top-8 go straight
+        # to two-legged quarters (1-8, 2-7, 3-6, 4-5), semis re-seeded by the
+        # general table, then the final. All aggregate. See model/liguilla.py.
         "quarter_final", "semi_final", "final",
     ),
-    # Liguilla quarters/semis/final are two-legged on aggregate; play-in is a
-    # single match. The Fase 1 refactor models the aggregate scoreline for these.
+    # Every liguilla series is two-legged on aggregate.
     two_legged_rounds=("quarter_final", "semi_final", "final"),
     model=_LIGAMX_MODEL,
     rules=QuinielaRules(),

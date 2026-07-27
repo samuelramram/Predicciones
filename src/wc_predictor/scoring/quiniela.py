@@ -199,16 +199,29 @@ def optimize_pick_from_cells(
 
     top5 = sorted(cells, key=lambda c: c["prob"], reverse=True)[:5]
 
-    # Contrarian (pool-leverage) pick: highest ev / p_outcome ratio (true EV —
-    # the tiebreak tilt is about OUR ranking, not the field's popularity model).
-    # When the EV-optimal outcome has high public popularity (high p_outcome),
-    # an under-picked outcome may offer better pool value even with lower EV.
-    contra_pool = all_candidates if contrarian_include_forbidden else candidates
-    c_score, c_ev, c_outcome, c_cell = max(
-        ((_cell_ev(cell) / max(outcome_marginals[o], 1e-9), _cell_ev(cell), o, cell)
-         for _, o, cell in contra_pool),
-        key=lambda x: x[0],
-    )
+    # Contrarian (pool differentiation) pick: the best ALTERNATIVE outcome — the
+    # runner-up 1X2 result by true EV. This used to maximize EV / p_outcome, which
+    # collapsed onto the draw on essentially every match (P(X) is the smallest
+    # marginal, so the ratio always crowned it) and told the user nothing: the
+    # reported "CONTRA" column was a constant 1-1. The runner-up outcome is the
+    # cheapest realistic way to land a DIFFERENT result than the EV pick, and the
+    # EV it sacrifices (`ev - contrarian_ev`) is what makes it "actionable".
+    #
+    # The genuine under-picked-draw leverage still lives in `alt_picks` (draw
+    # included), which is the candidate set the pool Monte-Carlo actually
+    # optimizes over — this field is the per-match report, not the pool objective.
+    # `contrarian_score` is kept as the leverage read (EV per unit of popularity).
+    # `contrarian_include_forbidden=False` drops forbidden outcomes (e.g. the draw)
+    # from the alternatives so the contrarian stays a playable 1/2.
+    alt_pool = [(_cell_ev(cell), o, cell) for _, o, cell in all_candidates
+                if o != best_outcome
+                and (contrarian_include_forbidden or o not in forbid_outcomes)]
+    alt_pool.sort(key=lambda x: x[0], reverse=True)
+    if alt_pool:
+        c_ev, c_outcome, c_cell = alt_pool[0]
+    else:  # degenerate: only one outcome present in the grid
+        c_ev, c_outcome, c_cell = best_ev, best_outcome, best_cell
+    c_score = c_ev / max(outcome_marginals[c_outcome], 1e-9)
 
     alt_picks = [(o, cell["score"]) for ev, o, cell in all_candidates if o != best_outcome]
 

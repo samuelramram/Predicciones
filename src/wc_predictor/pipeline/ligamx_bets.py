@@ -35,14 +35,15 @@ from wc_predictor.model.poisson_dc import load_fit
 ODDS_MARKETS_JSON = LIGAMX_DIR / "odds_markets.json"
 
 
-def run(round_spec: str, bankroll: float, edge_min: float, kelly_mult: float,
-        max_stake: float, total_line: float) -> None:
+def compute_bets(round_spec: str, edge_min: float = 0.03, kelly_mult: float = 0.25,
+                 max_stake: float = 0.02, total_line: float = 2.5) -> list:
+    """The value bets for a round (sorted by edge desc). Returns [] when there is
+    no market file or nothing clears the edge gate. Pure of printing/serialization
+    so both the CLI and the boleto renderer can reuse it. Requires a fit +
+    odds_markets.json; the model view is INDEPENDENT (odds=None) by construction."""
     mcfg, rules = PROFILE.model, PROFILE.rules
-    if not STRENGTHS_JSON.exists():
-        raise SystemExit(f"Falta {STRENGTHS_JSON}. Corre `pipeline.ligamx fit` primero.")
-    if not ODDS_MARKETS_JSON.exists():
-        raise SystemExit(f"Falta {ODDS_MARKETS_JSON}. Corre `ingest.ligamx_odds` primero.")
-
+    if not STRENGTHS_JSON.exists() or not ODDS_MARKETS_JSON.exists():
+        return []
     fit = load_fit(STRENGTHS_JSON)
     elos = {r["team"]: r["elo"]
             for r in json.loads(ELO_JSON.read_text(encoding="utf-8"))["teams"]}
@@ -57,27 +58,56 @@ def run(round_spec: str, bankroll: float, edge_min: float, kelly_mult: float,
         n = int(spec[1:])
         selected = [m for m in fx_doc["matches"] if m.get("jornada") == n]
     else:
-        raise SystemExit(f"--round {round_spec!r} no válido. Usa j1..j17 o all.")
+        return []
 
     all_bets = []
     for fx in selected:
-        key = f"{fx['home']}|{fx['away']}"
-        market = markets.get(key)
+        market = markets.get(f"{fx['home']}|{fx['away']}")
         if market is None:
             continue
-        # Model's INDEPENDENT view: predict with odds=None (Poisson+Elo only).
         p = predict_fixture(fx, fit, elos, altitudes, mcfg, rules, odds=None)
         if "error" in p:
             continue
         model_1x2 = (p["p_home_win"], p["p_draw"], p["p_away_win"])
-        bets = find_value_bets(
+        all_bets.extend(find_value_bets(
             f"{fx['home']} vs {fx['away']}", model_1x2, p["_cells"], market,
             edge_min=edge_min, kelly_mult=kelly_mult, max_stake=max_stake,
             total_line=total_line,
-        )
-        all_bets.extend(bets)
-
+        ))
     all_bets.sort(key=lambda b: -b.edge)
+    return all_bets
+
+
+def bets_payload(round_spec: str, bankroll: float = 500.0, edge_min: float = 0.03,
+                 kelly_mult: float = 0.25, max_stake: float = 0.02,
+                 total_line: float = 2.5) -> dict | None:
+    """JSON-serializable bets bundle for a round, or None if no market file."""
+    if not ODDS_MARKETS_JSON.exists():
+        return None
+    bets = compute_bets(round_spec, edge_min, kelly_mult, max_stake, total_line)
+    return {
+        "as_of": datetime.utcnow().isoformat() + "Z", "round": round_spec.strip().lower(),
+        "params": {"bankroll": bankroll, "edge_min": edge_min, "kelly_mult": kelly_mult,
+                   "max_stake": max_stake, "total_line": total_line},
+        "bets": [
+            {"match": b.match, "market": b.market, "selection": b.selection,
+             "model_prob": round(b.model_prob, 4), "fair_prob": round(b.fair_prob, 4),
+             "edge": round(b.edge, 4), "price": b.price, "book": b.book,
+             "ev": round(b.ev, 4), "stake_frac": round(b.kelly_stake, 4),
+             "stake_mxn": round(b.kelly_stake * bankroll, 2)}
+            for b in bets
+        ],
+    }
+
+
+def run(round_spec: str, bankroll: float, edge_min: float, kelly_mult: float,
+        max_stake: float, total_line: float) -> None:
+    if not STRENGTHS_JSON.exists():
+        raise SystemExit(f"Falta {STRENGTHS_JSON}. Corre `pipeline.ligamx fit` primero.")
+    if not ODDS_MARKETS_JSON.exists():
+        raise SystemExit(f"Falta {ODDS_MARKETS_JSON}. Corre `ingest.ligamx_odds` primero.")
+    spec = round_spec.strip().lower()
+    all_bets = compute_bets(spec, edge_min, kelly_mult, max_stake, total_line)
 
     print(f"\nApuestas de valor {spec} — bankroll ${bankroll:.0f} · "
           f"edge≥{edge_min:.0%} · ¼-Kelly×{kelly_mult} · tope {max_stake:.0%}/apuesta")
@@ -106,19 +136,9 @@ def run(round_spec: str, bankroll: float, edge_min: float, kelly_mult: float,
 
     OUTPUTS_DIR.mkdir(parents=True, exist_ok=True)
     dst = OUTPUTS_DIR / f"ligamx_bets_{spec}.json"
-    dst.write_text(json.dumps({
-        "as_of": datetime.utcnow().isoformat() + "Z", "round": spec,
-        "params": {"bankroll": bankroll, "edge_min": edge_min, "kelly_mult": kelly_mult,
-                   "max_stake": max_stake, "total_line": total_line},
-        "bets": [
-            {"match": b.match, "market": b.market, "selection": b.selection,
-             "model_prob": round(b.model_prob, 4), "fair_prob": round(b.fair_prob, 4),
-             "edge": round(b.edge, 4), "price": b.price, "book": b.book,
-             "ev": round(b.ev, 4), "stake_frac": round(b.kelly_stake, 4),
-             "stake_mxn": round(b.kelly_stake * bankroll, 2)}
-            for b in all_bets
-        ],
-    }, indent=2, ensure_ascii=False), encoding="utf-8")
+    dst.write_text(json.dumps(
+        bets_payload(spec, bankroll, edge_min, kelly_mult, max_stake, total_line),
+        indent=2, ensure_ascii=False), encoding="utf-8")
     print(f"  wrote {dst}")
 
 
