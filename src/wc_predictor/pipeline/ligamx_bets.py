@@ -20,6 +20,7 @@ import json
 from datetime import datetime
 
 from wc_predictor.betting.value import find_value_bets
+from wc_predictor.ingest.ligamx_odds import load_books_config
 from wc_predictor.config import OUTPUTS_DIR
 from wc_predictor.pipeline.ligamx import (
     FIXTURES_JSON,
@@ -36,7 +37,8 @@ ODDS_MARKETS_JSON = LIGAMX_DIR / "odds_markets.json"
 
 
 def compute_bets(round_spec: str, edge_min: float = 0.03, kelly_mult: float = 0.25,
-                 max_stake: float = 0.02, total_line: float = 2.5) -> list:
+                 max_stake: float = 0.02, total_line: float = 2.5,
+                 own_books_only: bool = True, require_clv: bool = False) -> list:
     """The value bets for a round (sorted by edge desc). Returns [] when there is
     no market file or nothing clears the edge gate. Pure of printing/serialization
     so both the CLI and the boleto renderer can reuse it. Requires a fit +
@@ -72,7 +74,8 @@ def compute_bets(round_spec: str, edge_min: float = 0.03, kelly_mult: float = 0.
         all_bets.extend(find_value_bets(
             f"{fx['home']} vs {fx['away']}", model_1x2, p["_cells"], market,
             edge_min=edge_min, kelly_mult=kelly_mult, max_stake=max_stake,
-            total_line=total_line,
+            total_line=total_line, own_books_only=own_books_only,
+            require_clv=require_clv,
         ))
     all_bets.sort(key=lambda b: -b.edge)
     return all_bets
@@ -80,49 +83,61 @@ def compute_bets(round_spec: str, edge_min: float = 0.03, kelly_mult: float = 0.
 
 def bets_payload(round_spec: str, bankroll: float = 500.0, edge_min: float = 0.03,
                  kelly_mult: float = 0.25, max_stake: float = 0.02,
-                 total_line: float = 2.5) -> dict | None:
+                 total_line: float = 2.5, own_books_only: bool = True,
+                 require_clv: bool = False) -> dict | None:
     """JSON-serializable bets bundle for a round, or None if no market file."""
     if not ODDS_MARKETS_JSON.exists():
         return None
-    bets = compute_bets(round_spec, edge_min, kelly_mult, max_stake, total_line)
+    bets = compute_bets(round_spec, edge_min, kelly_mult, max_stake, total_line,
+                        own_books_only=own_books_only, require_clv=require_clv)
     return {
         "as_of": datetime.utcnow().isoformat() + "Z", "round": round_spec.strip().lower(),
         "params": {"bankroll": bankroll, "edge_min": edge_min, "kelly_mult": kelly_mult,
-                   "max_stake": max_stake, "total_line": total_line},
+                   "max_stake": max_stake, "total_line": total_line,
+                   "own_books_only": own_books_only, "require_clv": require_clv,
+                   "books": load_books_config().get("available") or []},
         "bets": [
             {"match": b.match, "market": b.market, "selection": b.selection,
              "model_prob": round(b.model_prob, 4), "fair_prob": round(b.fair_prob, 4),
              "edge": round(b.edge, 4), "price": b.price, "book": b.book,
              "ev": round(b.ev, 4), "stake_frac": round(b.kelly_stake, 4),
-             "stake_mxn": round(b.kelly_stake * bankroll, 2)}
+             "stake_mxn": round(b.kelly_stake * bankroll, 2),
+             "clv_entry": round(b.clv_entry, 4), "beats_fair": b.beats_fair,
+             "is_available": b.is_available}
             for b in bets
         ],
     }
 
 
 def run(round_spec: str, bankroll: float, edge_min: float, kelly_mult: float,
-        max_stake: float, total_line: float) -> None:
+        max_stake: float, total_line: float, own_books_only: bool = True,
+        require_clv: bool = False) -> None:
     if not STRENGTHS_JSON.exists():
         raise SystemExit(f"Falta {STRENGTHS_JSON}. Corre `pipeline.ligamx fit` primero.")
     if not ODDS_MARKETS_JSON.exists():
         raise SystemExit(f"Falta {ODDS_MARKETS_JSON}. Corre `ingest.ligamx_odds` primero.")
     spec = round_spec.strip().lower()
-    all_bets = compute_bets(spec, edge_min, kelly_mult, max_stake, total_line)
+    all_bets = compute_bets(spec, edge_min, kelly_mult, max_stake, total_line,
+                            own_books_only=own_books_only, require_clv=require_clv)
+    books = load_books_config().get("available") or []
 
     print(f"\nApuestas de valor {spec} — bankroll ${bankroll:.0f} · "
           f"edge≥{edge_min:.0%} · ¼-Kelly×{kelly_mult} · tope {max_stake:.0%}/apuesta")
+    if own_books_only and books:
+        print(f"  precios restringidos a MIS casas: {', '.join(books)} "
+              f"(sin esto el line-shopping usa casas sin cuenta)")
     if not all_bets:
         print("  Sin valor: el modelo no le gana al mercado en ningún mercado cubierto. "
               "(Eso es sano — casi siempre es así vs un book afilado.)")
     else:
         print(f"  {'Partido':<26} {'Mercado':<9} {'Sel':<5} {'modelo':>7} {'justo':>6} "
-              f"{'edge':>6} {'precio':>7} {'casa':<12} {'stake':>8} {'EV':>6}")
+              f"{'edge':>6} {'precio':>7} {'casa':<12} {'stake':>8} {'EV':>6} {'CLV':>7}")
         for b in all_bets:
             stake_mxn = b.kelly_stake * bankroll
             print(f"  {b.match:<26} {b.market:<9} {b.selection:<5} "
                   f"{b.model_prob*100:>6.1f}% {b.fair_prob*100:>5.1f}% {b.edge*100:>5.1f}% "
                   f"{b.price:>7.2f} {(b.book or '-'):<12} "
-                  f"${stake_mxn:>6.0f} {b.ev*100:>+5.1f}%")
+                  f"${stake_mxn:>6.0f} {b.ev*100:>+5.1f}% {b.clv_entry*100:>+6.1f}%")
         total_stake = sum(b.kelly_stake for b in all_bets) * bankroll
         print(f"\n  {len(all_bets)} apuestas · stake total ${total_stake:.0f} "
               f"({total_stake/bankroll*100:.1f}% del bankroll)")
@@ -137,7 +152,8 @@ def run(round_spec: str, bankroll: float, edge_min: float, kelly_mult: float,
     OUTPUTS_DIR.mkdir(parents=True, exist_ok=True)
     dst = OUTPUTS_DIR / f"ligamx_bets_{spec}.json"
     dst.write_text(json.dumps(
-        bets_payload(spec, bankroll, edge_min, kelly_mult, max_stake, total_line),
+        bets_payload(spec, bankroll, edge_min, kelly_mult, max_stake, total_line,
+                     own_books_only=own_books_only, require_clv=require_clv),
         indent=2, ensure_ascii=False), encoding="utf-8")
     print(f"  wrote {dst}")
 
@@ -150,8 +166,16 @@ def main(argv: list[str] | None = None) -> None:
     parser.add_argument("--kelly", type=float, default=0.25, help="fracción de Kelly (¼ por defecto).")
     parser.add_argument("--max-stake", type=float, default=0.02, help="tope de stake por apuesta.")
     parser.add_argument("--total-line", type=float, default=2.5, help="línea de O/U a evaluar.")
+    parser.add_argument("--all-books", dest="own_books_only", action="store_false", default=True,
+                        help="cotiza contra las 45 casas del feed en vez de las de "
+                             "books.json (útil para medir el edge del modelo, NO para apostar: "
+                             "son precios de casas donde no tengo cuenta).")
+    parser.add_argument("--require-clv", action="store_true",
+                        help="solo apuestas cuyo precio LE GANA a la línea justa afilada "
+                             "(CLV positivo al entrar) — la disciplina del plan, ahora exigible.")
     args = parser.parse_args(argv)
-    run(args.round, args.bankroll, args.edge, args.kelly, args.max_stake, args.total_line)
+    run(args.round, args.bankroll, args.edge, args.kelly, args.max_stake, args.total_line,
+        own_books_only=args.own_books_only, require_clv=args.require_clv)
 
 
 if __name__ == "__main__":

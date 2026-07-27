@@ -53,8 +53,14 @@ DEFAULT_CURRENT_SEASON = "2026-2027"
 
 HISTORY_COLUMNS = [
     "match_id", "date", "home", "away", "home_score", "away_score",
-    "neutral", "tournament", "city", "country",
+    "neutral", "tournament", "city", "country", "round", "stage",
 ]
+
+# A Liga MX torneo is 17 jornadas; TheSportsDB numbers anything past that as a
+# playoff round. Keeping the round (and the regular/liguilla split it implies)
+# is what lets the liguilla be calibrated — and audited — separately instead of
+# being silently averaged into the regular season it does not behave like.
+REGULAR_SEASON_ROUNDS = 17
 
 
 def _match_id(date_str: str, home: str, away: str) -> str:
@@ -140,6 +146,49 @@ def normalize_name(raw: str) -> str:
     return _FOLDED_MAP.get(_fold(raw), raw)
 
 
+def _event_round(ev: dict) -> int:
+    """TheSportsDB `intRound` as an int (0 when absent/unparseable)."""
+    try:
+        return int(ev.get("intRound") or 0)
+    except (ValueError, TypeError):
+        return 0
+
+
+def stage_for_round(rnd: int) -> str:
+    """'regular' for jornadas 1-17, 'liguilla' for the playoff rounds beyond
+    them, '' when the source gave us no round at all."""
+    if rnd <= 0:
+        return ""
+    return "regular" if rnd <= REGULAR_SEASON_ROUNDS else "liguilla"
+
+
+def annotate_stages(rows: list[dict]) -> list[dict]:
+    """Fill in the stage of history rows TheSportsDB left without an `intRound`.
+
+    Every Liga MX torneo is 153 regular-season matches followed by the liguilla,
+    but the feed drops `intRound` on a chunk of the playoff events (whole
+    liguillas in some seasons). Those rows are still identifiable: within a
+    torneo, anything played after the last dated jornada is a playoff match.
+    Without this the liguilla silently reads as regular season, which is exactly
+    the confusion the round column exists to prevent.
+
+    Mutates and returns `rows`.
+    """
+    last_regular: dict[str, str] = {}
+    for r in rows:
+        if r.get("stage") == "regular":
+            t = r["tournament"]
+            if r["date"] > last_regular.get(t, ""):
+                last_regular[t] = r["date"]
+    for r in rows:
+        if r.get("stage"):
+            continue
+        cutoff = last_regular.get(r["tournament"])
+        if cutoff and r["date"] > cutoff:
+            r["stage"] = "liguilla"
+    return rows
+
+
 def _tournament_label(date_str: str) -> str:
     """Apertura (Jul–Dec) vs Clausura (Jan–Jun) of the year the match kicks off."""
     try:
@@ -184,6 +233,7 @@ def event_to_history_row(ev: dict) -> dict | None:
     away = normalize_name(ev.get("strAwayTeam") or "")
     if not (date_str and home and away):
         return None
+    rnd = _event_round(ev)
     return {
         "match_id": _match_id(date_str, home, away),
         "date": date_str,
@@ -195,6 +245,8 @@ def event_to_history_row(ev: dict) -> dict | None:
         "tournament": _tournament_label(date_str),
         "city": (ev.get("strVenue") or "").strip(),
         "country": "Mexico",
+        "round": rnd or "",
+        "stage": stage_for_round(rnd),
     }
 
 
@@ -205,10 +257,7 @@ def event_to_fixture(ev: dict) -> dict | None:
     away = normalize_name(ev.get("strAwayTeam") or "")
     if not (date_str and home and away):
         return None
-    try:
-        jornada = int(ev.get("intRound") or 0)
-    except (ValueError, TypeError):
-        jornada = 0
+    jornada = _event_round(ev)
     scored = _has_score(ev)
     return {
         "match_id": _match_id(date_str, home, away),
@@ -230,7 +279,7 @@ def event_to_fixture(ev: dict) -> dict | None:
 
 def write_history(rows: list[dict], dst: Path) -> None:
     dst.parent.mkdir(parents=True, exist_ok=True)
-    rows = sorted(rows, key=lambda r: (r["date"], r["home"]))
+    rows = annotate_stages(sorted(rows, key=lambda r: (r["date"], r["home"])))
     with dst.open("w", encoding="utf-8", newline="") as f:
         w = csv.DictWriter(f, fieldnames=HISTORY_COLUMNS, lineterminator="\n")
         w.writeheader()

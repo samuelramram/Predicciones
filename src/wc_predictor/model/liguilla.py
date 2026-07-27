@@ -240,6 +240,7 @@ def project_liguilla(
     n_sims: int = 10000,
     seed: int = 20260727,
     final_tie_prob: float = 0.5,
+    liguilla_cells=None,         # (home, away) -> cells | None, playoff calibration
 ) -> LiguillaProjection:
     """Simulate the rest of the regular season → table → seeding → bracket.
 
@@ -247,7 +248,14 @@ def project_liguilla(
     (the pipeline passes a memoised `blended_matchup` closure). `table_matches`
     are the already-played regular fixtures (fixed starting standings);
     `remaining_fixtures` the unplayed ones (sampled each sim).
+
+    `liguilla_cells` is the same callable under the PLAYOFF calibration, used for
+    the bracket legs — Liga MX playoff football is measurably quieter than the
+    regular season (2.576 vs 2.860 goals/match over 99 matches), so simulating a
+    series with regular-season matrices overstates goals and understates draws.
+    Defaults to `matchup_cells` so callers that don't distinguish still work.
     """
+    liguilla_cells = liguilla_cells or matchup_cells
     import time
     t0 = time.time()
 
@@ -268,7 +276,7 @@ def project_liguilla(
         for a in teams:
             if h == a:
                 continue
-            cells = matchup_cells(h, a)
+            cells = liguilla_cells(h, a)
             if cells is not None:
                 pair_cdf[(h, a)] = build_cdf(cells)
 

@@ -167,6 +167,16 @@ _LIGAMX_MODEL = replace(
     elo_home_bonus=100.0,
     blend_poisson_weight=0.60,
     blend_elo_weight=0.40,
+    # --- Liguilla calibration, measured on Liga MX playoff matches --------------
+    # The `ko_*` knobs were calibrated on World Cup knockouts; re-measuring them
+    # on 99 Liga MX playoff matches (2023-2026, isolated once the ingest started
+    # keeping TheSportsDB's round) says the same physics applies here:
+    #   goals/match   2.576 playoff vs 2.860 regular  → ratio 0.90
+    #   draws at 90'  32.3% playoff vs 23.9% regular
+    # So the goal damp stays at the WC's 0.90 (now on Liga MX evidence, not
+    # inherited), and the draw gates stay lower for the liguilla — a third of
+    # playoff legs finish level, which the regular-season gate cannot express.
+    ko_goal_env_ratio=0.90,
     # Recency half-life: club rosters turn over every window, so a shorter decay
     # (365/540d) was the intuitive bet — but the walk-forward backtest says
     # otherwise. Swept {365, 540, 730, 1095}d on the same harness: 730d wins
@@ -174,6 +184,27 @@ _LIGAMX_MODEL = replace(
     # With only ~1000 matches of club history the extra data outweighs the
     # staleness, so keep the 730d default. Re-sweep when more seasons accumulate.
     half_life_days=730,
+)
+
+# Pool rules VERIFIED against the webapp (samuelramram/quinielacartoimagen), not
+# copied from the World Cup:
+#   - scoring: `points_awarded = 2` on an exact score, 1 on a correct 1X2,
+#     mutually exclusive — same as the WC, confirmed in the leaderboard RPCs.
+#   - tiebreak: `get_leaderboard` sorts `total_points DESC, exact_results DESC`,
+#     so exactos are a real tiebreaker (already the engine's default).
+#   - money: $200 entry + $50 per jornada played; the pot pays 80% to 1st and
+#     20% to 2nd (`src/lib/ligaMxPricing.ts`). Second place paying a quarter of
+#     first is what makes the optimizer's objective expected prize, not P(1st).
+#   - the competition starts at Jornada 3 (migration
+#     `20260721160000_ligamx_per_jornada_payments.sql` zeroes J1/J2), which is
+#     why `ingest.ligamx_pool --start-round 3` is the documented default.
+_LIGAMX_RULES = QuinielaRules(
+    prize_shares=(0.8, 0.2),
+    # Private pool, ~10-20 players (user-confirmed). Only used to size the
+    # synthetic field BEFORE the first pool_standings.json export lands; after
+    # that the real opponent count from the leaderboard wins.
+    pool_participants=15,
+    pool_buyin_mxn=200,
 )
 
 LIGAMX_APERTURA_PROFILE = LeagueProfile(
@@ -198,7 +229,7 @@ LIGAMX_APERTURA_PROFILE = LeagueProfile(
     # Every liguilla series is two-legged on aggregate.
     two_legged_rounds=("quarter_final", "semi_final", "final"),
     model=_LIGAMX_MODEL,
-    rules=QuinielaRules(),
+    rules=_LIGAMX_RULES,
 )
 
 
