@@ -206,8 +206,73 @@ def _bar1x2(p1: float, px: float, p2: float) -> str:
             f'<div class="lbl3"><span>1 {a}%</span><span>X {b}%</span><span>2 {c}%</span></div>')
 
 
+_MKT_ES = {"1X2": "1X2", "O/U 2.5": "Total 2.5"}
+_SEL_ES = {"1": "Local", "X": "Empate", "2": "Visita", "Over": "Más 2.5", "Under": "Menos 2.5"}
+
+
+def _bets_table(bets: list[dict], bankroll: float) -> str:
+    rows = []
+    for b in bets:
+        m = _e(b["match"].replace(" vs ", " · "))
+        sel = _e(_SEL_ES.get(b["selection"], b["selection"]))
+        rows.append(
+            f'<tr><td style="text-align:left">{m}</td>'
+            f'<td style="text-align:left">{_e(_MKT_ES.get(b["market"], b["market"]))} · {sel}</td>'
+            f'<td>{b["model_prob"]*100:.0f}%</td><td>{b["fair_prob"]*100:.0f}%</td>'
+            f'<td><b>{b["edge"]*100:+.1f}%</b></td>'
+            f'<td>{b["price"]:.2f}</td><td style="text-align:left">{_e(b.get("book") or "—")}</td>'
+            f'<td>${b["stake_mxn"]:.0f}</td><td>{b["ev"]*100:+.0f}%</td></tr>')
+    return ('<div class="twrap"><table><thead><tr>'
+            '<th style="text-align:left">Partido</th><th style="text-align:left">Apuesta</th>'
+            '<th>Modelo</th><th>Justo</th><th>Edge</th><th>Precio</th>'
+            '<th style="text-align:left">Casa</th><th>Stake</th><th>EV</th>'
+            '</tr></thead><tbody>' + "".join(rows) + '</tbody></table></div>')
+
+
+def render_bets_section(bets_payload: dict) -> str:
+    """The 'Apuestas de valor' block appended to the boleto — split into a
+    disciplined playable band (3-8% edge) and measurement-only flags (>=8%, almost
+    always model error vs a sharp book). Honest by construction."""
+    bets = bets_payload.get("bets", [])
+    params = bets_payload.get("params", {})
+    bankroll = params.get("bankroll", 500)
+    if not bets:
+        return ('<h2>Apuestas de valor</h2>'
+                '<div class="sub">El modelo no le gana al mercado en ningún mercado cubierto '
+                'esta jornada. Eso es sano — contra un book afilado casi siempre es así. '
+                'La ventaja real está en la quiniela.</div>')
+    play = [b for b in bets if b["edge"] < 0.08]
+    flag = [b for b in bets if b["edge"] >= 0.08]
+    play_stake = sum(b["stake_mxn"] for b in play)
+
+    L = ['<h2>Apuestas de valor</h2>',
+         '<div class="warnbar">El modelo <b>no es más afilado que el mercado</b> (Brier ~0.55 vs '
+         '~0.23). Contra ~20 casas, un edge grande casi siempre es <b>error del modelo</b>, no '
+         'valor. Esto es <b>medición disciplinada</b> para recuperar el gasto, no ingreso — la '
+         'ventaja de verdad es la quiniela (compites contra humanos, no contra un book con vig). '
+         'Reglas: line-shopping, ¼-Kelly, tope 2%/apuesta, registra CLV.</div>']
+    L.append('<h3 style="margin:16px 0 6px;font-size:1rem">Valor jugable '
+             '<span style="color:var(--muted);font-weight:500;font-size:.85rem">'
+             f'· edge 3–8% · {len(play)} apuestas · stake total ${play_stake:.0f} '
+             f'({play_stake/bankroll*100:.0f}% del bankroll)</span></h3>')
+    if play:
+        L.append(_bets_table(play, bankroll))
+    else:
+        L.append('<div class="sub">Nada en la banda disciplinada esta jornada.</div>')
+    if flag:
+        L.append('<h3 style="margin:18px 0 6px;font-size:1rem">Solo medición ⚠ '
+                 '<span style="color:var(--muted);font-weight:500;font-size:.85rem">'
+                 f'· edge ≥8% · {len(flag)} · probable error del modelo, mini-stake o registra CLV</span></h3>')
+        L.append(_bets_table(flag, bankroll))
+    L.append('<div class="foot">Modelo = probabilidad independiente (Poisson+Elo, SIN el mercado '
+             'en el blend). Justo = precio del book devigado. Edge = modelo − justo. Precio = mejor '
+             'cuota entre casas (objetivo de line-shopping). Mercados disponibles en el feed de '
+             'Liga MX: 1X2 y Total 2.5 (doble oportunidad/BTTS no los cotiza esta API).</div>')
+    return "\n".join(L)
+
+
 # --- jornada boleto -----------------------------------------------------------
-def render_jornada(payload: dict) -> str:
+def render_jornada(payload: dict, bets: dict | None = None) -> str:
     picks = sorted(payload.get("picks", []),
                    key=lambda p: (p.get("date") or "", p.get("home") or ""))
     rules = payload.get("rules", {})
@@ -293,11 +358,13 @@ def render_jornada(payload: dict) -> str:
             f'{odds_line}{con_line}</div>'
             f'<div class="tops">{tops}</div></div>')
 
+    bets_section = render_bets_section(bets) if bets is not None else ""
     body = (head + ticket
             + '<h2>Cómo leer</h2>'
             '<div class="sub">El <b>boleto</b> es lo que copias a la quiniela. Cada tarjeta '
             'abre el porqué: el medidor verde es la fuerza del EV (0→techo), la barra es 1 / X / 2, '
             'y ◆ marca el contrarian barato si vas atrás en el pool.</div>'
+            + bets_section
             + f'<h2>Fichas por partido</h2><div class="cards">{"".join(cards)}</div>'
             + f'<div class="foot">Generado {_e(datetime.utcnow().strftime("%Y-%m-%d %H:%M"))}Z · '
             'modelo Poisson·Dixon-Coles + Elo + mercado. Cada leg se puntúa a 90\'.</div>')

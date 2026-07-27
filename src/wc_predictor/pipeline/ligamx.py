@@ -459,9 +459,21 @@ def run_picks(round_spec: str, objective: str = "ev") -> None:
     md_dst = OUTPUTS_DIR / f"ligamx_picks_{label}.md"
     md_dst.write_text(_render_md(picks, label, rules, mcfg, elo_as_of, odds_as_of),
                       encoding="utf-8")
+    # Value bets for the same round (when market odds exist) → shown in the boleto.
+    bets = None
+    if label.startswith("j") and (LIGAMX_DIR / "odds_markets.json").exists():
+        from wc_predictor.pipeline.ligamx_bets import bets_payload
+        bets = bets_payload(label)
+        if bets is not None:
+            (OUTPUTS_DIR / f"ligamx_bets_{label}.json").write_text(
+                json.dumps(bets, indent=2, ensure_ascii=False), encoding="utf-8")
+            n_play = sum(1 for b in bets["bets"] if b["edge"] < 0.08)
+            print(f"  apuestas: {len(bets['bets'])} con valor ({n_play} jugables 3-8%, "
+                  f"resto solo medición ≥8%)")
+
     from wc_predictor.pipeline.ligamx_html import render_jornada
     html_dst = OUTPUTS_DIR / f"ligamx_picks_{label}.html"
-    html_dst.write_text(render_jornada(payload), encoding="utf-8")
+    html_dst.write_text(render_jornada(payload, bets=bets), encoding="utf-8")
     print(f"  wrote {json_dst}\n  wrote {md_dst}\n  wrote {html_dst}")
     print(f"  datos: Elo al {elo_as_of}"
           + (f" · odds capturadas {odds_as_of}" if odds_as_of else " · sin odds"))
