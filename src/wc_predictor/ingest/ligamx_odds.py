@@ -58,6 +58,17 @@ def manual_prices_for(cfg: dict, match_key: str) -> dict[str, dict[str, float]]:
     return out
 
 
+def manual_totals_for(cfg: dict, match_key: str) -> dict[str, dict[str, dict[str, float]]]:
+    """{book: {line: {"over": price, "under": price}}} of hand-captured totals."""
+    out: dict[str, dict[str, dict[str, float]]] = {}
+    for book, entry in (cfg.get("manual") or {}).items():
+        totals = ((entry.get("matches") or {}).get(match_key) or {}).get("totals")
+        if totals:
+            out[book] = {str(line): {k: float(v) for k, v in oc.items()}
+                         for line, oc in totals.items()}
+    return out
+
+
 def _devig_two(price_a: float, price_b: float) -> tuple[float, float]:
     """De-vig a 2-way market (e.g. Over/Under)."""
     ra, rb = 1.0 / price_a, 1.0 / price_b
@@ -200,6 +211,22 @@ def parse_markets(payload: list[dict], books_cfg: dict | None = None) -> dict[st
             for key, price in prices.items():
                 if key in avail_h2h and price > avail_h2h[key]["price"]:
                     avail_h2h[key] = {"price": price, "book": bk}
+        for bk, lines in manual_totals_for(books_cfg, match_key).items():
+            if bk not in available:
+                continue
+            for line, oc in lines.items():
+                try:
+                    pt = float(line)
+                except (TypeError, ValueError):
+                    continue
+                # Only a line the feed also prices can be judged: the fair side of
+                # the comparison comes from the API books.
+                if pt not in totals_fair:
+                    continue
+                for side in ("over", "under"):
+                    price = oc.get(side)
+                    if price and price > totals_avail[pt][side]["price"]:
+                        totals_avail[pt][side] = {"price": price, "book": bk}
 
         totals_out = {}
         for pt, acc in totals_fair.items():
