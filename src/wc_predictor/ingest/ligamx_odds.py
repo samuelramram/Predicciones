@@ -31,6 +31,31 @@ from wc_predictor.pipeline.ligamx import LIGAMX_DIR
 ODDS_SPORT_KEY = "soccer_mexico_ligamx"
 ODDS_H2H_JSON = LIGAMX_DIR / "odds_h2h.json"
 ODDS_MARKETS_JSON = LIGAMX_DIR / "odds_markets.json"
+BOOKS_JSON = LIGAMX_DIR / "books.json"
+
+
+def load_books_config(path: Path = BOOKS_JSON) -> dict:
+    """Which books I can actually bet at, plus hand-captured prices for the ones
+    The Odds API doesn't carry (Caliente isn't in the Liga MX feed).
+
+    Returns ``{"available": [...], "manual": {book: {match_key: {...}}}}`` — empty
+    when the file is absent, which restores plain best-of-all-books behaviour.
+    """
+    if not path.exists():
+        return {"available": [], "manual": {}}
+    doc = json.loads(path.read_text(encoding="utf-8"))
+    return {"available": [b.lower() for b in doc.get("available") or []],
+            "manual": doc.get("manual") or {}}
+
+
+def manual_prices_for(cfg: dict, match_key: str) -> dict[str, dict[str, float]]:
+    """{book: {"1": price, ...}} of hand-captured 1X2 prices for one match."""
+    out: dict[str, dict[str, float]] = {}
+    for book, entry in (cfg.get("manual") or {}).items():
+        h2h = ((entry.get("matches") or {}).get(match_key) or {}).get("h2h")
+        if h2h:
+            out[book] = {k: float(v) for k, v in h2h.items()}
+    return out
 
 
 def _devig_two(price_a: float, price_b: float) -> tuple[float, float]:
@@ -80,10 +105,19 @@ def parse_h2h(payload: list[dict]) -> dict[str, dict]:
     return out
 
 
-def parse_markets(payload: list[dict]) -> dict[str, dict]:
+def parse_markets(payload: list[dict], books_cfg: dict | None = None) -> dict[str, dict]:
     """Richer per-match view for value betting: fair (no-vig) probs + best price
     (max decimal odds across books, = line-shopping target) for 1X2 and each
-    Over/Under total line."""
+    Over/Under total line.
+
+    With `books_cfg` (see :func:`load_books_config`) each outcome also carries
+    ``best_available``: the best price among the books I can actually bet at,
+    including hand-captured ones the API doesn't cover. The FAIR line keeps using
+    every book in the feed — it is the sharp reference the price is judged
+    against, so narrowing it to my own books would defeat the purpose.
+    """
+    books_cfg = books_cfg or {"available": [], "manual": {}}
+    available = set(books_cfg.get("available") or [])
     out: dict[str, dict] = {}
     for ev in payload:
         home = normalize_name(ev.get("home_team", ""))
@@ -97,9 +131,14 @@ def parse_markets(payload: list[dict]) -> dict[str, dict]:
         best_h2h = {"1": {"price": 0.0, "book": None},
                     "X": {"price": 0.0, "book": None},
                     "2": {"price": 0.0, "book": None}}
+        avail_h2h = {"1": {"price": 0.0, "book": None},
+                     "X": {"price": 0.0, "book": None},
+                     "2": {"price": 0.0, "book": None}}
         # --- totals per line: fair + best over/under ---
         totals_fair: dict[float, dict] = defaultdict(lambda: {"over": 0.0, "under": 0.0, "w": 0.0})
         totals_best: dict[float, dict] = defaultdict(
+            lambda: {"over": {"price": 0.0, "book": None}, "under": {"price": 0.0, "book": None}})
+        totals_avail: dict[float, dict] = defaultdict(
             lambda: {"over": {"price": 0.0, "book": None}, "under": {"price": 0.0, "book": None}})
         line_counts: Counter = Counter()
 
@@ -118,6 +157,8 @@ def parse_markets(payload: list[dict]) -> dict[str, dict]:
                         prices[key] = o["price"]
                         if o["price"] > best_h2h[key]["price"]:
                             best_h2h[key] = {"price": o["price"], "book": bk}
+                        if bk in available and o["price"] > avail_h2h[key]["price"]:
+                            avail_h2h[key] = {"price": o["price"], "book": bk}
                 if len(prices) == 3:
                     p1, px, p2, ov = implied_probs_from_decimal(prices["1"], prices["X"], prices["2"])
                     w = 1.0 / max(ov - 1.0, 1e-3)
@@ -141,9 +182,25 @@ def parse_markets(payload: list[dict]) -> dict[str, dict]:
                             totals_best[pt]["over"] = {"price": oc["over"], "book": bk}
                         if oc["under"] > totals_best[pt]["under"]["price"]:
                             totals_best[pt]["under"] = {"price": oc["under"], "book": bk}
+                        if bk in available:
+                            if oc["over"] > totals_avail[pt]["over"]["price"]:
+                                totals_avail[pt]["over"] = {"price": oc["over"], "book": bk}
+                            if oc["under"] > totals_avail[pt]["under"]["price"]:
+                                totals_avail[pt]["under"] = {"price": oc["under"], "book": bk}
 
         if fair_w == 0:
             continue
+
+        # Hand-captured books (not in the feed) compete for best_available only —
+        # never for the fair line, which must stay the sharp consensus.
+        match_key = f"{home}|{away}"
+        for bk, prices in manual_prices_for(books_cfg, match_key).items():
+            if bk not in available:
+                continue
+            for key, price in prices.items():
+                if key in avail_h2h and price > avail_h2h[key]["price"]:
+                    avail_h2h[key] = {"price": price, "book": bk}
+
         totals_out = {}
         for pt, acc in totals_fair.items():
             if acc["w"] == 0:
@@ -151,14 +208,16 @@ def parse_markets(payload: list[dict]) -> dict[str, dict]:
             totals_out[str(pt)] = {
                 "fair": {"over": acc["over"] / acc["w"], "under": acc["under"] / acc["w"]},
                 "best": totals_best[pt],
+                "best_available": totals_avail[pt],
                 "n_books": int(line_counts[pt]),
             }
-        out[f"{home}|{away}"] = {
+        out[match_key] = {
             "commence_time": ev.get("commence_time"),
             "main_total_line": (line_counts.most_common(1)[0][0] if line_counts else None),
             "h2h": {
                 "fair": {k: fair_acc[k] / fair_w for k in ("1", "X", "2")},
                 "best": best_h2h,
+                "best_available": avail_h2h,
             },
             "totals": totals_out,
         }
@@ -179,9 +238,15 @@ def fetch(api_key: str | None = None, regions: str = "us,eu,uk") -> list[dict]:
 
 def main() -> None:
     payload = fetch()
+    books_cfg = load_books_config()
     h2h = parse_h2h(payload)
-    markets = parse_markets(payload)
+    markets = parse_markets(payload, books_cfg)
     as_of = datetime.utcnow().isoformat() + "Z"
+    if books_cfg["available"]:
+        n_avail = sum(1 for m in markets.values()
+                      if any(o["price"] for o in m["h2h"]["best_available"].values()))
+        print(f"  casas propias: {', '.join(books_cfg['available'])} "
+              f"(precio disponible en {n_avail}/{len(markets)} partidos)")
     ODDS_H2H_JSON.write_text(json.dumps({"as_of": as_of, "matches": h2h},
                                         indent=2, ensure_ascii=False), encoding="utf-8")
     ODDS_MARKETS_JSON.write_text(json.dumps({"as_of": as_of, "matches": markets},

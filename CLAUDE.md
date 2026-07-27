@@ -51,10 +51,13 @@ python -m wc_predictor.ingest.ligamx_pool data/ligamx/pool_exports/*j*.csv --you
     --start-round 3 --liguilla-matches 17
 python -m wc_predictor.pipeline.ligamx picks --round j2 --objective pool
 
-# 4) Apuestas de valor (modelo independiente vs mercado, ¼-Kelly, line-shopping)
-#    Requiere ingest.ligamx_odds. Edge ≥8% = probable error del modelo, no valor.
-#    El boleto HTML (paso 3) YA incluye esta sección cuando hay odds_markets.
+# 4) Apuestas de valor. Por DEFAULT cotiza solo en TUS casas (data/ligamx/books.json)
+#    y parte el boleto por CLV, no por edge: la prueba es si el precio le gana a la
+#    línea justa afilada, no si el modelo le gana al mercado (no le gana).
+#    Caliente no está en The Odds API → sus precios se capturan a mano en books.json.
 python -m wc_predictor.pipeline.ligamx_bets --round j2 --bankroll 500
+python -m wc_predictor.pipeline.ligamx_bets --round j2 --require-clv   # solo lo apostable
+python -m wc_predictor.pipeline.ligamx_bets --round j2 --all-books     # medir el modelo, NO apostar
 
 # 4b) Ledger de CLV — mide si el edge de apuestas es REAL a lo largo del torneo.
 #     log al apostar → close cerca del kickoff (tras refrescar odds) → settle con

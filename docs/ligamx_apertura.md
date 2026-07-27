@@ -419,3 +419,41 @@ ya se bajó por la vía de 8.2.
   tiene cron de lineups, pero el modelo ignora la disponibilidad de jugadores.
   Es la única fuente que el mercado (55% del blend) podría no tener incorporada
   a la hora de capturar. Proyecto, no parche, y con payoff incierto.
+
+### 8.6 Line-shopping honesto: solo casas donde de verdad puedo apostar
+
+Hallazgo al confrontar el módulo con la realidad del usuario: **cotizaba contra
+45 casas (Pinnacle, lowvig, matchbook…) a las que no tiene cuenta**, y reportaba
+un edge incobrable. Peor, el gate era `modelo − justo ≥ 3%` — un edge del modelo
+contra el mercado, justo lo que el propio plan dice que NO es evidencia (el
+modelo no es más afilado que el mercado). La prueba correcta —"si el edge
+desaparece contra la línea afilada, es error mío"— estaba escrita en §6 pero
+nunca se hacía cumplir.
+
+Ahora:
+
+- `data/ligamx/books.json` declara las casas usables (`available`) y guarda
+  precios **capturados a mano** de las que la API no cotiza. **Caliente no está
+  en el feed de Liga MX**; Betway sí, pero solo suelta partidos poco a poco.
+- El ingest calcula `best_available` además de `best`. La **línea justa sigue
+  saliendo de las 45 casas** — es la referencia afilada; restringirla a las
+  propias anularía la prueba.
+- Si no hay precio en mis casas, la apuesta **se descarta**, no cae de vuelta a
+  Pinnacle (antes mostraba un precio no tomable).
+- `ValueBet.clv_entry = precio / precio_justo − 1` y `--require-clv` filtra a las
+  que entran con CLV positivo. El boleto HTML **parte por CLV, no por edge**.
+
+**Medición de las casas del usuario (J3, 27 selecciones):**
+
+| | vig 1X2 | CLV promedio al entrar | le gana a la justa |
+|---|---|---|---|
+| mejor de 45 casas | 2.1% | −1.0% | 6/27 |
+| **Caliente** | **5.9%** | **−5.0%** | **1/27** |
+| **Betway** (3 partidos) | — | **−8.8%** | **0/9** |
+
+Caliente cobra **menos** vig que la casa mediana del feed (8.4%) — la sospecha de
+que un libro local sería peor no se sostuvo. Pero eso no alcanza: con `--require-clv`
+en sus casas el boleto sale **vacío**, y con las 45 casas sobrevive **una sola**
+apuesta (+1.7% CLV). Conclusión operativa: **con Caliente/Betway este modelo no
+tiene nada apostable**; el edge que se veía era el line-shopping de casas
+inaccesibles. La ventaja sigue estando en la quiniela (0% de comisión).

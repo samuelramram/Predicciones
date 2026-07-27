@@ -28,6 +28,14 @@ class ValueBet:
     book: str | None
     ev: float            # expected profit per 1 unit staked
     kelly_stake: float   # recommended stake as a fraction of bankroll (post ¼-Kelly + cap)
+    # CLV at entry: how the price I can actually get compares to the sharp no-vig
+    # fair price. POSITIVE means the book is paying more than the true odds — the
+    # only market-verifiable reason to bet. Negative means I start behind and the
+    # bet only looks good because MY model disagrees with 45 books.
+    clv_entry: float = 0.0
+    beats_fair: bool = False
+    # Whether `price` came from a book I can actually bet at (books.json).
+    is_available: bool = True
 
 
 def ev_per_unit(prob: float, price: float) -> float:
@@ -58,20 +66,44 @@ def btts_probs(cells: list[dict]) -> tuple[float, float]:
 
 def _consider(match: str, market: str, selection: str, model_prob: float,
               fair_prob: float, best: dict | None, edge_min: float,
-              kelly_mult: float, max_stake: float) -> ValueBet | None:
-    """Emit a ValueBet if model beats fair by edge_min AND best price is +EV."""
-    if not best or not best.get("price"):
+              kelly_mult: float, max_stake: float,
+              available: dict | None = None,
+              require_clv: bool = False,
+              require_available: bool = False) -> ValueBet | None:
+    """Emit a ValueBet if model beats fair by edge_min AND the price is +EV.
+
+    `available` is the best price among books I can actually bet at; when given
+    it REPLACES the all-books best, because an edge at a book I have no account
+    with is not an edge. `require_clv` additionally drops any bet whose price
+    does not beat the sharp no-vig fair price — the discipline the plan always
+    stated ("si el edge desaparece contra la línea afilada, es error mío") but
+    that the model-vs-market gate alone never enforced.
+    """
+    has_available = bool(available and available.get("price"))
+    if require_available and not has_available:
+        # No price at any book I can use → not an actionable bet. Falling back to
+        # the all-books best here would quote a price I cannot take.
         return None
-    price = float(best["price"])
+    source = available if has_available else best
+    if not source or not source.get("price"):
+        return None
+    price = float(source["price"])
     edge = model_prob - fair_prob
     ev = ev_per_unit(model_prob, price)
     if edge < edge_min or ev <= 0:
+        return None
+    # fair_prob is the de-vigged consensus, so 1/fair_prob is the break-even price.
+    fair_price = 1.0 / fair_prob if fair_prob > 0 else float("inf")
+    clv = price / fair_price - 1.0 if fair_price > 0 else 0.0
+    beats_fair = price > fair_price
+    if require_clv and not beats_fair:
         return None
     stake = min(kelly_fraction(model_prob, price) * kelly_mult, max_stake)
     if stake <= 0:
         return None
     return ValueBet(match, market, selection, model_prob, fair_prob, edge, price,
-                    best.get("book"), ev, stake)
+                    source.get("book"), ev, stake, clv_entry=clv,
+                    beats_fair=beats_fair, is_available=has_available)
 
 
 def find_value_bets(
@@ -84,12 +116,18 @@ def find_value_bets(
     kelly_mult: float = 0.25,
     max_stake: float = 0.02,
     total_line: float = 2.5,
+    own_books_only: bool = False,
+    require_clv: bool = False,
 ) -> list[ValueBet]:
     """All value bets for one match across the covered markets.
 
     model_1x2: the model's INDEPENDENT (no-odds) blended (p1, px, p2).
     cells:     the model's blended score matrix (for totals).
     market:    one match entry from odds_markets.json (h2h.fair/best, totals).
+
+    `own_books_only` prices every bet at `best_available` (the books listed in
+    books.json) instead of the best of the whole feed. `require_clv` keeps only
+    bets whose price beats the sharp fair price.
     """
     out: list[ValueBet] = []
     p1, px, p2 = model_1x2
@@ -98,9 +136,12 @@ def find_value_bets(
     h2h = market.get("h2h") or {}
     fair = h2h.get("fair") or {}
     best = h2h.get("best") or {}
+    avail = (h2h.get("best_available") or {}) if own_books_only else {}
     for sel, mp in (("1", p1), ("X", px), ("2", p2)):
         vb = _consider(match, "1X2", sel, mp, float(fair.get(sel, 1.0)),
-                       best.get(sel), edge_min, kelly_mult, max_stake)
+                       best.get(sel), edge_min, kelly_mult, max_stake,
+                       available=avail.get(sel), require_clv=require_clv,
+                       require_available=own_books_only)
         if vb:
             out.append(vb)
 
@@ -111,10 +152,13 @@ def find_value_bets(
         p_over, p_under = over_under_probs(cells, total_line)
         t = totals[line_key]
         tfair, tbest = t.get("fair") or {}, t.get("best") or {}
+        tavail = (t.get("best_available") or {}) if own_books_only else {}
         for sel, mp, fkey in (("Over", p_over, "over"), ("Under", p_under, "under")):
             vb = _consider(match, f"O/U {total_line}", sel, mp,
                            float(tfair.get(fkey, 1.0)), tbest.get(fkey),
-                           edge_min, kelly_mult, max_stake)
+                           edge_min, kelly_mult, max_stake,
+                           available=tavail.get(fkey), require_clv=require_clv,
+                           require_available=own_books_only)
             if vb:
                 out.append(vb)
 
