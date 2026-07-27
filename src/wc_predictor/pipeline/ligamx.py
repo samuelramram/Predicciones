@@ -143,11 +143,13 @@ def run_fit(fit_rho: bool | None = None) -> None:
     # Poisson + Dixon-Coles MLE. Ridge pins low-n sides (Atlante) to league avg.
     do_rho = mcfg.fit_rho if fit_rho is None else fit_rho
     if do_rho:
-        print("Fitting Poisson + Dixon-Coles (profiling rho) ...")
-        _, fit, _ = profile_fit_rho(rows, mcfg, ridge_lambda=mcfg.ridge_lambda)
+        print(f"Fitting Poisson + Dixon-Coles (profiling rho, half-life {mcfg.half_life_days}d) ...")
+        _, fit, _ = profile_fit_rho(rows, mcfg, ridge_lambda=mcfg.ridge_lambda,
+                                    half_life_days=mcfg.half_life_days)
     else:
-        print("Fitting Poisson + Dixon-Coles ...")
-        fit = fit_dc_model(rows, mcfg, ridge_lambda=mcfg.ridge_lambda)
+        print(f"Fitting Poisson + Dixon-Coles (half-life {mcfg.half_life_days}d) ...")
+        fit = fit_dc_model(rows, mcfg, ridge_lambda=mcfg.ridge_lambda,
+                           half_life_days=mcfg.half_life_days)
     save_fit(fit, STRENGTHS_JSON, as_of=as_of)
     print(f"  wrote {STRENGTHS_JSON}  mu={fit.mu:.3f} gamma={fit.gamma:.3f} rho={fit.rho:.3f} "
           f"(e^gamma={pow(2.718281828, fit.gamma):.2f}x home)")
@@ -179,29 +181,30 @@ def _odds_weights(mcfg, have_odds: bool) -> tuple[float, float, float]:
     return share, 1.0 - share, 0.0
 
 
-def predict_fixture(fx: dict, fit, elos: dict[str, float], altitudes: dict[str, float],
-                    mcfg, rules, odds: dict | None = None) -> dict | None:
-    home, away = fx["home"], fx["away"]
-    if home not in fit.strengths or away not in fit.strengths:
-        return {"match_id": fx.get("match_id"), "home": home, "away": away,
-                "error": "missing strengths"}
+def blended_matchup(home: str, away: str, fit, elos: dict[str, float],
+                    altitudes: dict[str, float], mcfg,
+                    odds_1x2: tuple[float, float, float] | None = None) -> dict | None:
+    """Blended score matrix + 1X2 for one home/away pairing — the shared core of a
+    Liga MX prediction (per-team localía + altitude differential + Elo, and the
+    market when supplied). Returns None if either side lacks fitted strengths.
 
+    Factored out of :func:`predict_fixture` so the liguilla projector can build the
+    matrix for ANY matchup (not just a fixtures.json row) without re-deriving the
+    pipeline. Keys: cells, p1/px/p2 (blended), lambda_home/away, elo_home/away,
+    venue_alt, blend weights, pmass, pmax.
+    """
+    if home not in fit.strengths or away not in fit.strengths:
+        return None
     # Poisson λ with per-team localía (home always gets gamma).
     lh, la = predict_lambdas(fit.strengths[home], fit.strengths[away], fit.mu, fit.gamma,
                              host="home")
     # Altitude differential: the visitor climbs to the home venue's altitude.
     venue_alt = altitudes.get(home, 0.0)
     la *= altitude_factor(venue_alt, altitudes.get(away, 0.0), mcfg)
-
     # Elo 1X2 with home bonus.
     r_h = elos.get(home, 1500.0)
     r_a = elos.get(away, 1500.0)
     elo_p1, elo_px, elo_p2 = elo_to_1x2_probs(r_h, r_a, mcfg.elo_home_bonus)
-
-    # Bookmaker 1X2 for this match, if covered (de-vigged closing/live line).
-    odds_entry = (odds or {}).get(f"{home}|{away}")
-    odds_1x2 = (odds_entry["p1"], odds_entry["px"], odds_entry["p2"]) if odds_entry else None
-
     # Poisson·DC score matrix → blend with Elo (+ odds when available).
     w_po, w_el, w_od = _odds_weights(mcfg, odds_1x2 is not None)
     pcells, pp1, ppx, pp2, pmass, pmax = build_score_matrix(lh, la, mcfg)
@@ -209,6 +212,33 @@ def predict_fixture(fx: dict, fit, elos: dict[str, float], altitudes: dict[str, 
         pcells, (pp1, ppx, pp2), (elo_p1, elo_px, elo_p2), odds_1x2,
         w_poisson=w_po, w_elo=w_el, w_odds=w_od,
     )
+    return {
+        "cells": cells_b, "p1": p1_b, "px": px_b, "p2": p2_b,
+        "lambda_home": lh, "lambda_away": la, "elo_home": r_h, "elo_away": r_a,
+        "venue_alt": venue_alt, "pmass": pmass, "pmax": pmax,
+        "elo_probs": (elo_p1, elo_px, elo_p2),
+        "weights": (w_po, w_el, w_od),
+    }
+
+
+def predict_fixture(fx: dict, fit, elos: dict[str, float], altitudes: dict[str, float],
+                    mcfg, rules, odds: dict | None = None) -> dict | None:
+    home, away = fx["home"], fx["away"]
+    # Bookmaker 1X2 for this match, if covered (de-vigged closing/live line).
+    odds_entry = (odds or {}).get(f"{home}|{away}")
+    odds_1x2 = (odds_entry["p1"], odds_entry["px"], odds_entry["p2"]) if odds_entry else None
+
+    m = blended_matchup(home, away, fit, elos, altitudes, mcfg, odds_1x2=odds_1x2)
+    if m is None:
+        return {"match_id": fx.get("match_id"), "home": home, "away": away,
+                "error": "missing strengths"}
+    cells_b, p1_b, px_b, p2_b = m["cells"], m["p1"], m["px"], m["p2"]
+    lh, la = m["lambda_home"], m["lambda_away"]
+    r_h, r_a = m["elo_home"], m["elo_away"]
+    venue_alt = m["venue_alt"]
+    pmass, pmax = m["pmass"], m["pmax"]
+    elo_p1, elo_px, elo_p2 = m["elo_probs"]
+    w_po, w_el, w_od = m["weights"]
 
     forbid = tuple(mcfg.forbid_outcomes)
     if px_b >= mcfg.draw_allow_min_prob and "X" in forbid:
@@ -332,7 +362,11 @@ def effective_model_config(fit, mcfg):
     return mcfg
 
 
-def run_picks(round_spec: str, objective: str = "ev") -> None:
+LIGUILLA_JSON = LIGAMX_DIR / "liguilla.json"
+
+
+def _load_model():
+    """Shared loader for the fitted model + Elo + altitudes (rho-adjusted mcfg)."""
     mcfg, rules = PROFILE.model, PROFILE.rules
     if not STRENGTHS_JSON.exists():
         raise SystemExit(f"Missing {STRENGTHS_JSON}. Run `... ligamx fit` first.")
@@ -343,6 +377,33 @@ def run_picks(round_spec: str, objective: str = "ev") -> None:
     elos = {row["team"]: row["elo"]
             for row in json.loads(ELO_JSON.read_text(encoding="utf-8"))["teams"]}
     altitudes = load_team_altitudes()
+    return fit, mcfg, rules, elos, altitudes
+
+
+def _matchup_cells_closure(fit, elos, altitudes, mcfg):
+    """Memoised (home, away) -> blended cells, for the liguilla projector."""
+    cache: dict[tuple[str, str], list | None] = {}
+
+    def cells(home: str, away: str):
+        key = (home, away)
+        if key not in cache:
+            m = blended_matchup(home, away, fit, elos, altitudes, mcfg)
+            cache[key] = m["cells"] if m is not None else None
+        return cache[key]
+
+    return cells
+
+
+def _regular_matches(fx_doc: dict) -> list[dict]:
+    return [m for m in fx_doc["matches"] if m.get("stage") in (None, "regular")]
+
+
+def run_picks(round_spec: str, objective: str = "ev") -> None:
+    from wc_predictor.model.liguilla import LIGUILLA_ROUNDS
+    if round_spec.strip().lower() in LIGUILLA_ROUNDS:
+        return run_liguilla_picks(round_spec.strip().lower())
+
+    fit, mcfg, rules, elos, altitudes = _load_model()
     fx_doc = json.loads(FIXTURES_JSON.read_text(encoding="utf-8"))
 
     odds = {}
@@ -386,18 +447,22 @@ def run_picks(round_spec: str, objective: str = "ev") -> None:
                   if odds_h2h.exists() else None)
 
     OUTPUTS_DIR.mkdir(parents=True, exist_ok=True)
-    json_dst = OUTPUTS_DIR / f"ligamx_picks_{label}.json"
-    json_dst.write_text(json.dumps({
+    payload = {
         "as_of": datetime.utcnow().isoformat() + "Z",
         "league": "Liga MX", "round": label,
         "elo_as_of": elo_as_of, "odds_as_of": odds_as_of,
         "rules": {"points_exact": rules.points_exact, "points_1x2": rules.points_1x2},
         "picks": picks, "errors": errors,
-    }, indent=2, ensure_ascii=False), encoding="utf-8")
+    }
+    json_dst = OUTPUTS_DIR / f"ligamx_picks_{label}.json"
+    json_dst.write_text(json.dumps(payload, indent=2, ensure_ascii=False), encoding="utf-8")
     md_dst = OUTPUTS_DIR / f"ligamx_picks_{label}.md"
     md_dst.write_text(_render_md(picks, label, rules, mcfg, elo_as_of, odds_as_of),
                       encoding="utf-8")
-    print(f"  wrote {json_dst}\n  wrote {md_dst}")
+    from wc_predictor.pipeline.ligamx_html import render_jornada
+    html_dst = OUTPUTS_DIR / f"ligamx_picks_{label}.html"
+    html_dst.write_text(render_jornada(payload), encoding="utf-8")
+    print(f"  wrote {json_dst}\n  wrote {md_dst}\n  wrote {html_dst}")
     print(f"  datos: Elo al {elo_as_of}"
           + (f" · odds capturadas {odds_as_of}" if odds_as_of else " · sin odds"))
 
@@ -562,23 +627,223 @@ def _render_md(picks: list[dict], label: str, rules, mcfg, elo_as_of=None, odds_
     return "\n".join(L)
 
 
+# --- liguilla (playoffs) ------------------------------------------------------
+def _load_teams_list() -> list[str]:
+    return [t["name_es"] for t in _current_teams()]
+
+
+def _resolve_bracket(round_key: str, table_now):
+    """Series for `round_key`: from data/ligamx/liguilla.json when the user has
+    pinned the real bracket, else a deterministic 'chalk' projection off the
+    current table (higher seed assumed to win each earlier round). Returns
+    (series, is_projected)."""
+    from wc_predictor.model.liguilla import (Series, build_final,
+                                             build_quarterfinals, reseed_semifinals)
+    if LIGUILLA_JSON.exists():
+        doc = json.loads(LIGUILLA_JSON.read_text(encoding="utf-8"))
+        raw = doc.get(round_key)
+        if raw:
+            seeds_map = doc.get("seeds") or {}
+            out = [Series(round_key, s["high"], s["low"],
+                          int(s.get("high_seed") or seeds_map.get(s["high"], 0)),
+                          int(s.get("low_seed") or seeds_map.get(s["low"], 0)))
+                   for s in raw]
+            return out, False
+    seeds = [r.team for r in table_now][:8]
+    seed_of = {r.team: i + 1 for i, r in enumerate(table_now)}
+    qf = build_quarterfinals(seeds)
+    if round_key == "quarter_final":
+        return qf, True
+    sf = reseed_semifinals([s.high for s in qf], seed_of)  # chalk: higher seed wins
+    if round_key == "semi_final":
+        return sf, True
+    return [build_final([s.high for s in sf], seed_of)], True
+
+
+def run_liguilla_picks(round_key: str) -> None:
+    from wc_predictor.model.liguilla import ROUND_LABELS, compute_table, series_advance_prob
+    fit, mcfg, rules, elos, altitudes = _load_model()
+    fx_doc = json.loads(FIXTURES_JSON.read_text(encoding="utf-8"))
+    teams = _load_teams_list()
+    table_now = compute_table(_regular_matches(fx_doc), teams)
+    series, projected = _resolve_bracket(round_key, table_now)
+
+    if projected:
+        print(f"  bracket PROYECTADO desde la tabla actual (aún no definido; "
+              f"crea {LIGUILLA_JSON.name} para fijar los cruces reales).")
+    else:
+        print(f"  bracket real cargado de {LIGUILLA_JSON.name}.")
+
+    picks, series_out = [], []
+    tie_to_higher = round_key != "final"
+    for s in series:
+        legs, leg_cells = [], {}
+        for leg, home, away in s.legs():
+            fx = {"match_id": f"lg_{round_key}_{home}_{away}_{leg}", "home": home,
+                  "away": away, "date": None, "jornada": None}
+            p = predict_fixture(fx, fit, elos, altitudes, mcfg, rules, odds={})
+            m = blended_matchup(home, away, fit, elos, altitudes, mcfg)
+            leg_cells[leg] = m["cells"] if m else None
+            p["leg"] = leg
+            legs.append(p)
+        adv_high = series_advance_prob(leg_cells["ida"], leg_cells["vuelta"],
+                                       tie_to_higher=tie_to_higher)
+        series_out.append({
+            "round": round_key, "high": s.high, "low": s.low,
+            "high_seed": s.high_seed, "low_seed": s.low_seed,
+            "adv_high": round(adv_high, 3), "adv_low": round(1 - adv_high, 3),
+            "tie_rule": ("mejor sembrado avanza" if tie_to_higher
+                         else "empate global → tiempos extra y penales"),
+            "legs": [{"leg": p["leg"], "home": p["home"], "away": p["away"],
+                      "pick_exact": p["pick_exact"], "pick_1x2": p["pick_1x2"],
+                      "ev": p["ev"], "match_id": p["match_id"]} for p in legs],
+        })
+        picks.extend(legs)
+
+    for p in picks:
+        for k in ("_cells", "_elo_probs", "_alt_picks"):
+            p.pop(k, None)
+
+    elo_as_of = json.loads(ELO_JSON.read_text(encoding="utf-8")).get("as_of")
+    OUTPUTS_DIR.mkdir(parents=True, exist_ok=True)
+    label = round_key
+    payload = {
+        "as_of": datetime.utcnow().isoformat() + "Z", "league": "Liga MX",
+        "round": label, "round_label": ROUND_LABELS[round_key], "projected": projected,
+        "elo_as_of": elo_as_of, "two_legged": True,
+        "rules": {"points_exact": rules.points_exact, "points_1x2": rules.points_1x2},
+        "series": series_out, "picks": picks,
+    }
+    json_dst = OUTPUTS_DIR / f"ligamx_picks_{label}.json"
+    json_dst.write_text(json.dumps(payload, indent=2, ensure_ascii=False), encoding="utf-8")
+    md_dst = OUTPUTS_DIR / f"ligamx_picks_{label}.md"
+    md_dst.write_text(_render_liguilla_md(series_out, round_key, projected, rules, mcfg,
+                                          picks, elo_as_of), encoding="utf-8")
+    from wc_predictor.pipeline.ligamx_html import render_liguilla
+    html_dst = OUTPUTS_DIR / f"ligamx_picks_{label}.html"
+    html_dst.write_text(render_liguilla(payload), encoding="utf-8")
+    print(f"  wrote {json_dst}\n  wrote {md_dst}\n  wrote {html_dst}")
+
+    print(f"\n{ROUND_LABELS[round_key]} ({len(series_out)} series · ida y vuelta a 90'):")
+    for s in series_out:
+        print(f"  {s['high']} ({s['high_seed']}) vs {s['low']} ({s['low_seed']})  "
+              f"→ P(avanza {s['high']}) {s['adv_high']*100:.0f}%")
+        for lg in s["legs"]:
+            print(f"      {lg['leg']:<6} {lg['home']:<12} {lg['pick_exact']:>4} "
+                  f"{lg['away']:<12} [{lg['pick_1x2']}] EV={lg['ev']:.2f}")
+
+
+def run_liguilla(n_sims: int = 10000) -> None:
+    from wc_predictor.model.liguilla import (REACH_ROUNDS, ROUND_LABELS,
+                                             compute_table, project_liguilla)
+    fit, mcfg, rules, elos, altitudes = _load_model()
+    fx_doc = json.loads(FIXTURES_JSON.read_text(encoding="utf-8"))
+    teams = _load_teams_list()
+    reg = _regular_matches(fx_doc)
+    played = [m for m in reg if m.get("home_score") is not None]
+    remaining = [m for m in reg if m.get("home_score") is None]
+    print(f"  tabla desde {len(played)} partidos jugados; proyectando {len(remaining)} "
+          f"restantes × {n_sims} sims ...")
+    cells_fn = _matchup_cells_closure(fit, elos, altitudes, mcfg)
+    proj = project_liguilla(played, remaining, cells_fn, teams, n_sims=n_sims)
+    print(f"  proyección lista en {proj.elapsed_seconds:.1f}s")
+
+    elo_as_of = json.loads(ELO_JSON.read_text(encoding="utf-8")).get("as_of")
+    OUTPUTS_DIR.mkdir(parents=True, exist_ok=True)
+    payload = {
+        "as_of": datetime.utcnow().isoformat() + "Z", "league": "Liga MX",
+        "kind": "liguilla_projection", "n_sims": proj.n_sims, "elo_as_of": elo_as_of,
+        "table": [{"pos": i + 1, "team": r.team, "played": r.played, "points": r.points,
+                   "gd": r.gd, "gf": r.gf,
+                   "reach": proj.reach[r.team]} for i, r in enumerate(proj.table_now)],
+        "projected_qf": [{"high": s.high, "low": s.low,
+                          "high_seed": s.high_seed, "low_seed": s.low_seed}
+                         for s in proj.projected_qf],
+    }
+    json_dst = OUTPUTS_DIR / "ligamx_liguilla.json"
+    json_dst.write_text(json.dumps(payload, indent=2, ensure_ascii=False), encoding="utf-8")
+    md_dst = OUTPUTS_DIR / "ligamx_liguilla.md"
+    md_dst.write_text(_render_liguilla_projection_md(proj, elo_as_of), encoding="utf-8")
+    from wc_predictor.pipeline.ligamx_html import render_projection
+    html_dst = OUTPUTS_DIR / "ligamx_liguilla.html"
+    html_dst.write_text(render_projection(payload), encoding="utf-8")
+    print(f"  wrote {json_dst}\n  wrote {md_dst}\n  wrote {html_dst}")
+
+    print(f"\nTabla proyectada (P de alcanzar cada ronda, {proj.n_sims} sims):")
+    print(f"  {'#':>2} {'Equipo':<12} {'Pts':>3} {'Liguilla':>9} {'Semis':>6} "
+          f"{'Final':>6} {'Campeón':>8}")
+    for i, r in enumerate(proj.table_now, 1):
+        rc = proj.reach[r.team]
+        print(f"  {i:>2} {r.team:<12} {r.points:>3} {rc['liguilla']*100:>8.0f}% "
+              f"{rc['semi_final']*100:>5.0f}% {rc['final']*100:>5.0f}% {rc['champion']*100:>7.0f}%")
+
+
+def _render_liguilla_md(series_out, round_key, projected, rules, mcfg, picks, elo_as_of) -> str:
+    from wc_predictor.model.liguilla import ROUND_LABELS
+    L = [f"# Liguilla Liga MX — {ROUND_LABELS[round_key]}\n"]
+    if projected:
+        L.append("> ⚠ **Bracket proyectado** desde la tabla actual — los cruces reales "
+                 "aún no están definidos. Los picks por leg se recalculan cuando fijes "
+                 "`data/ligamx/liguilla.json`.\n")
+    if elo_as_of:
+        L.append(f"_Elo al {elo_as_of} · cada leg se puntúa a 90' como cualquier partido._\n")
+    for s in series_out:
+        L.append(f"## {s['high']} ({s['high_seed']}º) vs {s['low']} ({s['low_seed']}º)\n")
+        L.append(f"**P(avanza {s['high']})** {s['adv_high']*100:.0f}% · "
+                 f"P(avanza {s['low']}) {s['adv_low']*100:.0f}%  ")
+        L.append(f"_Global empatado → {s['tie_rule']}._\n")
+        L.append("| Leg | Local | Pick | Visita | 1X2 | EV |")
+        L.append("|---|---|:--:|---|:--:|--:|")
+        for lg in s["legs"]:
+            L.append(f"| {lg['leg']} | {lg['home']} | **{lg['pick_exact']}** | "
+                     f"{lg['away']} | {lg['pick_1x2']} | {lg['ev']:.2f} |")
+        L.append("")
+    return "\n".join(L)
+
+
+def _render_liguilla_projection_md(proj, elo_as_of) -> str:
+    L = ["# Liguilla Liga MX — Proyección\n",
+         f"_Monte-Carlo {proj.n_sims} sims · tabla actual + resto de la temporada "
+         f"simulado · Elo al {elo_as_of}._\n",
+         "## Probabilidad de alcanzar cada ronda\n",
+         "| # | Equipo | J | Pts | DG | Liguilla | Semis | Final | Campeón |",
+         "|--:|---|--:|--:|--:|--:|--:|--:|--:|"]
+    for i, r in enumerate(proj.table_now, 1):
+        rc = proj.reach[r.team]
+        L.append(f"| {i} | {r.team} | {r.played} | {r.points} | {r.gd:+d} | "
+                 f"{rc['liguilla']*100:.0f}% | {rc['semi_final']*100:.0f}% | "
+                 f"{rc['final']*100:.0f}% | {rc['champion']*100:.1f}% |")
+    L.append("\n## Bracket proyectado (chalk, desde la tabla actual)\n")
+    for s in proj.projected_qf:
+        L.append(f"- **{s.high_seed}º {s.high}** vs **{s.low_seed}º {s.low}**")
+    L.append("\n_Cuartos: 1-8, 2-7, 3-6, 4-5. Semis se resiembran por posición en la "
+             "tabla. Todo ida y vuelta; global empatado avanza el mejor sembrado "
+             "(en la final, tiempos extra y penales)._")
+    return "\n".join(L)
+
+
 def main(argv: list[str] | None = None) -> None:
-    parser = argparse.ArgumentParser(description="Pipeline Liga MX (fit + picks).")
+    parser = argparse.ArgumentParser(description="Pipeline Liga MX (fit + picks + liguilla).")
     sub = parser.add_subparsers(dest="cmd", required=True)
     pf = sub.add_parser("fit", help="Elo replay + Poisson·DC fit.")
     pf.add_argument("--no-fit-rho", dest="fit_rho", action="store_false", default=None)
-    pp = sub.add_parser("picks", help="Genera picks de una jornada.")
-    pp.add_argument("--round", default="all", help="j1..j17 | all")
+    pp = sub.add_parser("picks", help="Genera picks de una jornada o ronda de liguilla.")
+    pp.add_argument("--round", default="all",
+                    help="j1..j17 | all | quarter_final | semi_final | final")
     pp.add_argument("--objective", default="ev", choices=("ev", "pool"),
                     help="ev (default): cada pick maximiza sus propios puntos esperados. "
                          "pool: optimiza el boleto entero para P(quedar 1.º) usando "
                          "data/ligamx/pool_standings.json (+ pool_picks.json si existe).")
+    pl = sub.add_parser("liguilla", help="Proyecta la tabla final y el bracket (Monte-Carlo).")
+    pl.add_argument("--sims", type=int, default=10000, help="número de simulaciones.")
     args = parser.parse_args(argv)
 
     if args.cmd == "fit":
         run_fit(fit_rho=args.fit_rho)
     elif args.cmd == "picks":
         run_picks(args.round, objective=args.objective)
+    elif args.cmd == "liguilla":
+        run_liguilla(n_sims=args.sims)
 
 
 if __name__ == "__main__":

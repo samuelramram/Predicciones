@@ -115,6 +115,13 @@ class ModelConfig:
     # because the penalty dragged everyone toward the mean).
     ridge_lambda: float = 0.3
 
+    # Exponential recency half-life (days) for the Poisson+DC fit weights. The
+    # default (730 ≈ 2y) suits international football, where squads are stable
+    # across cycles and friendlies are sparse. Club leagues turn their rosters
+    # over every window, so Liga MX profiles a shorter half-life (see
+    # LIGAMX_APERTURA_PROFILE) — chosen by the walk-forward backtest, not by feel.
+    half_life_days: int = 730
+
     elo_k_friendly: float = 20.0
     elo_k_qualifier: float = 30.0
     elo_k_tournament: float = 40.0

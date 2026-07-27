@@ -31,6 +31,18 @@ python -m wc_predictor.pipeline.ligamx fit
 # 3) Picks de la jornada (EV por partido)
 python -m wc_predictor.pipeline.ligamx picks --round j2
 
+# 3c) Liguilla — picks por leg (ida y vuelta a 90') de una ronda del playoff.
+#     Antes de que termine el rol regular usa el bracket PROYECTADO desde la
+#     tabla actual; cuando se definan los cruces, fíjalos en
+#     data/ligamx/liguilla.json y se recalcula solo. Rondas: quarter_final |
+#     semi_final | final.
+python -m wc_predictor.pipeline.ligamx picks --round quarter_final
+
+# 3d) Proyección del torneo (Monte-Carlo): simula el resto de la temporada →
+#     tabla final → siembra → bracket, y da P(cada equipo llega a liguilla,
+#     semis, final, campeón). Útil desde ya para ver rumbo.
+python -m wc_predictor.pipeline.ligamx liguilla --sims 10000
+
 # 3b) Picks optimizados para P(quedar 1.º) — requiere pool_standings.json
 #     (ingiere primero los exports de la app; sin ellos degrada a EV)
 #     --start-round 3: el pool puntúa desde J3 (J1-J2 no cuentan); --liguilla-matches
@@ -47,11 +59,33 @@ python -m wc_predictor.pipeline.ligamx_bets --round j2 --bankroll 500
 python -m wc_predictor.pipeline.ligamx_backtest --since 2025-07-01
 ```
 
-Salida en `outputs/ligamx_picks_{ronda}.{json,md}`. Atlante es cold-start
-(franquicia comprada a Mazatlán) — cerca del promedio de liga hasta que junte
-partidos. La calibración está re-fiteada contra el histórico real (localía Elo
-100, blend 60/40, rho perfilado, `goal_env_mult` neutral): +14.9% vs baseline
-"1-0" en el backtest walk-forward. Pendiente: liguilla a doble partido (Fase 1c).
+Salida en `outputs/ligamx_picks_{ronda}.{json,md,html}` (+ `ligamx_liguilla.*`
+para la proyección). Atlante es cold-start (franquicia comprada a Mazatlán) —
+cerca del promedio de liga hasta que junte partidos. La calibración está
+re-fiteada contra el histórico real (localía Elo 100, blend 60/40, rho perfilado,
+`goal_env_mult` neutral, half-life 730d confirmado por sweep): +14.9% vs baseline
+"1-0" en el backtest walk-forward.
+
+**Output para el usuario (importante): cada corrida emite un `.html`
+self-contained y theme-aware.** El usuario NO ve bien el markdown en GitHub, así
+que **siempre que generes picks o la proyección, publica ese `.html` como
+Artifact** (`outputs/ligamx_picks_{ronda}.html` o `ligamx_liguilla.html`) para
+que lo vea en claude.ai. Es el boleto/serie/tabla renderado bonito, no el ASCII.
+
+**Liguilla (Fase 1c, hecha).** Formato Apertura 2026: sin Play-In, top-8 directo,
+cuartos 1-8/2-7/3-6/4-5, semis resembradas por posición en la tabla general,
+todo ida y vuelta; global empatado avanza el mejor sembrado en cuartos/semis y en
+la final hay tiempos extra + penales. `model/liguilla.py` calcula tabla+siembra,
+el avance por global (convolución de las dos legs + regla de desempate) y la
+proyección Monte-Carlo. El pool puntúa **cada leg a 90'** como cualquier partido,
+así que los picks por leg salen del mismo optimizador.
+
+**xG vs goles (decisión):** se evaluó cablear xG (fbref) y **se descartó por
+ahora** — fbref responde 403 detrás del proxy, y con el **mercado al 55% del
+blend (que ya ES un modelo xG)** el margen de xG sobre un modelo de goles bien
+calibrado es chico y en parte redundante. Goles + odds gana en ROI. Si algún día
+se quiere xG, la vía es API-Football (`API_FOOTBALL_KEY`) como experimento medido
+con CLV/backtest, en su propio PR — no fbref.
 
 ## Regla de interacción: picks por jornada
 

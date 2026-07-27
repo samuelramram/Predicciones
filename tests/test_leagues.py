@@ -98,6 +98,8 @@ def test_ligamx_metadata():
     assert p.odds_sport_key == "soccer_mexico_ligamx"
     # 17 regular jornadas present.
     assert "j1" in p.round_tokens and "j17" in p.round_tokens
-    # Liguilla rounds present and two-legged where expected.
+    # Liguilla rounds present and two-legged. Apertura 2026 scrapped the Play-In:
+    # top-8 go straight to two-legged quarters, so play_in is NOT a round token.
     assert set(p.two_legged_rounds) == {"quarter_final", "semi_final", "final"}
-    assert "play_in" in p.round_tokens
+    assert {"quarter_final", "semi_final", "final"} <= set(p.round_tokens)
+    assert "play_in" not in p.round_tokens

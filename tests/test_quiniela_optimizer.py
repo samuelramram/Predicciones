@@ -133,15 +133,17 @@ def test_contrarian_ev_leq_ev_optimal():
     assert result.contrarian_ev <= result.ev + 1e-9
 
 
-def test_contrarian_agrees_with_ev_on_balanced_match():
-    """On a perfectly balanced match the public splits equally, so contrarian == EV-optimal."""
+def test_contrarian_is_best_alternative_outcome():
+    """The contrarian is now the runner-up OUTCOME by true EV (the most likely
+    DIFFERENT result), not the EV/p-ratio pick that always collapsed onto the
+    draw. So it must differ from the EV pick and carry EV just below it."""
     result = optimize_pick(lambda_home=1.2, lambda_away=1.2, rules=RULES, mcfg=MCFG)
-    # With forbid_outcomes default (nothing forbidden) both picks can be the same or different;
-    # just verify invariants hold.
     assert result.contrarian_pick_1x2 in {"1", "X", "2"}
-    assert result.contrarian_score >= result.ev / max(
-        result.prob_home_win, result.prob_draw, result.prob_away_win
-    ) - 1e-9
+    assert result.contrarian_pick_1x2 != result.pick_1x2, (
+        "contrarian must be a different 1X2 outcome than the EV pick"
+    )
+    assert result.contrarian_ev <= result.ev + 1e-9
+    assert result.contrarian_ev > 0
 
 
 def test_contrarian_ignores_forbid_by_default():

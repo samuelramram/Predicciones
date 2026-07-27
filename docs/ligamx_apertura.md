@@ -21,7 +21,7 @@ Documento de diseño para reusar este motor de quiniela (hoy cableado al Mundial
 | **1a** | Datos alineados al webapp + **ingest real** (TheSportsDB 4350) → 1028 partidos de historial + calendario Apertura 2026 (153 fixtures) | ✅ |
 | **1b** | Elo por replay + fit Poisson+DC + **picks por jornada** (`pipeline/ligamx.py`, localía por equipo + altitud diferencial) | ✅ este commit |
 | **1b.2** | Odds de Liga MX en el blend (3 vías) + **backtest walk-forward** | ✅ este commit |
-| **1c** | Liguilla a doble partido (marcador global + desempate) | pendiente |
+| **1c** | Liguilla a doble partido (marcador global + desempate) + proyección MC + **output HTML** | ✅ |
 | **2** | Optimizador de pool con rivales reales (`--objective pool` + `ingest.ligamx_pool`) | ✅ este commit |
 | **3** | Módulo de apuestas de valor (1X2 + O/U, ¼ Kelly, line-shopping) | ✅ este commit |
 
@@ -52,6 +52,48 @@ Documento de diseño para reusar este motor de quiniela (hoy cableado al Mundial
   default (−0.10) en vez del rho perfilado por `ligamx fit` (−0.05), degradando
   el componente de exacto (los 2 puntos). Ahora adopta el rho ajustado igual que
   `generate_picks` del Mundial (`effective_model_config`).
+
+### Fase 1c — liguilla + proyección + output HTML (implementado)
+
+- **Formato Apertura 2026** (cambió: desapareció el Play-In). Top-8 directo;
+  cuartos 1-8/2-7/3-6/4-5; **semis resembradas por posición en la tabla general**
+  (mejor vs peor, 2.º vs 3.º); todo ida y vuelta. Global empatado → avanza el
+  mejor sembrado en cuartos y semis (sin extras); en la **final** hay tiempos
+  extra y penales. El local mejor sembrado cierra en casa (vuelta).
+- `model/liguilla.py` (puro): `compute_table` (tabla general con desempates
+  puntos→DG→GF), siembra + cruces, `series_advance_prob` (convolución de las dos
+  legs → distribución del global + regla de desempate), y `project_liguilla`
+  (Monte-Carlo: simula el resto del rol → tabla → siembra → bracket → P(llegar a
+  cada ronda)). 8 tests en `tests/test_liguilla.py`.
+- **El pool puntúa cada leg a 90'**, así que una serie son dos picks normales
+  (ida + vuelta) del mismo optimizador — no hubo que inventar scoring de global
+  para los picks; el global solo decide el avance (contexto + proyección).
+- Comandos: `ligamx picks --round quarter_final|semi_final|final` (bracket real
+  de `data/ligamx/liguilla.json` si existe, si no el proyectado desde la tabla),
+  y `ligamx liguilla --sims N` (proyección). Rutas de salida `.json/.md/.html`.
+- **Output HTML** (`pipeline/ligamx_html.py`): página self-contained, theme-aware
+  y mobile-first — el boleto como "ticket" impreso, medidor de EV, barra 1X2,
+  chips de abstain/contrarian, barra de avance por serie, tabla de proyección con
+  barras. Se publica como Artifact para que el usuario lo vea en claude.ai (el
+  markdown de GitHub no le sirve). Es la pieza que faltaba de "verlo por acá".
+
+### Mejoras de modelo de este ciclo (evidencia, no corazonada)
+
+- **Half-life del fit**: se expuso `ModelConfig.half_life_days` y se barrió en el
+  backtest walk-forward {365, 540, 730, 1095}d. **730d gana** (224 pts / +14.9%)
+  sobre 365/540/1095 (222 / +13.8%). La intuición "planteles rotan → acorta" es
+  falsa aquí: con ~1000 partidos de histórico, más data pesa más que la frescura.
+  Se dejó 730d, documentado en el perfil. Re-barrer cuando entren más temporadas.
+- **Contrarian**: antes maximizaba EV/p_outcome y **colapsaba al empate (1-1) en
+  casi todos los partidos** (P(X) es el marginal más chico → siempre ganaba el
+  ratio) — columna inútil. Ahora es el **mejor outcome alternativo real**
+  (runner-up por EV): el resultado distinto más probable, con su sacrificio de EV
+  como criterio de accionable. El leverage del empate sigue vivo donde importa: el
+  optimizador de pool usa `alt_picks` (con la X incluida), no `contra_pick`.
+- **xG**: evaluado y **descartado por ahora**. fbref da 403 tras el proxy; y con
+  el mercado al 55% del blend (que ya es un modelo xG), el margen de xG sobre un
+  modelo de goles bien calibrado es chico/redundante. Goles+odds gana en ROI. Vía
+  futura si se quiere: API-Football como experimento medido con CLV, en su PR.
 
 ### Fase 2 — objetivo de pool (implementado)
 

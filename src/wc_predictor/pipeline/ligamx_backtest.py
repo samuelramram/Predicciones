@@ -89,9 +89,10 @@ def run(since: str, mcfg: ModelConfig | None = None, quiet: bool = False) -> dic
         elos, _ = replay_history(train, mcfg)
         if mcfg.fit_rho:
             _, fit, _ = profile_fit_rho(train, mcfg, ridge_lambda=mcfg.ridge_lambda,
-                                        verbose=False)
+                                        half_life_days=mcfg.half_life_days, verbose=False)
         else:
-            fit = fit_dc_model(train, mcfg, ridge_lambda=mcfg.ridge_lambda, verbose=False)
+            fit = fit_dc_model(train, mcfg, ridge_lambda=mcfg.ridge_lambda,
+                               half_life_days=mcfg.half_life_days, verbose=False)
         # Same rho contract as production picks: matrix built with the fitted rho.
         wk_mcfg = effective_model_config(fit, mcfg)
         for r in batch:
