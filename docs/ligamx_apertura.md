@@ -292,8 +292,22 @@ mercado ≈0.23 vs modelo ≈0.55). Por eso un edge grande (≥8%) casi siempre 
 es la **medición** (registrar CLV a lo largo de la temporada para descubrir
 empíricamente si algún mercado tiene edge), no apostar los edges crudos. La
 ventaja de verdad está en la quiniela (30 humanos), no contra el book.
-Pendiente: doble oportunidad/BTTS (requieren esos markets en el fetch),
-`betting/clv.py` y ledger de bankroll persistente.
+
+**Integración al boleto + ledger de CLV (hecho).** El boleto HTML incluye la
+sección de apuestas partida en dos bandas: **valor jugable** (edge 3-8%) y **solo
+medición ⚠** (edge ≥8%, casi siempre error del modelo). `betting/clv.py` +
+`pipeline/ligamx_clv.py` implementan el ledger de closing-line-value (`log` →
+`close` → `settle` → `report`, versionado en `data/ligamx/clv_ledger.json`):
+- **CLV primario** = `precio_entrada / precio_cierre − 1` (ambos reales; mezclar
+  precio vigado con prob. devigada sesga negativo siempre — bug evitado).
+- **EV vs justa** (secundario) = `precio × prob_justa_cierre − 1`.
+- Veredicto tras ≥10 cierres: CLV promedio > 0 ⇒ edge real; si no, a la quiniela.
+
+**Mercados disponibles (hallazgo empírico):** el feed de Liga MX de The Odds API
+(este plan) **solo cotiza `h2h` y `totals`**. `double_chance` y `btts` responden
+`422 INVALID_MARKET` — requerirían el endpoint por-evento (más quota, cobertura
+pobre). Así que el valor apostable vive en **1X2 y O/U 2.5**; la doble
+oportunidad queda documentada como no disponible vía esta API.
 
 ---
 

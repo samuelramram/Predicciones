@@ -179,6 +179,19 @@ _CSS = """
 .lmx .foot{margin-top:26px;color:var(--muted);font-size:.78rem;
   border-top:1px solid var(--line);padding-top:12px}
 .lmx a{color:var(--field-ink)}
+
+/* stat tiles (CLV) */
+.lmx .tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:12px;margin:16px 0}
+.lmx .tile{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+  padding:16px}
+.lmx .tile .k{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+.lmx .tile .v{font-size:1.9rem;font-weight:800;letter-spacing:-.02em;margin-top:4px;
+  font-variant-numeric:tabular-nums}
+.lmx .tile .n{font-size:.76rem;color:var(--muted);margin-top:2px}
+.lmx .pos{color:var(--good)} .lmx .neg{color:var(--bad)}
+.lmx .verdict{margin:6px 0 2px;padding:12px 14px;border-radius:12px;font-size:.92rem;
+  background:var(--panel-2);border:1px solid var(--line)}
 """
 
 _OUT = {"1": "h", "X": "d", "2": "a"}
@@ -417,6 +430,95 @@ def render_liguilla(payload: dict) -> str:
         'posición en la tabla general (mejor vs peor). Global empatado: avanza el mejor '
         'sembrado en cuartos y semis; en la final, tiempos extra y penales.</div>')
     return _shell(label, body)
+
+
+# --- CLV ledger ---------------------------------------------------------------
+def render_clv(stats: dict, entries: list[dict]) -> str:
+    def _sign(v):
+        return "pos" if (v or 0) > 0 else ("neg" if (v or 0) < 0 else "")
+
+    clv = stats.get("avg_clv_pct")
+    beat = stats.get("pct_beat_close")
+    roi = stats.get("roi_pct")
+    n, nclosed, nset = stats["n"], stats["n_closed"], stats["n_settled"]
+
+    _closed = [e for e in entries if e.get("close_price") is not None]
+    same_snapshot = bool(_closed) and all(e["close_price"] == e["entry_price"] for e in _closed)
+    verdict = ("Registra más jornadas con línea de cierre para un veredicto sólido."
+               if clv is None or nclosed < 10
+               else "CLV ≈0: el cierre se capturó en el mismo instante que el registro. Corre "
+                    "`ligamx_clv close` cerca del kickoff (tras refrescar odds) para medir el "
+                    "movimiento de línea real."
+               if same_snapshot and abs(clv) < 0.05
+               else "Edge REAL: el modelo le gana a la línea de cierre a lo largo del torneo."
+               if clv > 0 else
+               "Sin edge medible: el mercado te gana. Concentra la energía en la quiniela.")
+
+    evc = stats.get("avg_ev_close_pct")
+    tiles = [
+        ("CLV promedio", f"{clv:+.2f}%" if clv is not None else "—", _sign(clv),
+         f"{nclosed} con cierre · precio vs cierre"),
+        ("Le gana al cierre", f"{beat:.0f}%" if beat is not None else "—",
+         "pos" if (beat or 0) >= 50 else "neg" if beat is not None else "",
+         f"de {nclosed} apuestas"),
+        ("EV vs justa", f"{evc:+.2f}%" if evc is not None else "—", _sign(evc),
+         "tu precio vs la prob. sharp"),
+        ("ROI realizado", f"{roi:+.1f}%" if roi is not None else "—", _sign(roi),
+         (f"{nset} liq · ${stats['profit_mxn']:+.0f}" if nset else f"{n} en el ledger")),
+    ]
+    tile_html = "".join(
+        f'<div class="tile"><div class="k">{_e(k)}</div>'
+        f'<div class="v {c}">{_e(v)}</div><div class="n">{_e(nn)}</div></div>'
+        for k, v, c, nn in tiles)
+
+    # per-market
+    def _mkt_row(m, s):
+        clv_td = (f'<td class="{_sign(s["avg_clv_pct"])}">{s["avg_clv_pct"]:+.2f}%</td>'
+                  if s["avg_clv_pct"] is not None else '<td>—</td>')
+        roi_td = (f'<td>{s["roi_pct"]:+.1f}%</td>' if s["roi_pct"] is not None else '<td>—</td>')
+        return (f'<tr><td style="text-align:left">{_e(_MKT_ES.get(m, m))}</td>'
+                f'<td>{s["n"]}</td>{clv_td}{roi_td}</tr>')
+    mkt_rows = "".join(_mkt_row(m, s) for m, s in stats.get("by_market", {}).items())
+
+    def _row(e):
+        edge = (e["model_prob"] - e["entry_fair_prob"]) * 100
+        clv_e = (e["entry_price"] / e["close_price"] - 1) * 100 if e.get("close_price") else None
+        clv_c = f'<td class="{_sign(clv_e)}">{clv_e:+.1f}%</td>' if clv_e is not None else '<td>—</td>'
+        res = e.get("result")
+        res_c = ('<span class="chip o1">W</span>' if res == "win"
+                 else '<span class="chip o2">L</span>' if res == "loss"
+                 else '—')
+        pnl = f'{e["profit_mxn"]:+.0f}' if e.get("profit_mxn") is not None else "—"
+        return (f'<tr><td>{_e(e["round"].upper())}</td>'
+                f'<td style="text-align:left">{_e(e["match"].replace(" vs "," · "))}</td>'
+                f'<td style="text-align:left">{_e(_MKT_ES.get(e["market"],e["market"]))} '
+                f'{_e(_SEL_ES.get(e["selection"],e["selection"]))}</td>'
+                f'<td>{e["model_prob"]*100:.0f}%</td><td>{edge:+.1f}%</td>'
+                f'<td>{e["entry_price"]:.2f}</td>'
+                f'<td>{("%.2f"%e["close_price"]) if e.get("close_price") else "—"}</td>'
+                f'{clv_c}<td>{res_c}</td><td>{pnl}</td></tr>')
+
+    led_rows = "".join(_row(e) for e in entries)
+
+    body = (f'<div class="lmx-eyebrow">Liga MX · Apuestas</div>'
+            f'<h1>Ledger de CLV</h1>'
+            f'<div class="sub">La línea de cierre es la estimación más afilada del mercado. Si '
+            f'apuestas consistentemente a mejor precio que el cierre, tu edge es real — gane o '
+            f'pierda cada apuesta suelta. El CLV converge mucho más rápido que el P&amp;L.</div>'
+            f'<div class="tiles">{tile_html}</div>'
+            f'<div class="verdict"><b>Veredicto:</b> {_e(verdict)}</div>'
+            f'<h2>Por mercado</h2>'
+            f'<div class="twrap"><table><thead><tr><th style="text-align:left">Mercado</th>'
+            f'<th>n</th><th>CLV</th><th>ROI</th></tr></thead><tbody>{mkt_rows}</tbody></table></div>'
+            f'<h2>Bitácora</h2>'
+            f'<div class="twrap"><table><thead><tr><th>Ronda</th>'
+            f'<th style="text-align:left">Partido</th><th style="text-align:left">Apuesta</th>'
+            f'<th>Modelo</th><th>Edge</th><th>Precio</th><th>Cierre</th><th>CLV</th>'
+            f'<th>Res</th><th>P&amp;L</th></tr></thead><tbody>{led_rows}</tbody></table></div>'
+            f'<div class="foot">CLV = precio de entrada × prob. justa de cierre − 1 (EV al cierre). '
+            f'Positivo ⇒ le ganaste a la línea afilada. Corre <code>ligamx_clv close</code> cerca '
+            f'del kickoff (tras refrescar odds) para llenar la columna de cierre.</div>')
+    return _shell("Ledger CLV", body)
 
 
 # --- projection ---------------------------------------------------------------

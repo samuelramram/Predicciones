@@ -53,7 +53,17 @@ python -m wc_predictor.pipeline.ligamx picks --round j2 --objective pool
 
 # 4) Apuestas de valor (modelo independiente vs mercado, ¼-Kelly, line-shopping)
 #    Requiere ingest.ligamx_odds. Edge ≥8% = probable error del modelo, no valor.
+#    El boleto HTML (paso 3) YA incluye esta sección cuando hay odds_markets.
 python -m wc_predictor.pipeline.ligamx_bets --round j2 --bankroll 500
+
+# 4b) Ledger de CLV — mide si el edge de apuestas es REAL a lo largo del torneo.
+#     log al apostar → close cerca del kickoff (tras refrescar odds) → settle con
+#     resultados → report (CLV promedio, % que le gana al cierre, ROI + HTML).
+#     El ledger se versiona en data/ligamx/clv_ledger.json (es el registro).
+python -m wc_predictor.pipeline.ligamx_clv log --round j2 --bankroll 500
+python -m wc_predictor.pipeline.ligamx_clv close     # cerca del kickoff
+python -m wc_predictor.pipeline.ligamx_clv settle    # con resultados
+python -m wc_predictor.pipeline.ligamx_clv report    # → outputs/ligamx_clv.html
 
 # 5) Backtest walk-forward (validación out-of-sample, sin odds)
 python -m wc_predictor.pipeline.ligamx_backtest --since 2025-07-01
