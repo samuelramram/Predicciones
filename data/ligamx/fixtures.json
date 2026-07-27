@@ -1,5 +1,5 @@
 {
-  "version": "2026.07.22",
+  "version": "2026.07.27",
   "league": "Liga MX",
   "season": "2026-2027",
   "sources": {
@@ -190,13 +190,13 @@
       "round_label": "Jornada 2",
       "date": "2026-07-25",
       "date_utc": "2026-07-25T03:00:00",
-      "venue": "Estadio Azteca",
+      "venue": "Estadio Banorte",
       "home": "Atlante",
       "away": "América",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 1,
+      "away_score": 1
     },
     {
       "match_id": "m_4bd8eb7377",
@@ -211,8 +211,8 @@
       "away": "Juárez",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 1,
+      "away_score": 0
     },
     {
       "match_id": "m_0a531cbf2e",
@@ -227,8 +227,8 @@
       "away": "León",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 1,
+      "away_score": 0
     },
     {
       "match_id": "m_8e47b9a124",
@@ -243,8 +243,8 @@
       "away": "Monterrey",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 2,
+      "away_score": 1
     },
     {
       "match_id": "m_a0c66b21c0",
@@ -259,8 +259,8 @@
       "away": "Atlas",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 0,
+      "away_score": 1
     },
     {
       "match_id": "m_0adb46bb65",
@@ -275,8 +275,8 @@
       "away": "San Luis",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 2,
+      "away_score": 2
     },
     {
       "match_id": "m_a267c4249b",
@@ -285,14 +285,14 @@
       "jornada": 2,
       "round_label": "Jornada 2",
       "date": "2026-07-27",
-      "date_utc": "2026-07-27T01:00:00",
+      "date_utc": "2026-07-27T01:06:00",
       "venue": "Estadio Hidalgo",
       "home": "Pachuca",
       "away": "Querétaro",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 1,
+      "away_score": 2
     },
     {
       "match_id": "m_d6a377ed3a",
