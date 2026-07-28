@@ -22,9 +22,9 @@ bankroll = p["bankroll"]
 caliente_as_of = books_doc.get("manual", {}).get("caliente", {}).get("as_of", "")
 
 # ---- derivadas ----
-total_stake = sum(b["stake_mxn"] for b in bets)
+min_stake = p.get("min_stake", 0) or 0
 clv_pos = [b for b in bets if b["clv_entry"] > 0]
-clv_pos_stake = sum(b["stake_mxn"] for b in clv_pos)
+clv_pos_stake = sum(b["stake_mxn"] for b in clv_pos)  # lo que DE VERDAD apuestas
 n_matches = len({b["match"] for b in bets})
 
 SEL_LABEL = {"1": "Local (1)", "X": "Empate (X)", "2": "Visita (2)",
@@ -50,6 +50,8 @@ for b in sorted(bets, key=lambda x: (-x["clv_entry"], -x["edge"])):
         team = home_of(b["match"]) if sel == "1" else b["match"].split(" vs ")[1]
         sel_txt = f'{escape(team)} <span class="tag">{sel}</span>'
     star = '<span class="star" title="Le gana al cierre">&#9733;</span>' if good else ""
+    # Solo apuestas las que le ganan al cierre; en las demás el stake es "—".
+    stake_cell = f"${b['stake_mxn']:.0f}" if good else '<span class="muted">&mdash;</span>'
     rows.append(f"""
       <tr class="{'row-good' if good else ''}">
         <td class="match">{escape(b['match'])}{star}</td>
@@ -60,7 +62,7 @@ for b in sorted(bets, key=lambda x: (-x["clv_entry"], -x["edge"])):
         <td class="num">{pct(b['edge'])}</td>
         <td class="num price">{b['price']:.2f}</td>
         <td class="book">{escape(b['book'])}</td>
-        <td class="num stake">${b['stake_mxn']:.0f}</td>
+        <td class="num stake">{stake_cell}</td>
         <td class="num">{pct(b['ev'], sign=True)}</td>
         <td class="num clv {clv_cls}">{pct(clv, sign=True)}</td>
       </tr>""")
@@ -197,21 +199,21 @@ thead th.num {{ text-align: right; }}
     <span>Casas: <b>Caliente + Betway</b></span>
     <span>Caliente al <b>{escape(caliente_as_of)}</b></span>
     <span>Betway / l&iacute;nea justa: <b>refrescado hoy</b> v&iacute;a The Odds API</span>
-    <span>Bankroll: <b>${bankroll:.0f}</b> &middot; &frac14;-Kelly, tope 2%</span>
+    <span>Bankroll: <b>${bankroll:.0f}</b> &middot; &frac14;-Kelly &middot; m&iacute;nimo <b>${min_stake:.0f}</b>/apuesta</span>
   </div>
 
   <div class="verdict">
     <div class="verdict-top">
       <div class="big"><span class="n">{len(bets)}</span><span class="l">Se&ntilde;ales de edge &ge;3%</span></div>
       <div class="big"><span class="n accent">{len(clv_pos)}</span><span class="l">Le ganan al cierre (CLV+)</span></div>
-      <div class="big"><span class="n">${clv_pos_stake:.0f}</span><span class="l">Stake apostable</span></div>
-      <div class="big"><span class="n muted">${total_stake:.0f}</span><span class="l">Si picaras todo el edge</span></div>
+      <div class="big"><span class="n">${clv_pos_stake:.0f}</span><span class="l">A jugar en total</span></div>
+      <div class="big"><span class="n muted">{clv_pos_stake/bankroll*100:.0f}%</span><span class="l">Del bankroll en riesgo</span></div>
     </div>
     <div class="verdict-note">
       La prueba no es el edge (el modelo <b>no</b> le gana al mercado a la larga), es el
       <b>CLV</b>: si tu precio le gana a la l&iacute;nea justa afilada de ~20+ casas.
-      Esta jornada, <b>solo 1 de {len(bets)}</b> se&ntilde;ales pasa esa prueba. El resto es
-      ruido de modelo &mdash; medici&oacute;n para el ledger, no dinero a la mesa.
+      Esta jornada, <b>solo 1 de {len(bets)}</b> se&ntilde;ales pasa esa prueba &mdash; y esa es la
+      &uacute;nica con stake. El resto es ruido de modelo: se anota en el ledger, no se apuesta.
     </div>
     {hero_pick}
   </div>
@@ -241,9 +243,10 @@ thead th.num {{ text-align: right; }}
     baseline trivial: el modelo <b>no</b> es m&aacute;s afilado que el mercado. Un edge de
     8&ndash;16% contra 20+ casas es casi siempre error del modelo, no valor real. Por eso
     el corte es el CLV, no el edge.</p>
-    <p><b>Qu&eacute; har&iacute;a yo.</b> Apostar la de Quer&eacute;taro (${pick['stake_mxn']:.0f} a {pick['price']:.2f} en {escape(pick['book'])}) y registrar
-    el resto en el ledger de CLV sin poner dinero &mdash; para medir si el edge es real a lo
-    largo del torneo. El siguiente paso es <b>cerrar</b> las l&iacute;neas cerca del kickoff y
+    <p><b>Qu&eacute; har&iacute;a yo.</b> Una sola apuesta: <b>${pick['stake_mxn']:.0f} a Quer&eacute;taro</b> ({pick['price']:.2f} en {escape(pick['book'])}).
+    El stake sale del m&iacute;nimo de la casa (${min_stake:.0f}); Kelly pedir&iacute;a ${pick.get('stake_kelly_mxn', 0):.0f}, pero la app
+    no acepta tan poco. El resto se registra en el ledger de CLV sin dinero &mdash; para medir
+    si el edge es real a lo largo del torneo. Luego <b>cerrar</b> las l&iacute;neas cerca del kickoff y
     <b>liquidar</b> con resultados (<code>ligamx_clv close / settle / report</code>).</p>
     <p style="opacity:.7">Actualizado {updated}. Momios decimales. Stakes en MXN.</p>
   </div>

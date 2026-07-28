@@ -122,3 +122,19 @@ def test_manual_book_competes_for_available_but_not_for_fair():
     assert with_cal["h2h"]["best_available"]["1"] == {"price": 9.99, "book": "caliente"}
     assert with_cal["h2h"]["best"]["1"]["book"] == "pinnacle"     # feed best untouched
     assert with_cal["h2h"]["fair"] == plain["h2h"]["fair"]        # fair line untouched
+
+
+def test_played_stake_rounds_to_house_minimum():
+    """El stake que se apuesta se redondea a múltiplos del mínimo de la casa, con
+    un piso de 1 unidad — los stakes de ¼-Kelly ($3–$10) caen bajo el mínimo de
+    $20 y hay que subirlos para que el boleto sea jugable."""
+    from wc_predictor.pipeline.ligamx_bets import played_stake_mxn
+
+    # ¼-Kelly de ~1.6% sobre $500 = ~$8 → piso al mínimo de $20.
+    assert played_stake_mxn(0.0156, 500, 20) == 20.0
+    # Un stake ínfimo también sube al mínimo, nunca a $0.
+    assert played_stake_mxn(0.0008, 500, 20) == 20.0
+    # ~$31 redondea al múltiplo más cercano de $20 = $40.
+    assert played_stake_mxn(0.0625, 500, 20) == 40.0
+    # min_stake=0 devuelve el Kelly crudo (comportamiento anterior).
+    assert played_stake_mxn(0.0156, 500, 0) == round(0.0156 * 500, 2)
