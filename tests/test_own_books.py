@@ -122,3 +122,63 @@ def test_manual_book_competes_for_available_but_not_for_fair():
     assert with_cal["h2h"]["best_available"]["1"] == {"price": 9.99, "book": "caliente"}
     assert with_cal["h2h"]["best"]["1"]["book"] == "pinnacle"     # feed best untouched
     assert with_cal["h2h"]["fair"] == plain["h2h"]["fair"]        # fair line untouched
+
+
+def test_played_stake_rounds_to_house_minimum():
+    """El stake que se apuesta se redondea a múltiplos del mínimo de la casa, con
+    un piso de 1 unidad — los stakes de ¼-Kelly ($3–$10) caen bajo el mínimo de
+    $20 y hay que subirlos para que el boleto sea jugable."""
+    from wc_predictor.pipeline.ligamx_bets import played_stake_mxn
+
+    # ¼-Kelly de ~1.6% sobre $500 = ~$8 → piso al mínimo de $20.
+    assert played_stake_mxn(0.0156, 500, 20) == 20.0
+    # Un stake ínfimo también sube al mínimo, nunca a $0.
+    assert played_stake_mxn(0.0008, 500, 20) == 20.0
+    # ~$31 redondea al múltiplo más cercano de $20 = $40.
+    assert played_stake_mxn(0.0625, 500, 20) == 40.0
+    # min_stake=0 devuelve el Kelly crudo (comportamiento anterior).
+    assert played_stake_mxn(0.0156, 500, 0) == round(0.0156 * 500, 2)
+
+
+def test_deployment_ticket_deploys_budget_one_pick_per_match(monkeypatch):
+    """El boleto de despliegue reparte ~budget del bankroll con un solo pick 1X2
+    por partido, redondeado al mínimo, y premia con más stake lo que le gana al
+    cierre (CLV+). Se stubbea el modelo para no depender de artefactos fiteados."""
+    import wc_predictor.pipeline.ligamx_bets as mod
+
+    fixtures = [
+        {"home": "A", "away": "B", "jornada": 3},
+        {"home": "C", "away": "D", "jornada": 3},
+    ]
+    # A|B: el local es franco favorito y su precio LE GANA al cierre (CLV+).
+    # C|D: pick de visita sin ventaja de precio (CLV−).
+    markets = {
+        "A|B": {"h2h": {"fair": {"1": 0.50, "X": 0.28, "2": 0.22},
+                        "best_available": {"1": {"price": 2.30, "book": "caliente"},
+                                           "X": {"price": 3.4, "book": "betway"},
+                                           "2": {"price": 3.6, "book": "betway"}}}},
+        "C|D": {"h2h": {"fair": {"1": 0.40, "X": 0.30, "2": 0.30},
+                        "best_available": {"1": {"price": 2.2, "book": "caliente"},
+                                           "X": {"price": 3.2, "book": "betway"},
+                                           "2": {"price": 3.0, "book": "betway"}}}},
+    }
+    preds = {
+        ("A", "B"): {"p_home_win": 0.62, "p_draw": 0.20, "p_away_win": 0.18, "_cells": []},
+        ("C", "D"): {"p_home_win": 0.40, "p_draw": 0.28, "p_away_win": 0.32, "_cells": []},
+    }
+    monkeypatch.setattr(mod, "_load_model_and_round",
+                        lambda spec: ("fit", {}, {}, markets, fixtures))
+    monkeypatch.setattr(mod, "predict_fixture",
+                        lambda fx, *a, **k: preds[(fx["home"], fx["away"])])
+
+    picks = mod.deployment_ticket("j3", bankroll=500, budget_frac=0.9, min_stake=20)
+
+    assert len(picks) == 2                       # un pick por partido
+    assert {b["match"] for b in picks} == {"A vs B", "C vs D"}
+    assert all(b["stake_mxn"] % 20 == 0 for b in picks)   # redondeado al mínimo
+    ab = next(b for b in picks if b["match"] == "A vs B")
+    cd = next(b for b in picks if b["match"] == "C vs D")
+    assert ab["selection"] == "1" and ab["clv_entry"] > 0   # local +CLV
+    assert ab["stake_mxn"] > cd["stake_mxn"]                # el +CLV pesa más
+    total = sum(b["stake_mxn"] for b in picks)
+    assert 0.7 * 500 <= total <= 1.0 * 500                  # despliega ~el budget

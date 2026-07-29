@@ -30,7 +30,11 @@ from wc_predictor.betting.clv import (LedgerEntry, entry_from_dict, entry_to_dic
                                       settle_profit, summarize)
 from wc_predictor.config import OUTPUTS_DIR
 from wc_predictor.pipeline.ligamx import FIXTURES_JSON, LIGAMX_DIR
-from wc_predictor.pipeline.ligamx_bets import compute_bets
+from wc_predictor.pipeline.ligamx_bets import (
+    compute_bets,
+    played_stake_mxn,
+    DEFAULT_MIN_STAKE,
+)
 
 LEDGER_JSON = LIGAMX_DIR / "clv_ledger.json"
 ODDS_MARKETS_JSON = LIGAMX_DIR / "odds_markets.json"
@@ -69,7 +73,7 @@ def _market_lookup(match: str, market: str, selection: str, markets: dict):
 
 
 def cmd_log(round_spec: str, bankroll: float, edge_min: float, kelly_mult: float,
-            max_stake: float, total_line: float) -> None:
+            max_stake: float, total_line: float, min_stake: float = 0.0) -> None:
     bets = compute_bets(round_spec, edge_min, kelly_mult, max_stake, total_line)
     if not bets:
         print(f"Sin apuestas de valor para {round_spec} (nada que registrar).")
@@ -83,7 +87,8 @@ def cmd_log(round_spec: str, bankroll: float, edge_min: float, kelly_mult: float
             round=round_spec.strip().lower(), match=b.match, market=b.market,
             selection=b.selection, model_prob=round(b.model_prob, 4),
             entry_fair_prob=round(b.fair_prob, 4), entry_price=b.price,
-            entry_book=b.book, stake_mxn=round(b.kelly_stake * bankroll, 2), logged_at=now,
+            entry_book=b.book,
+            stake_mxn=played_stake_mxn(b.kelly_stake, bankroll, min_stake), logged_at=now,
         )
         if e.key() in have:
             continue
@@ -200,6 +205,9 @@ def main(argv: list[str] | None = None) -> None:
     pl.add_argument("--edge", type=float, default=0.03)
     pl.add_argument("--kelly", type=float, default=0.25)
     pl.add_argument("--max-stake", type=float, default=0.02)
+    pl.add_argument("--min-stake", type=float, default=DEFAULT_MIN_STAKE,
+                    help=f"mínimo jugable por apuesta en MXN (default ${DEFAULT_MIN_STAKE:.0f}); "
+                         f"registra el stake que de verdad apuestas, no el Kelly crudo.")
     pl.add_argument("--total-line", type=float, default=2.5)
     sub.add_parser("close", help="Captura la línea de cierre para las abiertas (cerca del kickoff).")
     sub.add_parser("settle", help="Liquida W/L + P&L con los resultados conocidos.")
@@ -207,7 +215,8 @@ def main(argv: list[str] | None = None) -> None:
     args = p.parse_args(argv)
 
     if args.cmd == "log":
-        cmd_log(args.round, args.bankroll, args.edge, args.kelly, args.max_stake, args.total_line)
+        cmd_log(args.round, args.bankroll, args.edge, args.kelly, args.max_stake,
+                args.total_line, min_stake=args.min_stake)
     elif args.cmd == "close":
         cmd_close()
     elif args.cmd == "settle":

@@ -58,6 +58,16 @@ python -m wc_predictor.pipeline.ligamx picks --round j2 --objective pool
 python -m wc_predictor.pipeline.ligamx_bets --round j2 --bankroll 500
 python -m wc_predictor.pipeline.ligamx_bets --round j2 --require-clv   # solo lo apostable
 python -m wc_predictor.pipeline.ligamx_bets --round j2 --all-books     # medir el modelo, NO apostar
+#    El BOLETO DISCIPLINADO: --require-clv + --min-stake 20 (default). Los
+#    stakes de ¼-Kelly caen en $3–$10, bajo el mínimo de la casa; se redondean a
+#    múltiplos de $20 para que el boleto sea copy-paste. --min-stake 0 = Kelly crudo.
+python -m wc_predictor.pipeline.ligamx_bets --round j2 --require-clv --min-stake 20
+#    El BOLETO DE DESPLIEGUE (experimento): --budget 0.9 pone ~90% del roll a
+#    trabajar con UN pick 1X2 por partido, peso mixto (base igual + bonus por CLV+
+#    + bonus por ventaja del modelo). Acción medida sobre el roll, NO boleto +EV:
+#    la mayoría de los picks empiezan con CLV negativo. El CLV de cada uno se
+#    registra igual para medir al modelo a lo largo del torneo.
+python -m wc_predictor.pipeline.ligamx_bets --round j2 --budget 0.9
 
 # 4b) Ledger de CLV — mide si el edge de apuestas es REAL a lo largo del torneo.
 #     log al apostar → close cerca del kickoff (tras refrescar odds) → settle con
