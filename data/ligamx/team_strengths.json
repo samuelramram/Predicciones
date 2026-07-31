@@ -1,13 +1,13 @@
 {
-  "mu": 0.1459165012196454,
-  "gamma": 0.2984172093194338,
+  "mu": 0.14588296306906579,
+  "gamma": 0.29840190397411137,
   "rho": -0.05,
   "n_matches": 1035,
   "n_teams": 19,
   "half_life_days": 730,
   "ridge_lambda": 0.3,
   "converged": true,
-  "final_neg_log_lik": 2140.470251091535,
+  "final_neg_log_lik": 2132.3575667854852,
   "teams": {
     "América": {
       "attack": 0.1935,
@@ -15,13 +15,13 @@
       "n_matches": 133
     },
     "Atlante": {
-      "attack": -0.1577,
+      "attack": -0.1587,
       "defense": 0.0094,
       "n_matches": 2
     },
     "Atlas": {
       "attack": -0.1454,
-      "defense": -0.1164,
+      "defense": -0.1163,
       "n_matches": 108
     },
     "Cruz Azul": {
@@ -35,7 +35,7 @@
       "n_matches": 117
     },
     "Juárez": {
-      "attack": -0.0667,
+      "attack": -0.0666,
       "defense": -0.1847,
       "n_matches": 109
     },
@@ -45,18 +45,18 @@
       "n_matches": 110
     },
     "Mazatlán": {
-      "attack": -0.2047,
-      "defense": -0.1997,
+      "attack": -0.2046,
+      "defense": -0.1996,
       "n_matches": 103
     },
     "Monterrey": {
-      "attack": 0.2053,
-      "defense": 0.0471,
+      "attack": 0.2054,
+      "defense": 0.047,
       "n_matches": 124
     },
     "Necaxa": {
-      "attack": 0.0472,
-      "defense": -0.1587,
+      "attack": 0.0473,
+      "defense": -0.1588,
       "n_matches": 108
     },
     "Pachuca": {
@@ -66,7 +66,7 @@
     },
     "Puebla": {
       "attack": -0.3079,
-      "defense": -0.2625,
+      "defense": -0.2624,
       "n_matches": 106
     },
     "Pumas": {
@@ -80,7 +80,7 @@
       "n_matches": 105
     },
     "San Luis": {
-      "attack": 0.0802,
+      "attack": 0.0803,
       "defense": -0.1691,
       "n_matches": 113
     },
@@ -96,11 +96,11 @@
     },
     "Tijuana": {
       "attack": 0.0723,
-      "defense": -0.049,
+      "defense": -0.0491,
       "n_matches": 111
     },
     "Toluca": {
-      "attack": 0.3263,
+      "attack": 0.3264,
       "defense": 0.2408,
       "n_matches": 122
     }
