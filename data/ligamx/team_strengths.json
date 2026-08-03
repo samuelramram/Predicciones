@@ -1,109 +1,109 @@
 {
-  "mu": 0.14588296306906579,
-  "gamma": 0.29840190397411137,
+  "mu": 0.17729573165310403,
+  "gamma": 0.2958286064531028,
   "rho": -0.05,
-  "n_matches": 1035,
+  "n_matches": 1044,
   "n_teams": 19,
   "half_life_days": 730,
   "ridge_lambda": 0.3,
   "converged": true,
-  "final_neg_log_lik": 2132.3575667854852,
+  "final_neg_log_lik": 2154.8320220003043,
   "teams": {
     "América": {
-      "attack": 0.1935,
-      "defense": 0.4037,
-      "n_matches": 133
+      "attack": 0.1667,
+      "defense": 0.422,
+      "n_matches": 134
     },
     "Atlante": {
-      "attack": -0.1587,
-      "defense": 0.0094,
-      "n_matches": 2
+      "attack": 0.3706,
+      "defense": -0.0035,
+      "n_matches": 3
     },
     "Atlas": {
-      "attack": -0.1454,
-      "defense": -0.1163,
-      "n_matches": 108
-    },
-    "Cruz Azul": {
-      "attack": 0.2202,
-      "defense": 0.2552,
-      "n_matches": 128
-    },
-    "Guadalajara": {
-      "attack": 0.0476,
-      "defense": 0.2177,
-      "n_matches": 117
-    },
-    "Juárez": {
-      "attack": -0.0666,
-      "defense": -0.1847,
+      "attack": -0.1907,
+      "defense": -0.1191,
       "n_matches": 109
     },
-    "León": {
-      "attack": -0.1078,
-      "defense": -0.1356,
+    "Cruz Azul": {
+      "attack": 0.1931,
+      "defense": 0.237,
+      "n_matches": 129
+    },
+    "Guadalajara": {
+      "attack": 0.0114,
+      "defense": 0.2185,
+      "n_matches": 118
+    },
+    "Juárez": {
+      "attack": -0.0967,
+      "defense": -0.2138,
       "n_matches": 110
     },
+    "León": {
+      "attack": -0.1408,
+      "defense": -0.122,
+      "n_matches": 111
+    },
     "Mazatlán": {
-      "attack": -0.2046,
-      "defense": -0.1996,
+      "attack": -0.2336,
+      "defense": -0.199,
       "n_matches": 103
     },
     "Monterrey": {
-      "attack": 0.2054,
-      "defense": 0.047,
-      "n_matches": 124
+      "attack": 0.1793,
+      "defense": 0.0605,
+      "n_matches": 125
     },
     "Necaxa": {
-      "attack": 0.0473,
-      "defense": -0.1588,
-      "n_matches": 108
+      "attack": 0.0181,
+      "defense": -0.1543,
+      "n_matches": 109
     },
     "Pachuca": {
-      "attack": 0.0269,
-      "defense": 0.0947,
-      "n_matches": 117
+      "attack": -0.0164,
+      "defense": 0.1011,
+      "n_matches": 118
     },
     "Puebla": {
-      "attack": -0.3079,
-      "defense": -0.2624,
-      "n_matches": 106
+      "attack": -0.3369,
+      "defense": -0.257,
+      "n_matches": 107
     },
     "Pumas": {
-      "attack": 0.0936,
-      "defense": 0.1086,
-      "n_matches": 122
+      "attack": 0.0947,
+      "defense": 0.1101,
+      "n_matches": 123
     },
     "Querétaro": {
-      "attack": -0.2863,
-      "defense": -0.0382,
-      "n_matches": 105
-    },
-    "San Luis": {
-      "attack": 0.0803,
-      "defense": -0.1691,
-      "n_matches": 113
-    },
-    "Santos": {
-      "attack": -0.2006,
-      "defense": -0.3116,
+      "attack": -0.2838,
+      "defense": -0.0452,
       "n_matches": 106
     },
+    "San Luis": {
+      "attack": 0.0337,
+      "defense": -0.1552,
+      "n_matches": 114
+    },
+    "Santos": {
+      "attack": -0.2379,
+      "defense": -0.3141,
+      "n_matches": 107
+    },
     "Tigres": {
-      "attack": 0.1641,
-      "defense": 0.2483,
-      "n_matches": 126
+      "attack": 0.1416,
+      "defense": 0.2241,
+      "n_matches": 127
     },
     "Tijuana": {
-      "attack": 0.0723,
-      "defense": -0.0491,
-      "n_matches": 111
+      "attack": 0.0277,
+      "defense": -0.0308,
+      "n_matches": 112
     },
     "Toluca": {
-      "attack": 0.3264,
-      "defense": 0.2408,
-      "n_matches": 122
+      "attack": 0.3,
+      "defense": 0.2409,
+      "n_matches": 123
     }
   },
-  "as_of": "2026-07-27"
+  "as_of": "2026-08-03"
 }

@@ -145,6 +145,11 @@ def parse_markets(payload: list[dict], books_cfg: dict | None = None) -> dict[st
         avail_h2h = {"1": {"price": 0.0, "book": None},
                      "X": {"price": 0.0, "book": None},
                      "2": {"price": 0.0, "book": None}}
+        # Per-book prices among MY books, so a boleto can be priced at a SPECIFIC
+        # house (Betway/Caliente) — `best_available` only keeps the single best.
+        by_book_h2h: dict[str, dict[str, float]] = defaultdict(dict)
+        by_book_totals: dict[float, dict[str, dict[str, float]]] = defaultdict(
+            lambda: {"over": {}, "under": {}})
         # --- totals per line: fair + best over/under ---
         totals_fair: dict[float, dict] = defaultdict(lambda: {"over": 0.0, "under": 0.0, "w": 0.0})
         totals_best: dict[float, dict] = defaultdict(
@@ -170,6 +175,10 @@ def parse_markets(payload: list[dict], books_cfg: dict | None = None) -> dict[st
                             best_h2h[key] = {"price": o["price"], "book": bk}
                         if bk in available and o["price"] > avail_h2h[key]["price"]:
                             avail_h2h[key] = {"price": o["price"], "book": bk}
+                        if bk in available:
+                            prev = by_book_h2h[bk].get(key, 0.0)
+                            if o["price"] > prev:
+                                by_book_h2h[bk][key] = o["price"]
                 if len(prices) == 3:
                     p1, px, p2, ov = implied_probs_from_decimal(prices["1"], prices["X"], prices["2"])
                     w = 1.0 / max(ov - 1.0, 1e-3)
@@ -198,6 +207,9 @@ def parse_markets(payload: list[dict], books_cfg: dict | None = None) -> dict[st
                                 totals_avail[pt]["over"] = {"price": oc["over"], "book": bk}
                             if oc["under"] > totals_avail[pt]["under"]["price"]:
                                 totals_avail[pt]["under"] = {"price": oc["under"], "book": bk}
+                            for side in ("over", "under"):
+                                if oc[side] > by_book_totals[pt][side].get(bk, 0.0):
+                                    by_book_totals[pt][side][bk] = oc[side]
 
         if fair_w == 0:
             continue
@@ -211,6 +223,8 @@ def parse_markets(payload: list[dict], books_cfg: dict | None = None) -> dict[st
             for key, price in prices.items():
                 if key in avail_h2h and price > avail_h2h[key]["price"]:
                     avail_h2h[key] = {"price": price, "book": bk}
+                if key in ("1", "X", "2") and price > by_book_h2h[bk].get(key, 0.0):
+                    by_book_h2h[bk][key] = price
         for bk, lines in manual_totals_for(books_cfg, match_key).items():
             if bk not in available:
                 continue
@@ -227,6 +241,8 @@ def parse_markets(payload: list[dict], books_cfg: dict | None = None) -> dict[st
                     price = oc.get(side)
                     if price and price > totals_avail[pt][side]["price"]:
                         totals_avail[pt][side] = {"price": price, "book": bk}
+                    if price and price > by_book_totals[pt][side].get(bk, 0.0):
+                        by_book_totals[pt][side][bk] = price
 
         totals_out = {}
         for pt, acc in totals_fair.items():
@@ -236,6 +252,8 @@ def parse_markets(payload: list[dict], books_cfg: dict | None = None) -> dict[st
                 "fair": {"over": acc["over"] / acc["w"], "under": acc["under"] / acc["w"]},
                 "best": totals_best[pt],
                 "best_available": totals_avail[pt],
+                "by_book": {"over": dict(by_book_totals[pt]["over"]),
+                            "under": dict(by_book_totals[pt]["under"])},
                 "n_books": int(line_counts[pt]),
             }
         out[match_key] = {
@@ -245,6 +263,9 @@ def parse_markets(payload: list[dict], books_cfg: dict | None = None) -> dict[st
                 "fair": {k: fair_acc[k] / fair_w for k in ("1", "X", "2")},
                 "best": best_h2h,
                 "best_available": avail_h2h,
+                # {book: {"1"/"X"/"2": price}} — prices at each of MY books, for the
+                # per-house boleto. Only books in `available` (feed + manual) appear.
+                "by_book": {bk: dict(px) for bk, px in by_book_h2h.items()},
             },
             "totals": totals_out,
         }

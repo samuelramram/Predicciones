@@ -68,6 +68,12 @@ python -m wc_predictor.pipeline.ligamx_bets --round j2 --require-clv --min-stake
 #    la mayoría de los picks empiezan con CLV negativo. El CLV de cada uno se
 #    registra igual para medir al modelo a lo largo del torneo.
 python -m wc_predictor.pipeline.ligamx_bets --round j2 --budget 0.9
+#    El BOLETO POR CASA (lo que apuesta el usuario de verdad): despliega el
+#    presupuesto de CADA casa por separado, a SU precio, un pick 1X2 por partido,
+#    mínimo $20/predicción en unidades de $20. --log-boleto lo registra en el
+#    ledger con la casa + precio REALES (no la medición all-books).
+python -m wc_predictor.pipeline.ligamx_bets --round j2 \
+    --budget-betway 300 --budget-caliente 200 --log-boleto
 
 # 4b) Ledger de CLV — mide si el edge de apuestas es REAL a lo largo del torneo.
 #     log al apostar → close cerca del kickoff (tras refrescar odds) → settle con
@@ -81,6 +87,34 @@ python -m wc_predictor.pipeline.ligamx_clv report    # → outputs/ligamx_clv.ht
 # 5) Backtest walk-forward (validación out-of-sample, sin odds)
 python -m wc_predictor.pipeline.ligamx_backtest --since 2025-07-01
 ```
+
+### Regla de interacción: apuestas por casa (cada jornada)
+
+Cuando vayas a generar el boleto de apuestas de una jornada, **pregúntale al
+usuario cuánto va a apostar en Betway y cuánto en Caliente** (puede ser una,
+otra, o ambas). Tú **destinas ese presupuesto COMPLETO** en cada casa con
+`--budget-betway`/`--budget-caliente`: un pick 1X2 por partido, al precio de esa
+casa, **mínimo $20 por predicción** (en unidades de $20 — es el mínimo real de
+ambas casas). Corre siempre con `--log-boleto` para que el ledger registre lo que
+DE VERDAD apostó (casa + precio + stake reales), no la medición all-books. Esto
+requiere `ingest.ligamx_odds` fresco (los precios caducan por jornada, y Caliente
+se captura a mano en `books.json`).
+
+**Honestidad del boleto por casa:** es acción medida sobre el roll, NO un boleto
++EV. Casi todos los picks arrancan con CLV ≤ 0 (el mercado les gana); el valor de
+esto es medir el CLV real a lo largo del torneo, no ganar cada jornada. Si una
+jornada "gana", casi siempre es varianza de un par de longshots, no edge — díselo
+al usuario con esas palabras y remite al CLV promedio del ledger como el veredicto.
+
+**J3 (medido): los empates NO son un ajuste de calibración pendiente.** En J3 el
+modelo quedó abajo de la media por no picar 2 empates (San Luis 0-0 lo cazó medio
+pool). Se probó bajar el `draw_allow_min_prob` y agregar un *modal-draw unlock* de
+rol regular (como el de liguilla) en el backtest walk-forward: **cero cambio de
+puntos incluso con umbral 0.22** — el EV ya prefiere el lado ganador por décimas,
+así que levantar el veto del empate nunca cambia el pick. Picar esos empates
+habría sido una desviación −EV que solo se ve bien en retrospectiva. La skill
+base del modelo es +14.9% OOS y su tasa de exactos (~10%) va a la par del campo;
+**no metas un cambio de calibración por una jornada de varianza.**
 
 Salida en `outputs/ligamx_picks_{ronda}.{json,md,html}` (+ `ligamx_liguilla.*`
 para la proyección). Atlante es cold-start (franquicia comprada a Mazatlán) —

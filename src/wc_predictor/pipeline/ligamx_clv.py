@@ -100,6 +100,35 @@ def cmd_log(round_spec: str, bankroll: float, edge_min: float, kelly_mult: float
           f"({len(bets) - added} ya estaban). Ledger: {len(ledger)} entradas.")
 
 
+def log_boleto(payload: dict) -> int:
+    """Registra en el ledger el boleto POR CASA que DE VERDAD apostaste — casa,
+    precio y stake reales, no la medición all-books. `payload` es el dict que
+    devuelve `per_house_ticket` (mode=="per_house"). Devuelve cuántas entradas
+    nuevas se agregaron (idempotente por (round, match, market, selection))."""
+    ledger = _load_ledger()
+    # Book-aware dedup: the same selection placed at BOTH houses is two real bets,
+    # so key on the book too (the shared LedgerEntry.key() omits it on purpose).
+    have = {(*e.key(), e.entry_book) for e in ledger}
+    now = datetime.utcnow().isoformat() + "Z"
+    added = 0
+    for house_data in payload.get("houses", {}).values():
+        for b in house_data.get("bets", []):
+            e = LedgerEntry(
+                round=payload["round"], match=b["match"], market=b["market"],
+                selection=b["selection"], model_prob=round(b["model_prob"], 4),
+                entry_fair_prob=round(b["fair_prob"], 4), entry_price=b["price"],
+                entry_book=b["house"], stake_mxn=b["stake_mxn"], logged_at=now,
+            )
+            k = (*e.key(), e.entry_book)
+            if k in have:
+                continue
+            ledger.append(e)
+            have.add(k)
+            added += 1
+    _save_ledger(ledger)
+    return added
+
+
 def cmd_close() -> None:
     if not ODDS_MARKETS_JSON.exists():
         raise SystemExit(f"Falta {ODDS_MARKETS_JSON}. Corre `ingest.ligamx_odds` justo antes "
