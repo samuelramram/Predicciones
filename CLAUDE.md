@@ -86,7 +86,36 @@ python -m wc_predictor.pipeline.ligamx_clv report    # → outputs/ligamx_clv.ht
 
 # 5) Backtest walk-forward (validación out-of-sample, sin odds)
 python -m wc_predictor.pipeline.ligamx_backtest --since 2025-07-01
+
+# 6) Tracker de fuentes — ¿le gana el BLEND (55% mercado) al modelo solo y al
+#    mercado solo? El peso del mercado NO se puede backtestear (no hay feed
+#    histórico de odds de Liga MX), así que se MIDE en vivo: log por jornada →
+#    settle con resultados → report acumulado. En ~5-6 jornadas dice si conviene
+#    mover blend_odds_weight. También mide la congestión (ver abajo).
+python -m wc_predictor.pipeline.ligamx_source_tracker log --round j4
+python -m wc_predictor.pipeline.ligamx_source_tracker settle
+python -m wc_predictor.pipeline.ligamx_source_tracker report
 ```
+
+### Calibración: qué se probó y por qué NO se cambió (disciplina)
+
+La quiniela puntúa **decisiones discretas** (el pick es un argmax), así que afinar
+una probabilidad continua casi nunca cruza el umbral que cambia el pick. Medido en
+el backtest walk-forward (354 partidos OOS): **bajar el veto al empate (0.30→0.50),
+subir el ambiente de goles (1.00→1.08) y el tilt de exactos (+0.25→+1.5) dan CERO
+cambio de puntos.** El 1X2 ya está casi perfectamente calibrado (local/empate/visita
+dentro de ±1pp) y los exactos (~9-10%) van a la par del campo. **No metas knobs de
+calibración: no encienden nada.** La ganancia fina vive en señal nueva, no en tuning:
+
+- **Peso del mercado (0.55):** el predictor más fuerte y lo único que corrige la
+  sobreconfianza del modelo en el rango medio (el modelo solo sobrevalora a los
+  cold-start como Atlante). No es backtesteable → se mide con el `source_tracker`.
+- **Congestión (Leagues Cup):** el efecto de descanso corto en el histórico de Liga
+  MX midió **~0** (prueba pareada por equipo: Δ −0.014 PPG, Δ −0.07 goles, t≈−0.2).
+  Por eso **no se cablea ninguna penalización de λ**; se marcan los equipos con carga
+  en `data/ligamx/congestion.json` y el `source_tracker` mide si de verdad rinden por
+  debajo de su predicción a lo largo de J4-J6. Si aparece señal, se calibra CON
+  evidencia — igual que el peso del mercado.
 
 ### Regla de interacción: apuestas por casa (cada jornada)
 

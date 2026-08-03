@@ -1,0 +1,18 @@
+{
+  "_doc": [
+    "Equipos con carga de calendario (p.ej. semanas de Leagues Cup) por ronda.",
+    "Formato:  { \"j4\": { \"América\": true, \"Toluca\": true } }  (nombre EXACTO del equipo).",
+    "",
+    "OJO — esto NO penaliza el modelo. El efecto de descanso corto en el histórico",
+    "de Liga MX midió ~0 (Δ −0.014 PPG, Δ −0.07 goles, no significativo, prueba",
+    "pareada por equipo). Así que en vez de inventar una penalización de λ, marcamos",
+    "los equipos aquí y el source_tracker MIDE si de verdad rinden por debajo de su",
+    "predicción a lo largo de J4–J6. Si aparece señal real, ENTONCES se calibra una",
+    "perilla con evidencia — igual que hacemos con el peso del mercado.",
+    "",
+    "Cada equipo juega 3 partidos de Leagues Cup (mié / finde / mié) y regresa a",
+    "Liga MX el finde siguiente (J4). Marca aquí los que hayan cargado más minutos",
+    "o viajado (fase final)."
+  ],
+  "j4": {}
+}
