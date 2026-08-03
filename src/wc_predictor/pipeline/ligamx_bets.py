@@ -254,7 +254,9 @@ def per_house_ticket(round_spec: str, house_budgets: dict[str, float],
     houses = {}
     for house, budget in house_budgets.items():
         cands = _house_candidates(round_spec, house, total_line)
-        units_total = int(round(budget / min_stake)) if min_stake > 0 else 0
+        # Floor, never round up: the boleto must NEVER exceed the stated budget.
+        # A remainder below min_stake simply can't be placed (the house won't take it).
+        units_total = int(budget // min_stake) if min_stake > 0 else 0
         if not cands or units_total <= 0:
             houses[house] = {"budget_mxn": budget, "bets": [], "total_stake_mxn": 0.0,
                              "n_matches_priced": len(cands)}
@@ -312,8 +314,11 @@ def run_per_house(round_spec: str, house_budgets: dict[str, float],
             print(f"  {b['match']:<26} {pick_lbl:<20} {b['model_prob']*100:>6.1f}% "
                   f"{b['fair_prob']*100:>5.1f}% {b['edge']*100:>+5.1f}% {b['price']:>7.2f} "
                   f"${b['stake_mxn']:>5.0f} {b['clv_entry']*100:>+6.1f}%")
+        leftover = data["budget_mxn"] - data["total_stake_mxn"]
+        left_note = (f" · sobran ${leftover:.0f} (< ${min_stake:.0f}, no colocable)"
+                     if leftover >= 0.5 else "")
         print(f"  {len(bets)} predicciones · stake total ${data['total_stake_mxn']:.0f} "
-              f"· {data.get('n_positive_clv', 0)} con CLV+")
+              f"· {data.get('n_positive_clv', 0)} con CLV+{left_note}")
     print("\n  ⚠ La mayoría arranca con CLV≤0: es acción medida sobre tu roll, NO un "
           "boleto +EV. El CLV real de cada pick se mide en el ledger a lo largo del torneo.")
 
