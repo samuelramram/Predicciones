@@ -95,3 +95,56 @@ def test_log_boleto_records_real_house_and_is_book_aware(tmp_path, monkeypatch):
     assert len({e["entry_book"] for e in both}) == len(both)
     # re-logging the identical boleto adds nothing (idempotent)
     assert C.log_boleto(pay) == 0
+
+
+def _totals_market(house_over=2.2, house_under=1.7, house="caliente"):
+    return {"totals": {"2.5": {
+        "fair": {"over": 0.40, "under": 0.60},
+        "by_book": {"over": {house: house_over}, "under": {house: house_under}}}}}
+
+
+def test_house_ou_candidate_picks_the_value_side():
+    """The O/U leg joins only on real value: model p_over beats fair AND +EV.
+    Cells put 60% of mass on a 4-goal game -> Over 2.5 is the value side."""
+    fx = {"home": "A", "away": "B"}
+    cells = [{"h": 3, "a": 1, "prob": 0.6}, {"h": 0, "a": 0, "prob": 0.4}]
+    ou = B._house_ou_candidate(fx, _totals_market(), cells, "caliente", 2.5)
+    assert ou is not None
+    assert ou["market"] == "O/U 2.5" and ou["selection"] == "Over"
+    assert ou["price"] == 2.2 and ou["edge"] > 0
+    # CLV = price * fair - 1 = 2.2 * 0.40 - 1 = -0.12
+    assert round(ou["clv_entry"], 2) == -0.12
+
+
+def test_house_ou_candidate_none_without_value_or_price():
+    fx = {"home": "A", "away": "B"}
+    # Model agrees with the book (no edge) -> no leg.
+    even = [{"h": 1, "a": 1, "prob": 0.6}, {"h": 3, "a": 1, "prob": 0.4}]
+    assert B._house_ou_candidate(fx, _totals_market(), even, "caliente", 2.5) is None
+    # House does not price the line -> no leg even with a value edge.
+    strong_over = [{"h": 3, "a": 1, "prob": 0.9}, {"h": 0, "a": 0, "prob": 0.1}]
+    assert B._house_ou_candidate(fx, _totals_market(house="betway"), strong_over,
+                                 "caliente", 2.5) is None
+
+
+def test_include_totals_adds_ou_leg_to_boleto(tmp_path, monkeypatch):
+    """With include_totals, a match that offers O/U value contributes a second
+    (O/U) leg on top of its 1X2 leg — the ticket carries totals action."""
+    matches, _ = _synthetic_market_for_round("j3")
+    # give one match a value O/U at caliente
+    first = next(iter(matches))
+    matches[first]["totals"] = _totals_market()["totals"]
+    odds = tmp_path / "odds_markets.json"
+    odds.write_text(json.dumps({"matches": matches}), encoding="utf-8")
+    monkeypatch.setattr(B, "ODDS_MARKETS_JSON", odds)
+
+    base = B.per_house_ticket("j3", {"caliente": 300.0}, min_stake=20.0,
+                              include_totals=False)
+    withou = B.per_house_ticket("j3", {"caliente": 300.0}, min_stake=20.0,
+                                include_totals=True)
+    n_ou = sum(1 for b in withou["houses"]["caliente"]["bets"]
+               if b["market"] != "1X2")
+    assert n_ou >= 1
+    assert not any(b["market"] != "1X2" for b in base["houses"]["caliente"]["bets"])
+    # budget still fully respected, never exceeded
+    assert withou["houses"]["caliente"]["total_stake_mxn"] <= 300.0

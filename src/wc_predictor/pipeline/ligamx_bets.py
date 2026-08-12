@@ -19,7 +19,7 @@ import argparse
 import json
 from datetime import datetime
 
-from wc_predictor.betting.value import find_value_bets, ev_per_unit
+from wc_predictor.betting.value import find_value_bets, ev_per_unit, over_under_probs
 from wc_predictor.ingest.ligamx_odds import load_books_config
 from wc_predictor.config import OUTPUTS_DIR
 from wc_predictor.pipeline.ligamx import (
@@ -185,11 +185,53 @@ def deployment_ticket(round_spec: str, bankroll: float = 500.0, budget_frac: flo
     return picks
 
 
-def _house_candidates(round_spec: str, house: str, total_line: float) -> list[dict]:
+def _house_ou_candidate(fx: dict, market: dict, cells: list[dict],
+                        house: str, total_line: float) -> dict | None:
+    """Best-value Over/Under pick for one match at ONE house, or None. Unlike the
+    1X2 leg (deployed on every priced match as measured action), a totals leg only
+    joins the boleto when the model sees genuine value at that house's price —
+    positive edge vs the sharp fair line AND +EV — so the ticket never funds an
+    arbitrary O/U. Same CLV bookkeeping as the 1X2 leg."""
+    totals = market.get("totals") or {}
+    t = totals.get(f"{total_line}") or totals.get(f"{total_line:.1f}")
+    if not t:
+        return None
+    fair = t.get("fair") or {}
+    by_book = t.get("by_book") or {}
+    p_over, p_under = over_under_probs(cells, total_line)
+    best = None
+    for label, mp, key in (("Over", p_over, "over"), ("Under", p_under, "under")):
+        price = (by_book.get(key) or {}).get(house)
+        if not price:
+            continue
+        price = float(price)
+        fp = float(fair.get(key, 0.0) or 0.0)
+        edge = mp - fp
+        ev = ev_per_unit(mp, price)
+        if edge <= 0 or ev <= 0:            # only real value joins the boleto
+            continue
+        if best is None or ev > best["ev"]:
+            best = {
+                "match": f"{fx['home']} vs {fx['away']}",
+                "home": fx["home"], "away": fx["away"],
+                "selection": label, "market": f"O/U {total_line}", "house": house,
+                "model_prob": round(mp, 4), "fair_prob": round(fp, 4),
+                "edge": round(edge, 4), "price": price, "ev": round(ev, 4),
+                "clv_entry": round(price * fp - 1.0 if fp else 0.0, 4),
+            }
+    return best
+
+
+def _house_candidates(round_spec: str, house: str, total_line: float,
+                      include_totals: bool = False) -> list[dict]:
     """Best-EV 1X2 pick per match priced at ONE house (`house`), model view
     INDEPENDENT of odds. Skips matches the house doesn't quote. Used by the
     per-house boleto — the price is what you'd actually get at that house, not the
-    line-shopped best across all my books."""
+    line-shopped best across all my books.
+
+    With `include_totals`, each match may ALSO contribute an Over/Under leg (at the
+    same house's price) when the model sees value there — so the boleto carries the
+    totals action the value ticket surfaces, not just the 1X2 per game."""
     mcfg, rules = PROFILE.model, PROFILE.rules
     loaded = _load_model_and_round(round_spec)
     if loaded is None:
@@ -226,12 +268,16 @@ def _house_candidates(round_spec: str, house: str, total_line: float) -> list[di
                 }
         if best is not None:
             picks.append(best)
+        if include_totals:
+            ou = _house_ou_candidate(fx, market, p["_cells"], house, total_line)
+            if ou is not None:
+                picks.append(ou)
     return picks
 
 
 def per_house_ticket(round_spec: str, house_budgets: dict[str, float],
                      min_stake: float = DEFAULT_MIN_STAKE,
-                     total_line: float = 2.5) -> dict:
+                     total_line: float = 2.5, include_totals: bool = False) -> dict:
     """Boleto POR CASA: para cada casa, reparte SU presupuesto completo entre su
     mejor pick 1X2 por partido (a SU precio), con piso `min_stake` por predicción.
 
@@ -253,7 +299,7 @@ def per_house_ticket(round_spec: str, house_budgets: dict[str, float],
 
     houses = {}
     for house, budget in house_budgets.items():
-        cands = _house_candidates(round_spec, house, total_line)
+        cands = _house_candidates(round_spec, house, total_line, include_totals)
         # Floor, never round up: the boleto must NEVER exceed the stated budget.
         # A remainder below min_stake simply can't be placed (the house won't take it).
         units_total = int(budget // min_stake) if min_stake > 0 else 0
@@ -288,16 +334,17 @@ def per_house_ticket(round_spec: str, house_budgets: dict[str, float],
     return {
         "as_of": datetime.utcnow().isoformat() + "Z", "round": round_spec.strip().lower(),
         "mode": "per_house", "min_stake": min_stake, "total_line": total_line,
-        "houses": houses,
+        "include_totals": include_totals, "houses": houses,
     }
 
 
 def run_per_house(round_spec: str, house_budgets: dict[str, float],
-                  min_stake: float, total_line: float, log_ledger: bool = False) -> dict:
+                  min_stake: float, total_line: float, log_ledger: bool = False,
+                  include_totals: bool = False) -> dict:
     """Imprime + versiona el boleto por casa; opcionalmente lo registra en el
     ledger de CLV con el precio y la casa REALES (no la medición all-books)."""
     spec = round_spec.strip().lower()
-    payload = per_house_ticket(spec, house_budgets, min_stake, total_line)
+    payload = per_house_ticket(spec, house_budgets, min_stake, total_line, include_totals)
     for house, data in payload["houses"].items():
         print(f"\nBoleto {house.upper()} {spec} — presupuesto ${data['budget_mxn']:.0f} · "
               f"mínimo ${min_stake:.0f}/predicción")
@@ -308,9 +355,12 @@ def run_per_house(round_spec: str, house_budgets: dict[str, float],
         print(f"  {'Partido':<26} {'Pick':<20} {'modelo':>7} {'justo':>6} "
               f"{'edge':>6} {'precio':>7} {'stake':>7} {'CLV':>7}")
         for b in bets:
-            side = b["home"] if b["selection"] == "1" else (
-                b["away"] if b["selection"] == "2" else "Empate")
-            pick_lbl = f"{b['selection']} {side}"[:20]
+            if b.get("market", "1X2") != "1X2":       # O/U leg: label with the line
+                pick_lbl = f"{b['selection']} {b['market'].split()[-1]}"[:20]
+            else:
+                side = b["home"] if b["selection"] == "1" else (
+                    b["away"] if b["selection"] == "2" else "Empate")
+                pick_lbl = f"{b['selection']} {side}"[:20]
             print(f"  {b['match']:<26} {pick_lbl:<20} {b['model_prob']*100:>6.1f}% "
                   f"{b['fair_prob']*100:>5.1f}% {b['edge']*100:>+5.1f}% {b['price']:>7.2f} "
                   f"${b['stake_mxn']:>5.0f} {b['clv_entry']*100:>+6.1f}%")
@@ -505,6 +555,10 @@ def main(argv: list[str] | None = None) -> None:
     parser.add_argument("--require-clv", action="store_true",
                         help="solo apuestas cuyo precio LE GANA a la línea justa afilada "
                              "(CLV positivo al entrar) — la disciplina del plan, ahora exigible.")
+    parser.add_argument("--house-totals", action="store_true",
+                        help="MODO POR CASA: además del pick 1X2 por partido, agrega una pierna "
+                             "de Over/Under (a precio de la casa) cuando el modelo ve valor real "
+                             "ahí — así el boleto lleva la acción de totals, no solo el 1X2.")
     args = parser.parse_args(argv)
     house_budgets = {}
     if args.budget_betway > 0:
@@ -515,7 +569,7 @@ def main(argv: list[str] | None = None) -> None:
         if not ODDS_MARKETS_JSON.exists():
             raise SystemExit(f"Falta {ODDS_MARKETS_JSON}. Corre `ingest.ligamx_odds` primero.")
         run_per_house(args.round, house_budgets, args.min_stake, args.total_line,
-                      log_ledger=args.log_boleto)
+                      log_ledger=args.log_boleto, include_totals=args.house_totals)
         return
     run(args.round, args.bankroll, args.edge, args.kelly, args.max_stake, args.total_line,
         own_books_only=args.own_books_only, require_clv=args.require_clv,
