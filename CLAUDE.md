@@ -74,6 +74,13 @@ python -m wc_predictor.pipeline.ligamx_bets --round j2 --budget 0.9
 #    ledger con la casa + precio REALES (no la medición all-books).
 python -m wc_predictor.pipeline.ligamx_bets --round j2 \
     --budget-betway 300 --budget-caliente 200 --log-boleto
+#    --house-totals: además del pick 1X2 por partido, agrega una pierna Over/Under
+#    (al precio de la casa) SOLO cuando el modelo ve valor real ahí (edge>0 y +EV).
+#    Así el boleto lleva la acción de totals, no solo el 1X2. Ojo: si el feed de
+#    odds no trae los totals de una casa (p.ej. Betway en algunas jornadas), esa
+#    casa se queda 1X2 — no se inventa un precio.
+python -m wc_predictor.pipeline.ligamx_bets --round j2 \
+    --budget-betway 300 --budget-caliente 200 --house-totals --log-boleto
 
 # 4b) Ledger de CLV — mide si el edge de apuestas es REAL a lo largo del torneo.
 #     log al apostar → close cerca del kickoff (tras refrescar odds) → settle con
