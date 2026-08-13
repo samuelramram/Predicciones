@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-12T22:26:57.791317Z",
+  "updated_at": "2026-08-13T01:53:38.301231Z",
   "entries": [
     {
       "round": "j3",
@@ -15,8 +15,8 @@
       "close_fair_prob": null,
       "close_price": null,
       "closed_at": null,
-      "result": null,
-      "profit_mxn": null
+      "result": "win",
+      "profit_mxn": 4.4
     },
     {
       "round": "j3",
@@ -32,8 +32,8 @@
       "close_fair_prob": null,
       "close_price": null,
       "closed_at": null,
-      "result": null,
-      "profit_mxn": null
+      "result": "win",
+      "profit_mxn": 19.4
     },
     {
       "round": "j3",
@@ -49,8 +49,8 @@
       "close_fair_prob": null,
       "close_price": null,
       "closed_at": null,
-      "result": null,
-      "profit_mxn": null
+      "result": "loss",
+      "profit_mxn": -10.0
     },
     {
       "round": "j3",
@@ -66,8 +66,8 @@
       "close_fair_prob": null,
       "close_price": null,
       "closed_at": null,
-      "result": null,
-      "profit_mxn": null
+      "result": "win",
+      "profit_mxn": 11.6
     },
     {
       "round": "j3",
@@ -83,8 +83,8 @@
       "close_fair_prob": null,
       "close_price": null,
       "closed_at": null,
-      "result": null,
-      "profit_mxn": null
+      "result": "win",
+      "profit_mxn": 5.5
     },
     {
       "round": "j3",
@@ -100,8 +100,8 @@
       "close_fair_prob": null,
       "close_price": null,
       "closed_at": null,
-      "result": null,
-      "profit_mxn": null
+      "result": "loss",
+      "profit_mxn": -10.0
     },
     {
       "round": "j3",
@@ -117,8 +117,8 @@
       "close_fair_prob": null,
       "close_price": null,
       "closed_at": null,
-      "result": null,
-      "profit_mxn": null
+      "result": "loss",
+      "profit_mxn": -10.0
     },
     {
       "round": "j3",
@@ -134,8 +134,8 @@
       "close_fair_prob": null,
       "close_price": null,
       "closed_at": null,
-      "result": null,
-      "profit_mxn": null
+      "result": "loss",
+      "profit_mxn": -8.37
     },
     {
       "round": "j3",
@@ -151,8 +151,8 @@
       "close_fair_prob": null,
       "close_price": null,
       "closed_at": null,
-      "result": null,
-      "profit_mxn": null
+      "result": "win",
+      "profit_mxn": 27.4
     },
     {
       "round": "j3",
@@ -168,8 +168,8 @@
       "close_fair_prob": null,
       "close_price": null,
       "closed_at": null,
-      "result": null,
-      "profit_mxn": null
+      "result": "win",
+      "profit_mxn": 9.42
     },
     {
       "round": "j3",
@@ -185,8 +185,8 @@
       "close_fair_prob": null,
       "close_price": null,
       "closed_at": null,
-      "result": null,
-      "profit_mxn": null
+      "result": "loss",
+      "profit_mxn": -7.04
     },
     {
       "round": "j3",
@@ -202,8 +202,8 @@
       "close_fair_prob": null,
       "close_price": null,
       "closed_at": null,
-      "result": null,
-      "profit_mxn": null
+      "result": "win",
+      "profit_mxn": 0.32
     },
     {
       "round": "j3",
@@ -219,8 +219,8 @@
       "close_fair_prob": null,
       "close_price": null,
       "closed_at": null,
-      "result": null,
-      "profit_mxn": null
+      "result": "loss",
+      "profit_mxn": -7.64
     },
     {
       "round": "j3",
@@ -236,8 +236,8 @@
       "close_fair_prob": null,
       "close_price": null,
       "closed_at": null,
-      "result": null,
-      "profit_mxn": null
+      "result": "loss",
+      "profit_mxn": -2.62
     },
     {
       "round": "j3",
@@ -253,8 +253,8 @@
       "close_fair_prob": null,
       "close_price": null,
       "closed_at": null,
-      "result": null,
-      "profit_mxn": null
+      "result": "win",
+      "profit_mxn": 15.59
     },
     {
       "round": "j4",

@@ -1,8 +1,11 @@
 """Tests for the CLV (closing-line-value) core."""
 from __future__ import annotations
 
+from datetime import datetime
+
 from wc_predictor.betting.clv import (LedgerEntry, beat_close, clv_odds, ev_vs_fair,
                                       settle_profit, summarize)
+from wc_predictor.pipeline.ligamx_clv import _hours_to_kickoff
 
 
 def _entry(**kw):
@@ -70,3 +73,16 @@ def test_summary_by_market():
     s = summarize([a, b])
     assert set(s["by_market"]) == {"1X2", "O/U 2.5"}
     assert s["by_market"]["1X2"]["n"] == 1
+
+
+def test_hours_to_kickoff_window():
+    """The close window keys off each match's own kickoff, so a daily routine
+    captures the real closing line per game instead of freezing days early."""
+    markets = {"A|B": {"commence_time": "2026-08-15T23:00:00Z"}}
+    now = datetime(2026, 8, 15, 17, 0, 0)          # 6h before kickoff
+    assert round(_hours_to_kickoff("A vs B", markets, now), 1) == 6.0
+    # already kicked off -> negative (excluded by the window)
+    after = datetime(2026, 8, 16, 0, 0, 0)
+    assert _hours_to_kickoff("A vs B", markets, after) < 0
+    # unknown match -> None (skip, don't guess)
+    assert _hours_to_kickoff("X vs Y", markets, now) is None
