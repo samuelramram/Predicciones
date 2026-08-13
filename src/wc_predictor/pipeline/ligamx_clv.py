@@ -129,17 +129,43 @@ def log_boleto(payload: dict) -> int:
     return added
 
 
-def cmd_close() -> None:
+def _hours_to_kickoff(match: str, markets: dict, now: datetime) -> float | None:
+    """Horas desde `now` hasta el kickoff del partido (negativo si ya empezó), o
+    None si no hay commence_time. `match` viene como 'Home vs Away'."""
+    home, _, away = match.partition(" vs ")
+    m = markets.get(f"{home}|{away}") or {}
+    ct = m.get("commence_time")
+    if not ct:
+        return None
+    try:
+        k = datetime.fromisoformat(ct.replace("Z", "+00:00"))
+    except ValueError:
+        return None
+    return (k - now.replace(tzinfo=k.tzinfo)).total_seconds() / 3600.0
+
+
+def cmd_close(within_hours: float | None = None) -> None:
+    """Captura la línea de cierre para las entradas abiertas. Con `within_hours`
+    SOLO cierra los partidos cuyo kickoff cae dentro de esa ventana (y que aún no
+    empezaron): así una rutina diaria captura el cierre REAL de cada partido cerca
+    de SU kickoff, en vez de congelar 3 días antes una línea que todavía se moverá.
+    Sin el filtro, cierra todo lo abierto (comportamiento previo)."""
     if not ODDS_MARKETS_JSON.exists():
         raise SystemExit(f"Falta {ODDS_MARKETS_JSON}. Corre `ingest.ligamx_odds` justo antes "
                          "del cierre para capturar la línea.")
     markets = json.loads(ODDS_MARKETS_JSON.read_text(encoding="utf-8"))["matches"]
     ledger = _load_ledger()
-    now = datetime.utcnow().isoformat() + "Z"
-    n = 0
+    now_dt = datetime.utcnow()
+    now = now_dt.isoformat() + "Z"
+    n = skipped = 0
     for e in ledger:
         if e.close_fair_prob is not None:
             continue
+        if within_hours is not None:
+            h = _hours_to_kickoff(e.match, markets, now_dt)
+            if h is None or h < 0 or h > within_hours:
+                skipped += 1        # too early (or already started) → close it later
+                continue
         fair, price = _market_lookup(e.match, e.market, e.selection, markets)
         if fair is None:
             continue
@@ -148,7 +174,8 @@ def cmd_close() -> None:
         e.closed_at = now
         n += 1
     _save_ledger(ledger)
-    print(f"Cerradas {n} entradas con la línea actual (corre esto cerca del kickoff).")
+    win = f" (ventana ≤{within_hours:.0f}h al kickoff; {skipped} aún lejos)" if within_hours is not None else ""
+    print(f"Cerradas {n} entradas con la línea actual{win}.")
 
 
 def _settle_result(match: str, market: str, selection: str, fx_by_match: dict) -> str | None:
@@ -238,7 +265,10 @@ def main(argv: list[str] | None = None) -> None:
                     help=f"mínimo jugable por apuesta en MXN (default ${DEFAULT_MIN_STAKE:.0f}); "
                          f"registra el stake que de verdad apuestas, no el Kelly crudo.")
     pl.add_argument("--total-line", type=float, default=2.5)
-    sub.add_parser("close", help="Captura la línea de cierre para las abiertas (cerca del kickoff).")
+    pc = sub.add_parser("close", help="Captura la línea de cierre para las abiertas (cerca del kickoff).")
+    pc.add_argument("--within-hours", type=float, default=None,
+                    help="solo cierra partidos cuyo kickoff cae dentro de N horas (y que no han "
+                         "empezado); una rutina diaria captura así el cierre real de cada partido.")
     sub.add_parser("settle", help="Liquida W/L + P&L con los resultados conocidos.")
     sub.add_parser("report", help="Resumen: CLV promedio, % que le gana al cierre, ROI + HTML.")
     args = p.parse_args(argv)
@@ -247,7 +277,7 @@ def main(argv: list[str] | None = None) -> None:
         cmd_log(args.round, args.bankroll, args.edge, args.kelly, args.max_stake,
                 args.total_line, min_stake=args.min_stake)
     elif args.cmd == "close":
-        cmd_close()
+        cmd_close(within_hours=args.within_hours)
     elif args.cmd == "settle":
         cmd_settle()
     elif args.cmd == "report":
