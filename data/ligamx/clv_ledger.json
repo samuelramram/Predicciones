@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-16T16:01:37.896703Z",
+  "updated_at": "2026-08-17T20:01:47.560102Z",
   "entries": [
     {
       "round": "j3",
@@ -403,9 +403,9 @@
       "entry_book": "caliente",
       "stake_mxn": 40.0,
       "logged_at": "2026-08-12T22:26:57.791181Z",
-      "close_fair_prob": null,
-      "close_price": null,
-      "closed_at": null,
+      "close_fair_prob": 0.5448,
+      "close_price": 1.87,
+      "closed_at": "2026-08-17T20:01:47.560017Z",
       "result": null,
       "profit_mxn": null
     },
@@ -454,9 +454,9 @@
       "entry_book": "caliente",
       "stake_mxn": 20.0,
       "logged_at": "2026-08-12T22:26:57.791181Z",
-      "close_fair_prob": null,
-      "close_price": null,
-      "closed_at": null,
+      "close_fair_prob": 0.6148,
+      "close_price": 1.62,
+      "closed_at": "2026-08-17T20:01:47.560017Z",
       "result": null,
       "profit_mxn": null
     },
@@ -471,9 +471,9 @@
       "entry_book": "caliente",
       "stake_mxn": 20.0,
       "logged_at": "2026-08-12T22:26:57.791181Z",
-      "close_fair_prob": null,
-      "close_price": null,
-      "closed_at": null,
+      "close_fair_prob": 0.3734,
+      "close_price": 2.68,
+      "closed_at": "2026-08-17T20:01:47.560017Z",
       "result": null,
       "profit_mxn": null
     },
