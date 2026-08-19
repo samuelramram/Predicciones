@@ -93,6 +93,17 @@ def house_card(key: str, house: dict) -> str:
     total = sum(b["stake_mxn"] for b in bets)
     budget = house["budget_mxn"]
     n_ou = sum(1 for b in bets if b.get("market", "1X2") != "1X2")
+    if not bets:                        # house has no priced matches yet (e.g. Caliente manual)
+        return f"""
+    <section class="ticket ticket-pending" style="--house: {hue};">
+      <header class="ticket-head">
+        <div class="house"><span class="house-dot"></span><h3>{key.title()}</h3></div>
+        <div class="budget"><span class="budget-total">${int(budget)}</span>
+          <span class="budget-sub">pendiente</span></div>
+      </header>
+      <div class="pending-note">Falta capturar los precios de <b>{key.title()}</b> para esta jornada
+      (no está en el feed de odds; se toman de la app). Mándame las capturas y lo completo.</div>
+    </section>"""
     ou_note = f'<span class="ou-count">{n_ou} O/U</span>' if n_ou else '<span class="ou-count muted">sin O/U en el feed</span>'
     rows = []
     for b in bets:
@@ -126,6 +137,18 @@ grand = sum(sum(b["stake_mxn"] for b in h["bets"]) for h in BOLETO["houses"].val
 budget_total = sum(h["budget_mxn"] for h in BOLETO["houses"].values())
 n_bets = sum(len(h["bets"]) for h in BOLETO["houses"].values())
 n_pos_clv = sum(1 for h in BOLETO["houses"].values() for b in h["bets"] if b["clv_entry"] > 0)
+pending = [k.title() for k, h in BOLETO["houses"].items() if not h["bets"]]
+
+# Honesty note, built from the data (not hardcoded to one jornada).
+_clv_line = (f"las {n_pos_clv} con CLV+ son las únicas donde el precio te favorece hoy"
+             if n_pos_clv else "ninguna arranca con CLV+ (el mercado les gana el precio a todas)")
+_pending_line = (f" Falta capturar los precios de {', '.join(pending)} para esta jornada "
+                 f"(no está en el feed; se toma de la app) — mándame las capturas y lo completo."
+                 if pending else "")
+HONESTY = (f"<b>Honestidad:</b> las apuestas son acción medida sobre tu roll, <b>no un boleto +EV</b>. "
+           f"La mayoría arranca con CLV ≤ 0 — el mercado les gana en precio; {_clv_line}. El valor no es "
+           f"ganar esta jornada sino medir el CLV real a lo largo del torneo.{_pending_line} Las {n_bets} "
+           f"apuestas cargadas quedaron registradas en el ledger con casa, precio y stake reales.")
 
 elo_as_of = PICKS.get("elo_as_of", "?")
 odds_stamp = fmt_stamp(BOLETO.get("as_of", ""))
@@ -242,6 +265,10 @@ html = f"""<title>Liga MX J{JNUM} · Quiniela y Boleto</title>
   .note {{ margin-top:22px; padding:16px 18px; border:1px solid var(--line); border-left:3px solid var(--neg);
     border-radius:10px; background:var(--panel); font-size:.88rem; color:var(--ink-soft); }}
   .note b {{ color:var(--ink); }}
+  .ticket {{ background:var(--panel); border:1px solid var(--line); border-radius:14px; box-shadow:var(--shadow); overflow:hidden; }}
+  .ticket-pending {{ border-style:dashed; box-shadow:none; }}
+  .pending-note {{ padding:16px 18px; font-size:.86rem; color:var(--ink-soft); line-height:1.5; }}
+  .pending-note b {{ color:var(--house); }}
   .legend {{ margin-top:12px; font-size:.76rem; color:var(--ink-soft); display:flex; flex-wrap:wrap; gap:5px 18px; }}
 </style>
 
@@ -252,7 +279,7 @@ html = f"""<title>Liga MX J{JNUM} · Quiniela y Boleto</title>
   </header>
 
   <h2 class="sec">La quiniela <span class="tag">2 pts exacto · 1 pt 1X2</span></h2>
-  <p class="sec-note">Marcador EV-óptimo por partido (objetivo pool). La barra es P(1&nbsp;/&nbsp;X&nbsp;/&nbsp;2); ◆ marca los swaps contrarian para diferenciarte del pool.</p>
+  <p class="sec-note">Marcador EV-óptimo por partido (máximo puntos esperados). La barra es P(1&nbsp;/&nbsp;X&nbsp;/&nbsp;2); ◆ marca cualquier swap contrarian.</p>
   <div class="panel">
     <div class="table-wrap"><table>
       <thead><tr><th>Partido</th><th>Marcador</th><th>1X2</th><th>Prob 1 · X · 2</th><th class="num">EV</th></tr></thead>
@@ -267,7 +294,7 @@ html = f"""<title>Liga MX J{JNUM} · Quiniela y Boleto</title>
 
   <h2 class="sec">Apuestas por casa <span class="tag">tu dinero real</span></h2>
   <p class="sec-note">Tu presupuesto <b>completo</b> por casa, un pick por partido más O/U donde la casa lo cotiza y hay valor. Mínimo $20 en unidades de $20 — la columna <b>Apuesta</b> ya respeta tu bankroll, no el ¼-Kelly crudo.</p>
-  <div class="grand"><b>${int(grand)}</b><span>de ${int(budget_total)} · {n_bets} predicciones · {n_pos_clv} con CLV+</span></div>
+  <div class="grand"><b>${int(grand)}</b><span>desplegados de ${int(budget_total)} · {n_bets} predicciones · {n_pos_clv} con CLV+{' · ' + ', '.join(pending) + ' pendiente' if pending else ''}</span></div>
   <div class="tickets">{cards}</div>
 
   <div class="legend">
@@ -276,9 +303,7 @@ html = f"""<title>Liga MX J{JNUM} · Quiniela y Boleto</title>
     <span><b>CLV</b> = ventaja vs. línea justa (positivo = le ganas al precio)</span>
   </div>
 
-  <div class="note">
-    <b>Honestidad:</b> las apuestas son acción medida sobre tu roll, <b>no un boleto +EV</b>. La mayoría arranca con CLV ≤ 0 — el mercado les gana en precio; las {n_pos_clv} con CLV+ (los Over de Caliente) son las únicas donde el precio te favorece hoy. El valor no es ganar esta jornada sino medir el CLV real a lo largo del torneo. Betway no aparece con O/U porque el feed de odds no trae sus totals esta jornada. Las {n_bets} apuestas quedaron registradas en el ledger con casa, precio y stake reales.
-  </div>
+  <div class="note">{HONESTY}</div>
 </div>
 """
 

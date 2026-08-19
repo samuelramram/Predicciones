@@ -1,5 +1,5 @@
 {
-  "version": "2026.08.12",
+  "version": "2026.08.19",
   "league": "Liga MX",
   "season": "2026-2027",
   "sources": {
@@ -451,8 +451,8 @@
       "away": "Toluca",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 0,
+      "away_score": 0
     },
     {
       "match_id": "m_6d136c5064",
@@ -467,8 +467,8 @@
       "away": "San Luis",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 3,
+      "away_score": 0
     },
     {
       "match_id": "m_e54926b23c",
@@ -483,8 +483,8 @@
       "away": "Tigres",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 2,
+      "away_score": 1
     },
     {
       "match_id": "m_03fd159249",
@@ -499,8 +499,8 @@
       "away": "Juárez",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 6,
+      "away_score": 1
     },
     {
       "match_id": "m_a397e1f558",
@@ -515,8 +515,8 @@
       "away": "Querétaro",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 0,
+      "away_score": 0
     },
     {
       "match_id": "m_90657a9223",
@@ -531,8 +531,8 @@
       "away": "Guadalajara",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 0,
+      "away_score": 1
     },
     {
       "match_id": "m_2cb8e7fd18",
@@ -547,8 +547,8 @@
       "away": "Cruz Azul",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 2,
+      "away_score": 1
     },
     {
       "match_id": "m_d1ac53a2c8",
@@ -563,8 +563,8 @@
       "away": "León",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 1,
+      "away_score": 2
     },
     {
       "match_id": "m_e2eb63e91f",
@@ -573,14 +573,14 @@
       "jornada": 4,
       "round_label": "Jornada 4",
       "date": "2026-08-18",
-      "date_utc": "2026-08-18T03:00:00",
+      "date_utc": "2026-08-18T03:06:00",
       "venue": "Estadio Hidalgo",
       "home": "Pachuca",
       "away": "Puebla",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 2,
+      "away_score": 3
     },
     {
       "match_id": "m_aa2023e433",
@@ -615,13 +615,29 @@
       "away_score": null
     },
     {
+      "match_id": "m_7590c8e693",
+      "tsdb_event_id": "2487492",
+      "stage": "regular",
+      "jornada": 5,
+      "round_label": "Jornada 5",
+      "date": "2026-08-22",
+      "date_utc": "2026-08-22T01:00:00",
+      "venue": "Estadio León",
+      "home": "León",
+      "away": "Monterrey",
+      "home_locked": true,
+      "away_locked": true,
+      "home_score": null,
+      "away_score": null
+    },
+    {
       "match_id": "m_f678654d61",
       "tsdb_event_id": "2487491",
       "stage": "regular",
       "jornada": 5,
       "round_label": "Jornada 5",
       "date": "2026-08-22",
-      "date_utc": "2026-08-22T23:00:00",
+      "date_utc": "2026-08-22T03:10:00",
       "venue": "Estadio La Corregidora",
       "home": "Querétaro",
       "away": "Toluca",
@@ -654,25 +670,9 @@
       "round_label": "Jornada 5",
       "date": "2026-08-23",
       "date_utc": "2026-08-23T03:00:00",
-      "venue": "Estadio Azteca",
+      "venue": "Estadio Banorte",
       "home": "Cruz Azul",
       "away": "Atlas",
-      "home_locked": true,
-      "away_locked": true,
-      "home_score": null,
-      "away_score": null
-    },
-    {
-      "match_id": "m_ad7df035a3",
-      "tsdb_event_id": "2487492",
-      "stage": "regular",
-      "jornada": 5,
-      "round_label": "Jornada 5",
-      "date": "2026-08-23",
-      "date_utc": "2026-08-23T01:00:00",
-      "venue": "Estadio León",
-      "home": "León",
-      "away": "Monterrey",
       "home_locked": true,
       "away_locked": true,
       "home_score": null,
