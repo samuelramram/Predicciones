@@ -279,7 +279,7 @@ html = f"""<title>Liga MX J{JNUM} · Quiniela y Boleto</title>
   </header>
 
   <h2 class="sec">La quiniela <span class="tag">2 pts exacto · 1 pt 1X2</span></h2>
-  <p class="sec-note">Marcador EV-óptimo por partido (objetivo pool). La barra es P(1&nbsp;/&nbsp;X&nbsp;/&nbsp;2); ◆ marca los swaps contrarian para diferenciarte del pool.</p>
+  <p class="sec-note">Marcador EV-óptimo por partido (máximo puntos esperados). La barra es P(1&nbsp;/&nbsp;X&nbsp;/&nbsp;2); ◆ marca cualquier swap contrarian.</p>
   <div class="panel">
     <div class="table-wrap"><table>
       <thead><tr><th>Partido</th><th>Marcador</th><th>1X2</th><th>Prob 1 · X · 2</th><th class="num">EV</th></tr></thead>
