@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-13T01:53:38.301231Z",
+  "updated_at": "2026-08-19T18:02:33.598277Z",
   "entries": [
     {
       "round": "j3",
@@ -270,8 +270,8 @@
       "close_fair_prob": null,
       "close_price": null,
       "closed_at": null,
-      "result": null,
-      "profit_mxn": null
+      "result": "loss",
+      "profit_mxn": -60.0
     },
     {
       "round": "j4",
@@ -287,8 +287,8 @@
       "close_fair_prob": null,
       "close_price": null,
       "closed_at": null,
-      "result": null,
-      "profit_mxn": null
+      "result": "loss",
+      "profit_mxn": -60.0
     },
     {
       "round": "j4",
@@ -304,8 +304,8 @@
       "close_fair_prob": null,
       "close_price": null,
       "closed_at": null,
-      "result": null,
-      "profit_mxn": null
+      "result": "win",
+      "profit_mxn": 30.0
     },
     {
       "round": "j4",
@@ -321,8 +321,8 @@
       "close_fair_prob": null,
       "close_price": null,
       "closed_at": null,
-      "result": null,
-      "profit_mxn": null
+      "result": "win",
+      "profit_mxn": 30.0
     },
     {
       "round": "j4",
@@ -338,8 +338,8 @@
       "close_fair_prob": null,
       "close_price": null,
       "closed_at": null,
-      "result": null,
-      "profit_mxn": null
+      "result": "loss",
+      "profit_mxn": -60.0
     },
     {
       "round": "j4",
@@ -355,8 +355,8 @@
       "close_fair_prob": null,
       "close_price": null,
       "closed_at": null,
-      "result": null,
-      "profit_mxn": null
+      "result": "win",
+      "profit_mxn": 120.0
     },
     {
       "round": "j4",
@@ -372,8 +372,8 @@
       "close_fair_prob": null,
       "close_price": null,
       "closed_at": null,
-      "result": null,
-      "profit_mxn": null
+      "result": "win",
+      "profit_mxn": 92.0
     },
     {
       "round": "j4",
@@ -389,8 +389,8 @@
       "close_fair_prob": null,
       "close_price": null,
       "closed_at": null,
-      "result": null,
-      "profit_mxn": null
+      "result": "loss",
+      "profit_mxn": -40.0
     },
     {
       "round": "j4",
@@ -406,8 +406,8 @@
       "close_fair_prob": null,
       "close_price": null,
       "closed_at": null,
-      "result": null,
-      "profit_mxn": null
+      "result": "win",
+      "profit_mxn": 32.0
     },
     {
       "round": "j4",
@@ -423,8 +423,8 @@
       "close_fair_prob": null,
       "close_price": null,
       "closed_at": null,
-      "result": null,
-      "profit_mxn": null
+      "result": "loss",
+      "profit_mxn": -40.0
     },
     {
       "round": "j4",
@@ -440,8 +440,8 @@
       "close_fair_prob": null,
       "close_price": null,
       "closed_at": null,
-      "result": null,
-      "profit_mxn": null
+      "result": "loss",
+      "profit_mxn": -20.0
     },
     {
       "round": "j4",
@@ -457,8 +457,8 @@
       "close_fair_prob": null,
       "close_price": null,
       "closed_at": null,
-      "result": null,
-      "profit_mxn": null
+      "result": "loss",
+      "profit_mxn": -20.0
     },
     {
       "round": "j4",
@@ -474,8 +474,8 @@
       "close_fair_prob": null,
       "close_price": null,
       "closed_at": null,
-      "result": null,
-      "profit_mxn": null
+      "result": "loss",
+      "profit_mxn": -20.0
     },
     {
       "round": "j4",
@@ -491,8 +491,8 @@
       "close_fair_prob": null,
       "close_price": null,
       "closed_at": null,
-      "result": null,
-      "profit_mxn": null
+      "result": "win",
+      "profit_mxn": 22.0
     },
     {
       "round": "j4",
@@ -508,8 +508,8 @@
       "close_fair_prob": null,
       "close_price": null,
       "closed_at": null,
-      "result": null,
-      "profit_mxn": null
+      "result": "win",
+      "profit_mxn": 11.56
     },
     {
       "round": "j4",
@@ -525,8 +525,8 @@
       "close_fair_prob": null,
       "close_price": null,
       "closed_at": null,
-      "result": null,
-      "profit_mxn": null
+      "result": "win",
+      "profit_mxn": 24.0
     },
     {
       "round": "j4",
@@ -542,8 +542,8 @@
       "close_fair_prob": null,
       "close_price": null,
       "closed_at": null,
-      "result": null,
-      "profit_mxn": null
+      "result": "win",
+      "profit_mxn": 11.76
     },
     {
       "round": "j4",
@@ -559,8 +559,8 @@
       "close_fair_prob": null,
       "close_price": null,
       "closed_at": null,
-      "result": null,
-      "profit_mxn": null
+      "result": "loss",
+      "profit_mxn": -20.0
     },
     {
       "round": "j4",
@@ -576,8 +576,8 @@
       "close_fair_prob": null,
       "close_price": null,
       "closed_at": null,
-      "result": null,
-      "profit_mxn": null
+      "result": "win",
+      "profit_mxn": 11.43
     },
     {
       "round": "j4",
@@ -593,8 +593,8 @@
       "close_fair_prob": null,
       "close_price": null,
       "closed_at": null,
-      "result": null,
-      "profit_mxn": null
+      "result": "loss",
+      "profit_mxn": -20.0
     },
     {
       "round": "j4",
@@ -607,6 +607,363 @@
       "entry_book": "caliente",
       "stake_mxn": 20.0,
       "logged_at": "2026-08-12T22:26:57.791181Z",
+      "close_fair_prob": null,
+      "close_price": null,
+      "closed_at": null,
+      "result": "loss",
+      "profit_mxn": -20.0
+    },
+    {
+      "round": "j5",
+      "match": "Pumas vs Necaxa",
+      "market": "1X2",
+      "selection": "1",
+      "model_prob": 0.675,
+      "entry_fair_prob": 0.4807,
+      "entry_price": 1.95,
+      "entry_book": "betway",
+      "stake_mxn": 60.0,
+      "logged_at": "2026-08-19T18:02:33.598210Z",
+      "close_fair_prob": null,
+      "close_price": null,
+      "closed_at": null,
+      "result": null,
+      "profit_mxn": null
+    },
+    {
+      "round": "j5",
+      "match": "Cruz Azul vs Atlas",
+      "market": "1X2",
+      "selection": "1",
+      "model_prob": 0.735,
+      "entry_fair_prob": 0.6239,
+      "entry_price": 1.5,
+      "entry_book": "betway",
+      "stake_mxn": 60.0,
+      "logged_at": "2026-08-19T18:02:33.598210Z",
+      "close_fair_prob": null,
+      "close_price": null,
+      "closed_at": null,
+      "result": null,
+      "profit_mxn": null
+    },
+    {
+      "round": "j5",
+      "match": "Tigres vs Atlante",
+      "market": "1X2",
+      "selection": "2",
+      "model_prob": 0.24,
+      "entry_fair_prob": 0.1447,
+      "entry_price": 5.75,
+      "entry_book": "betway",
+      "stake_mxn": 60.0,
+      "logged_at": "2026-08-19T18:02:33.598210Z",
+      "close_fair_prob": null,
+      "close_price": null,
+      "closed_at": null,
+      "result": null,
+      "profit_mxn": null
+    },
+    {
+      "round": "j5",
+      "match": "Puebla vs Santos",
+      "market": "1X2",
+      "selection": "1",
+      "model_prob": 0.526,
+      "entry_fair_prob": 0.4315,
+      "entry_price": 2.1,
+      "entry_book": "betway",
+      "stake_mxn": 60.0,
+      "logged_at": "2026-08-19T18:02:33.598210Z",
+      "close_fair_prob": null,
+      "close_price": null,
+      "closed_at": null,
+      "result": null,
+      "profit_mxn": null
+    },
+    {
+      "round": "j5",
+      "match": "Guadalajara vs Tijuana",
+      "market": "1X2",
+      "selection": "2",
+      "model_prob": 0.22,
+      "entry_fair_prob": 0.1442,
+      "entry_price": 6.0,
+      "entry_book": "betway",
+      "stake_mxn": 60.0,
+      "logged_at": "2026-08-19T18:02:33.598210Z",
+      "close_fair_prob": null,
+      "close_price": null,
+      "closed_at": null,
+      "result": null,
+      "profit_mxn": null
+    },
+    {
+      "round": "j5",
+      "match": "Juárez vs América",
+      "market": "1X2",
+      "selection": "2",
+      "model_prob": 0.579,
+      "entry_fair_prob": 0.5221,
+      "entry_price": 1.75,
+      "entry_book": "betway",
+      "stake_mxn": 60.0,
+      "logged_at": "2026-08-19T18:02:33.598210Z",
+      "close_fair_prob": null,
+      "close_price": null,
+      "closed_at": null,
+      "result": null,
+      "profit_mxn": null
+    },
+    {
+      "round": "j5",
+      "match": "San Luis vs Pachuca",
+      "market": "1X2",
+      "selection": "1",
+      "model_prob": 0.343,
+      "entry_fair_prob": 0.2961,
+      "entry_price": 3.0,
+      "entry_book": "betway",
+      "stake_mxn": 40.0,
+      "logged_at": "2026-08-19T18:02:33.598210Z",
+      "close_fair_prob": null,
+      "close_price": null,
+      "closed_at": null,
+      "result": null,
+      "profit_mxn": null
+    },
+    {
+      "round": "j5",
+      "match": "Querétaro vs Toluca",
+      "market": "1X2",
+      "selection": "X",
+      "model_prob": 0.285,
+      "entry_fair_prob": 0.2425,
+      "entry_price": 4.0,
+      "entry_book": "betway",
+      "stake_mxn": 40.0,
+      "logged_at": "2026-08-19T18:02:33.598210Z",
+      "close_fair_prob": null,
+      "close_price": null,
+      "closed_at": null,
+      "result": null,
+      "profit_mxn": null
+    },
+    {
+      "round": "j5",
+      "match": "León vs Monterrey",
+      "market": "1X2",
+      "selection": "1",
+      "model_prob": 0.34,
+      "entry_fair_prob": 0.2988,
+      "entry_price": 3.2,
+      "entry_book": "betway",
+      "stake_mxn": 40.0,
+      "logged_at": "2026-08-19T18:02:33.598210Z",
+      "close_fair_prob": null,
+      "close_price": null,
+      "closed_at": null,
+      "result": null,
+      "profit_mxn": null
+    },
+    {
+      "round": "j5",
+      "match": "Tigres vs Atlante",
+      "market": "1X2",
+      "selection": "2",
+      "model_prob": 0.24,
+      "entry_fair_prob": 0.1447,
+      "entry_price": 7.4,
+      "entry_book": "caliente",
+      "stake_mxn": 20.0,
+      "logged_at": "2026-08-19T18:02:33.598210Z",
+      "close_fair_prob": null,
+      "close_price": null,
+      "closed_at": null,
+      "result": null,
+      "profit_mxn": null
+    },
+    {
+      "round": "j5",
+      "match": "Guadalajara vs Tijuana",
+      "market": "1X2",
+      "selection": "2",
+      "model_prob": 0.22,
+      "entry_fair_prob": 0.1442,
+      "entry_price": 7.5,
+      "entry_book": "caliente",
+      "stake_mxn": 20.0,
+      "logged_at": "2026-08-19T18:02:33.598210Z",
+      "close_fair_prob": null,
+      "close_price": null,
+      "closed_at": null,
+      "result": null,
+      "profit_mxn": null
+    },
+    {
+      "round": "j5",
+      "match": "San Luis vs Pachuca",
+      "market": "1X2",
+      "selection": "2",
+      "model_prob": 0.375,
+      "entry_fair_prob": 0.4332,
+      "entry_price": 3.76,
+      "entry_book": "caliente",
+      "stake_mxn": 20.0,
+      "logged_at": "2026-08-19T18:02:33.598210Z",
+      "close_fair_prob": null,
+      "close_price": null,
+      "closed_at": null,
+      "result": null,
+      "profit_mxn": null
+    },
+    {
+      "round": "j5",
+      "match": "Pumas vs Necaxa",
+      "market": "1X2",
+      "selection": "1",
+      "model_prob": 0.675,
+      "entry_fair_prob": 0.4807,
+      "entry_price": 1.9091,
+      "entry_book": "caliente",
+      "stake_mxn": 20.0,
+      "logged_at": "2026-08-19T18:02:33.598210Z",
+      "close_fair_prob": null,
+      "close_price": null,
+      "closed_at": null,
+      "result": null,
+      "profit_mxn": null
+    },
+    {
+      "round": "j5",
+      "match": "Querétaro vs Toluca",
+      "market": "O/U 2.5",
+      "selection": "Under",
+      "model_prob": 0.5384,
+      "entry_fair_prob": 0.4004,
+      "entry_price": 2.35,
+      "entry_book": "caliente",
+      "stake_mxn": 20.0,
+      "logged_at": "2026-08-19T18:02:33.598210Z",
+      "close_fair_prob": null,
+      "close_price": null,
+      "closed_at": null,
+      "result": null,
+      "profit_mxn": null
+    },
+    {
+      "round": "j5",
+      "match": "Guadalajara vs Tijuana",
+      "market": "O/U 2.5",
+      "selection": "Under",
+      "model_prob": 0.5318,
+      "entry_fair_prob": 0.4161,
+      "entry_price": 2.35,
+      "entry_book": "caliente",
+      "stake_mxn": 20.0,
+      "logged_at": "2026-08-19T18:02:33.598210Z",
+      "close_fair_prob": null,
+      "close_price": null,
+      "closed_at": null,
+      "result": null,
+      "profit_mxn": null
+    },
+    {
+      "round": "j5",
+      "match": "Tigres vs Atlante",
+      "market": "O/U 2.5",
+      "selection": "Under",
+      "model_prob": 0.5489,
+      "entry_fair_prob": 0.4373,
+      "entry_price": 2.1,
+      "entry_book": "caliente",
+      "stake_mxn": 20.0,
+      "logged_at": "2026-08-19T18:02:33.598210Z",
+      "close_fair_prob": null,
+      "close_price": null,
+      "closed_at": null,
+      "result": null,
+      "profit_mxn": null
+    },
+    {
+      "round": "j5",
+      "match": "Cruz Azul vs Atlas",
+      "market": "1X2",
+      "selection": "1",
+      "model_prob": 0.735,
+      "entry_fair_prob": 0.6239,
+      "entry_price": 1.4878,
+      "entry_book": "caliente",
+      "stake_mxn": 20.0,
+      "logged_at": "2026-08-19T18:02:33.598210Z",
+      "close_fair_prob": null,
+      "close_price": null,
+      "closed_at": null,
+      "result": null,
+      "profit_mxn": null
+    },
+    {
+      "round": "j5",
+      "match": "Puebla vs Santos",
+      "market": "1X2",
+      "selection": "1",
+      "model_prob": 0.526,
+      "entry_fair_prob": 0.4315,
+      "entry_price": 2.18,
+      "entry_book": "caliente",
+      "stake_mxn": 20.0,
+      "logged_at": "2026-08-19T18:02:33.598210Z",
+      "close_fair_prob": null,
+      "close_price": null,
+      "closed_at": null,
+      "result": null,
+      "profit_mxn": null
+    },
+    {
+      "round": "j5",
+      "match": "Pumas vs Necaxa",
+      "market": "O/U 2.5",
+      "selection": "Over",
+      "model_prob": 0.6113,
+      "entry_fair_prob": 0.5472,
+      "entry_price": 1.6993,
+      "entry_book": "caliente",
+      "stake_mxn": 20.0,
+      "logged_at": "2026-08-19T18:02:33.598210Z",
+      "close_fair_prob": null,
+      "close_price": null,
+      "closed_at": null,
+      "result": null,
+      "profit_mxn": null
+    },
+    {
+      "round": "j5",
+      "match": "Juárez vs América",
+      "market": "1X2",
+      "selection": "2",
+      "model_prob": 0.579,
+      "entry_fair_prob": 0.5221,
+      "entry_price": 1.8197,
+      "entry_book": "caliente",
+      "stake_mxn": 20.0,
+      "logged_at": "2026-08-19T18:02:33.598210Z",
+      "close_fair_prob": null,
+      "close_price": null,
+      "closed_at": null,
+      "result": null,
+      "profit_mxn": null
+    },
+    {
+      "round": "j5",
+      "match": "Puebla vs Santos",
+      "market": "O/U 2.5",
+      "selection": "Under",
+      "model_prob": 0.4764,
+      "entry_fair_prob": 0.421,
+      "entry_price": 2.2,
+      "entry_book": "caliente",
+      "stake_mxn": 20.0,
+      "logged_at": "2026-08-19T18:02:33.598210Z",
       "close_fair_prob": null,
       "close_price": null,
       "closed_at": null,
