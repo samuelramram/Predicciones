@@ -1,5 +1,5 @@
 {
-  "version": "2026.08.19",
+  "version": "2026.08.24",
   "league": "Liga MX",
   "season": "2026-2027",
   "sources": {
@@ -595,8 +595,8 @@
       "away": "Tijuana",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 5,
+      "away_score": 2
     },
     {
       "match_id": "m_9133e6efd4",
@@ -605,14 +605,14 @@
       "jornada": 5,
       "round_label": "Jornada 5",
       "date": "2026-08-22",
-      "date_utc": "2026-08-22T03:00:00",
+      "date_utc": "2026-08-22T03:10:00",
       "venue": "Estadio Olímpico Benito Juárez",
       "home": "Juárez",
       "away": "América",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 1,
+      "away_score": 2
     },
     {
       "match_id": "m_7590c8e693",
@@ -627,8 +627,8 @@
       "away": "Monterrey",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 2,
+      "away_score": 0
     },
     {
       "match_id": "m_f678654d61",
@@ -643,8 +643,8 @@
       "away": "Toluca",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 1,
+      "away_score": 2
     },
     {
       "match_id": "m_ee20d1974d",
@@ -659,8 +659,8 @@
       "away": "Atlante",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 2,
+      "away_score": 0
     },
     {
       "match_id": "m_ce84577e2b",
@@ -675,8 +675,8 @@
       "away": "Atlas",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 0,
+      "away_score": 2
     },
     {
       "match_id": "m_c3133b13c1",
@@ -691,8 +691,8 @@
       "away": "Santos",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 3,
+      "away_score": 2
     },
     {
       "match_id": "m_9d6ceb3ad4",
@@ -707,8 +707,8 @@
       "away": "Pachuca",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 1,
+      "away_score": 1
     },
     {
       "match_id": "m_504743a4f8",
@@ -723,8 +723,8 @@
       "away": "Necaxa",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 1,
+      "away_score": 1
     },
     {
       "match_id": "m_3ffd47160c",
@@ -734,7 +734,7 @@
       "round_label": "Jornada 6",
       "date": "2026-08-29",
       "date_utc": "2026-08-29T01:00:00",
-      "venue": "Estadio Azteca",
+      "venue": "Estadio Banorte",
       "home": "Atlante",
       "away": "León",
       "home_locked": true,
@@ -814,7 +814,7 @@
       "round_label": "Jornada 6",
       "date": "2026-08-30",
       "date_utc": "2026-08-30T01:00:00",
-      "venue": "Estadio Azteca",
+      "venue": "Estadio Banorte",
       "home": "América",
       "away": "Puebla",
       "home_locked": true,
