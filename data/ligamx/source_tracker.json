@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-26T22:54:57.209250Z",
+  "updated_at": "2026-08-26T23:05:45.448326Z",
   "entries": [
     {
       "round": "j4",
@@ -446,19 +446,19 @@
       "blend": {
         "pick": "1",
         "exact": "2-0",
-        "p1": 0.48,
-        "px": 0.268,
-        "p2": 0.252
+        "p1": 0.497,
+        "px": 0.263,
+        "p2": 0.24
       },
       "market": {
-        "pick": "2",
-        "p1": 0.3435,
-        "px": 0.2778,
-        "p2": 0.3787
+        "pick": "1",
+        "p1": 0.3729,
+        "px": 0.2745,
+        "p2": 0.3526
       },
       "congested_home": false,
       "congested_away": false,
-      "logged_at": "2026-08-26T22:54:52.195460Z",
+      "logged_at": "2026-08-26T23:05:45.444797Z",
       "result": null,
       "home_score": null,
       "away_score": null
@@ -479,19 +479,19 @@
       "blend": {
         "pick": "1",
         "exact": "1-0",
-        "p1": 0.43,
+        "p1": 0.439,
         "px": 0.289,
-        "p2": 0.28
+        "p2": 0.272
       },
       "market": {
         "pick": "1",
-        "p1": 0.4255,
-        "px": 0.2886,
-        "p2": 0.2859
+        "p1": 0.4412,
+        "px": 0.2875,
+        "p2": 0.2713
       },
       "congested_home": false,
       "congested_away": false,
-      "logged_at": "2026-08-26T22:54:52.195702Z",
+      "logged_at": "2026-08-26T23:05:45.445191Z",
       "result": null,
       "home_score": null,
       "away_score": null
@@ -512,19 +512,19 @@
       "blend": {
         "pick": "2",
         "exact": "1-2",
-        "p1": 0.252,
-        "px": 0.255,
-        "p2": 0.492
+        "p1": 0.247,
+        "px": 0.257,
+        "p2": 0.496
       },
       "market": {
         "pick": "2",
-        "p1": 0.2754,
-        "px": 0.2558,
-        "p2": 0.4688
+        "p1": 0.2661,
+        "px": 0.2585,
+        "p2": 0.4755
       },
       "congested_home": false,
       "congested_away": false,
-      "logged_at": "2026-08-26T22:54:52.195971Z",
+      "logged_at": "2026-08-26T23:05:45.445601Z",
       "result": null,
       "home_score": null,
       "away_score": null
@@ -543,21 +543,21 @@
         "p2": 0.28
       },
       "blend": {
-        "pick": "1",
-        "exact": "1-0",
-        "p1": 0.381,
-        "px": 0.284,
-        "p2": 0.335
+        "pick": "2",
+        "exact": "0-1",
+        "p1": 0.351,
+        "px": 0.285,
+        "p2": 0.364
       },
       "market": {
         "pick": "2",
-        "p1": 0.3431,
-        "px": 0.2734,
-        "p2": 0.3835
+        "p1": 0.2914,
+        "px": 0.271,
+        "p2": 0.4376
       },
       "congested_home": false,
       "congested_away": false,
-      "logged_at": "2026-08-26T22:54:52.196225Z",
+      "logged_at": "2026-08-26T23:05:45.446013Z",
       "result": null,
       "home_score": null,
       "away_score": null
@@ -567,7 +567,7 @@
       "match": "Tijuana vs Pumas",
       "home": "Tijuana",
       "away": "Pumas",
-      "commence_time": "2026-08-29T03:00:00Z",
+      "commence_time": "2026-08-29T03:10:00Z",
       "model": {
         "pick": "1",
         "exact": "2-1",
@@ -578,19 +578,19 @@
       "blend": {
         "pick": "1",
         "exact": "2-1",
-        "p1": 0.41,
-        "px": 0.275,
-        "p2": 0.315
+        "p1": 0.423,
+        "px": 0.277,
+        "p2": 0.3
       },
       "market": {
         "pick": "1",
-        "p1": 0.3946,
-        "px": 0.2743,
-        "p2": 0.331
+        "p1": 0.4186,
+        "px": 0.2781,
+        "p2": 0.3033
       },
       "congested_home": false,
       "congested_away": false,
-      "logged_at": "2026-08-26T22:54:52.196497Z",
+      "logged_at": "2026-08-26T23:05:45.446352Z",
       "result": null,
       "home_score": null,
       "away_score": null
@@ -600,7 +600,7 @@
       "match": "América vs Puebla",
       "home": "América",
       "away": "Puebla",
-      "commence_time": "2026-08-30T01:00:00Z",
+      "commence_time": "2026-08-30T01:05:00Z",
       "model": {
         "pick": "1",
         "exact": "2-0",
@@ -611,19 +611,19 @@
       "blend": {
         "pick": "1",
         "exact": "2-0",
-        "p1": 0.744,
-        "px": 0.17,
-        "p2": 0.087
+        "p1": 0.746,
+        "px": 0.169,
+        "p2": 0.084
       },
       "market": {
         "pick": "1",
-        "p1": 0.6861,
-        "px": 0.191,
-        "p2": 0.1228
+        "p1": 0.6917,
+        "px": 0.1909,
+        "p2": 0.1174
       },
       "congested_home": false,
       "congested_away": false,
-      "logged_at": "2026-08-26T22:54:52.196867Z",
+      "logged_at": "2026-08-26T23:05:45.446910Z",
       "result": null,
       "home_score": null,
       "away_score": null
@@ -633,7 +633,7 @@
       "match": "Santos vs Tigres",
       "home": "Santos",
       "away": "Tigres",
-      "commence_time": "2026-08-30T03:00:00Z",
+      "commence_time": "2026-08-30T03:10:00Z",
       "model": {
         "pick": "2",
         "exact": "0-1",
@@ -650,13 +650,13 @@
       },
       "market": {
         "pick": "2",
-        "p1": 0.2172,
-        "px": 0.2409,
-        "p2": 0.5419
+        "p1": 0.2173,
+        "px": 0.2413,
+        "p2": 0.5414
       },
       "congested_home": false,
       "congested_away": false,
-      "logged_at": "2026-08-26T22:54:52.197137Z",
+      "logged_at": "2026-08-26T23:05:45.447240Z",
       "result": null,
       "home_score": null,
       "away_score": null
@@ -666,7 +666,7 @@
       "match": "Monterrey vs San Luis",
       "home": "Monterrey",
       "away": "San Luis",
-      "commence_time": "2026-08-31T02:00:00Z",
+      "commence_time": "2026-08-31T02:10:00Z",
       "model": {
         "pick": "1",
         "exact": "2-1",
@@ -677,19 +677,19 @@
       "blend": {
         "pick": "1",
         "exact": "2-1",
-        "p1": 0.595,
-        "px": 0.225,
-        "p2": 0.18
+        "p1": 0.632,
+        "px": 0.21,
+        "p2": 0.158
       },
       "market": {
         "pick": "1",
-        "p1": 0.561,
-        "px": 0.2335,
-        "p2": 0.2054
+        "p1": 0.6283,
+        "px": 0.2084,
+        "p2": 0.1632
       },
       "congested_home": false,
       "congested_away": false,
-      "logged_at": "2026-08-26T22:54:52.197502Z",
+      "logged_at": "2026-08-26T23:05:45.447606Z",
       "result": null,
       "home_score": null,
       "away_score": null
@@ -710,19 +710,19 @@
       "blend": {
         "pick": "1",
         "exact": "2-0",
-        "p1": 0.736,
-        "px": 0.167,
-        "p2": 0.097
+        "p1": 0.774,
+        "px": 0.147,
+        "p2": 0.079
       },
       "market": {
         "pick": "1",
-        "p1": 0.6631,
-        "px": 0.1954,
-        "p2": 0.1415
+        "p1": 0.7421,
+        "px": 0.1585,
+        "p2": 0.0993
       },
       "congested_home": false,
       "congested_away": false,
-      "logged_at": "2026-08-26T22:54:52.197918Z",
+      "logged_at": "2026-08-26T23:05:45.448320Z",
       "result": null,
       "home_score": null,
       "away_score": null
