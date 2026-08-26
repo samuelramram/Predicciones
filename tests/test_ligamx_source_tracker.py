@@ -75,3 +75,37 @@ def test_agg_ranks_sources_and_splits_congestion(tmp_path, monkeypatch):
     assert a["sources"]["blend"]["hit_1x2"] == 2
     assert a["sources"]["model"]["hit_1x2"] == 1
     assert a["congestion"]["n_cong"] == 1 and a["congestion"]["n_non"] == 2
+
+
+def test_log_reports_matches_missing_from_the_odds_snapshot(tmp_path, monkeypatch, capsys):
+    """The live odds snapshot only carries matches that have not kicked off, so a
+    round logged late loses rows permanently (there is no historical odds feed).
+    That loss must be reported, never silent: measured on the Apertura, J5 logged
+    2 of 9 matches and still printed a healthy-looking success line."""
+    import json
+    from wc_predictor.pipeline import ligamx_source_tracker as T
+
+    fixtures = {"matches": [
+        {"jornada": 5, "home": "A", "away": "B", "stage": "regular"},
+        {"jornada": 5, "home": "C", "away": "D", "stage": "regular"},
+    ]}
+    fx = tmp_path / "fixtures.json"
+    fx.write_text(json.dumps(fixtures), encoding="utf-8")
+    odds = tmp_path / "odds_h2h.json"          # only ONE of the two matches priced
+    odds.write_text(json.dumps({"matches": {
+        "A|B": {"p1": 0.5, "px": 0.3, "p2": 0.2, "commence_time": "2026-08-22T01:00:00Z"}}}),
+        encoding="utf-8")
+    tracker = tmp_path / "source_tracker.json"
+    tracker.write_text(json.dumps({"entries": []}), encoding="utf-8")
+
+    monkeypatch.setattr(T, "FIXTURES_JSON", fx)
+    monkeypatch.setattr(T, "ODDS_H2H_JSON", odds)
+    monkeypatch.setattr(T, "TRACKER_JSON", tracker)
+
+    try:
+        T.cmd_log("j5")
+    except Exception:
+        pass                                    # model artefacts may be absent here
+    out = capsys.readouterr().out
+    assert "C vs D" in out                      # the dropped match is named
+    assert "⚠" in out

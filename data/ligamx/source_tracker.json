@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-26T22:42:50.355015Z",
+  "updated_at": "2026-08-26T22:54:57.209250Z",
   "entries": [
     {
       "round": "j4",
@@ -429,6 +429,303 @@
       "result": "X",
       "home_score": 1,
       "away_score": 1
+    },
+    {
+      "round": "j6",
+      "match": "Atlante vs León",
+      "home": "Atlante",
+      "away": "León",
+      "commence_time": "2026-08-29T01:00:00Z",
+      "model": {
+        "pick": "1",
+        "exact": "2-0",
+        "p1": 0.638,
+        "px": 0.227,
+        "p2": 0.135
+      },
+      "blend": {
+        "pick": "1",
+        "exact": "2-0",
+        "p1": 0.48,
+        "px": 0.268,
+        "p2": 0.252
+      },
+      "market": {
+        "pick": "2",
+        "p1": 0.3435,
+        "px": 0.2778,
+        "p2": 0.3787
+      },
+      "congested_home": false,
+      "congested_away": false,
+      "logged_at": "2026-08-26T22:54:52.195460Z",
+      "result": null,
+      "home_score": null,
+      "away_score": null
+    },
+    {
+      "round": "j6",
+      "match": "Atlas vs Querétaro",
+      "home": "Atlas",
+      "away": "Querétaro",
+      "commence_time": "2026-08-29T23:00:00Z",
+      "model": {
+        "pick": "1",
+        "exact": "1-0",
+        "p1": 0.436,
+        "px": 0.29,
+        "p2": 0.274
+      },
+      "blend": {
+        "pick": "1",
+        "exact": "1-0",
+        "p1": 0.43,
+        "px": 0.289,
+        "p2": 0.28
+      },
+      "market": {
+        "pick": "1",
+        "p1": 0.4255,
+        "px": 0.2886,
+        "p2": 0.2859
+      },
+      "congested_home": false,
+      "congested_away": false,
+      "logged_at": "2026-08-26T22:54:52.195702Z",
+      "result": null,
+      "home_score": null,
+      "away_score": null
+    },
+    {
+      "round": "j6",
+      "match": "Necaxa vs Cruz Azul",
+      "home": "Necaxa",
+      "away": "Cruz Azul",
+      "commence_time": "2026-08-29T01:00:00Z",
+      "model": {
+        "pick": "2",
+        "exact": "1-2",
+        "p1": 0.226,
+        "px": 0.254,
+        "p2": 0.52
+      },
+      "blend": {
+        "pick": "2",
+        "exact": "1-2",
+        "p1": 0.252,
+        "px": 0.255,
+        "p2": 0.492
+      },
+      "market": {
+        "pick": "2",
+        "p1": 0.2754,
+        "px": 0.2558,
+        "p2": 0.4688
+      },
+      "congested_home": false,
+      "congested_away": false,
+      "logged_at": "2026-08-26T22:54:52.195971Z",
+      "result": null,
+      "home_score": null,
+      "away_score": null
+    },
+    {
+      "round": "j6",
+      "match": "Pachuca vs Guadalajara",
+      "home": "Pachuca",
+      "away": "Guadalajara",
+      "commence_time": "2026-08-29T23:00:00Z",
+      "model": {
+        "pick": "1",
+        "exact": "1-0",
+        "p1": 0.427,
+        "px": 0.293,
+        "p2": 0.28
+      },
+      "blend": {
+        "pick": "1",
+        "exact": "1-0",
+        "p1": 0.381,
+        "px": 0.284,
+        "p2": 0.335
+      },
+      "market": {
+        "pick": "2",
+        "p1": 0.3431,
+        "px": 0.2734,
+        "p2": 0.3835
+      },
+      "congested_home": false,
+      "congested_away": false,
+      "logged_at": "2026-08-26T22:54:52.196225Z",
+      "result": null,
+      "home_score": null,
+      "away_score": null
+    },
+    {
+      "round": "j6",
+      "match": "Tijuana vs Pumas",
+      "home": "Tijuana",
+      "away": "Pumas",
+      "commence_time": "2026-08-29T03:00:00Z",
+      "model": {
+        "pick": "1",
+        "exact": "2-1",
+        "p1": 0.429,
+        "px": 0.275,
+        "p2": 0.295
+      },
+      "blend": {
+        "pick": "1",
+        "exact": "2-1",
+        "p1": 0.41,
+        "px": 0.275,
+        "p2": 0.315
+      },
+      "market": {
+        "pick": "1",
+        "p1": 0.3946,
+        "px": 0.2743,
+        "p2": 0.331
+      },
+      "congested_home": false,
+      "congested_away": false,
+      "logged_at": "2026-08-26T22:54:52.196497Z",
+      "result": null,
+      "home_score": null,
+      "away_score": null
+    },
+    {
+      "round": "j6",
+      "match": "América vs Puebla",
+      "home": "América",
+      "away": "Puebla",
+      "commence_time": "2026-08-30T01:00:00Z",
+      "model": {
+        "pick": "1",
+        "exact": "2-0",
+        "p1": 0.802,
+        "px": 0.143,
+        "p2": 0.055
+      },
+      "blend": {
+        "pick": "1",
+        "exact": "2-0",
+        "p1": 0.744,
+        "px": 0.17,
+        "p2": 0.087
+      },
+      "market": {
+        "pick": "1",
+        "p1": 0.6861,
+        "px": 0.191,
+        "p2": 0.1228
+      },
+      "congested_home": false,
+      "congested_away": false,
+      "logged_at": "2026-08-26T22:54:52.196867Z",
+      "result": null,
+      "home_score": null,
+      "away_score": null
+    },
+    {
+      "round": "j6",
+      "match": "Santos vs Tigres",
+      "home": "Santos",
+      "away": "Tigres",
+      "commence_time": "2026-08-30T03:00:00Z",
+      "model": {
+        "pick": "2",
+        "exact": "0-1",
+        "p1": 0.19,
+        "px": 0.25,
+        "p2": 0.56
+      },
+      "blend": {
+        "pick": "2",
+        "exact": "0-1",
+        "p1": 0.205,
+        "px": 0.245,
+        "p2": 0.55
+      },
+      "market": {
+        "pick": "2",
+        "p1": 0.2172,
+        "px": 0.2409,
+        "p2": 0.5419
+      },
+      "congested_home": false,
+      "congested_away": false,
+      "logged_at": "2026-08-26T22:54:52.197137Z",
+      "result": null,
+      "home_score": null,
+      "away_score": null
+    },
+    {
+      "round": "j6",
+      "match": "Monterrey vs San Luis",
+      "home": "Monterrey",
+      "away": "San Luis",
+      "commence_time": "2026-08-31T02:00:00Z",
+      "model": {
+        "pick": "1",
+        "exact": "2-1",
+        "p1": 0.635,
+        "px": 0.213,
+        "p2": 0.152
+      },
+      "blend": {
+        "pick": "1",
+        "exact": "2-1",
+        "p1": 0.595,
+        "px": 0.225,
+        "p2": 0.18
+      },
+      "market": {
+        "pick": "1",
+        "p1": 0.561,
+        "px": 0.2335,
+        "p2": 0.2054
+      },
+      "congested_home": false,
+      "congested_away": false,
+      "logged_at": "2026-08-26T22:54:52.197502Z",
+      "result": null,
+      "home_score": null,
+      "away_score": null
+    },
+    {
+      "round": "j6",
+      "match": "Toluca vs Juárez",
+      "home": "Toluca",
+      "away": "Juárez",
+      "commence_time": "2026-08-31T00:00:00Z",
+      "model": {
+        "pick": "1",
+        "exact": "2-0",
+        "p1": 0.807,
+        "px": 0.133,
+        "p2": 0.059
+      },
+      "blend": {
+        "pick": "1",
+        "exact": "2-0",
+        "p1": 0.736,
+        "px": 0.167,
+        "p2": 0.097
+      },
+      "market": {
+        "pick": "1",
+        "p1": 0.6631,
+        "px": 0.1954,
+        "p2": 0.1415
+      },
+      "congested_home": false,
+      "congested_away": false,
+      "logged_at": "2026-08-26T22:54:52.197918Z",
+      "result": null,
+      "home_score": null,
+      "away_score": null
     }
   ]
 }

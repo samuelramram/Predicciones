@@ -99,7 +99,15 @@ python -m wc_predictor.pipeline.ligamx_backtest --since 2025-07-01
 #    histórico de odds de Liga MX), así que se MIDE en vivo: log por jornada →
 #    settle con resultados → report acumulado. En ~5-6 jornadas dice si conviene
 #    mover blend_odds_weight. También mide la congestión (ver abajo).
-python -m wc_predictor.pipeline.ligamx_source_tracker log --round j4
+#
+#    OJO: el `log` YA NO se corre a mano — `ligamx picks --round jN` lo dispara
+#    solo. El tracker lee el snapshot VIVO de odds, que solo trae partidos sin
+#    patear; loguear después del kickoff pierde esas filas PARA SIEMPRE (no hay
+#    feed histórico). Por eso se registra al generar los picks: único momento con
+#    odds frescas y garantizado pre-kickoff. Si el log avisa "⚠ N partidos SIN
+#    línea", la ronda se logueó tarde y esa muestra ya no se recupera.
+#    (Medido: J5 registró 2 de 9 partidos e imprimía un éxito engañoso.)
+python -m wc_predictor.pipeline.ligamx_source_tracker log --round j4   # solo backfill manual
 python -m wc_predictor.pipeline.ligamx_source_tracker settle
 python -m wc_predictor.pipeline.ligamx_source_tracker report
 ```
