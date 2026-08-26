@@ -99,3 +99,44 @@ def test_parse_export_orients_to_fixture(tmp_path):
     # "away vs home = 1-2" reversed to fixture orientation → home 2, away 1.
     assert rd["picks"]["Samuel"][fx["match_id"]] == "2-1"
     assert rd["points"]["Samuel"][fx["match_id"]] == 3
+
+
+# ------------------------------------------------- empirical-Bayes shrinkage ---
+
+def test_shrink_rates_collapses_luck_only_spread():
+    """When the spread across players is no bigger than binomial noise, the
+    leaderboard is luck: every player's best estimate is the pool mean.
+
+    The Apertura case — after 18 matches the pool's observed spread was SMALLER
+    than luck alone, yet the raw rates projected the leader ~60 points clear over
+    the remaining horizon, reporting P(1st)=0 and flattening the objective."""
+    from wc_predictor.model.standings import shrink_rates
+    # 15 players scattered by luck alone around 0.45 over 18 matches
+    rates = [0.72, 0.61, 0.56, 0.50, 0.50, 0.50, 0.44, 0.44,
+             0.44, 0.44, 0.44, 0.33, 0.39, 0.39, 0.28]
+    out = shrink_rates(rates, matches_resolved=18)
+    mean = sum(rates) / len(rates)
+    assert all(abs(r - mean) < 1e-9 for r in out)      # collapsed to the mean
+    assert abs(sum(out) / len(out) - mean) < 1e-9      # mean preserved
+
+
+def test_shrink_rates_keeps_real_skill_with_a_long_sample():
+    """A spread far larger than luck survives: shrinkage keeps genuine skill."""
+    from wc_predictor.model.standings import shrink_rates
+    rates = [0.90, 0.85, 0.80, 0.50, 0.50, 0.20, 0.15, 0.10]
+    out = shrink_rates(rates, matches_resolved=500)    # long sample → little noise
+    mean = sum(rates) / len(rates)
+    assert out[0] > mean + 0.25                        # the strong player stays strong
+    assert out[-1] < mean - 0.25                       # the weak one stays weak
+    # ordering preserved, spread only mildly compressed
+    assert out == sorted(out, reverse=True)
+    assert (max(out) - min(out)) > 0.6 * (max(rates) - min(rates))
+
+
+def test_shrink_rates_edge_cases():
+    from wc_predictor.model.standings import shrink_rates
+    assert shrink_rates([0.5], 18) == [0.5]            # single player untouched
+    assert shrink_rates([], 18) == []
+    assert shrink_rates([0.4, 0.4], 0) == [0.4, 0.4]   # no matches → no inference
+    same = shrink_rates([0.5, 0.5, 0.5], 20)           # zero spread stays put
+    assert all(abs(r - 0.5) < 1e-9 for r in same)

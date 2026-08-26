@@ -99,7 +99,15 @@ python -m wc_predictor.pipeline.ligamx_backtest --since 2025-07-01
 #    histórico de odds de Liga MX), así que se MIDE en vivo: log por jornada →
 #    settle con resultados → report acumulado. En ~5-6 jornadas dice si conviene
 #    mover blend_odds_weight. También mide la congestión (ver abajo).
-python -m wc_predictor.pipeline.ligamx_source_tracker log --round j4
+#
+#    OJO: el `log` YA NO se corre a mano — `ligamx picks --round jN` lo dispara
+#    solo. El tracker lee el snapshot VIVO de odds, que solo trae partidos sin
+#    patear; loguear después del kickoff pierde esas filas PARA SIEMPRE (no hay
+#    feed histórico). Por eso se registra al generar los picks: único momento con
+#    odds frescas y garantizado pre-kickoff. Si el log avisa "⚠ N partidos SIN
+#    línea", la ronda se logueó tarde y esa muestra ya no se recupera.
+#    (Medido: J5 registró 2 de 9 partidos e imprimía un éxito engañoso.)
+python -m wc_predictor.pipeline.ligamx_source_tracker log --round j4   # solo backfill manual
 python -m wc_predictor.pipeline.ligamx_source_tracker settle
 python -m wc_predictor.pipeline.ligamx_source_tracker report
 ```
@@ -123,6 +131,31 @@ calibración: no encienden nada.** La ganancia fina vive en señal nueva, no en 
   en `data/ligamx/congestion.json` y el `source_tracker` mide si de verdad rinden por
   debajo de su predicción a lo largo de J4-J6. Si aparece señal, se calibra CON
   evidencia — igual que el peso del mercado.
+
+### Habilidad del pool: shrinkage empírico-Bayes (medido, NO es un knob)
+
+El simulador proyecta la habilidad de cada jugador (`q_rate`, `e_rate`) sobre el
+horizonte restante. Usaba la **media muestral cruda**, y eso rompía el objetivo:
+
+- Tras 18 partidos, la dispersión OBSERVADA del pool era **0.126 pts/partido**,
+  MENOR que la que produce la pura suerte (**0.156**) → no hay habilidad
+  detectable; toda la tabla era varianza. (Arturo 0.722 vs Claudio 0.333: z=1.76,
+  p=0.08, **no significativo**.)
+- Pero la cruda extrapolaba ese ruido a 134 partidos → el líder terminaba ~60 pts
+  arriba → **P(1.º)=0.0%** → objetivo plano en cero → el desempate por exactos
+  tomaba el volante y picaba el marcador modal global (1-1) en TODOS lados.
+
+`standings.shrink_rates` encoge las tasas hacia la media del pool por la fracción
+de varianza que sobrevive restarle la suerte (James-Stein). Si la dispersión
+observada ≤ suerte, encoge al 100%. **Efecto medido en J6: P(1.º) 0.0% → 3.1%**
+(coincide con simulación independiente 2.5-3.8%) y los swaps arbitrarios
+desaparecen. Cuando SÍ haya habilidad real (muestra larga), la conserva.
+
+Dos guardas relacionadas en `pool_optimizer`:
+- `objective_live`: si el premio simulado del boleto EV es ~0, el desempate por
+  exactos NO se activa (rankear por P(exacto) sola tira el punto del 1X2). En J4
+  ese camino cambió 4 favoritos a 1-1: **0 puntos ganados, 1 perdido.**
+- Un swap que de verdad mueve el premio sigue pasando por la rama `better`.
 
 ### Regla de interacción: apuestas por casa (cada jornada)
 

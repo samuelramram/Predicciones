@@ -110,9 +110,16 @@ def test_load_pool_context_and_rates(tmp_path):
     assert ctx is not None
     assert ctx.you == "Claudio"
     assert ctx.your_points == 58.0
-    # e = 13/74, q = (58-13)/74
-    assert abs(ctx.your_e_rate - 13 / 74) < 1e-9
-    assert abs(ctx.your_q_rate - (58 - 13) / 74) < 1e-9
+    # Rates are empirical-Bayes shrunk toward the pool mean, so they sit BETWEEN
+    # the raw sample rate (e = 13/74, q = (58-13)/74) and the two-player mean.
+    # Two players 2 exactos apart over 74 matches is luck, so e shrinks a long way;
+    # points are unaffected (only the projection rates are estimated).
+    raw_e, raw_q = 13 / 74, (58 - 13) / 74
+    mean_e = (10 / 74 + 13 / 74) / 2
+    assert min(mean_e, raw_e) - 1e-9 <= ctx.your_e_rate <= max(mean_e, raw_e) + 1e-9
+    assert 0.0 <= ctx.your_q_rate <= 1.0
+    assert ctx.your_q_rate >= ctx.your_e_rate      # the q >= e invariant survives
+    assert abs(ctx.your_q_rate - raw_q) < 0.1      # q spread is small here
     # 5 participants total, 2 listed (1 is you) -> 1 real opp + 3 baseline fills
     assert ctx.estimated_fill == 3
     assert len(ctx.opponents) == 4

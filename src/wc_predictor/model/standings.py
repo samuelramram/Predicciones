@@ -54,6 +54,34 @@ def _rates(points: float, exactos: float, matches_resolved: int) -> tuple[float,
     return q, e
 
 
+def shrink_rates(rates: list[float], matches_resolved: int) -> list[float]:
+    """Empirical-Bayes (James-Stein) shrink of per-player rates toward the pool mean.
+
+    A rate measured over `matches_resolved` matches carries binomial noise of
+    ``p(1-p)/n``. When the spread ACROSS players is no larger than that noise,
+    the leaderboard is luck and every player's best estimate is the pool mean.
+    Keeping only the fraction of the observed variance that survives subtracting
+    luck retains real skill when it shows up and discards it when it doesn't.
+
+    This matters because the simulator projects these rates over the REMAINING
+    horizon. Raw sample means from a short sample get extrapolated as permanent
+    skill: measured on the Apertura after 18 matches, the pool's observed spread
+    (0.126 pts/match) was actually SMALLER than luck alone (0.156), yet the raw
+    rates implied the leader would finish ~60 points clear — reporting
+    P(1st)=0 and flattening the optimizer's whole objective to zero.
+    """
+    k = len(rates)
+    if k < 2 or matches_resolved <= 0:
+        return list(rates)
+    mean = sum(rates) / k
+    obs_var = sum((r - mean) ** 2 for r in rates) / k
+    if obs_var <= 0.0:
+        return [mean] * k
+    luck_var = mean * (1.0 - mean) / matches_resolved
+    weight = max(0.0, obs_var - luck_var) / obs_var      # share of spread that is real
+    return [mean + weight * (r - mean) for r in rates]
+
+
 def load_pool_context(path: Path) -> PoolContext | None:
     """Load the standings snapshot, or None if the file is absent."""
     if not path.exists():
@@ -70,8 +98,17 @@ def load_pool_context(path: Path) -> PoolContext | None:
     your_exactos = 0.0
     your_q = your_e = 0.0
     opponents: list[OpponentState] = []
-    for p in players:
-        q, e = _rates(p["points"], p.get("exactos", 0), matches_resolved)
+
+    # Raw rates first, then shrink the whole field together: a player's edge is
+    # only carried into the projection to the extent the field's spread exceeds
+    # what luck alone explains over the matches played so far.
+    raw = [_rates(p["points"], p.get("exactos", 0), matches_resolved) for p in players]
+    q_shrunk = shrink_rates([r[0] for r in raw], matches_resolved)
+    e_shrunk = shrink_rates([r[1] for r in raw], matches_resolved)
+
+    for p, q, e in zip(players, q_shrunk, e_shrunk):
+        e = max(0.0, min(1.0, e))
+        q = max(e, min(1.0, q))                  # keep the q >= e invariant
         if p["name"] == you:
             your_points = float(p["points"])
             your_exactos = float(p.get("exactos", 0))

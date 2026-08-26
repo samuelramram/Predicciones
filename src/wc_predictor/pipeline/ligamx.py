@@ -520,6 +520,22 @@ def run_picks(round_spec: str, objective: str = "ev") -> None:
             print(f"  apuestas: {len(bets['bets'])} con valor ({n_play} jugables 3-8%, "
                   f"resto solo medición ≥8%)")
 
+    # Source tracker: log model / blend / market for this round RIGHT HERE. The
+    # tracker reads the live odds snapshot, which only carries matches that have
+    # not kicked off — running it by hand after the fact silently drops whatever
+    # already started, and those rows are unrecoverable (there is no historical
+    # odds feed for Liga MX). Logging at pick time is the only moment guaranteed
+    # to have fresh odds AND be before kickoff, so coverage is complete by
+    # construction. Idempotent: re-running a round adds nothing.
+    if label.startswith("j"):
+        try:
+            from wc_predictor.pipeline.ligamx_source_tracker import cmd_log as _log_sources
+            _log_sources(label)
+        except SystemExit as exc:                 # no odds snapshot → nothing to compare
+            print(f"  source tracker: sin registrar ({exc})")
+        except Exception as exc:                  # never let telemetry break the picks
+            print(f"  source tracker: falló el registro ({exc})")
+
     from wc_predictor.pipeline.ligamx_html import render_jornada
     html_dst = OUTPUTS_DIR / f"ligamx_picks_{label}.html"
     html_dst.write_text(render_jornada(payload, bets=bets), encoding="utf-8")

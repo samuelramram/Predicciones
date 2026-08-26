@@ -369,6 +369,17 @@ def optimize_ticket(
     base_win, base_prize = evaluate(choice)
     current_win, current = base_win, base_prize
 
+    # A DEGENERATE objective disables the exactos tiebreak. When the simulated
+    # prize is ~0 for the EV ticket (the podium is out of reach in essentially
+    # every draw), every candidate ties it at zero, so the `abs(cand - best) <=
+    # 1e-9` branch below would rank candidates by expected exactos ALONE. That
+    # metric prefers the globally-modal scoreline (usually 1-1) regardless of who
+    # wins, so it trades the 1 pt for calling the outcome for a slightly fatter
+    # P(exact) — a strictly -EV ticket bought with no measurable prize gain.
+    # (Measured on J4: 4 favourites swapped to 1-1, 0 points gained, 1 lost.)
+    # A swap that actually moves the prize still goes through `better` below.
+    objective_live = base_prize > min_gain
+
     improved = True
     while improved:
         improved = False
@@ -385,6 +396,7 @@ def optimize_ticket(
                 better = cand > best_prize + min_gain
                 tied_more_exactos = (
                     tiebreak
+                    and objective_live
                     and abs(cand - best_prize) <= 1e-9
                     and ex_mean[mi][ci] > ex_mean[mi][best_ci] + 1e-9
                 )
