@@ -1,22 +1,22 @@
 {
-  "mu": 0.14493598239834143,
-  "gamma": 0.29975482224322714,
+  "mu": 0.14492817606019276,
+  "gamma": 0.29972482408277273,
   "rho": -0.05,
   "n_matches": 1062,
   "n_teams": 19,
   "half_life_days": 730,
   "ridge_lambda": 0.3,
   "converged": true,
-  "final_neg_log_lik": 2172.9464723161095,
+  "final_neg_log_lik": 2166.766662832868,
   "teams": {
     "América": {
       "attack": 0.1961,
-      "defense": 0.4162,
+      "defense": 0.4161,
       "n_matches": 136
     },
     "Atlante": {
-      "attack": -0.0783,
-      "defense": 0.1593,
+      "attack": -0.0785,
+      "defense": 0.1596,
       "n_matches": 5
     },
     "Atlas": {
@@ -55,13 +55,13 @@
       "n_matches": 127
     },
     "Necaxa": {
-      "attack": 0.0324,
-      "defense": -0.1649,
+      "attack": 0.0325,
+      "defense": -0.165,
       "n_matches": 111
     },
     "Pachuca": {
       "attack": 0.002,
-      "defense": 0.0754,
+      "defense": 0.0753,
       "n_matches": 120
     },
     "Puebla": {
@@ -70,7 +70,7 @@
       "n_matches": 109
     },
     "Pumas": {
-      "attack": 0.0884,
+      "attack": 0.0885,
       "defense": 0.1134,
       "n_matches": 125
     },
@@ -80,8 +80,8 @@
       "n_matches": 108
     },
     "San Luis": {
-      "attack": 0.0401,
-      "defense": -0.1638,
+      "attack": 0.0402,
+      "defense": -0.1639,
       "n_matches": 116
     },
     "Santos": {
@@ -95,13 +95,13 @@
       "n_matches": 129
     },
     "Tijuana": {
-      "attack": 0.0666,
-      "defense": -0.0665,
+      "attack": 0.0667,
+      "defense": -0.0666,
       "n_matches": 114
     },
     "Toluca": {
-      "attack": 0.313,
-      "defense": 0.2479,
+      "attack": 0.3129,
+      "defense": 0.248,
       "n_matches": 125
     }
   },
