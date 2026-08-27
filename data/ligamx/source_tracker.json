@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-27T09:02:45.115762Z",
+  "updated_at": "2026-08-26T23:05:45.448326Z",
   "entries": [
     {
       "round": "j4",
@@ -353,6 +353,84 @@
       "away_score": 3
     },
     {
+      "round": "j5",
+      "match": "San Luis vs Pachuca",
+      "home": "San Luis",
+      "away": "Pachuca",
+      "commence_time": "2026-08-23T23:00:00Z",
+      "model": {
+        "pick": "2",
+        "exact": "1-2",
+        "p1": 0.346,
+        "px": 0.275,
+        "p2": 0.379,
+        "hit": false,
+        "points": 0
+      },
+      "blend": {
+        "pick": "2",
+        "exact": "1-2",
+        "p1": 0.328,
+        "px": 0.272,
+        "p2": 0.4,
+        "hit": false,
+        "points": 0
+      },
+      "market": {
+        "pick": "2",
+        "p1": 0.3126,
+        "px": 0.2697,
+        "p2": 0.4177,
+        "hit": false,
+        "points": 0
+      },
+      "congested_home": false,
+      "congested_away": false,
+      "logged_at": "2026-08-26T22:42:50.237061Z",
+      "result": "X",
+      "home_score": 1,
+      "away_score": 1
+    },
+    {
+      "round": "j5",
+      "match": "Pumas vs Necaxa",
+      "home": "Pumas",
+      "away": "Necaxa",
+      "commence_time": "2026-08-24T01:00:00Z",
+      "model": {
+        "pick": "1",
+        "exact": "2-1",
+        "p1": 0.679,
+        "px": 0.2,
+        "p2": 0.121,
+        "hit": false,
+        "points": 0
+      },
+      "blend": {
+        "pick": "1",
+        "exact": "2-1",
+        "p1": 0.58,
+        "px": 0.234,
+        "p2": 0.186,
+        "hit": false,
+        "points": 0
+      },
+      "market": {
+        "pick": "1",
+        "p1": 0.4904,
+        "px": 0.2565,
+        "p2": 0.2531,
+        "hit": false,
+        "points": 0
+      },
+      "congested_home": false,
+      "congested_away": false,
+      "logged_at": "2026-08-26T22:42:50.237821Z",
+      "result": "X",
+      "home_score": 1,
+      "away_score": 1
+    },
+    {
       "round": "j6",
       "match": "Atlante vs León",
       "home": "Atlante",
@@ -360,27 +438,27 @@
       "commence_time": "2026-08-29T01:00:00Z",
       "model": {
         "pick": "1",
-        "exact": "1-0",
-        "p1": 0.551,
-        "px": 0.262,
-        "p2": 0.186
+        "exact": "2-0",
+        "p1": 0.638,
+        "px": 0.227,
+        "p2": 0.135
       },
       "blend": {
         "pick": "1",
-        "exact": "1-0",
-        "p1": 0.455,
-        "px": 0.277,
-        "p2": 0.269
+        "exact": "2-0",
+        "p1": 0.497,
+        "px": 0.263,
+        "p2": 0.24
       },
       "market": {
         "pick": "1",
-        "p1": 0.3738,
-        "px": 0.2778,
-        "p2": 0.3484
+        "p1": 0.3729,
+        "px": 0.2745,
+        "p2": 0.3526
       },
       "congested_home": false,
       "congested_away": false,
-      "logged_at": "2026-08-27T09:02:45.113058Z",
+      "logged_at": "2026-08-26T23:05:45.444797Z",
       "result": null,
       "home_score": null,
       "away_score": null
@@ -394,26 +472,26 @@
       "model": {
         "pick": "1",
         "exact": "1-0",
-        "p1": 0.486,
-        "px": 0.282,
-        "p2": 0.233
+        "p1": 0.436,
+        "px": 0.29,
+        "p2": 0.274
       },
       "blend": {
         "pick": "1",
         "exact": "1-0",
-        "p1": 0.461,
-        "px": 0.286,
-        "p2": 0.253
+        "p1": 0.439,
+        "px": 0.289,
+        "p2": 0.272
       },
       "market": {
         "pick": "1",
-        "p1": 0.4403,
-        "px": 0.2893,
-        "p2": 0.2704
+        "p1": 0.4412,
+        "px": 0.2875,
+        "p2": 0.2713
       },
       "congested_home": false,
       "congested_away": false,
-      "logged_at": "2026-08-27T09:02:45.113332Z",
+      "logged_at": "2026-08-26T23:05:45.445191Z",
       "result": null,
       "home_score": null,
       "away_score": null
@@ -427,26 +505,26 @@
       "model": {
         "pick": "2",
         "exact": "1-2",
-        "p1": 0.264,
-        "px": 0.264,
-        "p2": 0.471
+        "p1": 0.226,
+        "px": 0.254,
+        "p2": 0.52
       },
       "blend": {
         "pick": "2",
         "exact": "1-2",
-        "p1": 0.27,
-        "px": 0.262,
-        "p2": 0.468
+        "p1": 0.247,
+        "px": 0.257,
+        "p2": 0.496
       },
       "market": {
         "pick": "2",
-        "p1": 0.2743,
-        "px": 0.2602,
-        "p2": 0.4655
+        "p1": 0.2661,
+        "px": 0.2585,
+        "p2": 0.4755
       },
       "congested_home": false,
       "congested_away": false,
-      "logged_at": "2026-08-27T09:02:45.113682Z",
+      "logged_at": "2026-08-26T23:05:45.445601Z",
       "result": null,
       "home_score": null,
       "away_score": null
@@ -460,26 +538,26 @@
       "model": {
         "pick": "1",
         "exact": "1-0",
-        "p1": 0.406,
+        "p1": 0.427,
         "px": 0.293,
-        "p2": 0.3
+        "p2": 0.28
       },
       "blend": {
         "pick": "2",
         "exact": "0-1",
-        "p1": 0.343,
-        "px": 0.284,
-        "p2": 0.374
+        "p1": 0.351,
+        "px": 0.285,
+        "p2": 0.364
       },
       "market": {
         "pick": "2",
-        "p1": 0.2919,
-        "px": 0.2706,
-        "p2": 0.4375
+        "p1": 0.2914,
+        "px": 0.271,
+        "p2": 0.4376
       },
       "congested_home": false,
       "congested_away": false,
-      "logged_at": "2026-08-27T09:02:45.113941Z",
+      "logged_at": "2026-08-26T23:05:45.446013Z",
       "result": null,
       "home_score": null,
       "away_score": null
@@ -493,26 +571,26 @@
       "model": {
         "pick": "1",
         "exact": "2-1",
-        "p1": 0.42,
+        "p1": 0.429,
         "px": 0.275,
-        "p2": 0.306
+        "p2": 0.295
       },
       "blend": {
         "pick": "1",
         "exact": "2-1",
-        "p1": 0.419,
-        "px": 0.276,
-        "p2": 0.304
+        "p1": 0.423,
+        "px": 0.277,
+        "p2": 0.3
       },
       "market": {
         "pick": "1",
-        "p1": 0.4193,
-        "px": 0.2774,
-        "p2": 0.3034
+        "p1": 0.4186,
+        "px": 0.2781,
+        "p2": 0.3033
       },
       "congested_home": false,
       "congested_away": false,
-      "logged_at": "2026-08-27T09:02:45.114211Z",
+      "logged_at": "2026-08-26T23:05:45.446352Z",
       "result": null,
       "home_score": null,
       "away_score": null
@@ -528,24 +606,24 @@
         "exact": "2-0",
         "p1": 0.802,
         "px": 0.143,
-        "p2": 0.056
+        "p2": 0.055
       },
       "blend": {
         "pick": "1",
         "exact": "2-0",
-        "p1": 0.748,
-        "px": 0.168,
+        "p1": 0.746,
+        "px": 0.169,
         "p2": 0.084
       },
       "market": {
         "pick": "1",
-        "p1": 0.6946,
-        "px": 0.1889,
-        "p2": 0.1165
+        "p1": 0.6917,
+        "px": 0.1909,
+        "p2": 0.1174
       },
       "congested_home": false,
       "congested_away": false,
-      "logged_at": "2026-08-27T09:02:45.114653Z",
+      "logged_at": "2026-08-26T23:05:45.446910Z",
       "result": null,
       "home_score": null,
       "away_score": null
@@ -559,26 +637,26 @@
       "model": {
         "pick": "2",
         "exact": "0-1",
-        "p1": 0.176,
-        "px": 0.243,
-        "p2": 0.581
+        "p1": 0.19,
+        "px": 0.25,
+        "p2": 0.56
       },
       "blend": {
         "pick": "2",
         "exact": "0-1",
-        "p1": 0.198,
-        "px": 0.241,
-        "p2": 0.561
+        "p1": 0.205,
+        "px": 0.245,
+        "p2": 0.55
       },
       "market": {
         "pick": "2",
-        "p1": 0.2174,
-        "px": 0.2394,
-        "p2": 0.5432
+        "p1": 0.2173,
+        "px": 0.2413,
+        "p2": 0.5414
       },
       "congested_home": false,
       "congested_away": false,
-      "logged_at": "2026-08-27T09:02:45.114932Z",
+      "logged_at": "2026-08-26T23:05:45.447240Z",
       "result": null,
       "home_score": null,
       "away_score": null
@@ -592,26 +670,26 @@
       "model": {
         "pick": "1",
         "exact": "2-1",
-        "p1": 0.613,
-        "px": 0.221,
-        "p2": 0.166
+        "p1": 0.635,
+        "px": 0.213,
+        "p2": 0.152
       },
       "blend": {
         "pick": "1",
         "exact": "2-1",
-        "p1": 0.622,
-        "px": 0.214,
-        "p2": 0.164
+        "p1": 0.632,
+        "px": 0.21,
+        "p2": 0.158
       },
       "market": {
         "pick": "1",
-        "p1": 0.6285,
-        "px": 0.2086,
-        "p2": 0.1629
+        "p1": 0.6283,
+        "px": 0.2084,
+        "p2": 0.1632
       },
       "congested_home": false,
       "congested_away": false,
-      "logged_at": "2026-08-27T09:02:45.115266Z",
+      "logged_at": "2026-08-26T23:05:45.447606Z",
       "result": null,
       "home_score": null,
       "away_score": null
@@ -625,26 +703,26 @@
       "model": {
         "pick": "1",
         "exact": "2-0",
-        "p1": 0.819,
-        "px": 0.126,
-        "p2": 0.056
+        "p1": 0.807,
+        "px": 0.133,
+        "p2": 0.059
       },
       "blend": {
         "pick": "1",
         "exact": "2-0",
-        "p1": 0.78,
-        "px": 0.143,
-        "p2": 0.077
+        "p1": 0.774,
+        "px": 0.147,
+        "p2": 0.079
       },
       "market": {
         "pick": "1",
-        "p1": 0.7437,
-        "px": 0.1578,
-        "p2": 0.0985
+        "p1": 0.7421,
+        "px": 0.1585,
+        "p2": 0.0993
       },
       "congested_home": false,
       "congested_away": false,
-      "logged_at": "2026-08-27T09:02:45.115757Z",
+      "logged_at": "2026-08-26T23:05:45.448320Z",
       "result": null,
       "home_score": null,
       "away_score": null

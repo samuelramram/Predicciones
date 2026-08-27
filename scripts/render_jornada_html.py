@@ -48,8 +48,19 @@ def quiniela_rows() -> str:
         sel = p["pick_1x2"]
         team = h if sel == "1" else (a if sel == "2" else "Empate")
         p1, px, p2 = p["p_home_win"], p["p_draw"], p["p_away_win"]
-        contrarian = p.get("pool_swapped") or p.get("contrarian_actionable")
-        chip = ('<span class="chip">◆ contrarian</span>' if contrarian else "")
+        # ◆ marks a swap that was ACTUALLY APPLIED (the delivered pick is no longer
+        # the EV-optimal one). A merely "actionable" contrarian is a road not taken
+        # — it must never wear the same mark, or the ticket reads as swapped when
+        # it is the plain EV pick.
+        if p.get("pool_swapped"):
+            chip = '<span class="chip">◆ contrarian aplicado</span>'
+        elif p.get("contrarian_actionable"):
+            alt = f"{p.get('contrarian_pick_exact')}"
+            cost = p.get("contrarian_ev_sacrifice") or 0.0
+            chip = (f'<span class="alt">alt {alt} · cuesta {cost:.2f} EV '
+                    f'<em>(no aplicado)</em></span>')
+        else:
+            chip = ""
         rows.append(f"""
       <tr>
         <td class="match"><span class="teams">{h} <span class="vs">vs</span> {a}</span>
@@ -70,7 +81,9 @@ def quiniela_rows() -> str:
 
 
 ev_total = sum(p["ev"] for p in PICKS["picks"])
-n_contra = sum(1 for p in PICKS["picks"] if p.get("pool_swapped") or p.get("contrarian_actionable"))
+n_applied = sum(1 for p in PICKS["picks"] if p.get("pool_swapped"))
+n_offered = sum(1 for p in PICKS["picks"]
+                if p.get("contrarian_actionable") and not p.get("pool_swapped"))
 
 
 # ── Boleto section ───────────────────────────────────────────────────────────
@@ -218,6 +231,9 @@ html = f"""<title>Liga MX J{JNUM} · Quiniela y Boleto</title>
   .chip {{ display:inline-block; margin-left:8px; font-size:.62rem; font-weight:700; vertical-align:middle;
     text-transform:uppercase; letter-spacing:.04em; color:var(--accent);
     border:1px solid color-mix(in srgb,var(--accent) 35%,transparent); border-radius:20px; padding:1px 7px; }}
+  .alt {{ display:block; margin-top:3px; font-size:.66rem; font-weight:500; color:var(--ink-soft);
+    letter-spacing:.01em; }}
+  .alt em {{ font-style:normal; opacity:.8; }}
   .pick {{ white-space:nowrap; }}
   .badge {{ display:inline-block; min-width:20px; text-align:center; font-weight:800; font-size:.75rem;
     padding:2px 6px; border-radius:5px; margin-right:7px; }}
@@ -279,7 +295,7 @@ html = f"""<title>Liga MX J{JNUM} · Quiniela y Boleto</title>
   </header>
 
   <h2 class="sec">La quiniela <span class="tag">2 pts exacto · 1 pt 1X2</span></h2>
-  <p class="sec-note">Marcador EV-óptimo por partido (máximo puntos esperados). La barra es P(1&nbsp;/&nbsp;X&nbsp;/&nbsp;2); ◆ marca cualquier swap contrarian.</p>
+  <p class="sec-note">Marcador EV-óptimo por partido (máximo puntos esperados). La barra es P(1&nbsp;/&nbsp;X&nbsp;/&nbsp;2). <b>◆ marca solo los swaps que SÍ se aplicaron</b> — donde no hay ◆, lo que ves es el pick EV puro; una nota gris <em>(no aplicado)</em> señala una alternativa contrarian barata que el optimizador evaluó y descartó.</p>
   <div class="panel">
     <div class="table-wrap"><table>
       <thead><tr><th>Partido</th><th>Marcador</th><th>1X2</th><th>Prob 1 · X · 2</th><th class="num">EV</th></tr></thead>
@@ -288,7 +304,7 @@ html = f"""<title>Liga MX J{JNUM} · Quiniela y Boleto</title>
     <div class="quiniela-foot">
       <span><b>{len(PICKS['picks'])}</b> partidos</span>
       <span>EV total <b>{ev_total:.2f}</b> / {len(PICKS['picks'])*2} máx</span>
-      <span><b>{n_contra}</b> swaps contrarian ◆</span>
+      <span><b>{n_applied}</b> swaps contrarian aplicados ◆{f' · {n_offered} alternativa(s) baratas NO aplicadas' if n_offered else ''}</span>
     </div>
   </div>
 

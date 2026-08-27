@@ -99,7 +99,15 @@ python -m wc_predictor.pipeline.ligamx_backtest --since 2025-07-01
 #    histórico de odds de Liga MX), así que se MIDE en vivo: log por jornada →
 #    settle con resultados → report acumulado. En ~5-6 jornadas dice si conviene
 #    mover blend_odds_weight. También mide la congestión (ver abajo).
-python -m wc_predictor.pipeline.ligamx_source_tracker log --round j4
+#
+#    OJO: el `log` YA NO se corre a mano — `ligamx picks --round jN` lo dispara
+#    solo. El tracker lee el snapshot VIVO de odds, que solo trae partidos sin
+#    patear; loguear después del kickoff pierde esas filas PARA SIEMPRE (no hay
+#    feed histórico). Por eso se registra al generar los picks: único momento con
+#    odds frescas y garantizado pre-kickoff. Si el log avisa "⚠ N partidos SIN
+#    línea", la ronda se logueó tarde y esa muestra ya no se recupera.
+#    (Medido: J5 registró 2 de 9 partidos e imprimía un éxito engañoso.)
+python -m wc_predictor.pipeline.ligamx_source_tracker log --round j4   # solo backfill manual
 python -m wc_predictor.pipeline.ligamx_source_tracker settle
 python -m wc_predictor.pipeline.ligamx_source_tracker report
 ```
@@ -138,16 +146,47 @@ modelo:
    47% de partidos con brecha >200 vs 21%). El acierto sube de 46.6% a 63.8%
    conforme crece la brecha — Liga MX simplemente vive en el extremo parejo.
 2. **El modelo no le gana al mercado apostando, y el selector es adverso.** En
-   las 62 apuestas: modelo 48.8%, mercado 40.9%, realidad 40.3%. El mercado clava
-   la realidad dentro de ~1pp en TODOS los cortes (1X2, totals, favoritos,
-   longshots) y el modelo se pasa 6-10pp en todos. Brier 0.2354 vs 0.2156.
-   Apostar "donde el modelo > mercado" es un filtro para los errores del modelo.
+   las 62 apuestas liquidadas: modelo 48.8%, mercado 40.9%, realidad 40.3%. El
+   mercado clava la realidad dentro de ~1pp en TODOS los cortes (1X2, totals,
+   favoritos, longshots) y el modelo se pasa 6-10pp en todos. Brier 0.2354 vs
+   0.2156. Apostar "donde el modelo > mercado" es un filtro para los errores del
+   modelo. Con las líneas de cierre de J4+J5 (47 entradas): **CLV global −3.43%,
+   21% le gana al cierre** (J4 −5.56%, J5 −1.71%).
 3. **Los empates apostados son el peor corte del ledger**: 9 apuestas, modelo
    28.1%, real 11.1%, **−90.3% ROI**. Fuera del boleto hasta nuevo aviso.
 
 Decisiones vigentes: **boleto de despliegue por casa retirado** (−EV por
 construcción, costó $291 en J5); toda apuesta pasa por `--require-clv`; sin
-empates; totals antes que 1X2 (CLV −1.2% vs −6.9%). La quiniela no se toca.
+empates; totals antes que 1X2. La quiniela no se toca.
+
+Esto encaja con el shrinkage de abajo: el pool no tiene habilidad detectable
+todavía (dispersión observada < la que produce la suerte), así que ni la tabla
+ni una jornada mala son evidencia de que el modelo esté roto.
+
+### Habilidad del pool: shrinkage empírico-Bayes (medido, NO es un knob)
+
+El simulador proyecta la habilidad de cada jugador (`q_rate`, `e_rate`) sobre el
+horizonte restante. Usaba la **media muestral cruda**, y eso rompía el objetivo:
+
+- Tras 18 partidos, la dispersión OBSERVADA del pool era **0.126 pts/partido**,
+  MENOR que la que produce la pura suerte (**0.156**) → no hay habilidad
+  detectable; toda la tabla era varianza. (Arturo 0.722 vs Claudio 0.333: z=1.76,
+  p=0.08, **no significativo**.)
+- Pero la cruda extrapolaba ese ruido a 134 partidos → el líder terminaba ~60 pts
+  arriba → **P(1.º)=0.0%** → objetivo plano en cero → el desempate por exactos
+  tomaba el volante y picaba el marcador modal global (1-1) en TODOS lados.
+
+`standings.shrink_rates` encoge las tasas hacia la media del pool por la fracción
+de varianza que sobrevive restarle la suerte (James-Stein). Si la dispersión
+observada ≤ suerte, encoge al 100%. **Efecto medido en J6: P(1.º) 0.0% → 3.1%**
+(coincide con simulación independiente 2.5-3.8%) y los swaps arbitrarios
+desaparecen. Cuando SÍ haya habilidad real (muestra larga), la conserva.
+
+Dos guardas relacionadas en `pool_optimizer`:
+- `objective_live`: si el premio simulado del boleto EV es ~0, el desempate por
+  exactos NO se activa (rankear por P(exacto) sola tira el punto del 1X2). En J4
+  ese camino cambió 4 favoritos a 1-1: **0 puntos ganados, 1 perdido.**
+- Un swap que de verdad mueve el premio sigue pasando por la rama `better`.
 
 ### Regla de interacción: apuestas por casa (cada jornada)
 

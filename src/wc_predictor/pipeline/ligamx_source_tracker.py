@@ -84,11 +84,19 @@ def cmd_log(round_spec: str) -> None:
     entries = _load_tracker()
     have = {(e["round"], e["match"]) for e in entries}
     added = 0
+    missing: list[str] = []
     for fx in selected:
         key = f"{fx['home']}|{fx['away']}"
-        if key not in odds:
-            continue                       # sin línea de mercado no entra al tracker
         match = f"{fx['home']} vs {fx['away']}"
+        if key not in odds:
+            # No market line: the live snapshot only carries matches that have not
+            # kicked off, so this is almost always a round logged too late. Those
+            # rows can never be recovered (no historical odds feed), so surface the
+            # gap instead of dropping it silently — a tracker that quietly logs 2
+            # of 9 matches looks healthy while producing an unusable sample.
+            if (spec, match) not in have:
+                missing.append(match)
+            continue
         if (spec, match) in have:
             continue
         p_model = predict_fixture(fx, fit, elos, altitudes, mcfg, rules, odds=None)
@@ -117,6 +125,12 @@ def cmd_log(round_spec: str) -> None:
     flagged = sum(1 for e in entries if e["round"] == spec and (e["congested_home"] or e["congested_away"]))
     print(f"Registrados {added} partidos de {spec} (3 fuentes c/u). "
           f"{flagged} con equipo marcado por congestión. Tracker: {len(entries)} entradas.")
+    if missing:
+        print(f"  ⚠ {len(missing)} partido(s) de {spec} SIN línea en el snapshot y por tanto "
+              f"fuera del tracker para siempre (no hay feed histórico de odds): "
+              f"{', '.join(missing[:4])}{' …' if len(missing) > 4 else ''}.")
+        print(f"    Se registra al generar los picks; si ves esto, la ronda se logueó "
+              f"después del kickoff.")
 
 
 def cmd_settle() -> None:

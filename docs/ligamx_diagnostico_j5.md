@@ -123,10 +123,15 @@ EV y en el stake. Ver la sección siguiente.
 
 ## 5. Apuestas: el modelo no le gana al mercado, y el selector de apuestas es adverso
 
-Ledger completo tras liquidar J5: **−$248 sobre $1,598 (−15.5% ROI, 25W-37L)**,
-CLV promedio **−5.56%**, solo **19%** de las apuestas le ganaron al cierre.
+Ledger completo tras liquidar J5: **−$248 sobre $1,598 (−15.5% ROI, 25W-37L)**.
 Desglose por jornada: J3 +$38 (n=15, stakes de $10), J4 +$5 (n=21),
 **J5 −$291 (n=26, −39.3%)**.
+
+Con las líneas de cierre de J4 y J5 capturadas (47 de las 62 entradas tienen
+cierre): **CLV promedio −3.43%, y solo el 21% de las apuestas le gana al
+cierre.** Por jornada, J4 −5.56% y J5 −1.71%: la J5 cerró mejor que la J4, pero
+sigue del lado negativo y sigue perdiendo contra el cierre en 4 de cada 5
+apuestas. El signo es lo que importa, no el tamaño.
 
 El hallazgo de fondo, sobre las 62 apuestas registradas:
 
@@ -170,9 +175,11 @@ del boleto de apuestas hasta que haya evidencia que los sostenga.**
 
 ### El menos malo: totals
 
-O/U 2.5 tiene CLV **−1.2%** contra **−6.9%** del 1X2. Sigue siendo negativo, pero
-es el único mercado cerca de romper parejo. Si algún día hay boleto, ahí es donde
-el modelo se defiende mejor.
+Sobre las entradas con cierre, O/U 2.5 mide **−1.2%** y el 1X2 **−6.9%** en el
+agregado J4. En J5, con más cierres capturados, el orden se invierte (1X2 −1.08%,
+O/U −3.10%), así que **la preferencia por totals no está firme todavía** — son
+decenas de apuestas, no cientos. Lo que sí se sostiene en los dos cortes es que
+ninguno de los dos mercados llega a CLV positivo.
 
 ---
 
@@ -204,6 +211,18 @@ partidos registrados; hacen falta ~45-55 para concluir).
    construcción y ya costó $291 en una jornada. Cualquier apuesta futura pasa por
    `--require-clv`.
 2. **Sin empates en el boleto de apuestas** (−90.3% ROI, 9 apuestas).
-3. **Preferencia por totals sobre 1X2** cuando haya algo que pase el gate de CLV.
-4. **La quiniela sigue igual.** Es donde el modelo tiene ventaja real y medida
+3. **La quiniela sigue igual.** Es donde el modelo tiene ventaja real y medida
    (+13.1% OOS), y donde la varianza de 27 partidos todavía no dice nada.
+
+Lo que NO quedó decidido: **totals vs 1X2**. Con los cierres de J4 parecía que
+totals era el mercado menos malo, pero los de J5 invierten el orden. Con decenas
+de apuestas no alcanza; se decide cuando el ledger tenga más cierres.
+
+## Nota sobre el source_tracker (J5 se perdió casi entera)
+
+El `source_tracker` de J5 solo tiene **2 de 9 partidos**: se registró después de
+los kickoffs y el snapshot de odds solo trae partidos sin patear. Esa muestra no
+se recupera (no hay feed histórico). Desde entonces `ligamx picks` dispara el log
+automáticamente, que es el único momento garantizado pre-kickoff. Va en 20
+entradas (J4 9, J5 2, J6 9) de las ~45-55 que hacen falta para decidir el peso
+del mercado.

@@ -19,7 +19,7 @@
   ],
   "manual": {
     "caliente": {
-      "as_of": "2026-08-19",
+      "as_of": "2026-08-26",
       "source": "capturas de sports.caliente.mx/es_MX/Liga-MX (mkt_sort=MRES para 1X2, mkt_sort=HCTG para goles), momio americano convertido a decimal",
       "matches": {
         "Puebla|Guadalajara": {
@@ -370,6 +370,135 @@
             "2.5": {
               "over": 1.6993,
               "under": 2.1
+            }
+          }
+        },
+        "Atlante|León": {
+          "h2h": {
+            "1": 2.55,
+            "X": 3.6,
+            "2": 2.55
+          },
+          "totals": {
+            "2.5": {
+              "over": 1.6993,
+              "under": 2.1
+            }
+          }
+        },
+        "Necaxa|Cruz Azul": {
+          "h2h": {
+            "1": 3.55,
+            "X": 3.7,
+            "2": 1.9709
+          },
+          "totals": {
+            "2.5": {
+              "over": 1.6494,
+              "under": 2.2
+            }
+          }
+        },
+        "Tijuana|Pumas": {
+          "h2h": {
+            "1": 2.26,
+            "X": 3.5,
+            "2": 2.98
+          },
+          "totals": {
+            "2.5": {
+              "over": 1.8929,
+              "under": 1.8475
+            }
+          }
+        },
+        "Atlas|Querétaro": {
+          "h2h": {
+            "1": 2.14,
+            "X": 3.4,
+            "2": 3.35
+          },
+          "totals": {
+            "2.5": {
+              "over": 1.8475,
+              "under": 1.8929
+            }
+          }
+        },
+        "Pachuca|Guadalajara": {
+          "h2h": {
+            "1": 3.1,
+            "X": 3.6,
+            "2": 2.2
+          },
+          "totals": {
+            "2.5": {
+              "over": 1.8,
+              "under": 2.0
+            }
+          }
+        },
+        "América|Puebla": {
+          "h2h": {
+            "1": 1.3497,
+            "X": 4.9,
+            "2": 8.5
+          },
+          "totals": {
+            "2.5": {
+              "over": 1.6135,
+              "under": 2.25
+            }
+          }
+        },
+        "Santos|Tigres": {
+          "h2h": {
+            "1": 4.1,
+            "X": 4.0,
+            "2": 1.7576
+          },
+          "totals": {
+            "2.5": {
+              "over": 1.6135,
+              "under": 2.25
+            }
+          }
+        },
+        "Toluca|Juárez": {
+          "h2h": {
+            "1": 1.2695,
+            "X": 6.2,
+            "2": 9.25
+          },
+          "totals": {
+            "2.5": {
+              "over": 1.3788,
+              "under": 3.0
+            }
+          }
+        },
+        "Monterrey|San Luis": {
+          "h2h": {
+            "1": 1.4785,
+            "X": 4.8,
+            "2": 5.7
+          },
+          "totals": {
+            "2.5": {
+              "over": 1.5,
+              "under": 2.55
+            }
+          }
+        }
+      }
+    },
+    "betway": {
+      "as_of": "2026-08-26",
+      "matches": {
+        "Necaxa|Cruz Azul": {
+          "totals": {
+            "2.5": {
+              "over": 1.6667
             }
           }
         }

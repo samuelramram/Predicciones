@@ -78,10 +78,15 @@ def test_exact_ev_bonus_zero_is_noop():
 
 # ------------------------------------------ pool greedy exactos tiebreak ---
 
-def test_greedy_prefers_more_exactos_at_equal_win_prob():
-    """An unreachable leader makes every ticket's P(rank=1) identical (0), so the
-    greedy's only signal is the tiebreak: it must still move to the candidate
-    with the higher expected exactos instead of staying on the EV pick."""
+def test_degenerate_objective_keeps_the_ev_ticket():
+    """An unreachable leader flattens the objective to 0 for EVERY candidate. The
+    exactos tiebreak must NOT take over there: ranking by expected exactos alone
+    prefers the globally-modal scoreline (1-1) regardless of who wins, trading
+    away the 1 pt for calling the outcome to chase a slightly fatter P(exact).
+
+    Measured on the Apertura J4, that path swapped 4 favourites onto 1-1, gained
+    zero points and lost one. A flat objective buys nothing, so the ticket keeps
+    the EV picks — the maximum-expected-points side of a coin flip."""
     cells, p1, px, p2 = _synthetic_cells()
     m = TicketMatch(
         match_id="m1",
@@ -94,8 +99,8 @@ def test_greedy_prefers_more_exactos_at_equal_win_prob():
     leader = OpponentState("lider", points=1000.0, exactos=50.0)
     res = optimize_ticket([m], RULES, opponents=[leader], n_sims=300)
     assert abs(res.win_prob_pool - res.win_prob_ev) < 1e-9  # no win prob traded
-    assert res.chosen["m1"] == ("X", "1-1")
-    assert res.swapped_to_contrarian == ["m1"]
+    assert res.chosen["m1"] == ("1", "2-1")                 # stays on the EV pick
+    assert res.swapped_to_contrarian == []
 
 
 def test_greedy_tiebreak_off_without_tiebreaker_rule():
