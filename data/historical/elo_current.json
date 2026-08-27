@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-07-19",
+  "as_of": "2026-08-26",
   "params": {
     "k_friendly": 20.0,
     "k_qualifier": 30.0,
@@ -385,6 +385,10 @@
       "elo": 1633.91
     },
     {
+      "team": "Vietnam",
+      "elo": 1625.65
+    },
+    {
       "team": "County of Nice",
       "elo": 1620.35
     },
@@ -518,7 +522,7 @@
     },
     {
       "team": "Thailand",
-      "elo": 1550.38
+      "elo": 1543.83
     },
     {
       "team": "Qatar",
@@ -559,10 +563,6 @@
     {
       "team": "Tahiti",
       "elo": 1523.15
-    },
-    {
-      "team": "Vietnam",
-      "elo": 1520.86
     },
     {
       "team": "Asturias",
@@ -681,10 +681,6 @@
       "elo": 1493.78
     },
     {
-      "team": "Malaysia",
-      "elo": 1490.82
-    },
-    {
       "team": "Madrid",
       "elo": 1490.27
     },
@@ -695,10 +691,6 @@
     {
       "team": "Zimbabwe",
       "elo": 1489.61
-    },
-    {
-      "team": "Indonesia",
-      "elo": 1489.52
     },
     {
       "team": "Mozambique",
@@ -841,6 +833,10 @@
       "elo": 1452.81
     },
     {
+      "team": "Indonesia",
+      "elo": 1452.25
+    },
+    {
       "team": "Saarland",
       "elo": 1451.93
     },
@@ -871,6 +867,10 @@
     {
       "team": "Hmong",
       "elo": 1443.99
+    },
+    {
+      "team": "Malaysia",
+      "elo": 1443.74
     },
     {
       "team": "Malawi",
@@ -1021,10 +1021,6 @@
       "elo": 1366.27
     },
     {
-      "team": "Philippines",
-      "elo": 1363.71
-    },
-    {
       "team": "Yemen DPR",
       "elo": 1360.57
     },
@@ -1043,6 +1039,10 @@
     {
       "team": "Saint Vincent and the Grenadines",
       "elo": 1357.77
+    },
+    {
+      "team": "Singapore",
+      "elo": 1352.83
     },
     {
       "team": "Raetia",
@@ -1113,8 +1113,8 @@
       "elo": 1305.03
     },
     {
-      "team": "Singapore",
-      "elo": 1300.3
+      "team": "Philippines",
+      "elo": 1297.87
     },
     {
       "team": "Sark",
@@ -1181,6 +1181,10 @@
       "elo": 1211.54
     },
     {
+      "team": "Myanmar",
+      "elo": 1209.61
+    },
+    {
       "team": "Eritrea",
       "elo": 1194.76
     },
@@ -1217,10 +1221,6 @@
       "elo": 1164.25
     },
     {
-      "team": "Myanmar",
-      "elo": 1155.22
-    },
-    {
       "team": "Pakistan",
       "elo": 1153.83
     },
@@ -1253,12 +1253,12 @@
       "elo": 1124.35
     },
     {
-      "team": "Cambodia",
-      "elo": 1103.39
-    },
-    {
       "team": "Taiwan",
       "elo": 1099.67
+    },
+    {
+      "team": "Cambodia",
+      "elo": 1094.81
     },
     {
       "team": "Djibouti",
@@ -1321,10 +1321,6 @@
       "elo": 951.71
     },
     {
-      "team": "Laos",
-      "elo": 948.97
-    },
-    {
       "team": "Bahamas",
       "elo": 948.54
     },
@@ -1337,16 +1333,20 @@
       "elo": 931.0
     },
     {
+      "team": "Laos",
+      "elo": 922.41
+    },
+    {
       "team": "Brunei",
       "elo": 915.14
     },
     {
-      "team": "Timor-Leste",
-      "elo": 899.81
-    },
-    {
       "team": "Macau",
       "elo": 881.26
+    },
+    {
+      "team": "Timor-Leste",
+      "elo": 879.98
     },
     {
       "team": "American Samoa",
