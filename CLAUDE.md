@@ -132,6 +132,37 @@ calibración: no encienden nada.** La ganancia fina vive en señal nueva, no en 
   debajo de su predicción a lo largo de J4-J6. Si aparece señal, se calibra CON
   evidencia — igual que el peso del mercado.
 
+### Diagnóstico tras J5 — leer antes de "arreglar" el modelo
+
+`docs/ligamx_diagnostico_j5.md` tiene la auditoría completa (656 partidos OOS +
+62 apuestas liquidadas). Los tres resultados que cambian cómo se habla del
+modelo:
+
+1. **El techo de Liga MX es ~53% de acierto 1X2** y el modelo entrega 53.2% con
+   55.1% de confianza media. No está descalibrado (±1.5pp en los tres
+   resultados). El contraste con el Mundial **no** es de afinación: la
+   distribución cruda de resultados es idéntica (entropía 1.524 vs 1.526), pero
+   el Mundial tiene el doble de dispersión de fuerza (|ΔElo| mediana 193 vs 113;
+   47% de partidos con brecha >200 vs 21%). El acierto sube de 46.6% a 63.8%
+   conforme crece la brecha — Liga MX simplemente vive en el extremo parejo.
+2. **El modelo no le gana al mercado apostando, y el selector es adverso.** En
+   las 62 apuestas liquidadas: modelo 48.8%, mercado 40.9%, realidad 40.3%. El
+   mercado clava la realidad dentro de ~1pp en TODOS los cortes (1X2, totals,
+   favoritos, longshots) y el modelo se pasa 6-10pp en todos. Brier 0.2354 vs
+   0.2156. Apostar "donde el modelo > mercado" es un filtro para los errores del
+   modelo. Con las líneas de cierre de J4+J5 (47 entradas): **CLV global −3.43%,
+   21% le gana al cierre** (J4 −5.56%, J5 −1.71%).
+3. **Los empates apostados son el peor corte del ledger**: 9 apuestas, modelo
+   28.1%, real 11.1%, **−90.3% ROI**. Fuera del boleto hasta nuevo aviso.
+
+Decisiones vigentes: **boleto de despliegue por casa retirado** (−EV por
+construcción, costó $291 en J5); toda apuesta pasa por `--require-clv`; sin
+empates; totals antes que 1X2. La quiniela no se toca.
+
+Esto encaja con el shrinkage de abajo: el pool no tiene habilidad detectable
+todavía (dispersión observada < la que produce la suerte), así que ni la tabla
+ni una jornada mala son evidencia de que el modelo esté roto.
+
 ### Habilidad del pool: shrinkage empírico-Bayes (medido, NO es un knob)
 
 El simulador proyecta la habilidad de cada jugador (`q_rate`, `e_rate`) sobre el

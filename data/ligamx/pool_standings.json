@@ -1,84 +1,84 @@
 {
-  "as_of": "2026-08-19",
+  "as_of": "2026-08-27",
   "you": "Claudio",
-  "matches_resolved": 18,
+  "matches_resolved": 27,
   "total_matches": 152,
   "total_participants": 15,
   "players": [
     {
       "name": "Arturo",
-      "points": 13,
+      "points": 20,
+      "exactos": 6
+    },
+    {
+      "name": "Bryan Montiel",
+      "points": 17,
       "exactos": 4
     },
     {
       "name": "Adrián",
-      "points": 11,
+      "points": 16,
+      "exactos": 4
+    },
+    {
+      "name": "JIMMYLARA",
+      "points": 16,
+      "exactos": 4
+    },
+    {
+      "name": "Juan Ramon Galvan",
+      "points": 15,
+      "exactos": 4
+    },
+    {
+      "name": "Aldo",
+      "points": 15,
       "exactos": 3
     },
     {
+      "name": "Juan Pablo",
+      "points": 15,
+      "exactos": 3
+    },
+    {
+      "name": "Yankee",
+      "points": 15,
+      "exactos": 2
+    },
+    {
       "name": "Innavoeg",
-      "points": 10,
+      "points": 14,
       "exactos": 1
     },
     {
       "name": "Bryan 2",
-      "points": 9,
-      "exactos": 1
+      "points": 13,
+      "exactos": 2
     },
     {
-      "name": "Bryan Montiel",
-      "points": 9,
-      "exactos": 1
-    },
-    {
-      "name": "JIMMYLARA",
-      "points": 9,
-      "exactos": 1
+      "name": "El inquisidor de Excel",
+      "points": 13,
+      "exactos": 2
     },
     {
       "name": "Alex villa",
-      "points": 8,
+      "points": 13,
+      "exactos": 1
+    },
+    {
+      "name": "Andrey",
+      "points": 12,
+      "exactos": 3
+    },
+    {
+      "name": "Claudio",
+      "points": 11,
       "exactos": 1
     },
     {
       "name": "Erika",
       "points": 8,
       "exactos": 1
-    },
-    {
-      "name": "Juan Pablo",
-      "points": 8,
-      "exactos": 1
-    },
-    {
-      "name": "Yankee",
-      "points": 8,
-      "exactos": 1
-    },
-    {
-      "name": "El inquisidor de Excel",
-      "points": 8,
-      "exactos": 0
-    },
-    {
-      "name": "Claudio",
-      "points": 6,
-      "exactos": 1
-    },
-    {
-      "name": "Aldo",
-      "points": 6,
-      "exactos": 0
-    },
-    {
-      "name": "Juan Ramon Galvan",
-      "points": 6,
-      "exactos": 0
-    },
-    {
-      "name": "Andrey",
-      "points": 3,
-      "exactos": 0
     }
   ]
 }
