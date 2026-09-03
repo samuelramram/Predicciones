@@ -1,84 +1,85 @@
 {
-  "as_of": "2026-08-19",
+  "as_of": "2026-09-03",
   "you": "Claudio",
-  "matches_resolved": 18,
+  "matches_resolved": 36,
   "total_matches": 152,
   "total_participants": 15,
   "players": [
     {
       "name": "Arturo",
-      "points": 13,
-      "exactos": 4
-    },
-    {
-      "name": "Adrián",
-      "points": 11,
-      "exactos": 3
+      "points": 24,
+      "exactos": 6
     },
     {
       "name": "Innavoeg",
-      "points": 10,
-      "exactos": 1
-    },
-    {
-      "name": "Bryan 2",
-      "points": 9,
-      "exactos": 1
+      "points": 23,
+      "exactos": 4
     },
     {
       "name": "Bryan Montiel",
-      "points": 9,
-      "exactos": 1
+      "points": 22,
+      "exactos": 5
     },
     {
       "name": "JIMMYLARA",
-      "points": 9,
-      "exactos": 1
-    },
-    {
-      "name": "Alex villa",
-      "points": 8,
-      "exactos": 1
-    },
-    {
-      "name": "Erika",
-      "points": 8,
-      "exactos": 1
-    },
-    {
-      "name": "Juan Pablo",
-      "points": 8,
-      "exactos": 1
+      "points": 20,
+      "exactos": 4
     },
     {
       "name": "Yankee",
-      "points": 8,
-      "exactos": 1
-    },
-    {
-      "name": "El inquisidor de Excel",
-      "points": 8,
-      "exactos": 0
-    },
-    {
-      "name": "Claudio",
-      "points": 6,
-      "exactos": 1
+      "points": 20,
+      "exactos": 3
     },
     {
       "name": "Aldo",
-      "points": 6,
-      "exactos": 0
+      "points": 19,
+      "exactos": 4
     },
     {
       "name": "Juan Ramon Galvan",
-      "points": 6,
-      "exactos": 0
+      "points": 19,
+      "exactos": 4
+    },
+    {
+      "name": "Bryan 2",
+      "points": 19,
+      "exactos": 3
+    },
+    {
+      "name": "Adrián",
+      "points": 18,
+      "exactos": 4
+    },
+    {
+      "name": "Juan Pablo",
+      "points": 18,
+      "exactos": 3
+    },
+    {
+      "name": "Alex villa",
+      "points": 17,
+      "exactos": 2
+    },
+    {
+      "name": "El inquisidor de Excel",
+      "points": 17,
+      "exactos": 2
+    },
+    {
+      "name": "Claudio",
+      "points": 16,
+      "exactos": 2
     },
     {
       "name": "Andrey",
-      "points": 3,
-      "exactos": 0
+      "points": 14,
+      "exactos": 3
+    },
+    {
+      "name": "Erika",
+      "points": 12,
+      "exactos": 2
     }
-  ]
+  ],
+  "note": "J5 sin export CSV: los totales acumulados vienen del leaderboard de la app (fuente de verdad); pool_picks.json solo tiene J3/J4/J6."
 }
