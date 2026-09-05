@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-03T18:47:53.022041Z",
+  "updated_at": "2026-09-05T01:31:36.065106Z",
   "entries": [
     {
       "round": "j3",
@@ -1542,9 +1542,9 @@
       "entry_book": "betway",
       "stake_mxn": 80.0,
       "logged_at": "2026-09-03T18:42:56.278340Z",
-      "close_fair_prob": null,
-      "close_price": null,
-      "closed_at": null,
+      "close_fair_prob": 0.2573,
+      "close_price": 3.9,
+      "closed_at": "2026-09-05T01:31:36.065008Z",
       "result": null,
       "profit_mxn": null
     },
@@ -1661,9 +1661,9 @@
       "entry_book": "caliente",
       "stake_mxn": 40.0,
       "logged_at": "2026-09-03T18:47:53.021982Z",
-      "close_fair_prob": null,
-      "close_price": null,
-      "closed_at": null,
+      "close_fair_prob": 0.2573,
+      "close_price": 3.9,
+      "closed_at": "2026-09-05T01:31:36.065008Z",
       "result": null,
       "profit_mxn": null
     }
