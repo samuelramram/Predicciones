@@ -1457,9 +1457,9 @@
       "entry_book": "betway",
       "stake_mxn": 80.0,
       "logged_at": "2026-09-03T18:42:56.278340Z",
-      "close_fair_prob": null,
-      "close_price": null,
-      "closed_at": null,
+      "close_fair_prob": 0.4342,
+      "close_price": 2.31,
+      "closed_at": "2026-09-11T01:30:51.614138Z",
       "result": null,
       "profit_mxn": null
     },
@@ -1477,8 +1477,8 @@
       "close_fair_prob": null,
       "close_price": null,
       "closed_at": null,
-      "result": null,
-      "profit_mxn": null
+      "result": "loss",
+      "profit_mxn": -80.0
     },
     {
       "round": "j7",
@@ -1491,11 +1491,11 @@
       "entry_book": "betway",
       "stake_mxn": 80.0,
       "logged_at": "2026-09-03T18:42:56.278340Z",
-      "close_fair_prob": null,
-      "close_price": null,
-      "closed_at": null,
-      "result": null,
-      "profit_mxn": null
+      "close_fair_prob": 0.2261,
+      "close_price": 4.5,
+      "closed_at": "2026-09-05T22:00:51.457552Z",
+      "result": "loss",
+      "profit_mxn": -80.0
     },
     {
       "round": "j7",
@@ -1508,11 +1508,11 @@
       "entry_book": "betway",
       "stake_mxn": 80.0,
       "logged_at": "2026-09-03T18:42:56.278340Z",
-      "close_fair_prob": null,
-      "close_price": null,
-      "closed_at": null,
-      "result": null,
-      "profit_mxn": null
+      "close_fair_prob": 0.5545,
+      "close_price": 1.78,
+      "closed_at": "2026-09-05T22:00:51.457552Z",
+      "result": "loss",
+      "profit_mxn": -80.0
     },
     {
       "round": "j7",
@@ -1525,11 +1525,11 @@
       "entry_book": "betway",
       "stake_mxn": 80.0,
       "logged_at": "2026-09-03T18:42:56.278340Z",
-      "close_fair_prob": null,
-      "close_price": null,
-      "closed_at": null,
-      "result": null,
-      "profit_mxn": null
+      "close_fair_prob": 0.2442,
+      "close_price": 4.15,
+      "closed_at": "2026-09-06T01:31:16.089019Z",
+      "result": "loss",
+      "profit_mxn": -80.0
     },
     {
       "round": "j7",
@@ -1542,11 +1542,11 @@
       "entry_book": "betway",
       "stake_mxn": 80.0,
       "logged_at": "2026-09-03T18:42:56.278340Z",
-      "close_fair_prob": null,
-      "close_price": null,
-      "closed_at": null,
-      "result": null,
-      "profit_mxn": null
+      "close_fair_prob": 0.2573,
+      "close_price": 3.9,
+      "closed_at": "2026-09-05T01:31:36.065008Z",
+      "result": "loss",
+      "profit_mxn": -80.0
     },
     {
       "round": "j7",
@@ -1562,8 +1562,8 @@
       "close_fair_prob": null,
       "close_price": null,
       "closed_at": null,
-      "result": null,
-      "profit_mxn": null
+      "result": "loss",
+      "profit_mxn": -80.0
     },
     {
       "round": "j7",
@@ -1576,11 +1576,11 @@
       "entry_book": "caliente",
       "stake_mxn": 80.0,
       "logged_at": "2026-09-03T18:47:53.021982Z",
-      "close_fair_prob": null,
-      "close_price": null,
-      "closed_at": null,
-      "result": null,
-      "profit_mxn": null
+      "close_fair_prob": 0.5019,
+      "close_price": 1.95,
+      "closed_at": "2026-09-06T01:31:16.089019Z",
+      "result": "win",
+      "profit_mxn": 80.0
     },
     {
       "round": "j7",
@@ -1593,11 +1593,11 @@
       "entry_book": "caliente",
       "stake_mxn": 80.0,
       "logged_at": "2026-09-03T18:47:53.021982Z",
-      "close_fair_prob": null,
-      "close_price": null,
-      "closed_at": null,
-      "result": null,
-      "profit_mxn": null
+      "close_fair_prob": 0.2261,
+      "close_price": 4.5,
+      "closed_at": "2026-09-05T22:00:51.457552Z",
+      "result": "loss",
+      "profit_mxn": -80.0
     },
     {
       "round": "j7",
@@ -1610,11 +1610,11 @@
       "entry_book": "caliente",
       "stake_mxn": 40.0,
       "logged_at": "2026-09-03T18:47:53.021982Z",
-      "close_fair_prob": null,
-      "close_price": null,
-      "closed_at": null,
-      "result": null,
-      "profit_mxn": null
+      "close_fair_prob": 0.5545,
+      "close_price": 1.78,
+      "closed_at": "2026-09-05T22:00:51.457552Z",
+      "result": "loss",
+      "profit_mxn": -40.0
     },
     {
       "round": "j7",
@@ -1627,11 +1627,11 @@
       "entry_book": "caliente",
       "stake_mxn": 40.0,
       "logged_at": "2026-09-03T18:47:53.021982Z",
-      "close_fair_prob": null,
-      "close_price": null,
-      "closed_at": null,
-      "result": null,
-      "profit_mxn": null
+      "close_fair_prob": 0.4407,
+      "close_price": 2.22,
+      "closed_at": "2026-09-05T22:00:51.457552Z",
+      "result": "loss",
+      "profit_mxn": -40.0
     },
     {
       "round": "j7",
@@ -1644,11 +1644,11 @@
       "entry_book": "caliente",
       "stake_mxn": 40.0,
       "logged_at": "2026-09-03T18:47:53.021982Z",
-      "close_fair_prob": null,
-      "close_price": null,
-      "closed_at": null,
-      "result": null,
-      "profit_mxn": null
+      "close_fair_prob": 0.2442,
+      "close_price": 4.15,
+      "closed_at": "2026-09-06T01:31:16.089019Z",
+      "result": "loss",
+      "profit_mxn": -40.0
     },
     {
       "round": "j7",
@@ -1661,11 +1661,11 @@
       "entry_book": "caliente",
       "stake_mxn": 40.0,
       "logged_at": "2026-09-03T18:47:53.021982Z",
-      "close_fair_prob": null,
-      "close_price": null,
-      "closed_at": null,
-      "result": null,
-      "profit_mxn": null
+      "close_fair_prob": 0.2573,
+      "close_price": 3.9,
+      "closed_at": "2026-09-05T01:31:36.065008Z",
+      "result": "loss",
+      "profit_mxn": -40.0
     },
     {
       "round": "j8",

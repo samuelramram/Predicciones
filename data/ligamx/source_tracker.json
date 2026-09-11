@@ -792,27 +792,33 @@
         "exact": "1-2",
         "p1": 0.267,
         "px": 0.273,
-        "p2": 0.459
+        "p2": 0.459,
+        "hit": true,
+        "points": 1
       },
       "blend": {
         "pick": "2",
         "exact": "1-2",
         "p1": 0.265,
         "px": 0.274,
-        "p2": 0.461
+        "p2": 0.461,
+        "hit": true,
+        "points": 1
       },
       "market": {
         "pick": "2",
         "p1": 0.2623,
         "px": 0.2748,
-        "p2": 0.4629
+        "p2": 0.4629,
+        "hit": true,
+        "points": 1
       },
       "congested_home": false,
       "congested_away": false,
       "logged_at": "2026-09-03T18:42:04.647920Z",
-      "result": null,
-      "home_score": null,
-      "away_score": null
+      "result": "2",
+      "home_score": 0,
+      "away_score": 2
     },
     {
       "round": "j7",
@@ -891,27 +897,33 @@
         "exact": "1-2",
         "p1": 0.311,
         "px": 0.282,
-        "p2": 0.406
+        "p2": 0.406,
+        "hit": true,
+        "points": 1
       },
       "blend": {
         "pick": "2",
         "exact": "1-2",
         "p1": 0.263,
         "px": 0.264,
-        "p2": 0.473
+        "p2": 0.473,
+        "hit": true,
+        "points": 1
       },
       "market": {
         "pick": "2",
         "p1": 0.2262,
         "px": 0.2464,
-        "p2": 0.5274
+        "p2": 0.5274,
+        "hit": true,
+        "points": 1
       },
       "congested_home": false,
       "congested_away": false,
       "logged_at": "2026-09-03T18:42:04.649179Z",
-      "result": null,
-      "home_score": null,
-      "away_score": null
+      "result": "2",
+      "home_score": 0,
+      "away_score": 3
     },
     {
       "round": "j7",
@@ -957,27 +969,33 @@
         "exact": "1-0",
         "p1": 0.406,
         "px": 0.301,
-        "p2": 0.294
+        "p2": 0.294,
+        "hit": false,
+        "points": 0
       },
       "blend": {
         "pick": "1",
         "exact": "1-0",
         "p1": 0.442,
         "px": 0.287,
-        "p2": 0.271
+        "p2": 0.271,
+        "hit": false,
+        "points": 0
       },
       "market": {
         "pick": "1",
         "p1": 0.4728,
         "px": 0.2751,
-        "p2": 0.2521
+        "p2": 0.2521,
+        "hit": false,
+        "points": 0
       },
       "congested_home": false,
       "congested_away": false,
       "logged_at": "2026-09-03T18:42:04.649867Z",
-      "result": null,
-      "home_score": null,
-      "away_score": null
+      "result": "X",
+      "home_score": 1,
+      "away_score": 1
     },
     {
       "round": "j7",
@@ -1023,27 +1041,33 @@
         "exact": "2-0",
         "p1": 0.656,
         "px": 0.214,
-        "p2": 0.13
+        "p2": 0.13,
+        "hit": false,
+        "points": 0
       },
       "blend": {
         "pick": "1",
         "exact": "2-0",
         "p1": 0.623,
         "px": 0.221,
-        "p2": 0.156
+        "p2": 0.156,
+        "hit": false,
+        "points": 0
       },
       "market": {
         "pick": "1",
         "p1": 0.5937,
         "px": 0.2261,
-        "p2": 0.1802
+        "p2": 0.1802,
+        "hit": false,
+        "points": 0
       },
       "congested_home": false,
       "congested_away": false,
       "logged_at": "2026-09-03T18:42:04.650751Z",
-      "result": null,
-      "home_score": null,
-      "away_score": null
+      "result": "X",
+      "home_score": 1,
+      "away_score": 1
     },
     {
       "round": "j7",
@@ -1056,27 +1080,33 @@
         "exact": "2-0",
         "p1": 0.838,
         "px": 0.115,
-        "p2": 0.048
+        "p2": 0.048,
+        "hit": false,
+        "points": 0
       },
       "blend": {
         "pick": "1",
         "exact": "2-0",
         "p1": 0.755,
         "px": 0.156,
-        "p2": 0.089
+        "p2": 0.089,
+        "hit": false,
+        "points": 0
       },
       "market": {
         "pick": "1",
         "p1": 0.6658,
         "px": 0.1922,
-        "p2": 0.142
+        "p2": 0.142,
+        "hit": false,
+        "points": 0
       },
       "congested_home": false,
       "congested_away": false,
       "logged_at": "2026-09-03T18:42:04.651436Z",
-      "result": null,
-      "home_score": null,
-      "away_score": null
+      "result": "X",
+      "home_score": 0,
+      "away_score": 0
     },
     {
       "round": "j8",
