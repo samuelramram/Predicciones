@@ -1,5 +1,5 @@
 {
-  "version": "2026.09.07",
+  "version": "2026.09.11",
   "league": "Liga MX",
   "season": "2026-2027",
   "sources": {
@@ -931,7 +931,7 @@
       "away": "Santos",
       "home_locked": true,
       "away_locked": true,
-      "home_score": 0,
+      "home_score": 1,
       "away_score": 0
     },
     {
@@ -957,14 +957,14 @@
       "jornada": 7,
       "round_label": "Jornada 7",
       "date": "2026-09-11",
-      "date_utc": "2026-09-11T03:00:00",
+      "date_utc": "2026-09-11T03:05:00",
       "venue": "Estadio Olímpico Universitario",
       "home": "Pumas",
       "away": "León",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 3,
+      "away_score": 1
     },
     {
       "match_id": "m_5028be7cd3",
@@ -1085,7 +1085,7 @@
       "jornada": 8,
       "round_label": "Jornada 8",
       "date": "2026-09-13",
-      "date_utc": "2026-09-13T03:00:00",
+      "date_utc": "2026-09-13T03:15:00",
       "venue": "Estadio Banorte",
       "home": "Cruz Azul",
       "away": "América",
@@ -1101,7 +1101,7 @@
       "jornada": 8,
       "round_label": "Jornada 8",
       "date": "2026-09-13",
-      "date_utc": "2026-09-13T01:00:00",
+      "date_utc": "2026-09-13T01:10:00",
       "venue": "Estadio BBVA",
       "home": "Monterrey",
       "away": "Tigres",
