@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-07T00:31:37.906158Z",
+  "updated_at": "2026-09-11T01:30:51.614220Z",
   "entries": [
     {
       "round": "j3",
@@ -1457,9 +1457,9 @@
       "entry_book": "betway",
       "stake_mxn": 80.0,
       "logged_at": "2026-09-03T18:42:56.278340Z",
-      "close_fair_prob": null,
-      "close_price": null,
-      "closed_at": null,
+      "close_fair_prob": 0.4342,
+      "close_price": 2.31,
+      "closed_at": "2026-09-11T01:30:51.614138Z",
       "result": null,
       "profit_mxn": null
     },
