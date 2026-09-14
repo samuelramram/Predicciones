@@ -1,5 +1,5 @@
 {
-  "version": "2026.09.11",
+  "version": "2026.09.14",
   "league": "Liga MX",
   "season": "2026-2027",
   "sources": {
@@ -109,7 +109,7 @@
       "jornada": 1,
       "round_label": "Jornada 1",
       "date": "2026-07-19",
-      "date_utc": "2026-07-19T01:07:00",
+      "date_utc": "2026-07-19T01:10:00",
       "venue": "Estadio Akron",
       "home": "Guadalajara",
       "away": "Toluca",
@@ -269,7 +269,7 @@
       "jornada": 2,
       "round_label": "Jornada 2",
       "date": "2026-07-26",
-      "date_utc": "2026-07-26T03:00:00",
+      "date_utc": "2026-07-26T03:10:00",
       "venue": "Estadio Universitario UANL",
       "home": "Tigres",
       "away": "San Luis",
@@ -301,7 +301,7 @@
       "jornada": 3,
       "round_label": "Jornada 3",
       "date": "2026-08-01",
-      "date_utc": "2026-08-01T03:00:00",
+      "date_utc": "2026-08-01T03:10:00",
       "venue": "Estadio Olímpico Benito Juárez",
       "home": "Juárez",
       "away": "Pumas",
@@ -541,7 +541,7 @@
       "jornada": 4,
       "round_label": "Jornada 4",
       "date": "2026-08-17",
-      "date_utc": "2026-08-17T03:00:00",
+      "date_utc": "2026-08-17T03:10:00",
       "venue": "Estadio Caliente",
       "home": "Tijuana",
       "away": "Cruz Azul",
@@ -581,22 +581,6 @@
       "away_locked": true,
       "home_score": 2,
       "away_score": 3
-    },
-    {
-      "match_id": "m_aa2023e433",
-      "tsdb_event_id": "2487490",
-      "stage": "regular",
-      "jornada": 5,
-      "round_label": "Jornada 5",
-      "date": "2026-08-22",
-      "date_utc": "2026-08-22T23:07:00",
-      "venue": "Estadio Akron",
-      "home": "Guadalajara",
-      "away": "Tijuana",
-      "home_locked": true,
-      "away_locked": true,
-      "home_score": 5,
-      "away_score": 2
     },
     {
       "match_id": "m_9133e6efd4",
@@ -679,6 +663,22 @@
       "away_score": 2
     },
     {
+      "match_id": "m_434a03f8c6",
+      "tsdb_event_id": "2487490",
+      "stage": "regular",
+      "jornada": 5,
+      "round_label": "Jornada 5",
+      "date": "2026-08-23",
+      "date_utc": "2026-08-23T01:30:00",
+      "venue": "Estadio Akron",
+      "home": "Guadalajara",
+      "away": "Tijuana",
+      "home_locked": true,
+      "away_locked": true,
+      "home_score": 5,
+      "away_score": 2
+    },
+    {
       "match_id": "m_c3133b13c1",
       "tsdb_event_id": "2487488",
       "stage": "regular",
@@ -733,7 +733,7 @@
       "jornada": 6,
       "round_label": "Jornada 6",
       "date": "2026-08-29",
-      "date_utc": "2026-08-29T01:00:00",
+      "date_utc": "2026-08-29T02:00:00",
       "venue": "Estadio Banorte",
       "home": "Atlante",
       "away": "León",
@@ -1027,8 +1027,8 @@
       "away": "Pachuca",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 0,
+      "away_score": 3
     },
     {
       "match_id": "m_587549ae53",
@@ -1043,8 +1043,8 @@
       "away": "Puebla",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 0,
+      "away_score": 1
     },
     {
       "match_id": "m_d2a4f271aa",
@@ -1053,14 +1053,14 @@
       "jornada": 8,
       "round_label": "Jornada 8",
       "date": "2026-09-12",
-      "date_utc": "2026-09-12T03:00:00",
+      "date_utc": "2026-09-12T03:10:00",
       "venue": "Estadio Caliente",
       "home": "Tijuana",
       "away": "Querétaro",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 0,
+      "away_score": 1
     },
     {
       "match_id": "m_d60115f8fc",
@@ -1069,14 +1069,14 @@
       "jornada": 8,
       "round_label": "Jornada 8",
       "date": "2026-09-12",
-      "date_utc": "2026-09-12T23:00:00",
+      "date_utc": "2026-09-12T23:05:00",
       "venue": "Estadio Nemesio Díez",
       "home": "Toluca",
       "away": "Atlas",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 5,
+      "away_score": 2
     },
     {
       "match_id": "m_03928aa882",
@@ -1091,8 +1091,8 @@
       "away": "América",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 4,
+      "away_score": 3
     },
     {
       "match_id": "m_381acf6674",
@@ -1107,8 +1107,8 @@
       "away": "Tigres",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 0,
+      "away_score": 0
     },
     {
       "match_id": "m_2d407a73bb",
@@ -1117,14 +1117,14 @@
       "jornada": 8,
       "round_label": "Jornada 8",
       "date": "2026-09-14",
-      "date_utc": "2026-09-14T01:07:00",
+      "date_utc": "2026-09-14T01:10:00",
       "venue": "Estadio Akron",
       "home": "Guadalajara",
       "away": "Pumas",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 3,
+      "away_score": 0
     },
     {
       "match_id": "m_146ee3bf23",
@@ -1133,14 +1133,14 @@
       "jornada": 8,
       "round_label": "Jornada 8",
       "date": "2026-09-14",
-      "date_utc": "2026-09-14T00:00:00",
+      "date_utc": "2026-09-14T01:00:00",
       "venue": "Estadio Corona",
       "home": "Santos",
       "away": "Juárez",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 2,
+      "away_score": 1
     },
     {
       "match_id": "m_07f92733ef",
@@ -2397,7 +2397,7 @@
       "jornada": 17,
       "round_label": "Jornada 17",
       "date": "2026-11-22",
-      "date_utc": "2026-11-22T23:07:00",
+      "date_utc": "2026-11-22T23:00:00",
       "venue": "Estadio Akron",
       "home": "Guadalajara",
       "away": "Cruz Azul",

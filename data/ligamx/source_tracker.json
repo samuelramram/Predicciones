@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-11T14:41:54.604613Z",
+  "updated_at": "2026-09-14T16:36:23.642785Z",
   "entries": [
     {
       "round": "j4",
@@ -792,27 +792,33 @@
         "exact": "1-2",
         "p1": 0.267,
         "px": 0.273,
-        "p2": 0.459
+        "p2": 0.459,
+        "hit": true,
+        "points": 1
       },
       "blend": {
         "pick": "2",
         "exact": "1-2",
         "p1": 0.265,
         "px": 0.274,
-        "p2": 0.461
+        "p2": 0.461,
+        "hit": true,
+        "points": 1
       },
       "market": {
         "pick": "2",
         "p1": 0.2623,
         "px": 0.2748,
-        "p2": 0.4629
+        "p2": 0.4629,
+        "hit": true,
+        "points": 1
       },
       "congested_home": false,
       "congested_away": false,
       "logged_at": "2026-09-03T18:42:04.647920Z",
-      "result": null,
-      "home_score": null,
-      "away_score": null
+      "result": "2",
+      "home_score": 0,
+      "away_score": 2
     },
     {
       "round": "j7",
@@ -891,27 +897,33 @@
         "exact": "1-2",
         "p1": 0.311,
         "px": 0.282,
-        "p2": 0.406
+        "p2": 0.406,
+        "hit": true,
+        "points": 1
       },
       "blend": {
         "pick": "2",
         "exact": "1-2",
         "p1": 0.263,
         "px": 0.264,
-        "p2": 0.473
+        "p2": 0.473,
+        "hit": true,
+        "points": 1
       },
       "market": {
         "pick": "2",
         "p1": 0.2262,
         "px": 0.2464,
-        "p2": 0.5274
+        "p2": 0.5274,
+        "hit": true,
+        "points": 1
       },
       "congested_home": false,
       "congested_away": false,
       "logged_at": "2026-09-03T18:42:04.649179Z",
-      "result": null,
-      "home_score": null,
-      "away_score": null
+      "result": "2",
+      "home_score": 0,
+      "away_score": 3
     },
     {
       "round": "j7",
@@ -957,27 +969,33 @@
         "exact": "1-0",
         "p1": 0.406,
         "px": 0.301,
-        "p2": 0.294
+        "p2": 0.294,
+        "hit": false,
+        "points": 0
       },
       "blend": {
         "pick": "1",
         "exact": "1-0",
         "p1": 0.442,
         "px": 0.287,
-        "p2": 0.271
+        "p2": 0.271,
+        "hit": false,
+        "points": 0
       },
       "market": {
         "pick": "1",
         "p1": 0.4728,
         "px": 0.2751,
-        "p2": 0.2521
+        "p2": 0.2521,
+        "hit": false,
+        "points": 0
       },
       "congested_home": false,
       "congested_away": false,
       "logged_at": "2026-09-03T18:42:04.649867Z",
-      "result": null,
-      "home_score": null,
-      "away_score": null
+      "result": "X",
+      "home_score": 1,
+      "away_score": 1
     },
     {
       "round": "j7",
@@ -990,27 +1008,33 @@
         "exact": "1-0",
         "p1": 0.631,
         "px": 0.23,
-        "p2": 0.14
+        "p2": 0.14,
+        "hit": true,
+        "points": 1
       },
       "blend": {
         "pick": "1",
         "exact": "1-0",
         "p1": 0.538,
         "px": 0.253,
-        "p2": 0.208
+        "p2": 0.208,
+        "hit": true,
+        "points": 1
       },
       "market": {
         "pick": "1",
         "p1": 0.4566,
         "px": 0.2651,
-        "p2": 0.2783
+        "p2": 0.2783,
+        "hit": true,
+        "points": 1
       },
       "congested_home": false,
       "congested_away": false,
       "logged_at": "2026-09-03T18:42:04.650223Z",
-      "result": null,
-      "home_score": null,
-      "away_score": null
+      "result": "1",
+      "home_score": 3,
+      "away_score": 1
     },
     {
       "round": "j7",
@@ -1023,27 +1047,33 @@
         "exact": "2-0",
         "p1": 0.656,
         "px": 0.214,
-        "p2": 0.13
+        "p2": 0.13,
+        "hit": false,
+        "points": 0
       },
       "blend": {
         "pick": "1",
         "exact": "2-0",
         "p1": 0.623,
         "px": 0.221,
-        "p2": 0.156
+        "p2": 0.156,
+        "hit": false,
+        "points": 0
       },
       "market": {
         "pick": "1",
         "p1": 0.5937,
         "px": 0.2261,
-        "p2": 0.1802
+        "p2": 0.1802,
+        "hit": false,
+        "points": 0
       },
       "congested_home": false,
       "congested_away": false,
       "logged_at": "2026-09-03T18:42:04.650751Z",
-      "result": null,
-      "home_score": null,
-      "away_score": null
+      "result": "X",
+      "home_score": 1,
+      "away_score": 1
     },
     {
       "round": "j7",
@@ -1056,27 +1086,33 @@
         "exact": "2-0",
         "p1": 0.838,
         "px": 0.115,
-        "p2": 0.048
+        "p2": 0.048,
+        "hit": true,
+        "points": 1
       },
       "blend": {
         "pick": "1",
         "exact": "2-0",
         "p1": 0.755,
         "px": 0.156,
-        "p2": 0.089
+        "p2": 0.089,
+        "hit": true,
+        "points": 1
       },
       "market": {
         "pick": "1",
         "p1": 0.6658,
         "px": 0.1922,
-        "p2": 0.142
+        "p2": 0.142,
+        "hit": true,
+        "points": 1
       },
       "congested_home": false,
       "congested_away": false,
       "logged_at": "2026-09-03T18:42:04.651436Z",
-      "result": null,
-      "home_score": null,
-      "away_score": null
+      "result": "1",
+      "home_score": 1,
+      "away_score": 0
     },
     {
       "round": "j8",
@@ -1089,27 +1125,33 @@
         "exact": "1-0",
         "p1": 0.385,
         "px": 0.307,
-        "p2": 0.308
+        "p2": 0.308,
+        "hit": false,
+        "points": 0
       },
       "blend": {
         "pick": "2",
         "exact": "0-1",
         "p1": 0.339,
         "px": 0.29,
-        "p2": 0.371
+        "p2": 0.371,
+        "hit": true,
+        "points": 1
       },
       "market": {
         "pick": "2",
         "p1": 0.3009,
         "px": 0.2729,
-        "p2": 0.4263
+        "p2": 0.4263,
+        "hit": true,
+        "points": 1
       },
       "congested_home": false,
       "congested_away": false,
       "logged_at": "2026-09-11T14:41:54.602316Z",
-      "result": null,
-      "home_score": null,
-      "away_score": null
+      "result": "2",
+      "home_score": 0,
+      "away_score": 3
     },
     {
       "round": "j8",
@@ -1122,27 +1164,33 @@
         "exact": "2-1",
         "p1": 0.602,
         "px": 0.232,
-        "p2": 0.166
+        "p2": 0.166,
+        "hit": false,
+        "points": 0
       },
       "blend": {
         "pick": "1",
         "exact": "2-1",
         "p1": 0.529,
         "px": 0.252,
-        "p2": 0.22
+        "p2": 0.22,
+        "hit": false,
+        "points": 0
       },
       "market": {
         "pick": "1",
         "p1": 0.4657,
         "px": 0.2634,
-        "p2": 0.2709
+        "p2": 0.2709,
+        "hit": false,
+        "points": 0
       },
       "congested_home": false,
       "congested_away": false,
       "logged_at": "2026-09-11T14:41:54.602661Z",
-      "result": null,
-      "home_score": null,
-      "away_score": null
+      "result": "2",
+      "home_score": 0,
+      "away_score": 1
     },
     {
       "round": "j8",
@@ -1155,27 +1203,33 @@
         "exact": "1-0",
         "p1": 0.571,
         "px": 0.253,
-        "p2": 0.176
+        "p2": 0.176,
+        "hit": false,
+        "points": 0
       },
       "blend": {
         "pick": "1",
         "exact": "1-0",
         "p1": 0.514,
         "px": 0.267,
-        "p2": 0.218
+        "p2": 0.218,
+        "hit": false,
+        "points": 0
       },
       "market": {
         "pick": "1",
         "p1": 0.4663,
         "px": 0.2769,
-        "p2": 0.2568
+        "p2": 0.2568,
+        "hit": false,
+        "points": 0
       },
       "congested_home": false,
       "congested_away": false,
       "logged_at": "2026-09-11T14:41:54.602959Z",
-      "result": null,
-      "home_score": null,
-      "away_score": null
+      "result": "2",
+      "home_score": 0,
+      "away_score": 1
     },
     {
       "round": "j8",
@@ -1188,27 +1242,33 @@
         "exact": "2-0",
         "p1": 0.745,
         "px": 0.174,
-        "p2": 0.081
+        "p2": 0.081,
+        "hit": true,
+        "points": 1
       },
       "blend": {
         "pick": "1",
         "exact": "2-0",
         "p1": 0.687,
         "px": 0.198,
-        "p2": 0.116
+        "p2": 0.116,
+        "hit": true,
+        "points": 1
       },
       "market": {
         "pick": "1",
         "p1": 0.6321,
         "px": 0.2159,
-        "p2": 0.1521
+        "p2": 0.1521,
+        "hit": true,
+        "points": 1
       },
       "congested_home": false,
       "congested_away": false,
       "logged_at": "2026-09-11T14:41:54.603289Z",
-      "result": null,
-      "home_score": null,
-      "away_score": null
+      "result": "1",
+      "home_score": 5,
+      "away_score": 2
     },
     {
       "round": "j8",
@@ -1221,27 +1281,33 @@
         "exact": "1-0",
         "p1": 0.441,
         "px": 0.292,
-        "p2": 0.267
+        "p2": 0.267,
+        "hit": true,
+        "points": 1
       },
       "blend": {
         "pick": "1",
         "exact": "1-0",
         "p1": 0.377,
         "px": 0.285,
-        "p2": 0.338
+        "p2": 0.338,
+        "hit": true,
+        "points": 1
       },
       "market": {
         "pick": "2",
         "p1": 0.3246,
         "px": 0.2738,
-        "p2": 0.4016
+        "p2": 0.4016,
+        "hit": false,
+        "points": 0
       },
       "congested_home": false,
       "congested_away": false,
       "logged_at": "2026-09-11T14:41:54.603511Z",
-      "result": null,
-      "home_score": null,
-      "away_score": null
+      "result": "1",
+      "home_score": 4,
+      "away_score": 3
     },
     {
       "round": "j8",
@@ -1254,27 +1320,33 @@
         "exact": "2-1",
         "p1": 0.391,
         "px": 0.281,
-        "p2": 0.329
+        "p2": 0.329,
+        "hit": false,
+        "points": 0
       },
       "blend": {
         "pick": "1",
         "exact": "2-1",
         "p1": 0.406,
         "px": 0.274,
-        "p2": 0.32
+        "p2": 0.32,
+        "hit": false,
+        "points": 0
       },
       "market": {
         "pick": "1",
         "p1": 0.4178,
         "px": 0.2691,
-        "p2": 0.313
+        "p2": 0.313,
+        "hit": false,
+        "points": 0
       },
       "congested_home": false,
       "congested_away": false,
       "logged_at": "2026-09-11T14:41:54.603775Z",
-      "result": null,
-      "home_score": null,
-      "away_score": null
+      "result": "X",
+      "home_score": 0,
+      "away_score": 0
     },
     {
       "round": "j8",
@@ -1287,27 +1359,33 @@
         "exact": "1-0",
         "p1": 0.506,
         "px": 0.275,
-        "p2": 0.219
+        "p2": 0.219,
+        "hit": true,
+        "points": 1
       },
       "blend": {
         "pick": "1",
         "exact": "1-0",
         "p1": 0.57,
         "px": 0.244,
-        "p2": 0.187
+        "p2": 0.187,
+        "hit": true,
+        "points": 1
       },
       "market": {
         "pick": "1",
         "p1": 0.6201,
         "px": 0.2183,
-        "p2": 0.1616
+        "p2": 0.1616,
+        "hit": true,
+        "points": 1
       },
       "congested_home": false,
       "congested_away": false,
       "logged_at": "2026-09-11T14:41:54.604075Z",
-      "result": null,
-      "home_score": null,
-      "away_score": null
+      "result": "1",
+      "home_score": 3,
+      "away_score": 0
     },
     {
       "round": "j8",
@@ -1320,27 +1398,33 @@
         "exact": "2-1",
         "p1": 0.425,
         "px": 0.273,
-        "p2": 0.302
+        "p2": 0.302,
+        "hit": true,
+        "points": 2
       },
       "blend": {
         "pick": "1",
         "exact": "2-1",
         "p1": 0.449,
         "px": 0.262,
-        "p2": 0.289
+        "p2": 0.289,
+        "hit": true,
+        "points": 2
       },
       "market": {
         "pick": "1",
         "p1": 0.4695,
         "px": 0.2529,
-        "p2": 0.2777
+        "p2": 0.2777,
+        "hit": true,
+        "points": 1
       },
       "congested_home": false,
       "congested_away": false,
       "logged_at": "2026-09-11T14:41:54.604345Z",
-      "result": null,
-      "home_score": null,
-      "away_score": null
+      "result": "1",
+      "home_score": 2,
+      "away_score": 1
     },
     {
       "round": "j8",
