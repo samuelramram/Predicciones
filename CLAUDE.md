@@ -40,7 +40,8 @@ python -m wc_predictor.pipeline.ligamx picks --round quarter_final
 
 # 3d) Proyección del torneo (Monte-Carlo): simula el resto de la temporada →
 #     tabla final → siembra → bracket, y da P(cada equipo llega a liguilla,
-#     semis, final, campeón). Útil desde ya para ver rumbo.
+#     semis, final, campeón). CÓRRELA SIEMPRE que generes picks y entrégasela
+#     al usuario sin que la pida (ver "Regla de interacción" más abajo).
 python -m wc_predictor.pipeline.ligamx liguilla --sims 10000
 
 # 3b) Picks optimizados para P(quedar 1.º) — requiere pool_standings.json
@@ -156,6 +157,26 @@ Dos guardas relacionadas en `pool_optimizer`:
   exactos NO se activa (rankear por P(exacto) sola tira el punto del 1X2). En J4
   ese camino cambió 4 favoritos a 1-1: **0 puntos ganados, 1 perdido.**
 - Un swap que de verdad mueve el premio sigue pasando por la rama `better`.
+
+### Regla de interacción: proyección de campeonato con CADA boleto
+
+**Siempre que generes picks de Liga MX, corre también la proyección del torneo y
+entrégasela al usuario en la misma respuesta** — no esperes a que la pida:
+
+```bash
+python -m wc_predictor.pipeline.ligamx liguilla --sims 10000
+```
+
+Da, por equipo, P(llegar a liguilla / semis / final / campeón) simulando el resto
+del rol regular → tabla final → siembra → bracket. Córrela DESPUÉS del `fit`, para
+que use el Elo y las fuerzas recién refiteadas. Publica
+`outputs/ligamx_liguilla.html` como Artifact junto con el de los picks (el usuario
+no lee bien el markdown de GitHub).
+
+Al reportarla, di **de cuántos partidos jugados sale la tabla y cuántos se
+simulan** (`68 jugados, 85 restantes`): con medio torneo por delante las
+probabilidades se mueven fuerte jornada a jornada, y presentarlas sin ese
+denominador las hace sonar más firmes de lo que son.
 
 ### Regla de interacción: apuestas por casa (cada jornada)
 
