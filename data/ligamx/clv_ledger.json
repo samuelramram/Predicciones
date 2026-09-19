@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-14T16:35:58.596864Z",
+  "updated_at": "2026-09-19T00:58:52.950456Z",
   "entries": [
     {
       "round": "j3",
@@ -1817,8 +1817,8 @@
       "close_fair_prob": null,
       "close_price": null,
       "closed_at": null,
-      "result": null,
-      "profit_mxn": null
+      "result": "loss",
+      "profit_mxn": -50.0
     },
     {
       "round": "j8",
