@@ -48,7 +48,13 @@ python -m wc_predictor.pipeline.ligamx liguilla --sims 10000
 #     (ingiere primero los exports de la app; sin ellos degrada a EV)
 #     --start-round 3: el pool puntúa desde J3 (J1-J2 no cuentan); --liguilla-matches
 #     ancla el horizonte real (regular + liguilla), no el calendario completo.
-python -m wc_predictor.ingest.ligamx_pool data/ligamx/pool_exports/*j*.csv --you Samuel \
+#     --you Claudio: es el HANDLE del usuario DENTRO del pool, no su nombre. Si
+#     no coincide con ningún jugador del leaderboard, el optimizador se queda sin
+#     tu fila y el objetivo degrada en silencio.
+#     Las filas exportadas como "Pendiente" se re-puntúan solas contra el
+#     resultado final de fixtures.json (el export es un snapshot y nunca se
+#     actualiza; sin eso el leaderboard queda corto — J9 midió 36 vs 39 reales).
+python -m wc_predictor.ingest.ligamx_pool data/ligamx/pool_exports/*j*.csv --you Claudio \
     --start-round 3 --liguilla-matches 17
 python -m wc_predictor.pipeline.ligamx picks --round j2 --objective pool
 

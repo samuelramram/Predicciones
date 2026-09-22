@@ -1052,12 +1052,12 @@ m_90657a9223,2026-08-17,Santos,Guadalajara,0,1,False,Liga MX Apertura 2026,Estad
 m_2cb8e7fd18,2026-08-17,Tijuana,Cruz Azul,2,1,False,Liga MX Apertura 2026,Estadio Caliente,Mexico,4,regular
 m_d1ac53a2c8,2026-08-18,Necaxa,León,1,2,False,Liga MX Apertura 2026,Estadio Victoria,Mexico,4,regular
 m_e2eb63e91f,2026-08-18,Pachuca,Puebla,2,3,False,Liga MX Apertura 2026,Estadio Hidalgo,Mexico,4,regular
+m_aa2023e433,2026-08-22,Guadalajara,Tijuana,5,2,False,Liga MX Apertura 2026,Estadio Akron,Mexico,5,regular
 m_9133e6efd4,2026-08-22,Juárez,América,1,2,False,Liga MX Apertura 2026,Estadio Olímpico Benito Juárez,Mexico,5,regular
 m_7590c8e693,2026-08-22,León,Monterrey,2,0,False,Liga MX Apertura 2026,Estadio León,Mexico,5,regular
 m_f678654d61,2026-08-22,Querétaro,Toluca,1,2,False,Liga MX Apertura 2026,Estadio La Corregidora,Mexico,5,regular
 m_ee20d1974d,2026-08-22,Tigres,Atlante,2,0,False,Liga MX Apertura 2026,Estadio Universitario UANL,Mexico,5,regular
 m_ce84577e2b,2026-08-23,Cruz Azul,Atlas,0,2,False,Liga MX Apertura 2026,Estadio Banorte,Mexico,5,regular
-m_434a03f8c6,2026-08-23,Guadalajara,Tijuana,5,2,False,Liga MX Apertura 2026,Estadio Akron,Mexico,5,regular
 m_c3133b13c1,2026-08-23,Puebla,Santos,3,2,False,Liga MX Apertura 2026,Estadio Cuauhtémoc,Mexico,5,regular
 m_9d6ceb3ad4,2026-08-23,San Luis,Pachuca,1,1,False,Liga MX Apertura 2026,Estadio Alfonso Lastras Ramírez,Mexico,5,regular
 m_504743a4f8,2026-08-24,Pumas,Necaxa,1,1,False,Liga MX Apertura 2026,Estadio Olímpico Universitario,Mexico,5,regular
@@ -1084,3 +1084,14 @@ m_03928aa882,2026-09-13,Cruz Azul,América,4,3,False,Liga MX Apertura 2026,Estad
 m_381acf6674,2026-09-13,Monterrey,Tigres,0,0,False,Liga MX Apertura 2026,Estadio BBVA,Mexico,8,regular
 m_2d407a73bb,2026-09-14,Guadalajara,Pumas,3,0,False,Liga MX Apertura 2026,Estadio Akron,Mexico,8,regular
 m_146ee3bf23,2026-09-14,Santos,Juárez,2,1,False,Liga MX Apertura 2026,Estadio Corona,Mexico,8,regular
+m_07f92733ef,2026-09-15,León,San Luis,2,0,False,Liga MX Apertura 2026,Estadio León,Mexico,8,regular
+m_5028be7cd3,2026-09-16,Puebla,Toluca,0,1,False,Liga MX Apertura 2026,Estadio Cuauhtémoc,Mexico,7,regular
+m_3d3501081e,2026-09-19,Atlas,Pumas,1,1,False,Liga MX Apertura 2026,Estadio Jalisco,Mexico,9,regular
+m_010e87802f,2026-09-19,Juárez,Tigres,2,0,False,Liga MX Apertura 2026,Estadio Olímpico Benito Juárez,Mexico,9,regular
+m_a1ad6a7c34,2026-09-19,Puebla,Atlante,1,1,False,Liga MX Apertura 2026,Estadio Cuauhtémoc,Mexico,9,regular
+m_bb9f5457c3,2026-09-19,San Luis,Necaxa,3,1,False,Liga MX Apertura 2026,Estadio Alfonso Lastras Ramírez,Mexico,9,regular
+m_b8cf3c5cd4,2026-09-20,América,Guadalajara,2,2,False,Liga MX Apertura 2026,Estadio Banorte,Mexico,9,regular
+m_84014a03e9,2026-09-20,Monterrey,Cruz Azul,1,0,False,Liga MX Apertura 2026,Estadio BBVA,Mexico,9,regular
+m_78e27afdfb,2026-09-21,Pachuca,Tijuana,2,2,False,Liga MX Apertura 2026,Estadio Hidalgo,Mexico,9,regular
+m_86ece72173,2026-09-21,Querétaro,León,1,1,False,Liga MX Apertura 2026,Estadio La Corregidora,Mexico,9,regular
+m_046445deb7,2026-09-21,Toluca,Santos,2,3,False,Liga MX Apertura 2026,Estadio Nemesio Díez,Mexico,9,regular
