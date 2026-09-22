@@ -11,8 +11,10 @@ from wc_predictor.ingest.ligamx_pool import (
     pool_total_matches,
     resolve_team,
     round_from_filename,
+    score_pick,
     _name_resolver,
 )
+from wc_predictor.leagues import LIGAMX_APERTURA_PROFILE
 from wc_predictor.pipeline.ligamx import FIXTURES_JSON
 
 
@@ -99,6 +101,55 @@ def test_parse_export_orients_to_fixture(tmp_path):
     # "away vs home = 1-2" reversed to fixture orientation → home 2, away 1.
     assert rd["picks"]["Samuel"][fx["match_id"]] == "2-1"
     assert rd["points"]["Samuel"][fx["match_id"]] == 3
+
+
+def test_score_pick_is_exclusive():
+    rules = LIGAMX_APERTURA_PROFILE.rules
+    assert score_pick((2, 1), (2, 1), rules) == 2     # exact
+    assert score_pick((3, 1), (2, 1), rules) == 1     # right 1X2, wrong score
+    assert score_pick((1, 1), (2, 1), rules) == 0     # wrong 1X2
+    assert score_pick((0, 0), (1, 1), rules) == 1     # draw is a draw
+
+
+def test_parse_export_backfills_rows_exported_as_pending(tmp_path):
+    """Regression: a row exported BEFORE its match kicked off reads 'Pendiente'
+    forever, but the result lands in fixtures.json later. Skipping those rows
+    undercounted every player — measured on J9, where the app had the leader on
+    39 points and the exports summed to 36."""
+    doc = json.loads(FIXTURES_JSON.read_text(encoding="utf-8"))
+    fx = next(m for m in doc["matches"]
+              if m.get("jornada") == 1 and m.get("home_score") not in (None, m.get("away_score")))
+    home, away, hs, aws = fx["home"], fx["away"], fx["home_score"], fx["away_score"]
+
+    csv_path = tmp_path / "pool_j1.csv"
+    csv_path.write_text(
+        "Usuario,Partido,Predicción,Resultado Real,Puntos\n"
+        # Exact score, exported while still pending → must score 2.
+        f"Acertado,{home} vs {away},{hs}-{aws},Pendiente,-\n"
+        # Same goals, wrong way round: it was not a draw, so this is the losing
+        # side → 0. Proves the backfill scores the row instead of rubber-stamping.
+        f"Fallado,{home} vs {away},{aws}-{hs},Pendiente,-\n",
+        encoding="utf-8",
+    )
+    rd = parse_export(csv_path, _name_resolver())
+    mid = fx["match_id"]
+    assert rd["points"]["Acertado"][mid] == 2
+    assert rd["points"]["Fallado"][mid] == 0
+
+
+def test_parse_export_leaves_unplayed_matches_pending(tmp_path):
+    """The backfill must not invent points for a match that has not been played
+    (Liga MX reschedules fixtures — J7 had two pushed to November)."""
+    doc = json.loads(FIXTURES_JSON.read_text(encoding="utf-8"))
+    fx = next(m for m in doc["matches"] if m.get("home_score") is None)
+    csv_path = tmp_path / f"pool_j{fx['jornada']}.csv"
+    csv_path.write_text(
+        "Usuario,Partido,Predicción,Resultado Real,Puntos\n"
+        f"Samuel,{fx['home']} vs {fx['away']},1-0,Pendiente,-\n",
+        encoding="utf-8",
+    )
+    rd = parse_export(csv_path, _name_resolver())
+    assert rd["points"]["Samuel"][fx["match_id"]] is None
 
 
 # ------------------------------------------------- empirical-Bayes shrinkage ---

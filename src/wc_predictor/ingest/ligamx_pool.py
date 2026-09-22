@@ -12,7 +12,12 @@ Export columns (same Lovable app as the WC):
 - `Partido` is "Local vs Visitante" in app display order (may be flipped vs
   fixtures.json). Team names are resolved to the canonical `name_es` via
   teams.json (accepts full name, name_es or short).
-- `Puntos` is the app's own scoring (2 exact / 1 result / 0).
+- `Puntos` is the app's own scoring (2 exact / 1 result / 0). A row exported
+  BEFORE its match was settled reads "Pendiente" / "-", and that snapshot never
+  updates — but the result usually lands in fixtures.json later. Those rows are
+  re-scored here against the final score (same exclusive rules), otherwise the
+  leaderboard silently undercounts every match that kicked off after the export
+  was downloaded. (Measured on J9: the app had Arturo on 39, the exports on 36.)
 
 Round is inferred from the filename (`j1`..`j17`).
 
@@ -32,6 +37,7 @@ import re
 from datetime import date
 from pathlib import Path
 
+from wc_predictor.leagues import LIGAMX_APERTURA_PROFILE
 from wc_predictor.pipeline.ligamx import FIXTURES_JSON, TEAMS_JSON, POOL_PICKS_JSON, POOL_STANDINGS_JSON
 
 
@@ -67,6 +73,23 @@ def _parse_score(txt: str) -> tuple[int, int] | None:
     return int(h.strip()), int(a.strip())
 
 
+def _final_score(fx: dict) -> tuple[int, int] | None:
+    """Final 90' score of a fixture, or None while it is unplayed."""
+    h, a = fx.get("home_score"), fx.get("away_score")
+    return None if h is None or a is None else (int(h), int(a))
+
+
+def score_pick(pred: tuple[int, int], final: tuple[int, int], rules) -> int:
+    """Pool points for one pick, mutually exclusive (exact beats 1X2)."""
+    if pred == final:
+        return rules.points_exact
+
+    def sign(h: int, a: int) -> int:
+        return (h > a) - (h < a)
+
+    return rules.points_1x2 if sign(*pred) == sign(*final) else 0
+
+
 def _fixture_index(jornada: int) -> dict[frozenset, dict]:
     doc = json.loads(FIXTURES_JSON.read_text(encoding="utf-8"))
     return {frozenset((m["home"], m["away"])): m
@@ -81,6 +104,7 @@ def parse_export(path: Path, resolver: dict[str, str]) -> dict:
     picks: dict[str, dict[str, str]] = {}
     points: dict[str, dict[str, int | None]] = {}
     unmatched: set[str] = set()
+    backfilled: set[str] = set()
 
     with path.open(encoding="utf-8-sig") as f:
         for row in csv.DictReader(f):
@@ -98,12 +122,20 @@ def parse_export(path: Path, resolver: dict[str, str]) -> dict:
             player = row["Usuario"].strip()
             pts_txt = (row.get("Puntos") or "").strip()
             pts = int(pts_txt) if pts_txt.lstrip("-").isdigit() else None
+            if pts is None and pred is not None:
+                final = _final_score(fx)
+                if final is not None:
+                    pts = score_pick(pred, final, LIGAMX_APERTURA_PROFILE.rules)
+                    backfilled.add(mid)
             if pred is not None:
                 picks.setdefault(player, {})[mid] = f"{pred[0]}-{pred[1]}"
             points.setdefault(player, {})[mid] = pts
 
     if unmatched:
         print(f"  WARNING [{path.name}]: sin fixture para: {sorted(unmatched)}")
+    if backfilled:
+        print(f"  [{path.name}]: {len(backfilled)} partido(s) exportados como "
+              f"'Pendiente' re-puntuados con el resultado final")
     return {"jornada": jornada, "picks": picks, "points": points}
 
 

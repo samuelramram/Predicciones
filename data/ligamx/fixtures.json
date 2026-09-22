@@ -1,5 +1,5 @@
 {
-  "version": "2026.09.19",
+  "version": "2026.09.22",
   "league": "Liga MX",
   "season": "2026-2027",
   "sources": {
@@ -989,7 +989,7 @@
       "jornada": 7,
       "round_label": "Jornada 7",
       "date": "2026-10-29",
-      "date_utc": "2026-10-29T02:00:00",
+      "date_utc": "2026-10-29T03:00:00",
       "venue": "Estadio Banorte",
       "home": "América",
       "away": "Tijuana",
@@ -1005,7 +1005,7 @@
       "jornada": 7,
       "round_label": "Jornada 7",
       "date": "2026-11-14",
-      "date_utc": "2026-11-14T22:00:00",
+      "date_utc": "2026-11-14T23:00:00",
       "venue": "Estadio La Corregidora",
       "home": "Querétaro",
       "away": "Monterrey",
@@ -1171,8 +1171,8 @@
       "away": "Pumas",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 1,
+      "away_score": 1
     },
     {
       "match_id": "m_010e87802f",
@@ -1187,8 +1187,8 @@
       "away": "Tigres",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 2,
+      "away_score": 0
     },
     {
       "match_id": "m_a1ad6a7c34",
@@ -1203,8 +1203,8 @@
       "away": "Atlante",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 1,
+      "away_score": 1
     },
     {
       "match_id": "m_bb9f5457c3",
@@ -1219,8 +1219,8 @@
       "away": "Necaxa",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 3,
+      "away_score": 1
     },
     {
       "match_id": "m_b8cf3c5cd4",
@@ -1229,14 +1229,14 @@
       "jornada": 9,
       "round_label": "Jornada 9",
       "date": "2026-09-20",
-      "date_utc": "2026-09-20T03:15:00",
+      "date_utc": "2026-09-20T03:25:00",
       "venue": "Estadio Banorte",
       "home": "América",
       "away": "Guadalajara",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 2,
+      "away_score": 2
     },
     {
       "match_id": "m_84014a03e9",
@@ -1251,8 +1251,8 @@
       "away": "Cruz Azul",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 1,
+      "away_score": 0
     },
     {
       "match_id": "m_78e27afdfb",
@@ -1267,8 +1267,8 @@
       "away": "Tijuana",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 2,
+      "away_score": 2
     },
     {
       "match_id": "m_86ece72173",
@@ -1283,8 +1283,8 @@
       "away": "León",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 1,
+      "away_score": 1
     },
     {
       "match_id": "m_046445deb7",
@@ -1299,8 +1299,8 @@
       "away": "Santos",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 2,
+      "away_score": 3
     },
     {
       "match_id": "m_5d6ef38ac5",
