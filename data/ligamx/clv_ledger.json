@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-25T23:28:46.832310Z",
+  "updated_at": "2026-09-28T03:07:57.385194Z",
   "entries": [
     {
       "round": "j3",
@@ -1970,8 +1970,8 @@
       "close_fair_prob": null,
       "close_price": null,
       "closed_at": null,
-      "result": null,
-      "profit_mxn": null
+      "result": "loss",
+      "profit_mxn": -40.0
     },
     {
       "round": "j10",
@@ -1987,8 +1987,8 @@
       "close_fair_prob": null,
       "close_price": null,
       "closed_at": null,
-      "result": null,
-      "profit_mxn": null
+      "result": "loss",
+      "profit_mxn": -20.0
     },
     {
       "round": "j10",
@@ -2004,8 +2004,8 @@
       "close_fair_prob": null,
       "close_price": null,
       "closed_at": null,
-      "result": null,
-      "profit_mxn": null
+      "result": "loss",
+      "profit_mxn": -20.0
     },
     {
       "round": "j10",
@@ -2021,8 +2021,8 @@
       "close_fair_prob": null,
       "close_price": null,
       "closed_at": null,
-      "result": null,
-      "profit_mxn": null
+      "result": "win",
+      "profit_mxn": 10.6
     },
     {
       "round": "j10",
@@ -2038,8 +2038,8 @@
       "close_fair_prob": null,
       "close_price": null,
       "closed_at": null,
-      "result": null,
-      "profit_mxn": null
+      "result": "loss",
+      "profit_mxn": -20.0
     },
     {
       "round": "j10",
@@ -2055,8 +2055,8 @@
       "close_fair_prob": null,
       "close_price": null,
       "closed_at": null,
-      "result": null,
-      "profit_mxn": null
+      "result": "win",
+      "profit_mxn": 42.0
     },
     {
       "round": "j10",
@@ -2072,8 +2072,8 @@
       "close_fair_prob": null,
       "close_price": null,
       "closed_at": null,
-      "result": null,
-      "profit_mxn": null
+      "result": "loss",
+      "profit_mxn": -20.0
     },
     {
       "round": "j10",
@@ -2106,8 +2106,8 @@
       "close_fair_prob": null,
       "close_price": null,
       "closed_at": null,
-      "result": null,
-      "profit_mxn": null
+      "result": "loss",
+      "profit_mxn": -20.0
     }
   ]
 }
