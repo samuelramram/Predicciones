@@ -1443,8 +1443,8 @@
       "away": "América",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 2,
+      "away_score": 4
     },
     {
       "match_id": "m_ad8d9580eb",

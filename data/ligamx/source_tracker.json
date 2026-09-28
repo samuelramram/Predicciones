@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-28T03:08:31.381539Z",
+  "updated_at": "2026-09-28T09:12:14.171180Z",
   "entries": [
     {
       "round": "j4",
@@ -2145,27 +2145,33 @@
         "exact": "1-2",
         "p1": 0.206,
         "px": 0.26,
-        "p2": 0.535
+        "p2": 0.535,
+        "hit": true,
+        "points": 1
       },
       "blend": {
         "pick": "2",
         "exact": "1-2",
         "p1": 0.231,
         "px": 0.257,
-        "p2": 0.512
+        "p2": 0.512,
+        "hit": true,
+        "points": 1
       },
       "market": {
         "pick": "2",
         "p1": 0.2532,
         "px": 0.2544,
-        "p2": 0.4923
+        "p2": 0.4923,
+        "hit": true,
+        "points": 1
       },
       "congested_home": false,
       "congested_away": false,
       "logged_at": "2026-09-22T20:07:22.113703Z",
-      "result": null,
-      "home_score": null,
-      "away_score": null
+      "result": "2",
+      "home_score": 2,
+      "away_score": 4
     }
   ]
 }
