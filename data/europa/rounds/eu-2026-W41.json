@@ -19,12 +19,12 @@
     "E0": [
       "Man City",
       "Arsenal",
-      "Brighton"
+      "Liverpool"
     ],
     "I1": [
       "Inter",
       "Roma",
-      "Como"
+      "Napoli"
     ]
   },
   "matches": [
@@ -2361,7 +2361,7 @@
       "date": "2026-10-10",
       "home": "Sunderland",
       "away": "Brighton",
-      "top": true,
+      "top": false,
       "market": {
         "p1x2": [
           0.32,
@@ -2831,7 +2831,7 @@
       "date": "2026-10-10",
       "home": "Napoli",
       "away": "Frosinone",
-      "top": false,
+      "top": true,
       "market": {
         "p1x2": [
           0.655,
