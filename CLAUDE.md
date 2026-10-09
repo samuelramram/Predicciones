@@ -152,7 +152,14 @@ de mercado es **0.9**, medido en `europa_backtest`. Las props de jugadores son f
 python -m wc_predictor.ingest.europa_fd                 # refresca data/europa/matches.csv
 python -m wc_predictor.pipeline.europa_backtest         # walk-forward 5 ligas (~10 min)
 python -m wc_predictor.pipeline.europa_live --seal      # boletos de los bots de la jornada
+python -m wc_predictor.liga.notario --round eu-2026-W41 --picks "2-1, 0-2, -, 1-3"   # boleto de Samuel
+python -m wc_predictor.liga.arbitro                     # tabla: mano a mano con z + bots
 ```
+
+**Boleto de Samuel = los partidos NUMERADOS del `.md` de la jornada**, en ese orden.
+El Notario rechaza partidos ya empezados (hora UTC) o ya sellados; Samuel puede mandar
+en tandas (`eu-…/2`, `/3`). En el VPS la liga vive en `$LIGA_HOME` y la opera Claudio
+(OpenClaw) con las skills de `deploy/vps/` — ver `deploy/vps/README.md`.
 
 ### Calibración: qué se probó y por qué NO se cambió (disciplina)
 

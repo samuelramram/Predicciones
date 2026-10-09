@@ -1,0 +1,6 @@
+[Unit]
+Description=Liga: sincroniza repo, fixtures y respaldo del libro
+
+[Service]
+Type=oneshot
+ExecStart=%h/bin/liga-sync.sh
