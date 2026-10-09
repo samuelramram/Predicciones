@@ -1,0 +1,3346 @@
+{
+  "generated": "2026-10-09",
+  "top3": {
+    "D1": [
+      "Bayern Munich",
+      "Dortmund",
+      "Leverkusen"
+    ],
+    "F1": [
+      "Paris SG",
+      "Monaco",
+      "Lyon"
+    ],
+    "SP1": [
+      "Barcelona",
+      "Real Madrid",
+      "Ath Madrid"
+    ],
+    "E0": [
+      "Man City",
+      "Arsenal",
+      "Liverpool"
+    ],
+    "I1": [
+      "Inter",
+      "Roma",
+      "Napoli"
+    ]
+  },
+  "matches": [
+    {
+      "league": "D1",
+      "date": "2026-10-09",
+      "home": "Dortmund",
+      "away": "Werder Bremen",
+      "top": true,
+      "market": {
+        "p1x2": [
+          0.715,
+          0.169,
+          0.116
+        ],
+        "p_over25": 0.6851,
+        "ah_line": -1.5
+      },
+      "bots": {
+        "estadistico": {
+          "pick_1x2": "1",
+          "pick_exact": "2-0",
+          "p1x2": [
+            0.767,
+            0.154,
+            0.079
+          ],
+          "p_over25": 0.684,
+          "p_btts": 0.557,
+          "value_bets": [
+            {
+              "market": "1x2",
+              "side": "1",
+              "price": 1.32,
+              "edge": 0.013
+            }
+          ]
+        },
+        "calibrado": {
+          "pick_1x2": "1",
+          "pick_exact": "2-0",
+          "p1x2": [
+            0.721,
+            0.168,
+            0.112
+          ],
+          "p_over25": 0.685,
+          "p_btts": 0.575,
+          "value_bets": []
+        },
+        "borrego": {
+          "pick_1x2": "1",
+          "pick_exact": "2-0",
+          "p1x2": [
+            0.715,
+            0.169,
+            0.116
+          ],
+          "p_over25": 0.685,
+          "p_btts": 0.577,
+          "value_bets": []
+        }
+      }
+    },
+    {
+      "league": "D1",
+      "date": "2026-10-10",
+      "home": "Augsburg",
+      "away": "Bayern Munich",
+      "top": true,
+      "market": {
+        "p1x2": [
+          0.085,
+          0.116,
+          0.8
+        ],
+        "p_over25": 0.829,
+        "ah_line": 2.25
+      },
+      "bots": {
+        "estadistico": {
+          "pick_1x2": "2",
+          "pick_exact": "1-2",
+          "p1x2": [
+            0.091,
+            0.162,
+            0.748
+          ],
+          "p_over25": 0.738,
+          "p_btts": 0.611,
+          "value_bets": [
+            {
+              "market": "1x2",
+              "side": "X",
+              "price": 8.1,
+              "edge": 0.308
+            },
+            {
+              "market": "ou25",
+              "side": "under2.5",
+              "price": 5.48,
+              "edge": 0.435
+            },
+            {
+              "market": "ah",
+              "side": "home +2.25",
+              "price": 1.93,
+              "edge": 0.175
+            }
+          ]
+        },
+        "calibrado": {
+          "pick_1x2": "2",
+          "pick_exact": "1-3",
+          "p1x2": [
+            0.084,
+            0.117,
+            0.799
+          ],
+          "p_over25": 0.828,
+          "p_btts": 0.651,
+          "value_bets": [
+            {
+              "market": "ah",
+              "side": "home +2.25",
+              "price": 1.93,
+              "edge": 0.005
+            }
+          ]
+        },
+        "borrego": {
+          "pick_1x2": "2",
+          "pick_exact": "1-3",
+          "p1x2": [
+            0.085,
+            0.116,
+            0.8
+          ],
+          "p_over25": 0.829,
+          "p_btts": 0.656,
+          "value_bets": []
+        }
+      }
+    },
+    {
+      "league": "D1",
+      "date": "2026-10-10",
+      "home": "Hoffenheim",
+      "away": "Hamburg",
+      "top": false,
+      "market": {
+        "p1x2": [
+          0.665,
+          0.188,
+          0.147
+        ],
+        "p_over25": 0.6783,
+        "ah_line": -1.25
+      },
+      "bots": {
+        "estadistico": {
+          "pick_1x2": "1",
+          "pick_exact": "2-1",
+          "p1x2": [
+            0.592,
+            0.232,
+            0.176
+          ],
+          "p_over25": 0.627,
+          "p_btts": 0.609,
+          "value_bets": [
+            {
+              "market": "1x2",
+              "side": "X",
+              "price": 5.0,
+              "edge": 0.161
+            },
+            {
+              "market": "ou25",
+              "side": "under2.5",
+              "price": 2.91,
+              "edge": 0.085
+            },
+            {
+              "market": "ah",
+              "side": "away +1.25",
+              "price": 1.92,
+              "edge": 0.111
+            }
+          ]
+        },
+        "calibrado": {
+          "pick_1x2": "1",
+          "pick_exact": "2-1",
+          "p1x2": [
+            0.663,
+            0.19,
+            0.147
+          ],
+          "p_over25": 0.678,
+          "p_btts": 0.606,
+          "value_bets": []
+        },
+        "borrego": {
+          "pick_1x2": "1",
+          "pick_exact": "2-1",
+          "p1x2": [
+            0.665,
+            0.188,
+            0.147
+          ],
+          "p_over25": 0.678,
+          "p_btts": 0.606,
+          "value_bets": []
+        }
+      }
+    },
+    {
+      "league": "D1",
+      "date": "2026-10-10",
+      "home": "Mainz",
+      "away": "Leverkusen",
+      "top": true,
+      "market": {
+        "p1x2": [
+          0.325,
+          0.244,
+          0.431
+        ],
+        "p_over25": 0.657,
+        "ah_line": 0.25
+      },
+      "bots": {
+        "estadistico": {
+          "pick_1x2": "2",
+          "pick_exact": "1-2",
+          "p1x2": [
+            0.28,
+            0.272,
+            0.448
+          ],
+          "p_over25": 0.562,
+          "p_btts": 0.598,
+          "value_bets": [
+            {
+              "market": "1x2",
+              "side": "X",
+              "price": 3.83,
+              "edge": 0.042
+            },
+            {
+              "market": "ou25",
+              "side": "under2.5",
+              "price": 2.72,
+              "edge": 0.192
+            }
+          ]
+        },
+        "calibrado": {
+          "pick_1x2": "2",
+          "pick_exact": "1-2",
+          "p1x2": [
+            0.324,
+            0.246,
+            0.43
+          ],
+          "p_over25": 0.656,
+          "p_btts": 0.664,
+          "value_bets": []
+        },
+        "borrego": {
+          "pick_1x2": "2",
+          "pick_exact": "1-2",
+          "p1x2": [
+            0.325,
+            0.244,
+            0.431
+          ],
+          "p_over25": 0.657,
+          "p_btts": 0.671,
+          "value_bets": []
+        }
+      }
+    },
+    {
+      "league": "D1",
+      "date": "2026-10-10",
+      "home": "Paderborn",
+      "away": "Stuttgart",
+      "top": false,
+      "market": {
+        "p1x2": [
+          0.201,
+          0.206,
+          0.593
+        ],
+        "p_over25": 0.6902,
+        "ah_line": 1.0
+      },
+      "bots": {
+        "estadistico": {
+          "pick_1x2": "2",
+          "pick_exact": "0-1",
+          "p1x2": [
+            0.247,
+            0.31,
+            0.443
+          ],
+          "p_over25": 0.355,
+          "p_btts": 0.423,
+          "value_bets": [
+            {
+              "market": "1x2",
+              "side": "X",
+              "price": 4.55,
+              "edge": 0.409
+            },
+            {
+              "market": "ou25",
+              "side": "under2.5",
+              "price": 3.03,
+              "edge": 0.955
+            },
+            {
+              "market": "ah",
+              "side": "home +1",
+              "price": 1.85,
+              "edge": 0.268
+            }
+          ]
+        },
+        "calibrado": {
+          "pick_1x2": "2",
+          "pick_exact": "1-2",
+          "p1x2": [
+            0.203,
+            0.209,
+            0.587
+          ],
+          "p_over25": 0.687,
+          "p_btts": 0.631,
+          "value_bets": []
+        },
+        "borrego": {
+          "pick_1x2": "2",
+          "pick_exact": "1-2",
+          "p1x2": [
+            0.201,
+            0.206,
+            0.593
+          ],
+          "p_over25": 0.69,
+          "p_btts": 0.656,
+          "value_bets": []
+        }
+      }
+    },
+    {
+      "league": "D1",
+      "date": "2026-10-10",
+      "home": "RB Leipzig",
+      "away": "Ein Frankfurt",
+      "top": false,
+      "market": {
+        "p1x2": [
+          0.604,
+          0.198,
+          0.198
+        ],
+        "p_over25": 0.7328,
+        "ah_line": -1.0
+      },
+      "bots": {
+        "estadistico": {
+          "pick_1x2": "1",
+          "pick_exact": "2-1",
+          "p1x2": [
+            0.578,
+            0.231,
+            0.191
+          ],
+          "p_over25": 0.67,
+          "p_btts": 0.652,
+          "value_bets": [
+            {
+              "market": "1x2",
+              "side": "X",
+              "price": 4.73,
+              "edge": 0.09
+            },
+            {
+              "market": "ou25",
+              "side": "under2.5",
+              "price": 3.51,
+              "edge": 0.159
+            },
+            {
+              "market": "ah",
+              "side": "away +1",
+              "price": 1.9,
+              "edge": 0.017
+            }
+          ]
+        },
+        "calibrado": {
+          "pick_1x2": "1",
+          "pick_exact": "2-1",
+          "p1x2": [
+            0.604,
+            0.2,
+            0.196
+          ],
+          "p_over25": 0.732,
+          "p_btts": 0.684,
+          "value_bets": []
+        },
+        "borrego": {
+          "pick_1x2": "1",
+          "pick_exact": "2-1",
+          "p1x2": [
+            0.604,
+            0.198,
+            0.198
+          ],
+          "p_over25": 0.733,
+          "p_btts": 0.687,
+          "value_bets": []
+        }
+      }
+    },
+    {
+      "league": "D1",
+      "date": "2026-10-10",
+      "home": "Union Berlin",
+      "away": "Elversberg",
+      "top": false,
+      "market": {
+        "p1x2": [
+          0.409,
+          0.254,
+          0.338
+        ],
+        "p_over25": 0.6181,
+        "ah_line": -0.25
+      },
+      "bots": {
+        "estadistico": {
+          "pick_1x2": "2",
+          "pick_exact": "1-2",
+          "p1x2": [
+            0.265,
+            0.257,
+            0.478
+          ],
+          "p_over25": 0.628,
+          "p_btts": 0.645,
+          "value_bets": [
+            {
+              "market": "1x2",
+              "side": "2",
+              "price": 2.77,
+              "edge": 0.323
+            },
+            {
+              "market": "ah",
+              "side": "away +0.25",
+              "price": 1.76,
+              "edge": 0.196
+            }
+          ]
+        },
+        "calibrado": {
+          "pick_1x2": "1",
+          "pick_exact": "2-1",
+          "p1x2": [
+            0.404,
+            0.255,
+            0.341
+          ],
+          "p_over25": 0.618,
+          "p_btts": 0.645,
+          "value_bets": []
+        },
+        "borrego": {
+          "pick_1x2": "1",
+          "pick_exact": "2-1",
+          "p1x2": [
+            0.409,
+            0.254,
+            0.338
+          ],
+          "p_over25": 0.618,
+          "p_btts": 0.644,
+          "value_bets": []
+        }
+      }
+    },
+    {
+      "league": "D1",
+      "date": "2026-10-11",
+      "home": "FC Koln",
+      "away": "M'gladbach",
+      "top": false,
+      "market": {
+        "p1x2": [
+          0.468,
+          0.241,
+          0.291
+        ],
+        "p_over25": 0.6352,
+        "ah_line": -0.5
+      },
+      "bots": {
+        "estadistico": {
+          "pick_1x2": "1",
+          "pick_exact": "2-1",
+          "p1x2": [
+            0.395,
+            0.272,
+            0.334
+          ],
+          "p_over25": 0.593,
+          "p_btts": 0.632,
+          "value_bets": [
+            {
+              "market": "1x2",
+              "side": "2",
+              "price": 3.22,
+              "edge": 0.074
+            },
+            {
+              "market": "ou25",
+              "side": "under2.5",
+              "price": 2.56,
+              "edge": 0.043
+            },
+            {
+              "market": "ah",
+              "side": "away +0.5",
+              "price": 1.77,
+              "edge": 0.071
+            }
+          ]
+        },
+        "calibrado": {
+          "pick_1x2": "1",
+          "pick_exact": "2-1",
+          "p1x2": [
+            0.465,
+            0.243,
+            0.292
+          ],
+          "p_over25": 0.635,
+          "p_btts": 0.647,
+          "value_bets": []
+        },
+        "borrego": {
+          "pick_1x2": "1",
+          "pick_exact": "2-1",
+          "p1x2": [
+            0.468,
+            0.241,
+            0.291
+          ],
+          "p_over25": 0.635,
+          "p_btts": 0.649,
+          "value_bets": []
+        }
+      }
+    },
+    {
+      "league": "D1",
+      "date": "2026-10-11",
+      "home": "Freiburg",
+      "away": "Schalke 04",
+      "top": false,
+      "market": {
+        "p1x2": [
+          0.571,
+          0.235,
+          0.194
+        ],
+        "p_over25": 0.5907,
+        "ah_line": -1.0
+      },
+      "bots": {
+        "estadistico": {
+          "pick_1x2": "1",
+          "pick_exact": "2-0",
+          "p1x2": [
+            0.667,
+            0.216,
+            0.118
+          ],
+          "p_over25": 0.549,
+          "p_btts": 0.497,
+          "value_bets": [
+            {
+              "market": "1x2",
+              "side": "1",
+              "price": 1.64,
+              "edge": 0.093
+            },
+            {
+              "market": "ou25",
+              "side": "under2.5",
+              "price": 2.28,
+              "edge": 0.029
+            },
+            {
+              "market": "ah",
+              "side": "home -1",
+              "price": 2.04,
+              "edge": 0.104
+            }
+          ]
+        },
+        "calibrado": {
+          "pick_1x2": "1",
+          "pick_exact": "2-1",
+          "p1x2": [
+            0.576,
+            0.234,
+            0.189
+          ],
+          "p_over25": 0.59,
+          "p_btts": 0.572,
+          "value_bets": []
+        },
+        "borrego": {
+          "pick_1x2": "1",
+          "pick_exact": "2-1",
+          "p1x2": [
+            0.571,
+            0.235,
+            0.194
+          ],
+          "p_over25": 0.591,
+          "p_btts": 0.58,
+          "value_bets": []
+        }
+      }
+    },
+    {
+      "league": "F1",
+      "date": "2026-10-09",
+      "home": "Lens",
+      "away": "Lyon",
+      "top": true,
+      "market": {
+        "p1x2": [
+          0.396,
+          0.256,
+          0.349
+        ],
+        "p_over25": 0.6196,
+        "ah_line": 0.0
+      },
+      "bots": {
+        "estadistico": {
+          "pick_1x2": "1",
+          "pick_exact": "2-1",
+          "p1x2": [
+            0.429,
+            0.271,
+            0.3
+          ],
+          "p_over25": 0.534,
+          "p_btts": 0.576,
+          "value_bets": [
+            {
+              "market": "1x2",
+              "side": "1",
+              "price": 2.38,
+              "edge": 0.022
+            },
+            {
+              "market": "ou25",
+              "side": "under2.5",
+              "price": 2.46,
+              "edge": 0.147
+            },
+            {
+              "market": "ah",
+              "side": "home +0",
+              "price": 1.78,
+              "edge": 0.035
+            }
+          ]
+        },
+        "calibrado": {
+          "pick_1x2": "1",
+          "pick_exact": "2-1",
+          "p1x2": [
+            0.396,
+            0.256,
+            0.347
+          ],
+          "p_over25": 0.618,
+          "p_btts": 0.636,
+          "value_bets": []
+        },
+        "borrego": {
+          "pick_1x2": "1",
+          "pick_exact": "2-1",
+          "p1x2": [
+            0.396,
+            0.256,
+            0.349
+          ],
+          "p_over25": 0.62,
+          "p_btts": 0.642,
+          "value_bets": []
+        }
+      }
+    },
+    {
+      "league": "F1",
+      "date": "2026-10-10",
+      "home": "Brest",
+      "away": "Angers",
+      "top": false,
+      "market": {
+        "p1x2": [
+          0.474,
+          0.26,
+          0.266
+        ],
+        "p_over25": 0.5426,
+        "ah_line": -0.5
+      },
+      "bots": {
+        "estadistico": {
+          "pick_1x2": "1",
+          "pick_exact": "1-0",
+          "p1x2": [
+            0.525,
+            0.266,
+            0.209
+          ],
+          "p_over25": 0.46,
+          "p_btts": 0.487,
+          "value_bets": [
+            {
+              "market": "1x2",
+              "side": "1",
+              "price": 1.98,
+              "edge": 0.039
+            },
+            {
+              "market": "ou25",
+              "side": "under2.5",
+              "price": 2.04,
+              "edge": 0.101
+            },
+            {
+              "market": "ah",
+              "side": "home -0.5",
+              "price": 1.93,
+              "edge": 0.013
+            }
+          ]
+        },
+        "calibrado": {
+          "pick_1x2": "1",
+          "pick_exact": "2-1",
+          "p1x2": [
+            0.476,
+            0.26,
+            0.264
+          ],
+          "p_over25": 0.541,
+          "p_btts": 0.562,
+          "value_bets": []
+        },
+        "borrego": {
+          "pick_1x2": "1",
+          "pick_exact": "2-1",
+          "p1x2": [
+            0.474,
+            0.26,
+            0.266
+          ],
+          "p_over25": 0.543,
+          "p_btts": 0.57,
+          "value_bets": []
+        }
+      }
+    },
+    {
+      "league": "F1",
+      "date": "2026-10-10",
+      "home": "Lille",
+      "away": "Le Havre",
+      "top": false,
+      "market": {
+        "p1x2": [
+          0.66,
+          0.201,
+          0.139
+        ],
+        "p_over25": 0.5844,
+        "ah_line": -1.25
+      },
+      "bots": {
+        "estadistico": {
+          "pick_1x2": "1",
+          "pick_exact": "1-0",
+          "p1x2": [
+            0.676,
+            0.215,
+            0.109
+          ],
+          "p_over25": 0.457,
+          "p_btts": 0.414,
+          "value_bets": [
+            {
+              "market": "1x2",
+              "side": "X",
+              "price": 4.66,
+              "edge": 0.003
+            },
+            {
+              "market": "ou25",
+              "side": "under2.5",
+              "price": 2.25,
+              "edge": 0.222
+            },
+            {
+              "market": "ah",
+              "side": "away +1.25",
+              "price": 1.85,
+              "edge": 0.002
+            }
+          ]
+        },
+        "calibrado": {
+          "pick_1x2": "1",
+          "pick_exact": "2-0",
+          "p1x2": [
+            0.664,
+            0.2,
+            0.135
+          ],
+          "p_over25": 0.583,
+          "p_btts": 0.511,
+          "value_bets": []
+        },
+        "borrego": {
+          "pick_1x2": "1",
+          "pick_exact": "2-0",
+          "p1x2": [
+            0.66,
+            0.201,
+            0.139
+          ],
+          "p_over25": 0.584,
+          "p_btts": 0.522,
+          "value_bets": []
+        }
+      }
+    },
+    {
+      "league": "F1",
+      "date": "2026-10-10",
+      "home": "Lorient",
+      "away": "Paris FC",
+      "top": false,
+      "market": {
+        "p1x2": [
+          0.298,
+          0.282,
+          0.421
+        ],
+        "p_over25": 0.496,
+        "ah_line": 0.25
+      },
+      "bots": {
+        "estadistico": {
+          "pick_1x2": "2",
+          "pick_exact": "1-2",
+          "p1x2": [
+            0.309,
+            0.275,
+            0.416
+          ],
+          "p_over25": 0.517,
+          "p_btts": 0.565,
+          "value_bets": []
+        },
+        "calibrado": {
+          "pick_1x2": "2",
+          "pick_exact": "0-1",
+          "p1x2": [
+            0.298,
+            0.281,
+            0.421
+          ],
+          "p_over25": 0.496,
+          "p_btts": 0.546,
+          "value_bets": []
+        },
+        "borrego": {
+          "pick_1x2": "2",
+          "pick_exact": "0-1",
+          "p1x2": [
+            0.298,
+            0.282,
+            0.421
+          ],
+          "p_over25": 0.496,
+          "p_btts": 0.543,
+          "value_bets": []
+        }
+      }
+    },
+    {
+      "league": "F1",
+      "date": "2026-10-10",
+      "home": "Monaco",
+      "away": "Toulouse",
+      "top": true,
+      "market": {
+        "p1x2": [
+          0.591,
+          0.223,
+          0.187
+        ],
+        "p_over25": 0.6015,
+        "ah_line": -1.0
+      },
+      "bots": {
+        "estadistico": {
+          "pick_1x2": "1",
+          "pick_exact": "2-1",
+          "p1x2": [
+            0.607,
+            0.225,
+            0.168
+          ],
+          "p_over25": 0.601,
+          "p_btts": 0.586,
+          "value_bets": []
+        },
+        "calibrado": {
+          "pick_1x2": "1",
+          "pick_exact": "2-1",
+          "p1x2": [
+            0.595,
+            0.222,
+            0.183
+          ],
+          "p_over25": 0.601,
+          "p_btts": 0.578,
+          "value_bets": []
+        },
+        "borrego": {
+          "pick_1x2": "1",
+          "pick_exact": "2-1",
+          "p1x2": [
+            0.591,
+            0.223,
+            0.187
+          ],
+          "p_over25": 0.602,
+          "p_btts": 0.577,
+          "value_bets": []
+        }
+      }
+    },
+    {
+      "league": "F1",
+      "date": "2026-10-10",
+      "home": "Paris SG",
+      "away": "Le Mans",
+      "top": true,
+      "market": {
+        "p1x2": [
+          0.874,
+          0.084,
+          0.043
+        ],
+        "p_over25": 0.7794,
+        "ah_line": -2.75
+      },
+      "bots": {
+        "estadistico": {
+          "pick_1x2": "1",
+          "pick_exact": "3-1",
+          "p1x2": [
+            0.786,
+            0.134,
+            0.079
+          ],
+          "p_over25": 0.804,
+          "p_btts": 0.654,
+          "value_bets": [
+            {
+              "market": "1x2",
+              "side": "2",
+              "price": 22.06,
+              "edge": 0.75
+            },
+            {
+              "market": "ah",
+              "side": "away +2.75",
+              "price": 1.93,
+              "edge": 0.25
+            }
+          ]
+        },
+        "calibrado": {
+          "pick_1x2": "1",
+          "pick_exact": "3-0",
+          "p1x2": [
+            0.872,
+            0.085,
+            0.043
+          ],
+          "p_over25": 0.78,
+          "p_btts": 0.501,
+          "value_bets": [
+            {
+              "market": "ah",
+              "side": "away +2.75",
+              "price": 1.93,
+              "edge": 0.033
+            }
+          ]
+        },
+        "borrego": {
+          "pick_1x2": "1",
+          "pick_exact": "3-0",
+          "p1x2": [
+            0.874,
+            0.084,
+            0.043
+          ],
+          "p_over25": 0.779,
+          "p_btts": 0.486,
+          "value_bets": [
+            {
+              "market": "ah",
+              "side": "away +2.75",
+              "price": 1.93,
+              "edge": 0.016
+            }
+          ]
+        }
+      }
+    },
+    {
+      "league": "F1",
+      "date": "2026-10-11",
+      "home": "Nice",
+      "away": "Strasbourg",
+      "top": false,
+      "market": {
+        "p1x2": [
+          0.41,
+          0.264,
+          0.327
+        ],
+        "p_over25": 0.562,
+        "ah_line": -0.25
+      },
+      "bots": {
+        "estadistico": {
+          "pick_1x2": "2",
+          "pick_exact": "0-1",
+          "p1x2": [
+            0.35,
+            0.278,
+            0.371
+          ],
+          "p_over25": 0.506,
+          "p_btts": 0.559,
+          "value_bets": [
+            {
+              "market": "1x2",
+              "side": "2",
+              "price": 2.87,
+              "edge": 0.065
+            },
+            {
+              "market": "ou25",
+              "side": "under2.5",
+              "price": 2.13,
+              "edge": 0.053
+            },
+            {
+              "market": "ah",
+              "side": "away +0.25",
+              "price": 1.78,
+              "edge": 0.048
+            }
+          ]
+        },
+        "calibrado": {
+          "pick_1x2": "1",
+          "pick_exact": "2-1",
+          "p1x2": [
+            0.404,
+            0.264,
+            0.331
+          ],
+          "p_over25": 0.561,
+          "p_btts": 0.593,
+          "value_bets": []
+        },
+        "borrego": {
+          "pick_1x2": "1",
+          "pick_exact": "2-1",
+          "p1x2": [
+            0.41,
+            0.264,
+            0.327
+          ],
+          "p_over25": 0.562,
+          "p_btts": 0.596,
+          "value_bets": []
+        }
+      }
+    },
+    {
+      "league": "F1",
+      "date": "2026-10-11",
+      "home": "Rennes",
+      "away": "Auxerre",
+      "top": false,
+      "market": {
+        "p1x2": [
+          0.66,
+          0.194,
+          0.146
+        ],
+        "p_over25": 0.6352,
+        "ah_line": -1.25
+      },
+      "bots": {
+        "estadistico": {
+          "pick_1x2": "1",
+          "pick_exact": "2-1",
+          "p1x2": [
+            0.605,
+            0.23,
+            0.165
+          ],
+          "p_over25": 0.566,
+          "p_btts": 0.552,
+          "value_bets": [
+            {
+              "market": "1x2",
+              "side": "X",
+              "price": 4.83,
+              "edge": 0.111
+            },
+            {
+              "market": "ou25",
+              "side": "under2.5",
+              "price": 2.56,
+              "edge": 0.111
+            },
+            {
+              "market": "ah",
+              "side": "away +1.25",
+              "price": 1.87,
+              "edge": 0.095
+            }
+          ]
+        },
+        "calibrado": {
+          "pick_1x2": "1",
+          "pick_exact": "2-0",
+          "p1x2": [
+            0.66,
+            0.195,
+            0.145
+          ],
+          "p_over25": 0.635,
+          "p_btts": 0.566,
+          "value_bets": []
+        },
+        "borrego": {
+          "pick_1x2": "1",
+          "pick_exact": "2-0",
+          "p1x2": [
+            0.66,
+            0.194,
+            0.146
+          ],
+          "p_over25": 0.635,
+          "p_btts": 0.568,
+          "value_bets": []
+        }
+      }
+    },
+    {
+      "league": "F1",
+      "date": "2026-10-11",
+      "home": "Troyes",
+      "away": "Marseille",
+      "top": false,
+      "market": {
+        "p1x2": [
+          0.256,
+          0.246,
+          0.498
+        ],
+        "p_over25": 0.5943,
+        "ah_line": 0.5
+      },
+      "bots": {
+        "estadistico": {
+          "pick_1x2": "2",
+          "pick_exact": "1-2",
+          "p1x2": [
+            0.146,
+            0.211,
+            0.643
+          ],
+          "p_over25": 0.624,
+          "p_btts": 0.573,
+          "value_bets": [
+            {
+              "market": "1x2",
+              "side": "2",
+              "price": 1.88,
+              "edge": 0.208
+            },
+            {
+              "market": "ah",
+              "side": "away -0.5",
+              "price": 1.85,
+              "edge": 0.189
+            }
+          ]
+        },
+        "calibrado": {
+          "pick_1x2": "2",
+          "pick_exact": "1-2",
+          "p1x2": [
+            0.251,
+            0.245,
+            0.504
+          ],
+          "p_over25": 0.594,
+          "p_btts": 0.604,
+          "value_bets": []
+        },
+        "borrego": {
+          "pick_1x2": "2",
+          "pick_exact": "1-2",
+          "p1x2": [
+            0.256,
+            0.246,
+            0.498
+          ],
+          "p_over25": 0.594,
+          "p_btts": 0.605,
+          "value_bets": []
+        }
+      }
+    },
+    {
+      "league": "SP1",
+      "date": "2026-10-09",
+      "home": "Malaga",
+      "away": "Espanol",
+      "top": false,
+      "market": {
+        "p1x2": [
+          0.337,
+          0.296,
+          0.367
+        ],
+        "p_over25": 0.4681,
+        "ah_line": 0.0
+      },
+      "bots": {
+        "estadistico": {
+          "pick_1x2": "2",
+          "pick_exact": "0-1",
+          "p1x2": [
+            0.264,
+            0.321,
+            0.414
+          ],
+          "p_over25": 0.251,
+          "p_btts": 0.314,
+          "value_bets": [
+            {
+              "market": "1x2",
+              "side": "2",
+              "price": 2.57,
+              "edge": 0.065
+            },
+            {
+              "market": "ou25",
+              "side": "under2.5",
+              "price": 1.76,
+              "edge": 0.319
+            },
+            {
+              "market": "ah",
+              "side": "away -0",
+              "price": 1.78,
+              "edge": 0.059
+            }
+          ]
+        },
+        "calibrado": {
+          "pick_1x2": "2",
+          "pick_exact": "0-1",
+          "p1x2": [
+            0.34,
+            0.295,
+            0.365
+          ],
+          "p_over25": 0.464,
+          "p_btts": 0.499,
+          "value_bets": []
+        },
+        "borrego": {
+          "pick_1x2": "2",
+          "pick_exact": "0-1",
+          "p1x2": [
+            0.337,
+            0.296,
+            0.367
+          ],
+          "p_over25": 0.468,
+          "p_btts": 0.522,
+          "value_bets": []
+        }
+      }
+    },
+    {
+      "league": "SP1",
+      "date": "2026-10-10",
+      "home": "Alaves",
+      "away": "Ath Madrid",
+      "top": true,
+      "market": {
+        "p1x2": [
+          0.222,
+          0.255,
+          0.523
+        ],
+        "p_over25": 0.5187,
+        "ah_line": 0.5
+      },
+      "bots": {
+        "estadistico": {
+          "pick_1x2": "2",
+          "pick_exact": "0-1",
+          "p1x2": [
+            0.237,
+            0.266,
+            0.497
+          ],
+          "p_over25": 0.452,
+          "p_btts": 0.487,
+          "value_bets": [
+            {
+              "market": "1x2",
+              "side": "1",
+              "price": 4.23,
+              "edge": 0.005
+            },
+            {
+              "market": "ou25",
+              "side": "under2.5",
+              "price": 1.94,
+              "edge": 0.062
+            },
+            {
+              "market": "ah",
+              "side": "home +0.5",
+              "price": 1.99,
+              "edge": 0.001
+            }
+          ]
+        },
+        "calibrado": {
+          "pick_1x2": "2",
+          "pick_exact": "0-1",
+          "p1x2": [
+            0.224,
+            0.255,
+            0.521
+          ],
+          "p_over25": 0.517,
+          "p_btts": 0.528,
+          "value_bets": []
+        },
+        "borrego": {
+          "pick_1x2": "2",
+          "pick_exact": "0-1",
+          "p1x2": [
+            0.222,
+            0.255,
+            0.523
+          ],
+          "p_over25": 0.519,
+          "p_btts": 0.532,
+          "value_bets": []
+        }
+      }
+    },
+    {
+      "league": "SP1",
+      "date": "2026-10-10",
+      "home": "Barcelona",
+      "away": "Getafe",
+      "top": true,
+      "market": {
+        "p1x2": [
+          0.879,
+          0.081,
+          0.04
+        ],
+        "p_over25": 0.753,
+        "ah_line": -2.75
+      },
+      "bots": {
+        "estadistico": {
+          "pick_1x2": "1",
+          "pick_exact": "2-0",
+          "p1x2": [
+            0.821,
+            0.125,
+            0.054
+          ],
+          "p_over25": 0.556,
+          "p_btts": 0.372,
+          "value_bets": [
+            {
+              "market": "1x2",
+              "side": "X",
+              "price": 11.73,
+              "edge": 0.468
+            },
+            {
+              "market": "ou25",
+              "side": "under2.5",
+              "price": 3.78,
+              "edge": 0.678
+            },
+            {
+              "market": "ah",
+              "side": "away +2.75",
+              "price": 1.88,
+              "edge": 0.372
+            }
+          ]
+        },
+        "calibrado": {
+          "pick_1x2": "1",
+          "pick_exact": "3-0",
+          "p1x2": [
+            0.88,
+            0.081,
+            0.039
+          ],
+          "p_over25": 0.752,
+          "p_btts": 0.433,
+          "value_bets": [
+            {
+              "market": "ah",
+              "side": "away +2.75",
+              "price": 1.88,
+              "edge": 0.038
+            }
+          ]
+        },
+        "borrego": {
+          "pick_1x2": "1",
+          "pick_exact": "3-0",
+          "p1x2": [
+            0.879,
+            0.081,
+            0.04
+          ],
+          "p_over25": 0.753,
+          "p_btts": 0.441,
+          "value_bets": [
+            {
+              "market": "ah",
+              "side": "away +2.75",
+              "price": 1.88,
+              "edge": 0.003
+            }
+          ]
+        }
+      }
+    },
+    {
+      "league": "SP1",
+      "date": "2026-10-10",
+      "home": "Real Madrid",
+      "away": "Villarreal",
+      "top": true,
+      "market": {
+        "p1x2": [
+          0.692,
+          0.168,
+          0.141
+        ],
+        "p_over25": 0.7429,
+        "ah_line": -1.5
+      },
+      "bots": {
+        "estadistico": {
+          "pick_1x2": "1",
+          "pick_exact": "2-1",
+          "p1x2": [
+            0.67,
+            0.191,
+            0.138
+          ],
+          "p_over25": 0.672,
+          "p_btts": 0.603,
+          "value_bets": [
+            {
+              "market": "1x2",
+              "side": "X",
+              "price": 5.61,
+              "edge": 0.074
+            },
+            {
+              "market": "ou25",
+              "side": "under2.5",
+              "price": 3.64,
+              "edge": 0.195
+            },
+            {
+              "market": "ah",
+              "side": "away +1.5",
+              "price": 1.85,
+              "edge": 0.027
+            }
+          ]
+        },
+        "calibrado": {
+          "pick_1x2": "1",
+          "pick_exact": "2-1",
+          "p1x2": [
+            0.692,
+            0.169,
+            0.14
+          ],
+          "p_over25": 0.742,
+          "p_btts": 0.642,
+          "value_bets": []
+        },
+        "borrego": {
+          "pick_1x2": "1",
+          "pick_exact": "2-1",
+          "p1x2": [
+            0.692,
+            0.168,
+            0.141
+          ],
+          "p_over25": 0.743,
+          "p_btts": 0.647,
+          "value_bets": []
+        }
+      }
+    },
+    {
+      "league": "SP1",
+      "date": "2026-10-10",
+      "home": "Vallecano",
+      "away": "Ath Bilbao",
+      "top": false,
+      "market": {
+        "p1x2": [
+          0.349,
+          0.282,
+          0.369
+        ],
+        "p_over25": 0.5,
+        "ah_line": 0.0
+      },
+      "bots": {
+        "estadistico": {
+          "pick_1x2": "1",
+          "pick_exact": "1-0",
+          "p1x2": [
+            0.404,
+            0.298,
+            0.298
+          ],
+          "p_over25": 0.347,
+          "p_btts": 0.419,
+          "value_bets": [
+            {
+              "market": "1x2",
+              "side": "1",
+              "price": 2.7,
+              "edge": 0.091
+            },
+            {
+              "market": "ou25",
+              "side": "under2.5",
+              "price": 1.86,
+              "edge": 0.215
+            },
+            {
+              "market": "ah",
+              "side": "home +0",
+              "price": 1.92,
+              "edge": 0.074
+            }
+          ]
+        },
+        "calibrado": {
+          "pick_1x2": "2",
+          "pick_exact": "0-1",
+          "p1x2": [
+            0.356,
+            0.281,
+            0.363
+          ],
+          "p_over25": 0.497,
+          "p_btts": 0.532,
+          "value_bets": []
+        },
+        "borrego": {
+          "pick_1x2": "2",
+          "pick_exact": "0-1",
+          "p1x2": [
+            0.349,
+            0.282,
+            0.369
+          ],
+          "p_over25": 0.5,
+          "p_btts": 0.547,
+          "value_bets": []
+        }
+      }
+    },
+    {
+      "league": "SP1",
+      "date": "2026-10-11",
+      "home": "Betis",
+      "away": "Osasuna",
+      "top": false,
+      "market": {
+        "p1x2": [
+          0.61,
+          0.224,
+          0.166
+        ],
+        "p_over25": 0.5426,
+        "ah_line": -1.0
+      },
+      "bots": {
+        "estadistico": {
+          "pick_1x2": "1",
+          "pick_exact": "1-0",
+          "p1x2": [
+            0.641,
+            0.219,
+            0.14
+          ],
+          "p_over25": 0.49,
+          "p_btts": 0.473,
+          "value_bets": [
+            {
+              "market": "ou25",
+              "side": "under2.5",
+              "price": 2.04,
+              "edge": 0.041
+            }
+          ]
+        },
+        "calibrado": {
+          "pick_1x2": "1",
+          "pick_exact": "1-0",
+          "p1x2": [
+            0.616,
+            0.222,
+            0.162
+          ],
+          "p_over25": 0.542,
+          "p_btts": 0.509,
+          "value_bets": []
+        },
+        "borrego": {
+          "pick_1x2": "1",
+          "pick_exact": "1-0",
+          "p1x2": [
+            0.61,
+            0.224,
+            0.166
+          ],
+          "p_over25": 0.543,
+          "p_btts": 0.513,
+          "value_bets": []
+        }
+      }
+    },
+    {
+      "league": "SP1",
+      "date": "2026-10-11",
+      "home": "Elche",
+      "away": "Celta",
+      "top": false,
+      "market": {
+        "p1x2": [
+          0.344,
+          0.288,
+          0.367
+        ],
+        "p_over25": 0.4759,
+        "ah_line": 0.0
+      },
+      "bots": {
+        "estadistico": {
+          "pick_1x2": "1",
+          "pick_exact": "1-0",
+          "p1x2": [
+            0.381,
+            0.268,
+            0.35
+          ],
+          "p_over25": 0.515,
+          "p_btts": 0.563,
+          "value_bets": [
+            {
+              "market": "1x2",
+              "side": "1",
+              "price": 2.72,
+              "edge": 0.037
+            },
+            {
+              "market": "ou25",
+              "side": "over2.5",
+              "price": 1.96,
+              "edge": 0.01
+            },
+            {
+              "market": "ah",
+              "side": "home +0",
+              "price": 1.94,
+              "edge": 0.008
+            }
+          ]
+        },
+        "calibrado": {
+          "pick_1x2": "2",
+          "pick_exact": "0-1",
+          "p1x2": [
+            0.347,
+            0.287,
+            0.366
+          ],
+          "p_over25": 0.475,
+          "p_btts": 0.531,
+          "value_bets": []
+        },
+        "borrego": {
+          "pick_1x2": "2",
+          "pick_exact": "0-1",
+          "p1x2": [
+            0.344,
+            0.288,
+            0.367
+          ],
+          "p_over25": 0.476,
+          "p_btts": 0.527,
+          "value_bets": []
+        }
+      }
+    },
+    {
+      "league": "SP1",
+      "date": "2026-10-11",
+      "home": "Santander",
+      "away": "Valencia",
+      "top": false,
+      "market": {
+        "p1x2": [
+          0.41,
+          0.266,
+          0.324
+        ],
+        "p_over25": 0.5707,
+        "ah_line": -0.25
+      },
+      "bots": {
+        "estadistico": {
+          "pick_1x2": "1",
+          "pick_exact": "2-1",
+          "p1x2": [
+            0.383,
+            0.233,
+            0.384
+          ],
+          "p_over25": 0.75,
+          "p_btts": 0.748,
+          "value_bets": [
+            {
+              "market": "1x2",
+              "side": "2",
+              "price": 2.89,
+              "edge": 0.11
+            },
+            {
+              "market": "ou25",
+              "side": "over2.5",
+              "price": 1.64,
+              "edge": 0.23
+            },
+            {
+              "market": "ah",
+              "side": "away +0.25",
+              "price": 1.79,
+              "edge": 0.013
+            }
+          ]
+        },
+        "calibrado": {
+          "pick_1x2": "1",
+          "pick_exact": "2-1",
+          "p1x2": [
+            0.411,
+            0.265,
+            0.324
+          ],
+          "p_over25": 0.572,
+          "p_btts": 0.616,
+          "value_bets": []
+        },
+        "borrego": {
+          "pick_1x2": "1",
+          "pick_exact": "2-1",
+          "p1x2": [
+            0.41,
+            0.266,
+            0.323
+          ],
+          "p_over25": 0.571,
+          "p_btts": 0.6,
+          "value_bets": []
+        }
+      }
+    },
+    {
+      "league": "SP1",
+      "date": "2026-10-11",
+      "home": "Sociedad",
+      "away": "La Coruna",
+      "top": false,
+      "market": {
+        "p1x2": [
+          0.581,
+          0.238,
+          0.18
+        ],
+        "p_over25": 0.5426,
+        "ah_line": -1.0
+      },
+      "bots": {
+        "estadistico": {
+          "pick_1x2": "1",
+          "pick_exact": "1-0",
+          "p1x2": [
+            0.455,
+            0.266,
+            0.278
+          ],
+          "p_over25": 0.491,
+          "p_btts": 0.533,
+          "value_bets": [
+            {
+              "market": "1x2",
+              "side": "2",
+              "price": 5.19,
+              "edge": 0.445
+            },
+            {
+              "market": "ou25",
+              "side": "under2.5",
+              "price": 2.04,
+              "edge": 0.039
+            },
+            {
+              "market": "ah",
+              "side": "away +1",
+              "price": 1.73,
+              "edge": 0.17
+            }
+          ]
+        },
+        "calibrado": {
+          "pick_1x2": "1",
+          "pick_exact": "1-0",
+          "p1x2": [
+            0.577,
+            0.239,
+            0.184
+          ],
+          "p_over25": 0.541,
+          "p_btts": 0.528,
+          "value_bets": []
+        },
+        "borrego": {
+          "pick_1x2": "1",
+          "pick_exact": "1-0",
+          "p1x2": [
+            0.581,
+            0.238,
+            0.18
+          ],
+          "p_over25": 0.543,
+          "p_btts": 0.528,
+          "value_bets": []
+        }
+      }
+    },
+    {
+      "league": "SP1",
+      "date": "2026-10-12",
+      "home": "Levante",
+      "away": "Sevilla",
+      "top": false,
+      "market": {
+        "p1x2": [
+          0.349,
+          0.286,
+          0.365
+        ],
+        "p_over25": 0.4679,
+        "ah_line": 0.0
+      },
+      "bots": {
+        "estadistico": {
+          "pick_1x2": "1",
+          "pick_exact": "2-1",
+          "p1x2": [
+            0.428,
+            0.26,
+            0.311
+          ],
+          "p_over25": 0.55,
+          "p_btts": 0.587,
+          "value_bets": [
+            {
+              "market": "1x2",
+              "side": "1",
+              "price": 2.68,
+              "edge": 0.148
+            },
+            {
+              "market": "ou25",
+              "side": "over2.5",
+              "price": 1.99,
+              "edge": 0.094
+            },
+            {
+              "market": "ah",
+              "side": "home +0",
+              "price": 1.91,
+              "edge": 0.078
+            }
+          ]
+        },
+        "calibrado": {
+          "pick_1x2": "2",
+          "pick_exact": "0-1",
+          "p1x2": [
+            0.353,
+            0.285,
+            0.362
+          ],
+          "p_over25": 0.468,
+          "p_btts": 0.527,
+          "value_bets": []
+        },
+        "borrego": {
+          "pick_1x2": "2",
+          "pick_exact": "0-1",
+          "p1x2": [
+            0.349,
+            0.286,
+            0.365
+          ],
+          "p_over25": 0.468,
+          "p_btts": 0.52,
+          "value_bets": []
+        }
+      }
+    },
+    {
+      "league": "E0",
+      "date": "2026-10-10",
+      "home": "Arsenal",
+      "away": "Leeds",
+      "top": true,
+      "market": {
+        "p1x2": [
+          0.683,
+          0.197,
+          0.119
+        ],
+        "p_over25": 0.5227,
+        "ah_line": -1.25
+      },
+      "bots": {
+        "estadistico": {
+          "pick_1x2": "1",
+          "pick_exact": "2-0",
+          "p1x2": [
+            0.72,
+            0.186,
+            0.095
+          ],
+          "p_over25": 0.573,
+          "p_btts": 0.473,
+          "value_bets": [
+            {
+              "market": "ou25",
+              "side": "over2.5",
+              "price": 1.79,
+              "edge": 0.025
+            },
+            {
+              "market": "ah",
+              "side": "home -1.25",
+              "price": 1.86,
+              "edge": 0.012
+            }
+          ]
+        },
+        "calibrado": {
+          "pick_1x2": "1",
+          "pick_exact": "2-0",
+          "p1x2": [
+            0.685,
+            0.197,
+            0.117
+          ],
+          "p_over25": 0.523,
+          "p_btts": 0.452,
+          "value_bets": []
+        },
+        "borrego": {
+          "pick_1x2": "1",
+          "pick_exact": "2-0",
+          "p1x2": [
+            0.683,
+            0.197,
+            0.119
+          ],
+          "p_over25": 0.523,
+          "p_btts": 0.449,
+          "value_bets": []
+        }
+      }
+    },
+    {
+      "league": "E0",
+      "date": "2026-10-10",
+      "home": "Aston Villa",
+      "away": "Brentford",
+      "top": false,
+      "market": {
+        "p1x2": [
+          0.36,
+          0.269,
+          0.371
+        ],
+        "p_over25": 0.5582,
+        "ah_line": 0.0
+      },
+      "bots": {
+        "estadistico": {
+          "pick_1x2": "1",
+          "pick_exact": "2-1",
+          "p1x2": [
+            0.418,
+            0.267,
+            0.315
+          ],
+          "p_over25": 0.561,
+          "p_btts": 0.6,
+          "value_bets": [
+            {
+              "market": "1x2",
+              "side": "1",
+              "price": 2.62,
+              "edge": 0.095
+            },
+            {
+              "market": "ah",
+              "side": "home +0",
+              "price": 1.9,
+              "edge": 0.061
+            }
+          ]
+        },
+        "calibrado": {
+          "pick_1x2": "2",
+          "pick_exact": "1-2",
+          "p1x2": [
+            0.361,
+            0.269,
+            0.369
+          ],
+          "p_over25": 0.558,
+          "p_btts": 0.597,
+          "value_bets": []
+        },
+        "borrego": {
+          "pick_1x2": "2",
+          "pick_exact": "1-2",
+          "p1x2": [
+            0.36,
+            0.269,
+            0.371
+          ],
+          "p_over25": 0.558,
+          "p_btts": 0.596,
+          "value_bets": []
+        }
+      }
+    },
+    {
+      "league": "E0",
+      "date": "2026-10-10",
+      "home": "Chelsea",
+      "away": "Bournemouth",
+      "top": false,
+      "market": {
+        "p1x2": [
+          0.568,
+          0.224,
+          0.208
+        ],
+        "p_over25": 0.637,
+        "ah_line": -0.75
+      },
+      "bots": {
+        "estadistico": {
+          "pick_1x2": "1",
+          "pick_exact": "2-1",
+          "p1x2": [
+            0.453,
+            0.262,
+            0.285
+          ],
+          "p_over25": 0.573,
+          "p_btts": 0.6,
+          "value_bets": [
+            {
+              "market": "1x2",
+              "side": "2",
+              "price": 4.53,
+              "edge": 0.292
+            },
+            {
+              "market": "ou25",
+              "side": "under2.5",
+              "price": 2.58,
+              "edge": 0.102
+            },
+            {
+              "market": "ah",
+              "side": "away +0.75",
+              "price": 1.95,
+              "edge": 0.167
+            }
+          ]
+        },
+        "calibrado": {
+          "pick_1x2": "1",
+          "pick_exact": "2-1",
+          "p1x2": [
+            0.561,
+            0.226,
+            0.213
+          ],
+          "p_over25": 0.636,
+          "p_btts": 0.616,
+          "value_bets": []
+        },
+        "borrego": {
+          "pick_1x2": "1",
+          "pick_exact": "2-1",
+          "p1x2": [
+            0.568,
+            0.224,
+            0.208
+          ],
+          "p_over25": 0.637,
+          "p_btts": 0.618,
+          "value_bets": []
+        }
+      }
+    },
+    {
+      "league": "E0",
+      "date": "2026-10-10",
+      "home": "Ipswich",
+      "away": "Fulham",
+      "top": false,
+      "market": {
+        "p1x2": [
+          0.342,
+          0.27,
+          0.388
+        ],
+        "p_over25": 0.5452,
+        "ah_line": 0.0
+      },
+      "bots": {
+        "estadistico": {
+          "pick_1x2": "2",
+          "pick_exact": "1-2",
+          "p1x2": [
+            0.229,
+            0.255,
+            0.516
+          ],
+          "p_over25": 0.549,
+          "p_btts": 0.568,
+          "value_bets": [
+            {
+              "market": "1x2",
+              "side": "2",
+              "price": 2.42,
+              "edge": 0.249
+            },
+            {
+              "market": "ah",
+              "side": "away -0",
+              "price": 1.76,
+              "edge": 0.163
+            }
+          ]
+        },
+        "calibrado": {
+          "pick_1x2": "2",
+          "pick_exact": "1-2",
+          "p1x2": [
+            0.337,
+            0.27,
+            0.393
+          ],
+          "p_over25": 0.545,
+          "p_btts": 0.584,
+          "value_bets": []
+        },
+        "borrego": {
+          "pick_1x2": "2",
+          "pick_exact": "1-2",
+          "p1x2": [
+            0.342,
+            0.27,
+            0.388
+          ],
+          "p_over25": 0.545,
+          "p_btts": 0.585,
+          "value_bets": []
+        }
+      }
+    },
+    {
+      "league": "E0",
+      "date": "2026-10-10",
+      "home": "Man United",
+      "away": "Tottenham",
+      "top": false,
+      "market": {
+        "p1x2": [
+          0.558,
+          0.227,
+          0.216
+        ],
+        "p_over25": 0.6284,
+        "ah_line": -0.75
+      },
+      "bots": {
+        "estadistico": {
+          "pick_1x2": "1",
+          "pick_exact": "2-1",
+          "p1x2": [
+            0.597,
+            0.222,
+            0.181
+          ],
+          "p_over25": 0.621,
+          "p_btts": 0.617,
+          "value_bets": [
+            {
+              "market": "1x2",
+              "side": "1",
+              "price": 1.69,
+              "edge": 0.008
+            }
+          ]
+        },
+        "calibrado": {
+          "pick_1x2": "1",
+          "pick_exact": "2-1",
+          "p1x2": [
+            0.567,
+            0.225,
+            0.208
+          ],
+          "p_over25": 0.628,
+          "p_btts": 0.614,
+          "value_bets": []
+        },
+        "borrego": {
+          "pick_1x2": "1",
+          "pick_exact": "2-1",
+          "p1x2": [
+            0.558,
+            0.227,
+            0.216
+          ],
+          "p_over25": 0.628,
+          "p_btts": 0.614,
+          "value_bets": []
+        }
+      }
+    },
+    {
+      "league": "E0",
+      "date": "2026-10-10",
+      "home": "Sunderland",
+      "away": "Brighton",
+      "top": false,
+      "market": {
+        "p1x2": [
+          0.32,
+          0.271,
+          0.409
+        ],
+        "p_over25": 0.5293,
+        "ah_line": 0.25
+      },
+      "bots": {
+        "estadistico": {
+          "pick_1x2": "2",
+          "pick_exact": "0-1",
+          "p1x2": [
+            0.308,
+            0.285,
+            0.407
+          ],
+          "p_over25": 0.462,
+          "p_btts": 0.522,
+          "value_bets": [
+            {
+              "market": "ou25",
+              "side": "under2.5",
+              "price": 1.99,
+              "edge": 0.07
+            }
+          ]
+        },
+        "calibrado": {
+          "pick_1x2": "2",
+          "pick_exact": "1-2",
+          "p1x2": [
+            0.318,
+            0.271,
+            0.41
+          ],
+          "p_over25": 0.528,
+          "p_btts": 0.566,
+          "value_bets": []
+        },
+        "borrego": {
+          "pick_1x2": "2",
+          "pick_exact": "1-2",
+          "p1x2": [
+            0.32,
+            0.271,
+            0.409
+          ],
+          "p_over25": 0.529,
+          "p_btts": 0.571,
+          "value_bets": []
+        }
+      }
+    },
+    {
+      "league": "E0",
+      "date": "2026-10-11",
+      "home": "Crystal Palace",
+      "away": "Nott'm Forest",
+      "top": false,
+      "market": {
+        "p1x2": [
+          0.362,
+          0.282,
+          0.356
+        ],
+        "p_over25": 0.5013,
+        "ah_line": 0.0
+      },
+      "bots": {
+        "estadistico": {
+          "pick_1x2": "1",
+          "pick_exact": "1-0",
+          "p1x2": [
+            0.375,
+            0.29,
+            0.336
+          ],
+          "p_over25": 0.446,
+          "p_btts": 0.509,
+          "value_bets": [
+            {
+              "market": "ou25",
+              "side": "under2.5",
+              "price": 1.87,
+              "edge": 0.037
+            }
+          ]
+        },
+        "calibrado": {
+          "pick_1x2": "1",
+          "pick_exact": "1-0",
+          "p1x2": [
+            0.362,
+            0.282,
+            0.356
+          ],
+          "p_over25": 0.5,
+          "p_btts": 0.547,
+          "value_bets": []
+        },
+        "borrego": {
+          "pick_1x2": "1",
+          "pick_exact": "1-0",
+          "p1x2": [
+            0.362,
+            0.282,
+            0.356
+          ],
+          "p_over25": 0.501,
+          "p_btts": 0.552,
+          "value_bets": []
+        }
+      }
+    },
+    {
+      "league": "E0",
+      "date": "2026-10-11",
+      "home": "Hull",
+      "away": "Everton",
+      "top": false,
+      "market": {
+        "p1x2": [
+          0.263,
+          0.277,
+          0.461
+        ],
+        "p_over25": 0.4759,
+        "ah_line": 0.5
+      },
+      "bots": {
+        "estadistico": {
+          "pick_1x2": "1",
+          "pick_exact": "1-0",
+          "p1x2": [
+            0.472,
+            0.313,
+            0.214
+          ],
+          "p_over25": 0.277,
+          "p_btts": 0.334,
+          "value_bets": [
+            {
+              "market": "1x2",
+              "side": "1",
+              "price": 3.58,
+              "edge": 0.69
+            },
+            {
+              "market": "ou25",
+              "side": "under2.5",
+              "price": 1.78,
+              "edge": 0.287
+            },
+            {
+              "market": "ah",
+              "side": "home +0.5",
+              "price": 1.76,
+              "edge": 0.383
+            }
+          ]
+        },
+        "calibrado": {
+          "pick_1x2": "2",
+          "pick_exact": "0-1",
+          "p1x2": [
+            0.269,
+            0.278,
+            0.452
+          ],
+          "p_over25": 0.473,
+          "p_btts": 0.499,
+          "value_bets": []
+        },
+        "borrego": {
+          "pick_1x2": "2",
+          "pick_exact": "0-1",
+          "p1x2": [
+            0.263,
+            0.277,
+            0.461
+          ],
+          "p_over25": 0.476,
+          "p_btts": 0.519,
+          "value_bets": []
+        }
+      }
+    },
+    {
+      "league": "E0",
+      "date": "2026-10-11",
+      "home": "Liverpool",
+      "away": "Man City",
+      "top": true,
+      "market": {
+        "p1x2": [
+          0.358,
+          0.258,
+          0.384
+        ],
+        "p_over25": 0.6061,
+        "ah_line": 0.0
+      },
+      "bots": {
+        "estadistico": {
+          "pick_1x2": "2",
+          "pick_exact": "1-2",
+          "p1x2": [
+            0.288,
+            0.261,
+            0.452
+          ],
+          "p_over25": 0.584,
+          "p_btts": 0.617,
+          "value_bets": [
+            {
+              "market": "1x2",
+              "side": "2",
+              "price": 2.44,
+              "edge": 0.103
+            },
+            {
+              "market": "ah",
+              "side": "away -0",
+              "price": 1.8,
+              "edge": 0.074
+            }
+          ]
+        },
+        "calibrado": {
+          "pick_1x2": "2",
+          "pick_exact": "1-2",
+          "p1x2": [
+            0.353,
+            0.258,
+            0.389
+          ],
+          "p_over25": 0.605,
+          "p_btts": 0.631,
+          "value_bets": []
+        },
+        "borrego": {
+          "pick_1x2": "2",
+          "pick_exact": "1-2",
+          "p1x2": [
+            0.358,
+            0.258,
+            0.384
+          ],
+          "p_over25": 0.606,
+          "p_btts": 0.632,
+          "value_bets": []
+        }
+      }
+    },
+    {
+      "league": "E0",
+      "date": "2026-10-12",
+      "home": "Coventry",
+      "away": "Newcastle",
+      "top": false,
+      "market": {
+        "p1x2": [
+          0.288,
+          0.262,
+          0.45
+        ],
+        "p_over25": 0.5733,
+        "ah_line": 0.5
+      },
+      "bots": {
+        "estadistico": {
+          "pick_1x2": "2",
+          "pick_exact": "0-1",
+          "p1x2": [
+            0.112,
+            0.249,
+            0.639
+          ],
+          "p_over25": 0.35,
+          "p_btts": 0.282,
+          "value_bets": [
+            {
+              "market": "1x2",
+              "side": "2",
+              "price": 2.08,
+              "edge": 0.33
+            },
+            {
+              "market": "ou25",
+              "side": "under2.5",
+              "price": 2.19,
+              "edge": 0.423
+            },
+            {
+              "market": "ah",
+              "side": "away -0.5",
+              "price": 2.03,
+              "edge": 0.298
+            }
+          ]
+        },
+        "calibrado": {
+          "pick_1x2": "2",
+          "pick_exact": "1-2",
+          "p1x2": [
+            0.286,
+            0.262,
+            0.452
+          ],
+          "p_over25": 0.569,
+          "p_btts": 0.567,
+          "value_bets": []
+        },
+        "borrego": {
+          "pick_1x2": "2",
+          "pick_exact": "1-2",
+          "p1x2": [
+            0.288,
+            0.262,
+            0.45
+          ],
+          "p_over25": 0.573,
+          "p_btts": 0.6,
+          "value_bets": []
+        }
+      }
+    },
+    {
+      "league": "I1",
+      "date": "2026-10-10",
+      "home": "Genoa",
+      "away": "Fiorentina",
+      "top": false,
+      "market": {
+        "p1x2": [
+          0.296,
+          0.289,
+          0.415
+        ],
+        "p_over25": 0.4642,
+        "ah_line": 0.25
+      },
+      "bots": {
+        "estadistico": {
+          "pick_1x2": "2",
+          "pick_exact": "0-1",
+          "p1x2": [
+            0.315,
+            0.286,
+            0.399
+          ],
+          "p_over25": 0.434,
+          "p_btts": 0.495,
+          "value_bets": [
+            {
+              "market": "1x2",
+              "side": "1",
+              "price": 3.18,
+              "edge": 0.003
+            }
+          ]
+        },
+        "calibrado": {
+          "pick_1x2": "2",
+          "pick_exact": "0-1",
+          "p1x2": [
+            0.298,
+            0.288,
+            0.414
+          ],
+          "p_over25": 0.463,
+          "p_btts": 0.514,
+          "value_bets": []
+        },
+        "borrego": {
+          "pick_1x2": "2",
+          "pick_exact": "0-1",
+          "p1x2": [
+            0.296,
+            0.289,
+            0.415
+          ],
+          "p_over25": 0.464,
+          "p_btts": 0.516,
+          "value_bets": []
+        }
+      }
+    },
+    {
+      "league": "I1",
+      "date": "2026-10-10",
+      "home": "Inter",
+      "away": "Parma",
+      "top": true,
+      "market": {
+        "p1x2": [
+          0.833,
+          0.112,
+          0.055
+        ],
+        "p_over25": 0.7038,
+        "ah_line": -2.25
+      },
+      "bots": {
+        "estadistico": {
+          "pick_1x2": "1",
+          "pick_exact": "2-0",
+          "p1x2": [
+            0.834,
+            0.115,
+            0.051
+          ],
+          "p_over25": 0.631,
+          "p_btts": 0.424,
+          "value_bets": [
+            {
+              "market": "ou25",
+              "side": "under2.5",
+              "price": 3.16,
+              "edge": 0.167
+            },
+            {
+              "market": "ah",
+              "side": "away +2.25",
+              "price": 1.93,
+              "edge": 0.121
+            }
+          ]
+        },
+        "calibrado": {
+          "pick_1x2": "1",
+          "pick_exact": "2-0",
+          "p1x2": [
+            0.836,
+            0.111,
+            0.053
+          ],
+          "p_over25": 0.703,
+          "p_btts": 0.459,
+          "value_bets": [
+            {
+              "market": "ah",
+              "side": "away +2.25",
+              "price": 1.93,
+              "edge": 0.006
+            }
+          ]
+        },
+        "borrego": {
+          "pick_1x2": "1",
+          "pick_exact": "2-0",
+          "p1x2": [
+            0.833,
+            0.112,
+            0.055
+          ],
+          "p_over25": 0.704,
+          "p_btts": 0.464,
+          "value_bets": []
+        }
+      }
+    },
+    {
+      "league": "I1",
+      "date": "2026-10-10",
+      "home": "Napoli",
+      "away": "Frosinone",
+      "top": true,
+      "market": {
+        "p1x2": [
+          0.655,
+          0.199,
+          0.146
+        ],
+        "p_over25": 0.6404,
+        "ah_line": -1.25
+      },
+      "bots": {
+        "estadistico": {
+          "pick_1x2": "1",
+          "pick_exact": "2-0",
+          "p1x2": [
+            0.663,
+            0.207,
+            0.131
+          ],
+          "p_over25": 0.571,
+          "p_btts": 0.517,
+          "value_bets": [
+            {
+              "market": "ou25",
+              "side": "under2.5",
+              "price": 2.6,
+              "edge": 0.116
+            }
+          ]
+        },
+        "calibrado": {
+          "pick_1x2": "1",
+          "pick_exact": "2-0",
+          "p1x2": [
+            0.656,
+            0.199,
+            0.145
+          ],
+          "p_over25": 0.639,
+          "p_btts": 0.569,
+          "value_bets": []
+        },
+        "borrego": {
+          "pick_1x2": "1",
+          "pick_exact": "2-1",
+          "p1x2": [
+            0.655,
+            0.199,
+            0.146
+          ],
+          "p_over25": 0.64,
+          "p_btts": 0.575,
+          "value_bets": []
+        }
+      }
+    },
+    {
+      "league": "I1",
+      "date": "2026-10-11",
+      "home": "Cagliari",
+      "away": "Juventus",
+      "top": false,
+      "market": {
+        "p1x2": [
+          0.153,
+          0.241,
+          0.606
+        ],
+        "p_over25": 0.4786,
+        "ah_line": 1.0
+      },
+      "bots": {
+        "estadistico": {
+          "pick_1x2": "2",
+          "pick_exact": "0-1",
+          "p1x2": [
+            0.214,
+            0.271,
+            0.516
+          ],
+          "p_over25": 0.421,
+          "p_btts": 0.446,
+          "value_bets": [
+            {
+              "market": "1x2",
+              "side": "1",
+              "price": 6.13,
+              "edge": 0.31
+            },
+            {
+              "market": "ou25",
+              "side": "under2.5",
+              "price": 1.79,
+              "edge": 0.037
+            },
+            {
+              "market": "ah",
+              "side": "home +1",
+              "price": 1.8,
+              "edge": 0.109
+            }
+          ]
+        },
+        "calibrado": {
+          "pick_1x2": "2",
+          "pick_exact": "0-1",
+          "p1x2": [
+            0.157,
+            0.243,
+            0.6
+          ],
+          "p_over25": 0.478,
+          "p_btts": 0.458,
+          "value_bets": []
+        },
+        "borrego": {
+          "pick_1x2": "2",
+          "pick_exact": "0-1",
+          "p1x2": [
+            0.153,
+            0.241,
+            0.606
+          ],
+          "p_over25": 0.479,
+          "p_btts": 0.46,
+          "value_bets": []
+        }
+      }
+    },
+    {
+      "league": "I1",
+      "date": "2026-10-11",
+      "home": "Como",
+      "away": "Roma",
+      "top": true,
+      "market": {
+        "p1x2": [
+          0.369,
+          0.265,
+          0.366
+        ],
+        "p_over25": 0.5796,
+        "ah_line": 0.0
+      },
+      "bots": {
+        "estadistico": {
+          "pick_1x2": "1",
+          "pick_exact": "1-0",
+          "p1x2": [
+            0.373,
+            0.285,
+            0.343
+          ],
+          "p_over25": 0.448,
+          "p_btts": 0.509,
+          "value_bets": [
+            {
+              "market": "1x2",
+              "side": "X",
+              "price": 3.54,
+              "edge": 0.008
+            },
+            {
+              "market": "ou25",
+              "side": "under2.5",
+              "price": 2.22,
+              "edge": 0.226
+            }
+          ]
+        },
+        "calibrado": {
+          "pick_1x2": "1",
+          "pick_exact": "2-1",
+          "p1x2": [
+            0.369,
+            0.265,
+            0.366
+          ],
+          "p_over25": 0.578,
+          "p_btts": 0.6,
+          "value_bets": []
+        },
+        "borrego": {
+          "pick_1x2": "1",
+          "pick_exact": "2-1",
+          "p1x2": [
+            0.369,
+            0.265,
+            0.366
+          ],
+          "p_over25": 0.58,
+          "p_btts": 0.611,
+          "value_bets": []
+        }
+      }
+    },
+    {
+      "league": "I1",
+      "date": "2026-10-11",
+      "home": "Lazio",
+      "away": "Monza",
+      "top": false,
+      "market": {
+        "p1x2": [
+          0.598,
+          0.236,
+          0.166
+        ],
+        "p_over25": 0.508,
+        "ah_line": -1.0
+      },
+      "bots": {
+        "estadistico": {
+          "pick_1x2": "1",
+          "pick_exact": "1-0",
+          "p1x2": [
+            0.727,
+            0.175,
+            0.097
+          ],
+          "p_over25": 0.533,
+          "p_btts": 0.462,
+          "value_bets": [
+            {
+              "market": "1x2",
+              "side": "1",
+              "price": 1.57,
+              "edge": 0.142
+            },
+            {
+              "market": "ah",
+              "side": "home -1",
+              "price": 1.96,
+              "edge": 0.144
+            }
+          ]
+        },
+        "calibrado": {
+          "pick_1x2": "1",
+          "pick_exact": "1-0",
+          "p1x2": [
+            0.611,
+            0.23,
+            0.159
+          ],
+          "p_over25": 0.508,
+          "p_btts": 0.488,
+          "value_bets": []
+        },
+        "borrego": {
+          "pick_1x2": "1",
+          "pick_exact": "1-0",
+          "p1x2": [
+            0.598,
+            0.236,
+            0.166
+          ],
+          "p_over25": 0.508,
+          "p_btts": 0.491,
+          "value_bets": []
+        }
+      }
+    },
+    {
+      "league": "I1",
+      "date": "2026-10-11",
+      "home": "Lecce",
+      "away": "Bologna",
+      "top": false,
+      "market": {
+        "p1x2": [
+          0.229,
+          0.281,
+          0.491
+        ],
+        "p_over25": 0.4524,
+        "ah_line": 0.5
+      },
+      "bots": {
+        "estadistico": {
+          "pick_1x2": "2",
+          "pick_exact": "0-1",
+          "p1x2": [
+            0.26,
+            0.298,
+            0.442
+          ],
+          "p_over25": 0.349,
+          "p_btts": 0.406,
+          "value_bets": [
+            {
+              "market": "1x2",
+              "side": "1",
+              "price": 4.1,
+              "edge": 0.066
+            },
+            {
+              "market": "ou25",
+              "side": "under2.5",
+              "price": 1.71,
+              "edge": 0.114
+            },
+            {
+              "market": "ah",
+              "side": "home +0.5",
+              "price": 1.85,
+              "edge": 0.032
+            }
+          ]
+        },
+        "calibrado": {
+          "pick_1x2": "2",
+          "pick_exact": "0-1",
+          "p1x2": [
+            0.233,
+            0.281,
+            0.486
+          ],
+          "p_over25": 0.451,
+          "p_btts": 0.479,
+          "value_bets": []
+        },
+        "borrego": {
+          "pick_1x2": "2",
+          "pick_exact": "0-1",
+          "p1x2": [
+            0.229,
+            0.281,
+            0.491
+          ],
+          "p_over25": 0.452,
+          "p_btts": 0.489,
+          "value_bets": []
+        }
+      }
+    },
+    {
+      "league": "I1",
+      "date": "2026-10-11",
+      "home": "Sassuolo",
+      "away": "Milan",
+      "top": false,
+      "market": {
+        "p1x2": [
+          0.231,
+          0.252,
+          0.517
+        ],
+        "p_over25": 0.5426,
+        "ah_line": 0.5
+      },
+      "bots": {
+        "estadistico": {
+          "pick_1x2": "2",
+          "pick_exact": "1-2",
+          "p1x2": [
+            0.239,
+            0.248,
+            0.513
+          ],
+          "p_over25": 0.58,
+          "p_btts": 0.591,
+          "value_bets": []
+        },
+        "calibrado": {
+          "pick_1x2": "2",
+          "pick_exact": "1-2",
+          "p1x2": [
+            0.233,
+            0.252,
+            0.515
+          ],
+          "p_over25": 0.542,
+          "p_btts": 0.56,
+          "value_bets": []
+        },
+        "borrego": {
+          "pick_1x2": "2",
+          "pick_exact": "0-1",
+          "p1x2": [
+            0.231,
+            0.252,
+            0.517
+          ],
+          "p_over25": 0.543,
+          "p_btts": 0.556,
+          "value_bets": []
+        }
+      }
+    },
+    {
+      "league": "I1",
+      "date": "2026-10-12",
+      "home": "Atalanta",
+      "away": "Venezia",
+      "top": false,
+      "market": {
+        "p1x2": [
+          0.606,
+          0.225,
+          0.17
+        ],
+        "p_over25": 0.6071,
+        "ah_line": -1.0
+      },
+      "bots": {
+        "estadistico": {
+          "pick_1x2": "1",
+          "pick_exact": "2-0",
+          "p1x2": [
+            0.777,
+            0.152,
+            0.071
+          ],
+          "p_over25": 0.594,
+          "p_btts": 0.447,
+          "value_bets": [
+            {
+              "market": "1x2",
+              "side": "1",
+              "price": 1.55,
+              "edge": 0.205
+            },
+            {
+              "market": "ah",
+              "side": "home -1",
+              "price": 1.88,
+              "edge": 0.248
+            }
+          ]
+        },
+        "calibrado": {
+          "pick_1x2": "1",
+          "pick_exact": "2-1",
+          "p1x2": [
+            0.617,
+            0.22,
+            0.163
+          ],
+          "p_over25": 0.606,
+          "p_btts": 0.562,
+          "value_bets": []
+        },
+        "borrego": {
+          "pick_1x2": "1",
+          "pick_exact": "2-1",
+          "p1x2": [
+            0.606,
+            0.224,
+            0.17
+          ],
+          "p_over25": 0.607,
+          "p_btts": 0.573,
+          "value_bets": []
+        }
+      }
+    },
+    {
+      "league": "I1",
+      "date": "2026-10-12",
+      "home": "Torino",
+      "away": "Udinese",
+      "top": false,
+      "market": {
+        "p1x2": [
+          0.406,
+          0.294,
+          0.3
+        ],
+        "p_over25": 0.4485,
+        "ah_line": -0.25
+      },
+      "bots": {
+        "estadistico": {
+          "pick_1x2": "1",
+          "pick_exact": "1-0",
+          "p1x2": [
+            0.394,
+            0.288,
+            0.318
+          ],
+          "p_over25": 0.425,
+          "p_btts": 0.489,
+          "value_bets": []
+        },
+        "calibrado": {
+          "pick_1x2": "1",
+          "pick_exact": "1-0",
+          "p1x2": [
+            0.406,
+            0.293,
+            0.301
+          ],
+          "p_over25": 0.447,
+          "p_btts": 0.503,
+          "value_bets": []
+        },
+        "borrego": {
+          "pick_1x2": "1",
+          "pick_exact": "1-0",
+          "p1x2": [
+            0.406,
+            0.294,
+            0.3
+          ],
+          "p_over25": 0.449,
+          "p_btts": 0.504,
+          "value_bets": []
+        }
+      }
+    }
+  ]
+}

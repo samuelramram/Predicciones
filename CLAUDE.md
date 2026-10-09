@@ -138,6 +138,22 @@ python -m wc_predictor.pipeline.liga_backtest --sweep 0.3,0.75,0.9
 Al reportar resultados de la liga, **acompaña cada diferencia con su z pareado**
 (el backtest lo imprime): con ~900 partidos, ±15 puntos entre bots suele ser suerte.
 
+**Europa y mercados nuevos.** La liga también juega las 5 ligas top
+(Premier, LaLiga, Serie A, Bundesliga, Ligue 1) con datos de Football-Data
+(`data/europa/matches.csv`, 2020→hoy, momios de cierre de 1X2, O/U 2.5 y hándicap
+asiático). Cada bot "apuesta" en 1X2, Over/Under 2.5 y hándicap asiático, y se
+califica en ambos anotan; todo sale de su matriz de marcadores (`liga.markets`).
+El boleto de Samuel en Europa = partidos con un equipo del **top-3 Elo** de su liga
+(`data/europa/top_override.json` los fija a mano). En Europa el mercado manda: el peso
+de mercado es **0.9**, medido en `europa_backtest`. Las props de jugadores son fase 2
+(no hay fuente gratis). Diseño de agentes: `docs/liga_multiagente.md`.
+
+```bash
+python -m wc_predictor.ingest.europa_fd                 # refresca data/europa/matches.csv
+python -m wc_predictor.pipeline.europa_backtest         # walk-forward 5 ligas (~10 min)
+python -m wc_predictor.pipeline.europa_live --seal      # boletos de los bots de la jornada
+```
+
 ### Calibración: qué se probó y por qué NO se cambió (disciplina)
 
 La quiniela puntúa **decisiones discretas** (el pick es un argmax), así que afinar
