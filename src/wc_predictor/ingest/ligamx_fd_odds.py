@@ -148,7 +148,7 @@ def lookup(idx: dict, home: str, away: str, iso_date: str, tol_days: int = 1) ->
 def write(rows: list[dict], path: Path = OUT_CSV) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("w", encoding="utf-8", newline="") as f:
-        w = csv.DictWriter(f, fieldnames=FIELDS)
+        w = csv.DictWriter(f, fieldnames=FIELDS, lineterminator="\n")
         w.writeheader()
         w.writerows(rows)
 
