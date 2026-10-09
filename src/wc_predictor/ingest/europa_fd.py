@@ -26,8 +26,9 @@ import argparse
 import csv
 import io
 import urllib.request
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 from wc_predictor.config import DATA_DIR
 
@@ -63,6 +64,15 @@ def _date(s: str) -> str:
         except ValueError:
             pass
     raise ValueError(f"fecha rara: {s!r}")
+
+
+def kickoff_utc(date_s: str, time_s: str) -> str:
+    """Football-Data times are UK local time (GMT/BST) → ISO UTC. '' when unknown."""
+    if not (time_s or "").strip():
+        return ""
+    local = datetime.strptime(f"{_date(date_s)} {time_s.strip()}", "%Y-%m-%d %H:%M")
+    utc = local.replace(tzinfo=ZoneInfo("Europe/London")).astimezone(timezone.utc)
+    return utc.isoformat(timespec="minutes")
 
 
 def devig(*odds: float) -> tuple[float, ...]:
@@ -106,6 +116,7 @@ def normalize_rows(raw_rows: list[dict], code: str, season: str, closing: bool =
         o = {
             "league": code, "season": season, "date": _date(r["Date"]),
             "home": r["HomeTeam"].strip(), "away": r["AwayTeam"].strip(),
+            "kickoff_utc": kickoff_utc(r["Date"], r.get("Time", "")),
             "home_score": int(r["FTHG"]) if played else "",
             "away_score": int(r["FTAG"]) if played else "",
             "fair_p1": "", "fair_px": "", "fair_p2": "", "fair_source": src,
@@ -152,7 +163,7 @@ def build(src: Path | None = None) -> list[dict]:
 def write(rows: list[dict], dst: Path = OUT_CSV) -> None:
     dst.parent.mkdir(parents=True, exist_ok=True)
     with dst.open("w", encoding="utf-8", newline="") as f:
-        w = csv.DictWriter(f, fieldnames=FIELDS, lineterminator="\n")
+        w = csv.DictWriter(f, fieldnames=FIELDS, lineterminator="\n", extrasaction="ignore")
         w.writeheader()
         w.writerows(rows)
 
@@ -196,7 +207,7 @@ def load_upcoming(text: str | None = None) -> list[dict]:
                 d[k] = None if d[k] == "" else float(d[k])
         d["neutral"] = False
         d["tournament"] = LEAGUES[d["league"]]
-    return sorted(out, key=lambda r: (r["date"], r["league"], r["home"]))
+    return sorted(out, key=lambda r: (r["kickoff_utc"] or r["date"], r["league"], r["home"]))
 
 
 def main(argv: list[str] | None = None) -> None:

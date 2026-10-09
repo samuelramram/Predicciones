@@ -1,0 +1,84 @@
+# Liga en el VPS: Claudio (OpenClaw) como operador
+
+Quién hace qué:
+- **Utilero** (`liga-sync`, timer del host, sin LLM): repo + fixtures + respaldo, cada 3 h.
+- **Claudio** (OpenClaw, en su sandbox sin red): corre los bots, sella, califica y te platica.
+- **Código** (bots, Notario, Árbitro): decide los números. Claudio solo los opera y explica.
+
+Seguridad: el clon con `.git` y el script del Utilero viven FUERA del workspace;
+Claudio recibe una copia sin `.git` que se pisa cada 3 h. Nada que él escriba llega
+a ejecutarse en el host. El libro se respalda a diario en `~/liga-backups/`.
+
+## 1. Clonar el repo (llave de deploy de SOLO lectura)
+
+```bash
+ssh-keygen -t ed25519 -f ~/.ssh/predicciones_deploy -N "" -C "vps-predicciones-ro"
+cat ~/.ssh/predicciones_deploy.pub
+```
+GitHub → repo Predicciones → Settings → Deploy keys → Add deploy key: pega la llave,
+**sin** marcar "Allow write access".
+
+```bash
+cat >> ~/.ssh/config <<'CFG'
+Host github-predicciones
+  HostName github.com
+  User git
+  IdentityFile ~/.ssh/predicciones_deploy
+  IdentitiesOnly yes
+CFG
+git clone git@github-predicciones:samuelramram/Predicciones.git ~/predicciones
+sudo apt install -y rsync
+```
+
+## 2. Preparar la liga
+
+```bash
+~/predicciones/deploy/vps/setup.sh
+```
+
+## 3. Darle a Claudio su carpeta y la imagen con Python científico
+
+```bash
+openclaw config patch --stdin <<'JSON'
+{ "agents": { "defaults": { "sandbox": {
+    "workspaceAccess": "rw",
+    "docker": {
+      "image": "openclaw-sandbox-liga:bookworm-slim",
+      "env": { "LIGA_HOME": "/workspace/liga",
+               "PYTHONPATH": "/workspace/predicciones/src",
+               "PYTHONDONTWRITEBYTECODE": "1" } } } } } }
+JSON
+systemctl --user stop openclaw-gateway
+openclaw sandbox recreate --all --force
+systemctl --user start openclaw-gateway
+openclaw sandbox explain
+openclaw skills list | grep liga
+```
+`explain` debe decir workspace `rw` y la imagen `openclaw-sandbox-liga`; red sigue en none.
+
+## 4. Que Claudio chambee solo (automatizaciones)
+
+Verifica la sintaxis con `openclaw automations add --help` (cambia entre versiones).
+
+```bash
+# Jueves 20:00: arma y sella la jornada, te manda tu boleto
+openclaw automations add --name "liga-jornada" --cron "0 20 * * 4" --tz America/Mexico_City \
+  --session isolated --message "Usa la skill liga-jornada y mándame mi boleto." \
+  --announce --channel telegram --to "1305320146"
+# Viernes 09:00: qué te falta por sellar
+openclaw automations add --name "liga-recordatorio" --cron "0 9 * * 5" --tz America/Mexico_City \
+  --session isolated --message "Con la skill liga-sellar revisa (--status) qué me falta de la jornada y recuérdame el deadline." \
+  --announce --channel telegram --to "1305320146"
+# Lunes y jueves 09:00: tabla
+openclaw automations add --name "liga-tabla" --cron "0 9 * * 1,4" --tz America/Mexico_City \
+  --session isolated --message "Usa la skill liga-tabla y cuéntame cómo voy." \
+  --announce --channel telegram --to "1305320146"
+```
+
+## Cómo le hablas a Claudio (Telegram o dashboard)
+
+- "Pásame la jornada" · "¿qué pusieron los bots en el Liverpool–City y por qué?"
+- "mis picks: 2-1, 0-2, -, 1-3" · "¿qué me falta?"
+- "¿cómo voy?" · "¿ya le gano al borrego o es suerte?"
+
+En el dashboard (túnel SSH) ves cada comando que corrió y lo que leyó.

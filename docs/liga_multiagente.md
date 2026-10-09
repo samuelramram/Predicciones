@@ -30,6 +30,10 @@ mide con la misma vara (z pareado) que los demás.
 - **Mínimo privilegio**: cada agente toca solo lo suyo, y el que tiene red no puede escribir el libro.
 - **Comparación justa**: todos los bots, tú incluido, se miden en los MISMOS partidos con prueba pareada.
 
+## Implementación actual (oct 2026)
+
+Por ahora Claudio hace el trabajo de **operador** de los bots de código, el Notario y el Árbitro. Los corre él mismo dentro de su sandbox, con las skills `liga-jornada`, `liga-sellar` y `liga-tabla`, y sigue las automatizaciones de jueves, viernes y lunes. El Utilero es un timer del host sin LLM. Instalación y seguridad: `deploy/vps/README.md`.
+
 ## Decisiones pendientes de infraestructura
 
 - **Dónde vive el libro.** El VPS tiene llave de solo lectura al repo, así que no puede hacer push del ledger. Propuesta: un repo privado chiquito `quiniela-ledger` con llave de deploy de escritura, solo para `ledger.jsonl`. Si alguien comprometiera el VPS, no podría tocar el código.

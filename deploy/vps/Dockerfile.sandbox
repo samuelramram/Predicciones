@@ -1,0 +1,10 @@
+# Sandbox de Claudio con lo mínimo para correr la liga (numpy + scipy).
+# Se construye EN EL VPS (el build sí tiene red; el contenedor de Claudio no).
+#   docker build -t openclaw-sandbox-liga:bookworm-slim -f Dockerfile.sandbox .
+FROM openclaw-sandbox:bookworm-slim
+USER root
+RUN apt-get update \
+ && apt-get install -y --no-install-recommends python3-pip \
+ && pip3 install --no-cache-dir --break-system-packages "numpy>=1.26,<3" "scipy>=1.11" \
+ && apt-get purge -y python3-pip && apt-get autoremove -y && rm -rf /var/lib/apt/lists/*
+USER sandbox

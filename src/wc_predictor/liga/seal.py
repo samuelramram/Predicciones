@@ -20,9 +20,9 @@ import json
 from datetime import datetime, timezone
 from pathlib import Path
 
-from wc_predictor.config import DATA_DIR
+from wc_predictor.liga.paths import ledger_path
 
-LEDGER = DATA_DIR / "liga" / "ledger.jsonl"
+LEDGER = ledger_path()  # data/liga/ledger.jsonl, or $LIGA_HOME/ledger.jsonl on the VPS
 GENESIS = "0" * 64
 
 
