@@ -61,6 +61,14 @@ ALIASES = {
     "borussia dortmund": "dortmund", "inter de milan": "inter", "napoles": "napoli",
     "leverkusen": "leverkusen", "bremen": "werder bremen", "alaves": "alaves",
     "spurs": "tottenham", "milan": "ac milan",
+    # Liga MX
+    "chivas": "guadalajara", "rebano": "guadalajara", "aguilas": "america", "ame": "america",
+    "rayados": "monterrey", "tuzos": "pachuca", "xolos": "tijuana", "diablos": "toluca",
+    "rojinegros": "atlas", "gallos": "queretaro", "bravos": "juarez", "rayos": "necaxa",
+    "franja": "puebla", "camoteros": "puebla", "guerreros": "santos", "potros": "atlante",
+    "felinos": "tigres", "esmeraldas": "leon", "la maquina": "cruz azul", "maquina": "cruz azul",
+    "cementeros": "cruz azul", "auriazules": "pumas", "unam": "pumas", "atletico san luis": "san luis",
+    "mazatlan fc": "mazatlan",
 }
 
 

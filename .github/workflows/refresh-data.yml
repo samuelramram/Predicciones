@@ -50,6 +50,9 @@ jobs:
       - name: Refresh Europe top-5 results + closing odds (Football-Data)
         run: PYTHONPATH=src python -m wc_predictor.ingest.europa_fd
 
+      - name: Refresh Liga MX results + closing odds (Football-Data MEX.csv)
+        run: PYTHONPATH=src python -m wc_predictor.ingest.ligamx_fd_odds
+
       - name: Commit regenerated artifacts
         run: |
           git config user.name  "github-actions[bot]"
@@ -59,7 +62,8 @@ jobs:
                   data/processed/team_strengths.json \
                   data/wc2026/elo_snapshot.json \
                   data/wc2026/elo_trajectory.json \
-                  data/europa/matches.csv
+                  data/europa/matches.csv \
+                  data/ligamx/historical_odds.csv
           if git diff --staged --quiet; then
             echo "No change to model artifacts — nothing to commit."
           else

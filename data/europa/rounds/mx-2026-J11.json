@@ -1,0 +1,581 @@
+{
+  "generated": "2026-10-09",
+  "top3": {},
+  "matches": [
+    {
+      "n": 1,
+      "league": "MX",
+      "date": "2026-10-09",
+      "kickoff_utc": "2026-10-10T01:00+00:00",
+      "home": "Puebla",
+      "away": "León",
+      "top": true,
+      "market": {
+        "p1x2": [
+          0.33,
+          0.28,
+          0.39
+        ],
+        "p_over25": null,
+        "ah_line": null
+      },
+      "bots": {
+        "estadistico": {
+          "pick_1x2": "2",
+          "pick_exact": "0-1",
+          "p1x2": [
+            0.342,
+            0.288,
+            0.37
+          ],
+          "p_over25": 0.466,
+          "p_btts": 0.528,
+          "value_bets": []
+        },
+        "calibrado": {
+          "pick_1x2": "2",
+          "pick_exact": "0-1",
+          "p1x2": [
+            0.335,
+            0.283,
+            0.381
+          ],
+          "p_over25": 0.468,
+          "p_btts": 0.527,
+          "value_bets": []
+        },
+        "borrego": {
+          "pick_1x2": "2",
+          "pick_exact": "1-2",
+          "p1x2": [
+            0.33,
+            0.28,
+            0.39
+          ],
+          "p_over25": null,
+          "p_btts": null,
+          "value_bets": []
+        }
+      }
+    },
+    {
+      "n": 2,
+      "league": "MX",
+      "date": "2026-10-09",
+      "kickoff_utc": "2026-10-10T03:00+00:00",
+      "home": "Tigres",
+      "away": "Toluca",
+      "top": true,
+      "market": {
+        "p1x2": [
+          0.328,
+          0.264,
+          0.408
+        ],
+        "p_over25": null,
+        "ah_line": null
+      },
+      "bots": {
+        "estadistico": {
+          "pick_1x2": "2",
+          "pick_exact": "0-1",
+          "p1x2": [
+            0.343,
+            0.283,
+            0.373
+          ],
+          "p_over25": 0.493,
+          "p_btts": 0.55,
+          "value_bets": []
+        },
+        "calibrado": {
+          "pick_1x2": "2",
+          "pick_exact": "0-1",
+          "p1x2": [
+            0.335,
+            0.273,
+            0.392
+          ],
+          "p_over25": 0.497,
+          "p_btts": 0.548,
+          "value_bets": []
+        },
+        "borrego": {
+          "pick_1x2": "2",
+          "pick_exact": "1-2",
+          "p1x2": [
+            0.328,
+            0.264,
+            0.408
+          ],
+          "p_over25": null,
+          "p_btts": null,
+          "value_bets": []
+        }
+      }
+    },
+    {
+      "n": 3,
+      "league": "MX",
+      "date": "2026-10-10",
+      "kickoff_utc": "2026-10-10T23:00+00:00",
+      "home": "Juárez",
+      "away": "Tijuana",
+      "top": true,
+      "market": {
+        "p1x2": [
+          0.322,
+          0.273,
+          0.405
+        ],
+        "p_over25": null,
+        "ah_line": null
+      },
+      "bots": {
+        "estadistico": {
+          "pick_1x2": "2",
+          "pick_exact": "1-2",
+          "p1x2": [
+            0.29,
+            0.265,
+            0.445
+          ],
+          "p_over25": 0.583,
+          "p_btts": 0.621,
+          "value_bets": [
+            {
+              "market": "1x2",
+              "side": "2",
+              "price": 2.26,
+              "edge": 0.006
+            }
+          ]
+        },
+        "calibrado": {
+          "pick_1x2": "2",
+          "pick_exact": "1-2",
+          "p1x2": [
+            0.308,
+            0.27,
+            0.423
+          ],
+          "p_over25": 0.582,
+          "p_btts": 0.622,
+          "value_bets": []
+        },
+        "borrego": {
+          "pick_1x2": "2",
+          "pick_exact": "1-2",
+          "p1x2": [
+            0.322,
+            0.273,
+            0.405
+          ],
+          "p_over25": null,
+          "p_btts": null,
+          "value_bets": []
+        }
+      }
+    },
+    {
+      "n": 4,
+      "league": "MX",
+      "date": "2026-10-10",
+      "kickoff_utc": "2026-10-10T23:00+00:00",
+      "home": "Querétaro",
+      "away": "Atlante",
+      "top": true,
+      "market": {
+        "p1x2": [
+          0.443,
+          0.274,
+          0.283
+        ],
+        "p_over25": null,
+        "ah_line": null
+      },
+      "bots": {
+        "estadistico": {
+          "pick_1x2": "1",
+          "pick_exact": "1-0",
+          "p1x2": [
+            0.516,
+            0.273,
+            0.211
+          ],
+          "p_over25": 0.426,
+          "p_btts": 0.477,
+          "value_bets": [
+            {
+              "market": "1x2",
+              "side": "1",
+              "price": 2.07,
+              "edge": 0.068
+            }
+          ]
+        },
+        "calibrado": {
+          "pick_1x2": "1",
+          "pick_exact": "1-0",
+          "p1x2": [
+            0.476,
+            0.274,
+            0.249
+          ],
+          "p_over25": 0.425,
+          "p_btts": 0.478,
+          "value_bets": []
+        },
+        "borrego": {
+          "pick_1x2": "1",
+          "pick_exact": "1-0",
+          "p1x2": [
+            0.443,
+            0.274,
+            0.283
+          ],
+          "p_over25": null,
+          "p_btts": null,
+          "value_bets": []
+        }
+      }
+    },
+    {
+      "n": 5,
+      "league": "MX",
+      "date": "2026-10-10",
+      "kickoff_utc": "2026-10-11T01:00+00:00",
+      "home": "Atlas",
+      "away": "Guadalajara",
+      "top": true,
+      "market": {
+        "p1x2": [
+          0.306,
+          0.264,
+          0.43
+        ],
+        "p_over25": null,
+        "ah_line": null
+      },
+      "bots": {
+        "estadistico": {
+          "pick_1x2": "2",
+          "pick_exact": "0-1",
+          "p1x2": [
+            0.292,
+            0.285,
+            0.423
+          ],
+          "p_over25": 0.464,
+          "p_btts": 0.52,
+          "value_bets": []
+        },
+        "calibrado": {
+          "pick_1x2": "2",
+          "pick_exact": "0-1",
+          "p1x2": [
+            0.3,
+            0.274,
+            0.427
+          ],
+          "p_over25": 0.468,
+          "p_btts": 0.517,
+          "value_bets": []
+        },
+        "borrego": {
+          "pick_1x2": "2",
+          "pick_exact": "1-2",
+          "p1x2": [
+            0.306,
+            0.264,
+            0.43
+          ],
+          "p_over25": null,
+          "p_btts": null,
+          "value_bets": []
+        }
+      }
+    },
+    {
+      "n": 6,
+      "league": "MX",
+      "date": "2026-10-10",
+      "kickoff_utc": "2026-10-11T03:10+00:00",
+      "home": "América",
+      "away": "Monterrey",
+      "top": true,
+      "market": {
+        "p1x2": [
+          0.497,
+          0.257,
+          0.246
+        ],
+        "p_over25": null,
+        "ah_line": null
+      },
+      "bots": {
+        "estadistico": {
+          "pick_1x2": "1",
+          "pick_exact": "1-0",
+          "p1x2": [
+            0.671,
+            0.209,
+            0.12
+          ],
+          "p_over25": 0.542,
+          "p_btts": 0.504,
+          "value_bets": [
+            {
+              "market": "1x2",
+              "side": "1",
+              "price": 1.85,
+              "edge": 0.241
+            }
+          ]
+        },
+        "calibrado": {
+          "pick_1x2": "1",
+          "pick_exact": "1-0",
+          "p1x2": [
+            0.58,
+            0.239,
+            0.181
+          ],
+          "p_over25": 0.526,
+          "p_btts": 0.516,
+          "value_bets": [
+            {
+              "market": "1x2",
+              "side": "1",
+              "price": 1.85,
+              "edge": 0.073
+            }
+          ]
+        },
+        "borrego": {
+          "pick_1x2": "1",
+          "pick_exact": "1-0",
+          "p1x2": [
+            0.497,
+            0.257,
+            0.246
+          ],
+          "p_over25": null,
+          "p_btts": null,
+          "value_bets": []
+        }
+      }
+    },
+    {
+      "n": 7,
+      "league": "MX",
+      "date": "2026-10-11",
+      "kickoff_utc": "2026-10-11T23:00+00:00",
+      "home": "San Luis",
+      "away": "Santos",
+      "top": true,
+      "market": {
+        "p1x2": [
+          0.475,
+          0.256,
+          0.269
+        ],
+        "p_over25": null,
+        "ah_line": null
+      },
+      "bots": {
+        "estadistico": {
+          "pick_1x2": "1",
+          "pick_exact": "2-1",
+          "p1x2": [
+            0.623,
+            0.221,
+            0.156
+          ],
+          "p_over25": 0.626,
+          "p_btts": 0.592,
+          "value_bets": [
+            {
+              "market": "1x2",
+              "side": "1",
+              "price": 1.93,
+              "edge": 0.202
+            }
+          ]
+        },
+        "calibrado": {
+          "pick_1x2": "1",
+          "pick_exact": "2-1",
+          "p1x2": [
+            0.544,
+            0.243,
+            0.213
+          ],
+          "p_over25": 0.614,
+          "p_btts": 0.602,
+          "value_bets": [
+            {
+              "market": "1x2",
+              "side": "1",
+              "price": 1.93,
+              "edge": 0.05
+            }
+          ]
+        },
+        "borrego": {
+          "pick_1x2": "1",
+          "pick_exact": "1-0",
+          "p1x2": [
+            0.475,
+            0.256,
+            0.269
+          ],
+          "p_over25": null,
+          "p_btts": null,
+          "value_bets": []
+        }
+      }
+    },
+    {
+      "n": 8,
+      "league": "MX",
+      "date": "2026-10-11",
+      "kickoff_utc": "2026-10-11T23:10+00:00",
+      "home": "Pachuca",
+      "away": "Necaxa",
+      "top": true,
+      "market": {
+        "p1x2": [
+          0.556,
+          0.238,
+          0.206
+        ],
+        "p_over25": null,
+        "ah_line": null
+      },
+      "bots": {
+        "estadistico": {
+          "pick_1x2": "1",
+          "pick_exact": "2-1",
+          "p1x2": [
+            0.666,
+            0.207,
+            0.127
+          ],
+          "p_over25": 0.577,
+          "p_btts": 0.546,
+          "value_bets": [
+            {
+              "market": "1x2",
+              "side": "1",
+              "price": 1.65,
+              "edge": 0.098
+            }
+          ]
+        },
+        "calibrado": {
+          "pick_1x2": "1",
+          "pick_exact": "2-1",
+          "p1x2": [
+            0.607,
+            0.226,
+            0.167
+          ],
+          "p_over25": 0.568,
+          "p_btts": 0.553,
+          "value_bets": [
+            {
+              "market": "1x2",
+              "side": "1",
+              "price": 1.65,
+              "edge": 0.002
+            }
+          ]
+        },
+        "borrego": {
+          "pick_1x2": "1",
+          "pick_exact": "1-0",
+          "p1x2": [
+            0.556,
+            0.238,
+            0.206
+          ],
+          "p_over25": null,
+          "p_btts": null,
+          "value_bets": []
+        }
+      }
+    },
+    {
+      "n": 9,
+      "league": "MX",
+      "date": "2026-10-11",
+      "kickoff_utc": "2026-10-12T01:15+00:00",
+      "home": "Pumas",
+      "away": "Cruz Azul",
+      "top": true,
+      "market": {
+        "p1x2": [
+          0.283,
+          0.256,
+          0.461
+        ],
+        "p_over25": null,
+        "ah_line": null
+      },
+      "bots": {
+        "estadistico": {
+          "pick_1x2": "1",
+          "pick_exact": "1-0",
+          "p1x2": [
+            0.373,
+            0.281,
+            0.346
+          ],
+          "p_over25": 0.506,
+          "p_btts": 0.56,
+          "value_bets": [
+            {
+              "market": "1x2",
+              "side": "1",
+              "price": 3.24,
+              "edge": 0.209
+            }
+          ]
+        },
+        "calibrado": {
+          "pick_1x2": "2",
+          "pick_exact": "0-1",
+          "p1x2": [
+            0.323,
+            0.269,
+            0.408
+          ],
+          "p_over25": 0.51,
+          "p_btts": 0.558,
+          "value_bets": [
+            {
+              "market": "1x2",
+              "side": "1",
+              "price": 3.24,
+              "edge": 0.047
+            }
+          ]
+        },
+        "borrego": {
+          "pick_1x2": "2",
+          "pick_exact": "1-2",
+          "p1x2": [
+            0.283,
+            0.256,
+            0.461
+          ],
+          "p_over25": null,
+          "p_btts": null,
+          "value_bets": []
+        }
+      }
+    }
+  ],
+  "round_id": "mx-2026-J11"
+}

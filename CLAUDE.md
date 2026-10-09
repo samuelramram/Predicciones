@@ -156,10 +156,23 @@ python -m wc_predictor.liga.notario --round eu-2026-W41 --picks "2-1, 0-2, -, 1-
 python -m wc_predictor.liga.arbitro                     # tabla: mano a mano con z + bots
 ```
 
+**Liga MX en vivo** (`pipeline.ligamx_live`, sin API keys): próximos partidos y momios de
+Football-Data `new_league_fixtures.csv`; re-ajusta con `matches_history.csv` + los
+resultados nuevos de `historical_odds.csv` (MEX.csv, refrescado por la Action diaria).
+Bots = los de `liga_backtest` (mercado 0.55). Jornada `mx-AAAA-Jnn`; el boleto de Samuel
+son TODOS los partidos. Sin momios de totales para Liga MX: O/U y BTTS solo por Brier.
+
+```bash
+python -m wc_predictor.pipeline.ligamx_live --seal      # boletos de los bots, Liga MX
+```
+
 **Boleto de Samuel = los partidos NUMERADOS del `.md` de la jornada**, en ese orden.
 El Notario rechaza partidos ya empezados (hora UTC) o ya sellados; Samuel puede mandar
 en tandas (`eu-…/2`, `/3`). En el VPS la liga vive en `$LIGA_HOME` y la opera Claudio
-(OpenClaw) con las skills de `deploy/vps/` — ver `deploy/vps/README.md`.
+(OpenClaw) con las skills de `deploy/vps/` — ver `deploy/vps/README.md`. **Desde que el VPS
+está vivo, el libro del VPS es la fuente de verdad**: no selles en el repo salvo para
+adelantar algo antes de un kickoff; `setup.sh` solo avanza el libro del VPS si es prefijo
+del del repo.
 
 ### Calibración: qué se probó y por qué NO se cambió (disciplina)
 

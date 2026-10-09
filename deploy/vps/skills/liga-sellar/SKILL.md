@@ -12,7 +12,9 @@ El Notario entiende dos formas; pásale el texto de Samuel TAL CUAL (une renglon
 - con nombre: `Bayern 2-0` (= gana Bayern 2-0, aunque sea visitante), `Arsenal 2-0 Leeds`
   (local primero), `Como 1-1`. Apodos comunes (Barça, Madrid, City, PSG, Atlético) los conoce.
 
-1. Identifica la jornada: la más reciente en `/workspace/liga/rounds/` (`eu-AAAA-Wnn`).
+1. Identifica la jornada: la más reciente en `/workspace/liga/rounds/` de la liga que
+   corresponde (`mx-AAAA-Jnn` para Liga MX, `eu-AAAA-Wnn` para Europa). Si Samuel mezcla
+   partidos de las dos en un mensaje, sepáralos y corre el Notario una vez por jornada.
 2. PRUEBA primero (no sella nada):
    `cd /workspace/predicciones && LIGA_HOME=/workspace/liga PYTHONPATH=src PYTHONDONTWRITEBYTECODE=1 python3 -m wc_predictor.liga.notario --round eu-AAAA-Wnn --picks "<texto de Samuel>" --dry-run`
 3. Muéstrale cómo lo entendió (local-visita, por número) y pregúntale "¿lo sello?".
