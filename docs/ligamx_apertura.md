@@ -457,3 +457,56 @@ en sus casas el boleto sale **vacío**, y con las 45 casas sobrevive **una sola*
 apuesta (+1.7% CLV). Conclusión operativa: **con Caliente/Betway este modelo no
 tiene nada apostable**; el edge que se veía era el line-shopping de casas
 inaccesibles. La ventaja sigue estando en la quiniela (0% de comisión).
+
+## 9. Momios históricos y liga de bots (oct 2026)
+
+### 9.1 Sí hay feed histórico de momios de Liga MX
+
+Este documento (y `ingest/odds.py`) asumían que no existía un feed gratuito de
+momios históricos de Liga MX, por lo que el peso del mercado en el blend
+(`blend_odds_weight=0.55`) "no se podía backtestear". **Sí existe:**
+Football-Data.co.uk publica `new/MEX.csv` con cada partido de Liga MX desde 2012
+y sus precios de **cierre** (Pinnacle, promedio, máximo, Betfair, Bet365).
+
+`ingest/ligamx_fd_odds.py` lo normaliza a `data/ligamx/historical_odds.csv`
+(2020/21 en adelante, nuestros nombres de equipo, línea justa devigada +
+precio promedio y máximo). Une contra `matches_history.csv` por (local, visita)
+±1 día, porque Football-Data fecha en hora de UK: **1,094 de 1,096** partidos
+del historial encuentran su momio. Pinnacle viene en blanco en 2026/27; ahí la
+línea justa sale del promedio del mercado (`fair_source = "avg"`).
+
+Discrepancia anotada, sin tocar: 2023-12-18 América–Tigres (final) es 3-0 en
+nuestro historial y 0-0 en Football-Data. Revisar cuál es el marcador a 90'.
+
+### 9.2 Liga de bots: backtest walk-forward (2024-01 → 2026-09, 924 partidos)
+
+`pipeline/liga_backtest.py`, config de producción (rho perfilado por semana).
+Todos los bots sobre los MISMOS partidos; bankroll ficticio de 1,000, apuesta
+plana de 10 al precio promedio de cierre cuando el bot ve valor.
+
+| bot | pts | p/p | exactos | Brier | bankroll | apuestas | ROI |
+|---|---|---|---|---|---|---|---|
+| borrego (mercado puro) | 585 | 0.633 | 99 | 0.5825 | 931 | 23 | −30% |
+| calibrado, mercado 0.9 | 583 | 0.631 | 97 | 0.5822 | 871 | 27 | −48% |
+| calibrado, mercado 0.75 | 581 | 0.629 | 93 | 0.5824 | 789 | 199 | −11% |
+| calibrado, mercado 0.3 | 579 | 0.627 | 95 | 0.5877 | 799 | 615 | −3% |
+| estadistico (sin mercado) | 573 | 0.620 | 94 | 0.5944 | 716 | 733 | −4% |
+| **calibrado (producción, 0.55)** | 573 | 0.620 | 92 | 0.5840 | 601 | 444 | −9% |
+
+Brier = suma sobre 1/X/2 (uniforme 0.667). Pruebas pareadas contra producción:
+
+- **El mercado sí aporta calibración:** sin mercado el Brier empeora +0.0104
+  (z = +3.8); con solo 0.3, +0.0038 (z = +2.9). Señal clara.
+- **Subir el peso a 0.75–0.9 mejora un poco** (Brier −0.0016/−0.0018, puntos
+  +8/+10) **pero dentro de la suerte** (|z| ≤ 1.5). No hay evidencia para mover
+  el 0.55; se re-mide cuando haya más muestra.
+- **En puntos de quiniela nadie se separa:** todas las diferencias tienen |z| < 1.5.
+  El favorito del mercado con el marcador más común empata al motor completo.
+- **Ningún bot gana dinero ficticio.** El que menos pierde por apuesta es el que
+  apuesta casi siempre con poco mercado (≈ el vig); los que más mercado usan
+  apuestan poco y pierden más por apuesta. El mercado de cierre es casi eficiente:
+  la "ventaja" que ve cualquier bot es, en promedio, sobreconfianza. Coincide con
+  el ledger real J3-J8 (ROI −22.5%, 46 aciertos vs 47 que esperaba el mercado).
+
+Siguiente: liga EN VIVO (boletos sellados por jornada en `data/liga/ledger.jsonl`,
+Samuel por Telegram vía OpenClaw), y los bots con LLM (reportero, corazonudo).
