@@ -119,6 +119,25 @@ python -m wc_predictor.pipeline.ligamx_source_tracker settle
 python -m wc_predictor.pipeline.ligamx_source_tracker report
 ```
 
+### Liga de bots (`wc_predictor.liga`, oct 2026)
+
+Varios pronosticadores compiten en la misma quiniela contra Samuel: **estadistico**
+(modelo sin mercado), **calibrado** (el blend de producción), **borrego** (mercado
+puro: favorito de la línea justa + marcador más común). Se califican con las reglas
+del pool, Brier/log-loss y un bankroll **ficticio** (1,000 por bot). Los boletos se
+sellan con SHA-256 encadenado en `data/liga/ledger.jsonl` (`liga.seal`): un pick
+editado o un registro borrado rompe la cadena.
+
+```bash
+# Momios HISTÓRICOS de cierre (Football-Data, 2020→hoy) — sí existen, ver docs §9
+python -m wc_predictor.ingest.ligamx_fd_odds
+# Backtest de la liga (walk-forward, mismos partidos para todos; ~4 min)
+python -m wc_predictor.pipeline.liga_backtest --sweep 0.3,0.75,0.9
+```
+
+Al reportar resultados de la liga, **acompaña cada diferencia con su z pareado**
+(el backtest lo imprime): con ~900 partidos, ±15 puntos entre bots suele ser suerte.
+
 ### Calibración: qué se probó y por qué NO se cambió (disciplina)
 
 La quiniela puntúa **decisiones discretas** (el pick es un argmax), así que afinar
@@ -131,7 +150,9 @@ calibración: no encienden nada.** La ganancia fina vive en señal nueva, no en 
 
 - **Peso del mercado (0.55):** el predictor más fuerte y lo único que corrige la
   sobreconfianza del modelo en el rango medio (el modelo solo sobrevalora a los
-  cold-start como Atlante). No es backtesteable → se mide con el `source_tracker`.
+  cold-start como Atlante). **Ya es backtesteable** (momios de Football-Data, docs
+  §9): quitar el mercado empeora el Brier con z≈+3.8 (el mercado SÍ aporta);
+  subirlo a 0.75–0.9 mejora un poco pero sin significancia (|z|<1.5) → 0.55 se queda.
 - **Congestión (Leagues Cup):** el efecto de descanso corto en el histórico de Liga
   MX midió **~0** (prueba pareada por equipo: Δ −0.014 PPG, Δ −0.07 goles, t≈−0.2).
   Por eso **no se cablea ninguna penalización de λ**; se marcan los equipos con carga
@@ -184,17 +205,24 @@ simulan** (`68 jugados, 85 restantes`): con medio torneo por delante las
 probabilidades se mueven fuerte jornada a jornada, y presentarlas sin ese
 denominador las hace sonar más firmes de lo que son.
 
-### Regla de interacción: apuestas por casa (cada jornada)
+### Regla de interacción: apuestas SOLO con dinero ficticio (desde oct 2026)
 
-Cuando vayas a generar el boleto de apuestas de una jornada, **pregúntale al
-usuario cuánto va a apostar en Betway y cuánto en Caliente** (puede ser una,
-otra, o ambas). Tú **destinas ese presupuesto COMPLETO** en cada casa con
-`--budget-betway`/`--budget-caliente`: un pick 1X2 por partido, al precio de esa
-casa, **mínimo $20 por predicción** (en unidades de $20 — es el mínimo real de
-ambas casas). Corre siempre con `--log-boleto` para que el ledger registre lo que
-DE VERDAD apostó (casa + precio + stake reales), no la medición all-books. Esto
-requiere `ingest.ligamx_odds` fresco (los precios caducan por jornada, y Caliente
-se captura a mano en `books.json`).
+**Decisión del usuario (9 oct 2026): no más dinero real.** El ledger de J3-J8
+cerró con ROI −22.5% (−$993 sobre $4,418): el modelo esperaba 56 aciertos, el
+mercado 47, salieron 46 — el mercado le atinó y el modelo estaba sobreconfiado.
+Desde ahora:
+
+- **No preguntes presupuestos de Betway/Caliente ni generes boletos para apostar
+  dinero real.** Si el usuario pide "el boleto de apuestas", genéralo como
+  medición (`--all-books`) y llévalo al bankroll FICTICIO de la liga de bots
+  (`wc_predictor.liga`, 1,000 Carto-pesos por bot).
+- El ledger de CLV se sigue llenando para medir al modelo; los montos son
+  unidades ficticias, no pesos.
+- Si el usuario vuelve a pedir apostar dinero real, recuérdale esta decisión y
+  el ROI de arriba antes de hacer nada, y que lo confirme explícitamente.
+
+El flujo histórico de abajo (`--budget-betway`/`--budget-caliente`,
+`--log-boleto`) queda documentado como referencia, no como rutina.
 
 **Honestidad del boleto por casa:** es acción medida sobre el roll, NO un boleto
 +EV. Casi todos los picks arrancan con CLV ≤ 0 (el mercado les gana); el valor de
