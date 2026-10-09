@@ -89,3 +89,27 @@ def test_table_mano_a_mano_only_on_samuels_matches():
     assert t["mano_a_mano"]["calibrado"]["points"] == 1
     assert t["bots"]["calibrado"]["n"] == 1 and t["bots"]["calibrado"]["pendientes"] == 1
     assert "Mano a mano" in arbitro.render_md(t)
+
+
+TICKET = {"round_id": "eu-2026-W41", "matches": [
+    {"n": 1, "league": "E0", "home": "Arsenal", "away": "Leeds"},
+    {"n": 2, "league": "D1", "home": "Augsburg", "away": "Bayern Munich"},
+    {"n": 3, "league": "SP1", "home": "Alaves", "away": "Ath Madrid"},
+    {"n": 4, "league": "SP1", "home": "Real Madrid", "away": "Villarreal"},
+    {"n": 5, "league": "E0", "home": "Liverpool", "away": "Man City"},
+]}
+
+
+def test_named_picks_like_telegram():
+    got = notario.read_picks("Arsenal 2-0 Leeds, Bayern 2-0, Atlético 3-1, Madrid 2-0, City 2-1", TICKET)
+    assert got == [(2, 0), (0, 2), (1, 3), (2, 0), (1, 2)]
+    # numbered lines, accents, and leaving some out
+    assert notario.read_picks("5. Man City 1-1\n2) Bayern 3-1", TICKET) == [None, (1, 3), None, None, (1, 1)]
+    assert notario.read_picks("Leeds 1-2 Arsenal", TICKET) == [(2, 1)]
+    with pytest.raises(ValueError):
+        notario.read_picks("Getafe 1-0", TICKET)           # not on the ticket
+    with pytest.raises(ValueError):
+        notario.read_picks("Madrid 1-0", {"round_id": "x", "matches": [
+            {"n": 1, "league": "SP1", "home": "Real Madrid", "away": "Getafe"},
+            {"n": 2, "league": "SP1", "home": "Alaves", "away": "Real Madrid"}]})  # ambiguous
+    assert notario.read_picks("2-1, -, 0-0", TICKET) == [(2, 1), None, (0, 0)]   # positional still works

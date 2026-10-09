@@ -9,8 +9,14 @@ Los marcadores van en el orden numerado del boleto (``rounds/<jornada>.md``);
 - sella lo demás como una parte nueva de la jornada (``eu-2026-W41/2``…): un
   humano puede mandar su boleto en varias tandas, pero cada partido una vez.
 
+También entiende marcadores con nombre, como los escribe un humano en Telegram:
+``Bayern 2-0`` (gana Bayern 2-0, aunque sea visitante), ``Arsenal 2-0 Leeds``
+(local primero) o ``Como 1-1``. Usa ``--dry-run`` para ver cómo lo entendió
+antes de sellar.
+
 Run:
     python -m wc_predictor.liga.notario --round eu-2026-W41 --picks "2-1, 0-2, -, 1-3"
+    python -m wc_predictor.liga.notario --round eu-2026-W41 --picks "Bayern 2-0, City 2-1" --dry-run
     python -m wc_predictor.liga.notario --round eu-2026-W41 --status
 """
 from __future__ import annotations
@@ -18,6 +24,7 @@ from __future__ import annotations
 import argparse
 import json
 import re
+import unicodedata
 from datetime import datetime, timezone
 
 from wc_predictor.liga import seal
@@ -42,6 +49,78 @@ def parse_picks(text: str) -> list[tuple[int, int] | None]:
             raise ValueError(f"No entendí '{tok}': usa marcadores tipo 2-1, o '-' para saltar.")
         out.append((int(m.group(1)), int(m.group(2))))
     return out
+
+
+# How people actually call teams → Football-Data names (lowercase, no accents).
+ALIASES = {
+    "barca": "barcelona", "madrid": "real madrid", "real": "real madrid",
+    "atletico": "ath madrid", "atleti": "ath madrid", "atletico de madrid": "ath madrid",
+    "city": "man city", "manchester city": "man city", "united": "man united",
+    "manchester united": "man united", "psg": "paris sg", "paris": "paris sg",
+    "bayern": "bayern munich", "bayern munchen": "bayern munich", "bvb": "dortmund",
+    "borussia dortmund": "dortmund", "inter de milan": "inter", "napoles": "napoli",
+    "leverkusen": "leverkusen", "bremen": "werder bremen", "alaves": "alaves",
+    "spurs": "tottenham", "milan": "ac milan",
+}
+
+
+def _norm(s: str) -> str:
+    s = unicodedata.normalize("NFKD", s).encode("ascii", "ignore").decode().lower().strip()
+    return re.sub(r"\s+", " ", s)
+
+
+def _team_in(name: str, team: str) -> bool:
+    n, t = _norm(name), _norm(team)
+    n = ALIASES.get(n, n)
+    return n == t or (len(n) >= 4 and (t.startswith(n) or n in t.split()))
+
+
+NAMED = re.compile(r"^(?P<a>.*?\D)\s*(?P<x>\d{1,2})\s*[-–:]\s*(?P<y>\d{1,2})\s*(?P<b>\D.*)?$")
+
+
+def parse_named(text: str, rnd: dict) -> list[tuple[int, int] | None]:
+    """'Bayern 2-0, Arsenal 2-0 Leeds, Como 1-1' → scores aligned to the numbered
+    ticket (None where not mentioned). 'Team x-y' = that team wins x-y (or draws);
+    'Home x-y Away' = literal. Raises when a name matches 0 or 2+ ticket matches."""
+    ticket = [m for m in rnd["matches"] if m.get("n")]
+    out: list[tuple[int, int] | None] = [None] * len(ticket)
+    for tok in re.split(r"[,\n;]+", text.strip()):
+        tok = re.sub(r"^\s*(\d{1,2}\s*[.)]\s+)", "", tok).strip()  # "3. Arsenal 2-0" numbering
+        if not tok:
+            continue
+        m = NAMED.match(tok)
+        if not m:
+            raise ValueError(f"No entendí '{tok}'.")
+        a, b = m.group("a").strip(), (m.group("b") or "").strip()
+        x, y = int(m.group("x")), int(m.group("y"))
+        hits = [i for i, t in enumerate(ticket)
+                if _team_in(a, t["home"]) or _team_in(a, t["away"])]
+        if b:
+            hits = [i for i in hits if _team_in(b, ticket[i]["home"]) or _team_in(b, ticket[i]["away"])]
+        if len(hits) != 1:
+            raise ValueError(f"'{tok}': {'no encontré ese partido' if not hits else 'le queda a varios partidos'} "
+                             f"en el boleto; usa el nombre completo o el número.")
+        i = hits[0]
+        t = ticket[i]
+        named_home = _team_in(a, t["home"])
+        if b:          # "Home x-y Away", or written backwards "Away x-y Home"
+            hs, as_ = (x, y) if named_home else (y, x)
+        else:          # "Team x-y": that team scores x
+            hs, as_ = (x, y) if named_home else (y, x)
+        if out[i] is not None and out[i] != (hs, as_):
+            raise ValueError(f"Mandaste dos marcadores distintos para {t['home']}–{t['away']}.")
+        out[i] = (hs, as_)
+    while out and out[-1] is None:
+        out.pop()
+    return out
+
+
+def read_picks(text: str, rnd: dict) -> list[tuple[int, int] | None]:
+    """Positional ('2-1, -, 0-0') or named ('Bayern 2-0, …'); never a mix."""
+    try:
+        return parse_picks(text)
+    except ValueError:
+        return parse_named(text, rnd)
 
 
 def load_round(round_id: str) -> dict:
@@ -117,6 +196,7 @@ def main(argv: list[str] | None = None) -> None:
     ap.add_argument("--who", default="samuel")
     ap.add_argument("--picks", help='marcadores en orden: "2-1, 0-2, -, 1-3"')
     ap.add_argument("--status", action="store_true", help="qué tiene sellado y qué falta")
+    ap.add_argument("--dry-run", action="store_true", help="muestra cómo lo entendió, sin sellar")
     args = ap.parse_args(argv)
     rnd = load_round(args.round)
     rnd.setdefault("round_id", args.round)
@@ -128,11 +208,14 @@ def main(argv: list[str] | None = None) -> None:
         print("\n".join(status(rnd, records, args.who)))
         return
     try:
-        ticket, msgs = build_ticket(rnd, parse_picks(args.picks), records, args.who,
+        ticket, msgs = build_ticket(rnd, read_picks(args.picks, rnd), records, args.who,
                                     datetime.now(timezone.utc))
     except ValueError as e:
         raise SystemExit(str(e))
     print("\n".join(msgs))
+    if args.dry_run:
+        print("(prueba: no se selló nada)")
+        return
     if not ticket:
         print("Nada nuevo que sellar.")
         return
