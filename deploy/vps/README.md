@@ -1,7 +1,7 @@
 # Liga en el VPS: Claudio (OpenClaw) como operador
 
 Quién hace qué:
-- **Utilero** (`liga-sync`, timer del host, sin LLM): repo + fixtures + respaldo, cada 3 h.
+- **Utilero** (`liga-sync`, timer del host, sin LLM): repo + fixtures (Europa y Liga MX) + respaldo, cada 3 h.
 - **Claudio** (OpenClaw, en su sandbox sin red): corre los bots, sella, califica y te platica.
 - **Código** (bots, Notario, Árbitro): decide los números. Claudio solo los opera y explica.
 
@@ -82,3 +82,11 @@ openclaw automations add --name "liga-tabla" --cron "0 9 * * 1,4" --tz America/M
 - "¿cómo voy?" · "¿ya le gano al borrego o es suerte?"
 
 En el dashboard (túnel SSH) ves cada comando que corrió y lo que leyó.
+
+## Actualizar (cuando cambie algo de `deploy/vps/`)
+
+```bash
+git -C ~/predicciones pull && ~/predicciones/deploy/vps/setup.sh
+```
+`setup.sh` es idempotente: reinstala el Utilero y las skills, no toca el libro.
+Las skills se copian de nuevo; `AGENTS.md` no se duplica.

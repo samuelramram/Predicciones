@@ -113,3 +113,40 @@ def test_named_picks_like_telegram():
             {"n": 1, "league": "SP1", "home": "Real Madrid", "away": "Getafe"},
             {"n": 2, "league": "SP1", "home": "Alaves", "away": "Real Madrid"}]})  # ambiguous
     assert notario.read_picks("2-1, -, 0-0", TICKET) == [(2, 1), None, (0, 0)]   # positional still works
+
+
+NLF = ("Country,League,Date,Time,Home,Away,PSH,PSD,PSA,MaxH,MaxD,MaxA,AvgH,AvgD,AvgA\n"
+       "Mexico,Liga MX,10/10/2026,02:00,Puebla,Club Leon,,,,2.9,3.4,2.45,2.78,3.28,2.35\n"
+       "Mexico,Liga MX,11/10/2026,04:10,Club America,Monterrey,1.9,3.7,4.3,1.9,3.7,4.2,1.85,3.58,3.74\n"
+       "Argentina,Liga Profesional,09/10/2026,18:30,Aldosivi,Sarmiento Junin,,,,2.65,3.1,3.1,2.55,2.97,2.88\n")
+
+
+def test_ligamx_upcoming_maps_names_and_mexico_time():
+    from wc_predictor.pipeline.ligamx_live import upcoming
+    fx, unmapped = upcoming(NLF)
+    assert not unmapped and [f["home"] for f in fx] == ["Puebla", "América"]
+    pue = fx[0]
+    assert pue["away"] == "León" and pue["kickoff_utc"] == "2026-10-10T01:00+00:00"
+    assert pue["date"] == "2026-10-09"                       # Friday night in Mexico
+    assert sum(pue["fair"]) == pytest.approx(1.0) and pue["avg"] == [2.78, 3.28, 2.35]
+    assert fx[1]["fair"][0] > 0.5                              # Pinnacle used when present
+
+
+def test_named_picks_liga_mx_nicknames():
+    t = {"round_id": "mx-2026-J11", "matches": [
+        {"n": 1, "league": "MX", "home": "Atlas", "away": "Guadalajara"},
+        {"n": 2, "league": "MX", "home": "América", "away": "Monterrey"},
+        {"n": 3, "league": "MX", "home": "Pumas", "away": "Cruz Azul"}]}
+    assert notario.read_picks("Chivas 2-1, America 1-0, la maquina 2-0", t) == [(1, 2), (1, 0), (0, 2)]
+
+
+def test_arbitro_skips_goal_brier_when_bot_has_no_goal_model():
+    k = ("MX", "Puebla", "León", "2026-10-09")
+    picks = {"borrego": {k: {"league": "MX", "home": "Puebla", "away": "León", "date": "2026-10-09",
+                             "pick_1x2": "2", "pick_exact": "1-2", "p1x2": [0.33, 0.28, 0.39],
+                             "p_over25": None, "p_btts": None, "value_bets": []}}}
+    idx = arbitro.results_index([{"league": "MX", "home": "Puebla", "away": "León",
+                                  "date": "2026-10-10", "home_score": 1, "away_score": 2}])
+    t = arbitro.build_table(arbitro.score(picks, idx))
+    b = t["bots"]["borrego"]
+    assert b["points"] == 2 and b["brier_ou25"] == 0.0 and b["n"] == 1

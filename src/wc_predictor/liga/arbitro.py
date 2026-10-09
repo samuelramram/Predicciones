@@ -1,8 +1,9 @@
 """Árbitro: califica todos los boletos sellados contra los resultados reales.
 
 Lee el libro (solo registros íntegros: si la cadena está rota, no califica nada),
-junta las partes de cada jornada por persona/bot, busca el resultado en
-``data/europa/matches.csv`` y arma la tabla:
+junta las partes de cada jornada por persona/bot (Europa ``eu-…`` y Liga MX
+``mx-…``), busca el resultado en ``data/europa/matches.csv`` o
+``data/ligamx/historical_odds.csv`` y arma la tabla:
 
 1. **Mano a mano** — Samuel contra cada bot, SOLO en los partidos que Samuel
    jugó, con z pareado (|z| < 2 = todavía es suerte).
@@ -23,6 +24,7 @@ from collections import defaultdict
 from datetime import date, timedelta
 
 from wc_predictor.ingest import europa_fd
+from wc_predictor.ingest import ligamx_fd_odds
 from wc_predictor.liga import seal
 from wc_predictor.liga.europa import RULES
 from wc_predictor.liga.markets import ah_return, binary_brier
@@ -64,7 +66,17 @@ def settle_bet(bet: dict, hs: int, as_: int) -> float:
     raise ValueError(f"mercado desconocido {m}")
 
 
-def collect(records: list[dict], prefix: str = "eu-") -> dict[str, dict[tuple, dict]]:
+def load_results() -> list[dict]:
+    """Europa (matches.csv) + Liga MX (historical_odds.csv, league 'MX')."""
+    rows = europa_fd.load()
+    try:
+        rows += [{**r, "league": "MX"} for r in ligamx_fd_odds.load()]
+    except FileNotFoundError:
+        pass
+    return rows
+
+
+def collect(records: list[dict], prefix: tuple[str, ...] = ("eu-", "mx-")) -> dict[str, dict[tuple, dict]]:
     """who → {(league, home, away, date): pick}; first seal of a match wins."""
     out: dict[str, dict[tuple, dict]] = defaultdict(dict)
     for r in records:
@@ -91,8 +103,9 @@ def score(picks_by_who: dict, idx: dict) -> dict:
                    "result": f"{hs}-{as_}", "pick": p["pick_exact"]}
             if "p1x2" in p:
                 row["b1x2"] = brier(tuple(p["p1x2"]), outcome_of(hs, as_))
-                row["bou"] = binary_brier(p["p_over25"], hs + as_ > 2.5)
-                row["bbtts"] = binary_brier(p["p_btts"], hs > 0 and as_ > 0)
+                if p.get("p_over25") is not None:
+                    row["bou"] = binary_brier(p["p_over25"], hs + as_ > 2.5)
+                    row["bbtts"] = binary_brier(p["p_btts"], hs > 0 and as_ > 0)
                 row["bets"] = [{**b, "profit": settle_bet(b, hs, as_)} for b in p.get("value_bets", [])]
             rows.append(row)
         out[who] = {"rows": rows, "pending": pending}
@@ -119,6 +132,7 @@ def build_table(scored: dict) -> dict:
             continue
         rows = s["rows"]
         n = max(len(rows), 1)
+        n_goals = max(sum(1 for r in rows if "bou" in r), 1)
         bets = [b for r in rows for b in r.get("bets", [])]
         by_mkt: dict[str, list[float]] = defaultdict(list)
         for b in bets:
@@ -128,8 +142,8 @@ def build_table(scored: dict) -> dict:
             "points": sum(r["pts"] for r in rows),
             "exactos": sum(r["pts"] >= RULES.points_exact for r in rows),
             "brier_1x2": round(sum(r.get("b1x2", 0) for r in rows) / n, 4),
-            "brier_ou25": round(sum(r.get("bou", 0) for r in rows) / n, 4),
-            "brier_btts": round(sum(r.get("bbtts", 0) for r in rows) / n, 4),
+            "brier_ou25": round(sum(r.get("bou", 0) for r in rows) / n_goals, 4),
+            "brier_btts": round(sum(r.get("bbtts", 0) for r in rows) / n_goals, 4),
             "mercados": {m: {"apuestas": len(v), "ganancia": round(sum(v), 1),
                              "roi": round(sum(v) / (STAKE * len(v)), 4)} for m, v in by_mkt.items()},
         }
@@ -167,7 +181,7 @@ def main(argv: list[str] | None = None) -> None:
     ok, why = seal.verify_chain(records)
     if not ok:
         raise SystemExit(f"Libro corrupto, no califico nada: {why}")
-    idx = results_index(europa_fd.load())
+    idx = results_index(load_results())
     t = build_table(score(collect(records), idx))
     out = tabla_dir()
     out.mkdir(parents=True, exist_ok=True)

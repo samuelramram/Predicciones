@@ -118,12 +118,14 @@ def _mx_time(iso_utc: str) -> str:
 
 
 def render_md(rnd: dict, only_top: bool = True) -> str:
-    names = europa_fd.LEAGUES
-    lines = [f"# Jornada Europa {rnd.get('round_id', '')} — generada {rnd['generated']}", "",
+    names = {**europa_fd.LEAGUES, "MX": "Liga MX"}
+    lines = [f"# Jornada {rnd.get('round_id', '')} — generada {rnd['generated']}", "",
              "Horas en tiempo del centro de México. Tu boleto = los partidos numerados; "
-             "manda tus marcadores en ese orden (\"-\" para saltar uno).", "",
-             "Top-3 por liga: " + "; ".join(f"**{names[k]}**: {', '.join(v)}"
-                                            for k, v in rnd["top3"].items()), ""]
+             "manda tus marcadores en ese orden (\"-\" para saltar uno) o con nombre "
+             "(\"Bayern 2-0\").", ""]
+    if rnd.get("top3"):
+        lines += ["Top-3 por liga: " + "; ".join(f"**{names[k]}**: {', '.join(v)}"
+                                                for k, v in rnd["top3"].items()), ""]
     for m in rnd["matches"]:
         if only_top and not m["top"]:
             continue
@@ -132,16 +134,21 @@ def render_md(rnd: dict, only_top: bool = True) -> str:
         lines.append(f"## {num}{m['home']} vs {m['away']} · {names[m['league']]} · {when}")
         mk = m["market"]
         if mk["p1x2"]:
-            lines.append(f"Mercado: 1/X/2 {mk['p1x2']} · Over 2.5 {mk['p_over25']} · "
-                         f"hándicap local {mk['ah_line']:+g}")
+            extra = ""
+            if mk.get("p_over25") is not None:
+                extra += f" · Over 2.5 {mk['p_over25']}"
+            if mk.get("ah_line") is not None:
+                extra += f" · hándicap local {mk['ah_line']:+g}"
+            lines.append(f"Mercado: 1/X/2 {mk['p1x2']}{extra}")
         for bot, b in m["bots"].items():
             if "error" in b:
                 lines.append(f"- **{bot}**: {b['error']}")
                 continue
             vb = ", ".join(f"{x['market']} {x['side']} @{x['price']} ({x['edge']:+.0%})"
                            for x in b["value_bets"]) or "nada"
-            lines.append(f"- **{bot}**: {b['pick_exact']} ({b['pick_1x2']}) · "
-                         f"Over2.5 {b['p_over25']:.0%} · BTTS {b['p_btts']:.0%} · apuesta: {vb}")
+            goals = (f" · Over2.5 {b['p_over25']:.0%} · BTTS {b['p_btts']:.0%}"
+                     if b.get("p_over25") is not None else "")
+            lines.append(f"- **{bot}**: {b['pick_exact']} ({b['pick_1x2']}){goals} · apuesta: {vb}")
         lines.append("")
     return "\n".join(lines)
 
