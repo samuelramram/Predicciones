@@ -1,82 +1,82 @@
 {
-  "as_of": "2026-09-21",
+  "as_of": "2026-09-28",
   "source": "replay_ligamx",
   "teams": [
     {
-      "team": "Guadalajara",
-      "elo": 1669.24
+      "team": "Toluca",
+      "elo": 1651.32
     },
     {
       "team": "Cruz Azul",
-      "elo": 1648.58
-    },
-    {
-      "team": "Toluca",
-      "elo": 1645.56
+      "elo": 1642.82
     },
     {
       "team": "América",
-      "elo": 1622.39
+      "elo": 1640.68
     },
     {
-      "team": "Pachuca",
-      "elo": 1607.88
-    },
-    {
-      "team": "Tijuana",
-      "elo": 1589.73
-    },
-    {
-      "team": "Pumas",
-      "elo": 1585.8
+      "team": "Guadalajara",
+      "elo": 1622.84
     },
     {
       "team": "Querétaro",
-      "elo": 1555.98
+      "elo": 1602.39
+    },
+    {
+      "team": "Pachuca",
+      "elo": 1578.78
+    },
+    {
+      "team": "Tijuana",
+      "elo": 1558.14
+    },
+    {
+      "team": "Pumas",
+      "elo": 1553.09
     },
     {
       "team": "Tigres",
-      "elo": 1489.65
-    },
-    {
-      "team": "León",
-      "elo": 1478.05
-    },
-    {
-      "team": "Atlante",
-      "elo": 1460.44
-    },
-    {
-      "team": "Monterrey",
-      "elo": 1459.85
+      "elo": 1498.93
     },
     {
       "team": "Atlas",
-      "elo": 1459.79
+      "elo": 1491.38
+    },
+    {
+      "team": "León",
+      "elo": 1486.12
+    },
+    {
+      "team": "Atlante",
+      "elo": 1481.99
     },
     {
       "team": "San Luis",
-      "elo": 1425.12
+      "elo": 1457.83
+    },
+    {
+      "team": "Monterrey",
+      "elo": 1438.3
     },
     {
       "team": "Puebla",
-      "elo": 1381.61
+      "elo": 1372.34
     },
     {
-      "team": "Necaxa",
-      "elo": 1379.27
+      "team": "Santos",
+      "elo": 1366.28
     },
     {
       "team": "Mazatlán",
       "elo": 1364.62
     },
     {
-      "team": "Juárez",
-      "elo": 1339.28
+      "team": "Necaxa",
+      "elo": 1360.98
     },
     {
-      "team": "Santos",
-      "elo": 1337.17
+      "team": "Juárez",
+      "elo": 1331.21
     }
   ]
 }
