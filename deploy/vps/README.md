@@ -73,9 +73,14 @@ openclaw automations add --name "liga-recordatorio" --agent claudio --cron "0 9 
 openclaw automations add --name "liga-reportero" --agent claudio --cron "0 8 * * 5" --tz America/Mexico_City \
   --session isolated --message "Usa la skill liga-reportero para las jornadas de esta semana y avísame qué moviste." \
   --announce --channel telegram --to "1305320146"
-# Lunes y jueves 09:00: tabla
-openclaw automations add --name "liga-tabla" --agent claudio --cron "0 9 * * 1,4" --tz America/Mexico_City \
+# Jueves 09:00: tabla rápida antes de la jornada nueva
+openclaw automations add --name "liga-tabla" --agent claudio --cron "0 9 * * 4" --tz America/Mexico_City \
   --session isolated --message "Usa la skill liga-tabla y cuéntame cómo voy." \
+  --announce --channel telegram --to "1305320146"
+# Diario 10:00: tablero (puntos + feria ficticia y por qué). Solo manda algo cuando una
+# jornada ya tiene TODOS sus resultados, y los lunes aunque falte alguno.
+openclaw automations add --name "liga-tablero" --agent claudio --cron "0 10 * * *" --tz America/Mexico_City \
+  --session isolated --message "Usa la skill liga-tablero (con --auto). Si no hay novedad no me mandes nada." \
   --announce --channel telegram --to "1305320146"
 ```
 
@@ -97,7 +102,7 @@ tiene red en el sandbox, no puede tocar el host, y el libro sellado detecta cual
 
 - "Pásame la jornada" · "¿qué pusieron los bots en el Liverpool–City y por qué?"
 - "mis picks: 2-1, 0-2, -, 1-3" · "¿qué me falta?"
-- "¿cómo voy?" · "¿ya le gano al borrego o es suerte?"
+- "¿cómo voy?" · "¿ya le gano al borrego o es suerte?" · "pásame el tablero" · "¿cuánta feria traen?"
 - "corre al reportero" · "¿qué noticias movió el reportero?"
 
 En el dashboard (túnel SSH) ves cada comando que corrió y lo que leyó.

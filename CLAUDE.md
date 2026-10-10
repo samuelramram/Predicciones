@@ -162,6 +162,17 @@ python -m wc_predictor.liga.notario --round eu-2026-W41 --picks "2-1, 0-2, -, 1-
 python -m wc_predictor.liga.arbitro                     # tabla: mano a mano con z + bots
 ```
 
+**Tablero** (`liga.tablero`): HTML para el teléfono con puntos de todos por jornada y la
+**feria ficticia** de cada bot (1,000 iniciales, 10 por apuesta, al momio sellado). El "por
+qué" compara tres números: lo que el bot esperaba (su edge), lo justo al **cierre** (CLV) y
+lo que salió, con un z de suerte. `--auto` solo genera cuando una jornada completa sus
+resultados (o es lunes); en el VPS lo corre la automatización diaria `liga-tablero` y Claudio
+lo manda como archivo por Telegram.
+
+```bash
+python -m wc_predictor.liga.tablero            # $LIGA_HOME/tablero/tablero-AAAA-MM-DD.html
+```
+
 **Liga MX en vivo** (`pipeline.ligamx_live`, sin API keys): próximos partidos y momios de
 Football-Data `new_league_fixtures.csv`; re-ajusta con `matches_history.csv` + los
 resultados nuevos de `historical_odds.csv` (MEX.csv, refrescado por la Action diaria).
