@@ -1,9 +1,9 @@
 [Unit]
-Description=Liga: sincronizar cada 3 horas
+Description=Liga: sincronizar cada hora
 
 [Timer]
 OnBootSec=5min
-OnUnitActiveSec=3h
+OnUnitActiveSec=1h
 Persistent=true
 
 [Install]

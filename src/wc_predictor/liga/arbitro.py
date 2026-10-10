@@ -23,8 +23,7 @@ import json
 from collections import defaultdict
 from datetime import date, timedelta
 
-from wc_predictor.ingest import europa_fd
-from wc_predictor.ingest import ligamx_fd_odds
+from wc_predictor.ingest import europa_fd, liga_results, ligamx_fd_odds
 from wc_predictor.liga import seal
 from wc_predictor.liga.europa import RULES
 from wc_predictor.liga.markets import ah_return, binary_brier
@@ -73,7 +72,20 @@ def load_results() -> list[dict]:
         rows += [{**r, "league": "MX"} for r in ligamx_fd_odds.load()]
     except FileNotFoundError:
         pass
-    return rows
+    return rows + live_only(rows, liga_results.load_live())
+
+
+def live_only(fd_rows: list[dict], live: list[dict]) -> list[dict]:
+    """TheSportsDB results for matches Football-Data doesn't have yet (±1 day).
+    Once Football-Data has the match it wins: it also brings the closing odds."""
+    have = {(r["league"], r["home"], r["away"], r["date"]) for r in fd_rows}
+    out = []
+    for r in live:
+        d = date.fromisoformat(r["date"])
+        if not any((r["league"], r["home"], r["away"], (d + timedelta(days=k)).isoformat()) in have
+                   for k in (-1, 0, 1)):
+            out.append(r)
+    return out
 
 
 def collect(records: list[dict], prefix: tuple[str, ...] = ("eu-", "mx-")) -> dict[str, dict[tuple, dict]]:

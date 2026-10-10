@@ -173,6 +173,12 @@ lo manda como archivo por Telegram.
 python -m wc_predictor.liga.tablero            # $LIGA_HOME/tablero/tablero-AAAA-MM-DD.html
 ```
 
+**Resultados rápidos** (`ingest.liga_results`): Football-Data llega con días de rezago, así
+que el Utilero baja cada hora de TheSportsDB (eventsday, 5 ligas + Liga MX) los partidos
+sellados que ya terminaron → `$LIGA_HOME/results_live.csv`. Empareja por fecha ±1 y nombres
+parecidos de local Y visita. El Árbitro los usa solo mientras Football-Data no tenga el
+partido (`arbitro.live_only`); sin momios de cierre, el CLV de esas apuestas espera a FD.
+
 **Liga MX en vivo** (`pipeline.ligamx_live`, sin API keys): próximos partidos y momios de
 Football-Data `new_league_fixtures.csv`; re-ajusta con `matches_history.csv` + los
 resultados nuevos de `historical_odds.csv` (MEX.csv, refrescado por la Action diaria).

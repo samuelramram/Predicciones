@@ -28,7 +28,7 @@ PY
   cp -n "$REPO"/data/europa/rounds/*.json "$REPO"/data/europa/rounds/*.md "$LIGA/rounds/" 2>/dev/null || true
 fi
 
-echo "== 2/6 Utilero (liga-sync) fuera del workspace + timer cada 3 h"
+echo "== 2/6 Utilero (liga-sync) fuera del workspace + timer cada hora"
 install -m 755 "$HERE/liga-sync.sh" "$HOME/bin/liga-sync.sh"
 install -m 644 "$HERE/liga-sync.service" "$HERE/liga-sync.timer" "$HOME/.config/systemd/user/"
 systemctl --user daemon-reload
