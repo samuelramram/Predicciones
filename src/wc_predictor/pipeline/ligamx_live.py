@@ -32,7 +32,7 @@ from wc_predictor.ingest import ligamx_fd_odds as fd
 from wc_predictor.ingest.europa_fd import _sane, kickoff_utc
 from wc_predictor.leagues import LIGAMX_APERTURA_PROFILE
 from wc_predictor.liga.bots import borrego_ticket, typical_scores
-from wc_predictor.liga.markets import p_btts, p_over
+from wc_predictor.liga.markets import expected_goals, p_btts, p_over
 from wc_predictor.liga.paths import liga_home, rounds_dir
 from wc_predictor.model.poisson_dc import profile_fit_rho
 from wc_predictor.pipeline.europa_live import render_md, seal_bots
@@ -105,7 +105,9 @@ def _bot_entry(pick_1x2: str, pick_exact: str, probs, cells, avg) -> dict:
     e = {"pick_1x2": pick_1x2, "pick_exact": pick_exact,
          "p1x2": [round(x, 3) for x in probs],
          "p_over25": round(p_over(cells, 2.5), 3) if cells else None,
-         "p_btts": round(p_btts(cells), 3) if cells else None, "value_bets": []}
+         "p_btts": round(p_btts(cells), 3) if cells else None,
+         "goals": [round(g, 3) for g in expected_goals(cells)] if cells else None,
+         "value_bets": []}
     if avg:
         best = max(((s, p * q - 1, q) for s, p, q in zip("1X2", probs, avg)), key=lambda t: t[1])
         if best[1] > 0:
@@ -132,7 +134,8 @@ def build_round(fixtures: list[dict], rows: list[dict] | None = None) -> dict:
         entry = {"n": n, "league": "MX", "date": f["date"], "kickoff_utc": f["kickoff_utc"],
                  "home": f["home"], "away": f["away"], "top": True,
                  "market": {"p1x2": [round(x, 3) for x in f["fair"]] if f["fair"] else None,
-                            "p_over25": None, "ah_line": None}, "bots": {}}
+                            "p_over25": None, "ah_line": None, "avg_1x2": f["avg"]},
+                 "bots": {}}
         for bot, o in (("estadistico", None), ("calibrado", odds)):
             p = predict_fixture(fx, fit, elos, altitudes, mcfg, rules, odds=o)
             if p is None or "error" in p:

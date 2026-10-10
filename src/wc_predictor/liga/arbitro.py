@@ -147,6 +147,23 @@ def build_table(scored: dict) -> dict:
             "mercados": {m: {"apuestas": len(v), "ganancia": round(sum(v), 1),
                              "roi": round(sum(v) / (STAKE * len(v)), 4)} for m, v in by_mkt.items()},
         }
+    # Each bot vs the calibrado on the matches both played (e.g. reportero only
+    # plays Samuel's ticket): did its idea beat the production blend?
+    table["vs_calibrado"] = {}
+    if "calibrado" in scored:
+        ref = {r["key"]: r for r in scored["calibrado"]["rows"]}
+        for who, s in scored.items():
+            if who in HUMANS or who == "calibrado":
+                continue
+            theirs = {r["key"]: r for r in s["rows"]}
+            common = [k for k in theirs if k in ref and "b1x2" in theirs[k] and "b1x2" in ref[k]]
+            if len(common) < 2:
+                continue
+            dp = paired_diff([theirs[k]["pts"] for k in common], [ref[k]["pts"] for k in common])
+            db = paired_diff([theirs[k]["b1x2"] for k in common], [ref[k]["b1x2"] for k in common])
+            table["vs_calibrado"][who] = {"n": len(common),
+                                          "puntos": round(dp["total_diff"], 1), "z_puntos": round(dp["z"], 2),
+                                          "brier_1x2": round(db["mean_diff"], 4), "z_brier": round(db["z"], 2)}
     table["pendientes"] = {w: s["pending"] for w, s in scored.items()}
     return table
 
@@ -168,6 +185,13 @@ def render_md(t: dict) -> str:
             mk = ", ".join(f"{m} {v['apuestas']} ({v['roi']:+.0%})" for m, v in b["mercados"].items()) or "—"
             lines.append(f"| {who} | {b['n']} | {b['points']} | {b['exactos']} | {b['brier_1x2']} | "
                          f"{b['brier_ou25']} | {b['brier_btts']} | {mk} |")
+    if t.get("vs_calibrado"):
+        lines += ["", "## Cada bot contra el calibrado (mismos partidos)", "",
+                  "| bot | partidos | puntos de diferencia | z | Brier 1X2 (− = mejor) | z |",
+                  "|---|---|---|---|---|---|"]
+        for who, v in t["vs_calibrado"].items():
+            lines.append(f"| {who} | {v['n']} | {v['puntos']:+} | {v['z_puntos']} | "
+                         f"{v['brier_1x2']:+.4f} | {v['z_brier']} |")
     pend = {w: n for w, n in t["pendientes"].items() if n}
     if pend:
         lines += ["", "Pendientes de resultado: " + ", ".join(f"{w} {n}" for w, n in pend.items())]

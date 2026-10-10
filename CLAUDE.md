@@ -172,6 +172,15 @@ son TODOS los partidos. Sin momios de totales para Liga MX: O/U y BTTS solo por 
 python -m wc_predictor.pipeline.ligamx_live --seal      # boletos de los bots, Liga MX
 ```
 
+**Reportero** (`liga.reportero`): Claudio investiga noticias (web) y escribe
+multiplicadores de goles por partido (0.75–1.25) en `$LIGA_HOME/reportero/<jornada>.json`;
+el código los aplica sobre el calibrado y sella el bot `reportero` (solo boleto de Samuel).
+Sin noticias = idéntico al calibrado. El Árbitro lo mide "contra el calibrado" con z.
+
+```bash
+python -m wc_predictor.liga.reportero --round eu-2026-W42 --dry-run   # luego --seal
+```
+
 **Boleto de Samuel = los partidos NUMERADOS del `.md` de la jornada**, en ese orden.
 El Notario rechaza partidos ya empezados (hora UTC) o ya sellados; Samuel puede mandar
 en tandas (`eu-…/2`, `/3`). En el VPS la liga vive en `$LIGA_HOME` y la opera Claudio

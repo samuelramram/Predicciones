@@ -62,24 +62,43 @@ Verifica la sintaxis con `openclaw automations add --help` (cambia entre version
 
 ```bash
 # Jueves 20:00: arma y sella la jornada, te manda tu boleto
-openclaw automations add --name "liga-jornada" --cron "0 20 * * 4" --tz America/Mexico_City \
+openclaw automations add --name "liga-jornada" --agent claudio --cron "0 20 * * 4" --tz America/Mexico_City \
   --session isolated --message "Usa la skill liga-jornada y mándame mi boleto." \
   --announce --channel telegram --to "1305320146"
 # Viernes 09:00: qué te falta por sellar
-openclaw automations add --name "liga-recordatorio" --cron "0 9 * * 5" --tz America/Mexico_City \
+openclaw automations add --name "liga-recordatorio" --agent claudio --cron "0 9 * * 5" --tz America/Mexico_City \
   --session isolated --message "Con la skill liga-sellar revisa (--status) qué me falta de la jornada y recuérdame el deadline." \
   --announce --channel telegram --to "1305320146"
+# Viernes 08:00: el Reportero investiga y sella su boleto (antes del primer partido)
+openclaw automations add --name "liga-reportero" --agent claudio --cron "0 8 * * 5" --tz America/Mexico_City \
+  --session isolated --message "Usa la skill liga-reportero para las jornadas de esta semana y avísame qué moviste." \
+  --announce --channel telegram --to "1305320146"
 # Lunes y jueves 09:00: tabla
-openclaw automations add --name "liga-tabla" --cron "0 9 * * 1,4" --tz America/Mexico_City \
+openclaw automations add --name "liga-tabla" --agent claudio --cron "0 9 * * 1,4" --tz America/Mexico_City \
   --session isolated --message "Usa la skill liga-tabla y cuéntame cómo voy." \
   --announce --channel telegram --to "1305320146"
 ```
+
+## Búsqueda web para el Reportero
+
+El Reportero necesita buscar noticias. La búsqueda de OpenClaw corre del lado del gateway;
+el sandbox sigue sin red. Actívala con un proveedor sin llave (DuckDuckGo):
+
+```bash
+openclaw configure --section web     # elige DuckDuckGo (o Brave si tienes BRAVE_API_KEY)
+openclaw gateway restart
+```
+
+Riesgo conocido: lo que el Reportero lee en internet puede traer texto que intente darle
+órdenes. Está contenido así: sus notas pasan por código que recorta todo a 0.75–1.25, no
+tiene red en el sandbox, no puede tocar el host, y el libro sellado detecta cualquier edición.
 
 ## Cómo le hablas a Claudio (Telegram o dashboard)
 
 - "Pásame la jornada" · "¿qué pusieron los bots en el Liverpool–City y por qué?"
 - "mis picks: 2-1, 0-2, -, 1-3" · "¿qué me falta?"
 - "¿cómo voy?" · "¿ya le gano al borrego o es suerte?"
+- "corre al reportero" · "¿qué noticias movió el reportero?"
 
 En el dashboard (túnel SSH) ves cada comando que corrió y lo que leyó.
 

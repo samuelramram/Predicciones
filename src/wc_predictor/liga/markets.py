@@ -137,3 +137,8 @@ def simple_market(p_sides: dict[str, float], prices: dict[str, float],
     expected = {s: p_sides[s] * prices[s] for s in p_sides}
     realized = {s: (prices[s] if s == winner else 0.0) for s in p_sides}
     return expected, realized
+
+
+def expected_goals(cells: list[dict]) -> tuple[float, float]:
+    """Mean home / away goals of a score grid (what the bot "expects")."""
+    return (sum(c["h"] * c["prob"] for c in cells), sum(c["a"] * c["prob"] for c in cells))
