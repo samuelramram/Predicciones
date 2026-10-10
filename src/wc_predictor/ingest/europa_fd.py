@@ -45,7 +45,10 @@ SEASONS = ("2021", "2122", "2223", "2324", "2425", "2526", "2627")
 OUT_CSV = DATA_DIR / "europa" / "matches.csv"
 FIELDS = ["league", "season", "date", "home", "away", "home_score", "away_score",
           "fair_p1", "fair_px", "fair_p2", "fair_source", "avg_o1", "avg_ox", "avg_o2",
-          "fair_over25", "avg_over25", "avg_under25", "ah_line", "avg_ahh", "avg_aha"]
+          "fair_over25", "avg_over25", "avg_under25", "ah_line", "avg_ahh", "avg_aha",
+          "fair_p1_pre", "fair_px_pre", "fair_p2_pre", "fair_source_pre", "avg_o1_pre",
+          "avg_ox_pre", "avg_o2_pre", "fair_over25_pre", "avg_over25_pre", "avg_under25_pre",
+          "ah_line_pre", "avg_ahh_pre", "avg_aha_pre"]
 
 
 def _f(row: dict, key: str) -> float | None:
@@ -101,15 +104,64 @@ def _fair_over(row: dict, closing: bool) -> float | None:
     return None
 
 
-def normalize_rows(raw_rows: list[dict], code: str, season: str, closing: bool = True) -> list[dict]:
-    """Football-Data rows → normalized dicts. ``closing=False`` reads the
-    pre-match columns (fixtures.csv has no closing prices yet)."""
+MARKET_KEYS = ("fair_p1", "fair_px", "fair_p2", "fair_source", "avg_o1", "avg_ox", "avg_o2",
+               "fair_over25", "avg_over25", "avg_under25", "ah_line", "avg_ahh", "avg_aha")
+
+
+def _sane(*odds) -> bool:
+    """A real book: every price > 1 and a total margin between 0% and 15%.
+    Football-Data has occasional corrupt cells (e.g. pre-match AvgAHA ≈ 4.5 on a
+    pick'em line around 29-Nov-2025) that otherwise look like huge free edges."""
+    if not all(isinstance(o, float) and o > 1.0 for o in odds):
+        return False
+    book = sum(1.0 / o for o in odds)
+    return 1.0 <= book <= 1.15
+
+
+def _market(r: dict, closing: bool) -> dict:
+    """One snapshot of the three markets: closing (``*C*`` columns) or pre-match.
+    A market whose prices fail the sanity check is left empty (not traded)."""
     pre = "C" if closing else ""
+    fair, src = _fair_1x2(r, closing)
+    o = {
+        "fair_p1": "", "fair_px": "", "fair_p2": "", "fair_source": src,
+        "avg_o1": _f(r, f"Avg{pre}H") or "", "avg_ox": _f(r, f"Avg{pre}D") or "",
+        "avg_o2": _f(r, f"Avg{pre}A") or "",
+        "fair_over25": "", "avg_over25": _f(r, f"Avg{pre}>2.5") or "",
+        "avg_under25": _f(r, f"Avg{pre}<2.5") or "",
+        "ah_line": "", "avg_ahh": _f(r, f"Avg{pre}AHH") or "",
+        "avg_aha": _f(r, f"Avg{pre}AHA") or "",
+    }
+    if fair:
+        o["fair_p1"], o["fair_px"], o["fair_p2"] = (round(p, 4) for p in fair)
+    fo = _fair_over(r, closing)
+    if fo is not None:
+        o["fair_over25"] = round(fo, 4)
+    line = _f(r, "AHCh" if closing else "AHh")
+    if line is not None:
+        o["ah_line"] = line
+    if not _sane(o["avg_o1"], o["avg_ox"], o["avg_o2"]):
+        o["avg_o1"] = o["avg_ox"] = o["avg_o2"] = ""
+    if not _sane(o["avg_over25"], o["avg_under25"]):
+        o["avg_over25"] = o["avg_under25"] = ""
+    if not _sane(o["avg_ahh"], o["avg_aha"]):
+        o["ah_line"] = o["avg_ahh"] = o["avg_aha"] = ""
+    return o
+
+
+def normalize_rows(raw_rows: list[dict], code: str, season: str, closing: bool = True) -> list[dict]:
+    """Football-Data rows → normalized dicts.
+
+    ``closing=True`` (history): the main fields are the CLOSING line, and the same
+    markets as seen BEFORE the match (Football-Data's pre-match snapshot, taken a
+    day or two earlier) go in ``*_pre`` fields. The live bots only ever see a
+    pre-match line, so an honest backtest has to use ``*_pre``.
+    ``closing=False`` (fixtures.csv): only the pre-match line exists; it fills the
+    main fields."""
     out = []
     for r in raw_rows:
         if not (r.get("HomeTeam") and r.get("AwayTeam") and r.get("Date")):
             continue
-        fair, src = _fair_1x2(r, closing)
         played = (r.get("FTHG") or "").strip() != "" and (r.get("FTAG") or "").strip() != ""
         if closing and not played:
             continue
@@ -119,22 +171,10 @@ def normalize_rows(raw_rows: list[dict], code: str, season: str, closing: bool =
             "kickoff_utc": kickoff_utc(r["Date"], r.get("Time", "")),
             "home_score": int(r["FTHG"]) if played else "",
             "away_score": int(r["FTAG"]) if played else "",
-            "fair_p1": "", "fair_px": "", "fair_p2": "", "fair_source": src,
-            "avg_o1": _f(r, f"Avg{pre}H") or "", "avg_ox": _f(r, f"Avg{pre}D") or "",
-            "avg_o2": _f(r, f"Avg{pre}A") or "",
-            "fair_over25": "", "avg_over25": _f(r, f"Avg{pre}>2.5") or "",
-            "avg_under25": _f(r, f"Avg{pre}<2.5") or "",
-            "ah_line": "", "avg_ahh": _f(r, f"Avg{pre}AHH") or "",
-            "avg_aha": _f(r, f"Avg{pre}AHA") or "",
+            **_market(r, closing),
         }
-        if fair:
-            o["fair_p1"], o["fair_px"], o["fair_p2"] = (round(p, 4) for p in fair)
-        fo = _fair_over(r, closing)
-        if fo is not None:
-            o["fair_over25"] = round(fo, 4)
-        line = _f(r, "AHCh" if closing else "AHh")
-        if line is not None:
-            o["ah_line"] = line
+        if closing:
+            o.update({f"{k}_pre": v for k, v in _market(r, False).items()})
         out.append(o)
     return out
 
@@ -184,8 +224,8 @@ def load(src: Path = OUT_CSV) -> list[dict]:
             d["home_score"] = int(r["home_score"])
             d["away_score"] = int(r["away_score"])
             for k in FIELDS[7:]:
-                if k != "fair_source":
-                    d[k] = _num(r[k])
+                if not k.startswith("fair_source"):
+                    d[k] = _num(r.get(k) or "")
             d["neutral"] = False
             d["tournament"] = LEAGUES[r["league"]]
             out.append(d)
@@ -202,7 +242,7 @@ def load_upcoming(text: str | None = None) -> list[dict]:
     for code in LEAGUES:
         out += normalize_rows([r for r in raw if r["Div"] == code], code, SEASONS[-1], closing=False)
     for d in out:
-        for k in FIELDS[7:]:
+        for k in MARKET_KEYS:
             if k != "fair_source":
                 d[k] = None if d[k] == "" else float(d[k])
         d["neutral"] = False

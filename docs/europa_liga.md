@@ -62,3 +62,53 @@ En el subconjunto top (1,106 partidos con un equipo del top-3) el orden es el mi
 - **Props de jugadores (fase 2):** goleador y tarjetas, cuando haya una fuente de alineaciones + momios.
 - **Liga MX con O/U y ambos anotan:** MEX.csv no trae momios de totales. Ahí se medirá solo el Brier.
 - **Champions League:** Football-Data no la publica.
+
+## Mejoras probadas (oct 2026): cuáles se quedaron y cuáles no
+
+Mismo harness walk-forward (3,736 partidos, 2024-07 → 2026-09). Cada variante se comparó contra la base partido por partido con `europa_backtest --compare`. Regla: solo se queda lo que gana con |z| ≥ 2 y no empeora otra métrica.
+
+**1. Backtest honesto: momios previos en lugar de los de cierre.** El bot en vivo nunca ve el cierre, así que ahora el backtest usa la línea previa de Football-Data (la del día anterior aproximadamente). Es el nuevo default.
+
+| | Brier 1X2 calibrado | puntos borrego |
+|---|---|---|
+| con cierre (lo de arriba) | 0.5765 | 2462 |
+| con momios previos (lo real) | 0.5779 | 2437 |
+
+El cierre sabe más que la línea previa, así que los números de arriba eran un poco optimistas.
+
+Además salieron **datos corruptos**: alrededor del 29-nov-2025, Football-Data trae precios de hándicap visitante de ~4.5 en líneas parejas. Con eso los bots veían +50% de ROI en hándicap, que era falso. El ingest ahora descarta todo mercado con margen fuera de 0–15% (`europa_fd._sane`): son ~40 filas.
+
+**2. Recién ascendidos con el nivel de los descendidos (Elo + prior en el Poisson): no se queda.** El 1X2 no cambia (z=+0.4). Over/Under mejora (z=−3.0) pero ambos anotan empeora (z=+2.3). Queda como `--promoted` por si algún día se quiere medir solo en partidos de ascendidos.
+
+**3. Memoria del modelo (half-life): se queda en 730 días.**
+
+| half-life | O/U (estadístico) | O/U (calibrado) | ambos anotan (calibrado) | puntos |
+|---|---|---|---|---|
+| 365 | peor, z=+2.1 | peor, z=+2.7 | peor, z=+2.5 | — |
+| 540 | — | peor, z=+1.8 | peor, z=+2.0 | — |
+| 1095 | — | — | — | peor, z=−1.4 |
+
+Con 365 empeora todo. Igual que en Liga MX: más datos le ganan a datos frescos.
+
+**4. xG de Understat (`ingest/understat_xg.py`, `data/europa/xg.csv`): sí se queda, con peso 0.75.** El Poisson se ajusta sobre `0.25·goles + 0.75·xG`. La corrección Dixon-Coles sigue usando el marcador real.
+
+| bot estadístico | goles | xG 0.5 | **xG 0.75** | xG 1.0 |
+|---|---|---|---|---|
+| Brier 1X2 | 0.5891 | 0.5870 (z=−4.0) | **0.5865 (z=−3.3)** | 0.5863 (z=−2.7) |
+| Brier O/U | 0.2435 | 0.2410 (z=−4.1) | **0.2409 (z=−2.9)** | 0.2413 |
+| Brier ambos anotan | 0.2477 | 0.2457 (z=−3.6) | **0.2456 (z=−2.6)** | 0.2460 |
+
+0.75 le gana a 0.5 en 1X2 (z=−2.0). Los bots que siguen al mercado no se mueven (|z|<0.6), porque el mercado ya trae el xG en los momios. Los puntos de quiniela tampoco cambian: el pick es un argmax y casi nunca cruza el umbral. Liga MX no está en Understat.
+
+**5. Peso del mercado, re-medido con xG y momios previos: se queda en 0.9.**
+
+| peso | vs 0.9 (Brier 1X2) |
+|---|---|
+| 0.75 | peor, z=+2.7 |
+| 0.6 | peor, z=+3.2 |
+
+El modelo mejoró, pero el mercado sigue mandando en Europa.
+
+**Pendiente:**
+- Alineaciones y lesiones (bot Reportero).
+- El backtest de Liga MX sigue con momios de cierre, porque MEX.csv no publica línea previa. Su peso 0.55 puede estar un poco inflado por eso.

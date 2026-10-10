@@ -29,7 +29,7 @@ from pathlib import Path
 from zoneinfo import ZoneInfo
 
 from wc_predictor.ingest import ligamx_fd_odds as fd
-from wc_predictor.ingest.europa_fd import kickoff_utc
+from wc_predictor.ingest.europa_fd import _sane, kickoff_utc
 from wc_predictor.leagues import LIGAMX_APERTURA_PROFILE
 from wc_predictor.liga.bots import borrego_ticket, typical_scores
 from wc_predictor.liga.markets import p_btts, p_over
@@ -60,6 +60,8 @@ def upcoming(text: str) -> tuple[list[dict], set[str]]:
             datetime.strptime(r["Date"], "%d/%m/%Y").date().isoformat()
         odds = [fd._f(r.get(k, "")) for k in ("AvgH", "AvgD", "AvgA")]
         pin = [fd._f(r.get(k, "")) for k in ("PSH", "PSD", "PSA")]
+        odds = odds if _sane(*odds) else [None, None, None]   # drop corrupt cells
+        pin = pin if _sane(*pin) else [None, None, None]
         fair = fd.devig(*pin) if all(pin) else (fd.devig(*odds) if all(odds) else None)
         out.append({"league": "MX", "date": local, "kickoff_utc": ko, "home": h, "away": a,
                     "fair": fair, "avg": odds if all(odds) else None})

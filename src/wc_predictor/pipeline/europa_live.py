@@ -20,9 +20,10 @@ from collections import defaultdict
 from datetime import date
 from pathlib import Path
 
-from wc_predictor.ingest import europa_fd
+from wc_predictor.ingest import europa_fd, understat_xg
 from wc_predictor.liga import seal
-from wc_predictor.liga.europa import EUROPA_MODEL, bot_view, load_override, top_teams
+from wc_predictor.liga.europa import (EUROPA_MODEL, XG_WEIGHT, bot_view, load_override,
+                                      top_teams, with_xg)
 from wc_predictor.liga.markets import ah_expected_returns
 from wc_predictor.liga.paths import liga_home, rounds_dir
 from wc_predictor.model.poisson_dc import profile_fit_rho
@@ -61,6 +62,9 @@ def _value_bets(v, fx) -> list[dict]:
 
 def build_round(fixtures: list[dict], history: list[dict] | None = None) -> dict:
     history = history if history is not None else europa_fd.load()
+    xg_idx = None
+    if understat_xg.OUT_CSV.exists():
+        xg_idx = understat_xg.index(understat_xg.load())
     override = load_override()
     by_league: dict[str, list[dict]] = defaultdict(list)
     for fx in fixtures:
@@ -68,7 +72,8 @@ def build_round(fixtures: list[dict], history: list[dict] | None = None) -> dict
     matches, tops = [], {}
     for code, fxs in by_league.items():
         train = [r for r in history if r["league"] == code]
-        _, fit, _ = profile_fit_rho(train, EUROPA_MODEL, ridge_lambda=EUROPA_MODEL.ridge_lambda,
+        fit_rows = with_xg(train, xg_idx, XG_WEIGHT) if xg_idx else train
+        _, fit, _ = profile_fit_rho(fit_rows, EUROPA_MODEL, ridge_lambda=EUROPA_MODEL.ridge_lambda,
                                     half_life_days=EUROPA_MODEL.half_life_days, verbose=False)
         mcfg = effective_model_config(fit, EUROPA_MODEL)
         elos, _ = replay_history(train, EUROPA_MODEL)
