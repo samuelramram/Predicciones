@@ -37,6 +37,7 @@ from wc_predictor.model.poisson_dc import fit_dc_model, profile_fit_rho
 from wc_predictor.pipeline.ligamx import (effective_model_config, load_history_rows,
                                           load_team_altitudes, predict_fixture)
 from wc_predictor.pipeline.ligamx_backtest import _iso_week
+from wc_predictor.liga.aprendiz import fit_weight
 from wc_predictor.ratings.elo import replay_history
 
 PROFILE = LIGAMX_APERTURA_PROFILE
@@ -44,7 +45,7 @@ OUT_JSON = PROFILE.data_dir.parent.parent / "outputs" / "liga_backtest.json"
 
 
 def run(since: str, sweep: tuple[float, ...] = (), mcfg=None, quiet: bool = False,
-        min_train: int = 100) -> dict:
+        min_train: int = 100, aprendiz: bool = False) -> dict:
     mcfg = mcfg or PROFILE.model
     rules = PROFILE.rules
     rows = load_history_rows()
@@ -53,6 +54,9 @@ def run(since: str, sweep: tuple[float, ...] = (), mcfg=None, quiet: bool = Fals
 
     prod_w = mcfg.blend_odds_weight
     names = ["estadistico", "calibrado", "borrego"] + [f"calibrado_w{w:g}" for w in sweep]
+    names += ["aprendiz"] if aprendiz else []
+    learn: list[tuple] = []          # aprendiz: (estadistico, market, outcome) of past weeks
+    w_path: list[tuple] = []
     rec = {n: BotRecord(n) for n in names}
 
     test = [r for r in rows if r["date"] >= since]
@@ -77,6 +81,9 @@ def run(since: str, sweep: tuple[float, ...] = (), mcfg=None, quiet: bool = Fals
                                half_life_days=mcfg.half_life_days, verbose=False)
         wk_mcfg = effective_model_config(fit, mcfg)
         typical = typical_scores(train)
+        w_learn = fit_weight(learn, prod_w)["w"] if aprendiz else None
+        if aprendiz:
+            w_path.append((wk, w_learn, len(learn)))
 
         for r in batch:
             h, a = r["home"], r["away"]
@@ -105,6 +112,13 @@ def run(since: str, sweep: tuple[float, ...] = (), mcfg=None, quiet: bool = Fals
                 tickets[f"calibrado_w{w:g}"] = ticket_from_prediction(
                     predict_fixture(fx, fit, elos, altitudes, wm, rules, odds=odds, liguilla=lig))
 
+            if aprendiz:
+                wm = replace(wk_mcfg, blend_odds_weight=w_learn)
+                tickets["aprendiz"] = ticket_from_prediction(
+                    predict_fixture(fx, fit, elos, altitudes, wm, rules, odds=odds, liguilla=lig))
+                hs, as_ = r["home_score"], r["away_score"]
+                learn.append((tuple(tickets["estadistico"].probs), market,
+                              0 if hs > as_ else (1 if hs == as_ else 2)))
             for n, t in tickets.items():
                 rec[n].add(t.pick_1x2, t.pick_exact, t.probs,
                            r["home_score"], r["away_score"], rules, prices=prices)
@@ -121,7 +135,8 @@ def run(since: str, sweep: tuple[float, ...] = (), mcfg=None, quiet: bool = Fals
         vs_prod[n] = {"points_diff": pts["total_diff"], "points_z": round(pts["z"], 2),
                       "brier_diff": round(bri["mean_diff"], 5), "brier_z": round(bri["z"], 2)}
     result = {"since": since, "prod_odds_weight": prod_w, "sweep": list(sweep),
-              "skipped": skipped, "standings": standings, "vs_calibrado": vs_prod}
+              "skipped": skipped, "standings": standings, "vs_calibrado": vs_prod,
+              "w_path": w_path[::4] + w_path[-1:]}
     if not quiet:
         _print(result)
     return result
@@ -154,12 +169,15 @@ def main(argv: list[str] | None = None) -> None:
     ap = argparse.ArgumentParser(description="Backtest de la liga de bots (Liga MX).")
     ap.add_argument("--since", default="2024-01-01")
     ap.add_argument("--sweep", default="", help="pesos de mercado extra para el calibrado, ej. 0.3,0.75,0.9")
+    ap.add_argument("--aprendiz", action="store_true", help="agrega el bot aprendiz")
     ap.add_argument("--no-fit-rho", dest="fit_rho", action="store_false", default=True)
     ap.add_argument("--out", default=str(OUT_JSON))
     args = ap.parse_args(argv)
     sweep = tuple(float(x) for x in args.sweep.split(",") if x.strip())
     mcfg = PROFILE.model if args.fit_rho else replace(PROFILE.model, fit_rho=False)
-    res = run(args.since, sweep=sweep, mcfg=mcfg)
+    res = run(args.since, sweep=sweep, mcfg=mcfg, aprendiz=args.aprendiz)
+    if res.get("w_path"):
+        print("Peso de mercado del aprendiz (semana, peso, partidos aprendidos):", res["w_path"])
     from pathlib import Path
     out = Path(args.out)
     out.parent.mkdir(parents=True, exist_ok=True)

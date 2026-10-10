@@ -1,6 +1,6 @@
 ---
 name: liga-jornada
-description: Arma la jornada (Liga MX y Europa top-5) con los 3 bots, la sella y le manda a Samuel su boleto numerado.
+description: Arma la jornada (Liga MX y Europa top-5) con los bots (estadístico, calibrado, borrego y aprendiz), la sella y le manda a Samuel su boleto numerado.
 ---
 
 # Jornada de la liga (Liga MX + Europa top-5)
@@ -21,7 +21,9 @@ y Europa (`eu-AAAA-Wnn`, solo los del top-3 de cada liga). Corre los dos:
 2. Lee los `.md` más recientes de `/workspace/liga/rounds/` (uno `mx-…`, uno `eu-…`).
 3. Mándale a Samuel, corto:
    - la lista numerada de SUS partidos con día y hora (centro de México),
-   - lo que puso `calibrado` en cada uno (su rival principal) y dónde los 3 bots no coinciden,
+   - lo que puso `calibrado` en cada uno (su rival principal) y dónde los bots no coinciden,
+   - la línea del **aprendiz** que viene arriba del `.md` (cuánto le cree al mercado esta
+     semana y por qué); dila en una frase, sin adornarla,
    - cómo contestar: por boleto, en orden (`2-1, 0-0, -, 1-3`) o con nombre
      (`Chivas 2-1, Bayern 2-0`); dile que te mande cada boleto en su propio mensaje,
    - la hora del primer partido = su deadline.

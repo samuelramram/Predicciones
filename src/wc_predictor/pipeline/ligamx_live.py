@@ -24,6 +24,7 @@ import csv
 import io
 import json
 import urllib.request
+from dataclasses import replace
 from datetime import date, datetime, timedelta
 from pathlib import Path
 from zoneinfo import ZoneInfo
@@ -31,6 +32,7 @@ from zoneinfo import ZoneInfo
 from wc_predictor.ingest import ligamx_fd_odds as fd
 from wc_predictor.ingest.europa_fd import _sane, kickoff_utc
 from wc_predictor.leagues import LIGAMX_APERTURA_PROFILE
+from wc_predictor.liga import aprendiz
 from wc_predictor.liga.bots import borrego_ticket, typical_scores
 from wc_predictor.liga.markets import expected_goals, p_btts, p_over
 from wc_predictor.liga.paths import liga_home, rounds_dir
@@ -116,7 +118,9 @@ def _bot_entry(pick_1x2: str, pick_exact: str, probs, cells, avg) -> dict:
     return e
 
 
-def build_round(fixtures: list[dict], rows: list[dict] | None = None) -> dict:
+def build_round(fixtures: list[dict], rows: list[dict] | None = None,
+                w_aprendiz: float | None = None) -> dict:
+    """``w_aprendiz``: market weight learned by the aprendiz (None = no aprendiz)."""
     rows = rows if rows is not None else training_rows()
     mcfg0, rules = PROFILE.model, PROFILE.rules
     elos, _ = replay_history(rows, mcfg0)
@@ -136,8 +140,11 @@ def build_round(fixtures: list[dict], rows: list[dict] | None = None) -> dict:
                  "market": {"p1x2": [round(x, 3) for x in f["fair"]] if f["fair"] else None,
                             "p_over25": None, "ah_line": None, "avg_1x2": f["avg"]},
                  "bots": {}}
-        for bot, o in (("estadistico", None), ("calibrado", odds)):
-            p = predict_fixture(fx, fit, elos, altitudes, mcfg, rules, odds=o)
+        variants = [("estadistico", None, mcfg), ("calibrado", odds, mcfg)]
+        if w_aprendiz is not None:
+            variants.append(("aprendiz", odds, replace(mcfg, blend_odds_weight=w_aprendiz)))
+        for bot, o, cfg in variants:
+            p = predict_fixture(fx, fit, elos, altitudes, cfg, rules, odds=o)
             if p is None or "error" in p:
                 entry["bots"][bot] = {"error": "equipo sin historial"}
                 continue
@@ -151,7 +158,8 @@ def build_round(fixtures: list[dict], rows: list[dict] | None = None) -> dict:
         else:
             entry["bots"]["borrego"] = {"error": "sin momio"}
         matches.append(entry)
-    return {"generated": date.today().isoformat(), "top3": {}, "matches": matches}
+    bots = ["estadistico", "calibrado", "borrego"] + (["aprendiz"] if w_aprendiz is not None else [])
+    return {"generated": date.today().isoformat(), "top3": {}, "matches": matches, "bots": bots}
 
 
 def main(argv: list[str] | None = None) -> None:
@@ -176,7 +184,10 @@ def main(argv: list[str] | None = None) -> None:
     fixtures = [f for f in fixtures if date.fromisoformat(f["date"]) <= first + timedelta(days=3)]
     label = jornada_of(fixtures) or f"W{first.isocalendar()[1]:02d}"
     round_id = f"mx-{first.year}-{label}"
-    rnd = build_round(fixtures)
+    learned = aprendiz.learned_weight("mx-", PROFILE.model.blend_odds_weight,
+                                      before=fixtures[0]["date"])
+    rnd = build_round(fixtures, w_aprendiz=learned["w"])
+    rnd["aprendiz"] = learned
     rnd["round_id"] = round_id
     out = rounds_dir()
     out.mkdir(parents=True, exist_ok=True)

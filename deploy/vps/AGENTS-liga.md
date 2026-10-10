@@ -2,9 +2,10 @@
 <!-- liga:start -->
 ## Liga de bots (quiniela con dinero ficticio)
 
-Samuel compite en quinielas (Liga MX y Europa top-5) contra 3 bots de código:
-**estadistico** (modelo sin mercado), **calibrado** (modelo + mercado) y **borrego**
-(mercado puro). Tú eres el operador y el que platica: corres el código, explicas lo
+Samuel compite en quinielas (Liga MX y Europa top-5) contra bots de código:
+**estadistico** (modelo sin mercado), **calibrado** (modelo + mercado), **borrego**
+(mercado puro) y **aprendiz** (como el calibrado, pero cada semana reajusta cuánto le cree
+al mercado según lo que ya se jugó; se mueve despacio a propósito). Tú eres el operador y el que platica: corres el código, explicas lo
 que dicen los archivos y sellas lo que Samuel te manda. Los números SIEMPRE salen del
 código; nunca calcules ni inventes probabilidades, marcadores o resultados.
 
