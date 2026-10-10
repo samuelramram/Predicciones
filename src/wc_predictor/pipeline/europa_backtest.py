@@ -22,6 +22,7 @@ from datetime import datetime
 
 from wc_predictor.config import DATA_DIR
 from wc_predictor.ingest import europa_fd
+from wc_predictor.liga.aprendiz import fit_weight
 from wc_predictor.liga.europa import (EUROPA_MODEL, RULES, XG_WEIGHT, bot_view, load_override,
                                       promoted_prior, replay_promoted, season_turnover,
                                       top_teams, with_xg)
@@ -83,6 +84,10 @@ def run_league(code: str, since: str, mcfg=EUROPA_MODEL, min_train: int = 300,
         batches[_iso_week(r["date"])].append(r)
 
     recs = {b: _Rec(b) for b in _bots(mcfg, sweep)}
+    learn: list[tuple] = []          # aprendiz: (estadistico, market, outcome) of past weeks
+    w_path: list[tuple] = []
+    if opts.get("aprendiz"):
+        recs["aprendiz"] = _Rec("aprendiz")
     rho_by_season: dict[str, float] = {}
     turnover = season_turnover(season_teams)
     last_fit = None
@@ -113,16 +118,24 @@ def run_league(code: str, since: str, mcfg=EUROPA_MODEL, min_train: int = 300,
             elos, _ = replay_history(train, mcfg)
         top = set(top_teams(elos, season_teams[season], 3, code, override))
 
+        w_learn = fit_weight(learn, mcfg.blend_odds_weight)["w"] if opts.get("aprendiz") else None
+        if w_learn is not None:
+            w_path.append((wk, w_learn, len(learn)))
         for r in batch:
             mkt = (r["fair_p1"], r["fair_px"], r["fair_p2"]) if r["fair_p1"] is not None else None
+            bots = _bots(mcfg, sweep)
+            if opts.get("aprendiz"):
+                bots["aprendiz"] = w_learn
             views = {b: bot_view(r["home"], r["away"], fit, elos, wk_mcfg, mkt,
-                                 r["fair_over25"], w) for b, w in _bots(mcfg, sweep).items()}
+                                 r["fair_over25"], w) for b, w in bots.items()}
             if any(v is None for v in views.values()):
                 continue
             hs, as_ = r["home_score"], r["away_score"]
             actual = outcome_of(hs, as_)
             over = hs + as_ > 2.5
             btts = hs > 0 and as_ > 0
+            if opts.get("aprendiz") and mkt:
+                learn.append((views["estadistico"].probs, mkt, "1X2".index(actual)))
             for b, v in views.items():
                 rec = recs[b]
                 row = {"pts": score_actual(hs, as_, v.pick_1x2, v.pick_exact, RULES),
@@ -148,7 +161,7 @@ def run_league(code: str, since: str, mcfg=EUROPA_MODEL, min_train: int = 300,
                          "away": ah_return(as_ - hs, -r["ah_line"], r["avg_aha"])}
                     row["p_ah"] = rec.books["ah"].settle(e, z)
                 rec.rows.append(row)
-    return {"league": code, "rho": rho_by_season,
+    return {"league": code, "rho": rho_by_season, "w_path": w_path,
             "recs": {b: {"rows": rec.rows, "books": {m: bk.summary() for m, bk in rec.books.items()}}
                      for b, rec in recs.items()}}
 
@@ -192,6 +205,8 @@ def aggregate(results: list[dict]) -> dict:
             cmp[f"profit_{m}"] = {"total_diff": round(d["total_diff"], 1), "z": round(d["z"], 2)}
         report["vs_calibrado"][b] = cmp
     report["rho"] = {res["league"]: res["rho"] for res in results}
+    report["w_path"] = {res["league"]: res.get("w_path", [])[::8] + res.get("w_path", [])[-1:]
+                        for res in results if res.get("w_path")}
     return report
 
 
@@ -245,6 +260,8 @@ def main(argv: list[str] | None = None) -> None:
     ap.add_argument("--promoted", action="store_true", help="prior de recién ascendidos")
     ap.add_argument("--xg", type=float, default=XG_WEIGHT,
                     help=f"peso del xG en el Poisson (default producción {XG_WEIGHT}; 0 = solo goles)")
+    ap.add_argument("--aprendiz", action="store_true",
+                    help="agrega el bot aprendiz (peso de mercado re-estimado cada semana)")
     ap.add_argument("--rows-out", default=None, help="guarda el detalle por partido (para --compare)")
     ap.add_argument("--compare", nargs=2, metavar=("BASE", "VARIANTE"),
                     help="compara dos --rows-out con prueba pareada y sale")
@@ -259,7 +276,7 @@ def main(argv: list[str] | None = None) -> None:
                     print(f"  {k:<16} {v['diff_total']:+10} (z={v['z']:+.2f})")
         return
     opts = {"odds": args.odds, "half_life": args.half_life, "promoted": args.promoted,
-            "xg": args.xg}
+            "xg": args.xg, "aprendiz": args.aprendiz}
     with ProcessPoolExecutor(max_workers=args.workers) as ex:
         n = len(args.leagues)
         results = list(ex.map(run_league, args.leagues, [args.since] * n, [EUROPA_MODEL] * n,

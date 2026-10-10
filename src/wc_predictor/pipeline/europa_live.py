@@ -17,11 +17,11 @@ from __future__ import annotations
 import argparse
 import json
 from collections import defaultdict
-from datetime import date
+from datetime import date, datetime, timezone
 from pathlib import Path
 
 from wc_predictor.ingest import europa_fd, understat_xg
-from wc_predictor.liga import seal
+from wc_predictor.liga import aprendiz, seal
 from wc_predictor.liga.europa import (EUROPA_MODEL, XG_WEIGHT, bot_view, load_override,
                                       top_teams, with_xg)
 from wc_predictor.liga.markets import ah_expected_returns, expected_goals
@@ -60,7 +60,10 @@ def _value_bets(v, fx) -> list[dict]:
     return list(best.values())
 
 
-def build_round(fixtures: list[dict], history: list[dict] | None = None) -> dict:
+def build_round(fixtures: list[dict], history: list[dict] | None = None,
+                bots: dict[str, float] | None = None) -> dict:
+    """``bots``: name → market weight (default BOTS; main() adds the aprendiz)."""
+    bots = bots or BOTS
     history = history if history is not None else europa_fd.load()
     xg_idx = None
     if understat_xg.OUT_CSV.exists():
@@ -92,7 +95,7 @@ def build_round(fixtures: list[dict], history: list[dict] | None = None) -> dict
                                 "avg_1x2": ([fx["avg_o1"], fx["avg_ox"], fx["avg_o2"]]
                                             if fx["avg_o1"] else None)},
                      "bots": {}}
-            for bot, w in BOTS.items():
+            for bot, w in bots.items():
                 v = bot_view(fx["home"], fx["away"], fit, elos, mcfg, mkt, fx["fair_over25"], w)
                 if v is None:
                     entry["bots"][bot] = {"error": "equipo sin historial (recién ascendido)"}
@@ -111,7 +114,8 @@ def build_round(fixtures: list[dict], history: list[dict] | None = None) -> dict
         if m["top"]:
             n += 1
             m["n"] = n
-    return {"generated": date.today().isoformat(), "top3": tops, "matches": matches}
+    return {"generated": date.today().isoformat(), "top3": tops, "matches": matches,
+            "bots": list(bots)}
 
 
 def _mx_time(iso_utc: str) -> str:
@@ -131,6 +135,8 @@ def render_md(rnd: dict, only_top: bool = True) -> str:
              "Horas en tiempo del centro de México. Tu boleto = los partidos numerados; "
              "manda tus marcadores en ese orden (\"-\" para saltar uno) o con nombre "
              "(\"Bayern 2-0\").", ""]
+    if rnd.get("aprendiz"):
+        lines += [aprendiz.explain(rnd["aprendiz"]), ""]
     if rnd.get("top3"):
         lines += ["Top-3 por liga: " + "; ".join(f"**{names[k]}**: {', '.join(v)}"
                                                 for k, v in rnd["top3"].items()), ""]
@@ -161,9 +167,12 @@ def render_md(rnd: dict, only_top: bool = True) -> str:
     return "\n".join(lines)
 
 
-def seal_bots(rnd: dict, round_id: str) -> list[dict]:
+def seal_bots(rnd: dict, round_id: str, now: datetime | None = None) -> list[dict]:
+    """Seal each bot's ticket; matches already kicked off are left out (a bot added
+    mid-week, like the aprendiz, only plays what hasn't started)."""
+    now = now or datetime.now(timezone.utc)
     recs = []
-    for bot in BOTS:
+    for bot in rnd.get("bots") or list(BOTS):
         if any(r["round"] == round_id and r["bot"] == bot for r in seal.read_ledger(seal.LEDGER)):
             print(f"{bot} ya selló {round_id}; se queda como está.")
             continue
@@ -171,7 +180,11 @@ def seal_bots(rnd: dict, round_id: str) -> list[dict]:
                   "kickoff_utc": m["kickoff_utc"],
                   **{k: m["bots"][bot][k] for k in ("pick_1x2", "pick_exact", "p1x2",
                                                     "p_over25", "p_btts", "value_bets")}}
-                 for m in rnd["matches"] if "error" not in m["bots"][bot]]
+                 for m in rnd["matches"] if bot in m["bots"] and "error" not in m["bots"][bot]
+                 and not (m.get("kickoff_utc") and datetime.fromisoformat(m["kickoff_utc"]) <= now)]
+        if not picks:
+            print(f"{bot}: nada que sellar en {round_id} (todo ya empezó).")
+            continue
         recs.append(seal.append(round_id, bot, picks))
     return recs
 
@@ -196,7 +209,9 @@ def main(argv: list[str] | None = None) -> None:
     round_id = f"eu-{y}-W{w:02d}"
     # One round = one ISO week: fixtures.csv can run into the next week.
     fixtures = [f for f in fixtures if date.fromisoformat(f["date"]).isocalendar()[:2] == (y, w)]
-    rnd = build_round(fixtures)
+    learned = aprendiz.learned_weight("eu-", EUROPA_MODEL.blend_odds_weight, before=first)
+    rnd = build_round(fixtures, bots={**BOTS, "aprendiz": learned["w"]})
+    rnd["aprendiz"] = learned
     rnd["round_id"] = round_id
     out_dir = rounds_dir()
     out_dir.mkdir(parents=True, exist_ok=True)

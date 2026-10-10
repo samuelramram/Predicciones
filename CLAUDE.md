@@ -179,6 +179,16 @@ sellados que ya terminaron → `$LIGA_HOME/results_live.csv`. Empareja por fecha
 parecidos de local Y visita. El Árbitro los usa solo mientras Football-Data no tenga el
 partido (`arbitro.live_only`); sin momios de cierre, el CLV de esas apuestas espera a FD.
 
+**Aprendiz** (`liga.aprendiz`): como el calibrado, pero cada jornada re-estima el peso del
+mercado con los partidos ya jugados (log-pool estadístico×mercado, mejor log-loss), encogido
+hacia el de producción: `w = prior + (w*−prior)·n/(n+300)`, ventana 1,500, acotado 0.2–1.
+Sale del libro sellado (estadístico vs borrego), así que es reproducible. Backtest
+(`europa_backtest --aprendiz`, `liga_backtest --aprendiz`): en Europa converge a ~0.97 y
+empata al calibrado (Brier z≈0); en Liga MX sube de 0.55 a ~0.75–0.8 con Brier −0.0009
+(z≈−1.2, no significativo), +3 pts (z≈0.8). Es un experimento en vivo, no una mejora probada:
+no muevas `blend_odds_weight` de producción por esto. `seal_bots` ya no sella partidos
+empezados (un bot que entra a media semana solo juega lo que falta).
+
 **Liga MX en vivo** (`pipeline.ligamx_live`, sin API keys): próximos partidos y momios de
 Football-Data `new_league_fixtures.csv`; re-ajusta con `matches_history.csv` + los
 resultados nuevos de `historical_odds.csv` (MEX.csv, refrescado por la Action diaria).

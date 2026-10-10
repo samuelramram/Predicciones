@@ -39,12 +39,13 @@ START = 1000.0
 STAKE = arbitro.STAKE
 MX = ZoneInfo("America/Mexico_City")
 MARKET_NAME = {"1x2": "1X2", "ou25": "Over/Under 2.5", "ah": "Hándicap asiático"}
-BOT_ORDER = ("samuel", "calibrado", "estadistico", "borrego", "reportero")
+BOT_ORDER = ("samuel", "calibrado", "aprendiz", "estadistico", "borrego", "reportero")
 BOT_BLURB = {
     "calibrado": "modelo + 90% mercado en Europa (55% en Liga MX)",
     "estadistico": "modelo puro, no ve el mercado",
     "borrego": "copia al mercado",
     "reportero": "calibrado + noticias que investiga Claudio",
+    "aprendiz": "como el calibrado, pero reajusta cada semana cuánto le cree al mercado",
 }
 
 
@@ -365,11 +366,11 @@ def render_html(d: dict, demo: bool = False) -> str:
 <title>Tablero de la liga</title>
 <style>
 :root{{--bg:#f6f5f1;--fg:#1d1d1b;--mut:#6b6a66;--card:#fff;--line:#e3e1da;--pos:#1a7f4b;--neg:#c0392b;
---c0:#2f6fdf;--c1:#e07b00;--c2:#8e44ad;--c3:#16a085;--c4:#c0392b}}
+--c0:#2f6fdf;--c1:#e07b00;--c2:#8e44ad;--c3:#16a085;--c4:#c0392b;--c5:#7f8c8d}}
 @media (prefers-color-scheme:dark){{:root:not([data-theme="light"]){{--bg:#151514;--fg:#ecebe6;--mut:#9c9a93;
---card:#1f1f1d;--line:#34332f;--pos:#4cc38a;--neg:#ff7b6b;--c0:#6c9cff;--c1:#ffa94d;--c2:#c38df0;--c3:#4fd1b5;--c4:#ff7b6b}}}}
+--card:#1f1f1d;--line:#34332f;--pos:#4cc38a;--neg:#ff7b6b;--c0:#6c9cff;--c1:#ffa94d;--c2:#c38df0;--c3:#4fd1b5;--c4:#ff7b6b;--c5:#b0b7bb}}}}
 :root[data-theme="dark"]{{--bg:#151514;--fg:#ecebe6;--mut:#9c9a93;--card:#1f1f1d;--line:#34332f;--pos:#4cc38a;
---neg:#ff7b6b;--c0:#6c9cff;--c1:#ffa94d;--c2:#c38df0;--c3:#4fd1b5;--c4:#ff7b6b}}
+--neg:#ff7b6b;--c0:#6c9cff;--c1:#ffa94d;--c2:#c38df0;--c3:#4fd1b5;--c4:#ff7b6b;--c5:#b0b7bb}}
 *{{box-sizing:border-box}}body{{margin:0;background:var(--bg);color:var(--fg);
 font:15px/1.45 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}}
 main{{max-width:760px;margin:0 auto;padding:20px 16px 48px}}
@@ -388,7 +389,7 @@ th,td{{padding:6px 8px;border-bottom:1px solid var(--line);text-align:right;whit
 th:first-child,td:first-child{{text-align:left}}tr.me td{{font-weight:600}}
 svg{{width:100%;height:auto;display:block}}.grid{{stroke:var(--line)}}.ax{{fill:var(--mut);font-size:10px}}
 .ln{{fill:none;stroke-width:2.5}}.lab{{font-size:11px;font-weight:600}}
-{"".join(f".ln.c{i}{{stroke:var(--c{i})}}.dot.c{i},.lab.c{i}{{fill:var(--c{i})}}.sw.c{i}{{background:var(--c{i})}}" for i in range(5))}
+{"".join(f".ln.c{i}{{stroke:var(--c{i})}}.dot.c{i},.lab.c{i}{{fill:var(--c{i})}}.sw.c{i}{{background:var(--c{i})}}" for i in range(6))}
 .demo{{background:var(--neg);color:#fff;padding:10px 12px;border-radius:10px;font-weight:600;margin-bottom:12px}}
 @media (max-width:520px){{.kpis{{grid-template-columns:repeat(2,1fr)}}}}
 </style></head><body><main>
