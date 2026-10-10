@@ -145,11 +145,17 @@ asiático). Cada bot "apuesta" en 1X2, Over/Under 2.5 y hándicap asiático, y s
 califica en ambos anotan; todo sale de su matriz de marcadores (`liga.markets`).
 El boleto de Samuel en Europa = partidos con un equipo del **top-3 Elo** de su liga
 (`data/europa/top_override.json` los fija a mano). En Europa el mercado manda: el peso
-de mercado es **0.9**, medido en `europa_backtest`. Las props de jugadores son fase 2
+de mercado es **0.9**, medido en `europa_backtest`. El Poisson de Europa se ajusta sobre
+**0.25·goles + 0.75·xG** (Understat, `data/europa/xg.csv`; mejora al bot sin mercado con
+z≈−3). El backtest usa **momios previos** por default (los de cierre inflan; `--odds close`
+para comparar) y el ingest descarta precios corruptos (margen fuera de 0–15%). Probado y
+descartado: prior de ascendidos (`--promoted`) y half-life ≠ 730. Compara variantes con
+`europa_backtest --rows-out … --compare BASE VARIANTE` (docs/europa_liga.md). Las props de jugadores son fase 2
 (no hay fuente gratis). Diseño de agentes: `docs/liga_multiagente.md`.
 
 ```bash
 python -m wc_predictor.ingest.europa_fd                 # refresca data/europa/matches.csv
+python -m wc_predictor.ingest.understat_xg              # refresca data/europa/xg.csv
 python -m wc_predictor.pipeline.europa_backtest         # walk-forward 5 ligas (~10 min)
 python -m wc_predictor.pipeline.europa_live --seal      # boletos de los bots de la jornada
 python -m wc_predictor.liga.notario --round eu-2026-W41 --picks "2-1, 0-2, -, 1-3"   # boleto de Samuel
@@ -164,6 +170,15 @@ son TODOS los partidos. Sin momios de totales para Liga MX: O/U y BTTS solo por 
 
 ```bash
 python -m wc_predictor.pipeline.ligamx_live --seal      # boletos de los bots, Liga MX
+```
+
+**Reportero** (`liga.reportero`): Claudio investiga noticias (web) y escribe
+multiplicadores de goles por partido (0.75–1.25) en `$LIGA_HOME/reportero/<jornada>.json`;
+el código los aplica sobre el calibrado y sella el bot `reportero` (solo boleto de Samuel).
+Sin noticias = idéntico al calibrado. El Árbitro lo mide "contra el calibrado" con z.
+
+```bash
+python -m wc_predictor.liga.reportero --round eu-2026-W42 --dry-run   # luego --seal
 ```
 
 **Boleto de Samuel = los partidos NUMERADOS del `.md` de la jornada**, en ese orden.
@@ -322,7 +337,9 @@ ahora** — fbref responde 403 detrás del proxy, y con el **mercado al 55% del
 blend (que ya ES un modelo xG)** el margen de xG sobre un modelo de goles bien
 calibrado es chico y en parte redundante. Goles + odds gana en ROI. Si algún día
 se quiere xG, la vía es API-Football (`API_FOOTBALL_KEY`) como experimento medido
-con CLV/backtest, en su propio PR — no fbref.
+con CLV/backtest, en su propio PR — no fbref. **Actualización oct 2026:** para Europa sí se cableó xG vía **Understat** (fbref sigue
+bloqueado): confirma lo de arriba (el calibrado no se mueve; el mercado ya trae el xG) pero
+mejora al bot sin mercado. Liga MX sigue sin xG (Understat no la cubre).
 
 ## Regla de interacción: picks por jornada
 

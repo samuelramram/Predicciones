@@ -34,8 +34,17 @@ mide con la misma vara (z pareado) que los demás.
 
 Por ahora Claudio hace el trabajo de **operador** de los bots de código, el Notario y el Árbitro. Los corre él mismo dentro de su sandbox, con las skills `liga-jornada`, `liga-sellar` y `liga-tabla`, y sigue las automatizaciones de jueves, viernes y lunes. El Utilero es un timer del host sin LLM. Instalación y seguridad: `deploy/vps/README.md`.
 
+## Reportero (implementado)
+
+Claudio, con búsqueda web, investiga bajas, alineaciones y rotaciones de los partidos del boleto de Samuel. Su veredicto lo escribe como **multiplicadores de goles esperados** (`home_mult`, `away_mult`, acotados a 0.75–1.25) en `$LIGA_HOME/reportero/<jornada>.json`, junto con una nota y sus fuentes.
+
+`liga.reportero` (código) parte del bot calibrado, aplica los multiplicadores, rearma la matriz de marcadores y sella el boleto como bot `reportero`. Un partido sin noticias queda idéntico al calibrado.
+
+El Árbitro lo mide contra el calibrado en los mismos partidos (sección "Cada bot contra el calibrado"). Así se sabe si leer noticias le gana al mercado de ayer.
+
+Corre el viernes a las 08:00. Las fuentes y notas quedan selladas con el boleto.
+
 ## Decisiones pendientes de infraestructura
 
 - **Dónde vive el libro.** El VPS tiene llave de solo lectura al repo, así que no puede hacer push del ledger. Propuesta: un repo privado chiquito `quiniela-ledger` con llave de deploy de escritura, solo para `ledger.jsonl`. Si alguien comprometiera el VPS, no podría tocar el código.
-- **Reportero.** Usarlo cuesta tokens por jornada. Primero corremos varias jornadas solo con los bots de código para tener línea base.
 - **Props de jugadores (fase 2).** Goleador y tarjetas necesitan alineaciones + momios históricos. Sin fuente gratis no se pueden medir.

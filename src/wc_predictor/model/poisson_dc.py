@@ -112,11 +112,17 @@ def _build_design(rows: list[dict], as_of: date, half_life_days: int,
     weights = np.empty(n, dtype=np.float64)
 
     decay = np.log(2) / half_life_days
+    home_target = np.empty(n, dtype=np.float64)
+    away_target = np.empty(n, dtype=np.float64)
     for i, r in enumerate(rows):
         home_idx[i] = idx[r["home"]]
         away_idx[i] = idx[r["away"]]
         home_goals[i] = r["home_score"]
         away_goals[i] = r["away_score"]
+        # Optional Poisson target (e.g. a goals/xG mix); defaults to the real score.
+        # The Dixon-Coles low-score correction always uses the real score.
+        home_target[i] = r.get("home_target", r["home_score"])
+        away_target[i] = r.get("away_target", r["away_score"])
         home_flag[i] = 0.0 if r["neutral"] else 1.0
         d = datetime.fromisoformat(r["date"]).date()
         age_days = (as_of - d).days
@@ -135,6 +141,8 @@ def _build_design(rows: list[dict], as_of: date, half_life_days: int,
         "away_idx": away_idx,
         "home_goals": home_goals,
         "away_goals": away_goals,
+        "home_target": home_target,
+        "away_target": away_target,
         "home_flag": home_flag,
         "weights": weights,
         "match_count": counts,
@@ -149,7 +157,8 @@ def _unpack_params(theta: np.ndarray, n_teams: int) -> tuple[float, float, np.nd
     return mu, gamma, attack, defense
 
 
-def _neg_log_lik(theta: np.ndarray, design: dict, rho: float, ridge_lambda: float) -> float:
+def _neg_log_lik(theta: np.ndarray, design: dict, rho: float, ridge_lambda: float,
+                 prior: tuple[np.ndarray, np.ndarray] | None = None) -> float:
     n_teams = len(design["teams"])
     mu, gamma, attack, defense = _unpack_params(theta, n_teams)
 
@@ -166,8 +175,9 @@ def _neg_log_lik(theta: np.ndarray, design: dict, rho: float, ridge_lambda: floa
     lh = np.exp(log_lh)
     la = np.exp(log_la)
 
-    # Poisson log-likelihood (drop factorial constant — doesn't affect optimum)
-    ll_match = h * log_lh - lh + a * log_la - la
+    # Poisson log-likelihood (drop factorial constant — doesn't affect optimum).
+    # Targets equal the real goals unless the caller supplied a mix (xG).
+    ll_match = design["home_target"] * log_lh - lh + design["away_target"] * log_la - la
 
     # Dixon-Coles correction for low scores. Vectorized for h, a in {0, 1}.
     mask_00 = (h == 0) & (a == 0)
@@ -184,8 +194,12 @@ def _neg_log_lik(theta: np.ndarray, design: dict, rho: float, ridge_lambda: floa
 
     weighted_ll = float(np.sum(w * ll_match))
 
-    # Ridge penalty (zero-mean prior on team latents).
-    penalty = ridge_lambda * float(np.sum(attack**2) + np.sum(defense**2))
+    # Ridge penalty: zero-mean prior on team latents, or a per-team center
+    # (e.g. promoted clubs centered on the level of the clubs they replaced).
+    if prior is None:
+        penalty = ridge_lambda * float(np.sum(attack**2) + np.sum(defense**2))
+    else:
+        penalty = ridge_lambda * float(np.sum((attack - prior[0])**2) + np.sum((defense - prior[1])**2))
 
     return -(weighted_ll - penalty)
 
@@ -199,8 +213,12 @@ def fit_dc_model(
     rho: float | None = None,
     max_iter: int = 500,
     verbose: bool = True,
+    prior: dict[str, tuple[float, float]] | None = None,
 ) -> FitResult:
     """Fit attack/defense/mu/gamma by weighted MLE with L2 ridge.
+
+    ``prior`` (optional): team → (attack, defense) center for the ridge instead of
+    0, for teams with little history (promoted clubs). Other teams stay at 0.
 
     Args:
         rows: dicts with date, home, away, home_score, away_score, neutral.
@@ -227,10 +245,17 @@ def fit_dc_model(
     theta0[0] = np.log(1.4)
     theta0[1] = 0.30
 
+    prior_arr = None
+    if prior:
+        pa = np.array([prior.get(t, (0.0, 0.0))[0] for t in design["teams"]])
+        pd_ = np.array([prior.get(t, (0.0, 0.0))[1] for t in design["teams"]])
+        prior_arr = (pa, pd_)
+        theta0[2:2 + n_teams] = pa
+        theta0[2 + n_teams:] = pd_
     result = minimize(
         _neg_log_lik,
         theta0,
-        args=(design, rho_eff, ridge_lambda),
+        args=(design, rho_eff, ridge_lambda, prior_arr),
         method="L-BFGS-B",
         options={"maxiter": max_iter, "gtol": 1e-6},
     )
@@ -282,6 +307,7 @@ def profile_fit_rho(
     rho_grid: list[float] | None = None,
     max_iter: int = 500,
     verbose: bool = True,
+    prior: dict[str, tuple[float, float]] | None = None,
 ) -> tuple[float, FitResult, list[dict]]:
     """Choose the Dixon-Coles rho by profile likelihood on the training data.
 
@@ -315,6 +341,7 @@ def profile_fit_rho(
         fit = fit_dc_model(
             rows, cfg, as_of=as_of, half_life_days=half_life_days,
             ridge_lambda=ridge_lambda, rho=rho, max_iter=max_iter, verbose=False,
+            prior=prior,
         )
         table.append({"rho": rho, "neg_log_lik": fit.final_neg_log_lik,
                       "converged": fit.converged})

@@ -50,6 +50,11 @@ jobs:
       - name: Refresh Europe top-5 results + closing odds (Football-Data)
         run: PYTHONPATH=src python -m wc_predictor.ingest.europa_fd
 
+      - name: Refresh Europe xG (Understat)
+        # Best-effort: if Understat is down the rest of the refresh still commits.
+        continue-on-error: true
+        run: PYTHONPATH=src python -m wc_predictor.ingest.understat_xg
+
       - name: Refresh Liga MX results + closing odds (Football-Data MEX.csv)
         run: PYTHONPATH=src python -m wc_predictor.ingest.ligamx_fd_odds
 
@@ -63,6 +68,7 @@ jobs:
                   data/wc2026/elo_snapshot.json \
                   data/wc2026/elo_trajectory.json \
                   data/europa/matches.csv \
+                  data/europa/xg.csv \
                   data/ligamx/historical_odds.csv
           if git diff --staged --quiet; then
             echo "No change to model artifacts — nothing to commit."

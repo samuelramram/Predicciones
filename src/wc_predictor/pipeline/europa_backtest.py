@@ -13,6 +13,8 @@ Run:
 from __future__ import annotations
 
 import argparse
+from dataclasses import replace
+from pathlib import Path
 import json
 from collections import defaultdict
 from concurrent.futures import ProcessPoolExecutor
@@ -20,7 +22,9 @@ from datetime import datetime
 
 from wc_predictor.config import DATA_DIR
 from wc_predictor.ingest import europa_fd
-from wc_predictor.liga.europa import EUROPA_MODEL, RULES, bot_view, load_override, top_teams
+from wc_predictor.liga.europa import (EUROPA_MODEL, RULES, XG_WEIGHT, bot_view, load_override,
+                                      promoted_prior, replay_promoted, season_turnover,
+                                      top_teams, with_xg)
 from wc_predictor.liga.markets import (MarketBankroll, ah_expected_returns, ah_return,
                                        binary_brier, simple_market)
 from wc_predictor.liga.scoring import brier, outcome_of, paired_diff
@@ -52,8 +56,23 @@ class _Rec:
 
 
 def run_league(code: str, since: str, mcfg=EUROPA_MODEL, min_train: int = 300,
-               sweep: tuple[float, ...] = ()) -> dict:
+               sweep: tuple[float, ...] = (), opts: dict | None = None) -> dict:
+    """``opts`` (experiments, all off by default except honest odds):
+    odds: "pre" (line the live bot would see; default) | "close";
+    half_life: int days; promoted: bool; xg: float weight of xG in the Poisson target."""
+    opts = {"odds": "pre", **(opts or {})}
+    if opts.get("half_life"):
+        mcfg = replace(mcfg, half_life_days=int(opts["half_life"]))
     rows = [r for r in europa_fd.load() if r["league"] == code]
+    if opts["odds"] == "pre":
+        # Bots bet and blend ONLY with the pre-match line (what the live bot sees).
+        # A market missing pre-match (≈40 corrupt AH rows) is simply not traded.
+        rows = [{**r, **{k: r.get(f"{k}_pre") for k in europa_fd.MARKET_KEYS
+                         if k != "fair_source"}} for r in rows]
+    fit_rows = rows
+    if opts.get("xg"):
+        from wc_predictor.ingest import understat_xg
+        fit_rows = with_xg(rows, understat_xg.index(understat_xg.load()), float(opts["xg"]))
     override = load_override()
     season_teams: dict[str, set[str]] = defaultdict(set)
     for r in rows:
@@ -65,24 +84,33 @@ def run_league(code: str, since: str, mcfg=EUROPA_MODEL, min_train: int = 300,
 
     recs = {b: _Rec(b) for b in _bots(mcfg, sweep)}
     rho_by_season: dict[str, float] = {}
+    turnover = season_turnover(season_teams)
+    last_fit = None
     for wk in sorted(batches):
         batch = batches[wk]
         first = min(r["date"] for r in batch)
         train = [r for r in rows if r["date"] < first]
         if len(train) < min_train:
             continue
+        fit_train = [r for r in fit_rows if r["date"] < first]
         season = batch[0]["season"]
+        prior = promoted_prior(last_fit, turnover, season) if opts.get("promoted") else None
         # rho profiled once per season (costly); weekly refits reuse it.
         if season not in rho_by_season:
-            rho, fit, _ = profile_fit_rho(train, mcfg, ridge_lambda=mcfg.ridge_lambda,
-                                          half_life_days=mcfg.half_life_days, verbose=False)
+            rho, fit, _ = profile_fit_rho(fit_train, mcfg, ridge_lambda=mcfg.ridge_lambda,
+                                          half_life_days=mcfg.half_life_days, verbose=False,
+                                          prior=prior)
             rho_by_season[season] = rho
         else:
-            fit = fit_dc_model(train, mcfg, ridge_lambda=mcfg.ridge_lambda,
+            fit = fit_dc_model(fit_train, mcfg, ridge_lambda=mcfg.ridge_lambda,
                                half_life_days=mcfg.half_life_days,
-                               rho=rho_by_season[season], verbose=False)
+                               rho=rho_by_season[season], verbose=False, prior=prior)
+        last_fit = fit
         wk_mcfg = effective_model_config(fit, mcfg)
-        elos, _ = replay_history(train, mcfg)
+        if opts.get("promoted"):
+            elos = replay_promoted(train, mcfg, turnover)
+        else:
+            elos, _ = replay_history(train, mcfg)
         top = set(top_teams(elos, season_teams[season], 3, code, override))
 
         for r in batch:
@@ -101,7 +129,8 @@ def run_league(code: str, since: str, mcfg=EUROPA_MODEL, min_train: int = 300,
                        "b1x2": brier(v.probs, actual),
                        "bou": binary_brier(v.p_over25, over),
                        "bbtts": binary_brier(v.p_btts, btts),
-                       "top": r["home"] in top or r["away"] in top}
+                       "top": r["home"] in top or r["away"] in top,
+                       "key": f"{code}|{r['date']}|{r['home']}|{r['away']}"}
                 # 1X2 at average closing prices
                 if r["avg_o1"]:
                     e, z = simple_market(dict(zip("1X2", v.probs)),
@@ -180,6 +209,29 @@ def _print(report: dict) -> None:
         print(f"  {b}: " + ", ".join(f"{k} {v['total_diff']:+} (z={v['z']:+.2f})" for k, v in c.items()))
 
 
+def compare(a_path: str, b_path: str, bots: tuple[str, ...] = ("estadistico", "calibrado")) -> dict:
+    """Paired comparison of two backtest runs (variant B minus base A), per bot,
+    on the matches both scored. Negative Brier diff = B is better calibrated."""
+    a = json.loads(Path(a_path).read_text(encoding="utf-8"))
+    b = json.loads(Path(b_path).read_text(encoding="utf-8"))
+    out = {}
+    for bot in bots:
+        ra = {r["key"]: r for r in a[bot]}
+        rb = {r["key"]: r for r in b[bot]}
+        keys = [k for k in ra if k in rb]
+        res = {"n": len(keys)}
+        for name, f in (("puntos", "pts"), ("brier_1x2", "b1x2"), ("brier_ou25", "bou"),
+                        ("brier_btts", "bbtts")):
+            d = paired_diff([rb[k][f] for k in keys], [ra[k][f] for k in keys])
+            res[name] = {"diff_total": round(d["total_diff"], 3), "z": round(d["z"], 2)}
+        for m in MARKETS:
+            d = paired_diff([rb[k].get(f"p_{m}") or 0.0 for k in keys],
+                            [ra[k].get(f"p_{m}") or 0.0 for k in keys])
+            res[f"ganancia_{m}"] = {"diff_total": round(d["total_diff"], 1), "z": round(d["z"], 2)}
+        out[bot] = res
+    return out
+
+
 def main(argv: list[str] | None = None) -> None:
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     ap.add_argument("--since", default="2024-07-01")
@@ -187,20 +239,44 @@ def main(argv: list[str] | None = None) -> None:
     ap.add_argument("--workers", type=int, default=2)
     ap.add_argument("--sweep", type=float, nargs="*", default=[],
                     help="pesos de mercado extra a probar como bots calibrado_w<peso>")
+    ap.add_argument("--odds", choices=("pre", "close"), default="pre",
+                    help="momios previos (lo que ve el bot en vivo; default) o de cierre")
+    ap.add_argument("--half-life", type=int, default=None, help="días (default: el del modelo)")
+    ap.add_argument("--promoted", action="store_true", help="prior de recién ascendidos")
+    ap.add_argument("--xg", type=float, default=XG_WEIGHT,
+                    help=f"peso del xG en el Poisson (default producción {XG_WEIGHT}; 0 = solo goles)")
+    ap.add_argument("--rows-out", default=None, help="guarda el detalle por partido (para --compare)")
+    ap.add_argument("--compare", nargs=2, metavar=("BASE", "VARIANTE"),
+                    help="compara dos --rows-out con prueba pareada y sale")
     ap.add_argument("--out", default=str(OUT_JSON))
     args = ap.parse_args(argv)
+    if args.compare:
+        res = compare(*args.compare)
+        for bot, r in res.items():
+            print(f"{bot} ({r['n']} partidos, variante − base):")
+            for k, v in r.items():
+                if k != "n":
+                    print(f"  {k:<16} {v['diff_total']:+10} (z={v['z']:+.2f})")
+        return
+    opts = {"odds": args.odds, "half_life": args.half_life, "promoted": args.promoted,
+            "xg": args.xg}
     with ProcessPoolExecutor(max_workers=args.workers) as ex:
         n = len(args.leagues)
         results = list(ex.map(run_league, args.leagues, [args.since] * n, [EUROPA_MODEL] * n,
-                              [300] * n, [tuple(args.sweep)] * n))
+                              [300] * n, [tuple(args.sweep)] * n, [opts] * n))
     report = aggregate(results)
     report["since"] = args.since
+    report["opts"] = opts
     _print(report)
-    from pathlib import Path
     out = Path(args.out)
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps(report, indent=2, ensure_ascii=False), encoding="utf-8")
     print(f"\n→ {out}")
+    if args.rows_out:
+        rows = {b: [row for res in results for row in res["recs"][b]["rows"]]
+                for b in results[0]["recs"]}
+        Path(args.rows_out).write_text(json.dumps(rows), encoding="utf-8")
+        print(f"→ {args.rows_out}")
 
 
 if __name__ == "__main__":

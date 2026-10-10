@@ -48,6 +48,14 @@ EUROPA_MODEL = replace(
 )
 RULES = LIGAMX_APERTURA_PROFILE.rules  # same pool scoring: 2 exacto / 1 resultado
 
+# xG weight in the Poisson target (Understat): target = 0.25·goals + 0.75·xG.
+# Measured on the walk-forward backtest with PRE-match odds (3,736 matches,
+# 2024-07 → 2026-09, paired vs goals-only): the market-free bot improves
+# Brier 1X2 0.5891 → 0.5865 (z=−3.3), O/U 0.2435 → 0.2409 (z=−2.9), BTTS
+# 0.2477 → 0.2456 (z=−2.6); 0.75 beats 0.5 on 1X2 (z=−2.0); pure xG (1.0) adds
+# nothing more. The market-following bots don't move (the line already prices xG).
+XG_WEIGHT = 0.75
+
 
 @dataclass(frozen=True)
 class BotView:
@@ -149,3 +157,67 @@ def load_override() -> dict:
     if TOP_OVERRIDE.exists():
         return json.loads(TOP_OVERRIDE.read_text(encoding="utf-8"))
     return {}
+
+
+# --------------------------------------------------------------- model variants
+# Experiments measured in europa_backtest (see docs/europa_liga.md). Each one is
+# opt-in so the production path only changes once the backtest says so.
+
+def season_turnover(season_teams: dict[str, set[str]]) -> dict[str, tuple[set[str], set[str]]]:
+    """season → (promoted newcomers, relegated leavers) vs the previous season."""
+    order = sorted(season_teams)
+    out = {}
+    for prev, cur in zip(order, order[1:]):
+        out[cur] = (season_teams[cur] - season_teams[prev], season_teams[prev] - season_teams[cur])
+    return out
+
+
+def replay_promoted(rows: list[dict], mcfg, turnover: dict) -> dict[str, float]:
+    """Elo replay where each promoted club starts its season at the average
+    rating of the clubs that went down (instead of 1500 = league average, or a
+    stale rating from years ago)."""
+    from wc_predictor.ratings.elo import EloMatch, update_elo
+    elos: dict[str, float] = {}
+    season = None
+    for r in rows:
+        if r["season"] != season:
+            season = r["season"]
+            new, gone = turnover.get(season, (set(), set()))
+            gone_r = [elos[t] for t in gone if t in elos]
+            if new and gone_r:
+                start = sum(gone_r) / len(gone_r)
+                for t in new:
+                    elos[t] = start
+        update_elo(elos, EloMatch(r["home"], r["away"], int(r["home_score"]), int(r["away_score"]),
+                                  bool(r["neutral"]), r["tournament"]), mcfg)
+    return elos
+
+
+def promoted_prior(fit, turnover: dict, season: str) -> dict[str, tuple[float, float]] | None:
+    """Ridge center for this season's newcomers = mean (attack, defense) of the
+    clubs they replaced, taken from an earlier fit that still has them."""
+    if fit is None:
+        return None
+    new, gone = turnover.get(season, (set(), set()))
+    g = [fit.strengths[t] for t in gone if t in fit.strengths]
+    if not new or not g:
+        return None
+    att = sum(s.attack for s in g) / len(g)
+    dfn = sum(s.defense for s in g) / len(g)
+    return {t: (att, dfn) for t in new}
+
+
+def with_xg(rows: list[dict], xg_idx: dict, xg_weight: float) -> list[dict]:
+    """Copy of rows whose Poisson target mixes goals and xG:
+    target = (1 − w)·goals + w·xG. Rows without xG keep their goals."""
+    from wc_predictor.ingest.understat_xg import lookup
+    out = []
+    for r in rows:
+        x = lookup(xg_idx, r["league"], r["home"], r["away"], r["date"])
+        if x is None:
+            out.append(r)
+            continue
+        out.append({**r,
+                    "home_target": (1 - xg_weight) * r["home_score"] + xg_weight * x["xg_home"],
+                    "away_target": (1 - xg_weight) * r["away_score"] + xg_weight * x["xg_away"]})
+    return out
