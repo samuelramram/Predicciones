@@ -10,7 +10,11 @@
 # 2) copia el código y los datos al workspace (borra cualquier edición local),
 # 3) baja los próximos partidos con momios: Europa (fixtures.csv) y Liga MX
 #    (new_league_fixtures.csv → fixtures_new.csv),
-# 4) respalda el libro sellado (copia diaria, se guardan 30).
+# 4) baja resultados rápidos de TheSportsDB para lo sellado (results_live.csv),
+# 5) respalda el libro sellado (copia diaria, se guardan 30).
+#
+# La llave de TheSportsDB vive en ~/.config/liga/thesportsdb.env (chmod 600), fuera
+# del workspace: Claudio nunca la ve. Sin ese archivo se usa la llave pública.
 set -euo pipefail
 WS="${WS:-$HOME/.openclaw/workspace}"
 LIGA="$WS/liga"
@@ -22,6 +26,12 @@ curl -fsSL --max-time 60 -o "$LIGA/fixtures.csv.tmp" https://www.football-data.c
 mv "$LIGA/fixtures.csv.tmp" "$LIGA/fixtures.csv"
 curl -fsSL --max-time 60 -o "$LIGA/fixtures_new.csv.tmp" https://www.football-data.co.uk/new_league_fixtures.csv
 mv "$LIGA/fixtures_new.csv.tmp" "$LIGA/fixtures_new.csv"
+if [ -f "$HOME/.config/liga/thesportsdb.env" ]; then
+  set -a; . "$HOME/.config/liga/thesportsdb.env"; set +a
+fi
+LIGA_HOME="$LIGA" PYTHONPATH="$REPO/src" PYTHONDONTWRITEBYTECODE=1 \
+  python3 -m wc_predictor.ingest.liga_results || echo "aviso: resultados rápidos fallaron (sigue con Football-Data)"
+chmod a+r "$LIGA/results_live.csv" 2>/dev/null || true
 mkdir -p "$HOME/liga-backups"
 [ -f "$LIGA/ledger.jsonl" ] && cp "$LIGA/ledger.jsonl" "$HOME/liga-backups/ledger-$(date +%F).jsonl"
 ls -1t "$HOME"/liga-backups/ledger-*.jsonl 2>/dev/null | tail -n +31 | xargs -r rm -f

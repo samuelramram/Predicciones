@@ -219,6 +219,9 @@ def verdict(e: dict) -> list[str]:
         else:
             v.append(f"Compra al precio justo (CLV {e['clv']:+.1%}): no le gana ni le pierde al mercado; "
                      "a la larga se lo come el margen de la casa.")
+    if e["n_clv"] < e["n"]:
+        v.append(f"{e['n'] - e['n_clv']} apuestas todavía sin momio de cierre (llega cuando Football-Data "
+                 "publique el partido); su CLV entra en el siguiente tablero.")
     if e["luck_z"] is not None and e["n_clv"] >= 3:
         diff = e["actual_on_clv"] - e["close_expected"]
         tag = "con suerte" if diff > 0 else "salado"

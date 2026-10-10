@@ -1,12 +1,12 @@
 # Liga en el VPS: Claudio (OpenClaw) como operador
 
 Quién hace qué:
-- **Utilero** (`liga-sync`, timer del host, sin LLM): repo + fixtures (Europa y Liga MX) + respaldo, cada 3 h.
+- **Utilero** (`liga-sync`, timer del host, sin LLM): repo + fixtures (Europa y Liga MX) + resultados rápidos (TheSportsDB) + respaldo, cada hora.
 - **Claudio** (OpenClaw, en su sandbox sin red): corre los bots, sella, califica y te platica.
 - **Código** (bots, Notario, Árbitro): decide los números. Claudio solo los opera y explica.
 
 Seguridad: el clon con `.git` y el script del Utilero viven FUERA del workspace;
-Claudio recibe una copia sin `.git` que se pisa cada 3 h. Nada que él escriba llega
+Claudio recibe una copia sin `.git` que se pisa cada hora. Nada que él escriba llega
 a ejecutarse en el host. El libro se respalda a diario en `~/liga-backups/`.
 
 ## 1. Clonar el repo (llave de deploy de SOLO lectura)
@@ -83,6 +83,23 @@ openclaw automations add --name "liga-tablero" --agent claudio --cron "0 10 * * 
   --session isolated --message "Usa la skill liga-tablero (con --auto). Si no hay novedad no me mandes nada." \
   --announce --channel telegram --to "1305320146"
 ```
+
+## Resultados rápidos (TheSportsDB)
+
+Football-Data publica resultados con días de rezago; TheSportsDB los tiene minutos
+después del partido. El Utilero los baja cada hora para lo que esté sellado y el Árbitro
+los usa hasta que llegue Football-Data (que además trae los momios de cierre para el CLV).
+
+La llave premium va FUERA del workspace (Claudio no la ve). Escríbela tú en el VPS; el
+comando la pide sin mostrarla en pantalla:
+
+```bash
+mkdir -p ~/.config/liga && read -rsp "Llave TheSportsDB: " K && echo \
+  && printf 'THESPORTSDB_API_KEY=%s\n' "$K" > ~/.config/liga/thesportsdb.env \
+  && chmod 600 ~/.config/liga/thesportsdb.env && unset K && ~/bin/liga-sync.sh | tail -3
+```
+
+Sin ese archivo funciona igual con la llave pública de prueba (más lenta y limitada).
 
 ## Búsqueda web para el Reportero
 
