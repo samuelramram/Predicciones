@@ -54,8 +54,9 @@ python -m wc_predictor.pipeline.ligamx liguilla --sims 10000
 #     Las filas exportadas como "Pendiente" se re-puntúan solas contra el
 #     resultado final de fixtures.json (el export es un snapshot y nunca se
 #     actualiza; sin eso el leaderboard queda corto — J9 midió 36 vs 39 reales).
+#     --leaderboard: la Tabla REAL de la app manda (los exports omiten jugadores).
 python -m wc_predictor.ingest.ligamx_pool data/ligamx/pool_exports/*j*.csv --you Claudio \
-    --start-round 3 --liguilla-matches 17
+    --start-round 3 --liguilla-matches 17 --leaderboard data/ligamx/pool_leaderboard.json
 python -m wc_predictor.pipeline.ligamx picks --round j2 --objective pool
 
 # 4) Apuestas de valor. Por DEFAULT cotiza solo en TUS casas (data/ligamx/books.json)
@@ -237,6 +238,42 @@ calibración: no encienden nada.** La ganancia fina vive en señal nueva, no en 
   en `data/ligamx/congestion.json` y el `source_tracker` mide si de verdad rinden por
   debajo de su predicción a lo largo de J4-J6. Si aparece señal, se calibra CON
   evidencia — igual que el peso del mercado.
+
+### Auditoría del pool: ¿suerte o estrategia? (medido tras J11, oct 2026)
+
+Cuando el boleto va mal, NO se responde con "es la liga" ni con un knob nuevo: se
+corre la auditoría, que califica el boleto REAL de cada jugador con una vara que
+no es el modelo (la línea justa de cierre del mercado, re-pesando la matriz de
+marcadores del modelo a ese 1X2):
+
+```bash
+python -m wc_predictor.pipeline.ligamx_pool_audit              # esperados vs reales
+python -m wc_predictor.pipeline.ligamx_pool_audit --policies   # + políticas para el resto
+```
+
+Medido tras J11 (79 partidos): **Claudio tenía el boleto de mayor valor esperado
+del pool** (46.6 pts, 0.590/partido) y sacó **34 (−12.6, z≈−2)**; Aldo 44.7 → 47
+(+2.2), Arturo 41.1 → 45 (+3.9). La brecha salió entera de los empates (24 de 79
+partidos, ~30% vs ~25% que pagaba el mercado; Claudio 0 pts en empates), pero
+**picar empates NO es la corrección**: Arturo picó 22 y su boleto vale 0.520/partido.
+La simulación del resto del torneo (73 partidos, rivales con sus picks reales
+re-muestreados) da EV puro como la mejor política: premio esperado 1.15% vs 0.83%
+(1-1 si P(X)≥0.29), 0.63% (≥0.28), 0.42% (≥0.27), 0.44% (marcador modal). Mismo
+orden con verdad = modelo. **No metas una regla de empates para "remontar".**
+
+El mensaje del optimizador con 0 swaps estando abajo ya no dice "COLCHÓN" sino
+"SIN PALANCA" (EV sigue siendo lo mejor, pero no hay ventaja que se componga).
+
+**Tabla real de la app (`--leaderboard`).** Los exports pueden OMITIR filas de un
+jugador completo (Geovanni faltaba en J3–J7: los CSV le daban 16 pts, la app 43).
+Transcribe la Tabla de la app en `data/ligamx/pool_leaderboard.json`
+(`{"players": {"Nombre": [puntos, exactos]}}`) y pásala al ingest; manda sobre los
+totales de los exports (los picks siguen saliendo de los CSV):
+
+```bash
+python -m wc_predictor.ingest.ligamx_pool data/ligamx/pool_exports/*j*.csv --you Claudio \
+    --start-round 3 --liguilla-matches 17 --leaderboard data/ligamx/pool_leaderboard.json
+```
 
 ### Habilidad del pool: shrinkage empírico-Bayes (medido, NO es un knob)
 

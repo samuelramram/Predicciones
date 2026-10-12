@@ -1,59 +1,79 @@
 {
-  "as_of": "2026-09-22",
+  "as_of": "2026-10-12",
   "you": "Claudio",
-  "matches_resolved": 61,
+  "matches_resolved": 79,
   "total_matches": 152,
   "total_participants": 16,
   "players": [
     {
+      "name": "Aldo",
+      "points": 47,
+      "exactos": 11
+    },
+    {
       "name": "Arturo",
-      "points": 39,
-      "exactos": 9
+      "points": 45,
+      "exactos": 10
+    },
+    {
+      "name": "Geovanni",
+      "points": 43,
+      "exactos": 8
     },
     {
       "name": "Bryan Montiel",
-      "points": 34,
-      "exactos": 6
-    },
-    {
-      "name": "Aldo",
-      "points": 33,
-      "exactos": 6
+      "points": 42,
+      "exactos": 8
     },
     {
       "name": "Yankee",
-      "points": 32,
-      "exactos": 5
+      "points": 40,
+      "exactos": 8
     },
     {
       "name": "Juan Ramon Galvan",
-      "points": 31,
-      "exactos": 5
-    },
-    {
-      "name": "Andrey",
-      "points": 29,
-      "exactos": 6
-    },
-    {
-      "name": "Bryan 2",
-      "points": 29,
-      "exactos": 4
-    },
-    {
-      "name": "Claudio",
-      "points": 29,
-      "exactos": 3
-    },
-    {
-      "name": "Adrián",
-      "points": 28,
+      "points": 40,
       "exactos": 7
     },
     {
       "name": "El inquisidor de Excel",
-      "points": 28,
+      "points": 40,
+      "exactos": 6
+    },
+    {
+      "name": "Adrián",
+      "points": 36,
+      "exactos": 9
+    },
+    {
+      "name": "Andrey",
+      "points": 34,
+      "exactos": 6
+    },
+    {
+      "name": "Bryan 2",
+      "points": 34,
+      "exactos": 4
+    },
+    {
+      "name": "Claudio",
+      "points": 34,
+      "exactos": 4
+    },
+    {
+      "name": "Alex villa",
+      "points": 32,
       "exactos": 3
+    },
+    {
+      "name": "Erika",
+      "points": 30,
+      "exactos": 5
+    },
+    {
+      "name": "Juan Pablo",
+      "points": 30,
+      "exactos": 4
     },
     {
       "name": "Innavoeg",
@@ -61,29 +81,9 @@
       "exactos": 4
     },
     {
-      "name": "Juan Pablo",
-      "points": 27,
-      "exactos": 4
-    },
-    {
-      "name": "Alex villa",
-      "points": 25,
-      "exactos": 2
-    },
-    {
-      "name": "Erika",
-      "points": 24,
-      "exactos": 4
-    },
-    {
       "name": "JIMMYLARA",
-      "points": 23,
+      "points": 26,
       "exactos": 5
-    },
-    {
-      "name": "Geovanni",
-      "points": 7,
-      "exactos": 1
     }
   ]
 }

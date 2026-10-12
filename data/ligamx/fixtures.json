@@ -1,5 +1,5 @@
 {
-  "version": "2026.10.10",
+  "version": "2026.10.12",
   "league": "Liga MX",
   "season": "2026-2027",
   "sources": {
@@ -1459,8 +1459,8 @@
       "away": "Tijuana",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 1,
+      "away_score": 1
     },
     {
       "match_id": "m_2697dea1af",
@@ -1475,8 +1475,8 @@
       "away": "León",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 1,
+      "away_score": 1
     },
     {
       "match_id": "m_9b6084c73d",
@@ -1491,8 +1491,8 @@
       "away": "Atlante",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 2,
+      "away_score": 0
     },
     {
       "match_id": "m_f6466385da",
@@ -1507,8 +1507,8 @@
       "away": "Toluca",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 3,
+      "away_score": 2
     },
     {
       "match_id": "m_2279a847b9",
@@ -1523,8 +1523,8 @@
       "away": "Monterrey",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 1,
+      "away_score": 1
     },
     {
       "match_id": "m_d5670e488e",
@@ -1539,8 +1539,8 @@
       "away": "Guadalajara",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 1,
+      "away_score": 1
     },
     {
       "match_id": "m_e1b758f6ab",
@@ -1555,8 +1555,8 @@
       "away": "Necaxa",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 3,
+      "away_score": 3
     },
     {
       "match_id": "m_4bb0656ead",
@@ -1571,8 +1571,8 @@
       "away": "Santos",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 1,
+      "away_score": 2
     },
     {
       "match_id": "m_de60f12061",
@@ -1587,8 +1587,8 @@
       "away": "Cruz Azul",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 3,
+      "away_score": 3
     },
     {
       "match_id": "m_e0331632d2",
