@@ -22,7 +22,8 @@ description: Arma el tablero de la liga (puntos de todos + feria ficticia de cad
        (|z| < 2 = "todavía puede ser suerte"; dilo así).
      - Feria: `bot: saldo (±última jornada, N apuestas, ROI)` y el "por qué" en una frase,
        usando el veredicto que trae el texto (CLV y suerte). No inventes razones.
-     - Pendientes de resultado si los hay.
+     - Pendientes: solo los "Pendientes de tu boleto" que imprime el comando. NO menciones
+       partidos que solo jugaron los bots (las 5 ligas completas): a Samuel no le importan.
 4. Si dice "Libro corrupto", NO lo arregles: avísale a Samuel tal cual.
 
 Recuerda: la feria es ficticia (1,000 por bot, 10 por apuesta). Una jornada que "gana"
