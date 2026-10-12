@@ -76,3 +76,22 @@ def test_should_send():
     assert tablero.should_send(d, {"rounds": ["eu-1"]}, sat) == (False, [])
     assert tablero.should_send(d, {"rounds": ["eu-1"]}, mon) == (True, [])
     assert tablero.should_send(d, {"rounds": ["eu-1"], "last": mon.isoformat()}, mon) == (False, [])
+
+
+def test_render_png_writes_image_or_skips_without_matplotlib(tmp_path):
+    d = {"generated": "2026-10-12 10:00", "latest": "mx-2026-J11",
+         "rounds": [{"id": "eu-2026-W41"}, {"id": "mx-2026-J11"}],
+         "people": [{"who": "samuel", "points": 15, "exactos": 2, "n": 21, "vs_samuel": None, "z": None},
+                    {"who": "borrego", "points": 12, "exactos": 1, "n": 24, "vs_samuel": 3, "z": 0.9}],
+         "wallets": [{"who": "calibrado", "balance": 964, "last_change": -40, "n": 8, "roi": -0.455,
+                      "series": [1004, 964]},
+                     {"who": "aprendiz", "balance": 960, "last_change": -40, "n": 4, "roi": -1.0,
+                      "series": [1000, 960]}]}
+    out = tmp_path / "t.png"
+    ok = tablero.render_png(d, out)
+    try:
+        import matplotlib  # noqa: F401
+    except ImportError:
+        assert ok is False and not out.exists()
+        return
+    assert ok and out.read_bytes()[:8] == b"\x89PNG\r\n\x1a\n"

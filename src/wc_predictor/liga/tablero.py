@@ -414,6 +414,96 @@ Ganarle al cierre de forma consistente es la única señal seria de ventaja; lo 
 </main></body></html>"""
 
 
+# ── imagen para Telegram ─────────────────────────────────────────────────────
+# OpenClaw rechaza los .html como adjunto ("local attachment allowlist"), así que
+# el tablero también sale como PNG: lo que el teléfono sí abre dentro de Telegram.
+# Colores fijos por bot (el color sigue a la entidad, no al orden), paleta oscura
+# validada (dataviz: azul, naranja, aqua, amarillo, magenta, verde).
+PNG_COLORS = {"samuel": "#3987e5", "calibrado": "#d95926", "aprendiz": "#199e70",
+              "estadistico": "#c98500", "borrego": "#d55181", "reportero": "#008300"}
+_BG, _INK, _MUT, _LINE = "#1a1a19", "#f0efec", "#c3c2b7", "#3a3a37"
+
+
+def render_png(d: dict, path) -> bool:
+    """Tablero as a phone-portrait PNG. Returns False (and writes nothing) when
+    matplotlib isn't installed — the text summary still goes out."""
+    try:
+        import matplotlib
+        matplotlib.use("Agg")
+        import matplotlib.pyplot as plt
+    except ImportError:
+        return False
+    people = sorted(d["people"], key=lambda p: -p["points"])
+    ws = sorted(d["wallets"], key=lambda w: -w["balance"])
+    labels = [r["id"].split("-", 2)[-1] for r in d["rounds"]]
+    rows_h = 0.42
+    h = 1.3 + rows_h * (len(people) + 1) + 0.9 + rows_h * (len(ws) + 1) + (3.4 if labels and ws else 0)
+    fig = plt.figure(figsize=(6.4, h), dpi=200, facecolor=_BG)
+    y = h - 0.35
+
+    def text(x, yy, s, size=11, color=_INK, weight="normal", ha="left"):
+        fig.text(x / 6.4, yy / h, s, fontsize=size, color=color, weight=weight, ha=ha, va="center")
+
+    text(0.3, y, "¿Cómo nos fue?", 18, weight="bold")
+    y -= 0.38
+    text(0.3, y, f"Corte {d['generated']} · última jornada con resultados: {d['latest'] or '—'}", 8.5, _MUT)
+
+    def table(yy, title, head, rows, xs, aligns):
+        yy -= 0.55
+        text(0.3, yy, title, 12.5, weight="bold")
+        yy -= rows_h
+        for x, hd, al in zip(xs, head, aligns):
+            text(x, yy, hd, 8.5, _MUT, ha=al)
+        for cells, who in rows:
+            yy -= rows_h
+            fig.add_artist(plt.Line2D([0.3 / 6.4, 6.1 / 6.4], [(yy + rows_h / 2) / h] * 2,
+                                      color=_LINE, lw=0.6))
+            fig.add_artist(plt.Circle((0.38 / 6.4, yy / h), 0.045 / 6.4 * 6.4 / h * 0.9,
+                                      color=PNG_COLORS.get(who, _MUT), transform=fig.transFigure))
+            for x, c, al in zip(xs, cells, aligns):
+                text(x, yy, c, 10.5, weight="bold" if who == "samuel" else "normal", ha=al)
+        return yy
+
+    prow = []
+    for p in people:
+        vs = "" if p["vs_samuel"] is None else f"{p['vs_samuel']:+g} (z {p['z']})"
+        prow.append(([p["who"], str(p["points"]), str(p["exactos"]), str(p["n"]), vs], p["who"]))
+    y = table(y, "Puntos de quiniela", ["quién", "pts", "exactos", "partidos", "Samuel − él"],
+              prow, [0.55, 3.0, 3.75, 4.6, 6.1], ["left", "right", "right", "right", "right"])
+    wrow = [([w["who"], f"{w['balance']:,.0f}", f"{w['last_change']:+.0f}", str(w["n"]),
+              f"{w['roi']:+.1%}"], w["who"]) for w in ws]
+    y = table(y, "Feria ficticia (1,000 iniciales · 10 por apuesta)",
+              ["bot", "saldo", "última", "apuestas", "ROI"],
+              wrow, [0.55, 3.0, 3.75, 4.85, 6.1], ["left", "right", "right", "right", "right"])
+
+    if labels and ws:
+        ax = fig.add_axes([0.13, 0.35 / h, 0.62, 2.6 / h], facecolor=_BG)
+        xs = list(range(len(labels) + 1))
+        allv = [START] + [v for w in ws for v in w["series"]]
+        gap = max(max(allv) - min(allv), 20.0) * 0.07       # min label spacing (data units)
+        ends = sorted(((w["series"][-1], w) for w in ws), key=lambda t: t[0])
+        placed = []
+        for v, _ in ends:                                   # push labels apart, bottom-up
+            placed.append(max(v, placed[-1] + gap) if placed else v)
+        for (v, w), ly in zip(ends, placed):
+            ys = [START] + w["series"]
+            c = PNG_COLORS.get(w["who"], _MUT)
+            ax.plot(xs, ys, color=c, lw=2, marker="o", ms=4)
+            ax.annotate(f"{w['who']} {v:,.0f}", (xs[-1], v), xytext=(xs[-1] + 0.08, ly),
+                        textcoords="data", color=_INK, fontsize=8, va="center",
+                        annotation_clip=False)
+        ax.axhline(START, color=_MUT, lw=0.8, ls=":")
+        ax.set_xticks(xs, ["inicio"] + labels, fontsize=7, color=_MUT, rotation=30, ha="right")
+        ax.tick_params(axis="y", colors=_MUT, labelsize=7.5)
+        ax.grid(axis="y", color=_LINE, lw=0.6)
+        for sp in ax.spines.values():
+            sp.set_visible(False)
+        ax.set_title("Saldo por jornada", color=_INK, fontsize=10, loc="left")
+    fig.savefig(path, facecolor=_BG)
+    plt.close(fig)
+    return True
+
+
 # ── automatización ───────────────────────────────────────────────────────────
 def _state_path():
     return liga_home() / "tablero" / "enviados.json"
@@ -460,7 +550,10 @@ def main(argv: list[str] | None = None) -> None:
                                       encoding="utf-8")
     md = render_md(d)
     (out / "tablero.md").write_text(md, encoding="utf-8")
+    img = out / f"tablero-{today.isoformat()}.png"
     print(f"TABLERO: {page}")
+    if render_png(d, img):
+        print(f"IMAGEN: {img}")
     print(md)
 
 
