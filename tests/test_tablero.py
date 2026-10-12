@@ -95,3 +95,13 @@ def test_render_png_writes_image_or_skips_without_matplotlib(tmp_path):
         assert ok is False and not out.exists()
         return
     assert ok and out.read_bytes()[:8] == b"\x89PNG\r\n\x1a\n"
+
+
+def test_pending_lists_only_samuels_boleto():
+    bot = [_pick("A", "B", "2026-10-10"), _pick("C", "D", "2026-10-10")]
+    records = [{"bot": "calibrado", "round": "eu-2026-W41", "picks": bot},
+               {"bot": "samuel", "round": "eu-2026-W41", "picks": [_pick("A", "B", "2026-10-10")]}]
+    d = tablero.build(records, [], date(2026, 10, 12))
+    assert [(m["home"], m["away"]) for m in d["mine_pending"]] == [("A", "B")]
+    md = tablero.render_md(d)
+    assert "A vs B" in md and "C vs D" not in md

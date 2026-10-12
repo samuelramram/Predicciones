@@ -122,6 +122,7 @@ def build(records: list[dict], results: list[dict], today: date | None = None) -
     pts: dict[str, dict[str, list[int]]] = defaultdict(lambda: defaultdict(list))
     bets: dict[str, list[dict]] = defaultdict(list)
     n_bets_pending: dict[str, int] = defaultdict(int)
+    mine_pending: list[dict] = []    # sin resultado en el boleto de Samuel (lo único que le importa)
     for who, ps in picks.items():
         for p in ps.values():
             rnd = p["round"]
@@ -130,6 +131,9 @@ def build(records: list[dict], results: list[dict], today: date | None = None) -
             seen[rnd][(p["league"], p["home"], p["away"], p["date"])] = res is not None
             if res is None:
                 n_bets_pending[who] += len(p.get("value_bets", []))
+                if who in arbitro.HUMANS:
+                    mine_pending.append({"round": rnd, "home": p["home"], "away": p["away"],
+                                         "date": p["date"]})
                 continue
             hs, as_ = res["home_score"], res["away_score"]
             pts[who][rnd].append(arbitro.score_actual(hs, as_, p["pick_1x2"], p["pick_exact"], arbitro.RULES))
@@ -168,7 +172,8 @@ def build(records: list[dict], results: list[dict], today: date | None = None) -
             "rounds": [{"id": r, "date": first_date[r], "done": status[r][0], "total": status[r][1]}
                        for r in rounds],
             "latest": latest[-1] if latest else None,
-            "people": people, "wallets": wallets, "vs_calibrado": table.get("vs_calibrado", {})}
+            "people": people, "wallets": wallets,
+            "mine_pending": sorted(mine_pending, key=lambda m: (m["date"], m["home"])), "vs_calibrado": table.get("vs_calibrado", {})}
 
 
 def explain(bs: list[dict]) -> dict:
@@ -251,10 +256,12 @@ def render_md(d: dict) -> str:
         lines.append(f"- {w['who']}: {w['balance']:,.0f} ({w['last_change']:+.0f} la última jornada; "
                      f"{w['n']} apuestas, ROI {w['roi']:+.1%}{clv})")
         lines += [f"    · {t}" for t in w["verdict"]]
-    pend = [r for r in d["rounds"] if r["done"] < r["total"]]
-    if pend:
-        lines += ["", "Pendientes: " + ", ".join(f"{r['id']} ({r['total'] - r['done']} sin resultado)"
-                                                for r in pend)]
+    # Solo los partidos del boleto de Samuel: los que nada más jugaron los bots (las 5
+    # ligas completas) no le importan y llenaban la lista de ruido.
+    mine = d.get("mine_pending", [])
+    if mine:
+        lines += ["", "Pendientes de tu boleto:"]
+        lines += [f"- {m['home']} vs {m['away']} ({m['date']})" for m in mine]
     return "\n".join(lines) + "\n"
 
 
@@ -355,10 +362,10 @@ def render_html(d: dict, demo: bool = False) -> str:
 </section>"""
     vc = "".join(f"<li><b>{_e(k)}</b> vs calibrado en {v['n']} partidos: {v['puntos']:+g} pts (z {v['z_puntos']}),"
                  f" Brier {v['brier_1x2']:+.4f} (z {v['z_brier']})</li>" for k, v in d["vs_calibrado"].items())
-    pend = [r for r in rounds if r["done"] < r["total"]]
-    pend_txt = ("<p class='mut'>Pendientes de resultado: " + ", ".join(
-        f"{_e(r['id'])} ({r['total'] - r['done']})" for r in pend) + ". Football-Data publica con días de rezago.</p>"
-                ) if pend else ""
+    mine = d.get("mine_pending", [])
+    pend_txt = ("<p class='mut'>Pendientes de tu boleto: " + ", ".join(
+        f"{_e(m['home'])} vs {_e(m['away'])} ({_e(m['date'])})" for m in mine) + ".</p>"
+                ) if mine else ""
     banner = ("<div class='demo'>DEMO: resultados SIMULADOS para ver el diseño. "
               "Ningún número de esta página es real.</div>") if demo else ""
     return f"""<!doctype html><html lang="es"><head><meta charset="utf-8">
