@@ -12,14 +12,16 @@ description: Arma el tablero de la liga (puntos de todos + feria ficticia de cad
    `cd /workspace/predicciones && LIGA_HOME=/workspace/liga PYTHONPATH=src PYTHONDONTWRITEBYTECODE=1 python3 -m wc_predictor.liga.tablero --auto`
 2. Si imprime `SIN NOVEDAD`, termina sin mandar nada a Samuel (responde solo `NO_REPLY`).
 3. Si imprime `TABLERO: <ruta>`:
-   - Manda ese `.html` a Samuel **como archivo adjunto** por Telegram (herramienta
-     `message` con el archivo, o una línea `MEDIA:<ruta>` en tu respuesta). Él lo abre en el
-     navegador del teléfono.
-   - Junto, un mensaje corto con lo que imprimió el comando:
+   - Si también imprime `IMAGEN: <ruta.png>`, manda ESE `.png` a Samuel como imagen por
+     Telegram (herramienta `message` con el archivo, o una línea `MEDIA:<ruta.png>`).
+     **Nunca adjuntes el `.html`**: OpenClaw lo rechaza ("local attachment allowlist").
+     Si no salió `IMAGEN:` (falta matplotlib en el sandbox), no mandes archivo; solo el texto.
+   - Junto, un mensaje corto con lo que imprimió el comando. **Sin tablas markdown ni
+     bloques de código**: Telegram las rompe en el teléfono. Una línea por bot:
      - Puntos: quién va arriba y el mano a mano de Samuel con su z
        (|z| < 2 = "todavía puede ser suerte"; dilo así).
-     - Feria: saldo de cada bot, cuánto movió la última jornada y el "por qué" en una línea
-       por bot, usando el veredicto que trae el texto (CLV y suerte). No inventes razones.
+     - Feria: `bot: saldo (±última jornada, N apuestas, ROI)` y el "por qué" en una frase,
+       usando el veredicto que trae el texto (CLV y suerte). No inventes razones.
      - Pendientes de resultado si los hay.
 4. Si dice "Libro corrupto", NO lo arregles: avísale a Samuel tal cual.
 
