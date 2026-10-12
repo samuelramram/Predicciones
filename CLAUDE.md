@@ -3,6 +3,13 @@
 Modelo de quiniela del Mundial 2026 (Poisson + Dixon-Coles + Elo, picks
 EV-óptimos). La documentación completa está en `README.md`.
 
+## Regla de interacción: los PRs de Claude se mergean solos (12 oct 2026)
+
+Decisión del usuario ("Mergea, siempre"): cuando Claude abre un PR en este repo y el
+CI está verde en el head actual (y no hay conflicto ni review pendiente), lo marca
+listo y lo **mergea sin preguntar** (merge commit). Si el CI está rojo, primero lo
+arregla; nunca mergea en rojo.
+
 ## Proyecto activo: adaptación a Liga MX Apertura
 
 Se está reusando este motor para el **Apertura de Liga MX** (ganar la quiniela
