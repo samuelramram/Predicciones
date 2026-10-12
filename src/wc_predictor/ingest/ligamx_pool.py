@@ -21,6 +21,13 @@ Export columns (same Lovable app as the WC):
 
 Round is inferred from the filename (`j1`..`j17`).
 
+The exports can also MISS a player's rows entirely (measured on J11: Geovanni
+was absent from the J3-J7 exports — the CSVs gave him 16 pts, the app 43). The
+app's leaderboard is the source of truth for totals, so ``--leaderboard`` takes a
+JSON ``{"players": {"Name": [points, exactos], ...}}`` (transcribed from the
+app's Tabla) that overrides the export-derived totals player by player. Picks
+still come from the exports.
+
 Outputs (versioned, shape consumed by model.standings / model.pool_optimizer):
     data/ligamx/pool_picks.json      real picks per player per match_id
     data/ligamx/pool_standings.json  leaderboard (points + exactos)
@@ -167,6 +174,23 @@ def build_standings(rounds: list[dict], you: str, total_matches: int) -> dict:
     }
 
 
+def apply_leaderboard(standings: dict, board: dict[str, list[int]]) -> list[str]:
+    """Override export-derived totals with the app leaderboard (source of truth).
+    Players missing from the exports are added. Returns the names whose totals
+    changed, so the caller can say what the exports got wrong."""
+    by_name = {p["name"]: p for p in standings["players"]}
+    changed = []
+    for name, (pts, ex) in board.items():
+        p = by_name.setdefault(name, {"name": name, "points": 0, "exactos": 0})
+        if (p["points"], p["exactos"]) != (pts, ex):
+            changed.append(f"{name} {p['points']}/{p['exactos']}→{pts}/{ex}")
+        p["points"], p["exactos"] = pts, ex
+    standings["players"] = sorted(by_name.values(),
+                                  key=lambda p: (-p["points"], -p["exactos"], p["name"]))
+    standings["total_participants"] = len(standings["players"])
+    return changed
+
+
 def pool_total_matches(start_round: int, liguilla_matches: int) -> int:
     """How many matches the POOL will score in total — the horizon anchor for
     the P(1.º) optimizer. The pool starts at `start_round` (J1/J2 are never
@@ -190,6 +214,9 @@ def main() -> None:
                         help="partidos de liguilla que puntuará la quiniela (default 17: "
                              "3 de reclasificación + 8 QF + 4 SF + 2 final; ajusta si "
                              "la app no puntúa la reclasificación → 14).")
+    parser.add_argument("--leaderboard", type=Path, default=None,
+                        help="JSON con la tabla REAL de la app {\"players\": {nombre: "
+                             "[puntos, exactos]}}; manda sobre los totales de los exports.")
     args = parser.parse_args()
 
     resolver = _name_resolver()
@@ -215,6 +242,11 @@ def main() -> None:
 
     # pool_standings.json
     standings = build_standings(rounds, args.you, total_matches)
+    if args.leaderboard:
+        board = json.loads(args.leaderboard.read_text(encoding="utf-8"))["players"]
+        changed = apply_leaderboard(standings, board)
+        print(f"  leaderboard de la app ({args.leaderboard.name}): " +
+              ("; ".join(changed) if changed else "cuadra con los exports"))
     POOL_STANDINGS_JSON.write_text(json.dumps(standings, indent=2, ensure_ascii=False),
                                    encoding="utf-8")
     top = standings["players"][:5]

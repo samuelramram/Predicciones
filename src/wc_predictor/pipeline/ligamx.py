@@ -367,6 +367,7 @@ def _apply_pool_objective(picks: list[dict], fx_doc: dict, rules) -> None:
     ]
 
     ctx = load_pool_context(POOL_STANDINGS_JSON)
+    behind = ctx is not None and ctx.leader_points > ctx.your_points
     if ctx is not None:
         horizon = compute_horizon(ctx, decision_pending=len(tmatches))
         gap = ctx.leader_points - ctx.your_points
@@ -392,7 +393,12 @@ def _apply_pool_objective(picks: list[dict], fx_doc: dict, rules) -> None:
         chosen = result.chosen.get(p["match_id"])
         if p["match_id"] in swapped and chosen is not None:
             p["pick_1x2"], p["pick_exact"] = chosen
-    verdict = ("COLCHÓN: 0 swaps — tu ventaja se compone, EV puro" if not swapped
+    # 0 swaps only means "cushion" when you lead. Behind, it means no single-round
+    # deviation moves the prize: EV is still the best policy, but there is no
+    # advantage compounding (J12: 13 pts behind, P(1.º) 0.6%, printed "COLCHÓN").
+    verdict = ("SIN PALANCA: 0 swaps — ninguna desviación de esta jornada sube el premio, "
+               "EV puro (vas abajo: no es colchón)" if not swapped and behind
+               else "COLCHÓN: 0 swaps — tu ventaja se compone, EV puro" if not swapped
                else f"ALCANCE: {len(swapped)} swap(s) fuera del pick EV para maximizar el premio")
     pays = len(result.prize_shares)
     print(f"  pool objective: P(1.º) {result.win_prob_ev:.1%} → {result.win_prob_pool:.1%}; "

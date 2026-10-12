@@ -6,6 +6,7 @@ from pathlib import Path
 
 from wc_predictor.ingest.ligamx_pool import (
     _parse_score,
+    apply_leaderboard,
     build_standings,
     parse_export,
     pool_total_matches,
@@ -191,3 +192,14 @@ def test_shrink_rates_edge_cases():
     assert shrink_rates([0.4, 0.4], 0) == [0.4, 0.4]   # no matches → no inference
     same = shrink_rates([0.5, 0.5, 0.5], 20)           # zero spread stays put
     assert all(abs(r - 0.5) < 1e-9 for r in same)
+
+
+def test_apply_leaderboard_overrides_and_adds_missing_players():
+    st = {"players": [{"name": "A", "points": 40, "exactos": 5},
+                      {"name": "G", "points": 16, "exactos": 4}],
+          "total_participants": 2}
+    changed = apply_leaderboard(st, {"G": [43, 8], "A": [40, 5], "N": [10, 1]})
+    assert [p["name"] for p in st["players"]] == ["G", "A", "N"]
+    assert st["players"][0] == {"name": "G", "points": 43, "exactos": 8}
+    assert st["total_participants"] == 3
+    assert any(c.startswith("G 16/4") for c in changed) and not any(c.startswith("A ") for c in changed)
