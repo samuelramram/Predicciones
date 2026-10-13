@@ -144,6 +144,61 @@ def bot_view(home: str, away: str, fit, elos: dict[str, float], mcfg,
                    pick_1x2=pick.pick_1x2, pick_exact=pick.pick_exact)
 
 
+def market_view(market_1x2: tuple[float, float, float], market_over25: float | None,
+                mcfg) -> BotView:
+    """A bot's view of a match the per-league model can't price: a UEFA cup tie
+    between clubs of different leagues (the league fits share no scale). The goal
+    rates are implied from the market (1X2 + Over 2.5; without a total, a typical
+    cup total of 2.75 goals → P(Over 2.5) ≈ 0.53), and the 1X2 is the market's."""
+    target_over = market_over25 if market_over25 is not None else 0.53
+    lh, la = implied_lambdas(market_1x2[0], market_1x2[2], target_over, mcfg.dc_rho)
+    pcells, pp1, ppx, pp2, pmass, pmax = build_score_matrix(lh, la, mcfg)
+    cells, p1, px, p2 = blend_three_sources(pcells, (pp1, ppx, pp2), (pp1, ppx, pp2), market_1x2,
+                                            w_poisson=1e-9, w_elo=1e-9, w_odds=1.0)
+    pick = optimize_pick_from_cells(cells, p1, px, p2, pmass, pmax, RULES, mcfg)
+    return BotView(cells=cells, probs=(p1, px, p2),
+                   p_over25=market_over25 if market_over25 is not None else p_over(cells, 2.5),
+                   p_btts=p_btts(cells), pick_1x2=pick.pick_1x2, pick_exact=pick.pick_exact)
+
+
+# The Odds API spells clubs out; Football-Data abbreviates. Pairs the fuzzy match
+# can't settle on its own ("Inter Milan" looks as much like Milan as like Inter).
+CUP_ALIASES = {
+    "Inter Milan": "Inter", "AC Milan": "Milan", "AS Roma": "Roma", "Atalanta BC": "Atalanta",
+    "Atlético Madrid": "Ath Madrid", "Athletic Bilbao": "Ath Bilbao", "Real Sociedad": "Sociedad",
+    "Real Betis": "Betis", "Espanyol": "Espanol", "Paris Saint Germain": "Paris SG",
+    "RC Lens": "Lens", "Olympique Marseille": "Marseille", "Olympique Lyonnais": "Lyon",
+    "AS Monaco": "Monaco", "OGC Nice": "Nice", "Manchester City": "Man City",
+    "Manchester United": "Man United", "Newcastle United": "Newcastle",
+    "Tottenham Hotspur": "Tottenham", "Nottingham Forest": "Nott'm Forest",
+    "Borussia Dortmund": "Dortmund", "Bayer Leverkusen": "Leverkusen",
+    "Eintracht Frankfurt": "Ein Frankfurt", "VfB Stuttgart": "Stuttgart",
+    "SC Freiburg": "Freiburg", "TSG Hoffenheim": "Hoffenheim", "1. FC Union Berlin": "Union Berlin",
+    "Borussia Monchengladbach": "M'gladbach", "VfL Wolfsburg": "Wolfsburg",
+}
+
+
+def cup_team_name(name: str, known: set[str]) -> str:
+    """Odds API club name → the Football-Data name of the same club, when it plays
+    in one of the 5 leagues (``known``); otherwise the name as given (Benfica,
+    PSV…). The fuzzy fallback compares whole folded names (≥0.85): the prefix-
+    tolerant matcher of the results feed is too loose here ("LASK" ⊂ "La Coruna")."""
+    from difflib import SequenceMatcher
+
+    from wc_predictor.ingest.liga_results import fold
+    if name in known:
+        return name
+    alias = CUP_ALIASES.get(name)
+    if alias in known:
+        return alias
+    f = " ".join(fold(name))
+    scored = sorted(((SequenceMatcher(None, f, " ".join(fold(k))).ratio(), k) for k in known),
+                    reverse=True)
+    if scored and scored[0][0] >= 0.85 and (len(scored) == 1 or scored[0][0] - scored[1][0] >= 0.05):
+        return scored[0][1]
+    return name
+
+
 def top_teams(elos: dict[str, float], season_teams: set[str], n: int = 3,
               league: str | None = None, override: dict | None = None) -> list[str]:
     """Top-n by Elo among this season's teams, unless the override pins them."""

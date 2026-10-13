@@ -152,7 +152,13 @@ Al reportar resultados de la liga, **acompaña cada diferencia con su z pareado*
 asiático). Cada bot "apuesta" en 1X2, Over/Under 2.5 y hándicap asiático, y se
 califica en ambos anotan; todo sale de su matriz de marcadores (`liga.markets`).
 El boleto de Samuel en Europa = partidos con un equipo del **top-3 Elo** de su liga
-(`data/europa/top_override.json` los fija a mano). En Europa el mercado manda: el peso
+(`data/europa/top_override.json` los fija a mano), **incluidos sus partidos de Champions,
+Europa League y Conference** (`ingest.uefa_odds`: The Odds API, una vez al día →
+`$LIGA_HOME/uefa_fixtures.json`; resultados por TheSportsDB). En copas los modelos por liga
+no sirven (no comparten escala entre ligas): los bots con mercado pican desde la línea del
+mercado (`europa.market_view`) y el estadístico no juega; sin CLV (no hay cierre de FD). Si
+la jornada crece a media semana, `seal_bots` sella lo nuevo como `eu-…/2` (como las tandas
+del Notario). En Europa el mercado manda: el peso
 de mercado es **0.9**, medido en `europa_backtest`. El Poisson de Europa se ajusta sobre
 **0.25·goles + 0.75·xG** (Understat, `data/europa/xg.csv`; mejora al bot sin mercado con
 z≈−3). El backtest usa **momios previos** por default (los de cierre inflan; `--odds close`

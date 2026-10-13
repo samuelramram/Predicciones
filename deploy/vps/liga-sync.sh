@@ -11,6 +11,7 @@
 # 3) baja los próximos partidos con momios: Europa (fixtures.csv) y Liga MX
 #    (new_league_fixtures.csv → fixtures_new.csv),
 # 4) baja resultados rápidos de TheSportsDB para lo sellado (results_live.csv),
+#    y una vez al día los partidos de copas UEFA con momios (uefa_fixtures.json),
 # 5) respalda el libro sellado (copia diaria, se guardan 30).
 #
 # La llave de TheSportsDB vive en ~/.config/liga/thesportsdb.env (chmod 600), fuera
@@ -28,6 +29,15 @@ curl -fsSL --max-time 60 -o "$LIGA/fixtures_new.csv.tmp" https://www.football-da
 mv "$LIGA/fixtures_new.csv.tmp" "$LIGA/fixtures_new.csv"
 if [ -f "$HOME/.config/liga/thesportsdb.env" ]; then
   set -a; . "$HOME/.config/liga/thesportsdb.env"; set +a
+fi
+# Copas UEFA (Champions / Europa League / Conference) con momios de The Odds API.
+# Llave en ~/.config/liga/odds.env (THE_ODDS_API_KEY=..., chmod 600). Se refresca una
+# vez al día (cuida los 500 créditos/mes del plan gratis); sin llave se salta.
+if [ -f "$HOME/.config/liga/odds.env" ]; then
+  ( set -a; . "$HOME/.config/liga/odds.env"; set +a
+    LIGA_HOME="$LIGA" PYTHONPATH="$REPO/src" PYTHONDONTWRITEBYTECODE=1 \
+      python3 -m wc_predictor.ingest.uefa_odds ) || echo "aviso: copas UEFA fallaron (sigue sin ellas)"
+  chmod a+r "$LIGA/uefa_fixtures.json" 2>/dev/null || true
 fi
 LIGA_HOME="$LIGA" PYTHONPATH="$REPO/src" PYTHONDONTWRITEBYTECODE=1 \
   python3 -m wc_predictor.ingest.liga_results || echo "aviso: resultados rápidos fallaron (sigue con Football-Data)"

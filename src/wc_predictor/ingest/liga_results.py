@@ -40,7 +40,9 @@ from wc_predictor.liga.paths import ledger_path, liga_home
 
 API = "https://www.thesportsdb.com/api/v1/json/{key}/eventsday.php?d={d}&l={lid}"
 PUBLIC_KEY = "123"
-LEAGUE_IDS = {"E0": 4328, "SP1": 4335, "I1": 4332, "D1": 4331, "F1": 4334, "MX": 4350}
+LEAGUE_IDS = {"E0": 4328, "SP1": 4335, "I1": 4332, "D1": 4331, "F1": 4334, "MX": 4350,
+              # Copas UEFA: Football-Data nunca las trae, así que su resultado sale solo de aquí.
+              "UCL": 4480, "UEL": 4481, "UECL": 5071}
 FINISHED = {"FT", "AET", "PEN", "MATCH FINISHED"}
 FIELDS = ["league", "date", "home", "away", "home_score", "away_score", "source", "event_id"]
 
