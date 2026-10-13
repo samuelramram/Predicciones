@@ -10765,7 +10765,7 @@ E0,2026-08-23,Man City,Bournemouth,2,1,2.4744,0.7075
 E0,2026-08-23,Newcastle,Liverpool,2,2,1.5946,3.1313
 F1,2026-08-23,Angers,Lille,0,2,1.8576,1.2146
 F1,2026-08-23,Le Havre,Monaco,0,1,0.6623,1.6556
-F1,2026-08-23,Paris SG,Rennes,0,0,0.6302,0.9105
+F1,2026-08-23,Paris SG,Rennes,2,2,1.1323,1.9473
 I1,2026-08-23,Atalanta,Sassuolo,2,1,0.9228,2.701
 I1,2026-08-23,Frosinone,Juventus,0,1,0.3655,2.6171
 I1,2026-08-23,Torino,Milan,1,2,1.1303,1.7415
@@ -11009,3 +11009,24 @@ I1,2026-10-10,Napoli,Frosinone,3,0,3.5271,0.7858
 SP1,2026-10-10,Alaves,Ath Madrid,1,2,1.0061,2.0023
 SP1,2026-10-10,Barcelona,Getafe,3,0,2.9134,0.1404
 SP1,2026-10-10,Real Madrid,Villarreal,1,0,1.4259,0.5265
+D1,2026-10-11,FC Koln,M'gladbach,2,1,1.5412,1.0366
+D1,2026-10-11,Freiburg,Schalke 04,2,1,1.6207,0.3761
+E0,2026-10-11,Crystal Palace,Nott'm Forest,3,1,2.2481,3.7638
+E0,2026-10-11,Hull,Everton,2,2,1.5325,2.7959
+E0,2026-10-11,Liverpool,Man City,0,3,0.7592,1.587
+F1,2026-10-11,Nice,Strasbourg,2,1,1.5462,0.4389
+F1,2026-10-11,Rennes,Auxerre,4,1,1.9968,1.2065
+F1,2026-10-11,Troyes,Marseille,0,2,1.2511,1.2707
+I1,2026-10-11,Cagliari,Juventus,1,1,0.8099,2.3788
+I1,2026-10-11,Como,Roma,0,0,1.8505,1.1394
+I1,2026-10-11,Lazio,Monza,3,1,2.2223,1.3037
+I1,2026-10-11,Lecce,Bologna,1,2,1.213,1.998
+I1,2026-10-11,Sassuolo,Milan,1,1,1.3374,1.8687
+SP1,2026-10-11,Betis,Osasuna,5,2,2.6557,1.1456
+SP1,2026-10-11,Elche,Celta,0,0,0.7261,0.4251
+SP1,2026-10-11,Santander,Valencia,2,2,1.398,1.75
+SP1,2026-10-11,Sociedad,La Coruna,3,2,1.3296,2.3369
+E0,2026-10-12,Coventry,Newcastle,4,1,1.6642,2.2186
+I1,2026-10-12,Atalanta,Venezia,3,1,2.9243,2.6889
+I1,2026-10-12,Torino,Udinese,2,1,2.3809,0.574
+SP1,2026-10-12,Levante,Sevilla,3,3,2.0063,3.196
