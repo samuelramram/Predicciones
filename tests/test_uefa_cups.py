@@ -82,3 +82,10 @@ def test_seal_bots_adds_new_matches_as_a_second_part(tmp_path, monkeypatch):
     assert recs[0]["round"] == "eu-2026-W42/2" and [p["home"] for p in recs[0]["picks"]] == ["B"]
     assert europa_live.seal_bots({"bots": ["borrego"], "matches": [m("B", "2026-10-17")]},
                                  "eu-2026-W42", now) == []
+
+
+def test_started_matches_leave_the_ticket():
+    now = datetime(2026, 10, 13, 19, 30, tzinfo=timezone.utc)
+    assert europa_live._started({"kickoff_utc": "2026-10-13T19:00:00+00:00"}, now)
+    assert not europa_live._started({"kickoff_utc": "2026-10-14T19:00:00+00:00"}, now)
+    assert not europa_live._started({"kickoff_utc": ""}, now)

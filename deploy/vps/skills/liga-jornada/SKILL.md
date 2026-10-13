@@ -8,15 +8,20 @@ description: Arma la jornada (Liga MX y Europa top-5) con los bots (estadístico
 Úsala cuando Samuel pida "la jornada", "el boleto", "qué pusieron los bots", o
 cuando una automatización te lo pida.
 
-Son dos boletos separados: Liga MX (`mx-AAAA-Jnn`, TODOS los partidos de la jornada)
-y Europa (`eu-AAAA-Wnn`, solo los del top-3 de cada liga). Corre los dos:
+Son dos boletos separados e **independientes**: Liga MX (`mx-AAAA-Jnn`, TODOS los
+partidos de la jornada) y Europa (`eu-AAAA-Wnn`, los del top-3 de cada liga **y sus
+partidos de Champions / Europa League / Conference**). Corre los dos SIEMPRE, cada uno
+con `--seal`; que uno no tenga partidos no detiene al otro:
 
 1. Liga MX (segundos):
    `cd /workspace/predicciones && LIGA_HOME=/workspace/liga PYTHONPATH=src PYTHONDONTWRITEBYTECODE=1 python3 -m wc_predictor.pipeline.ligamx_live --seal`
    Europa (~1 min, ajusta 5 ligas):
    `cd /workspace/predicciones && LIGA_HOME=/workspace/liga PYTHONPATH=src PYTHONDONTWRITEBYTECODE=1 python3 -m wc_predictor.pipeline.europa_live --seal`
-   - Si dice "ya selló … se queda como está", está bien: los bots no re-sellan.
-   - Si falla porque no hay `fixtures.csv` o `fixtures_new.csv`, dile a Samuel que el
+   - Si uno dice que no hay partidos próximos (fecha FIFA, Football-Data aún no publica),
+     di eso en una línea y **sigue con el otro**. Nunca corras Europa sin `--seal`.
+   - Si dice "nada nuevo que sellar", está bien: los bots no re-sellan; si la jornada
+     creció (copas el lunes, liga el jueves) sella solo lo nuevo como `…/2`.
+   - Si falla porque no existe `fixtures.csv` o `fixtures_new.csv`, dile a Samuel que el
      Utilero (liga-sync) no ha corrido.
 2. Lee los `.md` más recientes de `/workspace/liga/rounds/` (uno `mx-…`, uno `eu-…`).
 3. Mándale a Samuel, corto:

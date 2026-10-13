@@ -244,6 +244,11 @@ def seal_bots(rnd: dict, round_id: str, now: datetime | None = None) -> list[dic
     return recs
 
 
+def _started(fx: dict, now: datetime) -> bool:
+    k = fx.get("kickoff_utc")
+    return bool(k) and datetime.fromisoformat(k) <= now
+
+
 def main(argv: list[str] | None = None) -> None:
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     ap.add_argument("--fixtures", type=Path, default=None,
@@ -261,6 +266,11 @@ def main(argv: list[str] | None = None) -> None:
         cups = [f for f in cups if f["date"] <= args.until]
     today = date.today().isoformat()
     cups = [f for f in cups if f["date"] >= today]
+    # Started matches are out: the round is re-run mid-week (Monday for the UEFA
+    # cups, Thursday for the weekend), and Samuel's numbered ticket must only list
+    # what he can still pick. Whatever was sealed before kickoff stays sealed.
+    now = datetime.now(timezone.utc)
+    fixtures, cups = ([f for f in fs if not _started(f, now)] for fs in (fixtures, cups))
     if not fixtures and not cups:
         raise SystemExit("No hay partidos próximos en fixtures.csv ni en uefa_fixtures.json.")
     first = min(f["date"] for f in fixtures + cups)
