@@ -6,7 +6,11 @@
    apuestas de valor que ve (1X2, O/U 2.5, hándicap asiático) a precio promedio.
 4. ``--seal`` sella los boletos de los bots en data/liga/ledger.jsonl.
 
-El boleto de Samuel = solo partidos con un equipo del top-3 de su liga.
+El boleto de Samuel = solo partidos con un equipo del top-3 de su liga, también los
+de copas UEFA (Champions, Europa League, Conference) que juegue ese top-3: salen de
+``$LIGA_HOME/uefa_fixtures.json`` (``ingest.uefa_odds``). En esos partidos los modelos
+por liga no sirven (no comparten escala entre ligas), así que los bots con mercado
+pican desde la línea del mercado y el estadístico no juega.
 
 Run:
     python -m wc_predictor.pipeline.europa_live                       # descarga fixtures
@@ -20,10 +24,10 @@ from collections import defaultdict
 from datetime import date, datetime, timezone
 from pathlib import Path
 
-from wc_predictor.ingest import europa_fd, understat_xg
+from wc_predictor.ingest import europa_fd, uefa_odds, understat_xg
 from wc_predictor.liga import aprendiz, seal
-from wc_predictor.liga.europa import (EUROPA_MODEL, XG_WEIGHT, bot_view, load_override,
-                                      top_teams, with_xg)
+from wc_predictor.liga.europa import (EUROPA_MODEL, XG_WEIGHT, bot_view, cup_team_name,
+                                      load_override, market_view, top_teams, with_xg)
 from wc_predictor.liga.markets import ah_expected_returns, expected_goals
 from wc_predictor.liga.paths import liga_home, rounds_dir
 from wc_predictor.model.poisson_dc import profile_fit_rho
@@ -60,9 +64,49 @@ def _value_bets(v, fx) -> list[dict]:
     return list(best.values())
 
 
+def _entry(code: str, fx: dict, top: bool, mkt) -> dict:
+    return {"league": code, "date": fx["date"], "kickoff_utc": fx.get("kickoff_utc", ""),
+            "home": fx["home"], "away": fx["away"], "top": top,
+            "market": {"p1x2": [round(x, 3) for x in mkt] if mkt else None,
+                       "p_over25": fx["fair_over25"], "ah_line": fx["ah_line"],
+                       "avg_1x2": ([fx["avg_o1"], fx["avg_ox"], fx["avg_o2"]]
+                                   if fx["avg_o1"] else None)},
+            "bots": {}}
+
+
+def _bot_entry(v, fx) -> dict:
+    return {"pick_1x2": v.pick_1x2, "pick_exact": v.pick_exact,
+            "p1x2": [round(x, 3) for x in v.probs],
+            "p_over25": round(v.p_over25, 3), "p_btts": round(v.p_btts, 3),
+            "goals": [round(g, 3) for g in expected_goals(v.cells)],
+            "value_bets": _value_bets(v, fx)}
+
+
+def cup_matches(cup_fixtures: list[dict], tops: dict[str, list[str]], known: set[str],
+                bots: dict[str, float]) -> list[dict]:
+    """UEFA cup ties of a top-3 club. Names go to their Football-Data spelling so
+    the top-3 lists and the results matcher line up; the rest are dropped."""
+    top_set = {t for ts in tops.values() for t in ts}
+    out = []
+    for cf in cup_fixtures:
+        fx = {**cf, "home": cup_team_name(cf["home"], known), "away": cup_team_name(cf["away"], known)}
+        if fx["home"] not in top_set and fx["away"] not in top_set:
+            continue
+        mkt = (fx["fair_p1"], fx["fair_px"], fx["fair_p2"])
+        entry = _entry(cf["league"], fx, True, mkt)
+        view = market_view(mkt, fx["fair_over25"], EUROPA_MODEL)
+        for bot, w in bots.items():
+            entry["bots"][bot] = ({"error": "copa UEFA: sin modelo entre ligas, no juega"}
+                                  if w <= 0 else _bot_entry(view, fx))
+        out.append(entry)
+    return out
+
+
 def build_round(fixtures: list[dict], history: list[dict] | None = None,
-                bots: dict[str, float] | None = None) -> dict:
-    """``bots``: name → market weight (default BOTS; main() adds the aprendiz)."""
+                bots: dict[str, float] | None = None,
+                cup_fixtures: list[dict] | None = None) -> dict:
+    """``bots``: name → market weight (default BOTS; main() adds the aprendiz).
+    ``cup_fixtures``: UEFA cup rows (``ingest.uefa_odds``); only top-3 ties enter."""
     bots = bots or BOTS
     history = history if history is not None else europa_fd.load()
     xg_idx = None
@@ -87,27 +131,27 @@ def build_round(fixtures: list[dict], history: list[dict] | None = None,
         tops[code] = top
         for fx in fxs:
             mkt = (fx["fair_p1"], fx["fair_px"], fx["fair_p2"]) if fx["fair_p1"] else None
-            entry = {"league": code, "date": fx["date"], "kickoff_utc": fx.get("kickoff_utc", ""),
-                     "home": fx["home"], "away": fx["away"],
-                     "top": fx["home"] in top or fx["away"] in top,
-                     "market": {"p1x2": [round(x, 3) for x in mkt] if mkt else None,
-                                "p_over25": fx["fair_over25"], "ah_line": fx["ah_line"],
-                                "avg_1x2": ([fx["avg_o1"], fx["avg_ox"], fx["avg_o2"]]
-                                            if fx["avg_o1"] else None)},
-                     "bots": {}}
+            entry = _entry(code, fx, fx["home"] in top or fx["away"] in top, mkt)
             for bot, w in bots.items():
                 v = bot_view(fx["home"], fx["away"], fit, elos, mcfg, mkt, fx["fair_over25"], w)
                 if v is None:
                     entry["bots"][bot] = {"error": "equipo sin historial (recién ascendido)"}
                     continue
-                entry["bots"][bot] = {
-                    "pick_1x2": v.pick_1x2, "pick_exact": v.pick_exact,
-                    "p1x2": [round(x, 3) for x in v.probs],
-                    "p_over25": round(v.p_over25, 3), "p_btts": round(v.p_btts, 3),
-                    "goals": [round(g, 3) for g in expected_goals(v.cells)],
-                    "value_bets": _value_bets(v, fx),
-                }
+                entry["bots"][bot] = _bot_entry(v, fx)
             matches.append(entry)
+    if cup_fixtures:
+        known: set[str] = set()
+        for code in europa_fd.LEAGUES:
+            train = [r for r in history if r["league"] == code]
+            if not train:
+                continue
+            season = max(r["season"] for r in train)
+            teams = {t for r in train if r["season"] == season for t in (r["home"], r["away"])}
+            known |= teams
+            if code not in tops:  # leagues without a domestic game this week still have a top-3
+                elos, _ = replay_history(train, EUROPA_MODEL)
+                tops[code] = top_teams(elos, teams, 3, code, override)
+        matches += cup_matches(cup_fixtures, tops, known, bots)
     matches.sort(key=lambda m: (m["kickoff_utc"] or m["date"], m["league"], m["home"]))
     n = 0
     for m in matches:  # Samuel's ticket is numbered: "mis picks: 2-0, 1-1, …" follows this order
@@ -130,7 +174,7 @@ def _mx_time(iso_utc: str) -> str:
 
 
 def render_md(rnd: dict, only_top: bool = True) -> str:
-    names = {**europa_fd.LEAGUES, "MX": "Liga MX"}
+    names = {**europa_fd.LEAGUES, **uefa_odds.NAMES, "MX": "Liga MX"}
     lines = [f"# Jornada {rnd.get('round_id', '')} — generada {rnd['generated']}", "",
              "Horas en tiempo del centro de México. Tu boleto = los partidos numerados; "
              "manda tus marcadores en ese orden (\"-\" para saltar uno) o con nombre "
@@ -140,6 +184,10 @@ def render_md(rnd: dict, only_top: bool = True) -> str:
     if rnd.get("top3"):
         lines += ["Top-3 por liga: " + "; ".join(f"**{names[k]}**: {', '.join(v)}"
                                                 for k, v in rnd["top3"].items()), ""]
+        if any(m["league"] in uefa_odds.NAMES for m in rnd["matches"]):
+            lines += ["Copas UEFA: solo los partidos de esos equipos. Ahí los bots pican desde "
+                      "el mercado (el modelo por liga no compara clubes de ligas distintas) "
+                      "y el estadístico no juega.", ""]
     for m in rnd["matches"]:
         if only_top and not m["top"]:
             continue
@@ -172,20 +220,27 @@ def seal_bots(rnd: dict, round_id: str, now: datetime | None = None) -> list[dic
     mid-week, like the aprendiz, only plays what hasn't started)."""
     now = now or datetime.now(timezone.utc)
     recs = []
+    ledger = seal.read_ledger(seal.LEDGER)
     for bot in rnd.get("bots") or list(BOTS):
-        if any(r["round"] == round_id and r["bot"] == bot for r in seal.read_ledger(seal.LEDGER)):
-            print(f"{bot} ya selló {round_id}; se queda como está.")
-            continue
+        # A round can grow mid-week (the UEFA cup ties land after the weekend
+        # slate was sealed): seal only what this bot hasn't sealed yet. What it
+        # already sealed stays as it was — the first seal of a match wins.
+        # Extra parts go in as "<round>/2", "/3"… like the Notario's tandas (the
+        # ledger takes one record per round and bot; the Árbitro folds the parts).
+        parts = [r for r in ledger if r["bot"] == bot and r["round"].split("/")[0] == round_id]
+        done = {(p["league"], p["home"], p["away"], p["date"]) for r in parts for p in r["picks"]}
         picks = [{"home": m["home"], "away": m["away"], "league": m["league"], "date": m["date"],
                   "kickoff_utc": m["kickoff_utc"],
                   **{k: m["bots"][bot][k] for k in ("pick_1x2", "pick_exact", "p1x2",
                                                     "p_over25", "p_btts", "value_bets")}}
                  for m in rnd["matches"] if bot in m["bots"] and "error" not in m["bots"][bot]
+                 and (m["league"], m["home"], m["away"], m["date"]) not in done
                  and not (m.get("kickoff_utc") and datetime.fromisoformat(m["kickoff_utc"]) <= now)]
         if not picks:
-            print(f"{bot}: nada que sellar en {round_id} (todo ya empezó).")
+            print(f"{bot}: nada nuevo que sellar en {round_id}.")
             continue
-        recs.append(seal.append(round_id, bot, picks))
+        recs.append(seal.append(round_id if not parts else f"{round_id}/{len(parts) + 1}",
+                                bot, picks))
     return recs
 
 
@@ -200,17 +255,23 @@ def main(argv: list[str] | None = None) -> None:
     fx_path = args.fixtures or (liga_home() / "fixtures.csv")
     text = fx_path.read_text(encoding="utf-8-sig") if fx_path.exists() else None
     fixtures = europa_fd.load_upcoming(text)
+    cups = uefa_odds.load()
     if args.until:
         fixtures = [f for f in fixtures if f["date"] <= args.until]
-    if not fixtures:
-        raise SystemExit("No hay partidos próximos en fixtures.csv.")
-    first = min(f["date"] for f in fixtures)
+        cups = [f for f in cups if f["date"] <= args.until]
+    today = date.today().isoformat()
+    cups = [f for f in cups if f["date"] >= today]
+    if not fixtures and not cups:
+        raise SystemExit("No hay partidos próximos en fixtures.csv ni en uefa_fixtures.json.")
+    first = min(f["date"] for f in fixtures + cups)
     y, w, _ = date.fromisoformat(first).isocalendar()
     round_id = f"eu-{y}-W{w:02d}"
     # One round = one ISO week: fixtures.csv can run into the next week.
-    fixtures = [f for f in fixtures if date.fromisoformat(f["date"]).isocalendar()[:2] == (y, w)]
+    in_week = lambda f: date.fromisoformat(f["date"]).isocalendar()[:2] == (y, w)  # noqa: E731
+    fixtures = [f for f in fixtures if in_week(f)]
+    cups = [f for f in cups if in_week(f)]
     learned = aprendiz.learned_weight("eu-", EUROPA_MODEL.blend_odds_weight, before=first)
-    rnd = build_round(fixtures, bots={**BOTS, "aprendiz": learned["w"]})
+    rnd = build_round(fixtures, bots={**BOTS, "aprendiz": learned["w"]}, cup_fixtures=cups)
     rnd["aprendiz"] = learned
     rnd["round_id"] = round_id
     out_dir = rounds_dir()

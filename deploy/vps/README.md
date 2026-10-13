@@ -115,6 +115,17 @@ Riesgo conocido: lo que el Reportero lee en internet puede traer texto que inten
 órdenes. Está contenido así: sus notas pasan por código que recorta todo a 0.75–1.25, no
 tiene red en el sandbox, no puede tocar el host, y el libro sellado detecta cualquier edición.
 
+## Copas UEFA (Champions / Europa League / Conference)
+
+El Utilero baja una vez al día los partidos de copas con momios de The Odds API, si
+encuentra la llave (fuera del workspace, Claudio nunca la ve):
+
+```bash
+mkdir -p ~/.config/liga
+echo 'THE_ODDS_API_KEY=tu_llave' > ~/.config/liga/odds.env && chmod 600 ~/.config/liga/odds.env
+```
+Solo entran a tu boleto los partidos de copa de los equipos top-3 de cada liga.
+
 ## Cómo le hablas a Claudio (Telegram o dashboard)
 
 - "Pásame la jornada" · "¿qué pusieron los bots en el Liverpool–City y por qué?"
