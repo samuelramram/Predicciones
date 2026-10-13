@@ -62,7 +62,10 @@ Verifica la sintaxis con `openclaw automations add --help` (cambia entre version
 
 ```bash
 # Jueves 20:00: arma y sella la jornada, te manda tu boleto
-openclaw automations add --name "liga-jornada" --agent claudio --cron "0 20 * * 4" --tz America/Mexico_City \
+# Lunes y jueves 20:00: el lunes para las copas UEFA (martes a jueves), el jueves para el
+# fin de semana. Si ya la tenías solo en jueves:
+#   openclaw automations edit liga-jornada --cron "0 20 * * 1,4"
+openclaw automations add --name "liga-jornada" --agent claudio --cron "0 20 * * 1,4" --tz America/Mexico_City \
   --session isolated --message "Usa la skill liga-jornada y mándame mi boleto." \
   --announce --channel telegram --to "1305320146"
 # Viernes 09:00: qué te falta por sellar
