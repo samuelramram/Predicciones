@@ -1,5 +1,5 @@
 {
-  "version": "2026.10.12",
+  "version": "2026.10.15",
   "league": "Liga MX",
   "season": "2026-2027",
   "sources": {
@@ -1518,7 +1518,7 @@
       "round_label": "Jornada 11",
       "date": "2026-10-11",
       "date_utc": "2026-10-11T03:10:00",
-      "venue": "Estadio Azteca",
+      "venue": "Estadio Banorte",
       "home": "América",
       "away": "Monterrey",
       "home_locked": true,
