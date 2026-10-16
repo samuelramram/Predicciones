@@ -4,6 +4,10 @@ Todo sale de Football-Data:
 - resultados recientes de ``new/MEX.csv`` (vía ``data/ligamx/historical_odds.csv``,
   que refresca la Action diaria) se suman al historial para re-ajustar;
 - los próximos partidos con momios previos salen de ``new_league_fixtures.csv``.
+  FD lo publica tarde (a veces el mismo viernes de la jornada): mientras no traiga
+  Liga MX, el calendario sale de ``data/ligamx/fixtures.json`` (TheSportsDB) y los
+  momios de The Odds API (``$LIGA_HOME/league_odds.json``, ``ingest.uefa_odds
+  --leagues``). Un partido sin momio entra igual: el borrego no lo juega.
 
 Los 3 bots son los mismos del backtest de Liga MX (``liga_backtest``):
 estadistico (modelo de producción sin mercado), calibrado (blend de producción,
@@ -25,11 +29,13 @@ import io
 import json
 import urllib.request
 from dataclasses import replace
-from datetime import date, datetime, timedelta
+from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
 from wc_predictor.ingest import ligamx_fd_odds as fd
+from wc_predictor.ingest import uefa_odds
+from wc_predictor.ingest.ligamx import normalize_name
 from wc_predictor.ingest.europa_fd import _sane, kickoff_utc
 from wc_predictor.leagues import LIGAMX_APERTURA_PROFILE
 from wc_predictor.liga import aprendiz
@@ -69,6 +75,38 @@ def upcoming(text: str) -> tuple[list[dict], set[str]]:
                     "fair": fair, "avg": odds if all(odds) else None})
     out.sort(key=lambda f: (f["kickoff_utc"] or f["date"], f["home"]))
     return out, unmapped
+
+
+def calendar_fallback(now: datetime | None = None,
+                      odds_rows: list[dict] | None = None) -> list[dict]:
+    """Next jornada from fixtures.json (not started yet) with Odds API prices when
+    there are any. Same row shape as :func:`upcoming`."""
+    now = now or datetime.now(timezone.utc)
+    path = LIGAMX_DIR / "fixtures.json"
+    if not path.exists():
+        return []
+    rows = odds_rows if odds_rows is not None else uefa_odds.load(uefa_odds.leagues_path())
+    prices = {(normalize_name(r["home"]), normalize_name(r["away"])): r
+              for r in rows if r.get("league") == "MX"}
+    out = []
+    for m in json.loads(path.read_text(encoding="utf-8")).get("matches", []):
+        if m.get("stage") != "regular" or not m.get("date_utc") or m.get("home_score") is not None:
+            continue
+        ko = datetime.fromisoformat(m["date_utc"])
+        ko = ko if ko.tzinfo else ko.replace(tzinfo=timezone.utc)
+        if ko <= now:
+            continue
+        o = prices.get((m["home"], m["away"]))
+        fair = [o["fair_p1"], o["fair_px"], o["fair_p2"]] if o else None
+        avg = [o["avg_o1"], o["avg_ox"], o["avg_o2"]] if o else None
+        out.append({"league": "MX", "date": ko.astimezone(MX).date().isoformat(),
+                    "kickoff_utc": ko.isoformat(), "home": m["home"], "away": m["away"],
+                    "fair": fair, "avg": avg, "jornada": m.get("jornada")})
+    if not out:
+        return []
+    out.sort(key=lambda f: (f["kickoff_utc"], f["home"]))
+    j = out[0]["jornada"]
+    return [f for f in out if f["jornada"] == j]
 
 
 def training_rows() -> list[dict]:
@@ -177,8 +215,21 @@ def main(argv: list[str] | None = None) -> None:
     fixtures, unmapped = upcoming(text)
     if unmapped:
         raise SystemExit(f"Equipos sin mapear en FD_TEAM: {sorted(unmapped)}")
+    now = datetime.now(timezone.utc)
+    fixtures = [f for f in fixtures if not f["kickoff_utc"] or datetime.fromisoformat(f["kickoff_utc"]) > now]
     if not fixtures:
-        raise SystemExit("No hay partidos próximos de Liga MX en el archivo de Football-Data.")
+        fixtures = calendar_fallback(now)
+        if fixtures:
+            sin = sum(1 for f in fixtures if not f["fair"])
+            print(f"Football-Data aún no publica la jornada: calendario de fixtures.json "
+                  f"(J{fixtures[0]['jornada']}), momios de The Odds API"
+                  + (f" — {sin} partidos SIN momio (el borrego no los juega)" if sin else "") + ".")
+            if args.seal and sin == len(fixtures):
+                raise SystemExit("Sin momios de The Odds API para ningún partido (¿corrió liga-sync "
+                                 "con la llave?): no sello — el calibrado quedaría sellado sin mercado.")
+    if not fixtures:
+        raise SystemExit("No hay partidos próximos de Liga MX ni en Football-Data ni en "
+                         "data/ligamx/fixtures.json.")
     # One round = the first 4 days from the first kickoff (a jornada runs Fri–Mon).
     first = date.fromisoformat(fixtures[0]["date"])
     fixtures = [f for f in fixtures if date.fromisoformat(f["date"]) <= first + timedelta(days=3)]

@@ -11,7 +11,8 @@
 # 3) baja los próximos partidos con momios: Europa (fixtures.csv) y Liga MX
 #    (new_league_fixtures.csv → fixtures_new.csv),
 # 4) baja resultados rápidos de TheSportsDB para lo sellado (results_live.csv),
-#    y una vez al día los partidos de copas UEFA con momios (uefa_fixtures.json),
+#    y una vez al día los partidos de copas UEFA con momios (uefa_fixtures.json)
+#    y, si FD aún no publica una liga, sus partidos con momios (league_odds.json),
 # 5) respalda el libro sellado (copia diaria, se guardan 30).
 #
 # La llave de TheSportsDB vive en ~/.config/liga/thesportsdb.env (chmod 600), fuera
@@ -38,6 +39,12 @@ if [ -f "$HOME/.config/liga/odds.env" ]; then
     LIGA_HOME="$LIGA" PYTHONPATH="$REPO/src" PYTHONDONTWRITEBYTECODE=1 \
       python3 -m wc_predictor.ingest.uefa_odds ) || echo "aviso: copas UEFA fallaron (sigue sin ellas)"
   chmod a+r "$LIGA/uefa_fixtures.json" 2>/dev/null || true
+  # Respaldo de ligas: Football-Data publica el fin de semana tarde (a veces el
+  # viernes). Solo pide las ligas que FD no trae en los próximos 4 días, ≤1 vez/20 h.
+  ( set -a; . "$HOME/.config/liga/odds.env"; set +a
+    LIGA_HOME="$LIGA" PYTHONPATH="$REPO/src" PYTHONDONTWRITEBYTECODE=1 \
+      python3 -m wc_predictor.ingest.uefa_odds --leagues ) || echo "aviso: respaldo de ligas falló (sigue con Football-Data)"
+  chmod a+r "$LIGA/league_odds.json" 2>/dev/null || true
 fi
 LIGA_HOME="$LIGA" PYTHONPATH="$REPO/src" PYTHONDONTWRITEBYTECODE=1 \
   python3 -m wc_predictor.ingest.liga_results || echo "aviso: resultados rápidos fallaron (sigue con Football-Data)"

@@ -17,8 +17,14 @@ con `--seal`; que uno no tenga partidos no detiene al otro:
    `cd /workspace/predicciones && LIGA_HOME=/workspace/liga PYTHONPATH=src PYTHONDONTWRITEBYTECODE=1 python3 -m wc_predictor.pipeline.ligamx_live --seal`
    Europa (~1 min, ajusta 5 ligas):
    `cd /workspace/predicciones && LIGA_HOME=/workspace/liga PYTHONPATH=src PYTHONDONTWRITEBYTECODE=1 python3 -m wc_predictor.pipeline.europa_live --seal`
-   - Si uno dice que no hay partidos próximos (fecha FIFA, Football-Data aún no publica),
-     di eso en una línea y **sigue con el otro**. Nunca corras Europa sin `--seal`.
+   - Si Football-Data aún no publica una liga, los scripts ya usan el respaldo solos
+     (calendario de `data/ligamx/fixtures.json` y momios de The Odds API) y lo dicen en
+     una línea; repítela tal cual.
+   - Si aun así uno dice que no hay partidos próximos, di **exactamente** lo que dijo el
+     script y **sigue con el otro**. **Nunca adivines la causa** ("fecha FIFA", "descanso"):
+     para Liga MX revisa las fechas de la siguiente jornada en
+     `predicciones/data/ligamx/fixtures.json` y dile a Samuel cuándo juega. Nunca corras
+     Europa sin `--seal`.
    - Si dice "nada nuevo que sellar", está bien: los bots no re-sellan; si la jornada
      creció (copas el lunes, liga el jueves) sella solo lo nuevo como `…/2`.
    - Si falla porque no existe `fixtures.csv` o `fixtures_new.csv`, dile a Samuel que el
