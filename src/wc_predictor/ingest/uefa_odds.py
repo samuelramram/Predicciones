@@ -10,17 +10,27 @@ va en ``THE_ODDS_API_KEY``. Cada llamada cuesta 2 créditos (h2h + totals) por c
 el plan gratis da 500 al mes, así que por default solo se refresca si el archivo
 tiene más de 20 horas (``--max-age-h``): 3 copas × 1 vez al día ≈ 180 créditos/mes.
 
+``--leagues`` es el RESPALDO de las ligas (top-5 + Liga MX): Football-Data publica
+``fixtures.csv`` / ``new_league_fixtures.csv`` con pocos días de anticipación (a veces
+el viernes), y sin él la jornada salía vacía ("no hay partidos", que NO es fecha FIFA).
+Solo pide las ligas que NO tienen partidos en los próximos 4 días en esos archivos, a
+lo más una vez cada 20 h → ``$LIGA_HOME/league_odds.json``. Mismo formato de fila.
+
 Run:
     python -m wc_predictor.ingest.uefa_odds                 # → $LIGA_HOME/uefa_fixtures.json
     python -m wc_predictor.ingest.uefa_odds --max-age-h 0   # forzar
+    python -m wc_predictor.ingest.uefa_odds --leagues       # → $LIGA_HOME/league_odds.json
 """
 from __future__ import annotations
 
 import argparse
+import csv
+import io
 import json
 import os
 import time
 import urllib.request
+from datetime import date, datetime, timedelta
 from pathlib import Path
 from statistics import mean
 
@@ -31,13 +41,58 @@ COMPETITIONS = {
     "UEL": "soccer_uefa_europa_league",
     "UECL": "soccer_uefa_europa_conference_league",
 }
-NAMES = {"UCL": "Champions League", "UEL": "Europa League", "UECL": "Conference League"}
+# Fallback for the domestic leagues (Football-Data codes; MX = Liga MX).
+LEAGUE_SPORTS = {
+    "E0": "soccer_epl",
+    "SP1": "soccer_spain_la_liga",
+    "I1": "soccer_italy_serie_a",
+    "D1": "soccer_germany_bundesliga",
+    "F1": "soccer_france_ligue_one",
+    "MX": "soccer_mexico_ligamx",
+}
+NAMES = {"UCL": "Champions League", "UEL": "Europa League", "UECL": "Conference League",
+         "E0": "Premier League", "SP1": "LaLiga", "I1": "Serie A", "D1": "Bundesliga",
+         "F1": "Ligue 1", "MX": "Liga MX"}
 API = ("https://api.the-odds-api.com/v4/sports/{sport}/odds/?apiKey={key}"
        "&regions=eu&markets=h2h,totals&oddsFormat=decimal")
 
 
 def out_path() -> Path:
     return liga_home() / "uefa_fixtures.json"
+
+
+def leagues_path() -> Path:
+    return liga_home() / "league_odds.json"
+
+
+def _fd_dates(path: Path, code_of) -> dict[str, list[date]]:
+    """League code → fixture dates in a Football-Data fixtures file (missing file = {})."""
+    out: dict[str, list[date]] = {}
+    if not path.exists():
+        return out
+    for r in csv.DictReader(io.StringIO(path.read_text(encoding="utf-8-sig", errors="replace"))):
+        code = code_of(r)
+        try:
+            d = datetime.strptime(r.get("Date", ""), "%d/%m/%Y").date()
+        except ValueError:
+            continue
+        if code:
+            out.setdefault(code, []).append(d)
+    return out
+
+
+def missing_leagues(home: Path | None = None, today: date | None = None,
+                    days: int = 4) -> list[str]:
+    """Leagues with no Football-Data fixture between today and today+days: those
+    are the ones the Odds API has to cover."""
+    home = home or liga_home()
+    today = today or date.today()
+    have = _fd_dates(home / "fixtures.csv", lambda r: r.get("Div") if r.get("Div") in LEAGUE_SPORTS else None)
+    mx = _fd_dates(home / "fixtures_new.csv",
+                   lambda r: "MX" if (r.get("Country"), r.get("League")) == ("Mexico", "Liga MX") else None)
+    have.update(mx)
+    end = today + timedelta(days=days)
+    return [c for c in LEAGUE_SPORTS if not any(today <= d <= end for d in have.get(c, []))]
 
 
 def _devig(*odds: float) -> tuple[float, ...]:
@@ -83,9 +138,9 @@ def parse_event(code: str, ev: dict) -> dict | None:
     return row
 
 
-def fetch(key: str) -> list[dict]:
+def fetch(key: str, competitions: dict[str, str] | None = None) -> list[dict]:
     rows = []
-    for code, sport in COMPETITIONS.items():
+    for code, sport in (competitions or COMPETITIONS).items():
         req = urllib.request.Request(API.format(sport=sport, key=key),
                                      headers={"User-Agent": "liga-bots/1.0"})
         with urllib.request.urlopen(req, timeout=60) as r:
@@ -108,15 +163,24 @@ def main(argv: list[str] | None = None) -> None:
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     ap.add_argument("--max-age-h", type=float, default=20.0,
                     help="no vuelve a pedir si el archivo es más nuevo que esto (cuida créditos)")
+    ap.add_argument("--leagues", action="store_true",
+                    help="respaldo de ligas (top-5 + Liga MX) que Football-Data aún no publica")
     args = ap.parse_args(argv)
-    dst = out_path()
+    dst = leagues_path() if args.leagues else out_path()
+    comps = COMPETITIONS
+    if args.leagues:
+        miss = missing_leagues()
+        if not miss:
+            print("Football-Data ya trae todas las ligas; no gasto créditos.")
+            return
+        comps = {c: LEAGUE_SPORTS[c] for c in miss}
     if dst.exists() and (time.time() - dst.stat().st_mtime) < args.max_age_h * 3600:
-        print(f"uefa_fixtures.json fresco (<{args.max_age_h:g} h); no gasto créditos.")
+        print(f"{dst.name} fresco (<{args.max_age_h:g} h); no gasto créditos.")
         return
     key = os.environ.get("THE_ODDS_API_KEY")
     if not key:
         raise SystemExit("Falta THE_ODDS_API_KEY: sin ella no hay partidos de copas.")
-    rows = fetch(key)
+    rows = fetch(key, comps)
     dst.parent.mkdir(parents=True, exist_ok=True)
     tmp = dst.with_suffix(".tmp")
     tmp.write_text(json.dumps({"fetched_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),

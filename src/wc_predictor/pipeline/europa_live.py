@@ -1,7 +1,9 @@
 """Jornada en vivo de Europa: boletos de los bots para los próximos partidos.
 
 1. Ajusta Poisson·DC + Elo por liga con TODO el historial (data/europa/matches.csv).
-2. Lee los próximos partidos con momios previos (Football-Data fixtures.csv).
+2. Lee los próximos partidos con momios previos (Football-Data fixtures.csv). Las
+   ligas que FD aún no publica salen de The Odds API (``$LIGA_HOME/league_odds.json``,
+   ``ingest.uefa_odds --leagues``): FD sube el fin de semana tarde (a veces el viernes).
 3. Cada bot arma su boleto: marcador + 1X2, Over/Under 2.5, ambos anotan, y las
    apuestas de valor que ve (1X2, O/U 2.5, hándicap asiático) a precio promedio.
 4. ``--seal`` sella los boletos de los bots en data/liga/ledger.jsonl.
@@ -26,8 +28,16 @@ from pathlib import Path
 
 from wc_predictor.ingest import europa_fd, uefa_odds, understat_xg
 from wc_predictor.liga import aprendiz, seal
-from wc_predictor.liga.europa import (EUROPA_MODEL, XG_WEIGHT, bot_view, cup_team_name,
-                                      load_override, market_view, top_teams, with_xg)
+from wc_predictor.liga.europa import (
+    EUROPA_MODEL,
+    XG_WEIGHT,
+    bot_view,
+    cup_team_name,
+    load_override,
+    market_view,
+    top_teams,
+    with_xg,
+)
 from wc_predictor.liga.markets import ah_expected_returns, expected_goals
 from wc_predictor.liga.paths import liga_home, rounds_dir
 from wc_predictor.model.poisson_dc import profile_fit_rho
@@ -80,6 +90,35 @@ def _bot_entry(v, fx) -> dict:
             "p_over25": round(v.p_over25, 3), "p_btts": round(v.p_btts, 3),
             "goals": [round(g, 3) for g in expected_goals(v.cells)],
             "value_bets": _value_bets(v, fx)}
+
+
+def league_fallback(fixtures: list[dict], extra: list[dict],
+                    history: list[dict]) -> tuple[list[dict], list[str]]:
+    """Add the Odds API league rows Football-Data doesn't have yet. Names go to the
+    FD spelling of that league's current season; a row whose teams don't map is
+    dropped (no model for it) and reported. FD wins when both have the match."""
+    known: dict[str, set[str]] = {}
+    for code in europa_fd.LEAGUES:
+        train = [r for r in history if r["league"] == code]
+        if train:
+            season = max(r["season"] for r in train)
+            known[code] = {t for r in train if r["season"] == season for t in (r["home"], r["away"])}
+    have = {(f["league"], f["home"], f["away"]) for f in fixtures}
+    added, dropped = [], []
+    for row in extra:
+        teams = known.get(row["league"])
+        if not teams:
+            continue
+        h, a = cup_team_name(row["home"], teams), cup_team_name(row["away"], teams)
+        if h not in teams or a not in teams:
+            dropped.append(f"{row['home']} vs {row['away']}")
+            continue
+        if (row["league"], h, a) in have:
+            continue
+        have.add((row["league"], h, a))
+        added.append({**row, "home": h, "away": a, "neutral": False,
+                      "tournament": europa_fd.LEAGUES[row["league"]]})
+    return fixtures + added, dropped
 
 
 def cup_matches(cup_fixtures: list[dict], tops: dict[str, list[str]], known: set[str],
@@ -260,11 +299,18 @@ def main(argv: list[str] | None = None) -> None:
     fx_path = args.fixtures or (liga_home() / "fixtures.csv")
     text = fx_path.read_text(encoding="utf-8-sig") if fx_path.exists() else None
     fixtures = europa_fd.load_upcoming(text)
+    history = europa_fd.load()
+    extra = [r for r in uefa_odds.load(uefa_odds.leagues_path()) if r["league"] in europa_fd.LEAGUES]
+    if extra:
+        fixtures, dropped = league_fallback(fixtures, extra, history)
+        if dropped:
+            print(f"aviso: {len(dropped)} partidos de The Odds API sin mapear: {dropped}")
     cups = uefa_odds.load()
     if args.until:
         fixtures = [f for f in fixtures if f["date"] <= args.until]
         cups = [f for f in cups if f["date"] <= args.until]
     today = date.today().isoformat()
+    fixtures = [f for f in fixtures if f["date"] >= today]
     cups = [f for f in cups if f["date"] >= today]
     # Started matches are out: the round is re-run mid-week (Monday for the UEFA
     # cups, Thursday for the weekend), and Samuel's numbered ticket must only list
@@ -281,7 +327,8 @@ def main(argv: list[str] | None = None) -> None:
     fixtures = [f for f in fixtures if in_week(f)]
     cups = [f for f in cups if in_week(f)]
     learned = aprendiz.learned_weight("eu-", EUROPA_MODEL.blend_odds_weight, before=first)
-    rnd = build_round(fixtures, bots={**BOTS, "aprendiz": learned["w"]}, cup_fixtures=cups)
+    rnd = build_round(fixtures, history=history, bots={**BOTS, "aprendiz": learned["w"]},
+                      cup_fixtures=cups)
     rnd["aprendiz"] = learned
     rnd["round_id"] = round_id
     out_dir = rounds_dir()
