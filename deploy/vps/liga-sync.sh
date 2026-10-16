@@ -23,6 +23,16 @@ LIGA="$WS/liga"
 REPO="$HOME/predicciones"
 git -C "$REPO" fetch -q origin main
 git -C "$REPO" reset -q --hard origin/main
+# Se reinstala solo: si main trae otra versión de este script, la copia a ~/bin y
+# vuelve a arrancar con ella (una sola vez). La fuente es el clon de main, fuera del
+# workspace, igual que el código Python que ya corre desde $REPO/src: Claudio no la toca.
+NEW="$REPO/deploy/vps/liga-sync.sh"
+SELF="$HOME/bin/liga-sync.sh"
+if [ -z "${LIGA_SYNC_REEXEC:-}" ] && [ -f "$NEW" ] && ! cmp -s "$NEW" "$SELF"; then
+  install -m 755 "$NEW" "$SELF"
+  echo "liga-sync: script actualizado desde main; reinicio con la versión nueva"
+  LIGA_SYNC_REEXEC=1 exec "$SELF" "$@"
+fi
 rsync -a --delete --exclude .git --exclude outputs "$REPO/" "$WS/predicciones/"
 curl -fsSL --max-time 60 -o "$LIGA/fixtures.csv.tmp" https://www.football-data.co.uk/fixtures.csv
 mv "$LIGA/fixtures.csv.tmp" "$LIGA/fixtures.csv"
