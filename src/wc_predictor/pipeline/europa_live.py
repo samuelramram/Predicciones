@@ -28,8 +28,16 @@ from pathlib import Path
 
 from wc_predictor.ingest import europa_fd, uefa_odds, understat_xg
 from wc_predictor.liga import aprendiz, seal
-from wc_predictor.liga.europa import (EUROPA_MODEL, XG_WEIGHT, bot_view, cup_team_name,
-                                      load_override, market_view, top_teams, with_xg)
+from wc_predictor.liga.europa import (
+    EUROPA_MODEL,
+    XG_WEIGHT,
+    bot_view,
+    cup_team_name,
+    load_override,
+    market_view,
+    top_teams,
+    with_xg,
+)
 from wc_predictor.liga.markets import ah_expected_returns, expected_goals
 from wc_predictor.liga.paths import liga_home, rounds_dir
 from wc_predictor.model.poisson_dc import profile_fit_rho

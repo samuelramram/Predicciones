@@ -35,8 +35,8 @@ from zoneinfo import ZoneInfo
 
 from wc_predictor.ingest import ligamx_fd_odds as fd
 from wc_predictor.ingest import uefa_odds
-from wc_predictor.ingest.ligamx import normalize_name
 from wc_predictor.ingest.europa_fd import _sane, kickoff_utc
+from wc_predictor.ingest.ligamx import normalize_name
 from wc_predictor.leagues import LIGAMX_APERTURA_PROFILE
 from wc_predictor.liga import aprendiz
 from wc_predictor.liga.bots import borrego_ticket, typical_scores
@@ -44,8 +44,13 @@ from wc_predictor.liga.markets import expected_goals, p_btts, p_over
 from wc_predictor.liga.paths import liga_home, rounds_dir
 from wc_predictor.model.poisson_dc import profile_fit_rho
 from wc_predictor.pipeline.europa_live import render_md, seal_bots
-from wc_predictor.pipeline.ligamx import (LIGAMX_DIR, effective_model_config, load_history_rows,
-                                          load_team_altitudes, predict_fixture)
+from wc_predictor.pipeline.ligamx import (
+    LIGAMX_DIR,
+    effective_model_config,
+    load_history_rows,
+    load_team_altitudes,
+    predict_fixture,
+)
 from wc_predictor.ratings.elo import replay_history
 
 FIXTURES_URL = "https://www.football-data.co.uk/new_league_fixtures.csv"
