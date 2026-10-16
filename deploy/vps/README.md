@@ -1,7 +1,7 @@
 # Liga en el VPS: Claudio (OpenClaw) como operador
 
 Quién hace qué:
-- **Utilero** (`liga-sync`, timer del host, sin LLM): repo + fixtures (Europa y Liga MX) + resultados rápidos (TheSportsDB) + respaldo, cada hora.
+- **Utilero** (`liga-sync`, timer del host, sin LLM): repo + fixtures (Europa y Liga MX) + resultados rápidos (TheSportsDB) + respaldo, cada hora. Se reinstala solo: si `main` trae otra versión de `liga-sync.sh`, la copia a `~/bin` y re-arranca (la primera vez, tras actualizar desde una versión vieja, cópiala a mano: `install -m 755 ~/predicciones/deploy/vps/liga-sync.sh ~/bin/`).
 - **Claudio** (OpenClaw, en su sandbox sin red): corre los bots, sella, califica y te platica.
 - **Código** (bots, Notario, Árbitro): decide los números. Claudio solo los opera y explica.
 
