@@ -30,3 +30,7 @@ Reglas duras:
 - No "corrijas" sus marcadores ni adivines a qué partido se refería; si el número de
   marcadores no cuadra o algo es ambiguo, pregúntale antes de correr nada.
 - Un partido ya empezado o ya sellado no se puede cambiar: díselo, sin buscarle la vuelta.
+- Qué partido ya empezó lo decide el Notario (compara contra la hora UTC del archivo):
+  NUNCA lo calcules tú. Para decir "hoy"/"mañana" saca la fecha con
+  `TZ=America/Mexico_City date` y compara FECHA y hora, no solo la hora (el 19 oct a las
+  18:41 le dijo a Samuel que un partido del martes 20 a las 18:07 "ya empezó").

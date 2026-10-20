@@ -38,6 +38,8 @@ con `--seal`; que uno no tenga partidos no detiene al otro:
    - cómo contestar: por boleto, en orden (`2-1, 0-0, -, 1-3`) o con nombre
      (`Chivas 2-1, Bayern 2-0`); dile que te mande cada boleto en su propio mensaje,
    - la hora del primer partido = su deadline.
+   - para decir "hoy"/"mañana", saca la fecha con `TZ=America/Mexico_City date` y
+     compara FECHA y hora; nunca digas que un partido ya empezó por la pura hora.
 
 Reglas: no inventes probabilidades ni marcadores; todo sale del archivo. Si te
 pregunta "¿por qué el bot puso X?", explica con los números del archivo
