@@ -7,7 +7,9 @@ Todo sale de Football-Data:
   FD lo publica tarde (a veces el mismo viernes de la jornada): mientras no traiga
   Liga MX, el calendario sale de ``data/ligamx/fixtures.json`` (TheSportsDB) y los
   momios de The Odds API (``$LIGA_HOME/league_odds.json``, ``ingest.uefa_odds
-  --leagues``). Un partido sin momio entra igual: el borrego no lo juega.
+  --leagues``). Un partido sin momio entra igual (la jornada se escribe para que el
+  Notario selle el boleto de Samuel): ahí solo juega el estadístico; los bots con
+  mercado lo sellan después, cuando llegue el momio, como ``<jornada>/2``.
 
 Los 3 bots son los mismos del backtest de Liga MX (``liga_backtest``):
 estadistico (modelo de producción sin mercado), calibrado (blend de producción,
@@ -187,6 +189,12 @@ def build_round(fixtures: list[dict], rows: list[dict] | None = None,
         if w_aprendiz is not None:
             variants.append(("aprendiz", odds, replace(mcfg, blend_odds_weight=w_aprendiz)))
         for bot, o, cfg in variants:
+            if bot != "estadistico" and not f["fair"]:
+                # Without a price the blend IS the estadistico; sealing it now would
+                # lock the bot without market (the first seal wins). It waits for the
+                # odds and goes in later as "<round>/2".
+                entry["bots"][bot] = {"error": "sin momio (se sella cuando llegue)"}
+                continue
             p = predict_fixture(fx, fit, elos, altitudes, cfg, rules, odds=o)
             if p is None or "error" in p:
                 entry["bots"][bot] = {"error": "equipo sin historial"}
@@ -228,10 +236,8 @@ def main(argv: list[str] | None = None) -> None:
             sin = sum(1 for f in fixtures if not f["fair"])
             print(f"Football-Data aún no publica la jornada: calendario de fixtures.json "
                   f"(J{fixtures[0]['jornada']}), momios de The Odds API"
-                  + (f" — {sin} partidos SIN momio (el borrego no los juega)" if sin else "") + ".")
-            if args.seal and sin == len(fixtures):
-                raise SystemExit("Sin momios de The Odds API para ningún partido (¿corrió liga-sync "
-                                 "con la llave?): no sello — el calibrado quedaría sellado sin mercado.")
+                  + (f" — {sin} partidos SIN momio: ahí solo sella el estadístico; calibrado, "
+                     "aprendiz y borrego se sellan cuando llegue el momio" if sin else "") + ".")
     if not fixtures:
         raise SystemExit("No hay partidos próximos de Liga MX ni en Football-Data ni en "
                          "data/ligamx/fixtures.json.")

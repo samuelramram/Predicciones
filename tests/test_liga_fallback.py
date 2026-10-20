@@ -55,3 +55,14 @@ def test_calendar_fallback_next_jornada_with_prices(tmp_path, monkeypatch):
     assert [(f["home"], f["away"]) for f in out] == [("Necaxa", "Atlas"), ("León", "América")]
     assert out[0]["fair"] == [0.5, 0.27, 0.23] and out[0]["date"] == "2026-10-16"  # hora de CDMX
     assert out[1]["fair"] is None
+
+
+def test_round_without_odds_still_written_only_estadistico_plays():
+    # J13 (oct 2026): sin momios en ningún partido el script abortaba antes de escribir
+    # la jornada y el Notario no tenía dónde sellar el boleto de Samuel.
+    fx = [{"league": "MX", "date": "2026-10-21", "kickoff_utc": "2026-10-22T01:00:00+00:00",
+           "home": "Atlas", "away": "América", "fair": None, "avg": None}]
+    rnd = ligamx_live.build_round(fx, w_aprendiz=0.6)
+    bots = rnd["matches"][0]["bots"]
+    assert "pick_exact" in bots["estadistico"]
+    assert all("error" in bots[b] for b in ("calibrado", "aprendiz", "borrego"))
