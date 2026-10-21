@@ -1,82 +1,82 @@
 {
-  "as_of": "2026-10-12",
+  "as_of": "2026-10-21",
   "source": "replay_ligamx",
   "teams": [
     {
-      "team": "Cruz Azul",
-      "elo": 1643.41
-    },
-    {
-      "team": "Toluca",
-      "elo": 1628.33
-    },
-    {
       "team": "América",
-      "elo": 1626.65
+      "elo": 1653.1
+    },
+    {
+      "team": "Cruz Azul",
+      "elo": 1650.49
     },
     {
       "team": "Guadalajara",
-      "elo": 1621.03
+      "elo": 1615.07
     },
     {
-      "team": "Querétaro",
-      "elo": 1615.55
-    },
-    {
-      "team": "Pachuca",
-      "elo": 1564.31
+      "team": "Toluca",
+      "elo": 1614.35
     },
     {
       "team": "Pumas",
-      "elo": 1552.5
+      "elo": 1573.44
+    },
+    {
+      "team": "Pachuca",
+      "elo": 1543.62
+    },
+    {
+      "team": "Querétaro",
+      "elo": 1541.16
     },
     {
       "team": "Tijuana",
-      "elo": 1551.14
+      "elo": 1537.86
     },
     {
       "team": "Tigres",
-      "elo": 1521.92
+      "elo": 1532.27
     },
     {
       "team": "Atlas",
-      "elo": 1493.18
-    },
-    {
-      "team": "León",
-      "elo": 1485.33
-    },
-    {
-      "team": "Atlante",
-      "elo": 1468.82
+      "elo": 1521.65
     },
     {
       "team": "Monterrey",
-      "elo": 1452.33
+      "elo": 1473.02
+    },
+    {
+      "team": "Atlante",
+      "elo": 1466.92
     },
     {
       "team": "San Luis",
-      "elo": 1427.8
+      "elo": 1462.96
+    },
+    {
+      "team": "León",
+      "elo": 1458.88
     },
     {
       "team": "Santos",
-      "elo": 1396.31
-    },
-    {
-      "team": "Necaxa",
-      "elo": 1375.44
+      "elo": 1449.52
     },
     {
       "team": "Puebla",
-      "elo": 1373.13
+      "elo": 1386.41
     },
     {
       "team": "Mazatlán",
       "elo": 1364.62
     },
     {
+      "team": "Necaxa",
+      "elo": 1342.59
+    },
+    {
       "team": "Juárez",
-      "elo": 1338.2
+      "elo": 1312.09
     }
   ]
 }

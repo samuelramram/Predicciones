@@ -1,5 +1,5 @@
 {
-  "version": "2026.10.15",
+  "version": "2026.10.21",
   "league": "Liga MX",
   "season": "2026-2027",
   "sources": {
@@ -1598,13 +1598,13 @@
       "round_label": "Jornada 12",
       "date": "2026-10-17",
       "date_utc": "2026-10-17T03:00:00",
-      "venue": "Estadio Azteca",
+      "venue": "Estadio Banorte",
       "home": "Atlante",
       "away": "Pumas",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 1,
+      "away_score": 2
     },
     {
       "match_id": "m_dc15d70fda",
@@ -1619,8 +1619,8 @@
       "away": "Tigres",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 1,
+      "away_score": 1
     },
     {
       "match_id": "m_89c5cf24be",
@@ -1635,8 +1635,8 @@
       "away": "Atlas",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 0,
+      "away_score": 2
     },
     {
       "match_id": "m_b0948e522a",
@@ -1651,8 +1651,8 @@
       "away": "Querétaro",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 5,
+      "away_score": 0
     },
     {
       "match_id": "m_4b2f238458",
@@ -1661,14 +1661,14 @@
       "jornada": 12,
       "round_label": "Jornada 12",
       "date": "2026-10-17",
-      "date_utc": "2026-10-17T03:00:00",
+      "date_utc": "2026-10-17T03:05:00",
       "venue": "Estadio Caliente",
       "home": "Tijuana",
       "away": "Puebla",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 0,
+      "away_score": 0
     },
     {
       "match_id": "m_9030d540ae",
@@ -1677,14 +1677,14 @@
       "jornada": 12,
       "round_label": "Jornada 12",
       "date": "2026-10-18",
-      "date_utc": "2026-10-18T03:00:00",
-      "venue": "Estadio Azteca",
+      "date_utc": "2026-10-18T03:10:00",
+      "venue": "Estadio Banorte",
       "home": "Cruz Azul",
       "away": "Juárez",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 5,
+      "away_score": 0
     },
     {
       "match_id": "m_0211c077f9",
@@ -1699,8 +1699,8 @@
       "away": "América",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 3,
+      "away_score": 5
     },
     {
       "match_id": "m_e7fb66decf",
@@ -1715,8 +1715,8 @@
       "away": "San Luis",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 1,
+      "away_score": 1
     },
     {
       "match_id": "m_4bf28275c8",
@@ -1731,8 +1731,8 @@
       "away": "Pachuca",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 2,
+      "away_score": 1
     },
     {
       "match_id": "m_e3e209f431",
@@ -1747,8 +1747,8 @@
       "away": "Necaxa",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 1,
+      "away_score": 0
     },
     {
       "match_id": "m_fe432714df",
@@ -1763,8 +1763,8 @@
       "away": "Atlante",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 0,
+      "away_score": 1
     },
     {
       "match_id": "m_0c11905c69",
@@ -1779,8 +1779,8 @@
       "away": "Querétaro",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 2,
+      "away_score": 1
     },
     {
       "match_id": "m_503a6690ea",
@@ -1853,7 +1853,7 @@
       "jornada": 13,
       "round_label": "Jornada 13",
       "date": "2026-10-22",
-      "date_utc": "2026-10-22T03:00:00",
+      "date_utc": "2026-10-22T03:10:00",
       "venue": "Estadio Corona",
       "home": "Santos",
       "away": "Pumas",
@@ -1927,22 +1927,6 @@
       "away_score": null
     },
     {
-      "match_id": "m_6b4aab07df",
-      "tsdb_event_id": "2487575",
-      "stage": "regular",
-      "jornada": 14,
-      "round_label": "Jornada 14",
-      "date": "2026-10-25",
-      "date_utc": "2026-10-25T23:00:00",
-      "venue": "Estadio Azteca",
-      "home": "América",
-      "away": "Pachuca",
-      "home_locked": true,
-      "away_locked": true,
-      "home_score": null,
-      "away_score": null
-    },
-    {
       "match_id": "m_0eaca53ac5",
       "tsdb_event_id": "2487574",
       "stage": "regular",
@@ -1985,6 +1969,22 @@
       "venue": "Estadio Olímpico Universitario",
       "home": "Pumas",
       "away": "Tigres",
+      "home_locked": true,
+      "away_locked": true,
+      "home_score": null,
+      "away_score": null
+    },
+    {
+      "match_id": "m_23bda1c9fb",
+      "tsdb_event_id": "2487575",
+      "stage": "regular",
+      "jornada": 14,
+      "round_label": "Jornada 14",
+      "date": "2026-10-26",
+      "date_utc": "2026-10-26T01:00:00",
+      "venue": "Estadio Azteca",
+      "home": "América",
+      "away": "Pachuca",
       "home_locked": true,
       "away_locked": true,
       "home_score": null,
