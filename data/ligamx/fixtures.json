@@ -1,5 +1,5 @@
 {
-  "version": "2026.10.21",
+  "version": "2026.10.23",
   "league": "Liga MX",
   "season": "2026-2027",
   "sources": {
@@ -1795,8 +1795,8 @@
       "away": "León",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 0,
+      "away_score": 2
     },
     {
       "match_id": "m_fc13480ffb",
@@ -1811,8 +1811,8 @@
       "away": "América",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 2,
+      "away_score": 5
     },
     {
       "match_id": "m_4d6501a953",
@@ -1821,14 +1821,14 @@
       "jornada": 13,
       "round_label": "Jornada 13",
       "date": "2026-10-22",
-      "date_utc": "2026-10-22T03:00:00",
+      "date_utc": "2026-10-22T03:10:00",
       "venue": "Estadio Hidalgo",
       "home": "Pachuca",
       "away": "Cruz Azul",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 1,
+      "away_score": 2
     },
     {
       "match_id": "m_f230e7c105",
@@ -1843,8 +1843,8 @@
       "away": "Monterrey",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 1,
+      "away_score": 4
     },
     {
       "match_id": "m_9e5e4a8f88",
@@ -1859,8 +1859,8 @@
       "away": "Pumas",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 2,
+      "away_score": 0
     },
     {
       "match_id": "m_ffa49f8d4f",
@@ -1875,8 +1875,8 @@
       "away": "Tijuana",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 2,
+      "away_score": 2
     },
     {
       "match_id": "m_8acc213360",
@@ -1965,7 +1965,7 @@
       "jornada": 14,
       "round_label": "Jornada 14",
       "date": "2026-10-25",
-      "date_utc": "2026-10-25T03:00:00",
+      "date_utc": "2026-10-25T03:10:00",
       "venue": "Estadio Olímpico Universitario",
       "home": "Pumas",
       "away": "Tigres",
@@ -1981,7 +1981,7 @@
       "jornada": 14,
       "round_label": "Jornada 14",
       "date": "2026-10-26",
-      "date_utc": "2026-10-26T01:00:00",
+      "date_utc": "2026-10-26T01:05:00",
       "venue": "Estadio Azteca",
       "home": "América",
       "away": "Pachuca",
