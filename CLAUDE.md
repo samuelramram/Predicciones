@@ -311,6 +311,20 @@ datos del pool la BD manda:
 - La hora real de cada partido es `matches.match_date` de la app (TheSportsDB puede
   diferir: en J14 el primer partido era Necaxa–Juárez, no Atlante–San Luis).
 
+### Regla de interacción: Claudio captura su boleto en la app (26 oct 2026)
+
+Decisión del usuario ("Sí autorizo que pongas tus marcadores a nombre de Claudio"): al
+generar los picks de una jornada de Liga MX, **captúralos en la app a nombre de Claudio**
+(`profiles.display_name = 'Claudio'`) con el mismo upsert que usa "Capturar por otro":
+`insert into predictions (user_id, match_id, predicted_home_score, predicted_away_score)
+… on conflict (user_id, match_id) do update …`. Límites:
+
+- Solo el usuario Claudio y solo la jornada pedida; nunca toques a otro jugador.
+- Antes: la jornada debe estar `is_open` y cada partido con `match_date > now()`; los
+  partidos ya empezados no se tocan.
+- Después: confirma con un `select` que estén **todos** los partidos de la jornada (en
+  J13 se perdieron 2 picks por captura incompleta) y repórtalo al usuario.
+
 ### Habilidad del pool: shrinkage empírico-Bayes (medido, NO es un knob)
 
 El simulador proyecta la habilidad de cada jugador (`q_rate`, `e_rate`) sobre el
