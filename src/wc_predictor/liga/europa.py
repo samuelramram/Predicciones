@@ -23,6 +23,7 @@ from wc_predictor.config import DATA_DIR, ModelConfig
 from wc_predictor.leagues import LIGAMX_APERTURA_PROFILE
 from wc_predictor.liga.markets import logpool_binary, p_btts, p_over
 from wc_predictor.model.blend import blend_three_sources
+from wc_predictor.model.implied import _probs_np, anchor_lambdas, implied_lambdas  # noqa: F401
 from wc_predictor.model.poisson_dc import predict_lambdas
 from wc_predictor.ratings.elo import elo_to_1x2_probs
 from wc_predictor.scoring.quiniela import build_score_matrix, optimize_pick_from_cells
@@ -74,60 +75,23 @@ def _weights(mcfg, odds_w: float) -> tuple[float, float, float]:
     return rem * share, rem * (1.0 - share), odds_w
 
 
-def _probs_np(lh: float, la: float, rho: float, n: int = 11) -> tuple[float, float, float, float]:
-    """(p1, px, p2, p_over2.5) of a Poisson·DC grid, vectorized (fast inner loop)."""
-    from math import exp, lgamma, log
-    k = np.arange(n)
-    lf = np.array([lgamma(i + 1) for i in range(n)])
-    ph = np.exp(k * log(lh) - lh - lf)
-    pa = np.exp(k * log(la) - la - lf)
-    m = np.outer(ph, pa)
-    m[0, 0] *= 1 - lh * la * rho
-    m[0, 1] *= 1 + lh * rho
-    m[1, 0] *= 1 + la * rho
-    m[1, 1] *= 1 - rho
-    m /= m.sum()
-    tot = k[:, None] + k[None, :]
-    return (float(np.tril(m, -1).sum()), float(np.trace(m)), float(np.triu(m, 1).sum()),
-            float(m[tot > 2.5].sum()))
-
-
-def implied_lambdas(p1: float, p2: float, p_over25: float, rho: float,
-                    start: tuple[float, float] = (1.4, 1.1)) -> tuple[float, float]:
-    """Goal rates whose Poisson·DC grid best reproduces the market's home/away
-    win and Over 2.5 probabilities. 1X2 alone can't tell a 1-0 favourite from a
-    4-1 one; the total pins the goal environment, so the handicap distribution
-    of the market-following bots stays consistent with the market's AH line."""
-    from scipy.optimize import minimize
-
-    def loss(x):
-        q1, _, q2, qo = _probs_np(exp(x[0]), exp(x[1]), rho)
-        return (q1 - p1) ** 2 + (q2 - p2) ** 2 + (qo - p_over25) ** 2
-
-    from math import exp, log
-    r = minimize(loss, [log(start[0]), log(start[1])], method="Nelder-Mead",
-                 options={"xatol": 1e-4, "fatol": 1e-9, "maxiter": 400})
-    return exp(r.x[0]), exp(r.x[1])
-
-
 def bot_view(home: str, away: str, fit, elos: dict[str, float], mcfg,
              market_1x2: tuple[float, float, float] | None = None,
-             market_over25: float | None = None, odds_w: float = 0.0) -> BotView | None:
+             market_over25: float | None = None, odds_w: float = 0.0,
+             anchor: bool = True) -> BotView | None:
     """One bot's view. ``odds_w=0`` → estadistico; ``blend_odds_weight`` →
-    calibrado; ``1.0`` → borrego. Returns None if a team has no strengths."""
+    calibrado; ``1.0`` → borrego. ``anchor=False`` keeps the model's goal rates
+    (A/B of the totals anchoring). Returns None if a team has no strengths."""
     if home not in fit.strengths or away not in fit.strengths:
         return None
     lh, la = predict_lambdas(fit.strengths[home], fit.strengths[away], fit.mu, fit.gamma,
                              host="home")
     elo_p = elo_to_1x2_probs(elos.get(home, 1500.0), elos.get(away, 1500.0), mcfg.elo_home_bonus)
     use_mkt = market_1x2 is not None and odds_w > 0
-    if use_mkt and market_over25 is not None:
+    if use_mkt and anchor and market_over25 is not None:
         # Pull the goal rates toward the market's (geometric blend), so the whole
         # score grid — not only the 1X2 marginals — reflects the market.
-        mh, ma = implied_lambdas(market_1x2[0], market_1x2[2], market_over25, mcfg.dc_rho,
-                                 start=(lh, la))
-        w = min(odds_w, 1.0)
-        lh, la = lh ** (1 - w) * mh ** w, la ** (1 - w) * ma ** w
+        lh, la = anchor_lambdas(lh, la, market_1x2, market_over25, mcfg.dc_rho, odds_w)
     pcells, pp1, ppx, pp2, pmass, pmax = build_score_matrix(lh, la, mcfg)
     w_po, w_el, w_od = _weights(mcfg, odds_w if use_mkt else 0.0)
     if odds_w >= 1.0 and use_mkt:

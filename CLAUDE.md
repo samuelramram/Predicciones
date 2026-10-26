@@ -292,6 +292,25 @@ python -m wc_predictor.ingest.ligamx_pool data/ligamx/pool_exports/*j*.csv --you
     --start-round 3 --liguilla-matches 17 --leaderboard data/ligamx/pool_leaderboard.json
 ```
 
+### Pool desde la BD de la app (oct 2026): fuente de verdad, no los CSV
+
+La app de la quiniela (repo `quinielacartoimagen`) vive en Lovable (proyecto "Quiniela
+Mundial") y su Postgres se lee con `mcp__Lovable__query_database`. Los exports CSV se
+comen filas (a Geovanni le faltaban J3–J7; la J12 nunca se exportó), así que para LEER
+datos del pool la BD manda:
+
+- **Tabla oficial:** `select * from get_leaderboard('ligamx')` → transcríbela completa a
+  `data/ligamx/pool_leaderboard.json` (sin el usuario de prueba "Usuario").
+- **Picks de una jornada sin export:** arma `pool_exports/predicciones_jNN.csv` con el
+  formato de la app (`Usuario,Partido,Predicción,Resultado Real,Puntos`) desde
+  `predictions ⋈ matches ⋈ matchdays ⋈ teams ⋈ profiles` filtrando
+  `matchdays.name = 'Apertura 2026 · Jornada NN'`. Mapea los nombres de la BD a los del
+  export: Club America→América, Leon→León, Queretaro→Querétaro, FC Juarez→Juárez,
+  Atletico San Luis→San Luis, Pumas UNAM→Pumas, Tigres UANL→Tigres, Guadalajara
+  Chivas→Guadalajara, Club Tijuana→Tijuana, Santos Laguna→Santos.
+- La hora real de cada partido es `matches.match_date` de la app (TheSportsDB puede
+  diferir: en J14 el primer partido era Necaxa–Juárez, no Atlante–San Luis).
+
 ### Habilidad del pool: shrinkage empírico-Bayes (medido, NO es un knob)
 
 El simulador proyecta la habilidad de cada jugador (`q_rate`, `e_rate`) sobre el
