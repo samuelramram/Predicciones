@@ -324,6 +324,12 @@ generar los picks de una jornada de Liga MX, **captúralos en la app a nombre de
   partidos ya empezados no se tocan.
 - Después: confirma con un `select` que estén **todos** los partidos de la jornada (en
   J13 se perdieron 2 picks por captura incompleta) y repórtalo al usuario.
+- **Re-corrida pre-partido** (usuario, 26 oct 2026: "un poco antes de la jornada vuelve a
+  correr modelo y cambia si lo crees necesario, autorizo todo en cuanto a querys y a
+  llenar tus pronósticos"): unas horas antes de cada bloque de partidos, refresca datos +
+  odds + fit, regenera los picks y actualiza en la app SOLO los picks de Claudio que
+  cambiaron y cuyo partido no ha empezado. Prográmalo con `send_later` al generar el
+  boleto y avisa al usuario qué cambió (o que nada) y por qué.
 
 ### Habilidad del pool: shrinkage empírico-Bayes (medido, NO es un knob)
 
