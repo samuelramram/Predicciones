@@ -464,7 +464,7 @@ inaccesibles. La ventaja sigue estando en la quiniela (0% de comisión).
 
 Este documento (y `ingest/odds.py`) asumían que no existía un feed gratuito de
 momios históricos de Liga MX, por lo que el peso del mercado en el blend
-(`blend_odds_weight=0.55`) "no se podía backtestear". **Sí existe:**
+(`blend_odds_weight`, entonces 0.55) "no se podía backtestear". **Sí existe:**
 Football-Data.co.uk publica `new/MEX.csv` con cada partido de Liga MX desde 2012
 y sus precios de **cierre** (Pinnacle, promedio, máximo, Betfair, Bet365).
 
@@ -510,3 +510,31 @@ Brier = suma sobre 1/X/2 (uniforme 0.667). Pruebas pareadas contra producción:
 
 Siguiente: liga EN VIVO (boletos sellados por jornada en `data/liga/ledger.jsonl`,
 Samuel por Telegram vía OpenClaw), y los bots con LLM (reportero, corazonudo).
+
+
+### 9.2b Re-medición tras J14 (26 oct 2026) → peso del mercado 0.9
+
+Con 960 partidos (2024-01 → J14 2026) y momios de cierre, `liga_backtest --sweep
+0.75,0.9,1.0 --aprendiz`, pareado contra producción (0.55) en los mismos partidos:
+
+| bot | pts | exactos | Brier | Δpts (z) | ΔBrier (z) |
+|---|---|---|---|---|---|
+| calibrado 1.0 | 609 | 102 | 0.5847 | +18 (+1.73) | −0.0028 (−1.20) |
+| borrego | 608 | 104 | 0.5847 | +17 (+1.17) | −0.0028 (−1.20) |
+| calibrado 0.9 | 604 | 100 | 0.5847 | +13 (+1.45) | −0.0028 (−1.55) |
+| calibrado 0.75 | 600 | 95 | 0.5854 | +9 (+1.57) | −0.0021 (−2.05) |
+| aprendiz (llegó a 0.84) | 595 | 94 | 0.5861 | +4 (+1.00) | −0.0014 (−1.86) |
+| **calibrado 0.55 (producción)** | 591 | 94 | 0.5875 | — | — |
+| estadístico | 588 | 96 | 0.5994 | −3 (−0.31) | +0.0119 (+4.34) |
+
+Apertura 2026 solo (114 partidos): borrego 65 pts, 0.9 → 61, 0.55 → 56; Brier
+0.9 vs 0.55 −0.0134 (z=−2.33). La auditoría del pool (106 partidos) dio la mezcla
+peor que el mercado puro con z=+2.4.
+
+Ninguna diferencia de **puntos** pasa |z|=2, pero el **Brier** se mueve siempre hacia
+el mercado: en la serie larga con 0.75 llega a z=−2.05, y en el torneo actual con
+0.75/0.9/1.0 a z≈−2.3. La conclusión de 9.2 ("no hay evidencia para mover el 0.55")
+salió de una muestra más corta y ya no se sostiene. **Producción pasa a 0.9**
+(`leagues._LIGAMX_MODEL`), la misma decisión que en Europa: el modelo solo aporta la
+forma de los marcadores. Las entradas del source_tracker y del ledger CLV anteriores
+a J15 se registraron con 0.55.

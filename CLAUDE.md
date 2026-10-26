@@ -109,7 +109,7 @@ python -m wc_predictor.pipeline.ligamx_clv report    # → outputs/ligamx_clv.ht
 # 5) Backtest walk-forward (validación out-of-sample, sin odds)
 python -m wc_predictor.pipeline.ligamx_backtest --since 2025-07-01
 
-# 6) Tracker de fuentes — ¿le gana el BLEND (55% mercado) al modelo solo y al
+# 6) Tracker de fuentes — ¿le gana el BLEND (90% mercado desde J15) al modelo solo y al
 #    mercado solo? El peso del mercado NO se puede backtestear (no hay feed
 #    histórico de odds de Liga MX), así que se MIDE en vivo: log por jornada →
 #    settle con resultados → report acumulado. En ~5-6 jornadas dice si conviene
@@ -198,15 +198,14 @@ mercado con los partidos ya jugados (log-pool estadístico×mercado, mejor log-l
 hacia el de producción: `w = prior + (w*−prior)·n/(n+300)`, ventana 1,500, acotado 0.2–1.
 Sale del libro sellado (estadístico vs borrego), así que es reproducible. Backtest
 (`europa_backtest --aprendiz`, `liga_backtest --aprendiz`): en Europa converge a ~0.97 y
-empata al calibrado (Brier z≈0); en Liga MX sube de 0.55 a ~0.75–0.8 con Brier −0.0009
-(z≈−1.2, no significativo), +3 pts (z≈0.8). Es un experimento en vivo, no una mejora probada:
-no muevas `blend_odds_weight` de producción por esto. `seal_bots` ya no sella partidos
+empata al calibrado (Brier z≈0); en Liga MX subió de 0.55 a ~0.84 con Brier −0.0014
+(z≈−1.9), +4 pts (z≈1.0). Junto con el sweep, eso movió producción a 0.9 (ver Calibración). `seal_bots` ya no sella partidos
 empezados (un bot que entra a media semana solo juega lo que falta).
 
 **Liga MX en vivo** (`pipeline.ligamx_live`, sin API keys): próximos partidos y momios de
 Football-Data `new_league_fixtures.csv`; re-ajusta con `matches_history.csv` + los
 resultados nuevos de `historical_odds.csv` (MEX.csv, refrescado por la Action diaria).
-Bots = los de `liga_backtest` (mercado 0.55). Jornada `mx-AAAA-Jnn`; el boleto de Samuel
+Bots = los de `liga_backtest` (mercado 0.9 desde J15). Jornada `mx-AAAA-Jnn`; el boleto de Samuel
 son TODOS los partidos. Sin momios de totales para Liga MX: O/U y BTTS solo por Brier.
 
 ```bash
@@ -240,11 +239,16 @@ cambio de puntos.** El 1X2 ya está casi perfectamente calibrado (local/empate/v
 dentro de ±1pp) y los exactos (~9-10%) van a la par del campo. **No metas knobs de
 calibración: no encienden nada.** La ganancia fina vive en señal nueva, no en tuning:
 
-- **Peso del mercado (0.55):** el predictor más fuerte y lo único que corrige la
-  sobreconfianza del modelo en el rango medio (el modelo solo sobrevalora a los
-  cold-start como Atlante). **Ya es backtesteable** (momios de Football-Data, docs
-  §9): quitar el mercado empeora el Brier con z≈+3.8 (el mercado SÍ aporta);
-  subirlo a 0.75–0.9 mejora un poco pero sin significancia (|z|<1.5) → 0.55 se queda.
+- **Peso del mercado: 0.9 desde J15 (antes 0.55).** Medido con `liga_backtest` (momios de
+  cierre de Football-Data, pareado contra 0.55 en los mismos partidos). En 960 partidos
+  (2024 → J14) todo peso ≥0.75 mejora el Brier (0.75 z=−2.05, 0.9 z=−1.55, 1.0 z=−1.20; +13
+  pts con 0.9, z=+1.45). En el Apertura 2026 solo (114), 0.9 mejora el Brier con z=−2.33. El
+  bot sin mercado es peor que el mercado (z=+4.3 en 960). La auditoría del pool en vivo
+  (106 partidos) dio blend vs mercado puro Brier +0.018 (z=+2.4), y el aprendiz ya había
+  subido solo de 0.55 a 0.84. Es la misma decisión que en Europa: la línea de cierre le gana
+  al modelo, y 0.9 deja una astilla de modelo para la forma de los marcadores. Lección: el
+  "0.55 se queda" salió de una muestra corta; re-mide con `liga_backtest --sweep` cada
+  pocas jornadas en vez de defender el número.
 - **Congestión (Leagues Cup):** el efecto de descanso corto en el histórico de Liga
   MX midió **~0** (prueba pareada por equipo: Δ −0.014 PPG, Δ −0.07 goles, t≈−0.2).
   Por eso **no se cablea ninguna penalización de λ**; se marcan los equipos con carga
@@ -410,7 +414,7 @@ proyección Monte-Carlo. El pool puntúa **cada leg a 90'** como cualquier parti
 así que los picks por leg salen del mismo optimizador.
 
 **xG vs goles (decisión):** se evaluó cablear xG (fbref) y **se descartó por
-ahora** — fbref responde 403 detrás del proxy, y con el **mercado al 55% del
+ahora** — fbref responde 403 detrás del proxy, y con el **mercado al 90% del
 blend (que ya ES un modelo xG)** el margen de xG sobre un modelo de goles bien
 calibrado es chico y en parte redundante. Goles + odds gana en ROI. Si algún día
 se quiere xG, la vía es API-Football (`API_FOOTBALL_KEY`) como experimento medido
