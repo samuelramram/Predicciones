@@ -557,3 +557,20 @@ evidencia directa (la de solo forma) sale negativa. Por eso el switch se queda e
 `False`: se re-evalúa cuando haya totales históricos de Liga MX o más muestra en vivo.
 Europa conserva su ancla (ya era su comportamiento).
 
+
+### 9.2d ¿Faltan goles? (26 oct 2026) → no, y subirlos no da puntos
+
+Con 3.05 goles/partido en el Apertura y Claudio picando marcadores de ~1.9 goles, se midió:
+
+- **Nivel de goles por torneo** (rol regular): 2.63–3.10 entre A2023 y C2026, con un promedio
+  de 2.88. El Apertura 2026 va en 3.01 (z=+0.86 vs el histórico), y los partidos de ≥3
+  goles van en 52%, MENOS que el 55–58% de siempre. El promedio lo inflan unas cuantas
+  goleadas (5-0, 3-5, 2-5, 4-3), y a esas no se les atina el exacto con ningún modelo.
+- **Sweep de λ ×1.00 / ×1.08 / ×1.15** (experimento con monkeypatch, liga_backtest pareado;
+  no hay perilla de goles en Liga MX). En 960 partidos, el calibrado queda 604 → 604 → 609
+  pts (+5, z=+0.63) y 100 → 100 → 105 exactos. En el Apertura 2026 (114), 61 → 63 → 64
+  pts (+3, z=+1.14).
+
+Dirección leve a favor de más goles, sin significancia, y en la serie larga el fit ya
+predice el nivel correcto (2.86 vs 2.84). No se agrega perilla. Se re-mide al cierre del
+torneo con la muestra completa.
