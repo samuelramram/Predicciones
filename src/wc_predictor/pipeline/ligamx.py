@@ -38,6 +38,7 @@ from pathlib import Path
 from wc_predictor.config import OUTPUTS_DIR
 from wc_predictor.leagues import LIGAMX_APERTURA_PROFILE
 from wc_predictor.model.blend import blend_three_sources
+from wc_predictor.model.implied import anchor_lambdas
 from wc_predictor.model.poisson_dc import (
     fit_dc_model,
     load_fit,
@@ -188,7 +189,8 @@ def _odds_weights(mcfg, have_odds: bool) -> tuple[float, float, float]:
 def blended_matchup(home: str, away: str, fit, elos: dict[str, float],
                     altitudes: dict[str, float], mcfg,
                     odds_1x2: tuple[float, float, float] | None = None,
-                    liguilla: bool = False) -> dict | None:
+                    liguilla: bool = False,
+                    market_over25: float | None = None) -> dict | None:
     """Blended score matrix + 1X2 for one home/away pairing — the shared core of a
     Liga MX prediction (per-team localía + altitude differential + Elo, and the
     market when supplied). Returns None if either side lacks fitted strengths.
@@ -214,12 +216,17 @@ def blended_matchup(home: str, away: str, fit, elos: dict[str, float],
     if liguilla:
         lh *= mcfg.ko_goal_env_ratio
         la *= mcfg.ko_goal_env_ratio
+    w_po, w_el, w_od = _odds_weights(mcfg, odds_1x2 is not None)
+    if mcfg.market_lambda_anchor and odds_1x2 is not None and w_od > 0:
+        # Exact-score shape follows the market too: rates pulled toward the ones
+        # implied by its 1X2 (+ Over 2.5 when the feed has it; else the model's
+        # own total stays and only the home/away split moves).
+        lh, la = anchor_lambdas(lh, la, odds_1x2, market_over25, mcfg.dc_rho, w_od)
     # Elo 1X2 with home bonus.
     r_h = elos.get(home, 1500.0)
     r_a = elos.get(away, 1500.0)
     elo_p1, elo_px, elo_p2 = elo_to_1x2_probs(r_h, r_a, mcfg.elo_home_bonus)
     # Poisson·DC score matrix → blend with Elo (+ odds when available).
-    w_po, w_el, w_od = _odds_weights(mcfg, odds_1x2 is not None)
     pcells, pp1, ppx, pp2, pmass, pmax = build_score_matrix(lh, la, mcfg)
     cells_b, p1_b, px_b, p2_b = blend_three_sources(
         pcells, (pp1, ppx, pp2), (elo_p1, elo_px, elo_p2), odds_1x2,
@@ -271,7 +278,8 @@ def predict_fixture(fx: dict, fit, elos: dict[str, float], altitudes: dict[str, 
     odds_1x2 = (odds_entry["p1"], odds_entry["px"], odds_entry["p2"]) if odds_entry else None
 
     m = blended_matchup(home, away, fit, elos, altitudes, mcfg, odds_1x2=odds_1x2,
-                        liguilla=liguilla)
+                        liguilla=liguilla,
+                        market_over25=(odds_entry or {}).get("p_over25"))
     if m is None:
         return {"match_id": fx.get("match_id"), "home": home, "away": away,
                 "error": "missing strengths"}
@@ -453,6 +461,20 @@ def _regular_matches(fx_doc: dict) -> list[dict]:
     return [m for m in fx_doc["matches"] if m.get("stage") in (None, "regular")]
 
 
+def with_market_totals(odds: dict, markets_path=None) -> dict:
+    """Adds the de-vigged P(Over 2.5) from odds_markets.json to each 1X2 entry
+    (key ``p_over25``) so the goal rates can be anchored to the market total."""
+    path = markets_path or (LIGAMX_DIR / "odds_markets.json")
+    if not path.exists():
+        return odds
+    mk = json.loads(path.read_text(encoding="utf-8")).get("matches", {})
+    out = {}
+    for key, e in odds.items():
+        over = ((mk.get(key) or {}).get("totals", {}).get("2.5", {}).get("fair", {}).get("over"))
+        out[key] = {**e, "p_over25": over} if over is not None else e
+    return out
+
+
 def run_picks(round_spec: str, objective: str = "ev") -> None:
     from wc_predictor.model.liguilla import LIGUILLA_ROUNDS
     if round_spec.strip().lower() in LIGUILLA_ROUNDS:
@@ -464,9 +486,11 @@ def run_picks(round_spec: str, objective: str = "ev") -> None:
     odds = {}
     odds_h2h = LIGAMX_DIR / "odds_h2h.json"
     if odds_h2h.exists():
-        odds = json.loads(odds_h2h.read_text(encoding="utf-8")).get("matches", {})
+        odds = with_market_totals(
+            json.loads(odds_h2h.read_text(encoding="utf-8")).get("matches", {}))
+        n_tot = sum(1 for e in odds.values() if e.get("p_over25") is not None)
         print(f"  odds cargadas para {len(odds)} partidos (blend 3 vías, "
-              f"{int(mcfg.blend_odds_weight*100)}% mercado)")
+              f"{int(mcfg.blend_odds_weight*100)}% mercado; Over 2.5 en {n_tot})")
     else:
         print("  sin odds_h2h.json — blend 2 vías (corre ingest.ligamx_odds). ")
 

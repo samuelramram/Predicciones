@@ -538,3 +538,22 @@ salió de una muestra más corta y ya no se sostiene. **Producción pasa a 0.9**
 (`leagues._LIGAMX_MODEL`), la misma decisión que en Europa: el modelo solo aporta la
 forma de los marcadores. Las entradas del source_tracker y del ledger CLV anteriores
 a J15 se registraron con 0.55.
+
+### 9.2c Ancla de tasas de gol al mercado (26 oct 2026) → se queda APAGADA
+
+`ModelConfig.market_lambda_anchor` jala λ hacia las tasas que reproducen el 1X2 (y el
+Over 2.5 cuando hay) del mercado, como ya hacía Europa. A/B pareado:
+
+- **Liga MX, solo forma** (Football-Data no trae totales; `liga_backtest --anchor`):
+  960 partidos → −4 pts (z=−0.71), 96 vs 100 exactos, Brier −0.0002 (z=−0.97). Apertura
+  2026 (114): −2 pts (z=−1.0). No ayuda.
+- **Europa, con totales** (`europa_backtest --no-anchor` vs default, 3,832 partidos):
+  calibrado +16 pts (z=+1.08), 441 vs 428 exactos, Brier 1X2 −0.0002/partido
+  (z=−1.68); borrego +14 pts, +16 exactos. Dirección a favor, sin significancia; las
+  apuestas AH "de valor" bajan de 532 a 46 (eran ilusión del modelo).
+
+Liga MX solo puede usar el ancla completa en vivo (totales de The Odds API), y la única
+evidencia directa (la de solo forma) sale negativa. Por eso el switch se queda en
+`False`: se re-evalúa cuando haya totales históricos de Liga MX o más muestra en vivo.
+Europa conserva su ancla (ya era su comportamiento).
+

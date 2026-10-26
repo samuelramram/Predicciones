@@ -45,7 +45,7 @@ OUT_JSON = PROFILE.data_dir.parent.parent / "outputs" / "liga_backtest.json"
 
 
 def run(since: str, sweep: tuple[float, ...] = (), mcfg=None, quiet: bool = False,
-        min_train: int = 100, aprendiz: bool = False) -> dict:
+        min_train: int = 100, aprendiz: bool = False, anchor: bool = False) -> dict:
     mcfg = mcfg or PROFILE.model
     rules = PROFILE.rules
     rows = load_history_rows()
@@ -55,6 +55,10 @@ def run(since: str, sweep: tuple[float, ...] = (), mcfg=None, quiet: bool = Fals
     prod_w = mcfg.blend_odds_weight
     names = ["estadistico", "calibrado", "borrego"] + [f"calibrado_w{w:g}" for w in sweep]
     names += ["aprendiz"] if aprendiz else []
+    # A/B of the goal-rate anchoring: the calibrado with the switch flipped. The
+    # Football-Data feed has no Liga MX totals, so it moves the home/away split only.
+    anc_name = ("calibrado_sin_ancla" if mcfg.market_lambda_anchor else "calibrado_ancla")
+    names += [anc_name] if anchor else []
     learn: list[tuple] = []          # aprendiz: (estadistico, market, outcome) of past weeks
     w_path: list[tuple] = []
     rec = {n: BotRecord(n) for n in names}
@@ -112,6 +116,10 @@ def run(since: str, sweep: tuple[float, ...] = (), mcfg=None, quiet: bool = Fals
                 tickets[f"calibrado_w{w:g}"] = ticket_from_prediction(
                     predict_fixture(fx, fit, elos, altitudes, wm, rules, odds=odds, liguilla=lig))
 
+            if anchor:
+                wm = replace(wk_mcfg, market_lambda_anchor=not wk_mcfg.market_lambda_anchor)
+                tickets[anc_name] = ticket_from_prediction(
+                    predict_fixture(fx, fit, elos, altitudes, wm, rules, odds=odds, liguilla=lig))
             if aprendiz:
                 wm = replace(wk_mcfg, blend_odds_weight=w_learn)
                 tickets["aprendiz"] = ticket_from_prediction(
@@ -170,12 +178,14 @@ def main(argv: list[str] | None = None) -> None:
     ap.add_argument("--since", default="2024-01-01")
     ap.add_argument("--sweep", default="", help="pesos de mercado extra para el calibrado, ej. 0.3,0.75,0.9")
     ap.add_argument("--aprendiz", action="store_true", help="agrega el bot aprendiz")
+    ap.add_argument("--anchor", action="store_true",
+                    help="A/B: el calibrado con el ancla de tasas de gol al mercado volteada")
     ap.add_argument("--no-fit-rho", dest="fit_rho", action="store_false", default=True)
     ap.add_argument("--out", default=str(OUT_JSON))
     args = ap.parse_args(argv)
     sweep = tuple(float(x) for x in args.sweep.split(",") if x.strip())
     mcfg = PROFILE.model if args.fit_rho else replace(PROFILE.model, fit_rho=False)
-    res = run(args.since, sweep=sweep, mcfg=mcfg, aprendiz=args.aprendiz)
+    res = run(args.since, sweep=sweep, mcfg=mcfg, aprendiz=args.aprendiz, anchor=args.anchor)
     if res.get("w_path"):
         print("Peso de mercado del aprendiz (semana, peso, partidos aprendidos):", res["w_path"])
     from pathlib import Path

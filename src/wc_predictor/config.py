@@ -146,6 +146,11 @@ class ModelConfig:
     blend_elo_weight: float = 0.30
     blend_poisson_weight: float = 0.70
     blend_odds_weight: float = 0.55
+    # Pull the Poisson goal rates toward the market-implied ones (1X2 + Over 2.5,
+    # model.implied.anchor_lambdas) with the odds weight, so the exact-score shape
+    # follows the market and not only the 1X2 marginals. Off by default (World Cup
+    # unchanged); Liga MX sets it from its own A/B (leagues._LIGAMX_MODEL).
+    market_lambda_anchor: bool = False
 
     # Outcomes the production optimizer may NOT pick by default. Draws are net
     # negative in the backtest (the model picks the right NUMBER of draws but not

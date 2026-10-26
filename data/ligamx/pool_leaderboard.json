@@ -1,6 +1,6 @@
 {
   "as_of": "2026-10-26",
-  "source": "Tabla de la app tras J14 (capturas del usuario). Solo los jugadores visibles; el resto sale de los exports.",
+  "source": "get_leaderboard('ligamx') de la BD de la app (Lovable, proyecto Quiniela Mundial) tras J14 — Tabla oficial completa.",
   "players": {
     "Arturo": [
       64,
@@ -48,6 +48,18 @@
     ],
     "Claudio": [
       46,
+      5
+    ],
+    "Bryan 2": [
+      45,
+      5
+    ],
+    "JIMMYLARA": [
+      34,
+      6
+    ],
+    "Erika": [
+      30,
       5
     ]
   }

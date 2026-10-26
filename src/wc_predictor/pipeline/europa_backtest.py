@@ -127,7 +127,8 @@ def run_league(code: str, since: str, mcfg=EUROPA_MODEL, min_train: int = 300,
             if opts.get("aprendiz"):
                 bots["aprendiz"] = w_learn
             views = {b: bot_view(r["home"], r["away"], fit, elos, wk_mcfg, mkt,
-                                 r["fair_over25"], w) for b, w in bots.items()}
+                                 r["fair_over25"], w, anchor=not opts.get("no_anchor"))
+                     for b, w in bots.items()}
             if any(v is None for v in views.values()):
                 continue
             hs, as_ = r["home_score"], r["away_score"]
@@ -262,6 +263,8 @@ def main(argv: list[str] | None = None) -> None:
                     help=f"peso del xG en el Poisson (default producción {XG_WEIGHT}; 0 = solo goles)")
     ap.add_argument("--aprendiz", action="store_true",
                     help="agrega el bot aprendiz (peso de mercado re-estimado cada semana)")
+    ap.add_argument("--no-anchor", action="store_true",
+                    help="A/B: no jala las tasas de gol al 1X2 + Over 2.5 del mercado")
     ap.add_argument("--rows-out", default=None, help="guarda el detalle por partido (para --compare)")
     ap.add_argument("--compare", nargs=2, metavar=("BASE", "VARIANTE"),
                     help="compara dos --rows-out con prueba pareada y sale")
@@ -276,7 +279,8 @@ def main(argv: list[str] | None = None) -> None:
                     print(f"  {k:<16} {v['diff_total']:+10} (z={v['z']:+.2f})")
         return
     opts = {"odds": args.odds, "half_life": args.half_life, "promoted": args.promoted,
-            "xg": args.xg, "aprendiz": args.aprendiz}
+            "xg": args.xg, "aprendiz": args.aprendiz,
+            "no_anchor": args.no_anchor}
     with ProcessPoolExecutor(max_workers=args.workers) as ex:
         n = len(args.leagues)
         results = list(ex.map(run_league, args.leagues, [args.since] * n, [EUROPA_MODEL] * n,
