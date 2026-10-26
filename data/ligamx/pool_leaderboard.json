@@ -1,18 +1,54 @@
 {
-  "as_of": "2026-10-11",
-  "source": "Tabla de la app tras J11 (capturas del usuario). Solo los jugadores visibles; el resto sale de los exports.",
+  "as_of": "2026-10-26",
+  "source": "Tabla de la app tras J14 (capturas del usuario). Solo los jugadores visibles; el resto sale de los exports.",
   "players": {
-    "Aldo": [47, 11],
-    "Arturo": [45, 10],
-    "Geovanni": [43, 8],
-    "Bryan Montiel": [42, 8],
-    "Yankee": [40, 8],
-    "Juan Ramon Galvan": [40, 7],
-    "El inquisidor de Excel": [40, 6],
-    "Adrián": [36, 9],
-    "Andrey": [34, 6],
-    "Bryan 2": [34, 4],
-    "Claudio": [34, 4],
-    "Alex villa": [32, 3]
+    "Arturo": [
+      64,
+      14
+    ],
+    "Aldo": [
+      62,
+      14
+    ],
+    "El inquisidor de Excel": [
+      60,
+      11
+    ],
+    "Bryan Montiel": [
+      59,
+      11
+    ],
+    "Yankee": [
+      57,
+      12
+    ],
+    "Geovanni": [
+      57,
+      10
+    ],
+    "Andrey": [
+      55,
+      12
+    ],
+    "Juan Ramon Galvan": [
+      55,
+      10
+    ],
+    "Adrián": [
+      49,
+      11
+    ],
+    "Juan Pablo": [
+      46,
+      7
+    ],
+    "Alex villa": [
+      46,
+      5
+    ],
+    "Claudio": [
+      46,
+      5
+    ]
   }
 }

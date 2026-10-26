@@ -1,69 +1,79 @@
 {
-  "as_of": "2026-10-23",
+  "as_of": "2026-10-26",
   "you": "Claudio",
-  "matches_resolved": 79,
+  "matches_resolved": 106,
   "total_matches": 152,
   "total_participants": 16,
   "players": [
     {
-      "name": "Aldo",
-      "points": 47,
-      "exactos": 11
-    },
-    {
       "name": "Arturo",
-      "points": 45,
-      "exactos": 10
+      "points": 64,
+      "exactos": 14
     },
     {
-      "name": "Geovanni",
-      "points": 43,
-      "exactos": 8
-    },
-    {
-      "name": "Bryan Montiel",
-      "points": 42,
-      "exactos": 8
-    },
-    {
-      "name": "Yankee",
-      "points": 40,
-      "exactos": 8
-    },
-    {
-      "name": "Juan Ramon Galvan",
-      "points": 40,
-      "exactos": 7
+      "name": "Aldo",
+      "points": 62,
+      "exactos": 14
     },
     {
       "name": "El inquisidor de Excel",
-      "points": 40,
-      "exactos": 6
+      "points": 60,
+      "exactos": 11
     },
     {
-      "name": "Adrián",
-      "points": 36,
-      "exactos": 9
+      "name": "Bryan Montiel",
+      "points": 59,
+      "exactos": 11
+    },
+    {
+      "name": "Yankee",
+      "points": 57,
+      "exactos": 12
+    },
+    {
+      "name": "Geovanni",
+      "points": 57,
+      "exactos": 10
     },
     {
       "name": "Andrey",
-      "points": 34,
-      "exactos": 6
+      "points": 55,
+      "exactos": 12
     },
     {
-      "name": "Bryan 2",
-      "points": 34,
-      "exactos": 4
+      "name": "Juan Ramon Galvan",
+      "points": 55,
+      "exactos": 10
     },
     {
-      "name": "Claudio",
-      "points": 34,
-      "exactos": 4
+      "name": "Adrián",
+      "points": 49,
+      "exactos": 11
+    },
+    {
+      "name": "Juan Pablo",
+      "points": 46,
+      "exactos": 7
     },
     {
       "name": "Alex villa",
-      "points": 32,
-      "exactos": 3
+      "points": 46,
+      "exactos": 5
+    },
+    {
+      "name": "Claudio",
+      "points": 46,
+      "exactos": 5
+    },
+    {
+      "name": "Bryan 2",
+      "points": 45,
+      "exactos": 5
+    },
+    {
+      "name": "JIMMYLARA",
+      "points": 34,
+      "exactos": 6
     },
     {
       "name": "Erika",
@@ -71,19 +81,9 @@
       "exactos": 5
     },
     {
-      "name": "Juan Pablo",
-      "points": 30,
-      "exactos": 4
-    },
-    {
       "name": "Innavoeg",
       "points": 27,
       "exactos": 4
-    },
-    {
-      "name": "JIMMYLARA",
-      "points": 26,
-      "exactos": 5
     }
   ]
 }
