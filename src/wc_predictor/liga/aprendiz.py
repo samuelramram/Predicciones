@@ -1,6 +1,6 @@
 """Aprendiz: el bot que reajusta solo cuánto le cree al modelo y cuánto al mercado.
 
-El calibrado mezcla modelo y mercado con un peso FIJO (0.9 en Europa, 0.55 en Liga
+El calibrado mezcla modelo y mercado con un peso FIJO (0.9 en Europa y, desde J15 2026, en Liga
 MX), medido una vez en el backtest. El aprendiz arranca en ese mismo peso y cada
 jornada lo vuelve a estimar con lo que ya pasó:
 

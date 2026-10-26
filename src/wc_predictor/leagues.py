@@ -167,6 +167,16 @@ _LIGAMX_MODEL = replace(
     elo_home_bonus=100.0,
     blend_poisson_weight=0.60,
     blend_elo_weight=0.40,
+    # Market weight 0.9 (was the 0.55 literature default), measured with
+    # liga_backtest on Football-Data closing odds, paired vs 0.55 on the SAME
+    # matches. 960 matches 2024-01 → J14 2026: Brier 1X2 0.5875 → 0.5847
+    # (w0.75 z=−2.05, w0.9 z=−1.55, w1.0 z=−1.20), +13 pts (z=+1.45). Apertura
+    # 2026 alone (114): Brier 0.6518 → 0.6384 (z=−2.33), +5 pts; the model-only
+    # bot is worse than the market with z=+3.4. Live pool audit (106 matches):
+    # blend vs pure market Brier +0.018, z=+2.4. The aprendiz, learning the weight
+    # from played matches, had drifted 0.55 → 0.84. Same call as Europa (0.9):
+    # the closing line beats the model; 0.9 keeps a sliver for the score shape.
+    blend_odds_weight=0.9,
     # --- Liguilla calibration, measured on Liga MX playoff matches --------------
     # The `ko_*` knobs were calibrated on World Cup knockouts; re-measuring them
     # on 99 Liga MX playoff matches (2023-2026, isolated once the ingest started

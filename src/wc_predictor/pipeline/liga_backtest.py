@@ -11,7 +11,7 @@ partidos.
 
 Bots (ver ``liga.bots``): estadistico (sin mercado), calibrado (blend de
 producción), borrego (mercado puro). ``--sweep`` agrega variantes del calibrado
-con otro peso de mercado — así se mide por fin el ``blend_odds_weight`` (0.55),
+con otro peso de mercado — así se mide por fin el ``blend_odds_weight`` (0.9 desde J15; antes 0.55),
 que hasta hoy era un default de literatura "no backtesteable".
 
 Bankroll: FICTICIO, 1,000 por bot, apuesta plana de 10 al precio PROMEDIO de

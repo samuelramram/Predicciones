@@ -13,7 +13,7 @@ Todo sale de Football-Data:
 
 Los 3 bots son los mismos del backtest de Liga MX (``liga_backtest``):
 estadistico (modelo de producción sin mercado), calibrado (blend de producción,
-mercado 0.55) y borrego (favorito del mercado + marcador típico). El boleto de
+mercado 0.9 desde J15) y borrego (favorito del mercado + marcador típico). El boleto de
 Samuel en Liga MX = TODOS los partidos de la jornada, numerados por hora de inicio.
 
 Football-Data no publica momios de totales para Liga MX: Over 2.5 y ambos anotan

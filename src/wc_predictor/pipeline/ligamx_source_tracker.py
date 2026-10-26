@@ -1,12 +1,12 @@
-"""Tracker de fuentes: ¿le gana el BLEND (55% mercado) al modelo solo y al mercado solo?
+"""Tracker de fuentes: ¿le gana el BLEND (modelo + mercado) al modelo solo y al mercado solo?
 
 El backtest walk-forward mide la habilidad base SIN odds (no hay feed histórico de
-odds de Liga MX), así que el peso del mercado (`blend_odds_weight`, hoy 0.55) es la
+odds de Liga MX), así que el peso del mercado (`blend_odds_weight`, 0.55 hasta J14; 0.9 desde J15) es la
 perilla que NO se puede validar en retrospectiva. Este tracker la mide EN VIVO: cada
 jornada registra, por partido, el pick 1X2 de tres fuentes —
 
   * modelo solo  (Poisson+Elo, odds=None),
-  * blend        (producción: modelo + mercado al 55%),
+  * blend        (producción: modelo + mercado; 55% hasta J14, 90% desde J15),
   * mercado solo (argmax de la línea devigada),
 
 y al liquidar con resultados compara su acierto de 1X2 (y los puntos de quiniela
@@ -32,6 +32,7 @@ from collections import defaultdict
 from datetime import datetime
 
 from wc_predictor.config import OUTPUTS_DIR
+from wc_predictor.leagues import LIGAMX_APERTURA_PROFILE
 from wc_predictor.pipeline.ligamx import (FIXTURES_JSON, LIGAMX_DIR, _load_model,
                                           predict_fixture)
 from wc_predictor.scoring.quiniela import score_actual
@@ -193,16 +194,17 @@ def cmd_report() -> None:
           f"({len(entries)} registrados)")
     if a["n"]:
         print(f"  {'fuente':<12}{'acierto 1X2':>13}{'puntos':>9}{'exactos':>9}")
-        for src, lab in (("model", "modelo solo"), ("blend", "blend 55%"), ("market", "mercado solo")):
+        w = LIGAMX_APERTURA_PROFILE.model.blend_odds_weight
+        for src, lab in (("model", "modelo solo"), ("blend", "blend"), ("market", "mercado solo")):
             s = a["sources"][src]
             hr = f"{s['hit_rate']*100:.1f}%" if s["hit_rate"] is not None else "—"
             ex = "n/a" if src == "market" else str(s["exactos"])
             print(f"  {lab:<12}{hr:>13}{s['points']:>9}{ex:>9}")
         best = max(a["sources"], key=lambda s: a["sources"][s]["hit_1x2"])
         verdict = ("aún pocos partidos — sigue registrando" if a["n"] < 27 else
-                   "mercado-solo lidera → súbele peso al mercado (>0.55)" if best == "market" else
-                   "modelo-solo lidera → bájale peso al mercado (<0.55)" if best == "model" else
-                   "el blend lidera → 0.55 va bien")
+                   f"mercado-solo lidera → súbele peso al mercado (>{w:g})" if best == "market" else
+                   f"modelo-solo lidera → bájale peso al mercado (<{w:g})" if best == "model" else
+                   f"el blend lidera → {w:g} va bien")
         print(f"  Veredicto (1X2): {verdict}")
         c = a["congestion"]
         if c["n_cong"]:
