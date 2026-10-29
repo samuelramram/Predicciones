@@ -1,5 +1,5 @@
 {
-  "version": "2026.10.26",
+  "version": "2026.10.29",
   "league": "Liga MX",
   "season": "2026-2027",
   "sources": {
@@ -2013,7 +2013,7 @@
       "jornada": 14,
       "round_label": "Jornada 14",
       "date": "2026-10-26",
-      "date_utc": "2026-10-26T03:10:00",
+      "date_utc": "2026-10-26T03:00:00",
       "venue": "Estadio Caliente",
       "home": "Tijuana",
       "away": "Santos",

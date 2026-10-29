@@ -1,13 +1,13 @@
 {
-  "mu": 0.16950596652008934,
-  "gamma": 0.2702874780727315,
+  "mu": 0.1695073754550223,
+  "gamma": 0.27028740464032613,
   "rho": -0.075,
   "n_matches": 1141,
   "n_teams": 19,
   "half_life_days": 730,
   "ridge_lambda": 0.3,
   "converged": true,
-  "final_neg_log_lik": 2314.5178507764304,
+  "final_neg_log_lik": 2307.9352901218317,
   "teams": {
     "América": {
       "attack": 0.2658,
