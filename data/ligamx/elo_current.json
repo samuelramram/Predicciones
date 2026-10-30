@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-10-26",
+  "as_of": "2026-10-29",
   "source": "replay_ligamx",
   "teams": [
     {
@@ -8,7 +8,7 @@
     },
     {
       "team": "América",
-      "elo": 1652.23
+      "elo": 1642.46
     },
     {
       "team": "Guadalajara",
@@ -20,7 +20,7 @@
     },
     {
       "team": "Tijuana",
-      "elo": 1566.7
+      "elo": 1576.47
     },
     {
       "team": "Pachuca",
