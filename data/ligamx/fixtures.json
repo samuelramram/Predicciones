@@ -1,5 +1,5 @@
 {
-  "version": "2026.10.29",
+  "version": "2026.10.30",
   "league": "Liga MX",
   "season": "2026-2027",
   "sources": {
@@ -995,8 +995,8 @@
       "away": "Tijuana",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 1,
+      "away_score": 1
     },
     {
       "match_id": "m_826ad52294",
@@ -2093,7 +2093,7 @@
       "jornada": 15,
       "round_label": "Jornada 15",
       "date": "2026-11-01",
-      "date_utc": "2026-11-01T03:00:00",
+      "date_utc": "2026-11-01T03:10:00",
       "venue": "Estadio Azteca",
       "home": "América",
       "away": "Toluca",
@@ -2125,7 +2125,7 @@
       "jornada": 15,
       "round_label": "Jornada 15",
       "date": "2026-11-01",
-      "date_utc": "2026-11-01T01:00:00",
+      "date_utc": "2026-11-01T01:05:00",
       "venue": "Estadio BBVA",
       "home": "Monterrey",
       "away": "Tijuana",
@@ -2157,7 +2157,7 @@
       "jornada": 15,
       "round_label": "Jornada 15",
       "date": "2026-11-02",
-      "date_utc": "2026-11-02T01:00:00",
+      "date_utc": "2026-11-02T01:10:00",
       "venue": "Estadio Azteca",
       "home": "Cruz Azul",
       "away": "León",
