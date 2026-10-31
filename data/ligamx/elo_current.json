@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-10-29",
+  "as_of": "2026-10-31",
   "source": "replay_ligamx",
   "teams": [
     {
@@ -28,19 +28,15 @@
     },
     {
       "team": "Pumas",
-      "elo": 1533.1
+      "elo": 1547.97
     },
     {
-      "team": "Querétaro",
-      "elo": 1513.65
+      "team": "Atlas",
+      "elo": 1522.97
     },
     {
       "team": "León",
       "elo": 1502.85
-    },
-    {
-      "team": "Atlas",
-      "elo": 1497.85
     },
     {
       "team": "Tigres",
@@ -51,8 +47,12 @@
       "elo": 1489.7
     },
     {
+      "team": "Querétaro",
+      "elo": 1475.7
+    },
+    {
       "team": "San Luis",
-      "elo": 1488.77
+      "elo": 1463.65
     },
     {
       "team": "Santos",
@@ -67,16 +67,16 @@
       "elo": 1364.62
     },
     {
-      "team": "Puebla",
-      "elo": 1342.02
+      "team": "Juárez",
+      "elo": 1357.22
     },
     {
       "team": "Necaxa",
       "elo": 1335.41
     },
     {
-      "team": "Juárez",
-      "elo": 1319.27
+      "team": "Puebla",
+      "elo": 1327.15
     }
   ]
 }

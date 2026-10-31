@@ -1,5 +1,5 @@
 {
-  "version": "2026.10.30",
+  "version": "2026.10.31",
   "league": "Liga MX",
   "season": "2026-2027",
   "sources": {
@@ -2035,8 +2035,8 @@
       "away": "Querétaro",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 3,
+      "away_score": 1
     },
     {
       "match_id": "m_a7b91bedca",
@@ -2067,8 +2067,8 @@
       "away": "Pumas",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 1,
+      "away_score": 2
     },
     {
       "match_id": "m_a5cf9f250e",
@@ -2083,8 +2083,8 @@
       "away": "Atlas",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 0,
+      "away_score": 1
     },
     {
       "match_id": "m_076ac8edcd",
