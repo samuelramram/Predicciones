@@ -1,5 +1,5 @@
 {
-  "version": "2026.10.31",
+  "version": "2026.11.01",
   "league": "Liga MX",
   "season": "2026-2027",
   "sources": {
@@ -2051,8 +2051,8 @@
       "away": "Tigres",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 3,
+      "away_score": 0
     },
     {
       "match_id": "m_2f9dcba17a",
@@ -2094,13 +2094,13 @@
       "round_label": "Jornada 15",
       "date": "2026-11-01",
       "date_utc": "2026-11-01T03:10:00",
-      "venue": "Estadio Azteca",
+      "venue": "Estadio Banorte",
       "home": "América",
       "away": "Toluca",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 2,
+      "away_score": 2
     },
     {
       "match_id": "m_357c00ae5e",
@@ -2115,8 +2115,8 @@
       "away": "Atlante",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 4,
+      "away_score": 2
     },
     {
       "match_id": "m_72083fbad5",
@@ -2131,8 +2131,8 @@
       "away": "Tijuana",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 3,
+      "away_score": 3
     },
     {
       "match_id": "m_3dd50e79c7",
