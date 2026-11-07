@@ -1,10 +1,10 @@
 {
-  "as_of": "2026-11-01",
+  "as_of": "2026-11-02",
   "source": "replay_ligamx",
   "teams": [
     {
       "team": "Cruz Azul",
-      "elo": 1697.6
+      "elo": 1703.79
     },
     {
       "team": "Guadalajara",
@@ -36,7 +36,7 @@
     },
     {
       "team": "León",
-      "elo": 1502.85
+      "elo": 1496.66
     },
     {
       "team": "Monterrey",
@@ -51,12 +51,12 @@
       "elo": 1475.7
     },
     {
-      "team": "San Luis",
-      "elo": 1463.65
+      "team": "Santos",
+      "elo": 1470.64
     },
     {
-      "team": "Santos",
-      "elo": 1462.11
+      "team": "San Luis",
+      "elo": 1463.65
     },
     {
       "team": "Atlante",
@@ -71,12 +71,12 @@
       "elo": 1357.22
     },
     {
-      "team": "Necaxa",
-      "elo": 1335.41
-    },
-    {
       "team": "Puebla",
       "elo": 1327.15
+    },
+    {
+      "team": "Necaxa",
+      "elo": 1326.87
     }
   ]
 }
