@@ -1,10 +1,10 @@
 {
-  "as_of": "2026-11-07",
+  "as_of": "2026-11-08",
   "source": "replay_ligamx",
   "teams": [
     {
       "team": "Cruz Azul",
-      "elo": 1703.79
+      "elo": 1716.79
     },
     {
       "team": "Guadalajara",
@@ -12,15 +12,15 @@
     },
     {
       "team": "América",
-      "elo": 1634.93
+      "elo": 1635.68
     },
     {
       "team": "Toluca",
-      "elo": 1612.39
+      "elo": 1628.62
     },
     {
       "team": "Pachuca",
-      "elo": 1576.66
+      "elo": 1616.3
     },
     {
       "team": "Tijuana",
@@ -28,11 +28,7 @@
     },
     {
       "team": "Pumas",
-      "elo": 1547.97
-    },
-    {
-      "team": "Atlas",
-      "elo": 1522.97
+      "elo": 1547.22
     },
     {
       "team": "Santos",
@@ -43,16 +39,20 @@
       "elo": 1496.66
     },
     {
-      "team": "Monterrey",
-      "elo": 1488.94
-    },
-    {
-      "team": "Tigres",
-      "elo": 1476.78
+      "team": "Atlas",
+      "elo": 1483.33
     },
     {
       "team": "Querétaro",
       "elo": 1475.7
+    },
+    {
+      "team": "Monterrey",
+      "elo": 1472.7
+    },
+    {
+      "team": "Tigres",
+      "elo": 1463.78
     },
     {
       "team": "San Luis",
