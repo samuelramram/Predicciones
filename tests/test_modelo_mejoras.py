@@ -99,8 +99,14 @@ def test_understat_normalize_and_with_xg():
 
 
 def test_committed_xg_file_joins_history():
-    idx = us.index(us.load())
-    hist = fd.load()
+    xg = us.load()
+    idx = us.index(xg)
+    # The join is what's under test, not freshness: Understat is refreshed best-effort
+    # (continue-on-error in refresh-data.yml) and can lag or go down while Football-Data
+    # keeps adding matches (nov 2026: down since Nov 1). Only matches the xG file
+    # could cover count.
+    last = max(r["date"] for r in xg)
+    hist = [r for r in fd.load() if r["date"] <= last]
     miss = sum(1 for r in hist if us.lookup(idx, r["league"], r["home"], r["away"], r["date"]) is None)
     assert miss <= 0.005 * len(hist)
 
