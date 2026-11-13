@@ -1,5 +1,5 @@
 {
-  "version": "2026.11.08",
+  "version": "2026.11.13",
   "league": "Liga MX",
   "season": "2026-2027",
   "sources": {
@@ -2291,8 +2291,8 @@
       "away": "Guadalajara",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 1,
+      "away_score": 1
     },
     {
       "match_id": "m_770b819c6e",
@@ -2307,8 +2307,8 @@
       "away": "Puebla",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 0,
+      "away_score": 2
     },
     {
       "match_id": "m_e16fd8922b",
