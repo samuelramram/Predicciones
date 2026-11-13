@@ -87,6 +87,38 @@ openclaw automations add --name "liga-tablero" --agent claudio --cron "0 10 * * 
   --announce --channel telegram --to "1305320146"
 ```
 
+## 5. Bots sin LLM (recomendado): sellar y tablero sin gastar tokens
+
+Sellar los boletos de los bots y armar el tablero es puro código. Pagarle a Claudio
+(Sonnet) para que corra dos comandos es tirar la lana. En nov 2026 la key de Anthropic
+se quedó en ceros y **los bots dejaron de sellar 17 días sin avisar** (J13–J16 perdidas):
+cada automatización con LLM tronaba con `billing error` y no había respaldo.
+
+Con el interruptor prendido, el Utilero (que ya corre cada hora, sin LLM) hace eso solo:
+
+- **Sella** Liga MX y Europa con la misma imagen del sandbox de Claudio y **sin red**
+  (`docker run --network none`). Solo re-corre cuando cambian los partidos o los momios
+  que bajó (o cada 12 h), y lo nuevo entra como `…/2`: el calibrado se sella en cuanto
+  llega el momio, sin esperar a la siguiente automatización.
+- **Tablero** una vez al día desde las 10:00 CDMX. Si hay novedad y existe
+  `~/.config/liga/telegram.env`, manda el PNG y el texto por Telegram directo.
+
+```bash
+touch ~/.config/liga/autoseal
+# Opcional, para el tablero por Telegram (la llave se pide sin mostrarla):
+read -rsp "Token del bot de Telegram: " K && echo \
+  && printf 'TELEGRAM_BOT_TOKEN=%s\nTELEGRAM_CHAT_ID=1305320146\n' "$K" > ~/.config/liga/telegram.env \
+  && chmod 600 ~/.config/liga/telegram.env && unset K
+~/bin/liga-sync.sh | tail -8
+```
+
+Luego apaga las automatizaciones de OpenClaw que ya no hacen falta (`openclaw automations
+list`; para quitarlas, la sintaxis exacta en `openclaw automations --help`):
+`liga-jornada` y `liga-tablero` (las hace el Utilero), `liga-recordatorio` y `liga-tabla`
+(eran para el boleto de Samuel). `liga-reportero` es la única que de verdad necesita un
+LLM (busca noticias en la web, la más cara por página leída); si sigue, ponla en Haiku.
+Claudio queda solo para platicar por Telegram cuando le escribas.
+
 ## Resultados rápidos (TheSportsDB)
 
 Football-Data publica resultados con días de rezago; TheSportsDB los tiene minutos

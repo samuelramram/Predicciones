@@ -187,6 +187,10 @@ lo manda como archivo por Telegram.
 python -m wc_predictor.liga.tablero            # $LIGA_HOME/tablero/tablero-AAAA-MM-DD.html
 ```
 
+**Bots sin LLM** (nov 2026): con `~/.config/liga/autoseal` en el VPS, `liga-sync.sh` sella a los
+bots y arma el tablero sin pasar por Claudio (la key de Anthropic en ceros tuvo 17 días sin sellar).
+Sellar es código: no lo vuelvas a colgar de una automatización con LLM. Ver `deploy/vps/README.md` §5.
+
 **Resultados rápidos** (`ingest.liga_results`): Football-Data llega con días de rezago, así
 que el Utilero baja cada hora de TheSportsDB (eventsday, 5 ligas + Liga MX) los partidos
 sellados que ya terminaron → `$LIGA_HOME/results_live.csv`. Empareja por fecha ±1 y nombres
