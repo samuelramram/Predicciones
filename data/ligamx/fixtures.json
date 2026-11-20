@@ -1,5 +1,5 @@
 {
-  "version": "2026.11.08",
+  "version": "2026.11.19",
   "league": "Liga MX",
   "season": "2026-2027",
   "sources": {
@@ -1011,8 +1011,8 @@
       "away": "Monterrey",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 0,
+      "away_score": 1
     },
     {
       "match_id": "m_89a93bb512",
@@ -2291,8 +2291,8 @@
       "away": "Guadalajara",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 1,
+      "away_score": 1
     },
     {
       "match_id": "m_770b819c6e",
@@ -2307,8 +2307,8 @@
       "away": "Puebla",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 0,
+      "away_score": 2
     },
     {
       "match_id": "m_e16fd8922b",
@@ -2333,7 +2333,7 @@
       "jornada": 17,
       "round_label": "Jornada 17",
       "date": "2026-11-21",
-      "date_utc": "2026-11-21T23:00:00",
+      "date_utc": "2026-11-21T22:50:00",
       "venue": "Estadio Hidalgo",
       "home": "Pachuca",
       "away": "Toluca",
@@ -2381,7 +2381,7 @@
       "jornada": 17,
       "round_label": "Jornada 17",
       "date": "2026-11-21",
-      "date_utc": "2026-11-21T03:00:00",
+      "date_utc": "2026-11-21T03:10:00",
       "venue": "Estadio Caliente",
       "home": "Tijuana",
       "away": "Atlante",
