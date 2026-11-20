@@ -1,13 +1,13 @@
 {
-  "mu": 0.18067733215954718,
-  "gamma": 0.2644160521877953,
+  "mu": 0.18067009586851063,
+  "gamma": 0.26442380299860146,
   "rho": -0.05,
   "n_matches": 1161,
   "n_teams": 19,
   "half_life_days": 730,
   "ridge_lambda": 0.3,
   "converged": true,
-  "final_neg_log_lik": 2334.863640421315,
+  "final_neg_log_lik": 2332.648054213425,
   "teams": {
     "América": {
       "attack": 0.2651,
@@ -45,7 +45,7 @@
       "n_matches": 124
     },
     "Mazatlán": {
-      "attack": -0.2073,
+      "attack": -0.2074,
       "defense": -0.1752,
       "n_matches": 103
     },
@@ -100,8 +100,8 @@
       "n_matches": 125
     },
     "Toluca": {
-      "attack": 0.3446,
-      "defense": 0.2163,
+      "attack": 0.3447,
+      "defense": 0.2164,
       "n_matches": 136
     }
   },
