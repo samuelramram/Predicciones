@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-11-08",
+  "as_of": "2026-11-14",
   "source": "replay_ligamx",
   "teams": [
     {
@@ -8,7 +8,7 @@
     },
     {
       "team": "Guadalajara",
-      "elo": 1644.08
+      "elo": 1641.37
     },
     {
       "team": "América",
@@ -36,19 +36,15 @@
     },
     {
       "team": "León",
-      "elo": 1496.66
+      "elo": 1499.37
+    },
+    {
+      "team": "Monterrey",
+      "elo": 1495.81
     },
     {
       "team": "Atlas",
       "elo": 1483.33
-    },
-    {
-      "team": "Querétaro",
-      "elo": 1475.7
-    },
-    {
-      "team": "Monterrey",
-      "elo": 1472.7
     },
     {
       "team": "Tigres",
@@ -59,6 +55,10 @@
       "elo": 1432.99
     },
     {
+      "team": "Querétaro",
+      "elo": 1404.16
+    },
+    {
       "team": "Atlante",
       "elo": 1396.54
     },
@@ -67,16 +67,16 @@
       "elo": 1387.88
     },
     {
+      "team": "Puebla",
+      "elo": 1375.57
+    },
+    {
       "team": "Mazatlán",
       "elo": 1364.62
     },
     {
       "team": "Necaxa",
       "elo": 1355.03
-    },
-    {
-      "team": "Puebla",
-      "elo": 1327.15
     }
   ]
 }
