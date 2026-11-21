@@ -1,5 +1,5 @@
 {
-  "version": "2026.11.20",
+  "version": "2026.11.21",
   "league": "Liga MX",
   "season": "2026-2027",
   "sources": {
@@ -2323,8 +2323,8 @@
       "away": "Atlas",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 3,
+      "away_score": 3
     },
     {
       "match_id": "m_165548ff95",
@@ -2355,8 +2355,8 @@
       "away": "San Luis",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 1,
+      "away_score": 1
     },
     {
       "match_id": "m_64a3b02954",
@@ -2387,8 +2387,8 @@
       "away": "Atlante",
       "home_locked": true,
       "away_locked": true,
-      "home_score": null,
-      "away_score": null
+      "home_score": 1,
+      "away_score": 0
     },
     {
       "match_id": "m_f1cafa0553",
@@ -2445,7 +2445,7 @@
       "jornada": 17,
       "round_label": "Jornada 17",
       "date": "2026-11-23",
-      "date_utc": "2026-11-23T01:00:00",
+      "date_utc": "2026-11-23T01:10:00",
       "venue": "Estadio La Corregidora",
       "home": "Querétaro",
       "away": "Necaxa",
