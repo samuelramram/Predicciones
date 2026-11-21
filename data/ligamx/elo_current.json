@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-11-14",
+  "as_of": "2026-11-21",
   "source": "replay_ligamx",
   "teams": [
     {
@@ -24,7 +24,7 @@
     },
     {
       "team": "Tijuana",
-      "elo": 1549.08
+      "elo": 1556.65
     },
     {
       "team": "Pumas",
@@ -44,7 +44,7 @@
     },
     {
       "team": "Atlas",
-      "elo": 1483.33
+      "elo": 1483.59
     },
     {
       "team": "Tigres",
@@ -52,7 +52,7 @@
     },
     {
       "team": "San Luis",
-      "elo": 1432.99
+      "elo": 1435.43
     },
     {
       "team": "Querétaro",
@@ -60,15 +60,15 @@
     },
     {
       "team": "Atlante",
-      "elo": 1396.54
+      "elo": 1388.96
     },
     {
       "team": "Juárez",
-      "elo": 1387.88
+      "elo": 1387.62
     },
     {
       "team": "Puebla",
-      "elo": 1375.57
+      "elo": 1373.13
     },
     {
       "team": "Mazatlán",
