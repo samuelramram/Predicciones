@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-11-21",
+  "as_of": "2026-11-22",
   "source": "replay_ligamx",
   "teams": [
     {
@@ -11,44 +11,44 @@
       "elo": 1641.37
     },
     {
+      "team": "Pachuca",
+      "elo": 1638.88
+    },
+    {
       "team": "América",
-      "elo": 1635.68
+      "elo": 1611.6
     },
     {
       "team": "Toluca",
-      "elo": 1628.62
-    },
-    {
-      "team": "Pachuca",
-      "elo": 1616.3
+      "elo": 1606.04
     },
     {
       "team": "Tijuana",
       "elo": 1556.65
     },
     {
-      "team": "Pumas",
-      "elo": 1547.22
-    },
-    {
-      "team": "Santos",
-      "elo": 1505.87
+      "team": "Monterrey",
+      "elo": 1538.12
     },
     {
       "team": "León",
-      "elo": 1499.37
+      "elo": 1525.32
     },
     {
-      "team": "Monterrey",
-      "elo": 1495.81
+      "team": "Pumas",
+      "elo": 1504.92
+    },
+    {
+      "team": "Tigres",
+      "elo": 1487.86
     },
     {
       "team": "Atlas",
       "elo": 1483.59
     },
     {
-      "team": "Tigres",
-      "elo": 1463.78
+      "team": "Santos",
+      "elo": 1479.92
     },
     {
       "team": "San Luis",
