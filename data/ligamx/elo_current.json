@@ -1,14 +1,14 @@
 {
-  "as_of": "2026-11-22",
+  "as_of": "2026-11-23",
   "source": "replay_ligamx",
   "teams": [
     {
       "team": "Cruz Azul",
-      "elo": 1716.79
+      "elo": 1698.2
     },
     {
       "team": "Guadalajara",
-      "elo": 1641.37
+      "elo": 1659.96
     },
     {
       "team": "Pachuca",
@@ -56,7 +56,7 @@
     },
     {
       "team": "Querétaro",
-      "elo": 1404.16
+      "elo": 1396.06
     },
     {
       "team": "Atlante",
@@ -76,7 +76,7 @@
     },
     {
       "team": "Necaxa",
-      "elo": 1355.03
+      "elo": 1363.12
     }
   ]
 }

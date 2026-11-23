@@ -266,6 +266,20 @@ def _liguilla_forbid(mcfg, px_blended: float, modal_outcome: str,
     return forbid
 
 
+def shift_market_draw(p: tuple[float, float, float], shift: float
+                      ) -> tuple[float, float, float]:
+    """Add `shift` to the market's P(X), rescaling P(1)/P(2) proportionally so
+    the 1X2 still sums to 1 (and keeps the market's home/away split). Used for
+    liguilla legs, where the closing line measurably under-prices the draw —
+    see ModelConfig.liguilla_market_draw_shift."""
+    p1, px, p2 = p
+    if not shift:
+        return p
+    new_x = min(max(px + shift, 0.0), 0.95)
+    k = (1.0 - new_x) / max(p1 + p2, 1e-12)
+    return p1 * k, new_x, p2 * k
+
+
 def predict_fixture(fx: dict, fit, elos: dict[str, float], altitudes: dict[str, float],
                     mcfg, rules, odds: dict | None = None,
                     liguilla: bool = False) -> dict | None:
@@ -276,6 +290,8 @@ def predict_fixture(fx: dict, fit, elos: dict[str, float], altitudes: dict[str, 
     # Bookmaker 1X2 for this match, if covered (de-vigged closing/live line).
     odds_entry = (odds or {}).get(f"{home}|{away}")
     odds_1x2 = (odds_entry["p1"], odds_entry["px"], odds_entry["p2"]) if odds_entry else None
+    if liguilla and odds_1x2 is not None:
+        odds_1x2 = shift_market_draw(odds_1x2, mcfg.liguilla_market_draw_shift)
 
     m = blended_matchup(home, away, fit, elos, altitudes, mcfg, odds_1x2=odds_1x2,
                         liguilla=liguilla,
@@ -475,10 +491,10 @@ def with_market_totals(odds: dict, markets_path=None) -> dict:
     return out
 
 
-def run_picks(round_spec: str, objective: str = "ev") -> None:
+def run_picks(round_spec: str, objective: str = "ev", leg: str | None = None) -> None:
     from wc_predictor.model.liguilla import LIGUILLA_ROUNDS
     if round_spec.strip().lower() in LIGUILLA_ROUNDS:
-        return run_liguilla_picks(round_spec.strip().lower())
+        return run_liguilla_picks(round_spec.strip().lower(), objective=objective, leg=leg)
 
     fit, mcfg, rules, elos, altitudes = _load_model()
     fx_doc = json.loads(FIXTURES_JSON.read_text(encoding="utf-8"))
@@ -767,10 +783,127 @@ def _resolve_bracket(round_key: str, table_now):
     return [build_final([s.high for s in sf], seed_of)], True
 
 
-def run_liguilla_picks(round_key: str) -> None:
+LIGUILLA_POOL_JSON = LIGAMX_DIR / "liguilla_pool.json"
+
+
+def _liguilla_legs(fx_doc: dict) -> list[dict]:
+    return [m for m in fx_doc["matches"] if m.get("stage") == "liguilla"]
+
+
+def load_liguilla_pool_context(path: Path = LIGUILLA_POOL_JSON, resolved: int = 0):
+    """The LIGUILLA pool as its own tournament: a fresh table (everyone starts
+    at the liguilla points in the file — 0 before the first leg), 14 legs, and
+    each player's skill/draw habit carried over from the regular season.
+
+    Why not the regular-season standings: in the app the liguilla is a separate
+    tournament (``matchdays.tournament = 'liguilla_mx'``) with its own pot. Fed
+    the regular table, the optimizer saw Claudio 26 pts behind and would chase a
+    gap that does not exist in this pool.
+
+    Skill: per-match 1X2/exact rates from the regular season, shrunk together
+    toward the pool mean (``standings.shrink_rates``) — over 135 matches the
+    spread between players is mostly luck, so mostly it is.
+    """
+    from wc_predictor.model.pool_optimizer import OpponentState
+    from wc_predictor.model.standings import PoolContext, shrink_rates
+    if not path.exists():
+        return None
+    doc = json.loads(path.read_text(encoding="utf-8"))
+    you = doc["you"]
+    names = list(doc["players"])
+    rows = [doc["players"][n] for n in names]
+    n_reg = [max(1, r.get("reg_n", 1)) for r in rows]
+    q_raw = [r.get("reg_hits", 0) / n for r, n in zip(rows, n_reg)]
+    e_raw = [r.get("reg_exactos", 0) / n for r, n in zip(rows, n_reg)]
+    n_mean = round(sum(n_reg) / len(n_reg))
+    q_s = shrink_rates(q_raw, n_mean)
+    e_s = shrink_rates(e_raw, n_mean)
+    opponents, mine = [], None
+    for name, r, q, e, n in zip(names, rows, q_s, e_s, n_reg):
+        e = max(0.0, min(1.0, e))
+        q = max(e, min(1.0, q))
+        dprop = r.get("reg_draw_picks", 0) / n if "reg_draw_picks" in r else None
+        if name == you:
+            mine = (float(r.get("points", 0)), float(r.get("exactos", 0)), q, e)
+        else:
+            opponents.append(OpponentState(name, float(r.get("points", 0)), q, e,
+                                           exactos=float(r.get("exactos", 0)),
+                                           draw_prop=dprop))
+    if mine is None:
+        raise SystemExit(f"{path.name}: '{you}' no está en players — el optimizador "
+                         "se quedaría sin tu fila.")
+    return PoolContext(you=you, your_points=mine[0], your_q_rate=mine[2],
+                       your_e_rate=mine[3], opponents=opponents,
+                       matches_resolved=resolved,
+                       total_matches=int(doc.get("total_matches", 14)),
+                       leader_points=max((o.points for o in opponents), default=0.0),
+                       estimated_fill=0, your_exactos=mine[1])
+
+
+def _apply_liguilla_pool_objective(picks: list[dict], decide_ids: set, resolved: int,
+                                   rules) -> dict | None:
+    """Pool objective for the liguilla pool (fresh table, 14 legs, 80/20)."""
+    from wc_predictor.model.pool_optimizer import TicketMatch, optimize_ticket
+    from wc_predictor.model.standings import compute_horizon
+    ctx = load_liguilla_pool_context(resolved=resolved)
+    if ctx is None:
+        print(f"  sin {LIGUILLA_POOL_JSON.name} — picks EV (sin objetivo de pool).")
+        return None
+    deciding = [p for p in picks if p["match_id"] in decide_ids]
+    tmatches = [
+        TicketMatch(
+            match_id=p["match_id"], cells=p["_cells"],
+            # The field picks off the public line (favourite = the market's), not Elo.
+            elo_probs=((p["odds_p1"], p["odds_px"], p["odds_p2"])
+                       if p.get("odds_p1") is not None else p["_elo_probs"]),
+            ev_pick=(p["pick_1x2"], p["pick_exact"]),
+            contra_pick=(p["contrarian_pick_1x2"], p["contrarian_pick_exact"]),
+            alt_picks=p.get("_alt_picks") or None,
+        )
+        for p in deciding
+    ]
+    horizon = compute_horizon(ctx, decision_pending=len(tmatches))
+    print(f"  pool LIGUILLA: {ctx.you} {ctx.your_points:.0f} pts / {ctx.your_exactos:.0f} ex, "
+          f"{len(ctx.opponents)} rivales (líder {ctx.leader_points:.0f}); deciden "
+          f"{len(tmatches)} piernas, quedan {horizon} después")
+    result = optimize_ticket(tmatches, rules, your_points=ctx.your_points,
+                             your_exactos=ctx.your_exactos, opponents=ctx.opponents,
+                             your_q_rate=ctx.your_q_rate, your_e_rate=ctx.your_e_rate,
+                             horizon=horizon, n_sims=40000)
+    swapped = set(result.swapped_to_contrarian)
+    for p in picks:
+        p["pool_swapped"] = p["match_id"] in swapped
+        p["pool_decided"] = p["match_id"] in decide_ids
+        if p["match_id"] in swapped:
+            p["ev_pick_exact"], p["ev_pick_ev"] = p["pick_exact"], p["ev"]
+            p["pick_1x2"], p["pick_exact"] = result.chosen[p["match_id"]]
+            # Report the TRUE points-EV of the pick actually played (the swap
+            # costs EV on purpose — it buys separation from the field).
+            o = p["pick_1x2"]
+            p["ev"] = round(sum(c["prob"] for c in p["_cells"] if c["outcome"] == o)
+                            + sum(c["prob"] for c in p["_cells"] if c["score"] == p["pick_exact"]), 3)
+    print(f"  pool objective: P(1.º) {result.win_prob_ev:.1%} → {result.win_prob_pool:.1%}; "
+          f"premio esperado {result.prize_ev:.1%} → {result.prize_pool:.1%} del bote "
+          f"(80/20); {len(swapped)} swap(s) fuera del pick EV")
+    return {"p_first_ev": round(result.win_prob_ev, 4), "p_first": round(result.win_prob_pool, 4),
+            "prize_ev": round(result.prize_ev, 4), "prize": round(result.prize_pool, 4),
+            "rivals": len(ctx.opponents), "horizon_after": horizon,
+            "swaps": len(swapped)}
+
+
+def run_liguilla_picks(round_key: str, objective: str = "ev", leg: str | None = None) -> None:
     from wc_predictor.model.liguilla import ROUND_LABELS, compute_table, series_advance_prob
     fit, mcfg, rules, elos, altitudes = _load_model()
     fx_doc = json.loads(FIXTURES_JSON.read_text(encoding="utf-8"))
+    # Market line for the legs (the 0.9-weight signal of the regular season —
+    # the liguilla used to run with odds={}), + Over 2.5 when the feed has it.
+    odds = {}
+    odds_h2h = LIGAMX_DIR / "odds_h2h.json"
+    if odds_h2h.exists():
+        odds = with_market_totals(
+            json.loads(odds_h2h.read_text(encoding="utf-8")).get("matches", {}))
+    legs_fx = {(m["home"], m["away"]): m for m in _liguilla_legs(fx_doc)}
+    resolved = sum(1 for m in legs_fx.values() if m.get("home_score") is not None)
     teams = _load_teams_list()
     table_now = compute_table(_regular_matches(fx_doc), teams)
     series, projected = _resolve_bracket(round_key, table_now)
@@ -785,14 +918,17 @@ def run_liguilla_picks(round_key: str) -> None:
     tie_to_higher = round_key != "final"
     for s in series:
         legs, leg_cells = [], {}
-        for leg, home, away in s.legs():
-            fx = {"match_id": f"lg_{round_key}_{home}_{away}_{leg}", "home": home,
-                  "away": away, "date": None, "jornada": None}
-            p = predict_fixture(fx, fit, elos, altitudes, mcfg, rules, odds={},
+        for leg_name, home, away in s.legs():
+            real = legs_fx.get((home, away)) or {}
+            fx = {"match_id": real.get("match_id") or f"lg_{round_key}_{home}_{away}_{leg_name}",
+                  "home": home, "away": away, "date": real.get("date"),
+                  "date_utc": real.get("date_utc"), "jornada": None,
+                  "home_score": real.get("home_score"), "away_score": real.get("away_score")}
+            p = predict_fixture(fx, fit, elos, altitudes, mcfg, rules, odds=odds,
                                 liguilla=True)
-            m = blended_matchup(home, away, fit, elos, altitudes, mcfg, liguilla=True)
-            leg_cells[leg] = m["cells"] if m else None
-            p["leg"] = leg
+            leg_cells[leg_name] = p["_cells"]
+            p["leg"] = leg_name
+            p["date_utc"] = real.get("date_utc")
             legs.append(p)
         adv_high = series_advance_prob(leg_cells["ida"], leg_cells["vuelta"],
                                        tie_to_higher=tie_to_higher)
@@ -808,6 +944,17 @@ def run_liguilla_picks(round_key: str) -> None:
         })
         picks.extend(legs)
 
+    pool = None
+    if objective == "pool":
+        decide = {p["match_id"] for p in picks
+                  if p.get("actual") is None and (leg is None or p["leg"] == leg)}
+        pool = _apply_liguilla_pool_objective(picks, decide, resolved, rules)
+        for s_out in series_out:
+            for lg in s_out["legs"]:
+                p = next(x for x in picks if x["match_id"] == lg["match_id"])
+                lg["pick_exact"], lg["pick_1x2"], lg["ev"] = p["pick_exact"], p["pick_1x2"], p["ev"]
+                lg["pool_swapped"], lg["ev_pick_exact"] = p.get("pool_swapped"), p.get("ev_pick_exact")
+
     for p in picks:
         for k in ("_cells", "_elo_probs", "_alt_picks"):
             p.pop(k, None)
@@ -820,7 +967,8 @@ def run_liguilla_picks(round_key: str) -> None:
         "round": label, "round_label": ROUND_LABELS[round_key], "projected": projected,
         "elo_as_of": elo_as_of, "two_legged": True,
         "rules": {"points_exact": rules.points_exact, "points_1x2": rules.points_1x2},
-        "series": series_out, "picks": picks,
+        "series": series_out, "picks": picks, "pool": pool,
+        "market_draw_shift": mcfg.liguilla_market_draw_shift,
     }
     json_dst = OUTPUTS_DIR / f"ligamx_picks_{label}.json"
     json_dst.write_text(json.dumps(payload, indent=2, ensure_ascii=False), encoding="utf-8")
@@ -943,7 +1091,11 @@ def main(argv: list[str] | None = None) -> None:
     pp.add_argument("--objective", default="ev", choices=("ev", "pool"),
                     help="ev (default): cada pick maximiza sus propios puntos esperados. "
                          "pool: optimiza el boleto entero para P(quedar 1.º) usando "
-                         "data/ligamx/pool_standings.json (+ pool_picks.json si existe).")
+                         "data/ligamx/pool_standings.json (+ pool_picks.json si existe). "
+                         "En liguilla usa data/ligamx/liguilla_pool.json (pool aparte, desde 0).")
+    pp.add_argument("--leg", choices=("ida", "vuelta"), default=None,
+                    help="liguilla: el optimizador decide solo esa pierna (la que se "
+                         "captura ahora); la otra queda como horizonte.")
     pl = sub.add_parser("liguilla", help="Proyecta la tabla final y el bracket (Monte-Carlo).")
     pl.add_argument("--sims", type=int, default=10000, help="número de simulaciones.")
     args = parser.parse_args(argv)
@@ -951,7 +1103,7 @@ def main(argv: list[str] | None = None) -> None:
     if args.cmd == "fit":
         run_fit(fit_rho=args.fit_rho)
     elif args.cmd == "picks":
-        run_picks(args.round, objective=args.objective)
+        run_picks(args.round, objective=args.objective, leg=args.leg)
     elif args.cmd == "liguilla":
         run_liguilla(n_sims=args.sims)
 

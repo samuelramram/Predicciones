@@ -424,6 +424,14 @@ def render_liguilla(payload: dict) -> str:
                  'los cruces reales aún no se definen. Fija <code>data/ligamx/liguilla.json</code> '
                  'cuando termine el rol regular para recalcular con los cruces oficiales.</div>')
 
+    pool = payload.get("pool")
+    if pool:
+        head += (f'<div class="warnbar">🎯 <b>Boleto optimizado para el pool de liguilla</b> '
+                 f'(torneo aparte, todos desde 0, 80/20, {pool["rivals"]} rivales): '
+                 f'P(1.º) {pool["p_first_ev"]*100:.1f}% con EV puro → '
+                 f'<b>{pool["p_first"]*100:.1f}%</b> con {pool["swaps"]} cambio(s). '
+                 f'Los cambios cuestan un poco de EV a cambio de separarte del campo.</div>')
+
     blocks = []
     for s in series:
         hi_pct = round(s["adv_high"] * 100)
@@ -434,7 +442,11 @@ def render_liguilla(payload: dict) -> str:
                 f'<div class="leg"><div class="lg">{_e(lg["leg"])}</div>'
                 f'<div class="lm">{_e(lg["home"])} <span style="color:var(--muted)">vs</span> {_e(lg["away"])}</div>'
                 f'<div class="ls">{_e(lg["pick_exact"])} <span style="font-size:.7rem;color:var(--muted)">'
-                f'[{_e(lg["pick_1x2"])}] EV {lg["ev"]:.2f}</span></div></div>')
+                f'[{_e(lg["pick_1x2"])}] EV {lg["ev"]:.2f}</span>'
+                + (f'<div style="font-size:.7rem;color:var(--muted)">pool: en vez de '
+                   f'{_e(lg.get("ev_pick_exact") or "")} (EV puro)</div>'
+                   if lg.get("pool_swapped") else '')
+                + '</div></div>')
         blocks.append(
             f'<div class="serie"><div class="sh">'
             f'<span class="names" style="font-weight:750;font-size:1.05rem">'

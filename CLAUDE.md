@@ -44,6 +44,17 @@ python -m wc_predictor.pipeline.ligamx picks --round j2
 #     data/ligamx/liguilla.json y se recalcula solo. Rondas: quarter_final |
 #     semi_final | final.
 python -m wc_predictor.pipeline.ligamx picks --round quarter_final
+#     LA LIGUILLA ES OTRO POOL (app: matchdays.tournament='liguilla_mx', bolsa
+#     propia 80/20, todos desde 0, 14 piernas). El boleto se optimiza contra ESE
+#     pool con data/ligamx/liguilla_pool.json (puntos de liguilla de cada quien +
+#     su habilidad y % de empates del rol regular) — NO con pool_standings.json.
+#     --leg decide solo la pierna que se captura ahora; la otra es horizonte.
+#     Tras cada pierna, actualiza points/exactos en liguilla_pool.json desde la BD.
+python -m wc_predictor.pipeline.ligamx picks --round quarter_final --objective pool --leg ida
+#     Las piernas usan el MERCADO (antes corrían con odds={}), con P(X) del mercado
+#     +0.03 (liguilla_market_draw_shift) y sin veto duro a la X. Evidencia y
+#     políticas comparadas con z pareado:
+python -m wc_predictor.pipeline.ligamx_liguilla_backtest
 
 # 3d) Proyección del torneo (Monte-Carlo): simula el resto de la temporada →
 #     tabla final → siembra → bracket, y da P(cada equipo llega a liguilla,
@@ -447,6 +458,18 @@ expresar eso. Ojo: TheSportsDB **omite `intRound` en liguillas enteras**, así q
 `annotate_stages` las rellena por fecha (todo lo posterior a la última jornada
 fechada del torneo es playoff); sin ese backfill solo se recuperaban 44 de 99.
 El A/B está en `ligamx_backtest --no-liguilla-calibration`.
+
+**Liguilla Apertura 2026 (nov 2026): qué se midió y qué cambió.** Backtest
+walk-forward de 98 piernas de liguilla con momios de cierre (`ligamx_liguilla_backtest`):
+la calibración de liguilla vale +6 pts vs la de rol regular (z=1.9); el mercado
+subvalúa el empate en liguilla (26.8% vs 32.7% real, z=1.3; en rol regular está
+exacto, 25.0% vs 24.4% en 1,061) → `liguilla_market_draw_shift=0.03` (encogido,
+en puntos es ruido: z=0.26) y el gate de X se quitó (gate vs sin gate: idéntico).
+Lo que SÍ mueve la aguja es tratar la liguilla como pool nuevo: con 15 jugadores en
+0 y 14 piernas, el boleto EV puro da P(1.º) 6.7% (= 1/15) y el optimizador lo sube a
+~9% separándose del campo (estable en 4 semillas). Además: TheSportsDB manda las
+piernas como `jornada 0`; `ingest.ligamx.annotate_fixture_stages` las marca
+`stage='liguilla'` (antes la proyección las simulaba como rol regular).
 
 **Liguilla (Fase 1c, hecha).** Formato Apertura 2026: sin Play-In, top-8 directo,
 cuartos 1-8/2-7/3-6/4-5, semis resembradas por posición en la tabla general,

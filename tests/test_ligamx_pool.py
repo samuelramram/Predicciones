@@ -138,11 +138,19 @@ def test_parse_export_backfills_rows_exported_as_pending(tmp_path):
     assert rd["points"]["Fallado"][mid] == 0
 
 
-def test_parse_export_leaves_unplayed_matches_pending(tmp_path):
+def test_parse_export_leaves_unplayed_matches_pending(tmp_path, monkeypatch):
     """The backfill must not invent points for a match that has not been played
-    (Liga MX reschedules fixtures — J7 had two pushed to November)."""
+    (Liga MX reschedules fixtures — J7 had two pushed to November).
+
+    Self-contained: once the regular season is over every jornada match is
+    played, so the fixture is cloned as unplayed into a temp fixtures.json."""
+    import wc_predictor.ingest.ligamx_pool as lp
     doc = json.loads(FIXTURES_JSON.read_text(encoding="utf-8"))
-    fx = next(m for m in doc["matches"] if m.get("home_score") is None)
+    fx = dict(next(m for m in doc["matches"] if m.get("jornada")))
+    fx["home_score"] = fx["away_score"] = None
+    tmp_fx = tmp_path / "fixtures.json"
+    tmp_fx.write_text(json.dumps({"matches": [fx]}), encoding="utf-8")
+    monkeypatch.setattr(lp, "FIXTURES_JSON", tmp_fx)
     csv_path = tmp_path / f"pool_j{fx['jornada']}.csv"
     csv_path.write_text(
         "Usuario,Partido,Predicción,Resultado Real,Puntos\n"

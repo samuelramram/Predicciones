@@ -187,6 +187,18 @@ _LIGAMX_MODEL = replace(
     # inherited), and the draw gates stay lower for the liguilla — a third of
     # playoff legs finish level, which the regular-season gate cannot express.
     ko_goal_env_ratio=0.90,
+    # Liguilla draws vs the MARKET (nov 2026, `ligamx_liguilla_backtest`, 98
+    # playoff legs 2023-2026 with Football-Data closing odds): the closing line
+    # prices the draw at 26.8% and 32.7% happened (z=1.3; the ida 28.3% vs
+    # 37.5%), while in the regular season it is spot on (25.0% vs 24.4%,
+    # n=1061). Shrinking that +5.9pp toward 0 (empirical Bayes, prior sd 0.04)
+    # gives +0.03 on the market's P(X) for liguilla legs. On points it is noise
+    # (65 vs 64, z=0.26) — it is the honest estimate of a bias, not an edge.
+    liguilla_market_draw_shift=0.03,
+    # No hard P(X) gate in the liguilla: with the market at 0.9 of the blend the
+    # draw cannot be over-rated, so the EV (and the pool optimizer) decides.
+    # Backtest: gate 0.33 vs none = identical points (64/64) on the 98 legs.
+    ko_draw_allow_min_prob=0.0,
     # Recency half-life: club rosters turn over every window, so a shorter decay
     # (365/540d) was the intuitive bet — but the walk-forward backtest says
     # otherwise. Swept {365, 540, 730, 1095}d on the same harness: 730d wins
