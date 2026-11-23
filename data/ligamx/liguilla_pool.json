@@ -1,0 +1,131 @@
+{
+  "as_of": "2026-11-23",
+  "you": "Claudio",
+  "tournament": "liguilla_mx",
+  "source": "BD de la app (Lovable): get_leaderboard + predictions del Apertura 2026 J3-J17. La liguilla es torneo APARTE (bolsa propia 80/20), todos arrancan en 0.",
+  "total_matches": 14,
+  "total_matches_note": "8 cuartos (ida+vuelta) + 4 semis + 2 final, cada pierna a 90'.",
+  "field_note": "Al 23 nov nadie está inscrito (ligamx_payments kind='liguilla'); se asume el mismo campo del rol regular. Actualiza 'players' cuando se cierre la inscripción.",
+  "players": {
+    "Arturo": {
+      "points": 0,
+      "exactos": 0,
+      "reg_n": 135,
+      "reg_hits": 64,
+      "reg_exactos": 19,
+      "reg_draw_picks": 37
+    },
+    "Aldo": {
+      "points": 0,
+      "exactos": 0,
+      "reg_n": 135,
+      "reg_hits": 59,
+      "reg_exactos": 17,
+      "reg_draw_picks": 24
+    },
+    "El inquisidor de Excel": {
+      "points": 0,
+      "exactos": 0,
+      "reg_n": 135,
+      "reg_hits": 62,
+      "reg_exactos": 12,
+      "reg_draw_picks": 29
+    },
+    "Bryan Montiel": {
+      "points": 0,
+      "exactos": 0,
+      "reg_n": 135,
+      "reg_hits": 60,
+      "reg_exactos": 13,
+      "reg_draw_picks": 30
+    },
+    "Juan Ramon Galvan": {
+      "points": 0,
+      "exactos": 0,
+      "reg_n": 135,
+      "reg_hits": 57,
+      "reg_exactos": 14,
+      "reg_draw_picks": 36
+    },
+    "Yankee": {
+      "points": 0,
+      "exactos": 0,
+      "reg_n": 129,
+      "reg_hits": 56,
+      "reg_exactos": 13,
+      "reg_draw_picks": 18
+    },
+    "Andrey": {
+      "points": 0,
+      "exactos": 0,
+      "reg_n": 120,
+      "reg_hits": 51,
+      "reg_exactos": 13,
+      "reg_draw_picks": 33
+    },
+    "Alex villa": {
+      "points": 0,
+      "exactos": 0,
+      "reg_n": 135,
+      "reg_hits": 54,
+      "reg_exactos": 7,
+      "reg_draw_picks": 18
+    },
+    "Adrián": {
+      "points": 0,
+      "exactos": 0,
+      "reg_n": 123,
+      "reg_hits": 46,
+      "reg_exactos": 12,
+      "reg_draw_picks": 36
+    },
+    "Geovanni": {
+      "points": 0,
+      "exactos": 0,
+      "reg_n": 109,
+      "reg_hits": 48,
+      "reg_exactos": 10,
+      "reg_draw_picks": 18
+    },
+    "Claudio": {
+      "points": 0,
+      "exactos": 0,
+      "reg_n": 133,
+      "reg_hits": 51,
+      "reg_exactos": 6,
+      "reg_draw_picks": 4
+    },
+    "Juan Pablo": {
+      "points": 0,
+      "exactos": 0,
+      "reg_n": 120,
+      "reg_hits": 48,
+      "reg_exactos": 7,
+      "reg_draw_picks": 24
+    },
+    "Bryan 2": {
+      "points": 0,
+      "exactos": 0,
+      "reg_n": 116,
+      "reg_hits": 45,
+      "reg_exactos": 6,
+      "reg_draw_picks": 13
+    },
+    "JIMMYLARA": {
+      "points": 0,
+      "exactos": 0,
+      "reg_n": 79,
+      "reg_hits": 33,
+      "reg_exactos": 7,
+      "reg_draw_picks": 16
+    },
+    "Erika": {
+      "points": 0,
+      "exactos": 0,
+      "reg_n": 70,
+      "reg_hits": 26,
+      "reg_exactos": 5,
+      "reg_draw_picks": 11
+    }
+  }
+}

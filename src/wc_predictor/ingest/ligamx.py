@@ -286,9 +286,29 @@ def write_history(rows: list[dict], dst: Path) -> None:
         w.writerows(rows)
 
 
+def annotate_fixture_stages(fixtures: list[dict]) -> list[dict]:
+    """Mark the playoff legs of the current season's fixtures.
+
+    TheSportsDB sends the liguilla legs with ``intRound`` missing/0, and the
+    fixture builder defaulted every row to ``stage='regular'`` — so the 8
+    quarter-final legs of Apertura 2026 read as 'regular season, jornada 0' and
+    the liguilla projection would have simulated them as league matches. A
+    fixture with no jornada dated after the last numbered jornada is a liguilla
+    leg (same rule as :func:`annotate_stages` for the history). Mutates/returns.
+    """
+    last = max((m["date"] for m in fixtures if m.get("jornada")), default="")
+    for m in fixtures:
+        if not m.get("jornada") and last and m["date"] > last:
+            m["stage"] = "liguilla"
+            m["jornada"] = None
+            m["round_label"] = "Liguilla"
+    return fixtures
+
+
 def write_fixtures(fixtures: list[dict], season: str, dst: Path) -> None:
     dst.parent.mkdir(parents=True, exist_ok=True)
-    fixtures = sorted(fixtures, key=lambda m: (m.get("jornada") or 0, m["date"], m["home"]))
+    fixtures = annotate_fixture_stages(fixtures)
+    fixtures = sorted(fixtures, key=lambda m: (m.get("jornada") or 99, m["date"], m["home"]))
     doc = {
         "version": datetime.utcnow().strftime("%Y.%m.%d"),
         "league": "Liga MX",

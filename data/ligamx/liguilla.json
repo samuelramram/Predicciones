@@ -1,0 +1,14 @@
+{
+  "as_of": "2026-11-23",
+  "source": "Tabla final Apertura 2026 (compute_table sobre fixtures.json, J1-J17) — coincide con app_settings.liguilla_seeds y los cruces cargados en la app.",
+  "seeds": {
+    "Guadalajara": 1, "Cruz Azul": 2, "América": 3, "Atlas": 4,
+    "Toluca": 5, "Monterrey": 6, "León": 7, "Pachuca": 8
+  },
+  "quarter_final": [
+    {"high": "Guadalajara", "low": "Pachuca"},
+    {"high": "Cruz Azul", "low": "León"},
+    {"high": "América", "low": "Monterrey"},
+    {"high": "Atlas", "low": "Toluca"}
+  ]
+}

@@ -104,6 +104,11 @@ class OpponentState:
     e_rate: float = 0.0
     exactos: float = 0.0
     picks: dict = field(default_factory=dict)
+    # Measured share of draw picks (e.g. from the regular season) for the
+    # synthetic pick when no real pick is captured. None → the generic range.
+    # Pools differ wildly here (Liga MX Apertura 2026: 3% to 29%), and a field
+    # that herds on draws is exactly what makes a draw pick worth more or less.
+    draw_prop: float | None = None
 
 
 @dataclass
@@ -311,6 +316,8 @@ def optimize_ticket(
                 q_rate = e_rate = 0.0
             skill = rng.uniform(skill_lo, skill_hi)
             draw_prop = rng.uniform(draw_prop_lo, draw_prop_hi)
+            if use_real_field and opponents[j].draw_prop is not None:
+                draw_prop = opponents[j].draw_prop
             for mi, m in enumerate(matches):
                 real = opp_real[j][mi] if use_real_field else None
                 pick = real if real is not None else _human_pick(rng, m.elo_probs, skill, draw_prop)

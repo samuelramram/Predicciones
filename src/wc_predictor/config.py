@@ -190,6 +190,13 @@ class ModelConfig:
     # 140/33 → 138/31), hence KO-only. 0.0 restores pure-EV ranking.
     ko_exacto_ev_bonus: float = 0.5
 
+    # Liguilla-only shift of the MARKET's draw probability (added to P(X), with
+    # P(1)/P(2) rescaled to keep the 1X2 summing to 1). The closing line is
+    # calibrated on draws in the Liga MX regular season (25.0% priced vs 24.4%
+    # real, n=1061) but UNDER-prices them in the liguilla: 26.8% priced vs 32.7%
+    # real over 98 playoff legs 2023-2026 (z=1.3; ida 28.3% vs 37.5%). 0.0 = off.
+    liguilla_market_draw_shift: float = 0.0
+
     # --- Match-context adjustments (model/adjustments.apply_context_adjustments) ---
     # World-Cup host nations enjoy a documented home boost BEYOND the generic gamma
     # the Poisson+DC fit already applies to the side on home soil. These multipliers
