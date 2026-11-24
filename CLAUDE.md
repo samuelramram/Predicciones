@@ -31,7 +31,9 @@ pregúntale cuál (`j1`..`j17`). Flujo:
 ```bash
 # 1) Refrescar datos (historial + calendario/resultados) — key premium en THESPORTSDB_API_KEY
 python -m wc_predictor.ingest.ligamx --bootstrap
-# 1b) Odds de mercado (1X2 devigado para el blend + mercados para apuestas)
+# 1b) Odds de mercado (1X2 devigado para el blend). CUIDA CRÉDITOS (ver abajo):
+#     1 crédito por corrida (eu, solo 1X2); no repite si los momios tienen <2 h y
+#     no paga sin partidos en 96 h. --totals (2 créditos) solo para ligamx_bets.
 python -m wc_predictor.ingest.ligamx_odds
 # 2) Re-fit (Elo replay + Poisson·DC) sobre el historial actualizado
 python -m wc_predictor.pipeline.ligamx fit
@@ -137,6 +139,20 @@ python -m wc_predictor.pipeline.ligamx_source_tracker log --round j4   # solo ba
 python -m wc_predictor.pipeline.ligamx_source_tracker settle
 python -m wc_predictor.pipeline.ligamx_source_tracker report
 ```
+
+### Créditos de The Odds API: compartidos, no los quemes (nov 2026)
+
+La llave (500 créditos/mes del plan gratis) la usan **otros proyectos del usuario**.
+Cada `/odds` cobra **#mercados × #regiones**. Al 24 nov iban 430 usados: `ligamx_odds`
+cobraba 6 por corrida (us,eu,uk × h2h,totals) con 3-4 re-corridas por jornada, y el VPS
+pedía las 3 copas UEFA a diario (6) aunque no hubiera partidos. `ingest.odds_budget` usa
+solo endpoints gratis (`/sports` = saldo, `/events` = calendario) para:
+- pagar solo competencias con partido próximo (Liga MX 96 h, copas/ligas 72 h);
+- respetar una **reserva** para los demás proyectos: `ODDS_API_RESERVE` (default 100)
+  en lo automático; `ligamx_odds --reserve` (default 25) en la quiniela, que es el
+  consumidor prioritario. `--force` salta todo: úsalo solo si el usuario lo pide.
+No agregues llamadas a `/odds` sin pasar por `odds_budget`, y no subas regiones ni
+mercados "por si acaso": el blend solo necesita el 1X2 de eu (11-16 casas, con Pinnacle).
 
 ### Liga de bots (`wc_predictor.liga`, oct 2026)
 

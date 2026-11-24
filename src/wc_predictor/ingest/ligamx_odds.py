@@ -14,7 +14,16 @@ Team names from the API ("Atlante FC", "América", …) are normalised to the
 canonical name_es via ingest.ligamx.normalize_name so keys match fixtures.json.
 
 Run (needs THE_ODDS_API_KEY):
-    python -m wc_predictor.ingest.ligamx_odds
+    python -m wc_predictor.ingest.ligamx_odds            # 1 crédito: eu, solo 1X2
+    python -m wc_predictor.ingest.ligamx_odds --totals   # 2: + Over/Under (apuestas)
+
+Créditos (la llave es compartida con otros proyectos, 500/mes): cada llamada
+cobra #mercados × #regiones. Antes pedía us,eu,uk × h2h,totals = 6 por corrida,
+y con 3-4 re-corridas por jornada eso se comía el mes. Ahora: región eu (trae
+Pinnacle y ~15 casas, suficiente para la línea justa del blend), solo 1X2 salvo
+--totals, no vuelve a pedir si los momios tienen menos de --max-age-h, no paga
+si no hay partidos de Liga MX en las próximas 96 h (calendario gratis) y respeta
+la reserva de ODDS_API_RESERVE (ver ingest.odds_budget).
 """
 from __future__ import annotations
 
@@ -272,20 +281,60 @@ def parse_markets(payload: list[dict], books_cfg: dict | None = None) -> dict[st
     return out
 
 
-def fetch(api_key: str | None = None, regions: str = "us,eu,uk") -> list[dict]:
+def fetch(api_key: str | None = None, regions: str = "eu",
+          markets: str = "h2h") -> list[dict]:
     import requests
     key = api_key or get_odds_api_key()
     if not key:
         raise SystemExit("Falta THE_ODDS_API_KEY en .env / entorno.")
     url = (f"https://api.the-odds-api.com/v4/sports/{ODDS_SPORT_KEY}/odds/"
-           f"?apiKey={key}&regions={regions}&markets=h2h,totals&oddsFormat=decimal")
+           f"?apiKey={key}&regions={regions}&markets={markets}&oddsFormat=decimal")
     resp = requests.get(url, timeout=40)
     resp.raise_for_status()
+    print(f"  The Odds API: costó {resp.headers.get('x-requests-last')} crédito(s); "
+          f"quedan {resp.headers.get('x-requests-remaining')}")
     return resp.json()
 
 
-def main() -> None:
-    payload = fetch()
+def request_cost(regions: str, markets: str) -> int:
+    return len([r for r in regions.split(",") if r.strip()]) * \
+        len([m for m in markets.split(",") if m.strip()])
+
+
+def main(argv: list[str] | None = None) -> None:
+    import argparse
+    import time
+    from wc_predictor.ingest import odds_budget
+    ap = argparse.ArgumentParser(description="Momios Liga MX (The Odds API), cuidando créditos.")
+    ap.add_argument("--regions", default="eu", help="regiones (cada una cobra; default eu)")
+    ap.add_argument("--totals", action="store_true",
+                    help="también Over/Under (para apuestas; duplica el costo)")
+    ap.add_argument("--max-age-h", type=float, default=2.0,
+                    help="no vuelve a pedir si odds_h2h.json es más nuevo que esto")
+    ap.add_argument("--reserve", type=int, default=25,
+                    help="créditos que se dejan intactos para otros proyectos (default 25)")
+    ap.add_argument("--force", action="store_true",
+                    help="ignora frescura, calendario y reserva")
+    args = ap.parse_args(argv)
+    markets = "h2h,totals" if args.totals else "h2h"
+    cost = request_cost(args.regions, markets)
+    if not args.force and ODDS_H2H_JSON.exists():
+        age_h = (time.time() - ODDS_H2H_JSON.stat().st_mtime) / 3600
+        if age_h < args.max_age_h:
+            print(f"  {ODDS_H2H_JSON.name} tiene {age_h:.1f} h (< {args.max_age_h:g}); "
+                  "no gasto créditos (--force para refrescar).")
+            return
+    key = get_odds_api_key()
+    if not key:
+        raise SystemExit("Falta THE_ODDS_API_KEY en .env / entorno.")
+    if not args.force:
+        ev = odds_budget.upcoming_events(key, ODDS_SPORT_KEY, hours=96)
+        if ev is not None and not ev:
+            print("  sin partidos de Liga MX en las próximas 96 h; no gasto créditos.")
+            return
+        if not odds_budget.can_spend(key, cost, label="Liga MX", reserve_floor=args.reserve):
+            return
+    payload = fetch(key, regions=args.regions, markets=markets)
     books_cfg = load_books_config()
     h2h = parse_h2h(payload)
     markets = parse_markets(payload, books_cfg)
@@ -300,7 +349,7 @@ def main() -> None:
     ODDS_MARKETS_JSON.write_text(json.dumps({"as_of": as_of, "matches": markets},
                                             indent=2, ensure_ascii=False), encoding="utf-8")
     print(f"  wrote {ODDS_H2H_JSON} ({len(h2h)} partidos)")
-    print(f"  wrote {ODDS_MARKETS_JSON} ({len(markets)} partidos con 1X2+totals)")
+    print(f"  wrote {ODDS_MARKETS_JSON} ({len(markets)} partidos)")
 
 
 if __name__ == "__main__":

@@ -43,7 +43,9 @@ if [ -f "$HOME/.config/liga/thesportsdb.env" ]; then
 fi
 # Copas UEFA (Champions / Europa League / Conference) con momios de The Odds API.
 # Llave en ~/.config/liga/odds.env (THE_ODDS_API_KEY=..., chmod 600). Se refresca una
-# vez al día (cuida los 500 créditos/mes del plan gratis); sin llave se salta.
+# vez al día (cuida los 500 créditos/mes del plan gratis, COMPARTIDOS con otros
+# proyectos): solo paga copas/ligas con partido en 72 h y nunca por debajo de
+# ODDS_API_RESERVE (default 100; ver ingest.odds_budget). Sin llave se salta.
 if [ -f "$HOME/.config/liga/odds.env" ]; then
   ( set -a; . "$HOME/.config/liga/odds.env"; set +a
     LIGA_HOME="$LIGA" PYTHONPATH="$REPO/src" PYTHONDONTWRITEBYTECODE=1 \
