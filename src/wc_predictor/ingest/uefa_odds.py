@@ -165,6 +165,10 @@ def main(argv: list[str] | None = None) -> None:
                     help="no vuelve a pedir si el archivo es más nuevo que esto (cuida créditos)")
     ap.add_argument("--leagues", action="store_true",
                     help="respaldo de ligas (top-5 + Liga MX) que Football-Data aún no publica")
+    ap.add_argument("--window-h", type=float, default=72.0,
+                    help="solo paga competencias con partido en esta ventana (h)")
+    ap.add_argument("--force", action="store_true",
+                    help="ignora calendario y reserva de créditos")
     args = ap.parse_args(argv)
     dst = leagues_path() if args.leagues else out_path()
     comps = COMPETITIONS
@@ -180,6 +184,27 @@ def main(argv: list[str] | None = None) -> None:
     key = os.environ.get("THE_ODDS_API_KEY")
     if not key:
         raise SystemExit("Falta THE_ODDS_API_KEY: sin ella no hay partidos de copas.")
+    # Créditos compartidos con otros proyectos (ver ingest.odds_budget): solo se
+    # pagan las competencias con partido en las próximas --window-h (calendario
+    # gratis) y nunca por debajo de la reserva. Antes pedía las 3 copas a diario
+    # (6 créditos) aunque fuera semana sin Champions.
+    from wc_predictor.ingest import odds_budget
+    if not args.force:
+        live = {}
+        for code, sport in comps.items():
+            ev = odds_budget.upcoming_events(key, sport, hours=args.window_h)
+            if ev is None or ev:          # si el calendario falla, no se descarta
+                live[code] = sport
+        skipped = sorted(set(comps) - set(live))
+        if skipped:
+            print(f"  sin partidos en {args.window_h:g} h: {', '.join(NAMES[c] for c in skipped)} "
+                  "(no gasto)")
+        if not live:
+            print("  nada que pedir; conservo el archivo anterior.")
+            return
+        comps = live
+        if not odds_budget.can_spend(key, 2 * len(comps), label="copas/ligas"):
+            return
     rows = fetch(key, comps)
     dst.parent.mkdir(parents=True, exist_ok=True)
     tmp = dst.with_suffix(".tmp")
